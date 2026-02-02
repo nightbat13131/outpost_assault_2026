@@ -1,0 +1,25 @@
+class_name EnemyUnitInfo extends Resource
+
+enum EnemyTypes {
+	DEBUG_WALKER=0, 
+	SCOUT=100, 
+	GUN=110, RIFLE=120, GRENADIER=130, 
+	TANK=200, 
+	HELICOPTER=300 }
+
+static var EnemyScenePaths : Dictionary[EnemyTypes, String] = {
+	EnemyTypes.DEBUG_WALKER: "uid://ffqucx6xrr6f"
+}
+
+@export var speed: float = 150.0
+## Pixels per second
+@export var rotate_speed_body := 10.0
+## Degrees per second 
+@export var max_health := 100.0
+## Unit Starting health
+@export var kill_reward := 100.0
+## Gold awarded upon death
+
+func get_speed() -> float: return speed
+
+static func get_enemy_scene_path(enemy_type: EnemyTypes) -> String: return EnemyScenePaths.get(enemy_type, "")

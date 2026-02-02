@@ -1,0 +1,31 @@
+[gd_resource type="TileSet" format=3 uid="uid://dts0elkqouq0i"]
+
+[ext_resource type="Texture2D" uid="uid://cbom43uaay1ac" path="res://assets/tilemaps/field_tilesheet_logic.png" id="1_mduvo"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mduvo"]
+vertices = PackedVector2Array(64, -32, 64, 32, 0, 64, -64, 32, -64, -32, 0, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -32, 0, -64, 64, -32, 64, 32, 0, 64, -64, 32)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xev3a"]
+vertices = PackedVector2Array(64, -32, 64, 32, 0, 64, -64, 32, -64, -32, 0, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -32, 0, -64, 64, -32, 64, 32, 0, 64, -64, 32)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fmo82"]
+texture = ExtResource("1_mduvo")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_mduvo")
+1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_xev3a")
+0:1/0 = 0
+0:2/0 = 0
+
+[resource]
+tile_shape = 3
+tile_size = Vector2i(128, 128)
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_fmo82")

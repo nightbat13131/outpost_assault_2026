@@ -1,0 +1,129 @@
+[gd_scene format=4 uid="uid://c0yokytp4v37t"]
+
+[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="1_nq712"]
+[ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset.tres" id="1_wcnh8"]
+[ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_5m4o8"]
+[ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="4_rbfhg"]
+[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="9_wxrse"]
+[ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://map/testing_nav_target.gd" id="10_abknn"]
+
+[sub_resource type="Resource" id="Resource_5m4o8"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_SW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_w6k3g"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_N")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_p5ln4"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_NW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_rljvs"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_S")
+weight = 10.0
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_jx64k"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_N")
+weight = 3.0
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_nl8ey"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_E")
+weight = 5.0
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_pftil"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_SW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_4tk5l"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_NW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_dba86"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_S")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_q63uy"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_E")
+weight = 5.0
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_r6kwo"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_NW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_bfwus"]
+script = ExtResource("4_5m4o8")
+point_path = NodePath("../NavPoint_SW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[node name="TileMapLogicLayer" type="TileMapLayer" unique_id=1836936977]
+tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAEAAAAHAAEAAAAAAAEAAAAGAAEAAAAAAAEAAAAFAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAADAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAABAAQAAAAAAAEAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAEAAAAJAAQAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAIAAAAIAAAAAAAAAAIAAAAHAAAAAAAAAAIAAAAGAAAAAAAAAAIAAAAFAAAAAAAAAAIAAAAEAAAAAAAAAAIAAAADAAAAAAAAAAIAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAgAAAAAAAIAAAABAAgAAAAAAAIAAAACAAgAAAAAAAIAAAADAAgAAAAAAAIAAAAEAAgAAAAAAAIAAAAFAAgAAAAAAAIAAAAGAAgAAAAAAAIAAAAHAAgAAAAAAAIAAAAIAAgAAAAAAAIAAAAJAAgAAAAAAAIAAAAKAAgAAAAAAAIAAAALAAgAAAAAAAIAAAAMAAgAAAAAAAIAAAANAAgAAAAAAAIAAAAOAAgAAAAAAAIAAAAOAAcAAAAAAAIAAAAOAAYAAAAAAAIAAAAOAAUAAAAAAAIAAAAOAAQAAAAAAAIAAAAOAAMAAAAAAAIAAAAOAAIAAAAAAAIAAAAOAAEAAAAAAAIAAAAOAAAAAAAAAAIAAAANAAAAAAAAAAIAAAAMAAAAAAAAAAIAAAALAAAAAAAAAAIAAAAKAAAAAAAAAAIAAAABAAUAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAAAAAACAAcAAAAAAAEAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAAAAAEAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAFAAUAAAAAAAEAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAEAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAEAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAEAAAAIAAUAAAAAAAEAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAEAAAAJAAUAAAAAAAEAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAUAAAAAAAEAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAEAAAALAAEAAAAAAAEAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAALAAQAAAABAAAAAAALAAUAAAABAAAAAAALAAYAAAABAAAAAAALAAcAAAAAAAEAAAAMAAEAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAAAAAAMAAQAAAABAAAAAAAMAAUAAAABAAAAAAAMAAYAAAABAAAAAAAMAAcAAAAAAAEAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAA=")
+tile_set = ExtResource("1_wcnh8")
+script = ExtResource("1_nq712")
+metadata/_edit_lock_ = true
+
+[node name="NavPoint_NW" type="Marker2D" parent="." unique_id=938499847]
+position = Vector2(360, 363)
+script = ExtResource("9_wxrse")
+next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_5m4o8"), SubResource("Resource_w6k3g")])
+
+[node name="NavPoint_SW" type="Marker2D" parent="." unique_id=1424122096]
+position = Vector2(323, 835)
+script = ExtResource("9_wxrse")
+next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_p5ln4"), SubResource("Resource_rljvs")])
+target_distance = 50.0
+
+[node name="NavPoint_S" type="Marker2D" parent="." unique_id=1070101137]
+position = Vector2(976, 854)
+script = ExtResource("9_wxrse")
+next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_jx64k"), SubResource("Resource_nl8ey"), SubResource("Resource_pftil")])
+
+[node name="NavPoint_N" type="Marker2D" parent="." unique_id=612239805]
+position = Vector2(963, 320)
+script = ExtResource("9_wxrse")
+next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_4tk5l"), SubResource("Resource_dba86"), SubResource("Resource_q63uy")])
+
+[node name="NavPoint_E" type="Marker2D" parent="." unique_id=1847471354]
+position = Vector2(1594, 608)
+script = ExtResource("9_wxrse")
+next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_r6kwo"), SubResource("Resource_bfwus")])
+target_distance = 100.0
+
+[node name="Enemy" parent="." unique_id=1456879393 instance=ExtResource("4_rbfhg")]
+position = Vector2(315, 340)
+
+[node name="Enemy2" parent="." unique_id=693323827 instance=ExtResource("4_rbfhg")]
+position = Vector2(302, 284)
+
+[node name="Enemy3" parent="." unique_id=1507657468 instance=ExtResource("4_rbfhg")]
+position = Vector2(350, 294)
+
+[node name="TestingNavTarget" type="Node" parent="." unique_id=44730354 node_paths=PackedStringArray("unit", "nav_target")]
+script = ExtResource("10_abknn")
+unit = NodePath("../Enemy")
+nav_target = NodePath("../NavPoint_NW")
+
+[node name="TestingNavTarget2" type="Node" parent="." unique_id=71930452 node_paths=PackedStringArray("unit", "nav_target")]
+script = ExtResource("10_abknn")
+unit = NodePath("../Enemy2")
+nav_target = NodePath("../NavPoint_NW")
+
+[node name="TestingNavTarget3" type="Node" parent="." unique_id=1844003515 node_paths=PackedStringArray("unit", "nav_target")]
+script = ExtResource("10_abknn")
+unit = NodePath("../Enemy3")
+nav_target = NodePath("../NavPoint_NW")
