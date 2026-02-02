@@ -10,7 +10,6 @@ var _time_remaining := _wait_time:
 		if _time_remaining <= 0.0:
 			timeout.emit()
 			_is_running = false
-			print(_time_remaining)
 
 func _init(wait_seconds: float = 0.05) -> void:
 	set_wait_time(wait_seconds)
@@ -19,6 +18,7 @@ func _process(delta: float) -> void:
 	if _is_running:
 		_time_remaining -= (delta * GameSpeed.get_delta_mod())
 
+## Set how long the timer runs before signaling Timeout.
 func set_wait_time(seconds: float) -> void:
 	if seconds < 0.05:
 		push_warning(seconds, " TimerModed wait time too low. Setting to 0.05")
@@ -27,4 +27,9 @@ func set_wait_time(seconds: float) -> void:
 	_time_remaining = _wait_time
 
 func start() -> void:
+	# calling deffered fixes a short timer conflict with processing
+	_start.call_deferred() # 
+
+func _start() -> void:
+	_time_remaining = _wait_time
 	_is_running = true

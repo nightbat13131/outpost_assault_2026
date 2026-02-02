@@ -1,6 +1,8 @@
 @tool
 class_name EnemyUnit extends CharacterBody2D
 
+signal died(unit: EnemyUnit)
+
 const EVENT_NO_NAV_TARGET = "no nav target"
 const ANIMATION_WALKING = "walk"
 const ANIMATION_DIE = "die"
@@ -77,8 +79,10 @@ func _die() -> void:
 	# turn off collision
 	# death sound
 	# death animation
+	died.emit()
 	if Engine.is_editor_hint():
 		return
+	
 	# quee free
 
 func get_max_speed() -> float:
@@ -89,7 +93,6 @@ func get_max_speed() -> float:
 		return 10.0
 
 func send_event(event: String) -> void:
-	print(event)
 	if _state_machine:
 		_state_machine.send_event(event)
 
