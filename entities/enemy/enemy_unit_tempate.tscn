@@ -14,7 +14,9 @@
 radius = 20.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1456879393]
-collision_mask = 0
+collision_mask = 256
+motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_30kr5")
 enemy_info = ExtResource("2_avlsx")
 

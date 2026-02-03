@@ -4,10 +4,7 @@ class_name EnemyUnit extends CharacterBody2D
 signal died(unit: EnemyUnit)
 
 const EVENT_NO_NAV_TARGET = "no nav target"
-const ANIMATION_WALKING = "walk"
-const ANIMATION_DIE = "die"
-const ANIMATION_SHOOT = "shoot"
-const ANIMATION_IDLE = "idle"
+
 const DEFAULT_DESIRED_DISTANCE := 25.0
 
 @export var enemy_info : EnemyUnitInfo
@@ -33,8 +30,7 @@ func set_nav_target(node: Node2D) -> void:
 	if _nav_agent:
 		if _nav_target:
 			if _nav_target is NavPoint:
-				_nav_agent.set_target_position(_nav_target.get_target_location())
-				_nav_agent.set_target_desired_distance(_nav_target.target_distance)
+				_nav_target.apply_nav_agent(_nav_agent)
 			else:
 				_nav_agent.set_target_position(_nav_target.global_position)
 				_nav_agent.set_target_desired_distance(DEFAULT_DESIRED_DISTANCE)
@@ -82,6 +78,7 @@ func _die() -> void:
 	died.emit()
 	if Engine.is_editor_hint():
 		return
+	
 	
 	# quee free
 

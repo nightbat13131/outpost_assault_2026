@@ -34,7 +34,7 @@ func _draw() -> void:
 		else:
 			var end_point :Vector2
 			for each_point: NavPointWeight in next_target_weights:
-				end_point = to_local(each_point.get_nav_point().get_target_location())
+				end_point = to_local(each_point.get_nav_point().global_position)
 				draw_line(Vector2.ZERO, end_point, Color.ORANGE, each_point.get_weight()*4)
 				draw_polyline([
 					Vector2.from_angle(end_point.angle()-.2)*target_distance*1,
@@ -45,7 +45,24 @@ func _draw() -> void:
 
 func get_next_point() -> NavPoint: return _picker.pick_one()
 
-func get_target_location() -> Vector2: return global_position
+func get_target_location() -> Vector2: 
+	return Vector2.from_angle(randf() * TAU) * target_distance *.5 + global_position
+	#return global_position
+
+
+func apply_nav_agent(nav_agent: NavigationAgent2D) -> void:
+	if nav_agent:
+		### version 1 - towards center with target_distance as buffer 
+		## Gives very consisten path
+		#nav_agent.set_target_position(global_position)
+		#nav_agent.set_target_desired_distance(target_distance)
+		
+		### version 2 - towards random point near center bound within target_distance
+		## much better spread for travel, corners are still tightly hugged. Graphics might help.
+		nav_agent.set_target_position(
+			get_target_location()
+			)
+		nav_agent.set_target_desired_distance(target_distance * .5) # 5 is too small and nav agent gets stuck trying to be close enough
 
 class WeightedPicker:
 	var _total: float = 0.0

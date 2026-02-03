@@ -43,6 +43,14 @@ folder_colors={
 "res://addons/": "gray"
 }
 
+[layer_names]
+
+2d_navigation/layer_1="Ground"
+2d_navigation/layer_2="Sky"
+2d_physics/layer_9="AnyBuilding"
+2d_physics/layer_10="EnemyBuilding"
+2d_physics/layer_11="PlayerBuilding"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

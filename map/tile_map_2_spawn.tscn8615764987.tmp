@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://spawner.gd" id="5_f5dm3"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://spawn_point.gd" id="6_juwde"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://map/spawner_building.tscn" id="8_qj5ga"]
-[ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="9_ti3ma"]
 
 [sub_resource type="Resource" id="Resource_5w2jj"]
 script = ExtResource("4_5w2jj")
@@ -86,12 +85,12 @@ metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
 [sub_resource type="Resource" id="Resource_16vwn"]
 script = ExtResource("4_5w2jj")
-point_path = NodePath("../../../../NavPoint_E")
+point_path = NodePath("../../../../NavPoint_S")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
 [sub_resource type="Resource" id="Resource_gluir"]
 script = ExtResource("4_5w2jj")
-point_path = NodePath("../../../../NavPoint_S")
+point_path = NodePath("../../../../NavPoint_E")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
 [sub_resource type="Resource" id="Resource_0pcpm"]
@@ -168,23 +167,22 @@ unit_types = Array[int]([100])
 next_target_weights = Array[ExtResource("4_5w2jj")]([SubResource("Resource_ti3ma")])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="SpawnerBuilding" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("8_qj5ga")]
-position = Vector2(1600, 307)
+[node name="SpawnerBuilding" parent="SpawnManager" unique_id=563047493 instance=ExtResource("8_qj5ga")]
+position = Vector2(1606, 318)
+max_health = 100.0
+_waves = Array[int]([])
+_inital_delay = 0.05
+_pulse_gap = 2.0
+_pulse_per_wave = 10
+_hard_spawn_cap = 100
+_spawn_speed = 0.2
+_pulse_unit_volume = 1
 
-[node name="Spawn_E" parent="SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
+[node name="Spawn_E" parent="SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(563047493, 1438190680) index="0" unique_id=100200813]
+position = Vector2(77, 25)
 next_target_weights = Array[ExtResource("4_5w2jj")]([SubResource("Resource_16vwn"), SubResource("Resource_gluir")])
 
-[node name="Spawn_W" parent="SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
+[node name="Spawn_W" parent="SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(563047493, 1438190680) index="1" unique_id=971029430]
 next_target_weights = Array[ExtResource("4_5w2jj")]([SubResource("Resource_0pcpm"), SubResource("Resource_n5djh")])
-
-[node name="Button" type="Button" parent="." unique_id=1473628105 node_paths=PackedStringArray("damage_target")]
-offset_left = 1753.0
-offset_top = 219.0
-offset_right = 1864.0
-offset_bottom = 250.0
-text = "Deal Damage"
-script = ExtResource("9_ti3ma")
-damage_target = NodePath("../SpawnManager/SpawnerBuilding")
-damage_amount = 23.0
 
 [editable path="SpawnManager/SpawnerBuilding"]

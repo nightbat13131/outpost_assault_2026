@@ -10,15 +10,13 @@ signal enemy_spawned(unit: EnemyUnit)
 enum EnemySpawnTypes {NA=0,
 	PERSON = 100, VEHICLE_GROUN = 200, VEHICLE_AIR=300}
 
-
-
-
 static var MapEnemyTypeMeta: Dictionary[EnemyUnitInfo.EnemyTypes, EnemySpawnTypes] = {
 	EnemyUnitInfo.EnemyTypes.DEBUG_WALKER: EnemySpawnTypes.PERSON, 
 	EnemyUnitInfo.EnemyTypes.SCOUT: EnemySpawnTypes.PERSON, 
 	EnemyUnitInfo.EnemyTypes.GUN: EnemySpawnTypes.PERSON
 }
 
+@export var spawn_points : Array[SpawnPoint] = []
 @export_category("Wave")
 ## Which level waves to participate in. No entries means every wave. 
 @export var _waves : Array[int]
@@ -48,11 +46,15 @@ var _unit_container: Node2D: set = set_unit_container, get = get_unit_container
 var _is_pulse_active := false
 var _is_disabled := false 
 
-@onready var _timer := TimerModed.new(_inital_delay)
+@onready var _timer := TimerModded.new(_inital_delay)
 
 func _ready() -> void:
 	add_child(_timer) 
 	_timer.timeout.connect(_on_timer_timeout)
+	for each_child in get_children():
+		if each_child is SpawnPoint:
+			if !spawn_points.has(each_child):
+				spawn_points.append(each_child)
 
 func start_wave(wave_number) -> void:
 	if _is_disabled:
@@ -119,11 +121,11 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 	_check_pulse()
 
 func _get_spawn_point(enemy_type: EnemySpawnTypes) -> SpawnPoint:
-	for each_child in get_children():
-		if each_child is SpawnPoint:
-			if each_child.is_type_valid(enemy_type):
+	spawn_points.shuffle()
+	for each_point in spawn_points:
+		if each_point.is_type_valid(enemy_type):
 				## TODO: change this away from first only
-				return each_child
+				return each_point
 	return null
 
 func _pick_enemy() -> EnemyUnitInfo.EnemyTypes:
