@@ -1,9 +1,14 @@
 class_name HealthUI extends Control
 
+@export var _hide_when_full := false
 @onready var health_bar: Range = %HealthBar
 @onready var red_under_bar: Range = %RedUnderBar
 
-func set_healt_ratio(value: float) -> void:
+func set_health_ratio(value: float) -> void:
+	if _hide_when_full and value >= 1.0 :
+		hide()
+	elif _hide_when_full and value < 1.0:
+		show()
 	value = clampf(value, 0.0, 1.0)
 	var is_healing : bool = value > health_bar.ratio
 	health_bar.set_as_ratio(value)

@@ -14,7 +14,6 @@ class_name NavPoint extends Node2D
 
 @onready var _picker:= WeightedPicker.new(next_target_weights)
 
-
 func _ready() -> void:
 	for each in next_target_weights:
 		each.set_parent(self)
@@ -48,7 +47,6 @@ func get_next_point() -> NavPoint: return _picker.pick_one()
 func get_target_location() -> Vector2: 
 	return Vector2.from_angle(randf() * TAU) * target_distance *.5 + global_position
 	#return global_position
-
 
 func apply_nav_agent(nav_agent: NavigationAgent2D) -> void:
 	if nav_agent:

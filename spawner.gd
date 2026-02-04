@@ -66,12 +66,16 @@ func start_wave(wave_number) -> void:
 
 func _start_pulse() -> void:
 	_started_pulse_count += 1
+	# Clear to start
 	if (_started_pulse_count < _pulse_per_wave) or (_pulse_per_wave < 0):
 		_is_pulse_active = true
 		_enemy_spawned_count = 0
 		_timer.set_wait_time(_spawn_speed)
 		_timer.start()
 		_spawn_new_enemy(_pick_enemy())
+	# pulses are compelte
+	else: 
+		_end_wave()
 
 func _pulse_complete() -> void:
 	_is_pulse_active = false

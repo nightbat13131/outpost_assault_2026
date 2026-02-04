@@ -15,11 +15,13 @@ static var EnemyScenePaths : Dictionary[EnemyTypes, String] = {
 ## Pixels per second
 @export var rotate_speed_body := 10.0
 ## Degrees per second 
-@export var max_health := 100.0
+@export var max_health := 100.0 : get = get_max_health
 ## Unit Starting health
 @export var kill_reward := 100.0
 ## Gold awarded upon death
 
-func get_speed() -> float: return speed
+func get_max_speed() -> float: return speed
 
 static func get_enemy_scene_path(enemy_type: EnemyTypes) -> String: return EnemyScenePaths.get(enemy_type, "")
+
+func get_max_health() -> float: return max_health
