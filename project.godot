@@ -23,6 +23,10 @@ config/icon="res://icon.svg"
 
 buses/default_bus_layout="uid://bd8uaahcmppqa"
 
+[autoload]
+
+GUIDE="*uid://p2jwrgjcbexr"
+
 [display]
 
 window/size/viewport_width=1920
@@ -35,7 +39,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/guide/plugin.cfg")
 
 [file_customization]
 
@@ -50,6 +54,7 @@ folder_colors={
 2d_physics/layer_9="AnyBuilding"
 2d_physics/layer_10="EnemyBuilding"
 2d_physics/layer_11="PlayerBuilding"
+2d_physics/layer_24="Camera"
 
 [rendering]
 

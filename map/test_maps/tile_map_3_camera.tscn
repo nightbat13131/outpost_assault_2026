@@ -2,9 +2,14 @@
 
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="1_087yg"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="2_l5omd"]
+[ext_resource type="Script" uid="uid://byk4p7haluv6i" path="res://architecture/camera_man.gd" id="3_l5omd"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="3_tieqq"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://map/test_poison_zone.gd" id="4_747j4"]
+[ext_resource type="Resource" uid="uid://c2cn6t0iqekow" path="res://architecture/guide/context_camera_man.tres" id="4_tieqq"]
+[ext_resource type="Resource" uid="uid://ta3akt5mo5ib" path="res://architecture/guide/move_camera_man.tres" id="5_747j4"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="5_l7wik"]
+[ext_resource type="Resource" uid="uid://bl4ky3gf6gcji" path="res://architecture/guide/camera_zoom.tres" id="6_a1ku7"]
+[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="6_l7wik"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="6_qmthx"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="7_a1ku7"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://map/spawn_manager.gd" id="8_g3vga"]
@@ -12,7 +17,23 @@
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://spawn_point.gd" id="10_85e20"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://map/spawner_building.tscn" id="11_sevtk"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l5omd"]
+distance = 2.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tieqq"]
+normal = Vector2(0.999994, 0.0034601868)
+distance = 2.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_747j4"]
+normal = Vector2(-0.9972795, -0.07371197)
+distance = 2.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l7wik"]
+normal = Vector2(0, 1)
+distance = 2.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_087yg"]
+radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -115,12 +136,48 @@ tile_set = ExtResource("1_087yg")
 script = ExtResource("2_l5omd")
 metadata/_edit_lock_ = true
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=794322403]
+[node name="CameraBounds" type="StaticBody2D" parent="." unique_id=1138629546]
+position = Vector2(668, 607)
+collision_layer = 8388608
+collision_mask = 0
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=757337373]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds" unique_id=663134246]
+position = Vector2(0, 366)
+shape = SubResource("WorldBoundaryShape2D_l5omd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=659632791]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBounds" unique_id=2079568709]
+position = Vector2(-612, -48)
+shape = SubResource("WorldBoundaryShape2D_tieqq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CameraBounds" unique_id=1834718454]
+position = Vector2(1184, -48)
+shape = SubResource("WorldBoundaryShape2D_747j4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="CameraBounds" unique_id=133033127]
+position = Vector2(161, -563)
+shape = SubResource("WorldBoundaryShape2D_l7wik")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CameraBounds" unique_id=794322403]
+position = Vector2(213, -171)
+rotation = -0.0010063614
+collision_layer = 0
+collision_mask = 8388608
+motion_mode = 1
+script = ExtResource("3_l5omd")
+control_context = ExtResource("4_tieqq")
+action_move = ExtResource("5_747j4")
+action_zoom = ExtResource("6_a1ku7")
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="CameraBounds/CharacterBody2D" unique_id=757337373]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds/CharacterBody2D" unique_id=659632791]
 shape = SubResource("CircleShape2D_087yg")
+
+[node name="GuideDebugger" parent="CameraBounds/CharacterBody2D" unique_id=1849619643 instance=ExtResource("6_l7wik")]
+offset_right = 156.0
+offset_bottom = 116.0
 
 [node name="Button" type="Button" parent="." unique_id=1473628105 node_paths=PackedStringArray("damage_target")]
 offset_left = 1753.0

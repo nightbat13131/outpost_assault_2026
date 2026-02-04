@@ -16,4 +16,4 @@ func _on_body_entered(body) -> void:
 	if body is EnemyUnit:
 		_effect_enemy(body)
 
-func _effect_enemy(body: EnemyUnit) -> void: pass
+func _effect_enemy(_body: EnemyUnit) -> void: pass

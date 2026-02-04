@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="GUIDEMappingContext" format=3 uid="uid://c2cn6t0iqekow"]
+
+[ext_resource type="Script" uid="uid://cpplm41b5bt6m" path="res://addons/guide/guide_action_mapping.gd" id="1_ynal3"]
+[ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_fb08d"]
+[ext_resource type="Resource" uid="uid://ta3akt5mo5ib" path="res://architecture/guide/move_camera_man.tres" id="2_uh03j"]
+[ext_resource type="Script" uid="uid://mtx1unc2aqn7" path="res://addons/guide/guide_input_mapping.gd" id="3_2f0lo"]
+[ext_resource type="Script" uid="uid://cw71o87tvdx3q" path="res://addons/guide/inputs/guide_input_key.gd" id="4_blcwt"]
+[ext_resource type="Script" uid="uid://bl8rjl4oaldje" path="res://addons/guide/modifiers/guide_modifier.gd" id="5_rwm2e"]
+[ext_resource type="Script" uid="uid://bm5gjgadon6hb" path="res://addons/guide/modifiers/guide_modifier_input_swizzle.gd" id="6_blcwt"]
+[ext_resource type="Script" uid="uid://x74mnwgr08a7" path="res://addons/guide/triggers/guide_trigger.gd" id="6_h1li1"]
+[ext_resource type="Script" uid="uid://ckggy40lm0vjc" path="res://addons/guide/modifiers/guide_modifier_negate.gd" id="8_rwm2e"]
+[ext_resource type="Resource" uid="uid://bl4ky3gf6gcji" path="res://architecture/guide/camera_zoom.tres" id="9_h1li1"]
+[ext_resource type="Script" uid="uid://vgjlx6p007lp" path="res://addons/guide/inputs/guide_input_mouse_button.gd" id="10_4khh6"]
+
+[sub_resource type="Resource" id="Resource_4khh6"]
+script = ExtResource("4_blcwt")
+key = 87
+
+[sub_resource type="Resource" id="Resource_blcwt"]
+script = ExtResource("8_rwm2e")
+
+[sub_resource type="Resource" id="Resource_h1li1"]
+script = ExtResource("6_blcwt")
+
+[sub_resource type="Resource" id="Resource_qcihy"]
+script = ExtResource("3_2f0lo")
+input = SubResource("Resource_4khh6")
+modifiers = Array[ExtResource("5_rwm2e")]([SubResource("Resource_blcwt"), SubResource("Resource_h1li1")])
+
+[sub_resource type="Resource" id="Resource_oq83j"]
+script = ExtResource("4_blcwt")
+key = 83
+
+[sub_resource type="Resource" id="Resource_6n6bw"]
+script = ExtResource("6_blcwt")
+
+[sub_resource type="Resource" id="Resource_1o5dd"]
+script = ExtResource("3_2f0lo")
+input = SubResource("Resource_oq83j")
+modifiers = Array[ExtResource("5_rwm2e")]([SubResource("Resource_6n6bw")])
+
+[sub_resource type="Resource" id="Resource_tkmeg"]
+script = ExtResource("4_blcwt")
+key = 65
+
+[sub_resource type="Resource" id="Resource_anlqs"]
+script = ExtResource("8_rwm2e")
+
+[sub_resource type="Resource" id="Resource_o5me8"]
+script = ExtResource("3_2f0lo")
+input = SubResource("Resource_tkmeg")
+modifiers = Array[ExtResource("5_rwm2e")]([SubResource("Resource_anlqs")])
+
+[sub_resource type="Resource" id="Resource_2bwku"]
+script = ExtResource("4_blcwt")
+key = 68
+
+[sub_resource type="Resource" id="Resource_8pbd8"]
+script = ExtResource("3_2f0lo")
+input = SubResource("Resource_2bwku")
+
+[sub_resource type="Resource" id="Resource_8dpjd"]
+script = ExtResource("1_ynal3")
+action = ExtResource("2_uh03j")
+input_mappings = Array[ExtResource("3_2f0lo")]([SubResource("Resource_qcihy"), SubResource("Resource_1o5dd"), SubResource("Resource_o5me8"), SubResource("Resource_8pbd8")])
+metadata/_guide_input_mappings_collapsed = false
+
+[sub_resource type="Resource" id="Resource_k74wc"]
+script = ExtResource("10_4khh6")
+button = 5
+
+[sub_resource type="Resource" id="Resource_iwixo"]
+script = ExtResource("8_rwm2e")
+
+[sub_resource type="Resource" id="Resource_6qx1v"]
+script = ExtResource("3_2f0lo")
+input = SubResource("Resource_k74wc")
+modifiers = Array[ExtResource("5_rwm2e")]([SubResource("Resource_iwixo")])
+
+[sub_resource type="Resource" id="Resource_exxul"]
+script = ExtResource("10_4khh6")
+button = 4
+
+[sub_resource type="Resource" id="Resource_710fj"]
+script = ExtResource("3_2f0lo")
+input = SubResource("Resource_exxul")
+
+[sub_resource type="Resource" id="Resource_nncjg"]
+script = ExtResource("1_ynal3")
+action = ExtResource("9_h1li1")
+input_mappings = Array[ExtResource("3_2f0lo")]([SubResource("Resource_6qx1v"), SubResource("Resource_710fj")])
+
+[resource]
+script = ExtResource("2_fb08d")
+display_name = "CameraMan"
+mappings = Array[ExtResource("1_ynal3")]([SubResource("Resource_8dpjd"), SubResource("Resource_nncjg")])
+metadata/_custom_type_script = "uid://dsa1dnifd6w32"

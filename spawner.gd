@@ -1,4 +1,6 @@
 class_name Spawner extends Node2D
+## TODO: integrate _hard_spawn_cap with spawn logic
+
 
 ## This Spawner is participating in the wave.
 signal spawner_started(spawner: Spawner)
