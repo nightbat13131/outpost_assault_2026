@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CustomCursor" format=3 uid="uid://cq7yoy3jauvdv"]
+
+[ext_resource type="Script" uid="uid://bixro6jxk8vg" path="res://architecture/cursors/custom_cursor.gd" id="1_lbsnd"]
+
+[resource]
+script = ExtResource("1_lbsnd")
+cursor_shape = 2
+metadata/_custom_type_script = "uid://bixro6jxk8vg"
