@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfg0vn3c2if1i" path="res://entities/enemy/enemy.gd" id="1_30kr5"]
 [ext_resource type="Resource" uid="uid://bdd5u8cagqlab" path="res://entities/enemy/test_enemy_unit.tres" id="2_avlsx"]
 [ext_resource type="SpriteFrames" uid="uid://cee2ckge7fxoa" path="res://entities/godot_sprite_frames.tres" id="3_m50hi"]
-[ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://game_speed/animated_sprite_delta_mod.gd" id="4_8koau"]
+[ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/game_speed/animated_sprite_delta_mod.gd" id="4_8koau"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="4_ako3l"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_l46ro"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_1nmd4"]

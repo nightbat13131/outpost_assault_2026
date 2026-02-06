@@ -1,5 +1,7 @@
 class_name BrokenFoundation extends Sprite2D
 
+const SCENE_PATH = ""
+
 static var standard_cursor : CustomCursor = load("uid://cb44gaxpio06i")
 static var button_cursor : CustomCursor = load("uid://cq7yoy3jauvdv")
 

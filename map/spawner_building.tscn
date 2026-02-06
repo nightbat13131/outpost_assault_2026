@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://health_ui.tscn" id="2_3ipqg"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="2_a6824"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://spawn_point.gd" id="3_3ipqg"]
-[ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://game_speed/animated_sprite_delta_mod.gd" id="3_a6824"]
+[ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/game_speed/animated_sprite_delta_mod.gd" id="3_a6824"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_3ceep"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="5_eqv62"]
 
