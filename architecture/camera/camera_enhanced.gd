@@ -39,8 +39,8 @@ func _draw() -> void:
 	if Engine.is_editor_hint() or debug:
 		var base_radius = get_viewport_rect().size.y*.5
 		draw_circle(Vector2.ZERO, base_radius, Color.WHITE, false, 2.0, false) #100%
-		draw_circle(Vector2.ZERO, base_radius * 1/min_zoom, Color.RED, false, 2.0, false)
-		draw_circle(Vector2.ZERO, base_radius * 1/max_zoom, Color.GREEN, false, 2.0, false)
+		draw_circle(Vector2.ZERO, base_radius * 1/min_zoom, Color.GREEN, false, 2.0, false)
+		draw_circle(Vector2.ZERO, base_radius * 1/max_zoom, Color.BLACK, false, 2.0, false)
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -62,9 +62,28 @@ func _process(delta: float) -> void:
 		_velocity = direction * get_speed() * delta
 		_move_to(position + _velocity)
 
+func apply_bound(bound: CameraBounds) -> void:
+	# zoom can't be calculated within Resource without Node reference
+	# Limit needs to be set before move to as limit restricts movement. 
+	set_limits(bound.get_limit_rect())
+	var screen = get_viewport_rect().size 
+	var limit_size =  _limit_rect.size * .95
+	if limit_size.x > limit_size.y:
+		set_min_zoom(screen.x / limit_size.x)
+	else:
+		set_min_zoom(screen.y / limit_size.y)
+	remote_move_to(bound.get_camera_starting_position())
+	queue_redraw()
+
 func set_limits(rect: Rect2) -> void: _limit_rect = rect
 
-func set_min_zoom(value: float) -> void: min_zoom = value
+func set_min_zoom(value: float) -> void:
+	
+	min_zoom = value
+	if Engine.is_editor_hint():
+		return
+	if zoom.x < min_zoom:
+		set_zoom(Vector2(min_zoom, min_zoom))
 
 func get_speed() -> float: return _max_speed * (1/zoom.length())
 
@@ -88,7 +107,7 @@ func _set_is_drag_cursor(is_on) -> void:
 
 func remote_move_to(position_ : Vector2, target_zoom:= Vector2.ZERO) -> void: 
 	# TODO tween
-	set_position(position_)
+	_move_to(position_)
 	if target_zoom != Vector2.ZERO:
 		# TODO include zoom_change
 		pass
