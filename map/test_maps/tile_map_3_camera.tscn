@@ -2,8 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="1_087yg"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="2_l5omd"]
-[ext_resource type="Script" uid="uid://c0l57m82xemsh" path="res://map/camera_bounds.gd" id="3_747j4"]
-[ext_resource type="Script" uid="uid://byk4p7haluv6i" path="res://architecture/camera_man.gd" id="3_l5omd"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="3_tieqq"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://map/test_poison_zone.gd" id="4_747j4"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="5_l7wik"]
@@ -14,22 +12,9 @@
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://spawner.gd" id="9_2bwjw"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://spawn_point.gd" id="10_85e20"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://map/spawner_building.tscn" id="11_sevtk"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l5omd"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tieqq"]
-normal = Vector2(0.999994, 0.0034601868)
-distance = 2.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_747j4"]
-normal = Vector2(-1, 0)
-distance = 2.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l7wik"]
-normal = Vector2(0, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_087yg"]
-radius = 248.25
+[ext_resource type="Script" uid="uid://c0l57m82xemsh" path="res://architecture/camera/camera_binder.gd" id="12_tieqq"]
+[ext_resource type="Script" uid="uid://dhdn60j0x3fn6" path="res://architecture/camera/camera_enhanced.gd" id="13_747j4"]
+[ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="13_l7wik"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -126,55 +111,51 @@ script = ExtResource("7_a1ku7")
 point_path = NodePath("../../../../NavPoint_S")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[node name="TileMapLogicLayer" type="TileMapLayer" unique_id=1836936977]
+[sub_resource type="Resource" id="Resource_qmthx"]
+script = ExtResource("13_l7wik")
+rect_size = Vector2(1200, 1200)
+starting_location = Vector2(300, 800)
+metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
+[sub_resource type="Resource" id="Resource_l7wik"]
+script = ExtResource("13_l7wik")
+rect_position = Vector2(0, -100)
+rect_size = Vector2(2000, 1201)
+starting_location = Vector2(1000, 600)
+metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
+[sub_resource type="Resource" id="Resource_a1ku7"]
+script = ExtResource("13_l7wik")
+rect_size = Vector2(900, 700)
+metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
+[node name="Level" type="Node2D" unique_id=476098653]
+
+[node name="Testing" type="Node" parent="." unique_id=1056903005]
+
+[node name="Test_DamageZone" type="Area2D" parent="Testing" unique_id=796258337]
+position = Vector2(430, 399)
+script = ExtResource("4_747j4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Testing/Test_DamageZone" unique_id=1290235869]
+shape = SubResource("CircleShape2D_oisr6")
+
+[node name="Test_KillZone" type="Area2D" parent="Testing" unique_id=1411483130]
+position = Vector2(1865, 585)
+script = ExtResource("5_l7wik")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Testing/Test_KillZone" unique_id=1434252941]
+shape = SubResource("CircleShape2D_oisr6")
+
+[node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]
 tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAEAAAAHAAEAAAAAAAEAAAAGAAEAAAAAAAEAAAAFAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAADAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAABAAQAAAAAAAEAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAIAAAAIAAAAAAAAAAIAAAAHAAAAAAAAAAIAAAAGAAAAAAAAAAIAAAAFAAAAAAAAAAIAAAAEAAAAAAAAAAIAAAADAAAAAAAAAAIAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAgAAAAAAAIAAAABAAgAAAAAAAEAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAAAAAIAAAAOAAcAAAAAAAIAAAAOAAYAAAAAAAIAAAAOAAUAAAAAAAIAAAAOAAQAAAAAAAIAAAAOAAMAAAAAAAIAAAAOAAIAAAAAAAIAAAAOAAEAAAAAAAIAAAAOAAAAAAAAAAIAAAANAAAAAAAAAAIAAAAMAAAAAAAAAAIAAAALAAAAAAAAAAIAAAAKAAAAAAAAAAIAAAABAAUAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAAAAAACAAcAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAABAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAFAAUAAAAAAAEAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAEAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAEAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAUAAAAAAAEAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAEAAAAJAAUAAAAAAAEAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAUAAAAAAAEAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAEAAAALAAEAAAAAAAEAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAALAAQAAAABAAAAAAALAAUAAAABAAAAAAALAAYAAAABAAAAAAALAAcAAAABAAAAAAAMAAEAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAAAAAAMAAQAAAABAAAAAAAMAAUAAAABAAAAAAAMAAYAAAABAAAAAAAMAAcAAAABAAAAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAD//wEAAAAAAAIAAAD//wIAAAAAAAIAAAD//wMAAAAAAAIAAAD//wQAAAAAAAIAAAD//wUAAAAAAAIAAAD//wYAAAAAAAIAAAD//wcAAAAAAAIAAAD//wgAAAAAAAIAAAD//wsAAAAAAAIAAAAAAAsAAAAAAAIAAAABAAsAAAAAAAIAAAACAAsAAAAAAAIAAAADAAsAAAAAAAIAAAAEAAsAAAAAAAIAAAAFAAsAAAAAAAIAAAAGAAsAAAAAAAIAAAAHAAsAAAAAAAIAAAAIAAsAAAAAAAIAAAAJAAsAAAAAAAIAAAAKAAsAAAAAAAIAAAALAAsAAAAAAAIAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAPAAoAAAAAAAIAAAAOAAoAAAAAAAIAAAANAAoAAAAAAAIAAAAMAAoAAAAAAAIAAAALAAoAAAAAAAIAAAAKAAoAAAAAAAIAAAAJAAoAAAAAAAIAAAAIAAoAAAAAAAIAAAAHAAoAAAAAAAIAAAAGAAoAAAAAAAIAAAAFAAoAAAAAAAIAAAAEAAoAAAAAAAIAAAADAAoAAAAAAAIAAAACAAoAAAAAAAIAAAABAAoAAAAAAAIAAAAAAAoAAAAAAAIAAAD//woAAAAAAAIAAAD//wkAAAAAAAIAAAAAAAkAAAAAAAEAAAABAAkAAAAAAAEAAAACAAkAAAAAAAEAAAADAAkAAAAAAAEAAAAEAAkAAAAAAAEAAAAFAAkAAAAAAAEAAAAGAAkAAAAAAAEAAAAHAAkAAAAAAAEAAAAIAAkAAAAAAAEAAAAJAAkAAAAAAAEAAAAKAAkAAAAAAAEAAAALAAkAAAAAAAEAAAAMAAkAAAAAAAEAAAANAAkAAAAAAAEAAAAOAAkAAAAAAAIAAAAPAAgAAAAAAAIAAAAPAAYAAAAAAAIAAAAPAAQAAAAAAAIAAAAPAAIAAAAAAAIAAAAPAAAAAAAAAAIAAAAOAP//AAAAAAIAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAABAP//AAAAAAIAAAACAP//AAAAAAIAAAADAP//AAAAAAIAAAAEAP//AAAAAAIAAAAFAP//AAAAAAIAAAAGAP//AAAAAAIAAAAHAP//AAAAAAIAAAAIAP//AAAAAAIAAAAJAP//AAAAAAIAAAAKAP//AAAAAAIAAAALAP//AAAAAAIAAAAMAP//AAAAAAIAAAANAP//AAAAAAIAAAD//wAAAAAAAAIAAAA=")
 tile_set = ExtResource("1_087yg")
 script = ExtResource("2_l5omd")
 metadata/_edit_lock_ = true
 
-[node name="CameraBounds" type="StaticBody2D" parent="." unique_id=1138629546]
-position = Vector2(668, 607)
-collision_layer = 8388608
-collision_mask = 0
-script = ExtResource("3_747j4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds" unique_id=663134246]
-position = Vector2(0, 395)
-shape = SubResource("WorldBoundaryShape2D_l5omd")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBounds" unique_id=2079568709]
-position = Vector2(-612, -48)
-shape = SubResource("WorldBoundaryShape2D_tieqq")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="CameraBounds" unique_id=1834718454]
-position = Vector2(1184, -48)
-shape = SubResource("WorldBoundaryShape2D_747j4")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="CameraBounds" unique_id=133033127]
-position = Vector2(161, -625)
-shape = SubResource("WorldBoundaryShape2D_l7wik")
-
-[node name="CameraMan" type="CharacterBody2D" parent="CameraBounds" unique_id=794322403]
-position = Vector2(261.66284, -235.61163)
-rotation = -0.0010063614
-collision_layer = 0
-collision_mask = 8388608
-motion_mode = 1
-script = ExtResource("3_l5omd")
-metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="CameraBounds/CameraMan" unique_id=757337373]
-unique_name_in_owner = true
-limit_enabled = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds/CameraMan" unique_id=659632791]
-shape = SubResource("CircleShape2D_087yg")
-
-[node name="GuideDebugger" parent="CameraBounds/CameraMan" unique_id=1849619643 instance=ExtResource("6_l7wik")]
-offset_right = 156.0
-offset_bottom = 116.0
-
-[node name="Button" type="Button" parent="." unique_id=1473628105 node_paths=PackedStringArray("damage_target")]
+[node name="Button" type="Button" parent="TileMapLogicLayer" unique_id=1473628105 node_paths=PackedStringArray("damage_target")]
 offset_left = 1753.0
 offset_top = 219.0
 offset_right = 1864.0
@@ -184,65 +165,49 @@ script = ExtResource("3_tieqq")
 damage_target = NodePath("../SpawnManager/SpawnerBuilding")
 damage_amount = 23.0
 
-[node name="Test_DamageZone" type="Area2D" parent="." unique_id=796258337]
-position = Vector2(430, 399)
-script = ExtResource("4_747j4")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Test_DamageZone" unique_id=1290235869]
-shape = SubResource("CircleShape2D_oisr6")
-
-[node name="Test_KillZone" type="Area2D" parent="." unique_id=1411483130]
-position = Vector2(1865, 585)
-script = ExtResource("5_l7wik")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Test_KillZone" unique_id=1434252941]
-shape = SubResource("CircleShape2D_oisr6")
-
-[node name="NavPoint_NW" type="Node2D" parent="." unique_id=401102862]
+[node name="NavPoint_NW" type="Node2D" parent="TileMapLogicLayer" unique_id=401102862]
 unique_name_in_owner = true
 position = Vector2(360, 363)
 script = ExtResource("6_qmthx")
 next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_5w2jj"), SubResource("Resource_qj5ga")])
 
-[node name="NavPoint_SW" type="Node2D" parent="." unique_id=1855747950]
+[node name="NavPoint_SW" type="Node2D" parent="TileMapLogicLayer" unique_id=1855747950]
 unique_name_in_owner = true
 position = Vector2(321, 835)
 script = ExtResource("6_qmthx")
 next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_obju6"), SubResource("Resource_oisr6")])
 target_distance = 50.0
 
-[node name="NavPoint_S" type="Node2D" parent="." unique_id=1426916265]
+[node name="NavPoint_S" type="Node2D" parent="TileMapLogicLayer" unique_id=1426916265]
 unique_name_in_owner = true
 position = Vector2(979, 853)
 script = ExtResource("6_qmthx")
 next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_3qehr"), SubResource("Resource_j7vok"), SubResource("Resource_okpnb")])
 
-[node name="NavPoint_N" type="Node2D" parent="." unique_id=998014482]
+[node name="NavPoint_N" type="Node2D" parent="TileMapLogicLayer" unique_id=998014482]
 unique_name_in_owner = true
 position = Vector2(1023, 263)
 script = ExtResource("6_qmthx")
 next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_k4ynb"), SubResource("Resource_yd7jv"), SubResource("Resource_avvtc")])
 
-[node name="NavPoint_E" type="Node2D" parent="." unique_id=274391533]
+[node name="NavPoint_E" type="Node2D" parent="TileMapLogicLayer" unique_id=274391533]
 unique_name_in_owner = true
 position = Vector2(1594, 608)
 script = ExtResource("6_qmthx")
 next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_5i2wj"), SubResource("Resource_bcd2k"), SubResource("Resource_l0owh")])
 target_distance = 100.0
 
-[node name="NavPoint_SE" type="Node2D" parent="." unique_id=249487478]
+[node name="NavPoint_SE" type="Node2D" parent="TileMapLogicLayer" unique_id=249487478]
 unique_name_in_owner = true
 position = Vector2(1736, 843)
 script = ExtResource("6_qmthx")
 target_distance = 100.0
 
-[node name="SpawnManager" type="Node2D" parent="." unique_id=1833308816]
+[node name="SpawnManager" type="Node2D" parent="TileMapLogicLayer" unique_id=1833308816]
 script = ExtResource("8_g3vga")
 metadata/_edit_lock_ = true
 
-[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475]
+[node name="Spawner" type="Node2D" parent="TileMapLogicLayer/SpawnManager" unique_id=1829100475]
 position = Vector2(273, 212)
 script = ExtResource("9_2bwjw")
 _inital_delay = 3.0
@@ -250,7 +215,7 @@ _pulse_gap = 3.0
 _pulse_per_wave = 3
 _pulse_unit_volume = 2
 
-[node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner" unique_id=1670429763]
+[node name="SpawnPoint" type="Node2D" parent="TileMapLogicLayer/SpawnManager/Spawner" unique_id=1670429763]
 unique_name_in_owner = true
 position = Vector2(30, 18)
 script = ExtResource("10_85e20")
@@ -258,14 +223,31 @@ unit_types = Array[int]([100])
 next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_ti3ma")])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="SpawnerBuilding" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("11_sevtk")]
+[node name="SpawnerBuilding" parent="TileMapLogicLayer/SpawnManager" unique_id=2112157350 instance=ExtResource("11_sevtk")]
 position = Vector2(1600, 307)
 _pulse_per_wave = 5
 
-[node name="Spawn_E" parent="SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
+[node name="Spawn_E" parent="TileMapLogicLayer/SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
 next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_16vwn"), SubResource("Resource_gluir")])
 
-[node name="Spawn_W" parent="SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
+[node name="Spawn_W" parent="TileMapLogicLayer/SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
 next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_0pcpm"), SubResource("Resource_n5djh")])
 
-[editable path="SpawnManager/SpawnerBuilding"]
+[node name="CameraBinder" type="Node2D" parent="." unique_id=598330776]
+script = ExtResource("12_tieqq")
+testing_index = 2
+bounds = Array[ExtResource("13_l7wik")]([SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7")])
+metadata/_edit_lock_ = true
+
+[node name="GuideDebugger" parent="CameraBinder" unique_id=1849619643 instance=ExtResource("6_l7wik")]
+offset_left = 731.0
+offset_top = 668.99994
+offset_right = 887.0
+offset_bottom = 784.99994
+
+[node name="Camera2DEnhanced" type="Camera2D" parent="CameraBinder" unique_id=17298252]
+position = Vector2(600, 600)
+script = ExtResource("13_747j4")
+metadata/_custom_type_script = "uid://dhdn60j0x3fn6"
+
+[editable path="TileMapLogicLayer/SpawnManager/SpawnerBuilding"]

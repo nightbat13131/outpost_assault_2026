@@ -1,29 +1,31 @@
 @tool
-class_name CameraMan extends CharacterBody2D
+class_name Camera2DEnhanced extends Camera2D
+
 ## TODO add accecloration to movement
 ## zoom might cause collision overlap issues if I change the size shape? 
 ## HOME = snap to home base position
 ## midle mouse button click drag
 
-var min_zoom = .5
-var max_zoom = 2.5:
-	set(value):
-		max_zoom = value
-		$CollisionShape2D.get_shape().radius = get_viewport_rect().size.y*.5 * 1 / max_zoom
-		queue_redraw()
+const ZOOM_SPEED := .05
+
+var min_zoom : float = .5 : set = set_min_zoom
+var max_zoom : float = 2.5
 
 static var standard_cursor : CustomCursor = load("uid://cb44gaxpio06i")
 static var dragging_cursor : CustomCursor = load("uid://dbw2fwmjcemp3")
+
 static var control_context : GUIDEMappingContext = load("uid://c2cn6t0iqekow")
 static var action_move_keys : GUIDEAction = load("uid://ta3akt5mo5ib")
 static var action_move_drag : GUIDEAction = load("uid://da8kwewg6uhwn")
 static var action_zoom : GUIDEAction = load("uid://bl4ky3gf6gcji")
-@export var debug := true
 
-@onready var camera_2d: Camera2D = %Camera2D
+@export var debug := true
 var _is_drag_cursor := true : set = _set_is_drag_cursor
 
-var _max_speed := 1000.0
+var _limit_rect : Rect2
+var _max_speed := 500.0
+var _velocity := Vector2.ZERO
+var _is_remote_moving := false
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -40,34 +42,40 @@ func _draw() -> void:
 		draw_circle(Vector2.ZERO, base_radius * 1/min_zoom, Color.RED, false, 2.0, false)
 		draw_circle(Vector2.ZERO, base_radius * 1/max_zoom, Color.GREEN, false, 2.0, false)
 
-func _physics_process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
+		return
+	if _is_remote_moving:
 		return
 	var direction := Vector2.ZERO
 	if action_move_keys and action_move_drag:
 		if action_move_keys.is_triggered():
 			direction = action_move_keys.value_axis_2d.normalized()
-			velocity = direction * get_speed()
 		elif action_move_drag.is_triggered():
 			direction = action_move_drag.value_axis_2d
 			print(direction)
 			_set_is_drag_cursor(true)
 		else:
 			_set_is_drag_cursor(false)
+		if direction == Vector2.ZERO:
+			return
+		_velocity = direction * get_speed() * delta
+		_move_to(position + _velocity)
 
-		velocity = direction * get_speed()
-		move_and_slide()
-			
+func set_limits(rect: Rect2) -> void: _limit_rect = rect
 
-func get_speed() -> float:
-	return _max_speed * (1/camera_2d.zoom.length())
+func set_min_zoom(value: float) -> void: min_zoom = value
+
+func get_speed() -> float: return _max_speed * (1/zoom.length())
 
 func _on_zoom() -> void:
 	var value = action_zoom.value_axis_1d*-1
-	# camera_2d.zoom *= 1.0 + (.1 * value)
-	var new_length = clamp(camera_2d.get_zoom().x*(1 + .1*value), min_zoom, max_zoom)
-	#prints(value, camera_2d.get_zoom().length(), camera_2d.get_zoom().length()*(1 + .1*value) ,  "->", new_length, Vector2.ONE.normalized() * new_length )
-	camera_2d.set_zoom(Vector2(new_length, new_length))
+	var new_zoom = clamp(get_zoom().x*(1 + ZOOM_SPEED*value), min_zoom, max_zoom)
+	set_zoom(Vector2(new_zoom, new_zoom))
+	if action_move_keys and action_move_drag: 
+		if !(action_move_keys.is_triggered() or action_move_drag.is_triggered()):
+	#		# player not also scrolling camera while changing zoom
+			_move_to(position)
 
 func _set_is_drag_cursor(is_on) -> void:
 	if _is_drag_cursor == is_on:
@@ -77,4 +85,23 @@ func _set_is_drag_cursor(is_on) -> void:
 		dragging_cursor.force_to_default()
 	else: 
 		standard_cursor.force_to_default()
-	
+
+func remote_move_to(position_ : Vector2, target_zoom:= Vector2.ZERO) -> void: 
+	# TODO tween
+	set_position(position_)
+	if target_zoom != Vector2.ZERO:
+		# TODO include zoom_change
+		pass
+
+func _move_to(next_position_: Vector2) -> void:
+	var screen_size := get_viewport_rect().size / zoom.x
+	var internal_bounds = Rect2(_limit_rect.position + screen_size * .5, _limit_rect.size - screen_size) # y works GREAT
+	if screen_size.x >= _limit_rect.size.x:
+		internal_bounds.size.x = 10
+		internal_bounds.position.x = _limit_rect.get_center().x
+	if screen_size.y >= _limit_rect.size.y:
+		internal_bounds.size.y = 10
+		internal_bounds.position.y = _limit_rect.get_center().y
+	next_position_.y = clamp(next_position_.y, internal_bounds.position.y, internal_bounds.end.y)
+	next_position_.x = clamp(next_position_.x, internal_bounds.position.x, internal_bounds.end.x)
+	position = next_position_

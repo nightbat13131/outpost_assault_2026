@@ -13,7 +13,9 @@ func _speed_manager_connect() -> void:
 	if speed_manager:
 		speed_manager.speed_change.connect(_on_speed_change)
 	else:
-		push_error("AnimatedSprite2DModded not getting a speed manager to connect to")
+		# TODO: turn on this error when making and testing real levels 
+		# push_error("AnimatedSprite2DModded not getting a speed manager to connect to")
+		pass
 
 func _on_speed_change(delta_mod : float) -> void:
 	set_speed_scale(delta_mod)

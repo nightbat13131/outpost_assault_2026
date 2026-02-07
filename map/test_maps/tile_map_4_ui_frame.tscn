@@ -2,9 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="1_iwm8r"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="2_dvj36"]
-[ext_resource type="Script" uid="uid://c0l57m82xemsh" path="res://map/camera_bounds.gd" id="3_16g6x"]
-[ext_resource type="Script" uid="uid://byk4p7haluv6i" path="res://architecture/camera_man.gd" id="4_wtpw4"]
-[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="5_u1qnl"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="6_ttut0"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://map/test_poison_zone.gd" id="7_ajhja"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="8_43dqh"]
@@ -18,25 +15,10 @@
 [ext_resource type="Script" uid="uid://duvhypwiqd7d5" path="res://architecture/game_speed/game_speed.gd" id="16_16g6x"]
 [ext_resource type="ButtonGroup" uid="uid://dvy682buqahc4" path="res://architecture/game_speed/button_speed_group.tres" id="17_u1qnl"]
 [ext_resource type="Script" uid="uid://dfqrxjek36336" path="res://architecture/game_speed/game_speed_button.gd" id="17_wtpw4"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://health_ui.tscn" id="19_ttut0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l5omd"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tieqq"]
-normal = Vector2(0.999994, 0.0034601868)
-distance = 2.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_747j4"]
-normal = Vector2(-1, 0)
-distance = 2.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l7wik"]
-normal = Vector2(0, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_087yg"]
-radius = 248.25
 
 [sub_resource type="Resource" id="Resource_5w2jj"]
 script = ExtResource("10_it04r")
@@ -165,49 +147,6 @@ tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAE
 tile_set = ExtResource("1_iwm8r")
 script = ExtResource("2_dvj36")
 metadata/_edit_lock_ = true
-
-[node name="CameraBounds" type="StaticBody2D" parent="." unique_id=1138629546]
-visible = false
-position = Vector2(668, 607)
-collision_layer = 8388608
-collision_mask = 0
-script = ExtResource("3_16g6x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds" unique_id=663134246]
-position = Vector2(0, 395)
-shape = SubResource("WorldBoundaryShape2D_l5omd")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBounds" unique_id=2079568709]
-position = Vector2(-612, -48)
-shape = SubResource("WorldBoundaryShape2D_tieqq")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="CameraBounds" unique_id=1834718454]
-position = Vector2(1184, -48)
-shape = SubResource("WorldBoundaryShape2D_747j4")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="CameraBounds" unique_id=133033127]
-position = Vector2(161, -625)
-shape = SubResource("WorldBoundaryShape2D_l7wik")
-
-[node name="CameraMan" type="CharacterBody2D" parent="CameraBounds" unique_id=794322403]
-position = Vector2(261.66284, -235.61163)
-rotation = -0.0010063614
-collision_layer = 0
-collision_mask = 8388608
-motion_mode = 1
-script = ExtResource("4_wtpw4")
-metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="CameraBounds/CameraMan" unique_id=757337373]
-unique_name_in_owner = true
-limit_enabled = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds/CameraMan" unique_id=659632791]
-shape = SubResource("CircleShape2D_087yg")
-
-[node name="GuideDebugger" parent="CameraBounds/CameraMan" unique_id=1849619643 instance=ExtResource("5_u1qnl")]
-offset_right = 156.0
-offset_bottom = 116.0
 
 [node name="NavPoint_NW" type="Node2D" parent="." unique_id=401102862]
 unique_name_in_owner = true
@@ -359,28 +298,37 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="NoSelection" type="Label" parent="LevelUI/Control" unique_id=640102653]
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUI/Control" unique_id=969441759]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/Control/HBoxContainer" unique_id=1517377728]
+layout_mode = 2
+
+[node name="NoSelection" type="Label" parent="LevelUI/Control/HBoxContainer/VBoxContainer" unique_id=640102653]
 layout_mode = 2
 text = "NoSelection"
 
-[node name="PlayerBase" type="Label" parent="LevelUI/Control" unique_id=34500213]
+[node name="PlayerBase" type="Label" parent="LevelUI/Control/HBoxContainer/VBoxContainer" unique_id=34500213]
 layout_mode = 2
 text = "PlayerBase"
 
-[node name="BrokenTower" type="Label" parent="LevelUI/Control" unique_id=518502215]
+[node name="BrokenTower" type="Label" parent="LevelUI/Control/HBoxContainer/VBoxContainer" unique_id=518502215]
 layout_mode = 2
 text = "BrokenTower"
 
-[node name="TowerBase" type="Label" parent="LevelUI/Control" unique_id=804830615]
+[node name="TowerBase" type="Label" parent="LevelUI/Control/HBoxContainer/VBoxContainer" unique_id=804830615]
 layout_mode = 2
 text = "TowerBase"
 
-[node name="GunnedTower" type="Label" parent="LevelUI/Control" unique_id=1789575071]
+[node name="GunnedTower" type="Label" parent="LevelUI/Control/HBoxContainer/VBoxContainer" unique_id=1789575071]
 layout_mode = 2
 text = "GunnedTower"
 
-[node name="EnemyBuilding" type="Label" parent="LevelUI/Control" unique_id=1059555898]
+[node name="EnemyBuilding" type="Label" parent="LevelUI/Control/HBoxContainer/VBoxContainer" unique_id=1059555898]
 layout_mode = 2
 text = "EnemyBuilding?"
+
+[node name="HealthUI" parent="LevelUI/Control/HBoxContainer" unique_id=1121219286 instance=ExtResource("19_ttut0")]
+layout_mode = 2
 
 [editable path="SpawnManager/SpawnerBuilding"]
