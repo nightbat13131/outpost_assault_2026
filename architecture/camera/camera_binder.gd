@@ -4,21 +4,28 @@ class_name CameraBinder extends Node2D
 var bound_index := 0
 
 @export var debug := true
-@export var testing_index := 0
+@export var testing_index := 0 : 
+	set(value): 
+		if bounds.is_empty():
+			testing_index = value
+			return
+		testing_index = value % bounds.size()
+		_refresh_preview()
 @export var bounds : Array[CameraBounds] = []
-@export_tool_button("Refresh", "CanvasLayer") var _redraw_press = queue_redraw
-var camera : Camera2DEnhanced
+@export_tool_button("Refresh", "CanvasLayer") var _redraw_press = _refresh_preview
+@export var camera : Camera2DEnhanced
 
 func _ready() -> void:
 	if _redraw_press: # prevent warnings
 		pass
-	for each_child in get_children():
-		if each_child is Camera2DEnhanced:
-			camera = each_child
-			break
+	_refresh_preview()
+
+func _refresh_preview() -> void:
 	if debug and camera:
 		bound_index = clamp(testing_index, 0, bounds.size())
-		camera.apply_bound(bounds[bound_index])
+		camera.set_bound(bounds[bound_index])
+	queue_redraw()
+	camera.queue_redraw()
 
 func _draw() -> void:
 	var index := 0

@@ -5,16 +5,13 @@
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="3_tieqq"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://map/test_poison_zone.gd" id="4_747j4"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="5_l7wik"]
-[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="6_l7wik"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="6_qmthx"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="7_a1ku7"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://map/spawn_manager.gd" id="8_g3vga"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://spawner.gd" id="9_2bwjw"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://spawn_point.gd" id="10_85e20"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://map/spawner_building.tscn" id="11_sevtk"]
-[ext_resource type="Script" uid="uid://c0l57m82xemsh" path="res://architecture/camera/camera_binder.gd" id="12_tieqq"]
-[ext_resource type="Script" uid="uid://dhdn60j0x3fn6" path="res://architecture/camera/camera_enhanced.gd" id="13_747j4"]
-[ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="13_l7wik"]
+[ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_l5omd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -111,26 +108,6 @@ script = ExtResource("7_a1ku7")
 point_path = NodePath("../../../../NavPoint_S")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[sub_resource type="Resource" id="Resource_qmthx"]
-script = ExtResource("13_l7wik")
-rect_size = Vector2(1200, 1200)
-camera_start = Vector2(300, 800)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
-[sub_resource type="Resource" id="Resource_l7wik"]
-script = ExtResource("13_l7wik")
-rect_position = Vector2(0, -100)
-rect_size = Vector2(2000, 1201)
-camera_start = Vector2(1000, 600)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
-[sub_resource type="Resource" id="Resource_a1ku7"]
-script = ExtResource("13_l7wik")
-rect_position = Vector2(0, -300)
-rect_size = Vector2(1400, 1300)
-camera_start = Vector2(600, 300)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
 [node name="Level" type="Node2D" unique_id=476098653]
 
 [node name="Testing" type="Node" parent="." unique_id=1056903005]
@@ -144,7 +121,7 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_oisr6")
 
 [node name="Test_KillZone" type="Area2D" parent="Testing" unique_id=1411483130]
-position = Vector2(1865, 585)
+position = Vector2(1727, 821)
 script = ExtResource("5_l7wik")
 metadata/_edit_group_ = true
 
@@ -235,23 +212,6 @@ next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_16vwn
 [node name="Spawn_W" parent="TileMapLogicLayer/SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
 next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_0pcpm"), SubResource("Resource_n5djh")])
 
-[node name="CameraBinder" type="Node2D" parent="." unique_id=598330776]
-script = ExtResource("12_tieqq")
-testing_index = 2
-bounds = Array[ExtResource("13_l7wik")]([SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7")])
-metadata/_edit_lock_ = true
-
-[node name="GuideDebugger" parent="CameraBinder" unique_id=1849619643 instance=ExtResource("6_l7wik")]
-offset_left = 731.0
-offset_top = 668.99994
-offset_right = 887.0
-offset_bottom = 784.99994
-
-[node name="Camera2DEnhanced" type="Camera2D" parent="CameraBinder" unique_id=17298252]
-position = Vector2(300, 800)
-limit_enabled = false
-editor_draw_screen = false
-script = ExtResource("13_747j4")
-metadata/_custom_type_script = "uid://dhdn60j0x3fn6"
+[node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("12_l5omd")]
 
 [editable path="TileMapLogicLayer/SpawnManager/SpawnerBuilding"]

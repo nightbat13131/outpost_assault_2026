@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ep5n0oef5o1f"]
 
 [ext_resource type="Script" uid="uid://c7cgc6ppvr5q4" path="res://map/spawner_building.gd" id="1_4h0ng"]
-[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://health_ui.tscn" id="2_3ipqg"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://entities/health_ui.tscn" id="2_3ipqg"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="2_a6824"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://spawn_point.gd" id="3_3ipqg"]
 [ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/game_speed/animated_sprite_delta_mod.gd" id="3_a6824"]

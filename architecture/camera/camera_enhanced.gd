@@ -26,6 +26,8 @@ var _limit_rect : Rect2
 var _max_speed := 500.0
 var _velocity := Vector2.ZERO
 var _is_remote_moving := false
+var _viewport : SubViewport: get = get_subviewport
+var _bounds : CameraBounds
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -34,6 +36,7 @@ func _ready() -> void:
 		GUIDE.enable_mapping_context(control_context)
 	if action_zoom:
 		action_zoom.triggered.connect(_on_zoom)
+	setup_subviewport.call_deferred()
 
 func _draw() -> void:
 	if Engine.is_editor_hint() or debug:
@@ -52,8 +55,7 @@ func _process(delta: float) -> void:
 		if action_move_keys.is_triggered():
 			direction = action_move_keys.value_axis_2d.normalized()
 		elif action_move_drag.is_triggered():
-			direction = action_move_drag.value_axis_2d
-			print(direction)
+			direction = action_move_drag.value_axis_2d.normalized()
 			_set_is_drag_cursor(true)
 		else:
 			_set_is_drag_cursor(false)
@@ -62,18 +64,46 @@ func _process(delta: float) -> void:
 		_velocity = direction * get_speed() * delta
 		_move_to(position + _velocity)
 
-func apply_bound(bound: CameraBounds) -> void:
+func set_bound(bound: CameraBounds) -> void:
+	_bounds = bound
+	set_limits(bound.get_limit_rect())
+	_apply_bound()
+
+func _apply_bound() -> void:
 	# zoom can't be calculated within Resource without Node reference
 	# Limit needs to be set before move to as limit restricts movement. 
-	set_limits(bound.get_limit_rect())
-	var screen = get_viewport_rect().size 
-	var limit_size =  _limit_rect.size * .95
+	if !_bounds: # nothing to apply
+		return
+	if !is_inside_tree():
+		await tree_entered
+	var screen : Vector2
+	if get_subviewport():
+		screen = get_subviewport().size
+	else: 
+		screen = get_viewport_rect().size
+	var limit_size =  _limit_rect.size #* .95
 	if limit_size.x > limit_size.y:
 		set_min_zoom(screen.x / limit_size.x)
 	else:
 		set_min_zoom(screen.y / limit_size.y)
-	remote_move_to(bound.get_camera_starting_position())
+	remote_move_to(_bounds.get_camera_starting_position())
 	queue_redraw()
+
+func setup_subviewport() -> void: 
+	var new_viewport = GameLevelUI.request_subviewport()
+	if _viewport == new_viewport: # no change
+		return 
+	elif _viewport: # has a differnet viewport
+		_viewport.size_changed.disconnect(_on_viewport_size_changed)
+	_viewport = new_viewport
+	if _viewport:
+		if !_viewport.size_changed.is_connected(_on_viewport_size_changed):
+			_viewport.size_changed.connect(_on_viewport_size_changed)
+			_on_viewport_size_changed()
+
+func get_subviewport() -> SubViewport: return _viewport
+
+func _on_viewport_size_changed() -> void: _apply_bound()
 
 func set_limits(rect: Rect2) -> void: _limit_rect = rect
 

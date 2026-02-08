@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://map/spawner_building.tscn" id="8_qj5ga"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="9_ti3ma"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="10_obju6"]
-[ext_resource type="Script" uid="uid://bugwpf5p6rp43" path="res://broken_foundation.gd" id="12_yjs82"]
+[ext_resource type="Script" uid="uid://bugwpf5p6rp43" path="res://entities/broken_foundation.gd" id="12_yjs82"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0

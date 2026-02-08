@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Outpost Assault"
-run/main_scene="uid://c58tb1ifwm0ti"
+run/main_scene="uid://crpgsle6mc8n8"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -31,6 +31,7 @@ GUIDE="*uid://p2jwrgjcbexr"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/extend_to_title=true
 
 [editor]
 

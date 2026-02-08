@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://u8siqr8gpo30"]
+
+[ext_resource type="Script" uid="uid://c0l57m82xemsh" path="res://architecture/camera/camera_binder.gd" id="1_sxemf"]
+[ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="2_uydb1"]
+[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="3_04v4c"]
+[ext_resource type="Script" uid="uid://dhdn60j0x3fn6" path="res://architecture/camera/camera_enhanced.gd" id="4_t70hs"]
+
+[sub_resource type="Resource" id="Resource_qmthx"]
+script = ExtResource("2_uydb1")
+rect_size = Vector2(1200, 1200)
+camera_start = Vector2(200, 200)
+metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
+[sub_resource type="Resource" id="Resource_l7wik"]
+script = ExtResource("2_uydb1")
+rect_position = Vector2(0, -100)
+rect_size = Vector2(2000, 1201)
+camera_start = Vector2(1000, 600)
+metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
+[sub_resource type="Resource" id="Resource_a1ku7"]
+script = ExtResource("2_uydb1")
+rect_position = Vector2(0, -300)
+rect_size = Vector2(1400, 1300)
+camera_start = Vector2(600, 300)
+metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
+[node name="CameraBinder" type="Node2D" unique_id=1105577396 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_sxemf")
+testing_index = 2
+bounds = Array[ExtResource("2_uydb1")]([SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7")])
+camera = NodePath("Camera2DEnhanced")
+metadata/_edit_lock_ = true
+
+[node name="GuideDebugger" parent="." unique_id=603218197 instance=ExtResource("3_04v4c")]
+offset_left = 731.0
+offset_top = 668.99994
+offset_right = 887.0
+offset_bottom = 784.99994
+
+[node name="Camera2DEnhanced" type="Camera2D" parent="." unique_id=1518509055]
+position = Vector2(700, 350)
+limit_enabled = false
+editor_draw_screen = false
+script = ExtResource("4_t70hs")
+metadata/_custom_type_script = "uid://dhdn60j0x3fn6"
