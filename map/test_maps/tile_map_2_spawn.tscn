@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="9_ti3ma"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="10_obju6"]
 [ext_resource type="Script" uid="uid://bugwpf5p6rp43" path="res://entities/broken_foundation.gd" id="12_yjs82"]
+[ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="13_6urdc"]
+[ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="14_eldr3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -198,7 +200,8 @@ position = Vector2(273, 212)
 script = ExtResource("5_f5dm3")
 _inital_delay = 3.0
 _pulse_gap = 3.0
-_pulse_per_wave = 3
+_pulse_per_wave = 100
+_hard_spawn_cap = 1
 _pulse_unit_volume = 2
 
 [node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner" unique_id=1670429763]
@@ -212,6 +215,7 @@ metadata/_custom_type_script = "uid://cbrnrqxijffds"
 [node name="SpawnerBuilding" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("8_qj5ga")]
 position = Vector2(1600, 307)
 _pulse_per_wave = 5
+_hard_spawn_cap = 1
 
 [node name="Spawn_E" parent="SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
 next_target_weights = Array[ExtResource("4_5w2jj")]([SubResource("Resource_16vwn"), SubResource("Resource_gluir")])
@@ -230,5 +234,7 @@ offset_left = -37.0
 offset_top = -37.0
 offset_right = 30.0
 offset_bottom = 30.0
+script = ExtResource("13_6urdc")
+active_cursor_overwrite = ExtResource("14_eldr3")
 
 [editable path="SpawnManager/SpawnerBuilding"]

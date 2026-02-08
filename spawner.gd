@@ -110,6 +110,10 @@ func _on_timer_timeout() -> void:
 		_start_pulse()
 
 func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
+	if _active_enemy_count >= _hard_spawn_cap:
+		# skip this spawn, restart correct kind of timer
+		_check_pulse()
+		return
 	var next_enemy_path: = EnemyUnitInfo.get_enemy_scene_path(enemy_type)
 	if !next_enemy_path:
 		push_error("Failed to get enemy scene path")
@@ -121,6 +125,7 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 	get_unit_container().add_child(next_enemy_instance)
 	# set_nav_target doesn't work if happening before child_add.
 	next_enemy_instance.set_nav_target(spawn_point.get_next_point())
+	next_enemy_instance.died.connect(_on_unit_death)
 	_active_enemy_count += 1
 	_enemy_spawned_count += 1
 	enemy_spawned.emit(next_enemy_instance)
@@ -138,3 +143,5 @@ func _pick_enemy() -> EnemyUnitInfo.EnemyTypes:
 	return EnemyUnitInfo.EnemyTypes.DEBUG_WALKER
 
 func _end_wave() -> void: spawner_stopped.emit(self)
+
+func _on_unit_death(unit) -> void: _active_enemy_count -= 1

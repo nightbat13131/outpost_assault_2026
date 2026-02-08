@@ -1,0 +1,1 @@
+class_name Button_Trigger_UI extends ButtonEnhanced

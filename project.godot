@@ -48,6 +48,10 @@ folder_colors={
 "res://addons/": "gray"
 }
 
+[gui]
+
+theme/custom="uid://uidwmqpmyjci"
+
 [layer_names]
 
 2d_navigation/layer_1="Ground"

@@ -1,0 +1,34 @@
+class_name ButtonEnhanced extends Button
+# might end up with multiple types:
+## Full show active
+## Showing that it's deactivated (implies that it can be activated / unlocked)
+## Deactivated and pretnenting it's not there. 
+
+enum ButtonStates {Active = 0, Inactive = 1, Inactive_Hidden = 2}
+
+static var standard_cursor : CustomCursor = load("uid://cb44gaxpio06i")
+static var button_cursor : CustomCursor = load("uid://cq7yoy3jauvdv")
+@export var active_cursor_overwrite: CustomCursor
+@export var initial_state := ButtonStates.Active
+
+func _ready() -> void:
+	pressed.connect(_on_pressed)
+	set_state(initial_state)
+
+func set_state(state: ButtonStates) -> void:
+	match state:
+		ButtonStates.Active:
+			set_disabled(false)
+			set_mouse_filter(Control.MOUSE_FILTER_STOP)
+			show()
+			if active_cursor_overwrite:
+				active_cursor_overwrite.apply_to_control(self)
+			else: 
+				button_cursor.apply_to_control(self)
+		_:
+			set_disabled(true)
+			set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+			hide()
+			standard_cursor.apply_to_control(self)
+
+func _on_pressed() -> void: pass
