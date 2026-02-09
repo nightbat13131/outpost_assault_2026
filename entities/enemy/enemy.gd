@@ -106,7 +106,6 @@ func get_max_health() -> float:
 		return 100.0
 
 func send_event(event: String) -> void:
-	print(event)
 	if _state_machine:
 		_state_machine.send_event(event)
 

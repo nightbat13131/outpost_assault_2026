@@ -7,7 +7,6 @@ static var _instance : GameLevelUI
 
 func _ready() -> void:
 	_instance = self
-	print("a")
 
 static func get_current_ui() -> GameLevelUI:
 	return _instance

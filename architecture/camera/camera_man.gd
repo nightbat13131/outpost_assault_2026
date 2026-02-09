@@ -52,7 +52,6 @@ func _physics_process(_delta: float) -> void:
 			velocity = direction * get_speed()
 		elif action_move_drag.is_triggered():
 			direction = action_move_drag.value_axis_2d
-			print(direction)
 			_set_is_drag_cursor(true)
 		else:
 			_set_is_drag_cursor(false)

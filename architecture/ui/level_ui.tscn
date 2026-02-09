@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://qmvep7nlcgj7" path="res://architecture/ui/level_ui.gd" id="1_dl3bl"]
 [ext_resource type="PackedScene" uid="uid://boq3rqx1s3mdj" path="res://architecture/ui/game_speed/game_speed_ui.tscn" id="2_dl3bl"]
+[ext_resource type="Script" uid="uid://dbo1xoodfi6q7" path="res://architecture/gold_manager.gd" id="3_hyik4"]
+[ext_resource type="Script" uid="uid://b8re4y454lk4w" path="res://architecture/ui/display_selected.gd" id="3_qyk0y"]
+[ext_resource type="Script" uid="uid://23pvsgujae5a" path="res://architecture/ui/shadow_health_ui.gd" id="4_an2k0"]
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="5_5c5v8"]
 
 [node name="LevelUI" type="CanvasLayer" unique_id=2003894573]
@@ -39,7 +42,7 @@ mouse_target = true
 [node name="LevelViewport" type="SubViewport" parent="HBoxContainer/VBoxContainer/SubViewportContainer" unique_id=256052677]
 unique_name_in_owner = true
 handle_input_locally = false
-size = Vector2i(1793, 1053)
+size = Vector2i(1771, 1053)
 render_target_update_mode = 4
 
 [node name="Control" type="VBoxContainer" parent="HBoxContainer" unique_id=450850750]
@@ -62,54 +65,45 @@ text = "HP"
 
 [node name="HealthUI" parent="HBoxContainer/Control/HBoxContainer" unique_id=1121219286 instance=ExtResource("5_5c5v8")]
 layout_mode = 2
-size_flags_horizontal = 3
+script = ExtResource("4_an2k0")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/Control" unique_id=186258949]
+[node name="GoldManager" type="HBoxContainer" parent="HBoxContainer/Control" unique_id=186258949]
 layout_mode = 2
+script = ExtResource("3_hyik4")
 
-[node name="Label" type="Label" parent="HBoxContainer/Control/HBoxContainer2" unique_id=140806413]
+[node name="GoldLabel" type="Label" parent="HBoxContainer/Control/GoldManager" unique_id=140806413]
 layout_mode = 2
-text = "GP"
+text = "GP:"
 
-[node name="Label2" type="Label" parent="HBoxContainer/Control/HBoxContainer2" unique_id=906735985]
+[node name="GoldValue" type="Label" parent="HBoxContainer/Control/GoldManager" unique_id=906735985]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1000?"
 
-[node name="SelectionSpecifc" type="VBoxContainer" parent="HBoxContainer/Control" unique_id=1522410859]
+[node name="Control2" type="Control" parent="HBoxContainer/Control" unique_id=1031180037]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="NoSelection" type="Label" parent="HBoxContainer/Control/SelectionSpecifc" unique_id=784152586]
+[node name="DisplaySelected" type="VBoxContainer" parent="HBoxContainer/Control" unique_id=1522410859]
 layout_mode = 2
-text = "NoSelection"
+script = ExtResource("3_qyk0y")
 
-[node name="PlayerBase" type="Label" parent="HBoxContainer/Control/SelectionSpecifc" unique_id=1281558189]
+[node name="DisplayName" type="Label" parent="HBoxContainer/Control/DisplaySelected" unique_id=784152586]
+unique_name_in_owner = true
 layout_mode = 2
-text = "PlayerBase"
+text = "Name"
 
-[node name="HealthUI2" parent="HBoxContainer/Control/SelectionSpecifc" unique_id=565267287 instance=ExtResource("5_5c5v8")]
+[node name="Display_Health" parent="HBoxContainer/Control/DisplaySelected" unique_id=565267287 instance=ExtResource("5_5c5v8")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 1
-
-[node name="BrokenTower" type="Label" parent="HBoxContainer/Control/SelectionSpecifc" unique_id=201281933]
-layout_mode = 2
-text = "BrokenTower"
-
-[node name="TowerBase" type="Label" parent="HBoxContainer/Control/SelectionSpecifc" unique_id=1758292322]
-layout_mode = 2
-text = "TowerBase"
-
-[node name="GunnedTower" type="Label" parent="HBoxContainer/Control/SelectionSpecifc" unique_id=2145964396]
-layout_mode = 2
-text = "GunnedTower"
-
-[node name="EnemyBuilding" type="Label" parent="HBoxContainer/Control/SelectionSpecifc" unique_id=587451229]
-layout_mode = 2
-text = "EnemyBuilding?"
+script = ExtResource("4_an2k0")
 
 [node name="Control" type="Control" parent="HBoxContainer/Control" unique_id=1833074272]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 
 [node name="GameSpeedUI" parent="HBoxContainer/Control" unique_id=861931387 instance=ExtResource("2_dl3bl")]
 layout_mode = 2

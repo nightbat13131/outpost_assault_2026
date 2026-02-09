@@ -1,13 +1,19 @@
 class_name BrokenFoundation extends Sprite2D
 
 const SCENE_PATH = ""
-
-@onready var button: Button = %Button
+var _button: Button_Trigger_UI
+var _display_info: DisplayHelper
 
 func _ready() -> void:
-	var size := get_texture().get_size() * .9
-	button.set_size(size)
-	button.set_position(size*-.5)
+	for each_child in get_children():
+		if each_child is Button_Trigger_UI:
+			_button = each_child
+			_display_info = DisplayHelper.new(self, null)
+			var size := get_texture().get_size() * .9
+			_button.set_size(size)
+			_button.set_position(size*-.5)
+			_button.set_display_info(_display_info)
+			break
 
 func _request_build() -> void:
 	# TODO check if can purchase

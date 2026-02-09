@@ -3,43 +3,7 @@
 [ext_resource type="Script" uid="uid://dov0qgqp44slb" path="res://architecture/ui/health_ui.gd" id="1_tt5l4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1k0j"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
 bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="Gradient" id="Gradient_t8hjw"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_u577o"]
-gradient = SubResource("Gradient_t8hjw")
-width = 30
-height = 5
-
-[sub_resource type="Gradient" id="Gradient_iy3an"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_t8hjw"]
-gradient = SubResource("Gradient_iy3an")
-width = 30
-height = 5
-
-[sub_resource type="Gradient" id="Gradient_tt5l4"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0, 1, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nwlpg"]
-gradient = SubResource("Gradient_tt5l4")
-width = 30
-height = 5
 
 [node name="HealthUI" type="PanelContainer" unique_id=1750592590]
 offset_right = 50.0
@@ -49,17 +13,20 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_p1k0j")
 script = ExtResource("1_tt5l4")
 
-[node name="RedUnderBar" type="TextureProgressBar" parent="." unique_id=890455792]
+[node name="RedUnderBar" type="ProgressBar" parent="." unique_id=15318798]
 unique_name_in_owner = true
+self_modulate = Color(1, 0, 0, 1)
 z_index = 11
 layout_mode = 2
+size_flags_vertical = 1
 value = 80.0
-texture_under = SubResource("GradientTexture2D_u577o")
-texture_progress = SubResource("GradientTexture2D_t8hjw")
+show_percentage = false
 
-[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=705467307]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=431581593]
 unique_name_in_owner = true
+self_modulate = Color(0, 1, 0, 1)
 z_index = 11
 layout_mode = 2
+size_flags_vertical = 1
 value = 40.0
-texture_progress = SubResource("GradientTexture2D_nwlpg")
+show_percentage = false

@@ -77,14 +77,6 @@ offset_right = 60.0
 offset_bottom = 60.0
 script = ExtResource("8_3ceep")
 
-[node name="HealthUI" parent="." unique_id=1121219286 instance=ExtResource("2_3ipqg")]
-unique_name_in_owner = true
-offset_left = -14.0
-offset_top = -7.0
-offset_right = -14.0
-offset_bottom = -7.0
-_hide_when_full = true
-
 [node name="GroundSprite2D" type="Sprite2D" parent="." unique_id=608432530]
 unique_name_in_owner = true
 texture = ExtResource("2_a6824")
@@ -114,3 +106,9 @@ unique_name_in_owner = true
 position = Vector2(-93, 14)
 script = ExtResource("5_eqv62")
 target_distance = 10.0
+
+[node name="HealthUI" parent="." unique_id=1750592590 instance=ExtResource("2_3ipqg")]
+offset_left = -25.0
+offset_top = 25.0
+offset_right = 25.0
+offset_bottom = 30.0

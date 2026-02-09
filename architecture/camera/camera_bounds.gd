@@ -5,12 +5,10 @@ class_name CameraBounds extends Resource
 	set(value):
 		rect_position = value
 		_limit_rect.position = rect_position
-		print(_limit_rect)
 @export var rect_size := Vector2(900,1200): 
 	set(value):
 		rect_size = value
 		_limit_rect.size = rect_size
-		print(_limit_rect)
 @export var camera_start : Vector2
 
 var _limit_rect : Rect2 : get = get_limit_rect

@@ -2,6 +2,9 @@ class_name ShadowHealthUI extends HealthUI
 
 var _primary : HealthUI
 
+func _ready() -> void:
+	hide()
+
 func set_primary(health_iu: HealthUI) -> void:
 	if _primary == health_iu:
 		return # no change
@@ -9,6 +12,10 @@ func set_primary(health_iu: HealthUI) -> void:
 		if _primary.ratio_update.is_connected(_on_ratio_change):
 			_primary.ratio_update.disconnect(_on_ratio_change)
 	_primary = health_iu
+	if _primary == null:
+		hide()
+		return
+	show()
 	if !_primary.ratio_update.is_connected(_on_ratio_change):
 		_primary.ratio_update.connect(_on_ratio_change)
 	else: 
