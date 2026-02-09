@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bk5nrgy052rvw"]
+
+[ext_resource type="Script" uid="uid://bugwpf5p6rp43" path="res://entities/player/broken_foundation.gd" id="1_vwu4y"]
+[ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="2_x7ois"]
+[ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="3_pghae"]
+
+[sub_resource type="Gradient" id="Gradient_qt00s"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yjs82"]
+gradient = SubResource("Gradient_qt00s")
+width = 75
+height = 75
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="BrokenFoundation" type="Sprite2D" unique_id=400182285]
+texture = SubResource("GradientTexture2D_yjs82")
+script = ExtResource("1_vwu4y")
+
+[node name="Button" type="Button" parent="." unique_id=688348017]
+unique_name_in_owner = true
+offset_left = -37.0
+offset_top = -37.0
+offset_right = 30.0
+offset_bottom = 30.0
+script = ExtResource("2_x7ois")
+active_cursor_overwrite = ExtResource("3_pghae")

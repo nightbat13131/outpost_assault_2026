@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://st2jxhhig6ub"]
 
-[ext_resource type="Script" uid="uid://qmvep7nlcgj7" path="res://architecture/level_ui/level_ui.gd" id="1_dl3bl"]
-[ext_resource type="PackedScene" uid="uid://boq3rqx1s3mdj" path="res://architecture/level_ui/game_speed/game_speed_ui.tscn" id="2_dl3bl"]
-[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://entities/health_ui.tscn" id="5_5c5v8"]
+[ext_resource type="Script" uid="uid://qmvep7nlcgj7" path="res://architecture/ui/level_ui.gd" id="1_dl3bl"]
+[ext_resource type="PackedScene" uid="uid://boq3rqx1s3mdj" path="res://architecture/ui/game_speed/game_speed_ui.tscn" id="2_dl3bl"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="5_5c5v8"]
 
 [node name="LevelUI" type="CanvasLayer" unique_id=2003894573]
 script = ExtResource("1_dl3bl")

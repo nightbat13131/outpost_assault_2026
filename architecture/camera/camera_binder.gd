@@ -9,21 +9,27 @@ var bound_index := 0
 		if bounds.is_empty():
 			testing_index = value
 			return
-		testing_index = value % bounds.size()
+		testing_index = abs(value % bounds.size())
+		#testing_index = value
 		_refresh_preview()
+
 @export var bounds : Array[CameraBounds] = []
 @export_tool_button("Refresh", "CanvasLayer") var _redraw_press = _refresh_preview
 @export var camera : Camera2DEnhanced
 
 func _ready() -> void:
-	if _redraw_press: # prevent warnings
-		pass
-	_refresh_preview()
+	if _redraw_press: pass # prevent unused variable warnings 
+	#_refresh_preview()
+	if !Engine.is_editor_hint():
+		print(testing_index)
+		camera.set_bound(bounds[3])
+
 
 func _refresh_preview() -> void:
+	print("refreshing")
 	if debug and camera:
 		bound_index = clamp(testing_index, 0, bounds.size())
-		camera.set_bound(bounds[bound_index])
+		camera.set_bound(bounds[testing_index])
 	queue_redraw()
 	camera.queue_redraw()
 

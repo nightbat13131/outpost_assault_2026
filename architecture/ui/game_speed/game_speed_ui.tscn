@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://boq3rqx1s3mdj"]
 
-[ext_resource type="Script" uid="uid://duvhypwiqd7d5" path="res://architecture/level_ui/game_speed/game_speed.gd" id="1_48q0m"]
-[ext_resource type="ButtonGroup" uid="uid://dvy682buqahc4" path="res://architecture/level_ui/game_speed/button_speed_group.tres" id="2_t6kuq"]
-[ext_resource type="Script" uid="uid://dfqrxjek36336" path="res://architecture/level_ui/game_speed/game_speed_button.gd" id="3_tsiwd"]
+[ext_resource type="Script" uid="uid://duvhypwiqd7d5" path="res://architecture/ui/game_speed/game_speed.gd" id="1_48q0m"]
+[ext_resource type="ButtonGroup" uid="uid://dvy682buqahc4" path="res://architecture/ui/game_speed/button_speed_group.tres" id="2_t6kuq"]
+[ext_resource type="Script" uid="uid://dfqrxjek36336" path="res://architecture/ui/game_speed/game_speed_button.gd" id="3_tsiwd"]
 
 [node name="GameSpeedUI" type="GridContainer" unique_id=861931387]
 size_flags_horizontal = 0

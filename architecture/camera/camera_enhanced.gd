@@ -82,10 +82,13 @@ func _apply_bound() -> void:
 	else: 
 		screen = get_viewport_rect().size
 	var limit_size =  _limit_rect.size #* .95
-	if limit_size.x > limit_size.y:
-		set_min_zoom(screen.x / limit_size.x)
+	var new_zoom = Vector2(
+		screen.x / limit_size.x,
+		screen.y / limit_size.y)
+	if new_zoom.x < new_zoom.y: 
+		set_min_zoom(new_zoom.y)
 	else:
-		set_min_zoom(screen.y / limit_size.y)
+		set_min_zoom(new_zoom.x)
 	remote_move_to(_bounds.get_camera_starting_position())
 	queue_redraw()
 
@@ -108,7 +111,6 @@ func _on_viewport_size_changed() -> void: _apply_bound()
 func set_limits(rect: Rect2) -> void: _limit_rect = rect
 
 func set_min_zoom(value: float) -> void:
-	
 	min_zoom = value
 	if Engine.is_editor_hint():
 		return

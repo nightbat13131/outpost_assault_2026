@@ -25,10 +25,16 @@ rect_size = Vector2(1400, 1300)
 camera_start = Vector2(600, 300)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
+[sub_resource type="Resource" id="Resource_sxemf"]
+script = ExtResource("2_uydb1")
+rect_position = Vector2(-500, -550)
+rect_size = Vector2(3000, 2500)
+metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
 [node name="CameraBinder" type="Node2D" unique_id=1105577396 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_sxemf")
-testing_index = 2
-bounds = Array[ExtResource("2_uydb1")]([SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7")])
+testing_index = 1
+bounds = Array[ExtResource("2_uydb1")]([SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7"), SubResource("Resource_sxemf")])
 camera = NodePath("Camera2DEnhanced")
 metadata/_edit_lock_ = true
 
@@ -39,7 +45,7 @@ offset_right = 887.0
 offset_bottom = 784.99994
 
 [node name="Camera2DEnhanced" type="Camera2D" parent="." unique_id=1518509055]
-position = Vector2(700, 350)
+position = Vector2(1000, 500.5)
 limit_enabled = false
 editor_draw_screen = false
 script = ExtResource("4_t70hs")
