@@ -6,6 +6,9 @@ static var _null_information : DisplayHelper
 var _information : DisplayHelper
 @onready var display_name: Label = %DisplayName
 @onready var display_health: ShadowHealthUI = %Display_Health
+@onready var display_selected_viewport: DisplaySelected_SubViewport = %DisplaySelectedViewport
+
+@onready var display_nothing_button: Button = $DisplayNothing_Button
 
 
 
@@ -39,11 +42,15 @@ func _apply_information(info: DisplayHelper) -> void:
 		# leave _null_information protection at this layer incase internal null
 		# like _replace_information can send. 
 		info = _null_information
+		display_nothing_button.hide()
+	else:
+		display_nothing_button.show()
 	if _information == info: ## info already displaying
 		return
 	_information = info
 	display_name.set_text(_information.get_display_name())
 	display_health.set_primary(_information.get_health_ui())
+	display_selected_viewport.set_camera_focus(_information.get_camera_position())
 
 ## Apply the new information IF the old information matches the current display
 ## usecase example: broken foundation upgraded to tower. 

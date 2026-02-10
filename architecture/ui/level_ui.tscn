@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://b8re4y454lk4w" path="res://architecture/ui/display_selected.gd" id="3_qyk0y"]
 [ext_resource type="Script" uid="uid://23pvsgujae5a" path="res://architecture/ui/shadow_health_ui.gd" id="4_an2k0"]
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="5_5c5v8"]
+[ext_resource type="Script" uid="uid://c0j8mplyiibwb" path="res://architecture/selected_entity_viewport.gd" id="6_vw2lh"]
+[ext_resource type="Script" uid="uid://dfifo1iryhsgu" path="res://architecture/ui/null_ui_selection_button.gd" id="7_7mwho"]
 
 [node name="LevelUI" type="CanvasLayer" unique_id=2003894573]
 script = ExtResource("1_dl3bl")
@@ -42,10 +44,11 @@ mouse_target = true
 [node name="LevelViewport" type="SubViewport" parent="HBoxContainer/VBoxContainer/SubViewportContainer" unique_id=256052677]
 unique_name_in_owner = true
 handle_input_locally = false
-size = Vector2i(1771, 1053)
+size = Vector2i(1656, 1053)
 render_target_update_mode = 4
 
 [node name="Control" type="VBoxContainer" parent="HBoxContainer" unique_id=450850750]
+custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 3
@@ -84,6 +87,7 @@ text = "1000?"
 [node name="Control2" type="Control" parent="HBoxContainer/Control" unique_id=1031180037]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
 
 [node name="DisplaySelected" type="VBoxContainer" parent="HBoxContainer/Control" unique_id=1522410859]
 layout_mode = 2
@@ -99,6 +103,27 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 1
 script = ExtResource("4_an2k0")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/Control/DisplaySelected" unique_id=631780335]
+layout_mode = 2
+mouse_target = true
+
+[node name="DisplaySelectedViewport" type="SubViewport" parent="HBoxContainer/Control/DisplaySelected/SubViewportContainer" unique_id=1467878820 node_paths=PackedStringArray("world_source")]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+script = ExtResource("6_vw2lh")
+world_source = NodePath("../../../../VBoxContainer/SubViewportContainer/LevelViewport")
+
+[node name="Camera2D" type="Camera2D" parent="HBoxContainer/Control/DisplaySelected/SubViewportContainer/DisplaySelectedViewport" unique_id=793698142]
+unique_name_in_owner = true
+zoom = Vector2(0.75, 0.75)
+
+[node name="DisplayNothing_Button" type="Button" parent="HBoxContainer/Control/DisplaySelected" unique_id=1383901387]
+layout_mode = 2
+text = "Cancle Selection"
+script = ExtResource("7_7mwho")
 
 [node name="Control" type="Control" parent="HBoxContainer/Control" unique_id=1833074272]
 layout_mode = 2

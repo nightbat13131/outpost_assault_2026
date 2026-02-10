@@ -1,16 +1,12 @@
 [gd_scene format=3 uid="uid://crpgsle6mc8n8"]
 
 [ext_resource type="PackedScene" uid="uid://st2jxhhig6ub" path="res://architecture/ui/level_ui.tscn" id="1_g47r2"]
-[ext_resource type="Script" uid="uid://dgds4l2cp2mcm" path="res://architecture/level_holder.gd" id="2_g47r2"]
 [ext_resource type="PackedScene" uid="uid://ntjvy0mnwu6g" path="res://architecture/testing/test_maps/tile_map_4_ui_frame.tscn" id="3_4iwvi"]
 
 [node name="TestGameRoot" type="Node2D" unique_id=669138280]
 
 [node name="LevelUI" parent="." unique_id=2003894573 instance=ExtResource("1_g47r2")]
 
-[node name="LevelViewport" parent="LevelUI/HBoxContainer/VBoxContainer/SubViewportContainer" parent_id_path=PackedInt32Array(2003894573, 1703908735) index="0" unique_id=256052677]
-script = ExtResource("2_g47r2")
-
-[node name="Level" parent="LevelUI/HBoxContainer/VBoxContainer/SubViewportContainer/LevelViewport" index="0" unique_id=820054972 instance=ExtResource("3_4iwvi")]
+[node name="Test_Level_4" parent="LevelUI/HBoxContainer/VBoxContainer/SubViewportContainer/LevelViewport" parent_id_path=PackedInt32Array(2003894573, 256052677) index="0" unique_id=820054972 instance=ExtResource("3_4iwvi")]
 
 [editable path="LevelUI"]

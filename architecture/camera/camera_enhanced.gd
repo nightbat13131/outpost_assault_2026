@@ -28,6 +28,7 @@ var _velocity := Vector2.ZERO
 var _is_remote_moving := false
 var _viewport : SubViewport: get = get_subviewport
 var _bounds : CameraBounds
+var _last_drag_direction : Vector2
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -50,14 +51,21 @@ func _process(delta: float) -> void:
 		return
 	if _is_remote_moving:
 		return
-	var direction := Vector2.ZERO
+	
 	if action_move_keys and action_move_drag:
+		var direction := Vector2.ZERO
 		if action_move_keys.is_triggered():
 			direction = action_move_keys.value_axis_2d.normalized()
+			_last_drag_direction = Vector2.ZERO
 		elif action_move_drag.is_triggered():
-			direction = action_move_drag.value_axis_2d.normalized()
+			direction = action_move_drag.value_axis_2d.normalized()#drag resistance? )
+			if direction == Vector2.ZERO:
+				direction = _last_drag_direction
+			else:
+				_last_drag_direction = direction
 			_set_is_drag_cursor(true)
 		else:
+			_last_drag_direction = Vector2.ZERO
 			_set_is_drag_cursor(false)
 		if direction == Vector2.ZERO:
 			return
