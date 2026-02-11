@@ -7,18 +7,28 @@ class_name NavPoint extends Node2D
 ## Paths for next nav points and their weights. 
 @export var next_target_weights: Array[NavPointWeight] = []
 ## The distance threshold before the target is considered to be reached.
+@export var is_disabled := false
 @export var target_distance := 20.0 :
 	set(value):
 		target_distance = abs(value)
 		queue_redraw()
+@onready var _picker: WeightedPicker
 
-@onready var _picker:= WeightedPicker.new(next_target_weights)
 
 func _ready() -> void:
+	if is_disabled:
+		if Engine.is_editor_hint():
+			return
+		#queue_free()
+		return
 	for each in next_target_weights:
-		each.set_parent(self)
+		if each:
+			each.set_parent(self)
+	_picker = WeightedPicker.new(next_target_weights)
 
 func _draw() -> void:
+	if is_disabled:
+		return
 	if Engine.is_editor_hint():
 		draw_circle(Vector2.ZERO, target_distance, Color.RED, false, 3.0)
 		if next_target_weights.is_empty():
@@ -33,6 +43,8 @@ func _draw() -> void:
 		else:
 			var end_point :Vector2
 			for each_point: NavPointWeight in next_target_weights:
+				if each_point.get_nav_point().is_disabled:
+					continue
 				end_point = to_local(each_point.get_nav_point().global_position)
 				draw_line(Vector2.ZERO, end_point, Color.ORANGE, each_point.get_weight()*4)
 				draw_polyline([
@@ -66,7 +78,8 @@ class WeightedPicker:
 	var _total: float = 0.0
 	var _choices: Array[NavPointWeight]
 	
-	func _init(array: Array[NavPointWeight]) -> void: populate_choices(array)
+	func _init(array: Array[NavPointWeight]) -> void: 
+		populate_choices(array)
 	
 	func pick_one() -> NavPoint:
 		if _choices.is_empty():
@@ -83,7 +96,11 @@ class WeightedPicker:
 		return null
 
 	func populate_choices(array: Array[NavPointWeight]) -> void: 
-		_choices = array
-		_total = 0.0
-		for each in _choices:
-			_total += each.get_weight()
+		var weight: float
+		if _total != 0.0:
+			push_warning("_total didn't start at 0.0") # because I removed _total = 0.0 and want to make sure i don't need it
+		for each_ in array:
+			weight = each_.get_weight()
+			if weight > 0.0:
+				_choices.append(each_)
+				_total += weight

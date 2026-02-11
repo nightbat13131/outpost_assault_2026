@@ -6,8 +6,13 @@
 [ext_resource type="Script" uid="uid://b8re4y454lk4w" path="res://architecture/ui/display_selected.gd" id="3_qyk0y"]
 [ext_resource type="Script" uid="uid://23pvsgujae5a" path="res://architecture/ui/shadow_health_ui.gd" id="4_an2k0"]
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="5_5c5v8"]
-[ext_resource type="Script" uid="uid://c0j8mplyiibwb" path="res://architecture/selected_entity_viewport.gd" id="6_vw2lh"]
+[ext_resource type="Script" uid="uid://c0j8mplyiibwb" path="res://architecture/ui/selected_entity_viewport.gd" id="6_vw2lh"]
 [ext_resource type="Script" uid="uid://dfifo1iryhsgu" path="res://architecture/ui/null_ui_selection_button.gd" id="7_7mwho"]
+[ext_resource type="Script" uid="uid://c604e4wacln7h" path="res://architecture/ui/cost_button.gd" id="8_fwhdi"]
+[ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="9_yq572"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fwhdi"]
+size = Vector2(24, 24)
 
 [node name="LevelUI" type="CanvasLayer" unique_id=2003894573]
 script = ExtResource("1_dl3bl")
@@ -124,6 +129,41 @@ zoom = Vector2(0.75, 0.75)
 layout_mode = 2
 text = "Cancle Selection"
 script = ExtResource("7_7mwho")
+
+[node name="CostButton" type="PanelContainer" parent="HBoxContainer/Control/DisplaySelected" unique_id=1344544477]
+layout_mode = 2
+script = ExtResource("8_fwhdi")
+
+[node name="Button" type="Button" parent="HBoxContainer/Control/DisplaySelected/CostButton" unique_id=1955378227]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("9_yq572")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Control/DisplaySelected/CostButton" unique_id=1354004994]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Control/DisplaySelected/CostButton/HBoxContainer" unique_id=2102029001]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_fwhdi")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/Control/DisplaySelected/CostButton/HBoxContainer" unique_id=315611935]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "[color=green]1050[/color]\\nDefault
+
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Control" type="Control" parent="HBoxContainer/Control" unique_id=1833074272]
 layout_mode = 2

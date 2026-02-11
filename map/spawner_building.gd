@@ -4,6 +4,7 @@ class_name SpawnerBuilding extends Spawner
 ## TODO : leave behind ruble to build into tower after _die
 
 
+
 @export var max_health : float = 100
 @onready var _health : float = max_health : set = _set_health
 
@@ -12,6 +13,7 @@ var _health_ui: HealthUI
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 var _button: Button_Trigger_UI
 var _display_info: DisplayHelper
+@onready var foundation_points: BrokenFoundationSpawner = %FoundationPoints
 
 func _ready() -> void:
 	super._ready()
@@ -41,6 +43,6 @@ func _die() -> void:
 	if Engine.is_editor_hint():
 		return
 	await  animated_sprite_2d.animation_finished
+	foundation_points.activate(_display_info)
 	_end_wave()
 	queue_free()
-	

@@ -11,13 +11,19 @@ class_name NavPointWeight extends Resource
 var _nav_point : NavPoint
 var _parent : Node2D
 
-func set_parent(node: Node2D) -> void: _parent = node
+func set_parent(node: Node2D) -> void: 
+	_parent = node
 
 func get_nav_point() -> NavPoint:
 	if !_nav_point:
 		if _parent:
 			if point_path:
 				_nav_point = _parent.get_node(point_path)
+				if _nav_point.is_disabled:
+					return null
 	return _nav_point
 
-func get_weight() -> float: return weight
+func get_weight() -> float: 
+	if get_nav_point():
+		return weight
+	return 0.0

@@ -1,4 +1,6 @@
 class_name GameSpeed extends Control
+## consider a pause button that does pause without loosing the last speed instead of 0 button
+## would also include a remote pause request.
 
 signal speed_change(delta_mod: float)
 

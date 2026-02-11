@@ -4,7 +4,7 @@ class_name GoldManager extends Control
 static var _instance
 
 @onready var label_gold_value: Label = %GoldValue
-var _gold := 1000000.5 : set = _set_gold
+var _gold := 50.5 : set = _set_gold
 
 
 func _ready() -> void:
@@ -36,6 +36,11 @@ func _attempt_purchase(cost: float) -> bool:
 		return false
 	_gold -= cost
 	return true
+
+static func get_gold() -> float:
+	if get_instance():
+		return get_instance()._gold
+	return 0.0
 
 static func get_instance() -> GoldManager: return _instance
 

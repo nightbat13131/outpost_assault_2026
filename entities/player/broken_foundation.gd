@@ -15,6 +15,8 @@ func _ready() -> void:
 			_button.set_display_info(_display_info)
 			break
 
+func get_display_info() -> DisplayHelper: return _display_info
+
 func _request_build() -> void:
 	# TODO check if can purchase
 	pass

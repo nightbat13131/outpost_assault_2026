@@ -7,6 +7,9 @@ func _ready() -> void:
 	pressed.connect(_on_pressed)
 
 func _on_pressed() -> void:
+	if !damage_target: 
+		push_warning("Testing Damange button does not have a damange target.")
+		return
 	if damage_target.has_method("take_damage"):
 		damage_target.take_damage(damage_amount)
 	else:

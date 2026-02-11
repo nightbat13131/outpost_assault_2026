@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://dhtlvdgyb6fna"]
+
+[ext_resource type="Script" uid="uid://c7cgc6ppvr5q4" path="res://map/spawner_building.gd" id="1_tmbkb"]
+[ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="2_ggx7k"]
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="3_vnl0w"]
+[ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/ui/game_speed/animated_sprite_delta_mod.gd" id="4_f0aef"]
+[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawn_point.gd" id="5_ilptg"]
+[ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="6_f74wo"]
+[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="7_p0die"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="8_lj6es"]
+[ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/populate_broken_foundations.gd" id="9_gva82"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obju6"]
+atlas = ExtResource("3_vnl0w")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oisr6"]
+atlas = ExtResource("3_vnl0w")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qehr"]
+atlas = ExtResource("3_vnl0w")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7vok"]
+atlas = ExtResource("3_vnl0w")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti3ma"]
+atlas = ExtResource("3_vnl0w")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okpnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obju6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oisr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qehr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7vok")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ti3ma")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_16vwn"]
+script = ExtResource("6_f74wo")
+point_path = NodePath("Spawn_NE")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_gluir"]
+script = ExtResource("6_f74wo")
+point_path = NodePath("Spawn_NW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_tmbkb"]
+script = ExtResource("6_f74wo")
+point_path = NodePath("Spawn_SE")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_ggx7k"]
+script = ExtResource("6_f74wo")
+point_path = NodePath("Spawn_SW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[node name="SpawnerBuilding_1x2" type="Node2D" unique_id=2112157350]
+script = ExtResource("1_tmbkb")
+
+[node name="Button" type="Button" parent="." unique_id=425182933]
+offset_left = -59.0
+offset_top = -59.0
+offset_right = 60.0
+offset_bottom = 60.0
+script = ExtResource("2_ggx7k")
+
+[node name="GroundSprite2D" type="Sprite2D" parent="." unique_id=608432530]
+unique_name_in_owner = true
+self_modulate = Color(0.91648805, 0.5145746, 0.19784728, 1)
+scale = Vector2(1, 2)
+texture = ExtResource("3_vnl0w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=909669767]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(-1, -12)
+scale = Vector2(1, 4)
+sprite_frames = SubResource("SpriteFrames_okpnb")
+animation = &"die"
+script = ExtResource("4_f0aef")
+
+[node name="SpawnPointBuilding" type="Node2D" parent="." unique_id=1438190680]
+unique_name_in_owner = true
+script = ExtResource("5_ilptg")
+unit_types = Array[int]([100])
+next_target_weights = Array[ExtResource("6_f74wo")]([SubResource("Resource_16vwn"), SubResource("Resource_gluir"), SubResource("Resource_tmbkb"), SubResource("Resource_ggx7k")])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="Spawn_NE" type="Node2D" parent="SpawnPointBuilding" unique_id=100200813]
+unique_name_in_owner = true
+position = Vector2(85, -56)
+script = ExtResource("7_p0die")
+target_distance = 10.0
+
+[node name="Spawn_NW" type="Node2D" parent="SpawnPointBuilding" unique_id=971029430]
+unique_name_in_owner = true
+position = Vector2(-89, -58)
+script = ExtResource("7_p0die")
+target_distance = 10.0
+
+[node name="Spawn_SE" type="Node2D" parent="SpawnPointBuilding" unique_id=588862786]
+unique_name_in_owner = true
+position = Vector2(86, 54)
+script = ExtResource("7_p0die")
+target_distance = 10.0
+
+[node name="Spawn_SW" type="Node2D" parent="SpawnPointBuilding" unique_id=194821967]
+unique_name_in_owner = true
+position = Vector2(-91, 59)
+script = ExtResource("7_p0die")
+target_distance = 10.0
+
+[node name="HealthUI" parent="." unique_id=1750592590 instance=ExtResource("8_lj6es")]
+offset_left = -25.0
+offset_top = 25.0
+offset_right = 25.0
+offset_bottom = 30.0
+
+[node name="FoundationPoints" type="Node2D" parent="." unique_id=725093312]
+unique_name_in_owner = true
+script = ExtResource("9_gva82")
+metadata/_edit_lock_ = true
+
+[node name="Node2D" type="Node2D" parent="FoundationPoints" unique_id=1410484473]
+position = Vector2(0, -62)
+
+[node name="Node2D2" type="Node2D" parent="FoundationPoints" unique_id=1543029156]
+position = Vector2(1, 70)

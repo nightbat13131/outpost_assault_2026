@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://c7cgc6ppvr5q4" path="res://map/spawner_building.gd" id="1_4h0ng"]
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="2_3ipqg"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="2_a6824"]
-[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://spawn_point.gd" id="3_3ipqg"]
+[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawn_point.gd" id="3_3ipqg"]
 [ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/ui/game_speed/animated_sprite_delta_mod.gd" id="3_a6824"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_3ceep"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="5_eqv62"]
 [ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="8_3ceep"]
+[ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/populate_broken_foundations.gd" id="9_eqv62"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_obju6"]
 atlas = ExtResource("2_a6824")
@@ -67,7 +68,7 @@ script = ExtResource("4_3ceep")
 point_path = NodePath("Spawn_W")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[node name="SpawnerBuilding" type="Node2D" unique_id=2112157350]
+[node name="SpawnerBuilding_1x1" type="Node2D" unique_id=2112157350]
 script = ExtResource("1_4h0ng")
 
 [node name="Button" type="Button" parent="." unique_id=425182933]
@@ -79,11 +80,14 @@ script = ExtResource("8_3ceep")
 
 [node name="GroundSprite2D" type="Sprite2D" parent="." unique_id=608432530]
 unique_name_in_owner = true
+self_modulate = Color(0.91648805, 0.5145746, 0.19784728, 1)
 texture = ExtResource("2_a6824")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=909669767]
 unique_name_in_owner = true
 z_index = 10
+position = Vector2(-1, -12)
+scale = Vector2(1, 2)
 sprite_frames = SubResource("SpriteFrames_okpnb")
 animation = &"die"
 script = ExtResource("3_a6824")
@@ -112,3 +116,8 @@ offset_left = -25.0
 offset_top = 25.0
 offset_right = 25.0
 offset_bottom = 30.0
+
+[node name="FoundationPoints" type="Node2D" parent="." unique_id=725093312]
+unique_name_in_owner = true
+script = ExtResource("9_eqv62")
+metadata/_edit_lock_ = true

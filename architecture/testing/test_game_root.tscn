@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://crpgsle6mc8n8"]
 
 [ext_resource type="PackedScene" uid="uid://st2jxhhig6ub" path="res://architecture/ui/level_ui.tscn" id="1_g47r2"]
-[ext_resource type="PackedScene" uid="uid://ntjvy0mnwu6g" path="res://architecture/testing/test_maps/tile_map_4_ui_frame.tscn" id="3_4iwvi"]
+[ext_resource type="PackedScene" uid="uid://ntjvy0mnwu6g" path="res://architecture/testing/test_maps/tile_map_4_buildings.tscn" id="3_4iwvi"]
 
 [node name="TestGameRoot" type="Node2D" unique_id=669138280]
 

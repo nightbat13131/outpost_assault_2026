@@ -32,6 +32,7 @@ rect_size = Vector2(3000, 2500)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [node name="CameraBinder" type="Node2D" unique_id=1105577396 node_paths=PackedStringArray("camera")]
+visible = false
 script = ExtResource("1_sxemf")
 testing_index = 1
 bounds = Array[ExtResource("2_uydb1")]([SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7"), SubResource("Resource_sxemf")])

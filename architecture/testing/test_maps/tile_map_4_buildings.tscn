@@ -8,10 +8,12 @@
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="9_iinq7"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="10_it04r"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://map/spawn_manager.gd" id="11_3fx5c"]
-[ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://spawner.gd" id="12_0llaq"]
-[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://spawn_point.gd" id="13_jbakq"]
+[ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawner.gd" id="12_0llaq"]
+[ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://map/spawner_building_1x2.tscn" id="12_rahqt"]
+[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawn_point.gd" id="13_jbakq"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation.tscn" id="14_43dva"]
-[ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://map/spawner_building.tscn" id="14_yetmv"]
+[ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="14_jlabc"]
+[ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://map/spawner_building_1x1.tscn" id="14_yetmv"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="17_ttut0"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="18_u1qnl"]
 
@@ -90,24 +92,29 @@ script = ExtResource("10_it04r")
 point_path = NodePath("../../../NavPoint_NW")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[sub_resource type="Resource" id="Resource_16vwn"]
-script = ExtResource("10_it04r")
-point_path = NodePath("../../../../NavPoint_E")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_gluir"]
-script = ExtResource("10_it04r")
-point_path = NodePath("../../../../NavPoint_S")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_0pcpm"]
+[sub_resource type="Resource" id="Resource_rahqt"]
 script = ExtResource("10_it04r")
 point_path = NodePath("../../../../NavPoint_N")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[sub_resource type="Resource" id="Resource_n5djh"]
+[sub_resource type="Resource" id="Resource_h1wdl"]
 script = ExtResource("10_it04r")
 point_path = NodePath("../../../../NavPoint_S")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_bfq08"]
+script = ExtResource("10_it04r")
+point_path = NodePath("../../../../NavPoint_E")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_vdq2y"]
+script = ExtResource("10_it04r")
+point_path = NodePath("../../../../NavPoint_N")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_rv4v8"]
+script = ExtResource("10_it04r")
+point_path = NodePath("../../../../NavPoint_E")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
 [sub_resource type="Resource" id="Resource_qmthx"]
@@ -141,13 +148,23 @@ metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 [node name="test" type="Node" parent="." unique_id=761061381]
 
 [node name="Button" type="Button" parent="test" unique_id=1473628105 node_paths=PackedStringArray("damage_target")]
-offset_left = 1753.0
-offset_top = 219.0
-offset_right = 1864.0
-offset_bottom = 250.0
+offset_left = 1396.0
+offset_top = 196.0
+offset_right = 1507.0
+offset_bottom = 227.0
 text = "Deal Damage"
 script = ExtResource("6_ttut0")
-damage_target = NodePath("../../SpawnManager/SpawnerBuilding")
+damage_target = NodePath("../../SpawnManager/SpawnerBuilding_1x1")
+damage_amount = 23.0
+
+[node name="Button2" type="Button" parent="test" unique_id=62573386 node_paths=PackedStringArray("damage_target")]
+offset_left = 1097.0
+offset_top = 294.0
+offset_right = 1208.0
+offset_bottom = 325.0
+text = "Deal Damage"
+script = ExtResource("6_ttut0")
+damage_target = NodePath("../../SpawnManager/SpawnerBuilding_1x2")
 damage_amount = 23.0
 
 [node name="Test_DamageZone" type="Area2D" parent="test" unique_id=796258337]
@@ -167,7 +184,7 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_oisr6")
 
 [node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]
-tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAEAAAAHAAEAAAAAAAEAAAAGAAEAAAAAAAEAAAAFAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAADAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAABAAQAAAAAAAEAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAIAAAAIAAAAAAAAAAIAAAAHAAAAAAAAAAIAAAAGAAAAAAAAAAIAAAAFAAAAAAAAAAIAAAAEAAAAAAAAAAIAAAADAAAAAAAAAAIAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAgAAAAAAAIAAAABAAgAAAAAAAEAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAAAAAIAAAAOAAcAAAAAAAIAAAAOAAYAAAAAAAIAAAAOAAUAAAAAAAIAAAAOAAQAAAAAAAIAAAAOAAMAAAAAAAIAAAAOAAIAAAAAAAIAAAAOAAEAAAAAAAIAAAAOAAAAAAAAAAIAAAANAAAAAAAAAAIAAAAMAAAAAAAAAAIAAAALAAAAAAAAAAIAAAAKAAAAAAAAAAIAAAABAAUAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAAAAAACAAcAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAABAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAFAAUAAAAAAAEAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAEAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAEAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAUAAAAAAAEAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAEAAAAJAAUAAAAAAAEAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAUAAAAAAAEAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAEAAAALAAEAAAAAAAEAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAALAAQAAAABAAAAAAALAAUAAAABAAAAAAALAAYAAAABAAAAAAALAAcAAAABAAAAAAAMAAEAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAAAAAAMAAQAAAABAAAAAAAMAAUAAAABAAAAAAAMAAYAAAABAAAAAAAMAAcAAAABAAAAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAD//wEAAAAAAAIAAAD//wIAAAAAAAIAAAD//wMAAAAAAAIAAAD//wQAAAAAAAIAAAD//wUAAAAAAAIAAAD//wYAAAAAAAIAAAD//wcAAAAAAAIAAAD//wgAAAAAAAIAAAD//wsAAAAAAAIAAAAAAAsAAAAAAAIAAAABAAsAAAAAAAIAAAACAAsAAAAAAAIAAAADAAsAAAAAAAIAAAAEAAsAAAAAAAIAAAAFAAsAAAAAAAIAAAAGAAsAAAAAAAIAAAAHAAsAAAAAAAIAAAAIAAsAAAAAAAIAAAAJAAsAAAAAAAIAAAAKAAsAAAAAAAIAAAALAAsAAAAAAAIAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAPAAoAAAAAAAIAAAAOAAoAAAAAAAIAAAANAAoAAAAAAAIAAAAMAAoAAAAAAAIAAAALAAoAAAAAAAIAAAAKAAoAAAAAAAIAAAAJAAoAAAAAAAIAAAAIAAoAAAAAAAIAAAAHAAoAAAAAAAIAAAAGAAoAAAAAAAIAAAAFAAoAAAAAAAIAAAAEAAoAAAAAAAIAAAADAAoAAAAAAAIAAAACAAoAAAAAAAIAAAABAAoAAAAAAAIAAAAAAAoAAAAAAAIAAAD//woAAAAAAAIAAAD//wkAAAAAAAIAAAAAAAkAAAAAAAEAAAABAAkAAAAAAAEAAAACAAkAAAAAAAEAAAADAAkAAAAAAAEAAAAEAAkAAAAAAAEAAAAFAAkAAAAAAAEAAAAGAAkAAAAAAAEAAAAHAAkAAAAAAAEAAAAIAAkAAAAAAAEAAAAJAAkAAAAAAAEAAAAKAAkAAAAAAAEAAAALAAkAAAAAAAEAAAAMAAkAAAAAAAEAAAANAAkAAAAAAAEAAAAOAAkAAAAAAAIAAAAPAAgAAAAAAAIAAAAPAAYAAAAAAAIAAAAPAAQAAAAAAAIAAAAPAAIAAAAAAAIAAAAPAAAAAAAAAAIAAAAOAP//AAAAAAIAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAABAP//AAAAAAIAAAACAP//AAAAAAIAAAADAP//AAAAAAIAAAAEAP//AAAAAAIAAAAFAP//AAAAAAIAAAAGAP//AAAAAAIAAAAHAP//AAAAAAIAAAAIAP//AAAAAAIAAAAJAP//AAAAAAIAAAAKAP//AAAAAAIAAAALAP//AAAAAAIAAAAMAP//AAAAAAIAAAANAP//AAAAAAIAAAD//wAAAAAAAAIAAAA=")
+tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAEAAAAHAAEAAAAAAAEAAAAGAAEAAAAAAAEAAAAFAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAADAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAABAAQAAAAAAAEAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAABAAAAAAAJAAMAAAABAAAAAAAJAAIAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAIAAAAIAAAAAAAAAAIAAAAHAAAAAAAAAAIAAAAGAAAAAAAAAAIAAAAFAAAAAAAAAAIAAAAEAAAAAAAAAAIAAAADAAAAAAAAAAIAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAgAAAAAAAIAAAABAAgAAAAAAAEAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAAAAAIAAAAOAAcAAAAAAAIAAAAOAAYAAAAAAAIAAAAOAAUAAAAAAAIAAAAOAAQAAAAAAAIAAAAOAAMAAAAAAAIAAAAOAAIAAAAAAAIAAAAOAAEAAAAAAAIAAAAOAAAAAAAAAAIAAAANAAAAAAAAAAIAAAAMAAAAAAAAAAIAAAALAAAAAAAAAAIAAAAKAAAAAAAAAAIAAAABAAUAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAAAAAACAAcAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAABAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAFAAUAAAAAAAEAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAEAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAEAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAEAAAAJAAUAAAABAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAUAAAAAAAEAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAEAAAALAAEAAAAAAAEAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAALAAQAAAABAAAAAAALAAUAAAABAAAAAAALAAYAAAABAAAAAAALAAcAAAABAAAAAAAMAAEAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAAAAAAMAAQAAAABAAAAAAAMAAUAAAABAAAAAAAMAAYAAAABAAAAAAAMAAcAAAABAAAAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAD//wEAAAAAAAIAAAD//wIAAAAAAAIAAAD//wMAAAAAAAIAAAD//wQAAAAAAAIAAAD//wUAAAAAAAIAAAD//wYAAAAAAAIAAAD//wcAAAAAAAIAAAD//wgAAAAAAAIAAAD//wsAAAAAAAIAAAAAAAsAAAAAAAIAAAABAAsAAAAAAAIAAAACAAsAAAAAAAIAAAADAAsAAAAAAAIAAAAEAAsAAAAAAAIAAAAFAAsAAAAAAAIAAAAGAAsAAAAAAAIAAAAHAAsAAAAAAAIAAAAIAAsAAAAAAAIAAAAJAAsAAAAAAAIAAAAKAAsAAAAAAAIAAAALAAsAAAAAAAIAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAPAAoAAAAAAAIAAAAOAAoAAAAAAAIAAAANAAoAAAAAAAIAAAAMAAoAAAAAAAIAAAALAAoAAAAAAAIAAAAKAAoAAAAAAAIAAAAJAAoAAAAAAAIAAAAIAAoAAAAAAAIAAAAHAAoAAAAAAAIAAAAGAAoAAAAAAAIAAAAFAAoAAAAAAAIAAAAEAAoAAAAAAAIAAAADAAoAAAAAAAIAAAACAAoAAAAAAAIAAAABAAoAAAAAAAIAAAAAAAoAAAAAAAIAAAD//woAAAAAAAIAAAD//wkAAAAAAAIAAAAAAAkAAAAAAAEAAAABAAkAAAAAAAEAAAACAAkAAAAAAAEAAAADAAkAAAAAAAEAAAAEAAkAAAAAAAEAAAAFAAkAAAAAAAEAAAAGAAkAAAAAAAEAAAAHAAkAAAAAAAEAAAAIAAkAAAAAAAEAAAAJAAkAAAAAAAEAAAAKAAkAAAAAAAEAAAALAAkAAAAAAAEAAAAMAAkAAAAAAAEAAAANAAkAAAAAAAEAAAAOAAkAAAAAAAIAAAAPAAgAAAAAAAIAAAAPAAYAAAAAAAIAAAAPAAQAAAAAAAIAAAAPAAIAAAAAAAIAAAAPAAAAAAAAAAIAAAAOAP//AAAAAAIAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAABAP//AAAAAAIAAAACAP//AAAAAAIAAAADAP//AAAAAAIAAAAEAP//AAAAAAIAAAAFAP//AAAAAAIAAAAGAP//AAAAAAIAAAAHAP//AAAAAAIAAAAIAP//AAAAAAIAAAAJAP//AAAAAAIAAAAKAP//AAAAAAIAAAALAP//AAAAAAIAAAAMAP//AAAAAAIAAAANAP//AAAAAAIAAAD//wAAAAAAAAIAAAA=")
 tile_set = ExtResource("1_iwm8r")
 script = ExtResource("2_dvj36")
 metadata/_edit_lock_ = true
@@ -221,35 +238,57 @@ _inital_delay = 3.0
 _pulse_gap = 3.0
 _pulse_per_wave = 3
 _pulse_unit_volume = 2
+metadata/_edit_lock_ = true
 
 [node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner" unique_id=1670429763]
 unique_name_in_owner = true
-position = Vector2(30, 18)
+position = Vector2(12, 16)
 script = ExtResource("13_jbakq")
 unit_types = Array[int]([100])
 next_target_weights = Array[ExtResource("10_it04r")]([SubResource("Resource_ti3ma")])
+target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="SpawnerBuilding" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("14_yetmv")]
-position = Vector2(1600, 307)
-_pulse_per_wave = 5
+[node name="SpawnerBuilding_1x2" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("12_rahqt")]
+position = Vector2(1192, 455)
 
-[node name="Spawn_E" parent="SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
-next_target_weights = Array[ExtResource("10_it04r")]([SubResource("Resource_16vwn"), SubResource("Resource_gluir")])
+[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
+position = Vector2(154, -197)
+is_disabled = true
 
-[node name="Spawn_W" parent="SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
-next_target_weights = Array[ExtResource("10_it04r")]([SubResource("Resource_0pcpm"), SubResource("Resource_n5djh")])
+[node name="Spawn_NW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
+next_target_weights = Array[ExtResource("10_it04r")]([SubResource("Resource_rahqt")])
+
+[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="2" unique_id=588862786]
+is_disabled = true
+
+[node name="Spawn_SW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="3" unique_id=194821967]
+next_target_weights = Array[ExtResource("10_it04r")]([SubResource("Resource_h1wdl")])
+
+[node name="SpawnerBuilding_1x1" parent="SpawnManager" unique_id=806376720 instance=ExtResource("14_yetmv")]
+position = Vector2(1581, 272)
+
+[node name="Spawn_E" parent="SpawnManager/SpawnerBuilding_1x1/SpawnPointBuilding" parent_id_path=PackedInt32Array(806376720, 1438190680) index="0" unique_id=100200813]
+next_target_weights = Array[ExtResource("10_it04r")]([SubResource("Resource_bfq08")])
+
+[node name="Spawn_W" parent="SpawnManager/SpawnerBuilding_1x1/SpawnPointBuilding" parent_id_path=PackedInt32Array(806376720, 1438190680) index="1" unique_id=971029430]
+position = Vector2(-93, 13)
+next_target_weights = Array[ExtResource("10_it04r")]([SubResource("Resource_vdq2y"), SubResource("Resource_rv4v8")])
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("17_ttut0")]
-visible = false
 debug = false
 testing_index = 3
 bounds = Array[ExtResource("18_u1qnl")]([SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7"), SubResource("Resource_u1qnl")])
 
-[node name="BrokenFoundation" parent="." unique_id=400182285 instance=ExtResource("14_43dva")]
+[node name="TowerHolder" type="Node2D" parent="." unique_id=370330720]
+script = ExtResource("14_jlabc")
+metadata/_edit_lock_ = true
+
+[node name="BrokenFoundation" parent="TowerHolder" unique_id=400182285 instance=ExtResource("14_43dva")]
 position = Vector2(1541, 939)
 
-[node name="BrokenFoundation2" parent="." unique_id=454266272 instance=ExtResource("14_43dva")]
+[node name="BrokenFoundation2" parent="TowerHolder" unique_id=454266272 instance=ExtResource("14_43dva")]
 position = Vector2(703, 378)
 
-[editable path="SpawnManager/SpawnerBuilding"]
+[editable path="SpawnManager/SpawnerBuilding_1x2"]
+[editable path="SpawnManager/SpawnerBuilding_1x1"]

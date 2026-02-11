@@ -53,10 +53,16 @@ var _is_disabled := false
 func _ready() -> void:
 	add_child(_timer) 
 	_timer.timeout.connect(_on_timer_timeout)
+	_populate_spawn_points()
+
+func _populate_spawn_points() -> void:
 	for each_child in get_children():
 		if each_child is SpawnPoint:
-			if !spawn_points.has(each_child):
-				spawn_points.append(each_child)
+			if !each_child.is_disabled:
+				if !spawn_points.has(each_child):
+					spawn_points.append(each_child)
+	while spawn_points.has(null): # because this problem has come up
+		spawn_points.erase(null)
 
 func start_wave(wave_number) -> void:
 	if _is_disabled:
@@ -120,7 +126,7 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 		return
 	var next_enemy_packed_scene: PackedScene = load(next_enemy_path)
 	var next_enemy_instance: EnemyUnit = next_enemy_packed_scene.instantiate()
-	var spawn_point : SpawnPoint = _get_spawn_point(EnemySpawnTypes.PERSON)
+	var spawn_point : SpawnPoint = _get_spawn_point(EnemySpawnTypes.PERSON) # TODO dynamic type
 	next_enemy_instance.set_position(spawn_point.get_target_location())
 	get_unit_container().add_child(next_enemy_instance)
 	# set_nav_target doesn't work if happening before child_add.
@@ -132,16 +138,19 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 	_check_pulse()
 
 func _get_spawn_point(enemy_type: EnemySpawnTypes) -> SpawnPoint:
-	spawn_points.shuffle()
+	if spawn_points.is_empty():
+		push_warning(self, " has no spanw_points")
+		return null
+	spawn_points.shuffle() 
 	for each_point in spawn_points:
 		if each_point.is_type_valid(enemy_type):
-				## TODO: change this away from first only
-				return each_point
-	return null
+			return each_point
+	push_warning(self, " no spawn point match with enemey type: ", enemy_type)
+	return spawn_points[0]
 
 func _pick_enemy() -> EnemyUnitInfo.EnemyTypes:
 	return EnemyUnitInfo.EnemyTypes.DEBUG_WALKER
 
 func _end_wave() -> void: spawner_stopped.emit(self)
 
-func _on_unit_death(unit) -> void: _active_enemy_count -= 1
+func _on_unit_death(_unit) -> void: _active_enemy_count -= 1

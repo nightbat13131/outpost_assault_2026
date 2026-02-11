@@ -9,7 +9,7 @@ var _position : Vector2 = DEFAULT_POS
 func get_display_name() -> String:
 	if _parent:
 		return str(_parent.name)
-	return "No Parent"
+	return "No Selection"
 
 func _init(parent: Object, health_ui: HealthUI) -> void:
 	_parent = parent
