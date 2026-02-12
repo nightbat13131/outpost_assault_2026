@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://citf0bjrmxl7k"]
+
+[ext_resource type="Script" uid="uid://c604e4wacln7h" path="res://architecture/ui/gold_managment/cost_button.gd" id="1_abu3c"]
+[ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="2_21j6y"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fwhdi"]
+size = Vector2(24, 24)
+
+[node name="CostButton" type="PanelContainer" unique_id=2141790064]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_abu3c")
+
+[node name="Button" type="Button" parent="." unique_id=305113362]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_21j6y")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1456960070]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1930619973]
+layout_mode = 2
+
+[node name="TypeIcon" type="TextureRect" parent="HBoxContainer/MarginContainer" unique_id=1184617548]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_fwhdi")
+stretch_mode = 2
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer/MarginContainer" unique_id=949806342]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer" unique_id=803992183]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "Default
+[color=green]1050[/color]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1980016229]
+layout_mode = 2
+
+[node name="CoinIcon" type="TextureRect" parent="HBoxContainer/MarginContainer2" unique_id=33885490]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_fwhdi")
+stretch_mode = 2

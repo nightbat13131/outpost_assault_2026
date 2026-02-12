@@ -14,6 +14,13 @@ var _time_remaining := _wait_time:
 func _init(wait_seconds: float = 0.05) -> void:
 	set_wait_time(wait_seconds)
 
+func is_running() -> bool: return _is_running
+
+func get_ratio() -> float:
+	if _wait_time > 0:
+		return clampf(_time_remaining / _wait_time, 0.0, 1.0)
+	return 0.0
+
 func _process(delta: float) -> void:
 	if _is_running:
 		_time_remaining -= (delta * GameSpeed.get_delta_mod())

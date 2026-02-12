@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://map/spawner_building_1x1.tscn" id="11_51ooa"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_2ift6"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="13_yegdq"]
-[ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation.tscn" id="14_6ak7r"]
+[ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="14_6ak7r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0

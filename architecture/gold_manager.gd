@@ -6,7 +6,6 @@ static var _instance
 @onready var label_gold_value: Label = %GoldValue
 var _gold := 50.5 : set = _set_gold
 
-
 func _ready() -> void:
 	_instance = self
 	set_gold(_gold)

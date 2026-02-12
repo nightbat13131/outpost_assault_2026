@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_3ceep"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="5_eqv62"]
 [ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="8_3ceep"]
-[ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/populate_broken_foundations.gd" id="9_eqv62"]
+[ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/broken_foundation/populate_broken_foundations.gd" id="9_eqv62"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_obju6"]
 atlas = ExtResource("2_a6824")

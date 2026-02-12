@@ -17,6 +17,8 @@ func _init(parent: Object, health_ui: HealthUI) -> void:
 	if _parent:
 		_position = _parent.get_position()
 
+func get_parent() -> Object: return _parent
+
 func get_health_ui() -> HealthUI: return _health_ui
 
 func get_camera_position() -> Vector2: return _position

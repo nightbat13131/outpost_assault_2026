@@ -7,6 +7,7 @@ var _information : DisplayHelper
 @onready var display_name: Label = %DisplayName
 @onready var display_health: ShadowHealthUI = %Display_Health
 @onready var display_selected_viewport: DisplaySelected_SubViewport = %DisplaySelectedViewport
+@onready var purchase_interface: PurchaseInterface = %PurchaseInterface
 
 @onready var display_nothing_button: Button = $DisplayNothing_Button
 
@@ -48,6 +49,7 @@ func _apply_information(info: DisplayHelper) -> void:
 	if _information == info: ## info already displaying
 		return
 	_information = info
+	purchase_interface.interface_this(info.get_parent())
 	display_name.set_text(_information.get_display_name())
 	display_health.set_primary(_information.get_health_ui())
 	display_selected_viewport.set_camera_focus(_information.get_camera_position())

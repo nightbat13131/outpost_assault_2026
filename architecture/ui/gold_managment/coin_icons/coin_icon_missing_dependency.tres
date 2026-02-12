@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CoinTextures" format=3 uid="uid://o7xxbnh2p0j8"]
+
+[ext_resource type="Script" uid="uid://x2jv8the4xn" path="res://architecture/ui/gold_managment/coin_icons/coin_icons.gd" id="1_cgugl"]
+
+[sub_resource type="Gradient" id="Gradient_4c8na"]
+offsets = PackedFloat32Array(0, 0.56593406, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.31431612, 0.31431612, 0.3143161, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cbedm"]
+gradient = SubResource("Gradient_4c8na")
+width = 24
+height = 24
+fill_to = Vector2(1, 1)
+
+[resource]
+script = ExtResource("1_cgugl")
+missing_dependency = true
+texture = SubResource("GradientTexture2D_cbedm")
+metadata/_custom_type_script = "uid://x2jv8the4xn"
