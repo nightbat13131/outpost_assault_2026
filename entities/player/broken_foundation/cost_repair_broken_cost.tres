@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="CostButtonInfo" format=3 uid="uid://be6jwgsytym3a"]
+[gd_resource type="Resource" script_class="CostButtonInfo" format=3 uid="uid://b00vad3yibq5v"]
 
-[ext_resource type="Script" uid="uid://crocrrnsanyae" path="res://architecture/ui/gold_managment/cost_button_info.gd" id="1_f52bm"]
+[ext_resource type="Script" uid="uid://crocrrnsanyae" path="res://architecture/ui/gold_managment/cost_button_info.gd" id="1_dianx"]
 
 [sub_resource type="Gradient" id="Gradient_f52bm"]
 offsets = PackedFloat32Array(0, 0.5714286, 1)
@@ -14,10 +14,9 @@ fill_from = Vector2(0.25, 0.25)
 fill_to = Vector2(0.8, 0.8)
 
 [resource]
-script = ExtResource("1_f52bm")
-cost = 0.0
+script = ExtResource("1_dianx")
 label = "Rebuild"
-tool_tip = "Rebuild in progress."
+tool_tip = "Rebuild Ruble into Tower Foundation."
 primary_icon = SubResource("GradientTexture2D_aw615")
-purchase_type = 0
+purchase_type = 1
 metadata/_custom_type_script = "uid://crocrrnsanyae"

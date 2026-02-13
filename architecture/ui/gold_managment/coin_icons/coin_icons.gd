@@ -36,7 +36,7 @@ static func _populate_icons() -> void:
 			holder = load(each)
 			if holder.purchase_type == CostButton.PurchaseTypes.INFORMATION:
 				icon_info = holder
-			elif each.missing_dependency:
-				icon_dependent = each
+			elif holder.missing_dependency:
+				icon_dependent = holder
 			else:
-				icon_resources.append(each)
+				icon_resources.append(holder)

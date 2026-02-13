@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CostButtonInfo" format=3 uid="uid://mt6imtnvmv1i"]
+
+[ext_resource type="Script" uid="uid://crocrrnsanyae" path="res://architecture/ui/gold_managment/cost_button_info.gd" id="1_2rem2"]
+
+[sub_resource type="Gradient" id="Gradient_2rem2"]
+offsets = PackedFloat32Array(0, 0.8, 1)
+colors = PackedColorArray(0.4620592, 0.258842, 0.1284625, 1, 1, 1, 1, 1, 0.6901961, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lpjo1"]
+gradient = SubResource("Gradient_2rem2")
+width = 24
+height = 24
+fill = 1
+fill_from = Vector2(0.508547, 0.46153846)
+
+[resource]
+script = ExtResource("1_2rem2")
+current_level = 0
+cost = 150.0
+label = "Gear"
+primary_icon = SubResource("GradientTexture2D_lpjo1")
+metadata/_custom_type_script = "uid://crocrrnsanyae"

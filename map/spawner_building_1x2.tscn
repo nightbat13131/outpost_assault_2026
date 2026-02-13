@@ -83,9 +83,9 @@ script = ExtResource("1_tmbkb")
 
 [node name="Button" type="Button" parent="." unique_id=425182933]
 offset_left = -59.0
-offset_top = -59.0
+offset_top = -120.0
 offset_right = 60.0
-offset_bottom = 60.0
+offset_bottom = 120.0
 script = ExtResource("2_ggx7k")
 
 [node name="GroundSprite2D" type="Sprite2D" parent="." unique_id=608432530]

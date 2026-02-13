@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CostButtonInfo" format=3 uid="uid://b2ginln0x6f0n"]
+
+[ext_resource type="Script" uid="uid://crocrrnsanyae" path="res://architecture/ui/gold_managment/cost_button_info.gd" id="1_cnddn"]
+
+[sub_resource type="Gradient" id="Gradient_cnddn"]
+offsets = PackedFloat32Array(0, 0.7892857, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.7137255, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0rhve"]
+gradient = SubResource("Gradient_cnddn")
+width = 24
+height = 24
+fill = 1
+fill_from = Vector2(0.2991453, 0.2820513)
+fill_to = Vector2(0.8418803, 0.86752135)
+
+[resource]
+script = ExtResource("1_cnddn")
+current_level = 0
+cost = 125.0
+label = "Radio"
+primary_icon = SubResource("GradientTexture2D_0rhve")
+metadata/_custom_type_script = "uid://crocrrnsanyae"

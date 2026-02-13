@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CostButtonInfo" format=3 uid="uid://euwomgbc8cyk"]
+
+[ext_resource type="Script" uid="uid://crocrrnsanyae" path="res://architecture/ui/gold_managment/cost_button_info.gd" id="1_3s3nv"]
+
+[sub_resource type="Gradient" id="Gradient_3s3nv"]
+offsets = PackedFloat32Array(0, 0.13928571, 0.33571428, 0.5321429, 0.70357144, 0.8428571, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.28952134, 0.11594304, 0.41293925, 1, 0.21071428, 0.21071428, 0.21071428, 1, 0.4931159, 0.3502994, 0.5568581, 1, 0.69863635, 0.69863635, 0.69863635, 1, 0.822519, 0.69669634, 0.9829276, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_blmky"]
+gradient = SubResource("Gradient_3s3nv")
+width = 24
+height = 24
+
+[resource]
+script = ExtResource("1_3s3nv")
+current_level = 0
+label = "Cooling"
+primary_icon = SubResource("GradientTexture2D_blmky")
+metadata/_custom_type_script = "uid://crocrrnsanyae"

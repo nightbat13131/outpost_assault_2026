@@ -1,10 +1,12 @@
 class_name GoldManager extends Control
 ## All mods to costs and gains are supposed to be calculated before sending the value to the GoldManager
 
+signal gold_changed()
+
 static var _instance
 
 @onready var label_gold_value: Label = %GoldValue
-var _gold := 50.5 : set = _set_gold
+var _gold := 225.5 : set = _set_gold
 
 func _ready() -> void:
 	_instance = self
@@ -12,6 +14,7 @@ func _ready() -> void:
 
 func _set_gold(value: float) -> void:
 	_gold = value
+	gold_changed.emit()
 	var display_value : String
 	if _gold <= 0:
 		display_value = "0"

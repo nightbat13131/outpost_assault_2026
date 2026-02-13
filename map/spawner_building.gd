@@ -1,4 +1,5 @@
 class_name SpawnerBuilding extends Spawner
+## Setup reminder: Set the Selction buttion size and location
 ## TODO: figure out how to have units walk around buildings while keeping that 
 ## enemies can walk OUT of buildings. Prototype just put buildings onto of non_walking places.
 ## TODO : leave behind ruble to build into tower after _die
@@ -20,12 +21,12 @@ func _ready() -> void:
 	for each_child in get_children():
 		if each_child is Button_Trigger_UI:
 			_button = each_child
+			_button.selected.connect(_on_selected)
 		if each_child is HealthUI:
 			_health_ui = each_child
 			_set_health(max_health)
 	if _health_ui and _button:
 		_display_info = DisplayHelper.new(self, _health_ui)
-		_button.set_display_info(_display_info)
 
 func take_damage(value : float) -> void:
 	_health -= value
@@ -46,3 +47,9 @@ func _die() -> void:
 	foundation_points.activate(_display_info)
 	_end_wave()
 	queue_free()
+
+func get_display_info() -> DisplayHelper: return _display_info
+
+func _on_selected() -> void: 
+	DisplaySelected.request_display(_display_info)
+	PurchaseInterface.disable()

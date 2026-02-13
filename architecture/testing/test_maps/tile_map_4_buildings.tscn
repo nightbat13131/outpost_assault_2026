@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="14_jlabc"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://map/spawner_building_1x1.tscn" id="14_yetmv"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="17_ttut0"]
+[ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="18_bfq08"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="18_u1qnl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
@@ -247,6 +248,8 @@ script = ExtResource("12_0llaq")
 _inital_delay = 3.0
 _pulse_gap = 3.0
 _pulse_per_wave = 3
+_hard_spawn_cap = 2
+_spawn_speed = 4.0
 _pulse_unit_volume = 2
 metadata/_edit_lock_ = true
 
@@ -261,6 +264,8 @@ metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnerBuilding_1x2" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("12_rahqt")]
 position = Vector2(1192, 455)
+_hard_spawn_cap = 2
+_spawn_speed = 2.5
 
 [node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
 position = Vector2(154, -197)
@@ -277,6 +282,8 @@ next_target_weights = Array[ExtResource("10_it04r")]([SubResource("Resource_h1wd
 
 [node name="SpawnerBuilding_1x1" parent="SpawnManager" unique_id=806376720 instance=ExtResource("14_yetmv")]
 position = Vector2(1581, 272)
+_hard_spawn_cap = 2
+_spawn_speed = 2.0
 
 [node name="Spawn_E" parent="SpawnManager/SpawnerBuilding_1x1/SpawnPointBuilding" parent_id_path=PackedInt32Array(806376720, 1438190680) index="0" unique_id=100200813]
 next_target_weights = Array[ExtResource("10_it04r")]([SubResource("Resource_bfq08")])
@@ -299,6 +306,9 @@ position = Vector2(1499, 889)
 
 [node name="BrokenFoundation2" parent="TowerHolder" unique_id=454266272 instance=ExtResource("14_43dva")]
 position = Vector2(703, 378)
+
+[node name="TowerFoundation" parent="." unique_id=93634172 instance=ExtResource("18_bfq08")]
+position = Vector2(904, 547)
 
 [editable path="SpawnManager/SpawnerBuilding_1x2"]
 [editable path="SpawnManager/SpawnerBuilding_1x1"]

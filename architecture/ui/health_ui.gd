@@ -21,6 +21,6 @@ func set_health_ratio(value: float, insta_red := false) -> void:
 func get_ratio() -> float: return health_bar.ratio
 
 func _process(delta: float) -> void:
-	if red_under_bar.ratio >= health_bar.ratio:
+	if red_under_bar.ratio >= get_ratio():
 		delta *= GameSpeed.get_delta_mod()
 		red_under_bar.ratio -= delta

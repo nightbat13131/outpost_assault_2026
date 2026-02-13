@@ -17,12 +17,13 @@ func activate(parent_display_info: DisplayHelper) -> void:
 		__populate_foundation(each_pos)
 
 func __populate_foundation(global_position_: Vector2) -> void:
-	var new_ = load(BrokenFoundation.SCENE_PATH).instantiate()
+	var new_ = load(BrokenFoundation.SCENE_PATH).instantiate() as BrokenFoundation
 	## TODO get correct parrent
 	new_.set_global_position(global_position_)
 	_tower_holder.add_child(new_)
 	if _count == 0:
-		DisplaySelected.replace_information(_parent_display_info, new_.get_display_info())
+		if DisplaySelected.replace_information(_parent_display_info, new_.get_display_info()):
+			new_.on_selected()
 		_count += 1
 
 func _populate_positions() -> void:
