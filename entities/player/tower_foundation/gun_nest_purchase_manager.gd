@@ -1,4 +1,4 @@
-class_name UpgradeManager_TowerFoundation extends PurchaseManager
+class_name PurchaseManager_GunNest extends PurchaseManager
 
 @export var cost_upgrade_infos : Array[CostButonInfo_FoundationUpgrads]
 

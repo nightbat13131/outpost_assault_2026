@@ -8,10 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="5_5c5v8"]
 [ext_resource type="Script" uid="uid://c0j8mplyiibwb" path="res://architecture/ui/selected_entity_viewport.gd" id="6_vw2lh"]
 [ext_resource type="Script" uid="uid://dfifo1iryhsgu" path="res://architecture/ui/null_ui_selection_button.gd" id="7_7mwho"]
-[ext_resource type="PackedScene" uid="uid://citf0bjrmxl7k" path="res://architecture/ui/gold_managment/cost_button.tscn" id="7_fwhdi"]
 [ext_resource type="Script" uid="uid://didbyugt5lxvi" path="res://architecture/ui/gold_managment/purchase_interface.gd" id="7_yq572"]
-[ext_resource type="Script" uid="uid://bit8anthpqyax" path="res://architecture/ui/purchase_interface_section.gd" id="8_07nmt"]
-[ext_resource type="Script" uid="uid://cnykstbn60gvw" path="res://architecture/ui/gold_managment/cost_buttons_holder.gd" id="8_m3x4y"]
+[ext_resource type="PackedScene" uid="uid://b51eayc0tka3h" path="res://architecture/ui/purchase_interface_section.tscn" id="9_yq572"]
 
 [node name="LevelUI" type="CanvasLayer" unique_id=2003894573]
 script = ExtResource("1_dl3bl")
@@ -136,31 +134,12 @@ unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("7_yq572")
 
-[node name="PurchaseInterfaceSection_0" type="VBoxContainer" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface" unique_id=743912696]
+[node name="PurchaseInterfaceSection_0" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface" unique_id=1369300252 instance=ExtResource("9_yq572")]
 unique_name_in_owner = true
 layout_mode = 2
-script = ExtResource("8_07nmt")
 
-[node name="PurchaseInterfaceLabel" type="Label" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface/PurchaseInterfaceSection_0" unique_id=820227110]
+[node name="PurchaseInterfaceSection_1" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface" unique_id=572195338 instance=ExtResource("9_yq572")]
 unique_name_in_owner = true
-layout_mode = 2
-text = "Purchase Interface"
-
-[node name="CostButtons" type="GridContainer" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface/PurchaseInterfaceSection_0" unique_id=2048171861]
-unique_name_in_owner = true
-layout_mode = 2
-script = ExtResource("8_m3x4y")
-
-[node name="CostButton" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface/PurchaseInterfaceSection_0/CostButtons" unique_id=2141790064 instance=ExtResource("7_fwhdi")]
-layout_mode = 2
-
-[node name="CostButton2" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface/PurchaseInterfaceSection_0/CostButtons" unique_id=651659576 instance=ExtResource("7_fwhdi")]
-layout_mode = 2
-
-[node name="CostButton3" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface/PurchaseInterfaceSection_0/CostButtons" unique_id=1566751087 instance=ExtResource("7_fwhdi")]
-layout_mode = 2
-
-[node name="CostButton4" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface/PurchaseInterfaceSection_0/CostButtons" unique_id=708304391 instance=ExtResource("7_fwhdi")]
 layout_mode = 2
 
 [node name="Control" type="Control" parent="HBoxContainer/Control" unique_id=1833074272]

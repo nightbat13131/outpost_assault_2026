@@ -4,9 +4,12 @@
 [ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="2_u36w5"]
 [ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="3_53k03"]
 [ext_resource type="Script" uid="uid://cui255p7jwfm2" path="res://entities/player/tower_foundation/upgrade_manager_tower_foundation.gd" id="4_bi0t7"]
+[ext_resource type="Script" uid="uid://dua3ofi61w5vo" path="res://entities/player/tower_foundation/cost_button_tower_upgrades.gd" id="5_3qlq2"]
 [ext_resource type="Resource" uid="uid://b2ginln0x6f0n" path="res://entities/player/tower_foundation/cost_radio.tres" id="5_u36w5"]
 [ext_resource type="Resource" uid="uid://mt6imtnvmv1i" path="res://entities/player/tower_foundation/cost_gear.tres" id="6_bhlwj"]
 [ext_resource type="Resource" uid="uid://euwomgbc8cyk" path="res://entities/player/tower_foundation/cost_cooling.tres" id="7_kihh8"]
+[ext_resource type="Script" uid="uid://b2e6b5gly4wug" path="res://entities/player/tower_foundation/gun_nest_purchase_manager.gd" id="9_wyfg0"]
+[ext_resource type="Script" uid="uid://bn7s6o4wp6a85" path="res://entities/player/tower_foundation/upgrade_visualizer.gd" id="10_wyfg0"]
 
 [sub_resource type="Gradient" id="Gradient_bi0t7"]
 offsets = PackedFloat32Array(0.7392857, 1)
@@ -22,6 +25,34 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bi0t7"]
 radius = 50.0
 
+[sub_resource type="Gradient" id="Gradient_3qlq2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4889868, 0.76651984)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wyfg0"]
+gradient = SubResource("Gradient_3qlq2")
+width = 15
+height = 15
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_e20l4"]
+colors = PackedColorArray(0.84460366, 0.37313223, 7.70092e-07, 1, 0.43005392, 0.17787647, 1.4439226e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1f784"]
+gradient = SubResource("Gradient_e20l4")
+width = 15
+height = 15
+
+[sub_resource type="Gradient" id="Gradient_b3au4"]
+colors = PackedColorArray(0, 0, 0, 1, 0.2509804, 0.25882354, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s1x18"]
+gradient = SubResource("Gradient_b3au4")
+width = 15
+height = 15
+
 [node name="TowerFoundation" type="Sprite2D" unique_id=400182285]
 texture = SubResource("GradientTexture2D_u36w5")
 script = ExtResource("1_bi0t7")
@@ -36,14 +67,41 @@ script = ExtResource("2_u36w5")
 active_cursor_overwrite = ExtResource("3_53k03")
 metadata/_edit_lock_ = true
 
-[node name="Radar" type="Area2D" parent="." unique_id=1838665316]
+[node name="RadarSensor" type="Area2D" parent="." unique_id=1838665316]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Radar" unique_id=1075592818]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RadarSensor" unique_id=1075592818]
 shape = SubResource("CircleShape2D_bi0t7")
 
 [node name="UpgradeManager" type="Node" parent="." unique_id=710635329]
 unique_name_in_owner = true
 script = ExtResource("4_bi0t7")
-cost_upgrade_infos = [ExtResource("5_u36w5"), ExtResource("6_bhlwj"), ExtResource("7_kihh8")]
+cost_upgrade_infos = Array[ExtResource("5_3qlq2")]([ExtResource("5_u36w5"), ExtResource("6_bhlwj"), ExtResource("7_kihh8")])
 section_name = "Foundation Upgrades"
+
+[node name="GunNestPurchaseManager" type="Node" parent="." unique_id=111647553]
+unique_name_in_owner = true
+script = ExtResource("9_wyfg0")
+
+[node name="VisualizeUpgrades" type="Node2D" parent="." unique_id=1206129897]
+unique_name_in_owner = true
+
+[node name="Radar" type="Sprite2D" parent="VisualizeUpgrades" unique_id=151273423]
+unique_name_in_owner = true
+position = Vector2(-45, -34)
+texture = SubResource("GradientTexture2D_wyfg0")
+script = ExtResource("10_wyfg0")
+
+[node name="Gearbox" type="Sprite2D" parent="VisualizeUpgrades" unique_id=2049828862]
+unique_name_in_owner = true
+position = Vector2(-45, 14)
+texture = SubResource("GradientTexture2D_1f784")
+script = ExtResource("10_wyfg0")
+_upgrade_type = 1
+
+[node name="Cooling" type="Sprite2D" parent="VisualizeUpgrades" unique_id=1879276390]
+unique_name_in_owner = true
+position = Vector2(45, 30)
+texture = SubResource("GradientTexture2D_s1x18")
+script = ExtResource("10_wyfg0")
+_upgrade_type = 2

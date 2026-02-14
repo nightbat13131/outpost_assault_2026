@@ -1,7 +1,7 @@
 class_name PurchaseInterface extends VBoxContainer
 
 @onready var purchase_interface_section_0: PurchaseUISection = %PurchaseInterfaceSection_0
-@onready var purchase_interface_section_1: PurchaseUISection
+@onready var purchase_interface_section_1: PurchaseUISection = %PurchaseInterfaceSection_1
 
 static var _instance : PurchaseInterface
 
@@ -16,7 +16,7 @@ func request_section(index: int = 0) -> PurchaseUISection:
 		_: 
 			push_warning("Need to be able to request_sections for index of ", index)
 			show()
-			return purchase_interface_section_0
+			return purchase_interface_section_1
 
 static func get_instance() -> PurchaseInterface:
 	if _instance:

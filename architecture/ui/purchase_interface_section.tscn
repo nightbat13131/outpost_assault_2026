@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b51eayc0tka3h"]
+
+[ext_resource type="Script" uid="uid://bit8anthpqyax" path="res://architecture/ui/purchase_interface_section.gd" id="1_38plu"]
+[ext_resource type="Script" uid="uid://cnykstbn60gvw" path="res://architecture/ui/gold_managment/cost_buttons_holder.gd" id="2_twatb"]
+[ext_resource type="PackedScene" uid="uid://citf0bjrmxl7k" path="res://architecture/ui/gold_managment/cost_button.tscn" id="3_gfjcf"]
+
+[node name="PurchaseInterfaceSection_0" type="VBoxContainer" unique_id=1369300252]
+script = ExtResource("1_38plu")
+
+[node name="PurchaseInterfaceLabel" type="Label" parent="." unique_id=2090857528]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Purchase Interface"
+
+[node name="CostButtons" type="GridContainer" parent="." unique_id=609386368]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_twatb")
+
+[node name="CostButton" parent="CostButtons" unique_id=2141790064 instance=ExtResource("3_gfjcf")]
+layout_mode = 2
+
+[node name="CostButton2" parent="CostButtons" unique_id=67216680 instance=ExtResource("3_gfjcf")]
+layout_mode = 2
+
+[node name="CostButton3" parent="CostButtons" unique_id=287774250 instance=ExtResource("3_gfjcf")]
+layout_mode = 2
+
+[node name="CostButton4" parent="CostButtons" unique_id=374489604 instance=ExtResource("3_gfjcf")]
+layout_mode = 2

@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="17_ttut0"]
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="18_bfq08"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="18_u1qnl"]
+[ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="19_vdq2y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -144,6 +145,15 @@ script = ExtResource("18_u1qnl")
 rect_position = Vector2(-500, -500)
 rect_size = Vector2(3000, 2000)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
+[sub_resource type="Resource" id="Resource_fvtu7"]
+script = ExtResource("19_vdq2y")
+upgrade_levels = Dictionary[int, int]({
+0: 3,
+1: 1,
+2: 0
+})
+metadata/_custom_type_script = "uid://mlap6q5cc1d1"
 
 [node name="Test_Level_4" type="Node2D" unique_id=820054972]
 
@@ -307,8 +317,12 @@ position = Vector2(1499, 889)
 [node name="BrokenFoundation2" parent="TowerHolder" unique_id=454266272 instance=ExtResource("14_43dva")]
 position = Vector2(703, 378)
 
-[node name="TowerFoundation" parent="." unique_id=93634172 instance=ExtResource("18_bfq08")]
+[node name="TowerFoundation" parent="TowerHolder" unique_id=93634172 instance=ExtResource("18_bfq08")]
 position = Vector2(904, 547)
+
+[node name="TowerFoundation2" parent="TowerHolder" unique_id=914457105 instance=ExtResource("18_bfq08")]
+position = Vector2(636, 735)
+upgrades = SubResource("Resource_fvtu7")
 
 [editable path="SpawnManager/SpawnerBuilding_1x2"]
 [editable path="SpawnManager/SpawnerBuilding_1x1"]
