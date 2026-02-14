@@ -21,13 +21,14 @@ func _ready() -> void:
 
 func deactivate() -> void:
 	set_info(null)
-	pass
 
 func set_info(info: CostButtonInfo) -> void:
 	_info = info
 	_update_display()
 
 func _on_pressed() -> void:
+	if _info.get_purchase_type() == PurchaseTypes.INFORMATION:
+		return
 	if _info.parent_node:
 		var purchase_result = GoldManager.attempt_purchase(get_cost())
 		# func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void:
@@ -46,8 +47,7 @@ func get_label() -> String:
 		return _info.label
 	return ""
 
-func set_type_icon(texture: Texture2D) -> void:
-	type_icon.set_texture(texture)
+func set_type_icon(texture: Texture2D) -> void: type_icon.set_texture(texture)
 
 func _can_afford() -> bool: return GoldManager.get_gold() >= get_cost()
 
@@ -60,7 +60,6 @@ func _update_display() -> void:
 	var _text = str("[color={"+COLOR+"}]{"+VALUE+"}[/color]\n{"+LABEL+"}").format(args)
 	if args[VALUE] <= 0:
 		_text = str("{"+LABEL+"}").format(args)
-	print(_text)
 	level_label.set_text(str(_get_level()))
 	if _get_level() > -1: 
 		level_label.show()
@@ -70,7 +69,7 @@ func _update_display() -> void:
 	type_icon.set_texture(_info.primary_icon)
 	coin_icon.set_texture( CoinTextures.get_coin_texture(_info.purchase_type, _can_afford()) )
 
-func _get_level() -> int: return _info.current_level
+func _get_level() -> int: return _info.get_level()
 
 func _get_cost_color() -> Color:
 	if _can_afford():

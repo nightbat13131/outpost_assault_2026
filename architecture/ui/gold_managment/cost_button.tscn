@@ -7,6 +7,7 @@
 size = Vector2(24, 24)
 
 [node name="CostButton" type="PanelContainer" unique_id=2141790064]
+custom_minimum_size = Vector2(0, 50)
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 46.0

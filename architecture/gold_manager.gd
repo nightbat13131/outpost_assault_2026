@@ -6,7 +6,7 @@ signal gold_changed()
 static var _instance
 
 @onready var label_gold_value: Label = %GoldValue
-var _gold := 225.5 : set = _set_gold
+var _gold := 1225.5 : set = _set_gold
 
 func _ready() -> void:
 	_instance = self

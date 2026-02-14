@@ -9,11 +9,7 @@ var _repair_started := false
 @onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
 @onready var repair_timer: TimerModded = %Repair_Timer
 
-@export_category("CostButton")
-@export var _cost_before_purchase: CostButtonInfo
-@export var _cost_after_purchase: CostButtonInfo
-
-var _cost_button : CostButton
+var _repair_manager: RepairPurchaser
 
 func _ready() -> void:
 	texture_progress_bar.set_as_ratio(1.0)
@@ -25,11 +21,9 @@ func _ready() -> void:
 			_button.set_size(size)
 			_button.set_position(size*-.5)
 			_button.selected.connect(on_selected)
-			break
-	_cost_after_purchase = _cost_after_purchase.duplicate()
-	_cost_after_purchase.parent_node = self
-	_cost_before_purchase = _cost_before_purchase.duplicate()
-	_cost_before_purchase.parent_node = self
+		if each_child is RepairPurchaser:
+			_repair_manager = each_child
+			_repair_manager.start_repair.connect(_do_repair)
 
 func get_display_info() -> DisplayHelper: return _display_info
 
@@ -60,28 +54,8 @@ func _repair_complete() -> void:
 	if DisplaySelected.replace_information(_display_info, new_.get_display_info()):
 		new_.on_selected()
 
-
 func _get_repair_duration() -> float: return BASE_REPAIR_DURATION
 
 func on_selected() -> void:
 	DisplaySelected.request_display(_display_info)
-	var purchase_ui : PurchaseInterface = PurchaseInterface.get_instance()
-	var purchase_section : PurchaseUISection
-	if purchase_ui: 
-		purchase_section = purchase_ui.request_sections(1)[0]
-		purchase_section.set_title("")
-		for button in purchase_section.get_buttons(1):
-			_cost_button = button
-			_update_button()
-
-func _update_button() -> void:
-	if _cost_button:
-		if is_repairing():
-			_cost_button.set_info(_cost_after_purchase)
-		else:
-			_cost_button.set_info(_cost_before_purchase)
-
-func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void:
-	if is_successful and info == _cost_before_purchase:
-		_do_repair()
-	_update_button()
+	_repair_manager.on_select()

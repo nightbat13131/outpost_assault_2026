@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="CostButtonInfo" format=3 uid="uid://mt6imtnvmv1i"]
+[gd_resource type="Resource" script_class="CostButonInfo_FoundationUpgrads" format=3 uid="uid://mt6imtnvmv1i"]
 
-[ext_resource type="Script" uid="uid://crocrrnsanyae" path="res://architecture/ui/gold_managment/cost_button_info.gd" id="1_2rem2"]
+[ext_resource type="Script" uid="uid://dua3ofi61w5vo" path="res://entities/player/tower_foundation/cost_button_tower_upgrades.gd" id="1_2rem2"]
 
 [sub_resource type="Gradient" id="Gradient_2rem2"]
 offsets = PackedFloat32Array(0, 0.8, 1)
@@ -15,6 +15,7 @@ fill_from = Vector2(0.508547, 0.46153846)
 
 [resource]
 script = ExtResource("1_2rem2")
+_upgrade_type = 1
 current_level = 0
 cost = 150.0
 label = "Gear"

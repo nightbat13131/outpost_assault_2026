@@ -6,24 +6,8 @@
 
 [node name="GameSpeedUI" type="GridContainer" unique_id=861931387]
 size_flags_horizontal = 0
-columns = 4
+columns = 3
 script = ExtResource("1_48q0m")
-
-[node name="Button_16" type="Button" parent="." unique_id=607943571]
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("2_t6kuq")
-text = "16"
-script = ExtResource("3_tsiwd")
-multiplier = 16.0
-
-[node name="Button_8" type="Button" parent="." unique_id=1902287736]
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("2_t6kuq")
-text = "8.0"
-script = ExtResource("3_tsiwd")
-multiplier = 8.0
 
 [node name="Button_4" type="Button" parent="." unique_id=1037808656]
 layout_mode = 2

@@ -1,6 +1,9 @@
 class_name GameSpeed extends Control
-## consider a pause button that does pause without loosing the last speed instead of 0 button
+## TODO:  a pause button that does pause without loosing the last speed instead of 0 button
 ## would also include a remote pause request.
+## x8 and x16 have turned out to be unstable, 
+### unit path finding seems to break down - the units get to the end of the navigation path without getting the next point to travel to, 
+### changing the speed to a slower number gets them back into pathfinding
 
 signal speed_change(delta_mod: float)
 

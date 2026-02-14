@@ -7,7 +7,7 @@ var _information : DisplayHelper
 @onready var display_name: Label = %DisplayName
 @onready var display_health: ShadowHealthUI = %Display_Health
 @onready var display_selected_viewport: DisplaySelected_SubViewport = %DisplaySelectedViewport
-@onready var purchase_interface: PurchaseInterface = %PurchaseInterface
+#@onready var purchase_interface: PurchaseInterface = %PurchaseInterface
 
 
 @onready var display_nothing_button: Button = %DisplayNothing_Button
@@ -44,7 +44,7 @@ func _apply_information(info: DisplayHelper) -> void:
 		# like _replace_information can send. 
 		info = _null_information
 		display_nothing_button.hide()
-		purchase_interface.disable()
+		PurchaseInterface.disable()
 	else:
 		display_nothing_button.show()
 	if _information == info: ## info already displaying

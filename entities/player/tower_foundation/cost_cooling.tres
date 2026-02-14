@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="CostButtonInfo" format=3 uid="uid://euwomgbc8cyk"]
+[gd_resource type="Resource" script_class="CostButonInfo_FoundationUpgrads" format=3 uid="uid://euwomgbc8cyk"]
 
-[ext_resource type="Script" uid="uid://crocrrnsanyae" path="res://architecture/ui/gold_managment/cost_button_info.gd" id="1_3s3nv"]
+[ext_resource type="Script" uid="uid://dua3ofi61w5vo" path="res://entities/player/tower_foundation/cost_button_tower_upgrades.gd" id="1_3s3nv"]
 
 [sub_resource type="Gradient" id="Gradient_3s3nv"]
 offsets = PackedFloat32Array(0, 0.13928571, 0.33571428, 0.5321429, 0.70357144, 0.8428571, 1)
@@ -13,7 +13,6 @@ height = 24
 
 [resource]
 script = ExtResource("1_3s3nv")
-current_level = 0
-label = "Cooling"
+_upgrade_type = 2
 primary_icon = SubResource("GradientTexture2D_blmky")
 metadata/_custom_type_script = "uid://crocrrnsanyae"
