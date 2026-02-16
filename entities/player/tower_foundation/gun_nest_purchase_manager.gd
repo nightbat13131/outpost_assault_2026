@@ -1,29 +1,30 @@
 class_name PurchaseManager_GunNest extends PurchaseManager
 
-@export var cost_upgrade_infos : Array[CostButonInfo_FoundationUpgrads]
+@export var cost_tower_infos : Array[CostButtonInfo_Tower]
+var _foundation : TowerFoundation 
 
-var _upgrade_info : FoundationUpgrades
+func _ready() -> void:
+	for index in range(cost_tower_infos.size()):
+		cost_tower_infos[index] = cost_tower_infos[index].duplicate()
+		cost_tower_infos[index].set_purchase_manager(self)
 
-func set_upgrade_info(info: FoundationUpgrades) -> void:
-	_upgrade_info = info
-	for index in range(cost_upgrade_infos.size()):
-		cost_upgrade_infos[index] = cost_upgrade_infos[index].duplicate()
-		cost_upgrade_infos[index].set_purchase_manager(self)
-		cost_upgrade_infos[index].set_upgrade_info(_upgrade_info)
+func set_foundation(node: TowerFoundation) -> void:
+	_foundation = node
 
 func on_select() -> void:
-	_get_buttons(cost_upgrade_infos.size())
+	_get_buttons(cost_tower_infos.size(), 1)
 	_update_buttons()
 
 func _update_buttons() -> void:
-	if _buttons.size() != cost_upgrade_infos.size():
+	if _buttons.size() != cost_tower_infos.size():
 		push_warning("Upgrade Manager has wrong number of buttons")
 		return 
-	for index in range(cost_upgrade_infos.size()):
-		_buttons[index].set_info(cost_upgrade_infos[index])
+	for index in range(cost_tower_infos.size()):
+		_buttons[index].set_info(cost_tower_infos[index])
 
 func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void:
 	if !is_successful:
 		return
-	_upgrade_info.attempt_upgrade_request(info)
-	_update_buttons() 
+	if info is CostButtonInfo_Tower: #cast for autocomplet
+		_foundation.add_tower(info.tower_type)
+		_update_buttons() 

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dro1735nlrdor"]
+
+[ext_resource type="Script" uid="uid://ce2q3c6wba28d" path="res://architecture/testing/test_maps/unit_tower.gd" id="1_w8vxn"]
+
+[sub_resource type="Gradient" id="Gradient_vdq2y"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6387665)
+colors = PackedColorArray(0.2901961, 0.45882353, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rv4v8"]
+gradient = SubResource("Gradient_vdq2y")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" unique_id=366541001]
+texture = SubResource("GradientTexture2D_rv4v8")
+script = ExtResource("1_w8vxn")

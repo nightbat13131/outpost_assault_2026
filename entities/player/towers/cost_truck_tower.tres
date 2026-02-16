@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CostButtonInfo_Tower" format=3 uid="uid://cl6ces7kwqj4a"]
+
+[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/tower_cost_info.gd" id="1_iccet"]
+
+[sub_resource type="Gradient" id="Gradient_iccet"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6387665)
+colors = PackedColorArray(0.2796692, 0.42874187, 0.46447682, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_07wmx"]
+gradient = SubResource("Gradient_iccet")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[resource]
+script = ExtResource("1_iccet")
+tower_type = -11
+primary_icon = SubResource("GradientTexture2D_07wmx")
+metadata/_custom_type_script = "uid://c1qpm4n8xf5ai"

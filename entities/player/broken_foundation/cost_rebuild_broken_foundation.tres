@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CostButtonInfo_BrokenFoundation" format=3 uid="uid://b5cm28nxwmcu"]
+
+[ext_resource type="Script" uid="uid://cy1b5h26iijwn" path="res://entities/player/broken_foundation/broken_foundation_cost_info.gd" id="1_sfvfy"]
+
+[sub_resource type="Gradient" id="Gradient_f52bm"]
+offsets = PackedFloat32Array(0, 0.5714286, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.4392157, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sfvfy"]
+gradient = SubResource("Gradient_f52bm")
+width = 24
+height = 24
+fill_from = Vector2(0.25, 0.25)
+fill_to = Vector2(0.8, 0.8)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qqj28"]
+gradient = SubResource("Gradient_f52bm")
+width = 24
+height = 24
+fill_from = Vector2(0.25, 0.25)
+fill_to = Vector2(0.8, 0.8)
+
+[resource]
+script = ExtResource("1_sfvfy")
+primary_icon_post = SubResource("GradientTexture2D_qqj28")
+primary_icon = SubResource("GradientTexture2D_sfvfy")
+metadata/_custom_type_script = "uid://cy1b5h26iijwn"

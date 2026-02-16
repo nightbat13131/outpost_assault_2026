@@ -18,6 +18,7 @@ func _ready() -> void:
 			_button = each_child
 			_display_info = DisplayHelper.new(self, null)
 			var size := get_texture().get_size() * .9
+			_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
 			_button.set_size(size)
 			_button.set_position(size*-.5)
 			_button.selected.connect(on_selected)
@@ -36,6 +37,7 @@ func is_repairing() -> bool: return _repair_started
 func _do_repair() -> void:
 	if _repair_started: # prefent double start
 		return 
+	_button.set_state(ButtonEnhanced.ButtonStates.Active)
 	_repair_started = true
 	repair_timer.set_wait_time(_get_repair_duration())
 	repair_timer.timeout.connect(_repair_complete)

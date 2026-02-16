@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CostButonInfo_FoundationUpgrads" format=3 uid="uid://mt6imtnvmv1i"]
 
-[ext_resource type="Script" uid="uid://dua3ofi61w5vo" path="res://entities/player/tower_foundation/cost_button_tower_upgrades.gd" id="1_2rem2"]
+[ext_resource type="Script" uid="uid://dua3ofi61w5vo" path="res://entities/player/tower_foundation/cost_button_foundation_upgrades.gd" id="1_2rem2"]
 
 [sub_resource type="Gradient" id="Gradient_2rem2"]
 offsets = PackedFloat32Array(0, 0.8, 1)

@@ -4,10 +4,11 @@ const SCENE_PATH = "uid://crf0po16hl0dv"
 
 var _button: Button_Trigger_UI
 var _display_info: DisplayHelper
+var _current_tower: Tower
 @onready var radar_sensor: Area2D = %RadarSensor
 @onready var upgrade_manager: UpgradeManager_TowerFoundation = %UpgradeManager
 @export var upgrades : FoundationUpgrades
-@onready var gun_nest_purchase_manager: PurchaseManager_GunNest = %GunNestPurchaseManager
+@onready var tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 
 func _ready() -> void:
 	for each_child in get_children():
@@ -19,9 +20,10 @@ func _ready() -> void:
 			_button.set_position(size*-.5)
 			_button.selected.connect(on_selected)
 			break
-	_connect_upgrade()
+	_connect_purchasers()
 
-func _connect_upgrade() -> void:
+func _connect_purchasers() -> void:
+	tower_purchase_manager.set_foundation(self)
 	if upgrades == null:
 		upgrades = FoundationUpgrades.new()
 	upgrades = upgrades.duplicate()
@@ -31,9 +33,21 @@ func _connect_upgrade() -> void:
 	for each_child : UpgradeVisualizer in %VisualizeUpgrades.get_children():
 		each_child.set_upgrade_info(upgrades)
 
-
 func get_display_info() -> DisplayHelper: return _display_info
 
 func on_selected() -> void:
 	DisplaySelected.request_display(_display_info)
 	upgrade_manager.on_select()
+	if _current_tower:
+		tower_purchase_manager.hide_section()
+	else: 
+		tower_purchase_manager.on_select()
+
+func add_tower(tower_type: Tower.TowerType) -> void:
+	print("Adding a tower of type ", tower_type)
+	var _class = Tower.type_to_class[tower_type]
+	_current_tower = load(_class.get_scene_path()).instantiate()
+	if _current_tower is Tower: # cast
+		_current_tower.setup(upgrades, radar_sensor)
+	add_child(_current_tower)
+	tower_purchase_manager.hide_section()

@@ -31,20 +31,21 @@ func _on_pressed() -> void:
 		return
 	if _info.parent_node:
 		var purchase_result = GoldManager.attempt_purchase(get_cost())
+		if purchase_result:
 		# func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void:
-		if _info.parent_node.has_method("purchase_attempt_result"):
+		#if _info.parent_node.has_method("purchase_attempt_result"):
 			_info.parent_node.purchase_attempt_result(purchase_result, _info)
-		else:
-			push_warning("CostButton info parent (" + _info.parent_node.name + ") does not have purchase_attempt_result")
+		#else:
+		#	push_warning("CostButton info parent (" + _info.parent_node.name + ") does not have purchase_attempt_result")
 
 func get_cost() -> float:
 	if _info:
-		return _info.cost
+		return _info.get_cost()
 	return 0.0
 
 func get_label() -> String: 
 	if _info:
-		return _info.label
+		return _info.get_label()
 	return ""
 
 func set_type_icon(texture: Texture2D) -> void: type_icon.set_texture(texture)
@@ -60,14 +61,21 @@ func _update_display() -> void:
 	var _text = str("[color={"+COLOR+"}]{"+VALUE+"}[/color]\n{"+LABEL+"}").format(args)
 	if args[VALUE] <= 0:
 		_text = str("{"+LABEL+"}").format(args)
-	level_label.set_text(str(_get_level()))
+	rich_text_label.set_text(_text)
 	if _get_level() > -1: 
 		level_label.show()
+		level_label.set_text(str(_get_level()))
 	else:
 		level_label.hide()
-	rich_text_label.set_text(_text)
+	if _info.get_purchase_type() == CostButton.PurchaseTypes.INFORMATION:
+		_button.set_state(ButtonEnhanced.ButtonStates.Inactive)
+	else: 
+		if _can_afford():
+			_button.set_state(ButtonEnhanced.ButtonStates.Active)
+		else:
+			_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
 	type_icon.set_texture(_info.primary_icon)
-	coin_icon.set_texture( CoinTextures.get_coin_texture(_info.purchase_type, _can_afford()) )
+	coin_icon.set_texture(CoinTextures.get_coin_texture(_info.get_purchase_type(), _can_afford()) )
 
 func _get_level() -> int: return _info.get_level()
 
@@ -76,4 +84,4 @@ func _get_cost_color() -> Color:
 		return Color.GREEN
 	return Color.RED
 
-func _on_gold_change() -> void: _update_display()
+func _on_gold_change() -> void: _update_display.call_deferred()

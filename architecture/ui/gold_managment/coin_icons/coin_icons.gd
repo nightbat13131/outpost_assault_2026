@@ -12,15 +12,15 @@ static var icon_info : CoinTextures
 
 func _get_texture() -> Texture2D: return texture
 
-static func get_coin_texture(purchase_type: CostButton.PurchaseTypes, can_afford : bool, dependency_missing:= false) -> Texture2D:
+static func get_coin_texture(purchase_type_: CostButton.PurchaseTypes, can_afford_ : bool, dependency_missing_:= false) -> Texture2D:
 	if icon_resources.is_empty():
 		_populate_icons()
-	if dependency_missing:
+	if dependency_missing_:
 		return icon_dependent._get_texture()
-	if purchase_type == CostButton.PurchaseTypes.INFORMATION:
+	if purchase_type_ == CostButton.PurchaseTypes.INFORMATION:
 		return icon_info._get_texture()
 	for each_icon in icon_resources:
-		if each_icon.purchase_type == purchase_type and each_icon.can_afford == can_afford:
+		if each_icon.purchase_type == purchase_type_ and each_icon.can_afford == can_afford_:
 			return each_icon._get_texture() 
 	return icon_info._get_texture()
 

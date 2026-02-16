@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c604e4wacln7h" path="res://architecture/ui/gold_managment/cost_button.gd" id="1_abu3c"]
 [ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="2_21j6y"]
+[ext_resource type="Resource" uid="uid://o6r3v1ynopiu" path="res://architecture/cursors/cannot_afford.tres" id="3_k2uus"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fwhdi"]
 size = Vector2(24, 24)
@@ -19,6 +20,7 @@ script = ExtResource("1_abu3c")
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("2_21j6y")
+active_cursor_overwrite = ExtResource("3_k2uus")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1456960070]
 layout_mode = 2
@@ -26,6 +28,7 @@ mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1930619973]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TypeIcon" type="TextureRect" parent="HBoxContainer/MarginContainer" unique_id=1184617548]
 unique_name_in_owner = true
@@ -58,6 +61,7 @@ vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1980016229]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="CoinIcon" type="TextureRect" parent="HBoxContainer/MarginContainer2" unique_id=33885490]
 unique_name_in_owner = true

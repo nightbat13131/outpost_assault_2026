@@ -26,6 +26,7 @@ buses/default_bus_layout="uid://bd8uaahcmppqa"
 [autoload]
 
 GUIDE="*uid://p2jwrgjcbexr"
+CursorSetter="uid://b3ibs17oja4b8"
 
 [display]
 

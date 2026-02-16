@@ -4,12 +4,16 @@
 [ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="2_u36w5"]
 [ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="3_53k03"]
 [ext_resource type="Script" uid="uid://cui255p7jwfm2" path="res://entities/player/tower_foundation/upgrade_manager_tower_foundation.gd" id="4_bi0t7"]
-[ext_resource type="Script" uid="uid://dua3ofi61w5vo" path="res://entities/player/tower_foundation/cost_button_tower_upgrades.gd" id="5_3qlq2"]
+[ext_resource type="Script" uid="uid://dl6q0mnhtofwi" path="res://entities/player/radar_sensor.gd" id="4_e20l4"]
+[ext_resource type="Script" uid="uid://dua3ofi61w5vo" path="res://entities/player/tower_foundation/cost_button_foundation_upgrades.gd" id="5_3qlq2"]
 [ext_resource type="Resource" uid="uid://b2ginln0x6f0n" path="res://entities/player/tower_foundation/cost_radio.tres" id="5_u36w5"]
 [ext_resource type="Resource" uid="uid://mt6imtnvmv1i" path="res://entities/player/tower_foundation/cost_gear.tres" id="6_bhlwj"]
 [ext_resource type="Resource" uid="uid://euwomgbc8cyk" path="res://entities/player/tower_foundation/cost_cooling.tres" id="7_kihh8"]
 [ext_resource type="Script" uid="uid://b2e6b5gly4wug" path="res://entities/player/tower_foundation/gun_nest_purchase_manager.gd" id="9_wyfg0"]
 [ext_resource type="Script" uid="uid://bn7s6o4wp6a85" path="res://entities/player/tower_foundation/upgrade_visualizer.gd" id="10_wyfg0"]
+[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/tower_cost_info.gd" id="11_s1x18"]
+[ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/cost_unit_tower.tres" id="12_dtpd0"]
+[ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/cost_truck_tower.tres" id="13_qw6nd"]
 
 [sub_resource type="Gradient" id="Gradient_bi0t7"]
 offsets = PackedFloat32Array(0.7392857, 1)
@@ -69,6 +73,7 @@ metadata/_edit_lock_ = true
 
 [node name="RadarSensor" type="Area2D" parent="." unique_id=1838665316]
 unique_name_in_owner = true
+script = ExtResource("4_e20l4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RadarSensor" unique_id=1075592818]
 shape = SubResource("CircleShape2D_bi0t7")
@@ -79,9 +84,11 @@ script = ExtResource("4_bi0t7")
 cost_upgrade_infos = Array[ExtResource("5_3qlq2")]([ExtResource("5_u36w5"), ExtResource("6_bhlwj"), ExtResource("7_kihh8")])
 section_name = "Foundation Upgrades"
 
-[node name="GunNestPurchaseManager" type="Node" parent="." unique_id=111647553]
+[node name="TowerPurchaseManager" type="Node" parent="." unique_id=111647553]
 unique_name_in_owner = true
 script = ExtResource("9_wyfg0")
+cost_tower_infos = Array[ExtResource("11_s1x18")]([ExtResource("12_dtpd0"), ExtResource("13_qw6nd")])
+section_name = "Select Tower"
 
 [node name="VisualizeUpgrades" type="Node2D" parent="." unique_id=1206129897]
 unique_name_in_owner = true
