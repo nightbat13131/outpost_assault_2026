@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bnkuw8l45581i"]
 
 [ext_resource type="Script" uid="uid://d3jujp00r442w" path="res://entities/player/towers/truck_tower.gd" id="1_lgnq7"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="2_7ih2p"]
 
 [sub_resource type="Gradient" id="Gradient_vdq2y"]
 interpolation_mode = 1
@@ -15,3 +16,9 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Sprite2D" type="Sprite2D" unique_id=366541001]
 texture = SubResource("GradientTexture2D_rv4v8")
 script = ExtResource("1_lgnq7")
+
+[node name="HealthUI" parent="." unique_id=1750592590 instance=ExtResource("2_7ih2p")]
+offset_left = -25.0
+offset_top = 26.0
+offset_right = 25.0
+offset_bottom = 31.0

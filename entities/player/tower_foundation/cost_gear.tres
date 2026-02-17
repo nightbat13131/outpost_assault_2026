@@ -16,7 +16,5 @@ fill_from = Vector2(0.508547, 0.46153846)
 [resource]
 script = ExtResource("1_2rem2")
 _upgrade_type = 1
-cost = 150.0
-label = "Gear"
 primary_icon = SubResource("GradientTexture2D_lpjo1")
 metadata/_custom_type_script = "uid://crocrrnsanyae"

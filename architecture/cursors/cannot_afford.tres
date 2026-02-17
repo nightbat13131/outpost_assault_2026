@@ -11,5 +11,4 @@ region = Rect2(153, 136, 16, 16)
 script = ExtResource("1_42kry")
 cursor_shape = 8
 cursor_image = SubResource("AtlasTexture_d2vjg")
-hotspot = Vector2(8, 8)
 metadata/_custom_type_script = "uid://bixro6jxk8vg"

@@ -40,6 +40,7 @@ func on_selected() -> void:
 	upgrade_manager.on_select()
 	if _current_tower:
 		tower_purchase_manager.hide_section()
+		_current_tower.on_selected()
 	else: 
 		tower_purchase_manager.on_select()
 
@@ -49,5 +50,13 @@ func add_tower(tower_type: Tower.TowerType) -> void:
 	_current_tower = load(_class.get_scene_path()).instantiate()
 	if _current_tower is Tower: # cast
 		_current_tower.setup(upgrades, radar_sensor)
+		_current_tower.dead.connect(_on_tower_dead)
 	add_child(_current_tower)
 	tower_purchase_manager.hide_section()
+
+func _on_tower_dead(tower: Tower) -> void:
+	if _current_tower == tower:
+		_current_tower = null
+	# TODO: if selected, go back to showing the tower builder.
+
+func get_radar() -> RadarSensor: return radar_sensor

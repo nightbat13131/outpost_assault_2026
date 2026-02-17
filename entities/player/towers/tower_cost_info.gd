@@ -1,9 +1,18 @@
 class_name CostButtonInfo_Tower extends CostButtonInfo
 
 @export var tower_type: Tower.TowerType
+var _radar_sensor : RadarSensor
 
 func get_cost() -> float: return Tower.get_tower_cost(tower_type)
 
 func get_label() -> String: return Tower.get_display_name(tower_type)
 
 func get_tooltip() -> String: return super.get_tooltip()
+
+func set_radar(radar_sensor: RadarSensor) -> void: _radar_sensor = radar_sensor
+
+func on_mouse_entered() -> void:
+	_radar_sensor.preview_radar_range(75.0)
+
+func on_mouse_exited() -> void:
+	_radar_sensor.preview_radar_range(0.0)

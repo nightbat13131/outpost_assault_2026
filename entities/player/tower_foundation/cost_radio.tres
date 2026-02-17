@@ -16,7 +16,5 @@ fill_to = Vector2(0.8418803, 0.86752135)
 
 [resource]
 script = ExtResource("1_cnddn")
-cost = 125.0
-label = "Radar"
 primary_icon = SubResource("GradientTexture2D_0rhve")
 metadata/_custom_type_script = "uid://crocrrnsanyae"

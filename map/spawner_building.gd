@@ -2,8 +2,6 @@ class_name SpawnerBuilding extends Spawner
 ## Setup reminder: Set the Selction buttion size and location
 ## TODO: figure out how to have units walk around buildings while keeping that 
 ## enemies can walk OUT of buildings. Prototype just put buildings onto of non_walking places.
-## TODO : leave behind ruble to build into tower after _die
-
 
 
 @export var max_health : float = 100

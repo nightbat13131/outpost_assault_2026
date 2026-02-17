@@ -8,8 +8,11 @@ func _ready() -> void:
 		cost_tower_infos[index] = cost_tower_infos[index].duplicate()
 		cost_tower_infos[index].set_purchase_manager(self)
 
+
 func set_foundation(node: TowerFoundation) -> void:
 	_foundation = node
+	for index in range(cost_tower_infos.size()):
+		cost_tower_infos[index].set_radar(_foundation.get_radar())
 
 func on_select() -> void:
 	_get_buttons(cost_tower_infos.size(), 1)

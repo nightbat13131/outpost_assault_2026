@@ -17,3 +17,7 @@ func get_primary_icon() -> Texture2D: return primary_icon
 func get_purchase_type() -> CostButton.PurchaseTypes: return CostButton.PurchaseTypes.ONE_SHOT
 
 func get_level() -> int: return -1
+
+func on_mouse_entered() -> void: pass
+
+func on_mouse_exited() -> void: pass

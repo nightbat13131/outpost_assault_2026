@@ -16,6 +16,8 @@ var _info : CostButtonInfo
 
 func _ready() -> void:
 	_button.pressed.connect(_on_pressed)
+	_button.mouse_entered.connect(_on_mouse_entered)
+	_button.mouse_exited.connect(_on_mouse_exited)
 	GoldManager.get_instance().gold_changed.connect(_on_gold_change)
 	_update_display()
 
@@ -37,6 +39,10 @@ func _on_pressed() -> void:
 			_info.parent_node.purchase_attempt_result(purchase_result, _info)
 		#else:
 		#	push_warning("CostButton info parent (" + _info.parent_node.name + ") does not have purchase_attempt_result")
+
+func _on_mouse_entered() -> void: _info.on_mouse_entered()
+
+func _on_mouse_exited() -> void: _info.on_mouse_exited()
 
 func get_cost() -> float:
 	if _info:
@@ -76,6 +82,7 @@ func _update_display() -> void:
 			_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
 	type_icon.set_texture(_info.primary_icon)
 	coin_icon.set_texture(CoinTextures.get_coin_texture(_info.get_purchase_type(), _can_afford()) )
+	_button.set_tooltip_text(_info.get_tooltip())
 
 func _get_level() -> int: return _info.get_level()
 
