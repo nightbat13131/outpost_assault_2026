@@ -43,17 +43,17 @@ var _founation_upgrades : FoundationUpgrades
 
 func _ready() -> void:
 	_mid_ready()
-	for each_child in get_children():
-		if each_child is HealthUI:
-			_health_ui = each_child
 	set_max_health(_type_to_max_hp[_my_type])
 
 @abstract func _mid_ready() -> void
 
-func setup(upgrades: FoundationUpgrades, radar_sensor: RadarSensor) -> void:
+func setup(upgrades: FoundationUpgrades, radar_sensor: RadarSensor, health_ui) -> void:
 	_founation_upgrades = upgrades
 	_founation_upgrades.upgrade_change.connect(_on_upgrade_changed)
 	_radar_sensor = radar_sensor
+	_health_ui = health_ui
+	if _health_ui:
+		_hp = _hp
 	if _radar_sensor:
 		_radar_sensor.set_target_types(_targets)
 
@@ -76,6 +76,8 @@ func set_health(hp: float) -> void:
 func damange(damage_delt: float) -> void: _hp -= abs(damage_delt)
 
 func get_health_ratio() -> float: return clamp(1-(_hp / _max_hp), 0.0, 1.0)
+
+func get_health_ui() -> HealthUI: return _health_ui
 
 func _on_upgrade_changed() -> void:
 	pass

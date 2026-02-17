@@ -48,11 +48,19 @@ func _apply_information(info: DisplayHelper) -> void:
 	else:
 		display_nothing_button.show()
 	if _information == info: ## info already displaying
+		# but allow for Health UI to change
+		display_health.set_primary(_information.get_health_ui())
 		return
 	_information = info
 	display_name.set_text(_information.get_display_name())
 	display_health.set_primary(_information.get_health_ui())
 	display_selected_viewport.set_camera_focus(_information.get_camera_position())
+
+## Re-apply the information if the requesting info is the same object as current info
+## Curreonly only allows health UI changes are called 
+static func request_refresh(info: DisplayHelper) -> void:
+	if get_instance():
+		get_instance()._refresh_information(info)
 
 ## Apply the new information IF the old information matches the current display
 ## usecase example: broken foundation upgraded to tower. 
@@ -67,3 +75,8 @@ func _cancel_information(info: DisplayHelper) -> void:
 	if info != _information: # no action needed
 		return
 	_apply_information(_null_information)
+
+func _refresh_information(info: DisplayHelper) -> void:
+	if info != _information: # no action needed
+		return
+	_apply_information(info)

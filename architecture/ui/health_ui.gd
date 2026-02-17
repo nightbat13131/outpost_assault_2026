@@ -1,10 +1,12 @@
 class_name HealthUI extends Control
 
 signal ratio_update(value: float)
+signal suppression_update(value: bool)
 
 @export var _hide_when_full := false
 @onready var health_bar: Range = %HealthBar
 @onready var red_under_bar: Range = %RedUnderBar
+var _suppress := false : set = set_suppressed
 
 func set_health_ratio(value: float, insta_red := false) -> void:
 	if _hide_when_full and value >= 1.0 :
@@ -24,3 +26,11 @@ func _process(delta: float) -> void:
 	if red_under_bar.ratio >= get_ratio():
 		delta *= GameSpeed.get_delta_mod()
 		red_under_bar.ratio -= delta
+
+func set_suppressed(_is_suppressed) -> void:
+	_suppress = _is_suppressed 
+	suppression_update.emit(_suppress)
+	if _suppress:
+		hide()
+	else:
+		show()

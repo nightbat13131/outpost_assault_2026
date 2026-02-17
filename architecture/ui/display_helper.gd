@@ -1,5 +1,7 @@
 class_name DisplayHelper extends Resource
 
+signal process_update
+
 static var DEFAULT_POS = Vector2.INF
 
 var _parent : Object
@@ -16,6 +18,11 @@ func _init(parent: Object, health_ui: HealthUI) -> void:
 	_health_ui = health_ui
 	if _parent:
 		_position = _parent.get_position()
+
+# So that towers can swap out IDs
+func update_health_ui(ui: HealthUI) -> void: 
+	_health_ui = ui
+	process_update.emit()
 
 func get_parent() -> Object: return _parent
 
