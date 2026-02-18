@@ -4,7 +4,7 @@ signal start_repair
 
 @export_category("CostButton")
 @export var _cost_info: CostButtonInfo_BrokenFoundation
-var _is_repairing: bool = false
+#var _is_repairing: bool = false
 
 func _ready() -> void:
 	_cost_info = _cost_info.duplicate()

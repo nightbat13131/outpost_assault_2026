@@ -8,8 +8,6 @@ var _information : DisplayHelper
 @onready var display_health: ShadowHealthUI = %Display_Health
 @onready var display_selected_viewport: DisplaySelected_SubViewport = %DisplaySelectedViewport
 @onready var purchase_interface: PurchaseInterface = %PurchaseInterface
-
-
 @onready var display_nothing_button: Button = %DisplayNothing_Button
 
 func _ready() -> void:
@@ -47,16 +45,18 @@ func _apply_information(info: DisplayHelper) -> void:
 		PurchaseInterface.disable()
 	else:
 		display_nothing_button.show()
-	if _information == info: ## info already displaying
-		# but allow for Health UI to change
-		display_health.set_primary(_information.get_health_ui())
-		return
-	_information = info
-	display_name.set_text(_information.get_display_name())
+	if !_information == info: 
+		# block repeat calls to some values
+		_information = info
+		_aim_camera()
+		display_name.set_text(_information.get_display_name())
+	# allow repeat calls / allow refresh
 	display_health.set_primary(_information.get_health_ui())
+	purchase_interface.apply_purchase_manager(_information.get_purchaser(0), 0)
+	purchase_interface.apply_purchase_manager(_information.get_purchaser(1), 1)
+
+func _aim_camera() -> void:
 	display_selected_viewport.set_camera_focus(_information.get_camera_position())
-	purchase_interface.apply_purchase_manager(_information._purchaser_0, 0) # TODO stop using private thing
-	purchase_interface.apply_purchase_manager(_information._purchaser_1, 1)
 
 ## Re-apply the information if the requesting info is the same object as current info
 ## Curreonly only allows health UI changes are called 
@@ -78,6 +78,8 @@ func _cancel_information(info: DisplayHelper) -> void:
 		return
 	_apply_information(_null_information)
 
+## If the sent information is the the same as what's being displayed, 
+## reapply the display. 
 func _refresh_information(info: DisplayHelper) -> void:
 	if info != _information: # no action needed
 		return

@@ -48,6 +48,4 @@ func _die() -> void:
 
 func get_display_info() -> DisplayHelper: return _display_info
 
-func _on_selected() -> void: 
-	DisplaySelected.request_display(_display_info)
-	PurchaseInterface.disable()
+func _on_selected() -> void: DisplaySelected.request_display(_display_info)

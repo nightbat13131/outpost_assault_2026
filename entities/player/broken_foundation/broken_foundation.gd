@@ -13,6 +13,7 @@ var _repair_started := false
 
 func _ready() -> void:
 	texture_progress_bar.set_as_ratio(1.0)
+	_repair_manager.start_repair.connect(_do_repair)
 	if _button:
 		_display_info = DisplayHelper.new(self, null, _repair_manager, null)
 		var size := get_texture().get_size() * .9
@@ -55,4 +56,3 @@ func _get_repair_duration() -> float: return BASE_REPAIR_DURATION
 
 func on_selected() -> void:
 	DisplaySelected.request_display(_display_info)
-	#_repair_manager.on_select()

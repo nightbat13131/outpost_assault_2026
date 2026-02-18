@@ -55,3 +55,5 @@ func get_upgrade_level(upgrade_type: UpgradeTypes) -> int:
 
 func get_upgrade_ratio(upgrade_type: UpgradeTypes) -> float:
 	return upgrade_levels[upgrade_type] / float(upgrade_levels_max[upgrade_type])
+
+func get_foundation() -> TowerFoundation: return _foundation

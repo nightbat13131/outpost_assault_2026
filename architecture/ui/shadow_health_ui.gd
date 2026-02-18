@@ -2,7 +2,7 @@ class_name ShadowHealthUI extends HealthUI
 
 var _primary : HealthUI
 
-func _ready() -> void:
+func _ready() -> void: 
 	set_suppressed(true)
 
 func set_primary(health_iu: HealthUI) -> void:
@@ -19,11 +19,11 @@ func set_primary(health_iu: HealthUI) -> void:
 		return
 	if !_primary.ratio_update.is_connected(_on_ratio_change):
 		_primary.ratio_update.connect(_on_ratio_change)
-	else: 
+	else:
 		push_error("Managing Signal connections for ShadowHealthUI is failling A")
 	if !_primary.suppression_update.is_connected(_on_suppressed_changed):
 		_primary.suppression_update.connect(_on_suppressed_changed)
-	else: 
+	else:
 		push_error("Managing Signal connections for ShadowHealthUI is failling B")
 	set_health_ratio(_primary.get_ratio(), true)
 	set_suppressed(_primary._suppress)

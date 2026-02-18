@@ -4,46 +4,23 @@ class_name Tower extends Node2D
 signal dead(tower: Tower) ## I don't think the foundation cares between sold and destroyed.
 signal health_changed
 
-enum TowerType {NA = 0, _TEST_UNIT = -10, _TEST_TRUCK = -11}
-
-static var type_to_class :Dictionary = {
-	TowerType.NA: Tower,
-	TowerType._TEST_UNIT: UnitTower, 
-	TowerType._TEST_TRUCK: TruckTower
-}
-
-static var _type_to_cost :Dictionary[TowerType, float] = {
-	TowerType.NA: 5 ,
-	TowerType._TEST_UNIT: 100, 
-	TowerType._TEST_TRUCK: 150
-}
-
-static var _type_to_name :Dictionary[TowerType, String] = {
-	TowerType.NA: " Tower Type not set ",
-	TowerType._TEST_UNIT: "Unit", 
-	TowerType._TEST_TRUCK: "Truck"
-}
-
-static var _type_to_max_hp :Dictionary[TowerType, float] = {
-	TowerType.NA: 5.0,
-	TowerType._TEST_UNIT: 100.0, 
-	TowerType._TEST_TRUCK: 150.0
-}
-
-var _my_type := TowerType.NA
+var _my_type := TowerInfo.TowerType.NA
 var _max_hp : float
 var _hp : float: set = set_health
 var _health_ui : HealthUI
-
-#var _foundation : TowerFoundation
+var tower_purchase_manager: PurchaseManager_GunNest
 var _radar_sensor : RadarSensor
 var _founation_upgrades : FoundationUpgrades
 @export_flags_2d_physics var _targets : int
 
-
 func _ready() -> void:
 	_mid_ready()
-	set_max_health(_type_to_max_hp[_my_type])
+	set_max_health(TowerInfo.get_max_health(_my_type), true)
+	for each_child in get_children():
+		if each_child is PurchaseManager_GunNest:
+			tower_purchase_manager = each_child
+			tower_purchase_manager.set_foundation(get_foundation())
+			return
 
 @abstract func _mid_ready() -> void
 
@@ -75,26 +52,25 @@ func set_health(hp: float) -> void:
 
 func damange(damage_delt: float) -> void: _hp -= abs(damage_delt)
 
-func get_health_ratio() -> float: return clamp(1-(_hp / _max_hp), 0.0, 1.0)
+func get_health_ratio() -> float: return clamp(_hp / _max_hp, 0.0, 1.0)
 
 func get_health_ui() -> HealthUI: return _health_ui
 
 func _on_upgrade_changed() -> void:
 	pass
 
-func get_sell_value() -> float: return get_health_ratio() * Tower.get_tower_cost(_my_type)
+func get_sell_value() -> float: return get_health_ratio() * TowerInfo.get_tower_cost(_my_type)
 
-func on_selected() -> void:
-	
-	pass
+func get_foundation() -> TowerFoundation: 
+	if _founation_upgrades:
+		return _founation_upgrades.get_foundation()
+	return null
 
 func _die() -> void:
 	#TODO : Explode
 	queue_free()
 	dead.emit(self)
 
-static func get_display_name(tower_type_: TowerType) -> String: return _type_to_name[tower_type_]
+func get_purchase_manager() -> PurchaseManager: return tower_purchase_manager
 
 static func get_scene_path() -> String: return "Method needs overriting missing"
-
-static func get_tower_cost(tower_type_: TowerType) -> float: return _type_to_cost[tower_type_]

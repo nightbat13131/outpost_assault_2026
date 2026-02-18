@@ -21,9 +21,7 @@ func set_title(text: String) -> void:
 	else:
 		purchase_interface_label.hide()
 
-func get_buttons(count: int) -> Array[CostButton]: 
-	show()
-	return cost_buttons.get_buttons(count)
+func get_buttons(count: int) -> Array[CostButton]: return cost_buttons.get_buttons(count)
 
 func disable() -> void:
 	cost_buttons.disable()

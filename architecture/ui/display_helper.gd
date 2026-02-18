@@ -15,6 +15,25 @@ func get_display_name() -> String:
 		return str(_parent.name)
 	return "No Selection"
 
+func get_purchaser(index: int) -> PurchaseManager:
+	match index:
+		0: 
+			return _purchaser_0
+		1:
+			return _purchaser_1
+		_:
+			push_error("DisplayHelper.get_purchaser was sent out of bounds index ", index )
+			return null
+
+func set_purchaser(purchaser: PurchaseManager, index: int) -> void:
+	match index:
+		0: 
+			_purchaser_0 = purchaser
+		1:
+			_purchaser_1 = purchaser
+		_:
+			push_error("DisplayHelper.set_purchaser was sent out of bounds index ", index, " for ", purchaser )
+
 func _init(parent: Object, health_ui: HealthUI, purchaser_0: PurchaseManager, purchaser_1: PurchaseManager) -> void:
 	_parent = parent
 	_health_ui = health_ui

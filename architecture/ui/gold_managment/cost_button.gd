@@ -21,8 +21,7 @@ func _ready() -> void:
 	GoldManager.get_instance().gold_changed.connect(_on_gold_change)
 	_update_display()
 
-func deactivate() -> void:
-	set_info(null)
+func deactivate() -> void: set_info(null)
 
 func set_info(info: CostButtonInfo) -> void:
 	_info = info
@@ -40,9 +39,13 @@ func _on_pressed() -> void:
 		#else:
 		#	push_warning("CostButton info parent (" + _info.parent_node.name + ") does not have purchase_attempt_result")
 
-func _on_mouse_entered() -> void: _info.on_mouse_entered()
+func _on_mouse_entered() -> void: 
+	if _info:
+		_info.on_mouse_entered()
 
-func _on_mouse_exited() -> void: _info.on_mouse_exited()
+func _on_mouse_exited() -> void: 
+	if _info:
+		_info.on_mouse_exited()
 
 func get_cost() -> float:
 	if _info:
