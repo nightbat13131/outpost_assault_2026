@@ -7,7 +7,7 @@ var _information : DisplayHelper
 @onready var display_name: Label = %DisplayName
 @onready var display_health: ShadowHealthUI = %Display_Health
 @onready var display_selected_viewport: DisplaySelected_SubViewport = %DisplaySelectedViewport
-#@onready var purchase_interface: PurchaseInterface = %PurchaseInterface
+@onready var purchase_interface: PurchaseInterface = %PurchaseInterface
 
 
 @onready var display_nothing_button: Button = %DisplayNothing_Button
@@ -15,7 +15,7 @@ var _information : DisplayHelper
 func _ready() -> void:
 	_instance = self
 	if _null_information == null:
-		_null_information = DisplayHelper.new(null, null)
+		_null_information = DisplayHelper.new(null, null, null, null)
 	_apply_information(null)
 
 static func get_instance() -> DisplaySelected: return _instance
@@ -55,6 +55,8 @@ func _apply_information(info: DisplayHelper) -> void:
 	display_name.set_text(_information.get_display_name())
 	display_health.set_primary(_information.get_health_ui())
 	display_selected_viewport.set_camera_focus(_information.get_camera_position())
+	purchase_interface.apply_purchase_manager(_information._purchaser_0, 0) # TODO stop using private thing
+	purchase_interface.apply_purchase_manager(_information._purchaser_1, 1)
 
 ## Re-apply the information if the requesting info is the same object as current info
 ## Curreonly only allows health UI changes are called 

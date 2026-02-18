@@ -13,16 +13,16 @@ var _current_tower: Tower
 
 func _ready() -> void:
 	_health_ui.set_suppressed(true)
+	_connect_purchasers()
 	for each_child in get_children():
 		if each_child is Button_Trigger_UI:
 			_button = each_child
-			_display_info = DisplayHelper.new(self, _health_ui)
+			_display_info = DisplayHelper.new(self, _health_ui, upgrade_manager, tower_purchase_manager)
 			var size := get_texture().get_size() * .9
 			_button.set_size(size)
 			_button.set_position(size*-.5)
 			_button.selected.connect(on_selected)
 			break
-	_connect_purchasers()
 
 func _connect_purchasers() -> void:
 	tower_purchase_manager.set_foundation(self)
@@ -30,7 +30,6 @@ func _connect_purchasers() -> void:
 		upgrades = FoundationUpgrades.new()
 	upgrades = upgrades.duplicate()
 	upgrades.set_foundation(self)
-	#upgrades.upgrade_change.connect(_on_upgrade_change)
 	upgrade_manager.set_upgrade_info(upgrades)
 	for each_child : UpgradeVisualizer in %VisualizeUpgrades.get_children():
 		each_child.set_upgrade_info(upgrades)
@@ -39,12 +38,6 @@ func get_display_info() -> DisplayHelper: return _display_info
 
 func on_selected() -> void:
 	DisplaySelected.request_display(_display_info)
-	upgrade_manager.on_select()
-	if _current_tower:
-		tower_purchase_manager.hide_section()
-		_current_tower.on_selected()
-	else: 
-		tower_purchase_manager.on_select()
 
 func add_tower(tower_type: Tower.TowerType) -> void:
 	print("Adding a tower of type ", tower_type)
@@ -58,7 +51,6 @@ func add_tower(tower_type: Tower.TowerType) -> void:
 		_health_ui.set_suppressed(true)
 	add_child(_current_tower)
 	tower_purchase_manager.hide_section()
-
 
 func _on_tower_dead(tower: Tower) -> void:
 	if _current_tower == tower:

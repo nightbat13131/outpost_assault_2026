@@ -11,7 +11,7 @@ func set_upgrade_info(info: FoundationUpgrades) -> void:
 		cost_upgrade_infos[index].set_purchase_manager(self)
 		cost_upgrade_infos[index].set_upgrade_info(_upgrade_info)
 
-func on_select() -> void:
+func _connect_to_section() -> void:
 	_get_buttons(cost_upgrade_infos.size())
 	_update_buttons()
 

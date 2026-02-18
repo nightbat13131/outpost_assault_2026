@@ -62,4 +62,4 @@ metadata/_custom_type_script = "uid://bs2gntwyjap36"
 unique_name_in_owner = true
 script = ExtResource("7_s852h")
 _cost_info = ExtResource("6_qtpwa")
-section_name = ""
+section_name = "Repar Ruble"

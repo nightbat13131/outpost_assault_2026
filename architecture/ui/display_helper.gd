@@ -7,17 +7,21 @@ static var DEFAULT_POS = Vector2.INF
 var _parent : Object
 var _health_ui : HealthUI
 var _position : Vector2 = DEFAULT_POS
+var _purchaser_0 : PurchaseManager
+var _purchaser_1 : PurchaseManager
 
 func get_display_name() -> String:
 	if _parent:
 		return str(_parent.name)
 	return "No Selection"
 
-func _init(parent: Object, health_ui: HealthUI) -> void:
+func _init(parent: Object, health_ui: HealthUI, purchaser_0: PurchaseManager, purchaser_1: PurchaseManager) -> void:
 	_parent = parent
 	_health_ui = health_ui
 	if _parent:
 		_position = _parent.get_position()
+	_purchaser_0 = purchaser_0
+	_purchaser_1 = purchaser_1
 
 # So that towers can swap out IDs
 func update_health_ui(ui: HealthUI) -> void: 

@@ -8,6 +8,16 @@ static var _instance : PurchaseInterface
 func _ready() -> void:
 	_instance = self
 
+func apply_purchase_manager(manager: PurchaseManager, index: int) -> void:
+	match index:
+		0: 
+			purchase_interface_section_0.apply_purchase_manager(manager)
+		1: 
+			purchase_interface_section_1.apply_purchase_manager(manager)
+		_: 
+			push_warning("PurchaseInterface.apply_purchase_manager out of bounds index ", index, manager)
+
+
 func hide_section(index: int) -> void:
 	match index:
 		0:
@@ -37,4 +47,5 @@ static func get_instance() -> PurchaseInterface:
 static func disable() -> void:
 	if _instance:
 		_instance.purchase_interface_section_0.disable()
-		_instance.hide()
+		_instance.purchase_interface_section_1.disable()
+		#_instance.hide()

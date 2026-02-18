@@ -2,29 +2,24 @@ class_name BrokenFoundation extends Sprite2D
 
 const SCENE_PATH = "uid://bk5nrgy052rvw"
 const BASE_REPAIR_DURATION = 2.0
-var _button: Button_Trigger_UI
 var _display_info: DisplayHelper
 var _repair_started := false
-
+@onready var _button: Button_Trigger_UI = %Button
+@onready var _repair_manager: RepairPurchaser = %RepairManager
 @onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
 @onready var repair_timer: TimerModded = %Repair_Timer
 
-var _repair_manager: RepairPurchaser
+
 
 func _ready() -> void:
 	texture_progress_bar.set_as_ratio(1.0)
-	for each_child in get_children():
-		if each_child is Button_Trigger_UI:
-			_button = each_child
-			_display_info = DisplayHelper.new(self, null)
-			var size := get_texture().get_size() * .9
-			_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
-			_button.set_size(size)
-			_button.set_position(size*-.5)
-			_button.selected.connect(on_selected)
-		if each_child is RepairPurchaser:
-			_repair_manager = each_child
-			_repair_manager.start_repair.connect(_do_repair)
+	if _button:
+		_display_info = DisplayHelper.new(self, null, _repair_manager, null)
+		var size := get_texture().get_size() * .9
+		_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
+		_button.set_size(size)
+		_button.set_position(size*-.5)
+		_button.selected.connect(on_selected)
 
 func get_display_info() -> DisplayHelper: return _display_info
 
@@ -60,4 +55,4 @@ func _get_repair_duration() -> float: return BASE_REPAIR_DURATION
 
 func on_selected() -> void:
 	DisplaySelected.request_display(_display_info)
-	_repair_manager.on_select()
+	#_repair_manager.on_select()

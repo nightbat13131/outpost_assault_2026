@@ -10,10 +10,10 @@ func _ready() -> void:
 	_cost_info = _cost_info.duplicate()
 	_cost_info.set_purchase_manager(self)
 
-func on_select() -> void:
-	hide_section()
+func _connect_to_section() -> void:
 	_get_buttons(1)
 	_update_buttons()
+	pass
 
 func purchase_attempt_result(is_successful : bool, _info: CostButtonInfo) -> void:
 	if is_successful: # and info == _cost_before_purchase:
@@ -25,4 +25,3 @@ func purchase_attempt_result(is_successful : bool, _info: CostButtonInfo) -> voi
 func _update_buttons() -> void:
 	if !_buttons.is_empty():
 		_buttons[0].set_info(_cost_info)
-		return

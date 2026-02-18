@@ -6,6 +6,14 @@ class_name PurchaseUISection extends VBoxContainer
 func _ready() -> void:
 	disable()
 
+func apply_purchase_manager(manager: PurchaseManager) -> void:
+	if manager:
+		show()
+		set_title(manager.get_section_title())
+		manager.connect_to_section(self)
+	else: 
+		disable()
+
 func set_title(text: String) -> void:
 	purchase_interface_label.set_text(text)
 	if text:

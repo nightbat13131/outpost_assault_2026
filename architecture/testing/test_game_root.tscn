@@ -8,5 +8,6 @@
 [node name="LevelUI" parent="." unique_id=2003894573 instance=ExtResource("1_g47r2")]
 
 [node name="Test_Level_6" parent="LevelUI/HBoxContainer/VBoxContainer/SubViewportContainer/LevelViewport" parent_id_path=PackedInt32Array(2003894573, 256052677) index="0" unique_id=820054972 instance=ExtResource("2_3pgvo")]
+metadata/_edit_lock_ = true
 
 [editable path="LevelUI"]

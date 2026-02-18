@@ -24,7 +24,7 @@ func _ready() -> void:
 			_health_ui = each_child
 			_set_health(max_health)
 	if _health_ui and _button:
-		_display_info = DisplayHelper.new(self, _health_ui)
+		_display_info = DisplayHelper.new(self, _health_ui, null, null)
 
 func take_damage(value : float) -> void:
 	_health -= value
