@@ -2,9 +2,13 @@ class_name RadarSensor extends Area2D
 
 const RADAR_FADE := .25
 
-var _radar_preview: float = 0.0
+@onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 
+var _radar_preview: float = 0.0
 var _targets : Array =[]
+
+func _ready() -> void:
+	collision_shape_2d.set_shape(CircleShape2D.new())
 
 func has_target() -> bool: return !_targets.is_empty()
 

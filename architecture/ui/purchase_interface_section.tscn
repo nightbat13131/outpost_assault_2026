@@ -19,12 +19,3 @@ script = ExtResource("2_twatb")
 
 [node name="CostButton" parent="CostButtons" unique_id=2141790064 instance=ExtResource("3_gfjcf")]
 layout_mode = 2
-
-[node name="CostButton2" parent="CostButtons" unique_id=67216680 instance=ExtResource("3_gfjcf")]
-layout_mode = 2
-
-[node name="CostButton3" parent="CostButtons" unique_id=287774250 instance=ExtResource("3_gfjcf")]
-layout_mode = 2
-
-[node name="CostButton4" parent="CostButtons" unique_id=374489604 instance=ExtResource("3_gfjcf")]
-layout_mode = 2

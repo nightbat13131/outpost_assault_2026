@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bd0dqy75ia3ra"]
 
+[ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_5518w"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="1_iw66m"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://map/test_poison_zone.gd" id="2_dxpro"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="3_k7ba1"]
@@ -19,6 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="17_rfiec"]
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="18_lgomy"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="19_cen4m"]
+[ext_resource type="Script" uid="uid://x6eddo14cwyj" path="res://entities/player/main_base/player_main_base.gd" id="20_dxpro"]
+[ext_resource type="SpriteFrames" uid="uid://cmd8ww4nt3x5x" path="res://entities/player/main_base/main_base_sprite_frames.tres" id="20_iw66m"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="22_k7ba1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -155,7 +159,11 @@ upgrade_levels = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://mlap6q5cc1d1"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iw66m"]
+size = Vector2(200, 200)
+
 [node name="Test_Level_6" type="Node2D" unique_id=820054972]
+script = ExtResource("1_5518w")
 
 [node name="test" type="Node" parent="." unique_id=761061381]
 
@@ -177,6 +185,16 @@ offset_bottom = 325.0
 text = "Deal Damage"
 script = ExtResource("1_iw66m")
 damage_target = NodePath("../../SpawnManager/SpawnerBuilding_1x2")
+damage_amount = 23.0
+
+[node name="Button3" type="Button" parent="test" unique_id=501823648 node_paths=PackedStringArray("damage_target")]
+offset_left = 284.0
+offset_top = 695.0
+offset_right = 395.0
+offset_bottom = 726.0
+text = "Deal Damage"
+script = ExtResource("1_iw66m")
+damage_target = NodePath("../../PlayerBase")
 damage_amount = 23.0
 
 [node name="Test_DamageZone" type="Area2D" parent="test" unique_id=796258337]
@@ -321,10 +339,34 @@ position = Vector2(705, 434)
 
 [node name="TowerFoundation" parent="TowerHolder" unique_id=93634172 instance=ExtResource("18_lgomy")]
 position = Vector2(834, 577)
+starting_tower = -10
 
 [node name="TowerFoundation2" parent="TowerHolder" unique_id=914457105 instance=ExtResource("18_lgomy")]
 position = Vector2(704, 709)
 upgrades = SubResource("Resource_fvtu7")
+
+[node name="TowerFoundation3" parent="TowerHolder" unique_id=413108212 instance=ExtResource("18_lgomy")]
+position = Vector2(707, 959)
+upgrades = SubResource("Resource_fvtu7")
+starting_tower = -11
+
+[node name="PlayerBase" type="Area2D" parent="." unique_id=1338770384]
+position = Vector2(130, 770)
+script = ExtResource("20_dxpro")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="PlayerBase" unique_id=1943967310]
+sprite_frames = ExtResource("20_iw66m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBase" unique_id=502693236]
+shape = SubResource("RectangleShape2D_iw66m")
+
+[node name="HealthUI" parent="PlayerBase" unique_id=1750592590 instance=ExtResource("22_k7ba1")]
+unique_name_in_owner = true
+offset_left = -27.0
+offset_top = 74.0
+offset_right = 23.0
+offset_bottom = 79.0
 
 [editable path="SpawnManager/SpawnerBuilding_1x2"]
 [editable path="SpawnManager/SpawnerBuilding_1x1"]

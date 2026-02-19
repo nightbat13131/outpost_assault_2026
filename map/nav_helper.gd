@@ -41,18 +41,17 @@ func _draw() -> void:
 				],
 				Color.ORANGE, 2)
 		else:
-			var end_point :Vector2
+			var end_point : Vector2
 			for each_point: NavPointWeight in next_target_weights:
-				if each_point:
-					if each_point.get_nav_point().is_disabled:
-						continue
-					end_point = to_local(each_point.get_nav_point().global_position)
-					draw_line(Vector2.ZERO, end_point, Color.ORANGE, each_point.get_weight()*4)
-					draw_polyline([
-						Vector2.from_angle(end_point.angle()-.2)*target_distance*1,
-						Vector2.from_angle(end_point.angle())   *target_distance*1.25,
-						Vector2.from_angle(end_point.angle()+.2)*target_distance*1,
-						],
+				if each_point.get_nav_point():
+					if !each_point.get_nav_point().is_disabled:
+						end_point = to_local(each_point.get_nav_point().global_position)
+						draw_line(Vector2.ZERO, end_point, Color.ORANGE, each_point.get_weight()*4)
+						draw_polyline([
+							Vector2.from_angle(end_point.angle()-.2)*target_distance*1,
+							Vector2.from_angle(end_point.angle())   *target_distance*1.25,
+							Vector2.from_angle(end_point.angle()+.2)*target_distance*1,
+							],
 					Color.BLUE, 2)
 
 func get_next_point() -> NavPoint: return _picker.pick_one()

@@ -50,7 +50,7 @@ func set_health(hp: float) -> void:
 	if _health_ui:
 		_health_ui.set_health_ratio(get_health_ratio())
 
-func damange(damage_delt: float) -> void: _hp -= abs(damage_delt)
+func take_damage(damage_delt: float) -> void: _hp -= abs(damage_delt)
 
 func get_health_ratio() -> float: return clamp(_hp / _max_hp, 0.0, 1.0)
 
