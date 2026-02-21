@@ -32,12 +32,20 @@ func _ready() -> void:
 func setup(upgrades: FoundationUpgrades, radar_sensor: RadarSensor, health_ui) -> void:
 	_founation_upgrades = upgrades
 	_founation_upgrades.upgrade_change.connect(_on_upgrade_changed)
-	_radar_sensor = radar_sensor
+	_set_radar.call_deferred(radar_sensor)
 	_health_ui = health_ui
 	if _health_ui:
 		_hp = _hp
+
+func _set_radar(radar_sensor: RadarSensor) -> void:
+	_radar_sensor = radar_sensor
 	if _radar_sensor:
 		_radar_sensor.set_target_types(_targets)
+		_set_radar_range()
+
+func _set_radar_range() -> void:
+	if _radar_sensor:
+		_radar_sensor.set_radar_outer_range(TowerInfo.get_radar_range(_my_type, _founation_upgrades))
 
 func repair() -> void: set_health(_max_hp)
 
@@ -68,7 +76,7 @@ func get_health_ratio() -> float: return clamp(_hp / _max_hp, 0.0, 1.0)
 func get_health_ui() -> HealthUI: return _health_ui
 
 func _on_upgrade_changed() -> void:
-	pass
+	_set_radar_range()
 
 func sell() -> void:
 	GoldManager.earn_gold(get_sell_value())
@@ -81,6 +89,8 @@ func get_foundation() -> TowerFoundation:
 	if _founation_upgrades:
 		return _founation_upgrades.get_foundation()
 	return null
+
+func being_replaced() -> void: queue_free()
 
 func _die() -> void:
 	#TODO : Explode

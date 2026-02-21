@@ -128,7 +128,7 @@ func set_min_zoom(value: float) -> void:
 func get_speed() -> float: return _max_speed * (1/zoom.length())
 
 func _on_zoom() -> void:
-	var value = action_zoom.value_axis_1d*-1
+	var value = action_zoom.value_axis_1d
 	var new_zoom = clamp(get_zoom().x*(1 + ZOOM_SPEED*value), min_zoom, max_zoom)
 	set_zoom(Vector2(new_zoom, new_zoom))
 	if action_move_keys and action_move_drag: 

@@ -6,7 +6,7 @@ const SCENE_PATH = "uid://crf0po16hl0dv"
 var _display_info: DisplayHelper
 var _current_tower: Tower
 @onready var _button: Button_Trigger_UI = %Button
-@onready var radar_sensor: Area2D = %RadarSensor
+@onready var _radar_sensor: RadarSensor = %RadarSensor
 @onready var upgrade_manager: UpgradeManager_TowerFoundation = %UpgradeManager
 @export var upgrades : FoundationUpgrades
 @export var starting_tower := TowerInfo.TowerType.NA
@@ -24,6 +24,7 @@ func _ready() -> void:
 		_button.set_size(size)
 		_button.set_position(size*-.5)
 		_button.selected.connect(on_selected)
+	_radar_sensor.set_upgrade(upgrades)
 	add_tower(starting_tower)
 
 func _draw() -> void:
@@ -62,9 +63,9 @@ func add_tower(tower_type: TowerInfo.TowerType) -> void:
 	print("Adding a tower of type ", tower_type)
 	var _class = TowerInfo.type_to_class[tower_type]
 	if _current_tower != null:
-		_current_tower.queue_free()
+		_current_tower.being_replaced()
 	_current_tower = load(_class.get_scene_path()).instantiate() as Tower
-	_current_tower.setup(upgrades, radar_sensor, _health_ui)
+	_current_tower.setup(upgrades, _radar_sensor, _health_ui)
 	_current_tower.dead.connect(_on_tower_dead)
 	_health_ui.set_suppressed(false)
 	add_child(_current_tower)
@@ -74,6 +75,7 @@ func _on_tower_dead(tower: Tower) -> void:
 	if _current_tower == tower:
 		_current_tower = null
 		_health_ui.set_suppressed(true)
+		_radar_sensor.on_tower_died()
 	_update_display_info()
 
-func get_radar() -> RadarSensor: return radar_sensor
+func get_radar() -> RadarSensor: return _radar_sensor

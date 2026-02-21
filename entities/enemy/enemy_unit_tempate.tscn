@@ -28,7 +28,6 @@ _enemy_info = ExtResource("2_avlsx")
 shape = SubResource("CircleShape2D_14pbf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=528521657]
-debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0.1882353, 1, 1)
 debug_path_custom_line_width = 2.0

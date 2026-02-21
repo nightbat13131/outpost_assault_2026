@@ -281,7 +281,7 @@ script = ExtResource("10_byvmy")
 _inital_delay = 3.0
 _pulse_gap = 3.0
 _pulse_per_wave = 3
-_hard_spawn_cap = 2
+_hard_spawn_cap = 1
 _spawn_speed = 4.0
 _pulse_unit_volume = 2
 metadata/_edit_lock_ = true
@@ -297,7 +297,7 @@ metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnerBuilding_1x2" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("12_y4ny3")]
 position = Vector2(1226, 572)
-_hard_spawn_cap = 2
+_hard_spawn_cap = 1
 _spawn_speed = 2.5
 metadata/_edit_group_ = true
 
@@ -316,7 +316,7 @@ next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_h1wdl
 
 [node name="SpawnerBuilding_1x1" parent="SpawnManager" unique_id=806376720 instance=ExtResource("13_11fy2")]
 position = Vector2(1541, 344)
-_hard_spawn_cap = 2
+_hard_spawn_cap = 1
 _spawn_speed = 2.0
 metadata/_edit_group_ = true
 

@@ -35,3 +35,5 @@ func on_pressed() -> void:
 			parent_node.purchase_attempt_result(purchase_result, self)
 		#else:
 		#	push_warning("CostButton info parent (" + _info.parent_node.name + ") does not have purchase_attempt_result")
+
+func signal_update() -> void: update.emit()
