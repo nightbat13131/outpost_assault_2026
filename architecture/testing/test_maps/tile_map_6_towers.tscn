@@ -20,9 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="17_rfiec"]
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="18_lgomy"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="19_cen4m"]
-[ext_resource type="Script" uid="uid://x6eddo14cwyj" path="res://entities/player/main_base/player_main_base.gd" id="20_dxpro"]
-[ext_resource type="SpriteFrames" uid="uid://cmd8ww4nt3x5x" path="res://entities/player/main_base/main_base_sprite_frames.tres" id="20_iw66m"]
-[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="22_k7ba1"]
+[ext_resource type="PackedScene" uid="uid://km2nahn1x27p" path="res://entities/player/main_base/player_base.tscn" id="21_dxpro"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -159,9 +157,6 @@ upgrade_levels = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://mlap6q5cc1d1"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iw66m"]
-size = Vector2(200, 200)
-
 [node name="Test_Level_6" type="Node2D" unique_id=820054972]
 script = ExtResource("1_5518w")
 
@@ -195,6 +190,16 @@ offset_bottom = 726.0
 text = "Deal Damage"
 script = ExtResource("1_iw66m")
 damage_target = NodePath("../../PlayerBase")
+damage_amount = 23.0
+
+[node name="Button4" type="Button" parent="test" unique_id=923848532 node_paths=PackedStringArray("damage_target")]
+offset_left = 657.0
+offset_top = 542.0
+offset_right = 768.0
+offset_bottom = 573.0
+text = "Deal Damage"
+script = ExtResource("1_iw66m")
+damage_target = NodePath("../../TowerHolder/TowerFoundation")
 damage_amount = 23.0
 
 [node name="Test_DamageZone" type="Area2D" parent="test" unique_id=796258337]
@@ -350,23 +355,8 @@ position = Vector2(707, 959)
 upgrades = SubResource("Resource_fvtu7")
 starting_tower = -11
 
-[node name="PlayerBase" type="Area2D" parent="." unique_id=1338770384]
+[node name="PlayerBase" parent="." unique_id=831910580 instance=ExtResource("21_dxpro")]
 position = Vector2(130, 770)
-script = ExtResource("20_dxpro")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="PlayerBase" unique_id=1943967310]
-sprite_frames = ExtResource("20_iw66m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBase" unique_id=502693236]
-shape = SubResource("RectangleShape2D_iw66m")
-
-[node name="HealthUI" parent="PlayerBase" unique_id=1750592590 instance=ExtResource("22_k7ba1")]
-unique_name_in_owner = true
-offset_left = -27.0
-offset_top = 74.0
-offset_right = 23.0
-offset_bottom = 79.0
 
 [editable path="SpawnManager/SpawnerBuilding_1x2"]
 [editable path="SpawnManager/SpawnerBuilding_1x1"]

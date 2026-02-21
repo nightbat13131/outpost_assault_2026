@@ -40,6 +40,7 @@ func _connect_purchasers() -> void:
 	upgrade_manager.set_upgrade_info(upgrades)
 	for each_child : UpgradeVisualizer in %VisualizeUpgrades.get_children():
 		each_child.set_upgrade_info(upgrades)
+	_update_display_info.call_deferred()
 
 func get_display_info() -> DisplayHelper: return _display_info
 
@@ -52,28 +53,27 @@ func _update_display_info() -> void:
 		_display_info.set_purchaser(_current_tower.get_purchase_manager(), 1)
 	else:
 		_display_info.set_purchaser(tower_purchase_manager, 1)
+	_display_info.set_tower(_current_tower)
+	DisplaySelected.request_refresh.call_deferred(_display_info)
 
 func add_tower(tower_type: TowerInfo.TowerType) -> void:
 	if tower_type == TowerInfo.TowerType.NA:
-		#print("invalid Tower Type")
-		# 
 		return
 	print("Adding a tower of type ", tower_type)
 	var _class = TowerInfo.type_to_class[tower_type]
+	if _current_tower != null:
+		_current_tower.queue_free()
 	_current_tower = load(_class.get_scene_path()).instantiate() as Tower
 	_current_tower.setup(upgrades, radar_sensor, _health_ui)
 	_current_tower.dead.connect(_on_tower_dead)
 	_health_ui.set_suppressed(false)
 	add_child(_current_tower)
 	_update_display_info()
-	DisplaySelected.request_refresh.call_deferred(_display_info)
-
-func purge_tower() -> void:
-	pass
 
 func _on_tower_dead(tower: Tower) -> void:
 	if _current_tower == tower:
 		_current_tower = null
-	# TODO: if selected, go back to showing the tower builder.
+		_health_ui.set_suppressed(true)
+	_update_display_info()
 
 func get_radar() -> RadarSensor: return radar_sensor

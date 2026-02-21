@@ -9,6 +9,8 @@ var _health_ui : HealthUI
 var _position : Vector2 = DEFAULT_POS
 var _purchaser_0 : PurchaseManager
 var _purchaser_1 : PurchaseManager
+var _tower :Tower
+
 
 func get_display_name() -> String:
 	if _parent:
@@ -42,13 +44,20 @@ func _init(parent: Object, health_ui: HealthUI, purchaser_0: PurchaseManager, pu
 	_purchaser_0 = purchaser_0
 	_purchaser_1 = purchaser_1
 
-# So that towers can swap out IDs
-func update_health_ui(ui: HealthUI) -> void: 
-	_health_ui = ui
+# So that foundations can swap out towers
+func set_tower(tower: Tower) -> void:
+	_tower = tower
 	process_update.emit()
+
+func get_tower() -> Tower: return _tower
 
 func get_parent() -> Object: return _parent
 
 func get_health_ui() -> HealthUI: return _health_ui
 
 func get_camera_position() -> Vector2: return _position
+
+func get_tower_context_manager() -> TowerContextManager:
+	if _tower:
+		return _tower.get_context_manager()
+	return null

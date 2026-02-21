@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dfliur4n7vbax"]
+
+[ext_resource type="Script" uid="uid://b2e6b5gly4wug" path="res://entities/player/tower_foundation/gun_nest_purchase_manager.gd" id="1_w1wn5"]
+[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/tower_cost_info.gd" id="2_84w7n"]
+[ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/cost_unit_tower.tres" id="3_i1tp4"]
+[ext_resource type="Script" uid="uid://dlb5ll2qi1s32" path="res://entities/player/towers/button_manager_tower_context.gd" id="4_fpjj8"]
+[ext_resource type="Resource" uid="uid://cpni7pdywmkt0" path="res://entities/player/towers/repair_info.tres" id="5_8ijru"]
+[ext_resource type="Resource" uid="uid://bajuwissp7k18" path="res://entities/player/towers/sell_info.tres" id="6_6sg6d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr1aj"]
+size = Vector2(50, 50)
+
+[sub_resource type="Gradient" id="Gradient_jbjqe"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.54028434, 0.6387665)
+colors = PackedColorArray(0.2796692, 0.42874187, 0.46447682, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fpjj8"]
+gradient = SubResource("Gradient_jbjqe")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Tower_Base" type="Area2D" unique_id=1226539165]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=308655744]
+shape = SubResource("RectangleShape2D_pr1aj")
+
+[node name="TowerPurchaseManager" type="Node" parent="." unique_id=1756272085]
+unique_name_in_owner = true
+script = ExtResource("1_w1wn5")
+cost_tower_infos = Array[ExtResource("2_84w7n")]([ExtResource("3_i1tp4")])
+section_name = "Select Tower - Truck"
+
+[node name="TowerContextManager" type="Node" parent="." unique_id=1417705624]
+unique_name_in_owner = true
+script = ExtResource("4_fpjj8")
+_repair_info = ExtResource("5_8ijru")
+_sell_info = ExtResource("6_6sg6d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2099323296]
+texture = SubResource("GradientTexture2D_fpjj8")

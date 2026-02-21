@@ -1,13 +1,27 @@
 extends ButtonEnhanced
 
-@export var damage_target : Node2D
+const METHOD = "take_damage"
+
+@export var damage_target : Node2D : get = get_target
 @export var damage_amount : float = 10.0
+
+func _ready() -> void:
+	super._ready()
+
+func get_target() -> Node2D:
+	if damage_target.has_method(METHOD):
+		return damage_target
+	for each_child in damage_target.get_children():
+		if each_child.has_method(METHOD):
+			#print("updating damange target")
+			return each_child
+	return null
 
 func _on_pressed() -> void:
 	if !damage_target: 
 		push_warning("Testing Damange button does not have a damange target.")
 		return
-	if damage_target.has_method("take_damage"):
+	if damage_target.has_method(METHOD):
 		damage_target.take_damage(damage_amount)
 	else:
 		push_warning("Testing Damange button damage target ", damage_target ," does not have 'take_damage' method.")

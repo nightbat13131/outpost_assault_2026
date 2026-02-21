@@ -8,7 +8,9 @@ var _information : DisplayHelper
 @onready var display_health: ShadowHealthUI = %Display_Health
 @onready var display_selected_viewport: DisplaySelected_SubViewport = %DisplaySelectedViewport
 @onready var purchase_interface: PurchaseInterface = %PurchaseInterface
+@onready var tower_interface: DisplayTowerInterface = %TowerInterface
 @onready var display_nothing_button: Button = %DisplayNothing_Button
+
 
 func _ready() -> void:
 	_instance = self
@@ -54,9 +56,9 @@ func _apply_information(info: DisplayHelper) -> void:
 	display_health.set_primary(_information.get_health_ui())
 	purchase_interface.apply_purchase_manager(_information.get_purchaser(0), 0)
 	purchase_interface.apply_purchase_manager(_information.get_purchaser(1), 1)
+	tower_interface.set_manager(_information.get_tower_context_manager())
 
-func _aim_camera() -> void:
-	display_selected_viewport.set_camera_focus(_information.get_camera_position())
+func _aim_camera() -> void: display_selected_viewport.set_camera_focus(_information.get_camera_position())
 
 ## Re-apply the information if the requesting info is the same object as current info
 ## Curreonly only allows health UI changes are called 

@@ -1,28 +1,27 @@
 [gd_scene format=3 uid="uid://dro1735nlrdor"]
 
-[ext_resource type="Script" uid="uid://ce2q3c6wba28d" path="res://architecture/testing/test_maps/unit_tower.gd" id="1_w8vxn"]
-[ext_resource type="Script" uid="uid://b2e6b5gly4wug" path="res://entities/player/tower_foundation/gun_nest_purchase_manager.gd" id="2_chclv"]
-[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/tower_cost_info.gd" id="3_y81ii"]
-[ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/cost_truck_tower.tres" id="5_pc7cn"]
+[ext_resource type="PackedScene" uid="uid://dfliur4n7vbax" path="res://entities/player/towers/tower_base.tscn" id="1_giylo"]
+[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/tower_cost_info.gd" id="2_2pbwi"]
+[ext_resource type="Script" uid="uid://ce2q3c6wba28d" path="res://entities/player/towers/unit_tower.gd" id="2_chclv"]
+[ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/cost_truck_tower.tres" id="3_chclv"]
 
-[sub_resource type="Gradient" id="Gradient_vdq2y"]
+[sub_resource type="Gradient" id="Gradient_jc3j1"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.5450237, 0.6387665)
-colors = PackedColorArray(0.2901961, 0.45882353, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.6387665)
+colors = PackedColorArray(0.2901961, 0.45882353, 0, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rv4v8"]
-gradient = SubResource("Gradient_vdq2y")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_giylo"]
+gradient = SubResource("Gradient_jc3j1")
+width = 32
+height = 32
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="UnitTower" type="Node2D" unique_id=705653405]
-script = ExtResource("1_w8vxn")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=366541001]
-texture = SubResource("GradientTexture2D_rv4v8")
-
-[node name="TowerPurchaseManager" type="Node" parent="." unique_id=246644216]
-unique_name_in_owner = true
+[node name="Tower_Unit" unique_id=1226539165 instance=ExtResource("1_giylo")]
 script = ExtResource("2_chclv")
-cost_tower_infos = Array[ExtResource("3_y81ii")]([ExtResource("5_pc7cn")])
-section_name = "Select Tower - Unit"
+
+[node name="TowerPurchaseManager" parent="." index="1" unique_id=1756272085]
+cost_tower_infos = Array[ExtResource("2_2pbwi")]([ExtResource("3_chclv")])
+
+[node name="Sprite2D" parent="." index="3" unique_id=2099323296]
+texture = SubResource("GradientTexture2D_giylo")

@@ -5,7 +5,7 @@ const COLOR = "color"
 const LABEL = "label"
 const VALUE = "value"
 
-enum PurchaseTypes { INFORMATION = 0, ONE_SHOT = 1, UPGRADE = 2}
+enum PurchaseTypes { INFORMATION = 0, ONE_SHOT = 1, UPGRADE = 2, PROFIT = 3}
 
 var _info : CostButtonInfo
 @onready var _button: ButtonEnhanced = %Button
@@ -24,20 +24,23 @@ func _ready() -> void:
 func deactivate() -> void: set_info(null)
 
 func set_info(info: CostButtonInfo) -> void:
+	if _info == info:
+		_update_display()
+		return
+	if _info:
+		if _info.update.is_connected(_update_display):
+			_info.update.disconnect(_update_display)
 	_info = info
+	if _info:
+		if _info.update.is_connected(_update_display):
+			push_warning("CostButton managing signal is failing")
+		else:
+			_info.update.connect(_update_display)
 	_update_display()
 
 func _on_pressed() -> void:
-	if _info.get_purchase_type() == PurchaseTypes.INFORMATION:
-		return
-	if _info.parent_node:
-		var purchase_result = GoldManager.attempt_purchase(get_cost())
-		if purchase_result:
-		# func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void:
-		#if _info.parent_node.has_method("purchase_attempt_result"):
-			_info.parent_node.purchase_attempt_result(purchase_result, _info)
-		#else:
-		#	push_warning("CostButton info parent (" + _info.parent_node.name + ") does not have purchase_attempt_result")
+	if _info:
+		_info.on_pressed()
 
 func _on_mouse_entered() -> void: 
 	if _info:

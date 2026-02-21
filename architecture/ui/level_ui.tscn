@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qmvep7nlcgj7" path="res://architecture/ui/level_ui.gd" id="1_dl3bl"]
 [ext_resource type="PackedScene" uid="uid://boq3rqx1s3mdj" path="res://architecture/ui/game_speed/game_speed_ui.tscn" id="2_dl3bl"]
+[ext_resource type="Script" uid="uid://cld8myuw16xvu" path="res://architecture/ui/show_player_base.gd" id="2_m3x4y"]
 [ext_resource type="Script" uid="uid://dbo1xoodfi6q7" path="res://architecture/gold_manager.gd" id="3_hyik4"]
 [ext_resource type="Script" uid="uid://b8re4y454lk4w" path="res://architecture/ui/display_selected.gd" id="3_qyk0y"]
 [ext_resource type="Script" uid="uid://23pvsgujae5a" path="res://architecture/ui/shadow_health_ui.gd" id="4_an2k0"]
@@ -10,46 +11,49 @@
 [ext_resource type="Script" uid="uid://dfifo1iryhsgu" path="res://architecture/ui/null_ui_selection_button.gd" id="7_7mwho"]
 [ext_resource type="Script" uid="uid://didbyugt5lxvi" path="res://architecture/ui/gold_managment/purchase_interface.gd" id="7_yq572"]
 [ext_resource type="PackedScene" uid="uid://b51eayc0tka3h" path="res://architecture/ui/purchase_interface_section.tscn" id="9_yq572"]
+[ext_resource type="Script" uid="uid://ceean4at1vaws" path="res://architecture/ui/display_tower_interface.gd" id="11_1cec3"]
+[ext_resource type="PackedScene" uid="uid://citf0bjrmxl7k" path="res://architecture/ui/gold_managment/cost_button.tscn" id="11_07nmt"]
+[ext_resource type="Script" uid="uid://2war3dwy2fbe" path="res://architecture/ui/gold_managment/earn_button.gd" id="13_l1g1f"]
 
 [node name="LevelUI" type="CanvasLayer" unique_id=2003894573]
 script = ExtResource("1_dl3bl")
 
-[node name="Panel" type="Panel" parent="." unique_id=740230383]
+[node name="Background" type="Panel" parent="." unique_id=740230383]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=188553047]
+[node name="FullScreen" type="HBoxContainer" parent="." unique_id=188553047]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=323968457]
+[node name="Left Center" type="VBoxContainer" parent="FullScreen" unique_id=323968457]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=186220195]
+[node name="Label" type="Label" parent="FullScreen/Left Center" unique_id=186220195]
 layout_mode = 2
 text = "Wave Info"
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/VBoxContainer" unique_id=1703908735]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="FullScreen/Left Center" unique_id=1703908735]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
 mouse_target = true
 
-[node name="LevelViewport" type="SubViewport" parent="HBoxContainer/VBoxContainer/SubViewportContainer" unique_id=256052677]
+[node name="LevelViewport" type="SubViewport" parent="FullScreen/Left Center/SubViewportContainer" unique_id=256052677]
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(1656, 1053)
 render_target_update_mode = 4
 
-[node name="Control" type="VBoxContainer" parent="HBoxContainer" unique_id=450850750]
+[node name="Right Side" type="VBoxContainer" parent="FullScreen" unique_id=450850750]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -57,96 +61,118 @@ size_flags_vertical = 3
 mouse_filter = 2
 mouse_behavior_recursive = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/Control" unique_id=991682517]
+[node name="ShowPlayerBase" type="VBoxContainer" parent="FullScreen/Right Side" unique_id=1788448802]
+layout_mode = 2
+script = ExtResource("2_m3x4y")
+
+[node name="Label2" type="Label" parent="FullScreen/Right Side/ShowPlayerBase" unique_id=991682517]
 layout_mode = 2
 text = "HomeBase"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Control" unique_id=896789059]
+[node name="BaseHP" type="HBoxContainer" parent="FullScreen/Right Side/ShowPlayerBase" unique_id=896789059]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/Control/HBoxContainer" unique_id=744576088]
+[node name="Label" type="Label" parent="FullScreen/Right Side/ShowPlayerBase/BaseHP" unique_id=744576088]
 layout_mode = 2
 text = "HP"
 
-[node name="HealthUI" parent="HBoxContainer/Control/HBoxContainer" unique_id=1121219286 instance=ExtResource("5_5c5v8")]
+[node name="HealthUI" parent="FullScreen/Right Side/ShowPlayerBase/BaseHP" unique_id=1121219286 instance=ExtResource("5_5c5v8")]
 layout_mode = 2
 script = ExtResource("4_an2k0")
 
-[node name="GoldManager" type="HBoxContainer" parent="HBoxContainer/Control" unique_id=186258949]
+[node name="GoldManager" type="HBoxContainer" parent="FullScreen/Right Side/ShowPlayerBase" unique_id=186258949]
 layout_mode = 2
 script = ExtResource("3_hyik4")
 
-[node name="GoldLabel" type="Label" parent="HBoxContainer/Control/GoldManager" unique_id=140806413]
+[node name="GoldLabel" type="Label" parent="FullScreen/Right Side/ShowPlayerBase/GoldManager" unique_id=140806413]
 layout_mode = 2
 text = "GP:"
 
-[node name="GoldValue" type="Label" parent="HBoxContainer/Control/GoldManager" unique_id=906735985]
+[node name="GoldValue" type="Label" parent="FullScreen/Right Side/ShowPlayerBase/GoldManager" unique_id=906735985]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1000?"
 
-[node name="Control2" type="Control" parent="HBoxContainer/Control" unique_id=1031180037]
+[node name="Spacer" type="Control" parent="FullScreen/Right Side" unique_id=1031180037]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_stretch_ratio = 0.5
 
-[node name="DisplaySelected" type="VBoxContainer" parent="HBoxContainer/Control" unique_id=1522410859]
+[node name="DisplaySelected" type="VBoxContainer" parent="FullScreen/Right Side" unique_id=1522410859]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("3_qyk0y")
 
-[node name="DisplayNothing_Button" type="Button" parent="HBoxContainer/Control/DisplaySelected" unique_id=1383901387]
+[node name="DisplayNothing_Button" type="Button" parent="FullScreen/Right Side/DisplaySelected" unique_id=1383901387]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Cancle Selection"
 script = ExtResource("7_7mwho")
 
-[node name="DisplayName" type="Label" parent="HBoxContainer/Control/DisplaySelected" unique_id=784152586]
+[node name="DisplayName" type="Label" parent="FullScreen/Right Side/DisplaySelected" unique_id=784152586]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Name"
 
-[node name="Display_Health" parent="HBoxContainer/Control/DisplaySelected" unique_id=565267287 instance=ExtResource("5_5c5v8")]
+[node name="Display_Health" parent="FullScreen/Right Side/DisplaySelected" unique_id=565267287 instance=ExtResource("5_5c5v8")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 1
 script = ExtResource("4_an2k0")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/Control/DisplaySelected" unique_id=631780335]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="FullScreen/Right Side/DisplaySelected" unique_id=631780335]
 layout_mode = 2
 mouse_target = true
 
-[node name="DisplaySelectedViewport" type="SubViewport" parent="HBoxContainer/Control/DisplaySelected/SubViewportContainer" unique_id=1467878820 node_paths=PackedStringArray("world_source")]
+[node name="DisplaySelectedViewport" type="SubViewport" parent="FullScreen/Right Side/DisplaySelected/SubViewportContainer" unique_id=1467878820 node_paths=PackedStringArray("world_source")]
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(256, 256)
 render_target_update_mode = 4
 script = ExtResource("6_vw2lh")
-world_source = NodePath("../../../../VBoxContainer/SubViewportContainer/LevelViewport")
+world_source = NodePath("../../../../Left Center/SubViewportContainer/LevelViewport")
 
-[node name="Camera2D" type="Camera2D" parent="HBoxContainer/Control/DisplaySelected/SubViewportContainer/DisplaySelectedViewport" unique_id=793698142]
+[node name="Camera2D" type="Camera2D" parent="FullScreen/Right Side/DisplaySelected/SubViewportContainer/DisplaySelectedViewport" unique_id=793698142]
 unique_name_in_owner = true
 zoom = Vector2(0.75, 0.75)
 
-[node name="PurchaseInterface" type="VBoxContainer" parent="HBoxContainer/Control/DisplaySelected" unique_id=1204477422]
+[node name="PurchaseInterface" type="VBoxContainer" parent="FullScreen/Right Side/DisplaySelected" unique_id=1204477422]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("7_yq572")
 
-[node name="PurchaseInterfaceSection_0" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface" unique_id=1369300252 instance=ExtResource("9_yq572")]
+[node name="PurchaseInterfaceSection_0" parent="FullScreen/Right Side/DisplaySelected/PurchaseInterface" unique_id=1369300252 instance=ExtResource("9_yq572")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="PurchaseInterfaceSection_1" parent="HBoxContainer/Control/DisplaySelected/PurchaseInterface" unique_id=572195338 instance=ExtResource("9_yq572")]
+[node name="PurchaseInterfaceSection_1" parent="FullScreen/Right Side/DisplaySelected/PurchaseInterface" unique_id=572195338 instance=ExtResource("9_yq572")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Control" type="Control" parent="HBoxContainer/Control" unique_id=1833074272]
+[node name="TowerInterface" type="VBoxContainer" parent="FullScreen/Right Side/DisplaySelected" unique_id=1648039892]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("11_1cec3")
+
+[node name="Label" type="Label" parent="FullScreen/Right Side/DisplaySelected/TowerInterface" unique_id=1947218072]
+layout_mode = 2
+text = "----"
+
+[node name="Repair" parent="FullScreen/Right Side/DisplaySelected/TowerInterface" unique_id=2141790064 instance=ExtResource("11_07nmt")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Sell" parent="FullScreen/Right Side/DisplaySelected/TowerInterface" unique_id=151841834 instance=ExtResource("11_07nmt")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("13_l1g1f")
+
+[node name="Spacer2" type="Control" parent="FullScreen/Right Side" unique_id=1833074272]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="GameSpeedUI" parent="HBoxContainer/Control" unique_id=861931387 instance=ExtResource("2_dl3bl")]
+[node name="GameSpeedUI" parent="FullScreen/Right Side" unique_id=861931387 instance=ExtResource("2_dl3bl")]
 layout_mode = 2
 size_flags_vertical = 8

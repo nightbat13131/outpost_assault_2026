@@ -1,28 +1,7 @@
 [gd_scene format=3 uid="uid://bnkuw8l45581i"]
 
-[ext_resource type="Script" uid="uid://d3jujp00r442w" path="res://entities/player/towers/truck_tower.gd" id="1_lgnq7"]
-[ext_resource type="Script" uid="uid://b2e6b5gly4wug" path="res://entities/player/tower_foundation/gun_nest_purchase_manager.gd" id="2_h8tyu"]
-[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/tower_cost_info.gd" id="3_s7uy2"]
-[ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/cost_unit_tower.tres" id="4_eiiu5"]
+[ext_resource type="PackedScene" uid="uid://dfliur4n7vbax" path="res://entities/player/towers/tower_base.tscn" id="1_lgnq7"]
+[ext_resource type="Script" uid="uid://d3jujp00r442w" path="res://entities/player/towers/truck_tower.gd" id="2_7ih2p"]
 
-[sub_resource type="Gradient" id="Gradient_vdq2y"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.54028434, 0.6387665)
-colors = PackedColorArray(0.2796692, 0.42874187, 0.46447682, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rv4v8"]
-gradient = SubResource("Gradient_vdq2y")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[node name="TruckTower" type="Node2D" unique_id=1998774911]
-script = ExtResource("1_lgnq7")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=366541001]
-texture = SubResource("GradientTexture2D_rv4v8")
-
-[node name="TowerPurchaseManager" type="Node" parent="." unique_id=891889345]
-unique_name_in_owner = true
-script = ExtResource("2_h8tyu")
-cost_tower_infos = Array[ExtResource("3_s7uy2")]([ExtResource("4_eiiu5")])
-section_name = "Select Tower - Truck"
+[node name="Tower_Truck" unique_id=1226539165 instance=ExtResource("1_lgnq7")]
+script = ExtResource("2_7ih2p")

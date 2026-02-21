@@ -4,15 +4,21 @@ signal ratio_update(value: float)
 signal suppression_update(value: bool)
 
 @export var _hide_when_full := false
+@export var _hide_when_empty := false
 @onready var health_bar: Range = %HealthBar
 @onready var red_under_bar: Range = %RedUnderBar
 var _suppress := false : set = set_suppressed
 
 func set_health_ratio(value: float, insta_red := false) -> void:
-	if _hide_when_full and value >= 1.0 :
+	if value <= 0 and _hide_when_empty:
 		hide()
-	elif _hide_when_full and value < 1.0:
+	elif value >= 1.0 and _hide_when_full: 
+		hide()
+	else:
 		show()
+	if _hide_when_empty:
+		if value <= 0.0:
+			hide()
 	value = clampf(value, 0.0, 1.0)
 	var is_healing : bool = value > health_bar.ratio
 	health_bar.set_as_ratio(value)

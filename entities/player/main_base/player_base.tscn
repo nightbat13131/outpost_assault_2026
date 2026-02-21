@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://km2nahn1x27p"]
+
+[ext_resource type="Script" uid="uid://x6eddo14cwyj" path="res://entities/player/main_base/player_main_base.gd" id="1_jottk"]
+[ext_resource type="SpriteFrames" uid="uid://cmd8ww4nt3x5x" path="res://entities/player/main_base/main_base_sprite_frames.tres" id="2_4h7hu"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="3_22ro1"]
+[ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="4_22ro1"]
+[ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="5_767g6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iw66m"]
+size = Vector2(200, 200)
+
+[node name="PlayerBase" type="Area2D" unique_id=831910580]
+script = ExtResource("1_jottk")
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1509464480]
+unique_name_in_owner = true
+offset_left = -37.0
+offset_top = -37.0
+offset_right = 30.0
+offset_bottom = 30.0
+script = ExtResource("4_22ro1")
+active_cursor_overwrite = ExtResource("5_767g6")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1893754338]
+sprite_frames = ExtResource("2_4h7hu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1126154183]
+shape = SubResource("RectangleShape2D_iw66m")
+
+[node name="HealthUI" parent="." unique_id=1750592590 instance=ExtResource("3_22ro1")]
+unique_name_in_owner = true
+offset_left = -27.0
+offset_top = 74.0
+offset_right = 23.0
+offset_bottom = 79.0
+
+[node name="UpgradeManager" type="Node" parent="." unique_id=1672036500]
+unique_name_in_owner = true
