@@ -4,5 +4,10 @@
 bg_color = Color(1, 1, 1, 1)
 
 [resource]
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
 ProgressBar/styles/background = null
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_nj880")
+VBoxContainer/constants/separation = 0

@@ -15,8 +15,7 @@ func _ready() -> void:
 
 func has_target() -> bool: return !_targets.is_empty()
 
-func on_tower_died() -> void:
-	set_radar_outer_range(0.0)
+func on_tower_died() -> void: set_radar_outer_range(0.0)
 
 func set_radar_outer_range(range_: float) -> void: 
 	_radar_outer_range = range_
@@ -31,7 +30,7 @@ func set_target_logic() -> void:pass
 
 func get_target() -> void: pass
 
-func preview_radar_range(tower_type:= TowerInfo.TowerType.NA) -> void: 
+func preview_radar_range_tower(tower_type:= TowerInfo.TowerType.NA) -> void: 
 	if TowerInfo.TowerType.NA:
 		_radar_preview = 0.0
 	else:

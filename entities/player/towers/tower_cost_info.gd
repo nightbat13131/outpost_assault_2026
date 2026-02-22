@@ -12,8 +12,8 @@ func get_tooltip() -> String: return super.get_tooltip()
 func set_radar(radar_sensor: RadarSensor) -> void: _radar_sensor = radar_sensor
 
 func on_mouse_entered() -> void:
-	_radar_sensor.preview_radar_range(tower_type)
+	_radar_sensor.preview_radar_range_tower(tower_type)
 
 func on_mouse_exited() -> void:
 	if _radar_sensor:
-		_radar_sensor.preview_radar_range()
+		_radar_sensor.preview_radar_range_tower()
