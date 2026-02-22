@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="3_i28xo"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_5w2jj"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://map/spawn_manager.gd" id="4_f5dm3"]
-[ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://map/test_poison_zone.gd" id="4_oisr6"]
+[ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="4_oisr6"]
 [ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://map/spawner_building_1x2.tscn" id="9_ily7b"]
-[ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="9_ti3ma"]
-[ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="10_obju6"]
+[ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="9_ti3ma"]
+[ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="10_obju6"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="12_yjs82"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]

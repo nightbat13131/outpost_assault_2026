@@ -2,9 +2,9 @@
 
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="1_087yg"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="2_l5omd"]
-[ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="3_tieqq"]
-[ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://map/test_poison_zone.gd" id="4_747j4"]
-[ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="5_l7wik"]
+[ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="3_tieqq"]
+[ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="4_747j4"]
+[ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="5_l7wik"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="6_qmthx"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="7_a1ku7"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://map/spawn_manager.gd" id="8_g3vga"]

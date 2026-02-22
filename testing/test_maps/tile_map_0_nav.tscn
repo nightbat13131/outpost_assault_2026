@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_5m4o8"]
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="4_rbfhg"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="9_wxrse"]
-[ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://test_scripts/testing_nav_target.gd" id="10_abknn"]
+[ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://testing/test_scripts/testing_nav_target.gd" id="10_abknn"]
 
 [sub_resource type="Resource" id="Resource_5m4o8"]
 script = ExtResource("4_5m4o8")

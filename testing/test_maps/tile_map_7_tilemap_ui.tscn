@@ -1,11 +1,12 @@
 [gd_scene format=4 uid="uid://c0fi0vwkdcxil"]
 
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_kla5u"]
-[ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://test_scripts/testing_damage_button.gd" id="2_orddc"]
-[ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://map/test_poison_zone.gd" id="3_2ucw7"]
-[ext_resource type="Script" uid="uid://bdly180i85831" path="res://test_scripts/testing_kill_zone.gd" id="4_fwhd0"]
-[ext_resource type="Script" uid="uid://cslh5sayhqyfm" path="res://architecture/testing/trigger_repair.gd" id="5_a6nin"]
-[ext_resource type="Shader" uid="uid://celvt6pet4odh" path="res://architecture/testing/test_maps/tilemap_test_0.gdshader" id="6_kla5u"]
+[ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="2_orddc"]
+[ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="3_2ucw7"]
+[ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="4_fwhd0"]
+[ext_resource type="Script" uid="uid://cslh5sayhqyfm" path="res://testing/test_scripts/test_trigger_repair.gd" id="5_a6nin"]
+[ext_resource type="Shader" uid="uid://celvt6pet4odh" path="res://testing/test_maps/tilemap_test_0.gdshader" id="6_kla5u"]
+[ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="6_scdax"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="7_5eoyu"]
 [ext_resource type="Texture2D" uid="uid://bv1gs0l7v76s0" path="res://assets/tilemaps/dirt.png" id="7_fwhd0"]
 [ext_resource type="Texture2D" uid="uid://bvnnfgk3i00ho" path="res://assets/tilemaps/grass.png" id="7_orddc"]
@@ -193,7 +194,18 @@ script = ExtResource("1_kla5u")
 
 [node name="test" type="Node" parent="." unique_id=761061381]
 
-[node name="Button" type="Button" parent="test" unique_id=1473628105]
+[node name="trigger_repair" type="Button" parent="test" unique_id=149844324 node_paths=PackedStringArray("target")]
+offset_left = 616.0
+offset_top = 278.0
+offset_right = 725.0
+offset_bottom = 309.0
+text = "repair"
+script = ExtResource("5_a6nin")
+target = NodePath("../../TowerHolder/BrokenFoundation2")
+
+[node name="Damage" type="Node" parent="test" unique_id=1343888640]
+
+[node name="Button" type="Button" parent="test/Damage" unique_id=1473628105]
 offset_left = 1396.0
 offset_top = 196.0
 offset_right = 1507.0
@@ -202,60 +214,60 @@ text = "Deal Damage"
 script = ExtResource("2_orddc")
 damage_amount = 23.0
 
-[node name="Button2" type="Button" parent="test" unique_id=62573386 node_paths=PackedStringArray("damage_target")]
+[node name="Button2" type="Button" parent="test/Damage" unique_id=62573386 node_paths=PackedStringArray("damage_target")]
 offset_left = 1097.0
 offset_top = 294.0
 offset_right = 1208.0
 offset_bottom = 325.0
 text = "Deal Damage"
 script = ExtResource("2_orddc")
-damage_target = NodePath("../../SpawnManager/SpawnerBuilding_1x2")
+damage_target = NodePath("../../../SpawnManager/SpawnerBuilding_1x2")
 damage_amount = 23.0
 
-[node name="Button3" type="Button" parent="test" unique_id=501823648 node_paths=PackedStringArray("damage_target")]
+[node name="Button3" type="Button" parent="test/Damage" unique_id=501823648 node_paths=PackedStringArray("damage_target")]
 offset_left = 284.0
 offset_top = 695.0
 offset_right = 395.0
 offset_bottom = 726.0
 text = "Deal Damage"
 script = ExtResource("2_orddc")
-damage_target = NodePath("../../PlayerBase")
+damage_target = NodePath("../../../PlayerBase")
 damage_amount = 23.0
 
-[node name="Button4" type="Button" parent="test" unique_id=923848532 node_paths=PackedStringArray("damage_target")]
+[node name="Button4" type="Button" parent="test/Damage" unique_id=923848532 node_paths=PackedStringArray("damage_target")]
 offset_left = 657.0
 offset_top = 542.0
 offset_right = 768.0
 offset_bottom = 573.0
 text = "Deal Damage"
 script = ExtResource("2_orddc")
-damage_target = NodePath("../../TowerHolder/TowerFoundation")
+damage_target = NodePath("../../../TowerHolder/TowerFoundation")
 damage_amount = 23.0
 
-[node name="Test_DamageZone" type="Area2D" parent="test" unique_id=796258337]
+[node name="Test_DamageZone" type="Area2D" parent="test/Damage" unique_id=796258337]
 position = Vector2(430, 399)
 script = ExtResource("3_2ucw7")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="test/Test_DamageZone" unique_id=1290235869]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test/Damage/Test_DamageZone" unique_id=1290235869]
 shape = SubResource("CircleShape2D_oisr6")
 
-[node name="Test_KillZone" type="Area2D" parent="test" unique_id=1411483130]
+[node name="Test_KillZone" type="Area2D" parent="test/Damage" unique_id=1411483130]
 position = Vector2(1728, 1108)
 script = ExtResource("4_fwhd0")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="test/Test_KillZone" unique_id=1434252941]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test/Damage/Test_KillZone" unique_id=1434252941]
 shape = SubResource("CircleShape2D_oisr6")
 
-[node name="trigger_repair" type="Button" parent="test" unique_id=149844324 node_paths=PackedStringArray("target")]
-offset_left = 616.0
-offset_top = 278.0
-offset_right = 725.0
-offset_bottom = 286.0
-text = "repair"
-script = ExtResource("5_a6nin")
-target = NodePath("../../TowerHolder/BrokenFoundation2")
+[node name="DialogButtons" type="VBoxContainer" parent="test" unique_id=1825892821]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ButtonEnhanced" type="Button" parent="test/DialogButtons" unique_id=250309990]
+layout_mode = 2
+script = ExtResource("6_scdax")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]
 material = SubResource("ShaderMaterial_orddc")
