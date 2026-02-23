@@ -54,9 +54,18 @@ _character = ExtResource("9_xlhsi")
 _dialog = "aksjdfh akjsdhf asdf  2"
 metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
 
+[sub_resource type="Resource" id="Resource_wgdyw"]
+script = ExtResource("7_sa0v5")
+_character = ExtResource("9_xlhsi")
+_dialog = "Dialog before options"
+_option_0 = "option 0	"
+_option_1 = "option 1"
+_option_2 = "Option 2"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
 [sub_resource type="Resource" id="Resource_7p1sr"]
 script = ExtResource("8_dyajw")
-_dialogs = Array[ExtResource("7_sa0v5")]([SubResource("Resource_sa0v5"), SubResource("Resource_dyajw"), SubResource("Resource_dyajw")])
+_dialogs = Array[ExtResource("7_sa0v5")]([SubResource("Resource_sa0v5"), SubResource("Resource_dyajw"), SubResource("Resource_wgdyw"), SubResource("Resource_dyajw")])
 metadata/_custom_type_script = "uid://crrqgfxgv78rb"
 
 [sub_resource type="Resource" id="Resource_gd70f"]

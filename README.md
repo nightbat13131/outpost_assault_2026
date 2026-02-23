@@ -9,6 +9,7 @@ still up on github.
 ## Cursors
 From Kenney.ly
 
+## Text & Dialogue SFX Pack from https://chrislsound.itch.io/text-dialogue-sfx-pack
 
 
 

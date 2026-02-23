@@ -1,0 +1,43 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://d4jid137ghm55"]
+
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="1_6xhuk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbm70"]
+atlas = ExtResource("1_6xhuk")
+region = Rect2(32, 40, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqjdo"]
+atlas = ExtResource("1_6xhuk")
+region = Rect2(32, 42, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6lf7"]
+atlas = ExtResource("1_6xhuk")
+region = Rect2(32, 44, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbm70")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbm70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqjdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6lf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqjdo")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]

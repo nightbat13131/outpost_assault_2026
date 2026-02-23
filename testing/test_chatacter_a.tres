@@ -1,13 +1,20 @@
 [gd_resource type="Resource" script_class="Character" format=3 uid="uid://dtgmruo0f45f"]
 
-[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="1_dbm70"]
 [ext_resource type="Script" uid="uid://ywhi44barq8g" path="res://architecture/ui/dialog/character.gd" id="1_f41o4"]
+[ext_resource type="SpriteFrames" uid="uid://bjo248f53jdqb" path="res://testing/sprite_frames_character_a.tres" id="3_2jqaj"]
+[ext_resource type="AudioStream" uid="uid://cr2pmxv8d72ja" path="res://assets/sounds/sfx/yammering/yeah_5c.wav" id="3_iqjdo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jqaj"]
-atlas = ExtResource("1_dbm70")
-region = Rect2(23, 55, 82, 52)
+[sub_resource type="Gradient" id="Gradient_dbm70"]
+colors = PackedColorArray(0.56041217, 0.57236147, 0.8667459, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2jqaj"]
+gradient = SubResource("Gradient_dbm70")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [resource]
 script = ExtResource("1_f41o4")
-photo = SubResource("AtlasTexture_2jqaj")
+background = SubResource("GradientTexture2D_2jqaj")
+sprite = ExtResource("3_2jqaj")
+talking_sound = ExtResource("3_iqjdo")
 metadata/_custom_type_script = "uid://ywhi44barq8g"

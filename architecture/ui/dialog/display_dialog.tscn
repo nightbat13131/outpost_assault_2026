@@ -5,8 +5,9 @@
 [ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="2_chtir"]
 [ext_resource type="Script" uid="uid://mh80xcfr520l" path="res://architecture/ui/dialog/dialog_speical_container.gd" id="2_dhdb7"]
 [ext_resource type="Script" uid="uid://crpguer6hjuhn" path="res://architecture/ui/dialog/dialog_primary_container.gd" id="4_ewqo1"]
-[ext_resource type="Script" uid="uid://csiq1m5pubt4l" path="res://architecture/ui/dialog/dialog_photo.gd" id="5_w3lrk"]
+[ext_resource type="PackedScene" uid="uid://cx4j41p0vtcev" path="res://architecture/ui/dialog/display_character.tscn" id="5_o1vog"]
 [ext_resource type="Script" uid="uid://b8c6yg88nxe6v" path="res://architecture/ui/dialog/dialog_textbox.gd" id="6_pgsfs"]
+[ext_resource type="Script" uid="uid://dsrr1srffwjba" path="res://architecture/ui/dialog/dialog_choices.gd" id="7_o1vog"]
 
 [node name="DisplayDialog" type="VBoxContainer" unique_id=704582365]
 size_flags_horizontal = 8
@@ -31,7 +32,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("1_olgae")
-script = ExtResource("5_w3lrk")
 
 [node name="PrimaryContainer" type="PanelContainer" parent="." unique_id=1508473512]
 unique_name_in_owner = true
@@ -40,66 +40,73 @@ script = ExtResource("4_ewqo1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PrimaryContainer" unique_id=2141537845]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="PrimaryContainer/HBoxContainer" unique_id=2064159251]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="PhotoBackground" type="Panel" parent="PrimaryContainer/HBoxContainer/MarginContainer" unique_id=761163657]
-custom_minimum_size = Vector2(154, 154)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PrimaryContainer/HBoxContainer/MarginContainer" unique_id=339189244]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-mouse_filter = 1
+mouse_filter = 2
 
-[node name="CharacterPhoto" type="TextureRect" parent="PrimaryContainer/HBoxContainer/MarginContainer" unique_id=1992325465]
+[node name="SubViewport" type="SubViewport" parent="PrimaryContainer/HBoxContainer/MarginContainer/SubViewportContainer" unique_id=2124469355]
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="ShowCharacter" parent="PrimaryContainer/HBoxContainer/MarginContainer/SubViewportContainer/SubViewport" unique_id=1993405921 instance=ExtResource("5_o1vog")]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-texture = ExtResource("1_olgae")
-stretch_mode = 4
-script = ExtResource("5_w3lrk")
 
 [node name="MarginContainer2" type="MarginContainer" parent="PrimaryContainer/HBoxContainer" unique_id=1810982441]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="DialogText" type="RichTextLabel" parent="PrimaryContainer/HBoxContainer/MarginContainer2" unique_id=945597636]
+[node name="VBoxContainer" type="VBoxContainer" parent="PrimaryContainer/HBoxContainer/MarginContainer2" unique_id=790639407]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DialogText" type="RichTextLabel" parent="PrimaryContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=945597636 node_paths=PackedStringArray("show_character")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
-text = "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia?"
+size_flags_vertical = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "Zombie ipsum reversus ab viral "
 scroll_following = true
 script = ExtResource("6_pgsfs")
+show_character = NodePath("../../../MarginContainer/SubViewportContainer/SubViewport/ShowCharacter")
 
-[node name="WaitTimer" type="Timer" parent="PrimaryContainer/HBoxContainer/MarginContainer2/DialogText" unique_id=645512266]
+[node name="WaitTimer" type="Timer" parent="PrimaryContainer/HBoxContainer/MarginContainer2/VBoxContainer/DialogText" unique_id=645512266]
 unique_name_in_owner = true
 
-[node name="ChoicesHolder" type="VBoxContainer" parent="PrimaryContainer/HBoxContainer/MarginContainer2" unique_id=355535749]
+[node name="ChoicesHolder" type="VBoxContainer" parent="PrimaryContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=355535749]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 3
+script = ExtResource("7_o1vog")
 
-[node name="ButtonEnhanced" type="Button" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1113480247]
+[node name="ButtonEnhanced" type="Button" parent="PrimaryContainer/HBoxContainer/MarginContainer2/VBoxContainer/ChoicesHolder" unique_id=1113480247]
+unique_name_in_owner = true
 layout_mode = 2
 text = "One"
 script = ExtResource("2_chtir")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="Spacer" type="Control" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=578285029]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ButtonEnhanced2" type="Button" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1066246994]
+[node name="ButtonEnhanced2" type="Button" parent="PrimaryContainer/HBoxContainer/MarginContainer2/VBoxContainer/ChoicesHolder" unique_id=1066246994]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Two"
 script = ExtResource("2_chtir")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="Spacer2" type="Control" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1101144964]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ButtonEnhanced3" type="Button" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1928217836]
+[node name="ButtonEnhanced3" type="Button" parent="PrimaryContainer/HBoxContainer/MarginContainer2/VBoxContainer/ChoicesHolder" unique_id=1928217836]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Three"
 script = ExtResource("2_chtir")

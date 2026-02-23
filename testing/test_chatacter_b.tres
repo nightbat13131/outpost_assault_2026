@@ -1,15 +1,19 @@
 [gd_resource type="Resource" script_class="Character" format=3 uid="uid://cw13vv36kxkjl"]
 
 [ext_resource type="Script" uid="uid://ywhi44barq8g" path="res://architecture/ui/dialog/character.gd" id="1_fjojp"]
+[ext_resource type="SpriteFrames" uid="uid://d4jid137ghm55" path="res://testing/sprite_frames_character_b.tres" id="2_y1xpd"]
+[ext_resource type="AudioStream" uid="uid://bjdlgsugvrrs0" path="res://assets/sounds/sfx/yammering/breathyOo_5c.wav" id="3_htnwx"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fjojp"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+[sub_resource type="Gradient" id="Gradient_y1xpd"]
+colors = PackedColorArray(1, 0.5679402, 0.59224725, 1, 1, 1, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y1xpd"]
-atlas = SubResource("CompressedTexture2D_fjojp")
-region = Rect2(23, 20, 83, 57)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_htnwx"]
+gradient = SubResource("Gradient_y1xpd")
+fill_from = Vector2(0, 1)
 
 [resource]
 script = ExtResource("1_fjojp")
-photo = SubResource("AtlasTexture_y1xpd")
+background = SubResource("GradientTexture2D_htnwx")
+sprite = ExtResource("2_y1xpd")
+talking_sound = ExtResource("3_htnwx")
 metadata/_custom_type_script = "uid://ywhi44barq8g"

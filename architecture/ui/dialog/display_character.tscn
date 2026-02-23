@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cx4j41p0vtcev"]
+
+[ext_resource type="Script" uid="uid://r8sabfieyips" path="res://display_character.gd" id="1_75d54"]
+[ext_resource type="SpriteFrames" uid="uid://bjo248f53jdqb" path="res://testing/sprite_frames_character_a.tres" id="2_g0kk2"]
+
+[sub_resource type="Gradient" id="Gradient_o1vog"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_127ep"]
+gradient = SubResource("Gradient_o1vog")
+width = 128
+height = 128
+
+[node name="ShowCharacter" type="Node2D" unique_id=1993405921]
+script = ExtResource("1_75d54")
+metadata/_edit_lock_ = true
+
+[node name="PhotoBackground" type="Sprite2D" parent="." unique_id=1870432952]
+unique_name_in_owner = true
+texture = SubResource("GradientTexture2D_127ep")
+centered = false
+
+[node name="AnimatedCharacter" type="AnimatedSprite2D" parent="." unique_id=1840765537]
+unique_name_in_owner = true
+position = Vector2(65, 97)
+sprite_frames = ExtResource("2_g0kk2")
+frame_progress = 0.12610707
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=404334155]
+unique_name_in_owner = true
+bus = &"SFX"

@@ -1,6 +1,17 @@
 class_name Character extends Resource
 
-@export var photo : Texture2D
+const ANIMATION_TALK  = 'talk'
+const ANIMATION_IDLE  = 'default'
 
-func get_photo() -> Texture2D:
-	return photo
+# TODO: add background? 
+
+@export var background : Texture2D
+@export var sprite : SpriteFrames
+@export var talking_sound: AudioStream
+
+func get_background() -> Texture2D:
+	return background
+
+func get_sprites() -> SpriteFrames: return sprite
+
+func get_talk_audio() -> AudioStream: return talking_sound
