@@ -61,6 +61,11 @@ handle_input_locally = false
 size = Vector2i(1656, 1057)
 render_target_update_mode = 4
 
+[node name="DialogPointOfReferance" type="Control" parent="FullScreen/CenterScreen" unique_id=2047275902]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
 [node name="DisplayDialog" parent="FullScreen/CenterScreen" unique_id=704582365 instance=ExtResource("2_l1g1f")]
 layout_mode = 2
 

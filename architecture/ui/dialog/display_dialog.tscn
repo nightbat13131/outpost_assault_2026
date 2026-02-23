@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://53y8v85xs33v" path="res://architecture/ui/dialog/display_dialog.gd" id="1_chtir"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="1_olgae"]
 [ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="2_chtir"]
+[ext_resource type="Script" uid="uid://mh80xcfr520l" path="res://architecture/ui/dialog/dialog_speical_container.gd" id="2_dhdb7"]
+[ext_resource type="Script" uid="uid://crpguer6hjuhn" path="res://architecture/ui/dialog/dialog_primary_container.gd" id="4_ewqo1"]
+[ext_resource type="Script" uid="uid://csiq1m5pubt4l" path="res://architecture/ui/dialog/dialog_photo.gd" id="5_w3lrk"]
+[ext_resource type="Script" uid="uid://b8c6yg88nxe6v" path="res://architecture/ui/dialog/dialog_textbox.gd" id="6_pgsfs"]
 
 [node name="DisplayDialog" type="VBoxContainer" unique_id=704582365]
 size_flags_horizontal = 8
@@ -11,70 +15,91 @@ mouse_filter = 2
 theme_override_constants/separation = 0
 script = ExtResource("1_chtir")
 
-[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=85847404]
+[node name="SpeicalContainer" type="PanelContainer" parent="." unique_id=85847404]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
+script = ExtResource("2_dhdb7")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2" unique_id=1636712966]
+[node name="MarginContainer" type="MarginContainer" parent="SpeicalContainer" unique_id=1636712966]
 layout_mode = 2
 
-[node name="SpecialIcon" type="TextureRect" parent="PanelContainer2/MarginContainer" unique_id=632332229]
+[node name="SpecialIcon" type="TextureRect" parent="SpeicalContainer/MarginContainer" unique_id=632332229]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("1_olgae")
+script = ExtResource("5_w3lrk")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1508473512]
+[node name="PrimaryContainer" type="PanelContainer" parent="." unique_id=1508473512]
+unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("4_ewqo1")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=2141537845]
+[node name="HBoxContainer" type="HBoxContainer" parent="PrimaryContainer" unique_id=2141537845]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=2064159251]
+[node name="MarginContainer" type="MarginContainer" parent="PrimaryContainer/HBoxContainer" unique_id=2064159251]
 layout_mode = 2
 
-[node name="CharacterPhoto" type="TextureRect" parent="PanelContainer/HBoxContainer/MarginContainer" unique_id=1992325465]
+[node name="PhotoBackground" type="Panel" parent="PrimaryContainer/HBoxContainer/MarginContainer" unique_id=761163657]
+custom_minimum_size = Vector2(154, 154)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CharacterPhoto" type="TextureRect" parent="PrimaryContainer/HBoxContainer/MarginContainer" unique_id=1992325465]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 texture = ExtResource("1_olgae")
+stretch_mode = 4
+script = ExtResource("5_w3lrk")
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=1810982441]
+[node name="MarginContainer2" type="MarginContainer" parent="PrimaryContainer/HBoxContainer" unique_id=1810982441]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
-[node name="DialogText" type="RichTextLabel" parent="PanelContainer/HBoxContainer/MarginContainer2" unique_id=945597636]
+[node name="DialogText" type="RichTextLabel" parent="PrimaryContainer/HBoxContainer/MarginContainer2" unique_id=945597636]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia?"
 scroll_following = true
+script = ExtResource("6_pgsfs")
 
-[node name="ChoicesHolder" type="VBoxContainer" parent="PanelContainer/HBoxContainer/MarginContainer2" unique_id=355535749]
+[node name="WaitTimer" type="Timer" parent="PrimaryContainer/HBoxContainer/MarginContainer2/DialogText" unique_id=645512266]
 unique_name_in_owner = true
+
+[node name="ChoicesHolder" type="VBoxContainer" parent="PrimaryContainer/HBoxContainer/MarginContainer2" unique_id=355535749]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
-[node name="ButtonEnhanced" type="Button" parent="PanelContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1113480247]
+[node name="ButtonEnhanced" type="Button" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1113480247]
 layout_mode = 2
 text = "One"
 script = ExtResource("2_chtir")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="Spacer" type="Control" parent="PanelContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=578285029]
+[node name="Spacer" type="Control" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=578285029]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ButtonEnhanced2" type="Button" parent="PanelContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1066246994]
+[node name="ButtonEnhanced2" type="Button" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1066246994]
 layout_mode = 2
 text = "Two"
 script = ExtResource("2_chtir")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="Spacer2" type="Control" parent="PanelContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1101144964]
+[node name="Spacer2" type="Control" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1101144964]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ButtonEnhanced3" type="Button" parent="PanelContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1928217836]
+[node name="ButtonEnhanced3" type="Button" parent="PrimaryContainer/HBoxContainer/MarginContainer2/ChoicesHolder" unique_id=1928217836]
 layout_mode = 2
 text = "Three"
 script = ExtResource("2_chtir")

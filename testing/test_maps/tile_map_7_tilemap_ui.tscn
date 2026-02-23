@@ -5,14 +5,19 @@
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="3_2ucw7"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="4_fwhd0"]
 [ext_resource type="Script" uid="uid://cslh5sayhqyfm" path="res://testing/test_scripts/test_trigger_repair.gd" id="5_a6nin"]
+[ext_resource type="Script" uid="uid://77mr2ikssh1k" path="res://testing/test_scripts/testing_dialog_trigger.gd" id="6_jsqof"]
 [ext_resource type="Shader" uid="uid://celvt6pet4odh" path="res://testing/test_maps/tilemap_test_0.gdshader" id="6_kla5u"]
-[ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="6_scdax"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="7_5eoyu"]
 [ext_resource type="Texture2D" uid="uid://bv1gs0l7v76s0" path="res://assets/tilemaps/dirt.png" id="7_fwhd0"]
 [ext_resource type="Texture2D" uid="uid://bvnnfgk3i00ho" path="res://assets/tilemaps/grass.png" id="7_orddc"]
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="7_sa0v5"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="8_dyajw"]
+[ext_resource type="Resource" uid="uid://dtgmruo0f45f" path="res://testing/test_chatacter_a.tres" id="8_gd70f"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="8_sv24g"]
 [ext_resource type="Texture2D" uid="uid://bcbk8wi2ytd24" path="res://assets/tilemaps/water.png" id="9_a6nin"]
+[ext_resource type="Texture2D" uid="uid://dwar38ssbsohp" path="res://architecture/cursors/tilemap.png" id="9_mfrex"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="9_trnwt"]
+[ext_resource type="Resource" uid="uid://cw13vv36kxkjl" path="res://testing/test_chatacter_b.tres" id="9_xlhsi"]
 [ext_resource type="Texture2D" uid="uid://cbom43uaay1ac" path="res://assets/tilemaps/field_tilesheet_logic.png" id="10_fwhd0"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://map/spawn_manager.gd" id="10_iah57"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawner.gd" id="11_uqibm"]
@@ -28,6 +33,54 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p1sr"]
+atlas = ExtResource("9_mfrex")
+region = Rect2(152, 135, 19, 18)
+
+[sub_resource type="Resource" id="Resource_sa0v5"]
+script = ExtResource("7_sa0v5")
+_character = ExtResource("8_gd70f")
+_dialog = "asdf asdf asdf _1
+aslkdjf ;alskdjf alkjsdf lkjasdf sadf 1
+asdf asdjfk alksdfj a;lskdfj 1
+asdf  kljdsfajklafkljdsfajkl 1"
+_special_icon = SubResource("AtlasTexture_7p1sr")
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_dyajw"]
+script = ExtResource("7_sa0v5")
+_character = ExtResource("9_xlhsi")
+_dialog = "aksjdfh akjsdhf asdf  2"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_7p1sr"]
+script = ExtResource("8_dyajw")
+_dialogs = Array[ExtResource("7_sa0v5")]([SubResource("Resource_sa0v5"), SubResource("Resource_dyajw"), SubResource("Resource_dyajw")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"
+
+[sub_resource type="Resource" id="Resource_gd70f"]
+script = ExtResource("7_sa0v5")
+_character = ExtResource("9_xlhsi")
+_dialog = "dlkajflk;dasj dsfalk 3"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Gradient" id="Gradient_xlhsi"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mfrex"]
+gradient = SubResource("Gradient_xlhsi")
+
+[sub_resource type="Resource" id="Resource_xlhsi"]
+script = ExtResource("7_sa0v5")
+_character = ExtResource("8_gd70f")
+_dialog = "asdfasdlkfja ;sdflkj asdf 4"
+_special_icon = SubResource("GradientTexture2D_mfrex")
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_mfrex"]
+script = ExtResource("8_dyajw")
+_dialogs = Array[ExtResource("7_sa0v5")]([SubResource("Resource_gd70f"), SubResource("Resource_xlhsi"), SubResource("Resource_gd70f")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_orddc"]
 shader = ExtResource("6_kla5u")
@@ -261,12 +314,24 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_oisr6")
 
 [node name="DialogButtons" type="VBoxContainer" parent="test" unique_id=1825892821]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1053.0
+offset_top = 418.0
+offset_right = 1123.0
+offset_bottom = 480.0
+metadata/_edit_group_ = true
 
-[node name="ButtonEnhanced" type="Button" parent="test/DialogButtons" unique_id=250309990]
+[node name="trigger_dialog" type="Button" parent="test/DialogButtons" unique_id=250309990]
 layout_mode = 2
-script = ExtResource("6_scdax")
+text = "Dialog 1"
+script = ExtResource("6_jsqof")
+dialog_group = SubResource("Resource_7p1sr")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="trigger_dialog2" type="Button" parent="test/DialogButtons" unique_id=935937387]
+layout_mode = 2
+text = "Dialog 1"
+script = ExtResource("6_jsqof")
+dialog_group = SubResource("Resource_mfrex")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]
@@ -358,7 +423,6 @@ is_disabled = true
 next_target_weights = Array[ExtResource("9_trnwt")]([SubResource("Resource_h1wdl")])
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("15_lsrd0")]
-visible = true
 debug = false
 testing_index = 3
 bounds = Array[ExtResource("16_2g0lw")]([SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7"), SubResource("Resource_u1qnl")])

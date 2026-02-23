@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://dtgmruo0f45f"]
+
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="1_dbm70"]
+[ext_resource type="Script" uid="uid://ywhi44barq8g" path="res://architecture/ui/dialog/character.gd" id="1_f41o4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jqaj"]
+atlas = ExtResource("1_dbm70")
+region = Rect2(23, 55, 82, 52)
+
+[resource]
+script = ExtResource("1_f41o4")
+photo = SubResource("AtlasTexture_2jqaj")
+metadata/_custom_type_script = "uid://ywhi44barq8g"

@@ -20,6 +20,7 @@ func _ready() -> void:
 	_button.mouse_exited.connect(_on_mouse_exited)
 	GoldManager.get_instance().gold_changed.connect(_on_gold_change)
 	_update_display()
+	pivot_offset = size * .5
 
 func deactivate() -> void: set_info(null)
 

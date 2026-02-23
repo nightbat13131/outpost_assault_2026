@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://cw13vv36kxkjl"]
+
+[ext_resource type="Script" uid="uid://ywhi44barq8g" path="res://architecture/ui/dialog/character.gd" id="1_fjojp"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fjojp"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1xpd"]
+atlas = SubResource("CompressedTexture2D_fjojp")
+region = Rect2(23, 20, 83, 57)
+
+[resource]
+script = ExtResource("1_fjojp")
+photo = SubResource("AtlasTexture_y1xpd")
+metadata/_custom_type_script = "uid://ywhi44barq8g"
