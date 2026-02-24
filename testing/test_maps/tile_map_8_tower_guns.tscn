@@ -60,7 +60,7 @@ metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 [sub_resource type="Resource" id="Resource_kwkdg"]
 script = ExtResource("20_pbcjl")
 upgrade_levels = Dictionary[int, int]({
-0: 2,
+0: 1,
 1: 0,
 2: 0
 })
@@ -72,7 +72,7 @@ script = ExtResource("1_lqf21")
 [node name="Test" type="Node" parent="." unique_id=535787639]
 
 [node name="Enemy" parent="Test" unique_id=1456879393 instance=ExtResource("16_kwkdg")]
-position = Vector2(1095, 380)
+position = Vector2(1081, 309)
 
 [node name="Enemy2" parent="Test" unique_id=1230878994 instance=ExtResource("16_kwkdg")]
 position = Vector2(929, 310)
@@ -146,7 +146,7 @@ upgrades = SubResource("Resource_kwkdg")
 starting_tower = -10
 
 [node name="TowerFoundation2" parent="TowerHolder" unique_id=400182285 instance=ExtResource("19_gqrjr")]
-position = Vector2(1020, 575)
+position = Vector2(965, 982)
 upgrades = SubResource("Resource_kwkdg")
 starting_tower = -11
 

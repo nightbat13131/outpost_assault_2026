@@ -5,12 +5,10 @@ const COLOR_RADAR_FILL = Color.DARK_ORCHID
 
 
 static func delta_radian(source_radian: float, target_radian: float) -> float:
-	var delta_radian : float = target_radian - source_radian
-	#prints("0",rotation, target_angle, delta_radian)
-	prints(delta_radian, PI, abs(delta_radian))
-	if abs(delta_radian) > PI:
-		if delta_radian > PI: 
-			delta_radian -= TAU
+	var _delta_radian : float = target_radian - source_radian
+	if abs(_delta_radian) > PI:
+		if _delta_radian > PI: 
+			_delta_radian -= TAU
 		else:
-			delta_radian += TAU
-	return delta_radian
+			_delta_radian += TAU
+	return _delta_radian

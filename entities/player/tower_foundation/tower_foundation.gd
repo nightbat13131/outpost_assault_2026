@@ -12,6 +12,7 @@ var _current_tower: Tower
 @export var starting_tower := TowerInfo.TowerType.NA
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _health_ui: HealthUI = %HealthUI
+@onready var _clip_reload_ui: ClipReloadUI = %ClipReloadUI
 @onready var _radar_preview: RadarPreview = %RadarPreview
 
 func _ready() -> void:
@@ -58,16 +59,19 @@ func _update_display_info() -> void:
 	DisplaySelected.request_refresh.call_deferred(_display_info)
 
 func add_tower(tower_type: TowerInfo.TowerType) -> void:
-	if tower_type == TowerInfo.TowerType.NA:
-		return
+	if tower_type != TowerInfo.TowerType.NA:
+		_add_tower(tower_type)
+
+func _add_tower(tower_type: TowerInfo.TowerType) -> void:
 	var _class = TowerInfo.type_to_class[tower_type]
 	if _current_tower != null:
 		_current_tower.being_replaced()
 	_current_tower = load(_class.get_scene_path()).instantiate() as Tower
-	_current_tower.setup(upgrades, _health_ui)
+	_current_tower.setup(upgrades, _health_ui, _clip_reload_ui) # can't call defered because of other timing
 	_current_tower.dead.connect(_on_tower_dead)
 	_health_ui.set_suppressed(false)
 	add_child(_current_tower)
+	
 	_update_display_info()
 
 func get_radar_preview() -> RadarPreview: return _radar_preview

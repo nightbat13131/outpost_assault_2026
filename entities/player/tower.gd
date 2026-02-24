@@ -12,27 +12,32 @@ var _radar_sensor : RadarSensor
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _context_manager: TowerContextManager = %TowerContextManager
 var _founation_upgrades : FoundationUpgrades
-@onready var _shooter: Shooter = %Shooter
-
+@onready var _shooter: Shooter
 
 func _ready() -> void:
 	_mid_ready()
 	set_max_health(TowerInfo.get_max_health(_my_type), true)
 	_tower_purchase_manager.set_foundation(get_foundation())
 	_context_manager.set_tower(self)
-	if _shooter:
-		_radar_sensor = _shooter.get_radar_sensor()
+	for each_child in get_children(): # so that no every tower HAS to have a shooter
+		if each_child is Shooter: 
+			_shooter = each_child
+			_radar_sensor = _shooter.get_radar_sensor()
 
 func _mid_ready() -> void: 
 	push_error(self, " Needs to overwrite Tower._mid_ready()")
 
-func setup(upgrades: FoundationUpgrades, health_ui) -> void:
+func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
 	_founation_upgrades = upgrades
-	_founation_upgrades.upgrade_change.connect(_on_upgrade_changed)
+	_founation_upgrades.changed.connect(_on_upgrade_changed)
 	_on_upgrade_changed.call_deferred()
 	_health_ui = health_ui
 	if _health_ui:
 		_hp = _hp
+	await ready
+	if _shooter:
+		_shooter.set_foundation_upgrades(_founation_upgrades)
+	clip_reload_ui.set_reload_info(get_reload_info())
 
 func _set_radar_range() -> void:
 	var _range = TowerInfo.get_radar_range(_my_type, _founation_upgrades)
@@ -66,6 +71,11 @@ func take_damage(damage_delt: float) -> void: _hp -= abs(damage_delt)
 func get_health_ratio() -> float: return clamp(_hp / _max_hp, 0.0, 1.0)
 
 func get_health_ui() -> HealthUI: return _health_ui
+
+func get_reload_info() -> ReloadInfo:
+	if _shooter:
+		return _shooter.get_reload_info()
+	return null
 
 func _on_upgrade_changed() -> void:
 	_set_radar_range()

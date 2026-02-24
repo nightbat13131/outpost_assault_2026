@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func set_upgrade_info(info: FoundationUpgrades) -> void: 
 	_upgrades = info
-	_upgrades.upgrade_change.connect(_on_upgrade_changed)
+	_upgrades.changed.connect(_on_upgrade_changed)
 	_on_upgrade_changed() ## apply starting upgrades
 
 func _on_upgrade_changed() -> void:

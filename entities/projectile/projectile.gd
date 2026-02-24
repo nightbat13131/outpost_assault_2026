@@ -1,6 +1,6 @@
 class_name Projectile extends Area2D
 
-const LIFE_VS_RANGE : float = 1.5
+const LIFE_VS_RANGE : float = 1.0 ## because the muzzle is beyond the center, 100% still fices a bullet that goes a little beyond normal range
 
 #var _speed: int
 var _damage: float

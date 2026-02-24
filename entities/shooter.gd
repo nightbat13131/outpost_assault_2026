@@ -5,25 +5,30 @@ const EVENT_HAS_TARGET = "has_target"
 const EVENT_DIE = "die"
 
 @export var _projectile : PackedScene
-@export var _rotation_speed_deg_sec := 15
+@export var _rotation_speed_deg_sec := 45
 @export var _clip_information : ReloadInfo
 @onready var _radar_sensor: RadarSensor = %RadarSensor
 
 @onready var _aiming_sights: AimingSights = %AimingSights
 @onready var _state_machine: StateChart = %ShooterStateChart
 @onready var _muzzles: ShooterMuzzles = %Muzzles
+
+## calculated and passed by parent
+var _range := 100.0
 #var _foundation_upgrades : FoundationUpgrades
 
 func _ready() -> void:
 	_state_machine.propagate_call("set_shooter", [self])
 	_state_machine.propagate_call("set_radar_sensor", [_radar_sensor])
 	_radar_sensor.set_shooter(self)
+	_clip_information = _clip_information.duplicate()
+
 
 func set_foundation_upgrades(foundation_upgrades: FoundationUpgrades) -> void:
-	#_foundation_upgrades = foundation_upgrades
-	_clip_information.set_foundation_upgrades(foundation_upgrades)
+	_clip_information.setup(self, foundation_upgrades)
 
-func _set_range(_range: float) -> void:
+func _set_range(range_: float) -> void:
+	_range = range_
 	_aiming_sights.set_range(_range)
 	_radar_sensor.set_radar_outer_range(_range)
 
@@ -38,6 +43,8 @@ func get_rotation_speed_radian() -> float:
 	return _rotation_speed_deg_sec * (TAU/360.0)
 
 func get_radar_sensor() -> RadarSensor: return _radar_sensor
+
+func get_reload_info() -> ReloadInfo: return _clip_information
 
 func state_process(modded_delta: float) -> void:
 	if _clip_information:
@@ -72,8 +79,8 @@ func try_shoot() -> void:
 
 func _shoot() -> void:
 	var projectile : Projectile = _projectile.instantiate()
-	var _projectile_speed = 25.0
-	var _projectile_range = 50.0
+	var _projectile_speed = 100.0
+	var _projectile_range = _range
 	var _damage := 10.0
 	projectile.setup(
 		_muzzles.get_muzzle_location(), 
@@ -82,6 +89,7 @@ func _shoot() -> void:
 		_damage, 
 		null, 
 		_projectile_range)
+	_clip_information.shots_fired()
 	if TowerHolder.get_instance():
 		TowerHolder.get_instance().add_child(projectile)
 	else:
