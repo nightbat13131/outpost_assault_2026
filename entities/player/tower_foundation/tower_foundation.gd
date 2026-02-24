@@ -1,4 +1,4 @@
-@tool
+
 class_name TowerFoundation extends Sprite2D
 
 const SCENE_PATH = "uid://crf0po16hl0dv"
@@ -6,12 +6,13 @@ const SCENE_PATH = "uid://crf0po16hl0dv"
 var _display_info: DisplayHelper
 var _current_tower: Tower
 @onready var _button: Button_Trigger_UI = %Button
-@onready var _radar_sensor: RadarSensor = %RadarSensor
+#@onready var _radar_sensor: RadarSensor = %RadarSensor
 @onready var upgrade_manager: UpgradeManager_TowerFoundation = %UpgradeManager
 @export var upgrades : FoundationUpgrades
 @export var starting_tower := TowerInfo.TowerType.NA
-@onready var tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
+@onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _health_ui: HealthUI = %HealthUI
+@onready var _radar_preview: RadarPreview = %RadarPreview
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -24,7 +25,6 @@ func _ready() -> void:
 		_button.set_size(size)
 		_button.set_position(size*-.5)
 		_button.selected.connect(on_selected)
-	_radar_sensor.set_upgrade(upgrades)
 	add_tower(starting_tower)
 
 func _draw() -> void:
@@ -33,7 +33,7 @@ func _draw() -> void:
 			draw_circle(Vector2.ZERO, 25.0, Color.BROWN, false, 5.0)
 
 func _connect_purchasers() -> void:
-	tower_purchase_manager.set_foundation(self)
+	_tower_purchase_manager.set_foundation(self)
 	if upgrades == null:
 		upgrades = FoundationUpgrades.new()
 	upgrades = upgrades.duplicate()
@@ -53,29 +53,27 @@ func _update_display_info() -> void:
 	if _has_tower():
 		_display_info.set_purchaser(_current_tower.get_purchase_manager(), 1)
 	else:
-		_display_info.set_purchaser(tower_purchase_manager, 1)
+		_display_info.set_purchaser(_tower_purchase_manager, 1)
 	_display_info.set_tower(_current_tower)
 	DisplaySelected.request_refresh.call_deferred(_display_info)
 
 func add_tower(tower_type: TowerInfo.TowerType) -> void:
 	if tower_type == TowerInfo.TowerType.NA:
 		return
-	print("Adding a tower of type ", tower_type)
 	var _class = TowerInfo.type_to_class[tower_type]
 	if _current_tower != null:
 		_current_tower.being_replaced()
 	_current_tower = load(_class.get_scene_path()).instantiate() as Tower
-	_current_tower.setup(upgrades, _radar_sensor, _health_ui)
+	_current_tower.setup(upgrades, _health_ui)
 	_current_tower.dead.connect(_on_tower_dead)
 	_health_ui.set_suppressed(false)
 	add_child(_current_tower)
 	_update_display_info()
 
+func get_radar_preview() -> RadarPreview: return _radar_preview
+
 func _on_tower_dead(tower: Tower) -> void:
 	if _current_tower == tower:
 		_current_tower = null
 		_health_ui.set_suppressed(true)
-		_radar_sensor.on_tower_died()
 	_update_display_info()
-
-func get_radar() -> RadarSensor: return _radar_sensor

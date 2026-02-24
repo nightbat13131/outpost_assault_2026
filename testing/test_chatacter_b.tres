@@ -16,4 +16,5 @@ script = ExtResource("1_fjojp")
 background = SubResource("GradientTexture2D_htnwx")
 sprite = ExtResource("2_y1xpd")
 talking_sound = ExtResource("3_htnwx")
+_name = "Test B"
 metadata/_custom_type_script = "uid://ywhi44barq8g"

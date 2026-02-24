@@ -27,4 +27,4 @@ frame_progress = 0.12610707
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=404334155]
 unique_name_in_owner = true
-bus = &"SFX"
+bus = &"TalkingBlips"

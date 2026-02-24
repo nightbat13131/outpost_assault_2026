@@ -23,8 +23,7 @@ func _ready() -> void:
 		_button.selected.connect(_on_selected)
 	_finish_setup.call_deferred()
 
-func _finish_setup() -> void:
-	DisplayPlayerBase.get_instance().connect_base(self)
+func _finish_setup() -> void: DisplayPlayerBase.connect_base(self)
 
 func set_max_health(max_hp: float, force_full:= false) -> void:
 	if max_hp <= 0.0: 

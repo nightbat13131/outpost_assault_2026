@@ -1,14 +1,34 @@
 [gd_scene format=3 uid="uid://dfliur4n7vbax"]
 
+[ext_resource type="Script" uid="uid://bb30xxg577ntr" path="res://entities/player/tower.gd" id="1_uq4vj"]
 [ext_resource type="Script" uid="uid://b2e6b5gly4wug" path="res://entities/player/tower_foundation/gun_nest_purchase_manager.gd" id="1_w1wn5"]
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/tower_cost_info.gd" id="2_84w7n"]
 [ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/cost_unit_tower.tres" id="3_i1tp4"]
 [ext_resource type="Script" uid="uid://dlb5ll2qi1s32" path="res://entities/player/towers/button_manager_tower_context.gd" id="4_fpjj8"]
 [ext_resource type="Resource" uid="uid://cpni7pdywmkt0" path="res://entities/player/towers/repair_info.tres" id="5_8ijru"]
 [ext_resource type="Resource" uid="uid://bajuwissp7k18" path="res://entities/player/towers/sell_info.tres" id="6_6sg6d"]
+[ext_resource type="Script" uid="uid://bev376lk5u2op" path="res://entities/shooter.gd" id="7_1x8y5"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="7_17534"]
+[ext_resource type="PackedScene" uid="uid://fmyfpa2i8oox" path="res://entities/projectile/projectile_base.tscn" id="8_0ucim"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="8_1x8y5"]
+[ext_resource type="Script" uid="uid://dmp1d6bqc3nt6" path="res://entities/projectile/reload_info.gd" id="8_6w4nt"]
+[ext_resource type="Script" uid="uid://dbov4m2q2u0jb" path="res://entities/forward_sights.gd" id="8_77sou"]
+[ext_resource type="Script" uid="uid://ipgq0kvenlqo" path="res://entities/player/towers/shotter_muzzles.gd" id="8_u7p5d"]
+[ext_resource type="Script" uid="uid://dl6q0mnhtofwi" path="res://entities/player/radar_sensor.gd" id="10_ap3dx"]
+[ext_resource type="Script" uid="uid://bwgum55snc43l" path="res://entities/states/shooter_state_no_target.gd" id="12_qy8v6"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="13_noxse"]
+[ext_resource type="Script" uid="uid://cho05s6mj1i8g" path="res://entities/states/shooter_state_has_target.gd" id="14_qy8v6"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="16_jffen"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr1aj"]
-size = Vector2(50, 50)
+size = Vector2(64, 64)
+
+[sub_resource type="Resource" id="Resource_uq4vj"]
+script = ExtResource("8_6w4nt")
+metadata/_custom_type_script = "uid://dmp1d6bqc3nt6"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uq4vj"]
+radius = 50.0
 
 [sub_resource type="Gradient" id="Gradient_jbjqe"]
 interpolation_mode = 1
@@ -20,7 +40,13 @@ gradient = SubResource("Gradient_jbjqe")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_2pbwi"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u7p5d"]
+gradient = SubResource("Gradient_2pbwi")
+
 [node name="Tower_Base" type="Area2D" unique_id=1226539165]
+script = ExtResource("1_uq4vj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=308655744]
 shape = SubResource("RectangleShape2D_pr1aj")
@@ -37,5 +63,79 @@ script = ExtResource("4_fpjj8")
 _repair_info = ExtResource("5_8ijru")
 _sell_info = ExtResource("6_6sg6d")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2099323296]
+[node name="Shooter" type="Node2D" parent="." unique_id=1768546938]
+unique_name_in_owner = true
+script = ExtResource("7_1x8y5")
+_projectile = ExtResource("8_0ucim")
+_clip_information = SubResource("Resource_uq4vj")
+
+[node name="RadarSensor" type="Area2D" parent="Shooter" unique_id=955137441]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("10_ap3dx")
+_targeting_method = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shooter/RadarSensor" unique_id=334211586]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_uq4vj")
+
+[node name="Muzzles" type="Node2D" parent="Shooter" unique_id=1746190895]
+unique_name_in_owner = true
+script = ExtResource("8_u7p5d")
+
+[node name="Node" type="Node2D" parent="Shooter/Muzzles" unique_id=1560695110]
+position = Vector2(63, 0)
+
+[node name="AimingSights" type="Node2D" parent="Shooter" unique_id=1159517159]
+unique_name_in_owner = true
+script = ExtResource("8_77sou")
+
+[node name="RayCast2D" type="RayCast2D" parent="Shooter/AimingSights" unique_id=1104332702]
+target_position = Vector2(228, 0)
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Shooter" unique_id=2099323296]
 texture = SubResource("GradientTexture2D_fpjj8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Shooter" unique_id=1309239808]
+position = Vector2(32, -1.4210855e-14)
+scale = Vector2(0.96875006, 0.093749985)
+texture = SubResource("GradientTexture2D_u7p5d")
+
+[node name="ShooterStateChart" type="Node" parent="Shooter" unique_id=1359966074]
+unique_name_in_owner = true
+script = ExtResource("7_17534")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="ShootingStates" type="Node" parent="Shooter/ShooterStateChart" unique_id=423287148]
+script = ExtResource("8_1x8y5")
+initial_state = NodePath("NoTarget")
+
+[node name="die" type="Node" parent="Shooter/ShooterStateChart/ShootingStates" unique_id=1465634203]
+script = ExtResource("13_noxse")
+to = NodePath("../Dead")
+event = &"die"
+delay_in_seconds = "0.0"
+
+[node name="NoTarget" type="Node" parent="Shooter/ShooterStateChart/ShootingStates" unique_id=1415597466]
+script = ExtResource("12_qy8v6")
+
+[node name="has_target" type="Node" parent="Shooter/ShooterStateChart/ShootingStates/NoTarget" unique_id=1847915930]
+script = ExtResource("13_noxse")
+to = NodePath("../../HasTarget")
+event = &"has_target"
+delay_in_seconds = "0.0"
+
+[node name="HasTarget" type="Node" parent="Shooter/ShooterStateChart/ShootingStates" unique_id=83807040 node_paths=PackedStringArray("aiming_sights")]
+script = ExtResource("14_qy8v6")
+aiming_sights = NodePath("../../../AimingSights")
+
+[node name="no_target" type="Node" parent="Shooter/ShooterStateChart/ShootingStates/HasTarget" unique_id=1991601113]
+script = ExtResource("13_noxse")
+to = NodePath("../../NoTarget")
+event = &"no_target"
+delay_in_seconds = "0.0"
+
+[node name="Dead" type="Node" parent="Shooter/ShooterStateChart/ShootingStates" unique_id=773595457]
+script = ExtResource("16_jffen")

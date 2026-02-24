@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="2_u36w5"]
 [ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="3_53k03"]
 [ext_resource type="Script" uid="uid://cui255p7jwfm2" path="res://entities/player/tower_foundation/upgrade_manager_tower_foundation.gd" id="4_bi0t7"]
-[ext_resource type="Script" uid="uid://dl6q0mnhtofwi" path="res://entities/player/radar_sensor.gd" id="4_e20l4"]
 [ext_resource type="Script" uid="uid://dua3ofi61w5vo" path="res://entities/player/tower_foundation/cost_button_foundation_upgrades.gd" id="5_3qlq2"]
 [ext_resource type="Resource" uid="uid://b2ginln0x6f0n" path="res://entities/player/tower_foundation/cost_radio.tres" id="5_u36w5"]
 [ext_resource type="Resource" uid="uid://mt6imtnvmv1i" path="res://entities/player/tower_foundation/cost_gear.tres" id="6_bhlwj"]
@@ -15,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/cost_unit_tower.tres" id="12_dtpd0"]
 [ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/cost_truck_tower.tres" id="13_qw6nd"]
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="15_dtpd0"]
+[ext_resource type="Script" uid="uid://bcnkxg5wskc3x" path="res://entities/player/tower_foundation/radar_preview.gd" id="16_qw6nd"]
 
 [sub_resource type="Gradient" id="Gradient_bi0t7"]
 offsets = PackedFloat32Array(0.7392857, 1)
@@ -26,9 +26,6 @@ width = 75
 height = 75
 fill = 2
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bi0t7"]
-radius = 50.0
 
 [sub_resource type="Gradient" id="Gradient_3qlq2"]
 interpolation_mode = 1
@@ -72,13 +69,9 @@ script = ExtResource("2_u36w5")
 active_cursor_overwrite = ExtResource("3_53k03")
 metadata/_edit_lock_ = true
 
-[node name="RadarSensor" type="Area2D" parent="." unique_id=1838665316]
+[node name="RadarPreview" type="Node2D" parent="." unique_id=1196884570]
 unique_name_in_owner = true
-script = ExtResource("4_e20l4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RadarSensor" unique_id=1075592818]
-unique_name_in_owner = true
-shape = SubResource("CircleShape2D_bi0t7")
+script = ExtResource("16_qw6nd")
 
 [node name="UpgradeManager" type="Node" parent="." unique_id=710635329]
 unique_name_in_owner = true

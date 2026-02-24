@@ -1,4 +1,3 @@
-@abstract
 class_name Tower extends Area2D
 
 signal dead(tower: Tower) ## I don't think the foundation cares between sold and destroyed.
@@ -8,44 +7,37 @@ var _my_type := TowerInfo.TowerType.NA
 var _max_hp :  float = 100
 var _hp : float = 100: set = set_health
 var _health_ui : HealthUI
-var _tower_purchase_manager: PurchaseManager_GunNest
 var _radar_sensor : RadarSensor
+
+@onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
+@onready var _context_manager: TowerContextManager = %TowerContextManager
 var _founation_upgrades : FoundationUpgrades
-var _context_manager: TowerContextManager
+@onready var _shooter: Shooter = %Shooter
 
-
-@export_flags_2d_physics var _targets : int
 
 func _ready() -> void:
 	_mid_ready()
 	set_max_health(TowerInfo.get_max_health(_my_type), true)
-	for each_child in get_children():
-		if each_child is PurchaseManager_GunNest:
-			_tower_purchase_manager = each_child
-			_tower_purchase_manager.set_foundation(get_foundation())
-		if each_child is TowerContextManager: 
-			_context_manager = each_child
-			_context_manager.set_tower(self)
+	_tower_purchase_manager.set_foundation(get_foundation())
+	_context_manager.set_tower(self)
+	if _shooter:
+		_radar_sensor = _shooter.get_radar_sensor()
 
-@abstract func _mid_ready() -> void
+func _mid_ready() -> void: 
+	push_error(self, " Needs to overwrite Tower._mid_ready()")
 
-func setup(upgrades: FoundationUpgrades, radar_sensor: RadarSensor, health_ui) -> void:
+func setup(upgrades: FoundationUpgrades, health_ui) -> void:
 	_founation_upgrades = upgrades
 	_founation_upgrades.upgrade_change.connect(_on_upgrade_changed)
-	_set_radar.call_deferred(radar_sensor)
+	_on_upgrade_changed.call_deferred()
 	_health_ui = health_ui
 	if _health_ui:
 		_hp = _hp
 
-func _set_radar(radar_sensor: RadarSensor) -> void:
-	_radar_sensor = radar_sensor
-	if _radar_sensor:
-		_radar_sensor.set_target_types(_targets)
-		_set_radar_range()
-
 func _set_radar_range() -> void:
-	if _radar_sensor:
-		_radar_sensor.set_radar_outer_range(TowerInfo.get_radar_range(_my_type, _founation_upgrades))
+	var _range = TowerInfo.get_radar_range(_my_type, _founation_upgrades)
+	if _shooter:
+		_shooter._set_range(_range)
 
 func repair() -> void: set_health(_max_hp)
 

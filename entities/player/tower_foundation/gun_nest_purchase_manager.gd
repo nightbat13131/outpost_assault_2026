@@ -15,7 +15,7 @@ func _connect_to_section() -> void:
 func set_foundation(node: TowerFoundation) -> void:
 	_foundation = node
 	for index in range(cost_tower_infos.size()):
-		cost_tower_infos[index].set_radar(_foundation.get_radar())
+		cost_tower_infos[index].set_radar_preview(_foundation.get_radar_preview())
 
 func _update_buttons() -> void:
 	if _buttons.size() != cost_tower_infos.size():

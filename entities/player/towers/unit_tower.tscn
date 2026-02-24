@@ -17,11 +17,20 @@ height = 32
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_chclv"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.47555, 0.27843103, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y81ii"]
+gradient = SubResource("Gradient_chclv")
+
 [node name="Tower_Unit" unique_id=1226539165 instance=ExtResource("1_giylo")]
 script = ExtResource("2_chclv")
 
 [node name="TowerPurchaseManager" parent="." index="1" unique_id=1756272085]
 cost_tower_infos = Array[ExtResource("2_2pbwi")]([ExtResource("3_chclv")])
 
-[node name="Sprite2D" parent="." index="3" unique_id=2099323296]
+[node name="Sprite2D" parent="Shooter" parent_id_path=PackedInt32Array(1768546938) index="2" unique_id=2099323296]
 texture = SubResource("GradientTexture2D_giylo")
+
+[node name="Sprite2D2" parent="Shooter" parent_id_path=PackedInt32Array(1768546938) index="3" unique_id=1309239808]
+texture = SubResource("GradientTexture2D_y81ii")

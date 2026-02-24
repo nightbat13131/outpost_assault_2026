@@ -1,7 +1,6 @@
 class_name Spawner extends Node2D
 ## TODO: integrate _hard_spawn_cap with spawn logic
 
-
 ## This Spawner is participating in the wave.
 signal spawner_started(spawner: Spawner)
 ## This Spawner is done participating in the wave.
@@ -26,7 +25,7 @@ static var MapEnemyTypeMeta: Dictionary[EnemyUnitInfo.EnemyTypes, EnemySpawnType
 @export var _inital_delay : float = 0.05
 ## Seconds between Pulses
 @export_range(0.5, 5.0, .5) var _pulse_gap := 2.0
-# How many pulse are going to spawn for this wave
+## How many pulse are going to spawn for this wave. -1 is infinite. 
 @export_range(-1, 100, 1) var _pulse_per_wave: int = 10
 ## How many pulse started so far
 var _started_pulse_count := 0

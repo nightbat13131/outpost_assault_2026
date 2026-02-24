@@ -7,8 +7,12 @@ static var _instance: DisplayPlayerBase
 func _ready() -> void:
 	_instance = self
 
-func connect_base(node: PlayerMainBase) -> void:
+func _connect_base(node: PlayerMainBase) -> void:
 	if node:
 		health_ui.set_primary(node.get_health_ui())
 
 static func get_instance() -> DisplayPlayerBase: return _instance
+
+static func connect_base(base: PlayerMainBase) -> void: 
+	if _instance: 
+		_instance._connect_base(base)

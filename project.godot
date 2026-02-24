@@ -57,10 +57,10 @@ theme/custom="uid://uidwmqpmyjci"
 
 2d_navigation/layer_1="Ground"
 2d_navigation/layer_2="Sky"
+2d_physics/layer_3="Enemy Humans"
 2d_physics/layer_9="AnyBuilding"
 2d_physics/layer_10="EnemyBuilding"
 2d_physics/layer_11="PlayerBuilding"
-2d_physics/layer_24="Camera"
 
 [rendering]
 

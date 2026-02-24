@@ -3,5 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://dfliur4n7vbax" path="res://entities/player/towers/tower_base.tscn" id="1_lgnq7"]
 [ext_resource type="Script" uid="uid://d3jujp00r442w" path="res://entities/player/towers/truck_tower.gd" id="2_7ih2p"]
 
+[sub_resource type="Gradient" id="Gradient_7ih2p"]
+colors = PackedColorArray(0, 0, 0, 1, 0.19457844, 0.38611126, 0.644527, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oe3ma"]
+gradient = SubResource("Gradient_7ih2p")
+
 [node name="Tower_Truck" unique_id=1226539165 instance=ExtResource("1_lgnq7")]
 script = ExtResource("2_7ih2p")
+
+[node name="Sprite2D2" parent="Shooter" parent_id_path=PackedInt32Array(1768546938) index="3" unique_id=1309239808]
+texture = SubResource("GradientTexture2D_oe3ma")

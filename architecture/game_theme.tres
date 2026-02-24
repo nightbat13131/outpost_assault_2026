@@ -4,6 +4,7 @@
 bg_color = Color(1, 1, 1, 1)
 
 [resource]
+HBoxContainer/constants/separation = 0
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10

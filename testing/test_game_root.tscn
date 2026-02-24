@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://crpgsle6mc8n8"]
 
 [ext_resource type="PackedScene" uid="uid://st2jxhhig6ub" path="res://architecture/ui/level_ui.tscn" id="1_g47r2"]
-[ext_resource type="PackedScene" uid="uid://c0fi0vwkdcxil" path="res://testing/test_maps/tile_map_7_tilemap_ui.tscn" id="2_3pgvo"]
+[ext_resource type="PackedScene" uid="uid://dxgjwuny1ds3v" path="res://testing/test_maps/tile_map_8_tower_guns.tscn" id="2_qupj3"]
 
 [node name="TestGameRoot" type="Node2D" unique_id=669138280]
 
 [node name="LevelUI" parent="." unique_id=2003894573 instance=ExtResource("1_g47r2")]
 
-[node name="Test_Level_7" parent="LevelUI/FullScreen/CenterScreen/VBoxContainer/SubViewportContainer/LevelViewport" parent_id_path=PackedInt32Array(2003894573, 256052677) index="0" unique_id=820054972 instance=ExtResource("2_3pgvo")]
+[node name="Test_Level_8" parent="LevelUI/FullScreen/CenterScreen/VBoxContainer/SubViewportContainer/LevelViewport" parent_id_path=PackedInt32Array(2003894573, 256052677) index="0" unique_id=820054972 instance=ExtResource("2_qupj3")]
 
 [editable path="LevelUI"]
