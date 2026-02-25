@@ -6,6 +6,7 @@ static var _null_information : DisplayHelper
 var _information : DisplayHelper
 @onready var display_name: Label = %DisplayName
 @onready var display_health: ShadowHealthUI = %Display_Health
+@onready var clip_reload_ui: ClipReloadUI = %ClipReloadUI
 @onready var display_selected_viewport: DisplaySelected_SubViewport = %DisplaySelectedViewport
 @onready var purchase_interface: PurchaseInterface = %PurchaseInterface
 @onready var tower_interface: DisplayTowerInterface = %TowerInterface
@@ -57,6 +58,7 @@ func _apply_information(info: DisplayHelper) -> void:
 	purchase_interface.apply_purchase_manager(_information.get_purchaser(0), 0)
 	purchase_interface.apply_purchase_manager(_information.get_purchaser(1), 1)
 	tower_interface.set_manager(_information.get_tower_context_manager())
+	clip_reload_ui.set_reload_info(_information.get_reload_info())
 
 func _aim_camera() -> void: display_selected_viewport.set_camera_focus(_information.get_camera_position())
 

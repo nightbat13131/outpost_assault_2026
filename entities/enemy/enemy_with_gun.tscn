@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://drfqmnxu83xf6"]
+
+[ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="1_pylal"]
+[ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/player/towers/shooter_base.tscn" id="2_c3r84"]
+
+[sub_resource type="Gradient" id="Gradient_nnjro"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0031055901, 0.18012422, 0.29192546)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kpr4w"]
+gradient = SubResource("Gradient_nnjro")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="GunMan" unique_id=1456879393 instance=ExtResource("1_pylal")]
+_rotation_speed_deg_sec = 180
+
+[node name="Shooter" parent="." index="6" unique_id=1614296909 instance=ExtResource("2_c3r84")]
+
+[node name="RadarSensor" parent="Shooter" index="0" unique_id=790780675]
+collision_mask = 1024
+
+[node name="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
+collision_mask = 516
+
+[node name="Sprite2D" parent="Shooter" index="3" unique_id=383995293]
+texture = SubResource("GradientTexture2D_kpr4w")
+
+[editable path="Shooter"]

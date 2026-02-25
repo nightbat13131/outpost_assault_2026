@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="8_lj6es"]
 [ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/broken_foundation/populate_broken_foundations.gd" id="9_gva82"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmbkb"]
+size = Vector2(120, 253)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_obju6"]
 atlas = ExtResource("3_vnl0w")
 region = Rect2(0, 0, 64, 64)
@@ -78,8 +81,14 @@ script = ExtResource("6_f74wo")
 point_path = NodePath("Spawn_SW")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[node name="SpawnerBuilding_1x2" type="Node2D" unique_id=2112157350]
+[node name="SpawnerBuilding_1x2" type="Area2D" unique_id=81075089]
+collision_layer = 512
+collision_mask = 0
 script = ExtResource("1_tmbkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404146420]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_tmbkb")
 
 [node name="Button" type="Button" parent="." unique_id=425182933]
 offset_left = -59.0

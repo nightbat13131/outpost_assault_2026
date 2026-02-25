@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="8_3ceep"]
 [ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/broken_foundation/populate_broken_foundations.gd" id="9_eqv62"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv2og"]
+size = Vector2(123, 122)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_obju6"]
 atlas = ExtResource("2_a6824")
 region = Rect2(0, 0, 64, 64)
@@ -68,8 +71,14 @@ script = ExtResource("4_3ceep")
 point_path = NodePath("Spawn_W")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[node name="SpawnerBuilding_1x1" type="Node2D" unique_id=2112157350]
+[node name="SpawnerBuilding_1x1" type="Area2D" unique_id=478688652]
+collision_layer = 512
+collision_mask = 0
 script = ExtResource("1_4h0ng")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=95689233]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_lv2og")
 
 [node name="Button" type="Button" parent="." unique_id=425182933]
 offset_left = -59.0

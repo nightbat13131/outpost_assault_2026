@@ -5,6 +5,7 @@ var color : Color = Color.BISQUE
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	set_collision_mask_value(RadarSensor.COLLISION_ENEMY_HUMANS, true)
 	for each_child in get_children():
 		if each_child is CollisionShape2D:
 			collision_shape_2d = each_child

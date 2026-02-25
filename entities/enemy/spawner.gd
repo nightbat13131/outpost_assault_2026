@@ -8,14 +8,7 @@ signal spawner_stopped(spawner: Spawner)
 
 signal enemy_spawned(unit: EnemyUnit)
 
-enum EnemySpawnTypes {NA=0,
-	PERSON = 100, VEHICLE_GROUN = 200, VEHICLE_AIR=300}
 
-static var MapEnemyTypeMeta: Dictionary[EnemyUnitInfo.EnemyTypes, EnemySpawnTypes] = {
-	EnemyUnitInfo.EnemyTypes.DEBUG_WALKER: EnemySpawnTypes.PERSON, 
-	EnemyUnitInfo.EnemyTypes.SCOUT: EnemySpawnTypes.PERSON, 
-	EnemyUnitInfo.EnemyTypes.GUN: EnemySpawnTypes.PERSON
-}
 
 @export var spawn_points : Array[SpawnPoint] = []
 @export_category("Wave")
@@ -41,11 +34,15 @@ var _active_enemy_count:= 0
 # How many units spawn in each pulse
 @export_range(1,100, 1) var _pulse_unit_volume: int = 1
 
+@export var spawn_types : Dictionary[EnemyUnitInfo.EnemyTypes, int] = {}
+
 ## Parent node for spawned units get added to as children.
 var _unit_container: Node2D: set = set_unit_container, get = get_unit_container
 ## Used to indicate the Spanw Point is destroyed
 var _is_pulse_active := false
 var _is_disabled := false 
+
+var _picker : WeightedPicker
 
 @onready var _timer := TimerModded.new(_inital_delay)
 
@@ -53,6 +50,7 @@ func _ready() -> void:
 	add_child(_timer) 
 	_timer.timeout.connect(_on_timer_timeout)
 	_populate_spawn_points()
+	_picker = WeightedPicker.new(spawn_types)
 
 func _populate_spawn_points() -> void:
 	for each_child in get_children():
@@ -125,7 +123,7 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 		return
 	var next_enemy_packed_scene: PackedScene = load(next_enemy_path)
 	var next_enemy_instance: EnemyUnit = next_enemy_packed_scene.instantiate()
-	var spawn_point : SpawnPoint = _get_spawn_point(EnemySpawnTypes.PERSON) # TODO dynamic type
+	var spawn_point : SpawnPoint = _get_spawn_point(EnemyUnitInfo.EnemySpawnTypes.PERSON) # TODO dynamic type
 	next_enemy_instance.set_position(spawn_point.get_target_location())
 	get_unit_container().add_child(next_enemy_instance)
 	# set_nav_target doesn't work if happening before child_add.
@@ -136,7 +134,7 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 	enemy_spawned.emit(next_enemy_instance)
 	_check_pulse()
 
-func _get_spawn_point(enemy_type: EnemySpawnTypes) -> SpawnPoint:
+func _get_spawn_point(enemy_type: EnemyUnitInfo.EnemySpawnTypes) -> SpawnPoint:
 	if spawn_points.is_empty():
 		push_warning(self, " has no spanw_points")
 		return null
@@ -148,8 +146,40 @@ func _get_spawn_point(enemy_type: EnemySpawnTypes) -> SpawnPoint:
 	return spawn_points[0]
 
 func _pick_enemy() -> EnemyUnitInfo.EnemyTypes:
-	return EnemyUnitInfo.EnemyTypes.DEBUG_WALKER
+	return _picker.pick_one()
 
 func _end_wave() -> void: spawner_stopped.emit(self)
 
 func _on_unit_death(_unit) -> void: _active_enemy_count -= 1
+
+class WeightedPicker:
+	var _total: float = 0
+	var _choices: Dictionary[EnemyUnitInfo.EnemyTypes, int]
+	
+	func _init(dict : Dictionary[EnemyUnitInfo.EnemyTypes, int]) -> void: 
+		populate_choices(dict)
+	
+	func pick_one() -> EnemyUnitInfo.EnemyTypes:
+		if _choices.is_empty():
+			return EnemyUnitInfo.EnemyTypes.DEBUG_WALKER
+		if _choices.size() == 1:
+			return _choices.keys()[0]
+		var roll : float = randf_range(0, _total)
+		var current_weight : float = 0
+		for key in _choices.keys():
+			current_weight = _choices[key]
+			if roll <= current_weight:
+				return key
+			roll -= current_weight
+		return EnemyUnitInfo.EnemyTypes.DEBUG_WALKER
+
+	## clearing out any 0 entries 
+	func populate_choices(dict : Dictionary[EnemyUnitInfo.EnemyTypes, int]) -> void: 
+		var weight: int
+		if _total != 0:
+			push_warning("_total didn't start at 0") # because I removed _total = 0.0 and want to make sure i don't need it
+		for key in dict.keys().duplicate():
+			weight = dict[key]
+			if weight > 0:
+				_choices[key] = weight
+				_total += weight

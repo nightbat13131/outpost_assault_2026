@@ -6,6 +6,7 @@ class_name EnemyUnit extends CharacterBody2D
 signal died(unit: EnemyUnit)
 
 const EVENT_NO_NAV_TARGET = "no nav target"
+const EVENT_NAV_TARGET = "has nav target"
 const EVENT_DIED = "died"
 
 const DEFAULT_DESIRED_DISTANCE := 25.0
@@ -14,26 +15,32 @@ const DEFAULT_DESIRED_DISTANCE := 25.0
 @export_category("Sounds")
 @export var _sounds_movment : Array[AudioStream]
 @export var _sounds_death : Array[AudioStream]
+@export var _lock_rotation : Array = []
+@export var _rotation_speed_deg_sec := 180
 var _sound_player: AudioStreamPlayer2D
 
 var _animated_sprite : AnimatedSprite2D
 var _state_machine: StateChart
 var _nav_agent : NavigationAgent2D
 var _nav_target : Node2D :set = set_nav_target
-var _health_ui: HealthUI
+@onready var _health_ui: HealthUI = %HealthUI
 
 var _health : float = 100.0 : set = _set_health
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	_detect_children()
 	_set_health(_enemy_info.get_max_health())
+	_health_ui.set_health_ratio(1.0)
+	_lock_rotation.append(%UIAnchor)
 
 func set_nav_target(node: Node2D) -> void:
 	_nav_target = node
 	if _nav_agent:
 		if _nav_target:
+			send_event(EVENT_NAV_TARGET)
 			if _nav_target is NavPoint:
 				_nav_target.apply_nav_agent(_nav_agent)
 			else:
@@ -42,7 +49,30 @@ func set_nav_target(node: Node2D) -> void:
 		else: 
 			send_event(EVENT_NO_NAV_TARGET)
 
-func move(_delta_moded: float) -> void:
+func move(delta_moded: float) -> void:
+	## maximum can rotate this frame if needed
+	var next_path_pos: Vector2 = _nav_agent.get_next_path_position()
+	var new_velocity: Vector2 = global_position.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
+	var target_direction = global_position.direction_to(next_path_pos)
+	var rotate_amount = Utilties.delta_radian(rotation, target_direction.angle())
+
+	_update_rotation(rotation + rotate_amount)
+	velocity = Vector2.from_angle(rotation) * get_max_speed()
+	if not _nav_agent.avoidance_enabled:
+		move_and_slide()
+	else:
+		_nav_agent.set_velocity(velocity)
+		pass
+
+func _update_rotation(radian: float) -> void:
+	rotation = radian
+	for each in _lock_rotation:
+		if each:
+			each.rotation = Utilties.delta_radian(radian, 0)
+			pass
+
+## moves while only pointing the orignal direction
+func move_old(_delta_moded: float) -> void:
 	var next_path_pos: Vector2 = _nav_agent.get_next_path_position()
 	var cur_agent_pos: Vector2 = global_position
 	var new_velocity: Vector2 = cur_agent_pos.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
@@ -64,9 +94,6 @@ func _detect_children() -> void:
 			_sound_player = each_child
 		elif each_child is AnimatedSprite2D:
 			_animated_sprite = each_child
-		elif each_child is HealthUI:
-			_health_ui = each_child
-			_health_ui.set_health_ratio(1.0)
 
 func _on_target_reached() -> void:
 	if _nav_target is NavPoint:
@@ -91,6 +118,7 @@ func _die() -> void:
 		return
 	queue_free()
 
+## Takes delta mod into account 
 func get_max_speed() -> float:
 	if _enemy_info:
 		return _enemy_info.get_max_speed() * GameSpeed.get_delta_mod()
@@ -107,7 +135,7 @@ func get_max_health() -> float:
 
 func send_event(event: String) -> void:
 	if _state_machine:
-		_state_machine.send_event(event)
+		_state_machine.send_event.call_deferred(event)
 
 func request_animation(animation: String) -> void:
 	if _animated_sprite:

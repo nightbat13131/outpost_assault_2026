@@ -8,7 +8,9 @@ enum EnemyTypes {
 	HELICOPTER=300 }
 
 static var EnemyScenePaths : Dictionary[EnemyTypes, String] = {
-	EnemyTypes.DEBUG_WALKER: "uid://ffqucx6xrr6f"
+	EnemyTypes.DEBUG_WALKER: "uid://ffqucx6xrr6f",
+	EnemyTypes.GUN: "uid://drfqmnxu83xf6",
+	
 }
 
 @export var speed: float = 150.0
@@ -19,6 +21,15 @@ static var EnemyScenePaths : Dictionary[EnemyTypes, String] = {
 ## Unit Starting health
 @export var kill_reward := 100.0
 ## Gold awarded upon death
+
+enum EnemySpawnTypes {NA=0,
+	PERSON = 100, VEHICLE_GROUN = 200, VEHICLE_AIR=300}
+
+static var MapEnemyTypeMeta: Dictionary[EnemyTypes, EnemySpawnTypes] = {
+	EnemyTypes.DEBUG_WALKER: EnemySpawnTypes.PERSON, 
+	EnemyTypes.SCOUT: EnemySpawnTypes.PERSON, 
+	EnemyTypes.GUN: EnemySpawnTypes.PERSON
+}
 
 func get_max_speed() -> float: return speed
 

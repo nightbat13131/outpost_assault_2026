@@ -6,8 +6,6 @@
 [ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/ui/game_speed/animated_sprite_delta_mod.gd" id="4_8koau"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="4_ako3l"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_l46ro"]
-[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_1nmd4"]
-[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="7_cqma2"]
 [ext_resource type="Script" uid="uid://c26qugohqfber" path="res://entities/states/state_moving.gd" id="8_nfqd2"]
 [ext_resource type="Script" uid="uid://do2q360go1ps6" path="res://entities/states/state_dead.gd" id="8_yc1ed"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="9_312dl"]
@@ -24,13 +22,13 @@ motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_30kr5")
 _enemy_info = ExtResource("2_avlsx")
+_rotation_speed_deg_sec = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025302939]
 shape = SubResource("CircleShape2D_14pbf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=528521657]
-debug_use_custom = true
-debug_path_custom_color = Color(1, 0.1882353, 1, 1)
+debug_enabled = true
 debug_path_custom_line_width = 2.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=97795410]
@@ -47,68 +45,57 @@ metadata/_custom_type_script = "uid://couw105c3bde4"
 
 [node name="CompoundState" type="Node" parent="StateChart" unique_id=1644922609]
 script = ExtResource("5_l46ro")
-initial_state = NodePath("Active")
-
-[node name="Paused" type="Node" parent="StateChart/CompoundState" unique_id=771426370]
-script = ExtResource("6_1nmd4")
-
-[node name="Active" type="Node" parent="StateChart/CompoundState" unique_id=1747226491]
-script = ExtResource("5_l46ro")
 initial_state = NodePath("Alive")
 
-[node name="Death" type="Node" parent="StateChart/CompoundState/Active" unique_id=401144249 node_paths=PackedStringArray("_unit")]
+[node name="Death" type="Node" parent="StateChart/CompoundState" unique_id=401144249 node_paths=PackedStringArray("_unit")]
 script = ExtResource("8_yc1ed")
-_unit = NodePath("../../../..")
+_unit = NodePath("../../..")
 
-[node name="Alive" type="Node" parent="StateChart/CompoundState/Active" unique_id=669965241]
-script = ExtResource("7_cqma2")
-metadata/_custom_type_script = "uid://c1vp0ojjvaby1"
-
-[node name="on_death" type="Node" parent="StateChart/CompoundState/Active/Alive" unique_id=1991222915]
-script = ExtResource("9_312dl")
-to = NodePath("../../Death")
-event = &"died"
-delay_in_seconds = "0.0"
-
-[node name="Movement" type="Node" parent="StateChart/CompoundState/Active/Alive" unique_id=287714801]
+[node name="Alive" type="Node" parent="StateChart/CompoundState" unique_id=1807098557]
 script = ExtResource("5_l46ro")
-initial_state = NodePath("Moving")
+initial_state = NodePath("Still")
 metadata/_custom_type_script = "uid://jk2jm1g6q853"
 
-[node name="Moving" type="Node" parent="StateChart/CompoundState/Active/Alive/Movement" unique_id=1646260745 node_paths=PackedStringArray("_unit")]
-script = ExtResource("8_nfqd2")
-_unit = NodePath("../../../../../..")
-
-[node name="Still" type="Node" parent="StateChart/CompoundState/Active/Alive/Movement" unique_id=532006940 node_paths=PackedStringArray("_unit")]
-script = ExtResource("12_44qss")
-_unit = NodePath("../../../../../..")
-
-[node name="NoNav" type="Node" parent="StateChart/CompoundState/Active/Alive/Movement" unique_id=885529884]
+[node name="NoNav" type="Node" parent="StateChart/CompoundState/Alive" unique_id=885529884]
 script = ExtResource("9_312dl")
 to = NodePath("../Still")
 event = &"no nav target"
 delay_in_seconds = "0.0"
 
-[node name="Shooting" type="Node" parent="StateChart/CompoundState/Active/Alive" unique_id=1286559486]
-script = ExtResource("5_l46ro")
-initial_state = NodePath("Holder1")
-metadata/_custom_type_script = "uid://jk2jm1g6q853"
+[node name="HasNav" type="Node" parent="StateChart/CompoundState/Alive" unique_id=2057477380]
+script = ExtResource("9_312dl")
+to = NodePath("../Moving")
+event = &"has nav target"
+delay_in_seconds = "0.0"
 
-[node name="Holder1" type="Node" parent="StateChart/CompoundState/Active/Alive/Shooting" unique_id=136238201]
-script = ExtResource("6_1nmd4")
+[node name="on_death" type="Node" parent="StateChart/CompoundState/Alive" unique_id=1991222915]
+script = ExtResource("9_312dl")
+to = NodePath("../../Death")
+event = &"died"
+delay_in_seconds = "0.0"
 
-[node name="Holder2" type="Node" parent="StateChart/CompoundState/Active/Alive/Shooting" unique_id=1544997410]
-script = ExtResource("6_1nmd4")
+[node name="Moving" type="Node" parent="StateChart/CompoundState/Alive" unique_id=1646260745 node_paths=PackedStringArray("_unit")]
+script = ExtResource("8_nfqd2")
+_unit = NodePath("../../../..")
 
-[node name="HealthUI" parent="." unique_id=1121219286 instance=ExtResource("10_8hf7l")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -37.0
-offset_right = 17.0
-offset_bottom = -33.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Still" type="Node" parent="StateChart/CompoundState/Alive" unique_id=532006940 node_paths=PackedStringArray("_unit")]
+script = ExtResource("12_44qss")
+_unit = NodePath("../../../..")
+
+[node name="UIAnchor" type="Control" parent="." unique_id=2101593919]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIAnchor" unique_id=1790658355]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 21.0
+offset_right = 20.0
+offset_bottom = 25.0
+metadata/_edit_group_ = true
+
+[node name="HealthUI" parent="UIAnchor/VBoxContainer" unique_id=1121219286 instance=ExtResource("10_8hf7l")]
+unique_name_in_owner = true
+layout_mode = 2

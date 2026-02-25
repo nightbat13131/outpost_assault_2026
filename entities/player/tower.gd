@@ -103,4 +103,6 @@ func get_purchase_manager() -> PurchaseManager: return _tower_purchase_manager
 
 func get_context_manager() -> TowerContextManager: return _context_manager
 
+func get_display_name() -> String: return TowerInfo.get_display_name(_my_type)
+
 static func get_scene_path() -> String: return "Method needs overriting missing"

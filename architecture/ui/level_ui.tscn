@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://c0j8mplyiibwb" path="res://architecture/ui/selected_entity_viewport.gd" id="6_vw2lh"]
 [ext_resource type="Script" uid="uid://dfifo1iryhsgu" path="res://architecture/ui/null_ui_selection_button.gd" id="7_7mwho"]
 [ext_resource type="Script" uid="uid://didbyugt5lxvi" path="res://architecture/ui/gold_managment/purchase_interface.gd" id="7_yq572"]
+[ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="9_l4gwg"]
 [ext_resource type="PackedScene" uid="uid://b51eayc0tka3h" path="res://architecture/ui/purchase_interface_section.tscn" id="9_yq572"]
 [ext_resource type="Script" uid="uid://ceean4at1vaws" path="res://architecture/ui/display_tower_interface.gd" id="11_1cec3"]
 [ext_resource type="PackedScene" uid="uid://citf0bjrmxl7k" path="res://architecture/ui/gold_managment/cost_button.tscn" id="11_07nmt"]
@@ -150,6 +151,7 @@ size_flags_stretch_ratio = 0.5
 [node name="DisplaySelected" type="VBoxContainer" parent="FullScreen/LevelControls" unique_id=1522410859]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 1
 script = ExtResource("3_qyk0y")
 
 [node name="DisplayNothing_Button" type="Button" parent="FullScreen/LevelControls/DisplaySelected" unique_id=1383901387]
@@ -168,6 +170,10 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 1
 script = ExtResource("4_an2k0")
+
+[node name="ClipReloadUI" parent="FullScreen/LevelControls/DisplaySelected" unique_id=1750592590 instance=ExtResource("9_l4gwg")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="FullScreen/LevelControls/DisplaySelected" unique_id=631780335]
 layout_mode = 2

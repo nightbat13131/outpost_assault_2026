@@ -4,6 +4,9 @@ class_name ClipReloadUI extends PanelContainer
 
 var _reload_info : ReloadInfo
 
+func _ready() -> void:
+	set_reload_info(_reload_info)
+
 func set_reload_info(info: ReloadInfo) -> void:
 	_disconect()
 	_reload_info = info

@@ -15,7 +15,8 @@ func _connect_to_section() -> void:
 func set_foundation(node: TowerFoundation) -> void:
 	_foundation = node
 	for index in range(cost_tower_infos.size()):
-		cost_tower_infos[index].set_radar_preview(_foundation.get_radar_preview())
+		#cost_tower_infos[index].set_radar_preview(_foundation.get_radar_preview())
+		cost_tower_infos[index].set_foundation(_foundation)
 
 func _update_buttons() -> void:
 	if _buttons.size() != cost_tower_infos.size():
@@ -29,4 +30,3 @@ func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void
 		return
 	if info is CostButtonInfo_Tower: #cast for autocomplete
 		_foundation.add_tower(info.tower_type)
-#		_update_buttons()

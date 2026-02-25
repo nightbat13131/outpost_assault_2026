@@ -5,15 +5,20 @@ signal process_update
 static var DEFAULT_POS = Vector2.INF
 
 var _parent : Object
+var _display_name : String = ''
 var _health_ui : HealthUI
+var _reload_info : ReloadInfo
 var _position : Vector2 = DEFAULT_POS
 var _purchaser_0 : PurchaseManager
 var _purchaser_1 : PurchaseManager
 var _tower :Tower
 
+func set_display_name(text: String) -> void: _display_name = text
 
 func get_display_name() -> String:
-	if _parent:
+	if _display_name.length() > 0:
+		return _display_name
+	elif _parent:
 		return str(_parent.name)
 	return "No Selection"
 
@@ -49,6 +54,8 @@ func set_tower(tower: Tower) -> void:
 	_tower = tower
 	process_update.emit()
 
+func set_reload_info(reload_info: ReloadInfo) -> void: _reload_info = reload_info
+
 func get_tower() -> Tower: return _tower
 
 func get_parent() -> Object: return _parent
@@ -56,6 +63,8 @@ func get_parent() -> Object: return _parent
 func get_health_ui() -> HealthUI: return _health_ui
 
 func get_camera_position() -> Vector2: return _position
+
+func get_reload_info() -> ReloadInfo: return _reload_info
 
 func get_tower_context_manager() -> TowerContextManager:
 	if _tower:

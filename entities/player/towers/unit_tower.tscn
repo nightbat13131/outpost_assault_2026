@@ -9,7 +9,9 @@
 
 [sub_resource type="Resource" id="Resource_qqlb3"]
 script = ExtResource("6_y81ii")
-_clip_count = 3
+_clip_reload_base = 1.0
+_clip_ammo_size_base = 3
+_burst_delay_seconds_base = 0.1
 metadata/_custom_type_script = "uid://dmp1d6bqc3nt6"
 
 [node name="Tower_Unit" unique_id=1226539165 instance=ExtResource("1_giylo")]
@@ -20,3 +22,12 @@ cost_tower_infos = Array[ExtResource("2_2pbwi")]([ExtResource("3_chclv")])
 
 [node name="Shooter" parent="." index="3" unique_id=1614296909 instance=ExtResource("5_chclv")]
 _clip_information = SubResource("Resource_qqlb3")
+
+[node name="RadarSensor" parent="Shooter" index="0" unique_id=790780675]
+collision_mask = 516
+
+[node name="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
+collision_mask = 516
+collide_with_areas = true
+
+[editable path="Shooter"]

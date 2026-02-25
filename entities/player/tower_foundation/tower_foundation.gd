@@ -1,4 +1,3 @@
-
 class_name TowerFoundation extends Sprite2D
 
 const SCENE_PATH = "uid://crf0po16hl0dv"
@@ -53,8 +52,12 @@ func _has_tower() -> bool: return _current_tower != null
 func _update_display_info() -> void:
 	if _has_tower():
 		_display_info.set_purchaser(_current_tower.get_purchase_manager(), 1)
+		_display_info.set_reload_info(_current_tower.get_reload_info())
+		_display_info.set_display_name(_current_tower.get_display_name())
 	else:
 		_display_info.set_purchaser(_tower_purchase_manager, 1)
+		_display_info.set_reload_info(null)
+		_display_info.set_display_name("")
 	_display_info.set_tower(_current_tower)
 	DisplaySelected.request_refresh.call_deferred(_display_info)
 
@@ -71,7 +74,6 @@ func _add_tower(tower_type: TowerInfo.TowerType) -> void:
 	_current_tower.dead.connect(_on_tower_dead)
 	_health_ui.set_suppressed(false)
 	add_child(_current_tower)
-	
 	_update_display_info()
 
 func get_radar_preview() -> RadarPreview: return _radar_preview

@@ -157,6 +157,10 @@ metadata/_edit_lock_ = true
 
 [node name="SpawnerBuilding_1x2" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("9_ily7b")]
 position = Vector2(1029, 463)
+spawn_types = Dictionary[int, int]({
+0: 1,
+110: 1
+})
 
 [node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
 position = Vector2(141, -115)

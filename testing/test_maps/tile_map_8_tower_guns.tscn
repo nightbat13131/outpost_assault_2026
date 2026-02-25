@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="7_wryye"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="8_ale0m"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="9_gl43j"]
+[ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://map/spawner_building_1x2.tscn" id="10_kwkdg"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://map/spawn_manager.gd" id="10_qc6ws"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawner.gd" id="11_t4oyr"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawn_point.gd" id="12_uulvb"]
@@ -26,9 +27,24 @@ script = ExtResource("9_gl43j")
 point_path = NodePath("../NavPoint_NW")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
+[sub_resource type="Resource" id="Resource_p5dyt"]
+script = ExtResource("9_gl43j")
+point_path = NodePath("../NavPoint_SW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_5tif7"]
+script = ExtResource("9_gl43j")
+point_path = NodePath("../NavPoint_SE")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
 [sub_resource type="Resource" id="Resource_ti3ma"]
 script = ExtResource("9_gl43j")
 point_path = NodePath("../../../navPoints/NavPoint_NW")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_n1xbh"]
+script = ExtResource("9_gl43j")
+point_path = NodePath("../../../navPoints/NavPoint_SW")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
 [sub_resource type="Resource" id="Resource_qmthx"]
@@ -73,18 +89,23 @@ script = ExtResource("1_lqf21")
 
 [node name="Enemy" parent="Test" unique_id=1456879393 instance=ExtResource("16_kwkdg")]
 position = Vector2(1081, 309)
+_rotation_speed_deg_sec = 180
 
 [node name="Enemy2" parent="Test" unique_id=1230878994 instance=ExtResource("16_kwkdg")]
 position = Vector2(929, 310)
+_rotation_speed_deg_sec = 180
 
 [node name="Enemy3" parent="Test" unique_id=1620642918 instance=ExtResource("16_kwkdg")]
 position = Vector2(893, 473)
+_rotation_speed_deg_sec = 180
 
 [node name="Enemy4" parent="Test" unique_id=1019600571 instance=ExtResource("16_kwkdg")]
 position = Vector2(917, 620)
+_rotation_speed_deg_sec = 180
 
 [node name="Enemy5" parent="Test" unique_id=1721582515 instance=ExtResource("16_kwkdg")]
 position = Vector2(1150, 530)
+_rotation_speed_deg_sec = 180
 
 [node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]
 tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAEAAAAHAAEAAAAAAAEAAAAGAAEAAAAAAAEAAAAFAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAADAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAABAAQAAAAAAAEAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAABAAAAAAAJAAMAAAABAAAAAAAJAAIAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAIAAAAIAAAAAAAAAAIAAAAHAAAAAAAAAAIAAAAGAAAAAAAAAAIAAAAFAAAAAAAAAAIAAAAEAAAAAAAAAAIAAAADAAAAAAAAAAIAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAgAAAAAAAIAAAABAAgAAAAAAAEAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAAAAAIAAAAOAAcAAAAAAAIAAAAOAAYAAAAAAAIAAAAOAAUAAAAAAAIAAAAOAAQAAAAAAAIAAAAOAAMAAAAAAAIAAAAOAAIAAAAAAAIAAAAOAAEAAAAAAAIAAAAOAAAAAAAAAAIAAAANAAAAAAAAAAIAAAAMAAAAAAAAAAIAAAALAAAAAAAAAAIAAAAKAAAAAAAAAAIAAAABAAUAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAAAAAACAAcAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAABAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAFAAUAAAAAAAEAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAEAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAEAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAEAAAAJAAUAAAABAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAUAAAAAAAEAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAEAAAALAAEAAAAAAAEAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAALAAQAAAABAAAAAAALAAUAAAABAAAAAAALAAYAAAABAAAAAAALAAcAAAABAAAAAAAMAAEAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAAAAAAMAAQAAAABAAAAAAAMAAUAAAABAAAAAAAMAAYAAAABAAAAAAAMAAcAAAABAAAAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAD//wEAAAAAAAIAAAD//wIAAAAAAAIAAAD//wMAAAAAAAIAAAD//wQAAAAAAAIAAAD//wUAAAAAAAIAAAD//wYAAAAAAAIAAAD//wcAAAAAAAIAAAD//wgAAAAAAAIAAAD//wsAAAAAAAIAAAAAAAsAAAAAAAIAAAABAAsAAAAAAAIAAAACAAsAAAAAAAIAAAADAAsAAAAAAAIAAAAEAAsAAAAAAAIAAAAFAAsAAAAAAAIAAAAGAAsAAAAAAAIAAAAHAAsAAAAAAAIAAAAIAAsAAAAAAAIAAAAJAAsAAAAAAAIAAAAKAAsAAAAAAAIAAAALAAsAAAAAAAIAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAPAAoAAAAAAAIAAAAOAAoAAAAAAAIAAAANAAoAAAAAAAIAAAAMAAoAAAAAAAIAAAALAAoAAAAAAAIAAAAKAAoAAAAAAAIAAAAJAAoAAAAAAAIAAAAIAAoAAAAAAAIAAAAHAAoAAAAAAAIAAAAGAAoAAAAAAAIAAAAFAAoAAAAAAAIAAAAEAAoAAAAAAAIAAAADAAoAAAAAAAIAAAACAAoAAAAAAAIAAAABAAoAAAAAAAIAAAAAAAoAAAAAAAIAAAD//woAAAAAAAIAAAD//wkAAAAAAAIAAAAAAAkAAAAAAAIAAAABAAkAAAAAAAEAAAACAAkAAAAAAAEAAAADAAkAAAAAAAEAAAAEAAkAAAAAAAEAAAAFAAkAAAAAAAEAAAAGAAkAAAAAAAEAAAAHAAkAAAAAAAEAAAAIAAkAAAAAAAEAAAAJAAkAAAAAAAEAAAAKAAkAAAAAAAEAAAALAAkAAAAAAAEAAAAMAAkAAAAAAAEAAAANAAkAAAAAAAEAAAAOAAkAAAAAAAIAAAAPAAgAAAAAAAIAAAAPAAYAAAAAAAIAAAAPAAQAAAAAAAIAAAAPAAIAAAAAAAIAAAAPAAAAAAAAAAIAAAAOAP//AAAAAAIAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAABAP//AAAAAAIAAAACAP//AAAAAAIAAAADAP//AAAAAAIAAAAEAP//AAAAAAIAAAAFAP//AAAAAAIAAAAGAP//AAAAAAIAAAAHAP//AAAAAAIAAAAIAP//AAAAAAIAAAAJAP//AAAAAAIAAAAKAP//AAAAAAIAAAALAP//AAAAAAIAAAAMAP//AAAAAAIAAAANAP//AAAAAAIAAAD//wAAAAAAAAIAAAA=")
@@ -107,6 +128,20 @@ script = ExtResource("8_ale0m")
 next_target_weights = Array[ExtResource("9_gl43j")]([SubResource("Resource_2f5lw")])
 target_distance = 50.0
 
+[node name="NavPoint_SE" type="Node2D" parent="navPoints" unique_id=1216681468]
+unique_name_in_owner = true
+position = Vector2(1560, 945)
+script = ExtResource("8_ale0m")
+next_target_weights = Array[ExtResource("9_gl43j")]([SubResource("Resource_p5dyt")])
+target_distance = 100.0
+
+[node name="NavPoint_SW" type="Node2D" parent="navPoints" unique_id=1538346497]
+unique_name_in_owner = true
+position = Vector2(376, 973)
+script = ExtResource("8_ale0m")
+next_target_weights = Array[ExtResource("9_gl43j")]([SubResource("Resource_5tif7")])
+target_distance = 100.0
+
 [node name="SpawnManager" type="Node2D" parent="." unique_id=1833308816]
 script = ExtResource("10_qc6ws")
 metadata/_edit_lock_ = true
@@ -117,7 +152,7 @@ script = ExtResource("11_t4oyr")
 _inital_delay = 3.0
 _pulse_gap = 3.0
 _pulse_per_wave = -1
-_hard_spawn_cap = 1
+_hard_spawn_cap = 3
 _spawn_speed = 4.0
 _pulse_unit_volume = 2
 metadata/_edit_lock_ = true
@@ -130,6 +165,31 @@ unit_types = Array[int]([100])
 next_target_weights = Array[ExtResource("9_gl43j")]([SubResource("Resource_ti3ma")])
 target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="Spawner2" type="Node2D" parent="SpawnManager" unique_id=919749807]
+position = Vector2(273, 212)
+script = ExtResource("11_t4oyr")
+_inital_delay = 3.0
+_pulse_gap = 3.0
+_pulse_per_wave = -1
+_hard_spawn_cap = 1
+_spawn_speed = 4.0
+_pulse_unit_volume = 2
+spawn_types = Dictionary[int, int]({
+110: 1
+})
+metadata/_edit_lock_ = true
+
+[node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner2" unique_id=387089588]
+position = Vector2(37, 885)
+script = ExtResource("12_uulvb")
+unit_types = Array[int]([100])
+next_target_weights = Array[ExtResource("9_gl43j")]([SubResource("Resource_n1xbh")])
+target_distance = 0.0
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="SpawnerBuilding_1x2" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("10_kwkdg")]
+position = Vector2(1038, 750)
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("15_7i63j")]
 debug = false
@@ -146,9 +206,8 @@ upgrades = SubResource("Resource_kwkdg")
 starting_tower = -10
 
 [node name="TowerFoundation2" parent="TowerHolder" unique_id=400182285 instance=ExtResource("19_gqrjr")]
-position = Vector2(965, 982)
-upgrades = SubResource("Resource_kwkdg")
-starting_tower = -11
+position = Vector2(969, 1055)
+starting_tower = 1
 
 [node name="PlayerBase" parent="." unique_id=831910580 instance=ExtResource("21_jkf4e")]
 position = Vector2(130, 770)
