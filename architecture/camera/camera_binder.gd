@@ -19,9 +19,8 @@ var bound_index := 0
 
 func _ready() -> void:
 	if _redraw_press: pass # prevent unused variable warnings 
-	#_refresh_preview()
 	if !Engine.is_editor_hint():
-		camera.set_bound(bounds[3])
+		camera.set_bound(bounds[testing_index])
 
 func _refresh_preview() -> void:
 	if debug and camera:

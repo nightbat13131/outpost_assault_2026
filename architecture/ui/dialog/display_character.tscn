@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cx4j41p0vtcev"]
 
-[ext_resource type="Script" uid="uid://r8sabfieyips" path="res://display_character.gd" id="1_75d54"]
+[ext_resource type="Script" uid="uid://r8sabfieyips" path="res://architecture/ui/dialog/display_character.gd" id="1_75d54"]
 [ext_resource type="SpriteFrames" uid="uid://bjo248f53jdqb" path="res://testing/sprite_frames_character_a.tres" id="2_g0kk2"]
 
 [sub_resource type="Gradient" id="Gradient_o1vog"]

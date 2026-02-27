@@ -30,6 +30,4 @@ func draw_bounds(node: Node2D, color: Color = Color.RED) -> void:
 	node.draw_line(camera_start + Vector2(1,-1)*50, camera_start + Vector2(-1,1)*50, color, 10.0)
 
 func get_camera_starting_position() -> Vector2: 
-	return _limit_rect.get_center()
-	# TODO so camera targets correctly when no longer debugging
-	#return camera_start
+	return camera_start

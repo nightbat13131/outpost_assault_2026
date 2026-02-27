@@ -6,7 +6,7 @@ var _radar_preview : RadarPreview
 
 func get_cost() -> float: return TowerInfo.get_tower_cost(tower_type)
 
-func get_label() -> String: return TowerInfo.get_display_name(tower_type)
+func get_label() -> String: return TowerInfo.get_tower_display_name(tower_type)
 
 func get_tooltip() -> String: return super.get_tooltip()
 
@@ -22,7 +22,7 @@ func set_foundation(foundation: TowerFoundation) -> void:
 func on_mouse_entered() -> void:
 	if _radar_preview:
 		_radar_preview.set_preview(RadarSensor.TargetShape.CIRCLE_FILLED,
-		{RadarPreview.OUTER_RADIUS: TowerInfo.get_radar_range(tower_type, _foundation_upgrades)}
+		{RadarPreview.OUTER_RADIUS: TowerInfo.get_tower_radar_outer_range(tower_type, _foundation_upgrades)}
 		)
 
 func on_mouse_exited() -> void:

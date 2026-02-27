@@ -5,7 +5,7 @@ static var _null_information : DisplayHelper
 
 var _information : DisplayHelper
 @onready var display_name: Label = %DisplayName
-@onready var display_health: ShadowHealthUI = %Display_Health
+@onready var display_health: HealthUI = %Display_Health
 @onready var clip_reload_ui: ClipReloadUI = %ClipReloadUI
 @onready var display_selected_viewport: DisplaySelected_SubViewport = %DisplaySelectedViewport
 @onready var purchase_interface: PurchaseInterface = %PurchaseInterface
@@ -49,12 +49,14 @@ func _apply_information(info: DisplayHelper) -> void:
 	else:
 		display_nothing_button.show()
 	if !_information == info: 
+		if _information:
+			_information.selection_ended.call_deferred()
 		# block repeat calls to some values
 		_information = info
 		_aim_camera()
 		display_name.set_text(_information.get_display_name())
 	# allow repeat calls / allow refresh
-	display_health.set_primary(_information.get_health_ui())
+	display_health.set_health_info(_information.get_health_info())
 	purchase_interface.apply_purchase_manager(_information.get_purchaser(0), 0)
 	purchase_interface.apply_purchase_manager(_information.get_purchaser(1), 1)
 	tower_interface.set_manager(_information.get_tower_context_manager())

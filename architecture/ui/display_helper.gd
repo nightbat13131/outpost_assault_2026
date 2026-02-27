@@ -1,12 +1,14 @@
 class_name DisplayHelper extends Resource
 
 signal process_update
+signal unselected
 
 static var DEFAULT_POS = Vector2.INF
 
 var _parent : Object
 var _display_name : String = ''
-var _health_ui : HealthUI
+#var _health_ui : HealthUI
+var _health_info: HealthInfo
 var _reload_info : ReloadInfo
 var _position : Vector2 = DEFAULT_POS
 var _purchaser_0 : PurchaseManager
@@ -41,11 +43,12 @@ func set_purchaser(purchaser: PurchaseManager, index: int) -> void:
 		_:
 			push_error("DisplayHelper.set_purchaser was sent out of bounds index ", index, " for ", purchaser )
 
-func _init(parent: Object, health_ui: HealthUI, purchaser_0: PurchaseManager, purchaser_1: PurchaseManager) -> void:
+func _init(parent: Object, health_info: HealthInfo, purchaser_0: PurchaseManager, purchaser_1: PurchaseManager) -> void:
 	_parent = parent
-	_health_ui = health_ui
+	#_health_ui = health_ui
+	_health_info = health_info
 	if _parent:
-		_position = _parent.get_position()
+		_position = _parent.get_global_position()
 	_purchaser_0 = purchaser_0
 	_purchaser_1 = purchaser_1
 
@@ -60,7 +63,10 @@ func get_tower() -> Tower: return _tower
 
 func get_parent() -> Object: return _parent
 
-func get_health_ui() -> HealthUI: return _health_ui
+func get_health_info() -> HealthInfo: 
+	if _tower:
+		return _tower.get_health_info()
+	return _health_info
 
 func get_camera_position() -> Vector2: return _position
 
@@ -70,3 +76,5 @@ func get_tower_context_manager() -> TowerContextManager:
 	if _tower:
 		return _tower.get_context_manager()
 	return null
+
+func selection_ended() -> void: unselected.emit()

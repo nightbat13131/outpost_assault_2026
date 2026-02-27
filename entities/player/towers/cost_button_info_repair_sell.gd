@@ -26,7 +26,6 @@ func set_tower(tower: Tower) -> void:
 	if _tower != null:
 		print("turns out I need to disconect from tower")
 	_tower = tower
-	_tower.health_changed.connect(_on_health_changed)
 
 func on_pressed() -> void:
 	if _mode == RepairSell.REPAIR:

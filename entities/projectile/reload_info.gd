@@ -1,6 +1,8 @@
 class_name ReloadInfo extends Resource
 ## when firing, the bar goes down a % for the clip value instead of down to 0 right away? 
 
+signal state_update(event: String)
+
 const RELOAD_RATE_DECRESE =-.05 # %
 
 ## Shooter that is using the Reload Info
@@ -38,7 +40,8 @@ var _is_fire_timer_running := true
 func setup(shooter: Shooter, foundation_upgrades: FoundationUpgrades)-> void: #, reload_rate_base: float, clip_size_base: int, burst_rate: float, ammo_count: int) -> void:
 	_shooter = shooter
 	_foundation_upgrades = foundation_upgrades
-	_foundation_upgrades.changed.connect(_on_upgrade_changed)
+	if _foundation_upgrades:
+		_foundation_upgrades.changed.connect(_on_upgrade_changed)
 	_on_upgrade_changed()
 
 func _on_upgrade_changed() -> void:
@@ -55,6 +58,7 @@ func process(delta_moded: float) -> void: # called by the shooter since Resource
 		if _fire_rate_timer_remaining <= 0:
 			#can_shoot = true
 			_is_fire_timer_running = false
+			state_update.emit(Shooter.EVENT_HAS_AMMO)
 
 func can_shoot() -> bool: 
 	return !_is_fire_timer_running and _clip_count != 0 # -1 = infiniate
@@ -95,6 +99,7 @@ func shots_fired(shots_fired_ : int = 1) -> void:
 		_fire_rate_timer_remaining = _burst_delay_seconds
 	_is_fire_timer_running = true
 	changed.emit()
+	state_update.emit(Shooter.EVENT_JUST_SHOT)
 
 func set_foundation_upgrades(foundation_upgrads: FoundationUpgrades) -> void:
 	_foundation_upgrades = foundation_upgrads

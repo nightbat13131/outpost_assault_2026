@@ -1,0 +1,14 @@
+class_name EnemyShooter extends EnemyUnit
+
+@onready var _shooter: Shooter = %Shooter
+@onready var _clip_reload_ui: ClipReloadUI = %ClipReloadUI
+
+func _ready() -> void:
+	super._ready()
+	_shooter.set_foundation_upgrades(null)
+	_shooter.set_range(150)
+	_shooter.set_targetting_mask(RadarSensor.COLLISION_PLAYER_BUILDING)
+	_clip_reload_ui.set_reload_info(_shooter.get_reload_info())
+	
+	_maintain_rotation.append(_shooter)
+	_shooter.get_radar_sensor().set_rotation_parent(self)

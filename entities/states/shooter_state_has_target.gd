@@ -2,6 +2,7 @@
 class_name HasTarget extends ShooterAtomicState
 
 @export var aiming_sights: AimingSights
+@export var ammo_available_state : AtomicState
 
 func _ready() -> void:
 	super._ready()
@@ -18,6 +19,9 @@ func _on_state_processing(delta: float) -> void:
 		return
 	var target = get_radar_sensor().get_target()
 	get_shooter().turn_towards(delta, target.get_global_position())
-	if aiming_sights:
-		if aiming_sights.is_colliding():
+	if ammo_available_state:
+		if ammo_available_state.active:
 			get_shooter().try_shoot()
+	#if aiming_sights:
+		#if aiming_sights.is_colliding():
+			#get_shooter().try_shoot()

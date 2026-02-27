@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b7a6ttcmbwhq2"]
+
+[ext_resource type="Script" uid="uid://dl6q0mnhtofwi" path="res://entities/player/radar_sensor.gd" id="1_3elv1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uq4vj"]
+radius = 50.0
+
+[node name="RadarSensor" type="Area2D" unique_id=1930009677]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_3elv1")
+_targeting_method = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=472168192]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_uq4vj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=260281344]
+unique_name_in_owner = true
+polygon = PackedVector2Array(0, -15, 92, -100, 102, 92, 0, 14)

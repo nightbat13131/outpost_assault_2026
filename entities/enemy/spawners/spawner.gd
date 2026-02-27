@@ -1,5 +1,4 @@
 class_name Spawner extends Node2D
-## TODO: integrate _hard_spawn_cap with spawn logic
 
 ## This Spawner is participating in the wave.
 signal spawner_started(spawner: Spawner)
@@ -7,8 +6,6 @@ signal spawner_started(spawner: Spawner)
 signal spawner_stopped(spawner: Spawner)
 
 signal enemy_spawned(unit: EnemyUnit)
-
-
 
 @export var spawn_points : Array[SpawnPoint] = []
 @export_category("Wave")
@@ -38,8 +35,9 @@ var _active_enemy_count:= 0
 
 ## Parent node for spawned units get added to as children.
 var _unit_container: Node2D: set = set_unit_container, get = get_unit_container
-## Used to indicate the Spanw Point is destroyed
+
 var _is_pulse_active := false
+## Used to indicate the Spawn Point is destroyed
 var _is_disabled := false 
 
 var _picker : WeightedPicker
@@ -145,8 +143,7 @@ func _get_spawn_point(enemy_type: EnemyUnitInfo.EnemySpawnTypes) -> SpawnPoint:
 	push_warning(self, " no spawn point match with enemey type: ", enemy_type)
 	return spawn_points[0]
 
-func _pick_enemy() -> EnemyUnitInfo.EnemyTypes:
-	return _picker.pick_one()
+func _pick_enemy() -> EnemyUnitInfo.EnemyTypes: return _picker.pick_one()
 
 func _end_wave() -> void: spawner_stopped.emit(self)
 

@@ -4,7 +4,7 @@ static var _instance : Level
 
 func _ready() -> void:
 	_instance = self
-	var base = PlayerMainBase.get_instance()
+	var base = PlayerOutpost.get_instance()
 	if base:
 		base.died.connect(_on_base_death)
 

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://8flrnmx8mgux"]
+
+[ext_resource type="Script" uid="uid://dnc4vmk8f0ogo" path="res://entities/building.gd" id="1_jlb6n"]
+[ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="2_yuild"]
+[ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="3_egiyi"]
+[ext_resource type="SpriteFrames" uid="uid://cmd8ww4nt3x5x" path="res://entities/player/main_base/main_base_sprite_frames.tres" id="4_ymx2g"]
+[ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/ui/game_speed/animated_sprite_delta_mod.gd" id="5_egiyi"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="5_ln7vf"]
+[ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="6_yuild"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iw66m"]
+size = Vector2(64, 64)
+
+[sub_resource type="Gradient" id="Gradient_egiyi"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ymx2g"]
+gradient = SubResource("Gradient_egiyi")
+
+[node name="BuildingTemplate" type="StaticBody2D" unique_id=473503224]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_jlb6n")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1126154183]
+shape = SubResource("RectangleShape2D_iw66m")
+
+[node name="Button" type="Button" parent="." unique_id=1509464480]
+unique_name_in_owner = true
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("2_yuild")
+active_cursor_overwrite = ExtResource("3_egiyi")
+
+[node name="GroundSprite2D" type="Sprite2D" parent="." unique_id=152299447]
+self_modulate = Color(0.40943313, 0.20420939, 0.026401209, 1)
+texture = SubResource("GradientTexture2D_ymx2g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1893754338]
+unique_name_in_owner = true
+sprite_frames = ExtResource("4_ymx2g")
+script = ExtResource("5_egiyi")
+
+[node name="BuildingUI" type="VBoxContainer" parent="." unique_id=168524684]
+offset_left = -20.0
+offset_top = 32.0
+offset_right = 20.0
+offset_bottom = 40.0
+metadata/_edit_group_ = true
+
+[node name="HealthUI" parent="BuildingUI" unique_id=1750592590 instance=ExtResource("5_ln7vf")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ClipReloadUI" parent="BuildingUI" unique_id=1201663525 instance=ExtResource("6_yuild")]
+unique_name_in_owner = true
+layout_mode = 2

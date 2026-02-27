@@ -3,8 +3,6 @@ class_name Character extends Resource
 const ANIMATION_TALK  = 'talk'
 const ANIMATION_IDLE  = 'default'
 
-# TODO: add background? 
-
 @export var background : Texture2D
 @export var sprite : SpriteFrames
 @export var talking_sound: AudioStream

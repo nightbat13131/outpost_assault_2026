@@ -1,4 +1,5 @@
 class_name BrokenFoundation extends Sprite2D
+## TODO: add tooltop when pressing again will trigger the rebuild
 
 const SCENE_PATH = "uid://bk5nrgy052rvw"
 const BASE_REPAIR_DURATION = 2.0
@@ -8,14 +9,15 @@ var _repair_started := false
 @onready var _repair_manager: RepairPurchaser = %RepairManager
 @onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
 @onready var repair_timer: TimerModded = %Repair_Timer
-
-
+var _is_selected := false
 
 func _ready() -> void:
 	texture_progress_bar.set_as_ratio(1.0)
 	_repair_manager.start_repair.connect(_do_repair)
+	_repair_manager.set_broken_foundation(self)
 	if _button:
 		_display_info = DisplayHelper.new(self, null, _repair_manager, null)
+		_display_info.unselected.connect(_on_selection_cancled)
 		var size := get_texture().get_size() * .9
 		_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
 		_button.set_size(size)
@@ -55,4 +57,16 @@ func _repair_complete() -> void:
 func _get_repair_duration() -> float: return BASE_REPAIR_DURATION
 
 func on_selected() -> void:
-	DisplaySelected.request_display(_display_info)
+	if _is_selected:
+		print("try repair")
+		if !is_repairing():
+			if GoldManager.attempt_purchase(get_build_cost()):
+				_do_repair()
+		_repair_manager.remote_update_buttons()
+	else:
+		_is_selected = DisplaySelected.request_display(_display_info)
+
+func _on_selection_cancled() -> void: _is_selected = false
+
+static func get_build_cost() -> float: 
+	return 100.0

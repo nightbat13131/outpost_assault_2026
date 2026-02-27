@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name EnemyUnit extends CharacterBody2D
 ## TODO Does the spawner getting "died" ruin pathing because it frees the node for navigation reference
 ## - deal with it
@@ -15,8 +15,15 @@ const DEFAULT_DESIRED_DISTANCE := 25.0
 @export_category("Sounds")
 @export var _sounds_movment : Array[AudioStream]
 @export var _sounds_death : Array[AudioStream]
-@export var _lock_rotation : Array = []
-@export var _rotation_speed_deg_sec := 180
+
+## Keep CanvasItem in this array locked to 0 global rotation
+var _g0_rotation : Array[CanvasItem] = []
+## Have CanvasItem in this array keep their previous global rotation
+var _maintain_rotation : Array[CanvasItem] = []
+## Rotate With Unit instead of other parent
+var _sync_rotation : Array[CanvasItem]
+
+#@export var _rotation_speed_deg_sec := 180
 var _sound_player: AudioStreamPlayer2D
 
 var _animated_sprite : AnimatedSprite2D
@@ -25,16 +32,18 @@ var _nav_agent : NavigationAgent2D
 var _nav_target : Node2D :set = set_nav_target
 @onready var _health_ui: HealthUI = %HealthUI
 
-var _health : float = 100.0 : set = _set_health
-
+var _health_info: HealthInfo
+#var _health : float = 100.0 : set = _set_health
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	_detect_children()
-	_set_health(_enemy_info.get_max_health())
-	_health_ui.set_health_ratio(1.0)
-	_lock_rotation.append(%UIAnchor)
+	_health_info = HealthInfo.new()
+	_health_info.set_max_health(_enemy_info.get_max_health(), true)
+	_health_ui.set_health_info(_health_info)
+	_health_info.die.connect(_die)
+	_g0_rotation.append(%UIAnchor)
 
 func set_nav_target(node: Node2D) -> void:
 	_nav_target = node
@@ -49,10 +58,10 @@ func set_nav_target(node: Node2D) -> void:
 		else: 
 			send_event(EVENT_NO_NAV_TARGET)
 
-func move(delta_moded: float) -> void:
+func move(_delta_moded: float) -> void:
 	## maximum can rotate this frame if needed
 	var next_path_pos: Vector2 = _nav_agent.get_next_path_position()
-	var new_velocity: Vector2 = global_position.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
+	#var new_velocity: Vector2 = global_position.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
 	var target_direction = global_position.direction_to(next_path_pos)
 	var rotate_amount = Utilties.delta_radian(rotation, target_direction.angle())
 
@@ -65,13 +74,17 @@ func move(delta_moded: float) -> void:
 		pass
 
 func _update_rotation(radian: float) -> void:
+	var dict_pre : Dictionary[Object, float]
+	for each_maintain in _maintain_rotation:
+		dict_pre[each_maintain] = each_maintain.global_rotation
 	rotation = radian
-	for each in _lock_rotation:
-		if each:
-			each.rotation = Utilties.delta_radian(radian, 0)
-			pass
+	for each_lock in _g0_rotation:
+		if each_lock:
+			each_lock.rotation = Utilties.delta_radian(radian, 0)
+	for key in dict_pre:
+		key.global_rotation = dict_pre[key]
 
-## moves while only pointing the orignal direction
+## moves without rotating the body
 func move_old(_delta_moded: float) -> void:
 	var next_path_pos: Vector2 = _nav_agent.get_next_path_position()
 	var cur_agent_pos: Vector2 = global_position
@@ -110,7 +123,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 func _die() -> void:
 	# death sound
 	send_event(EVENT_DIED)
-	set_collision_layer(0) # turn off collision
+	set_collision_layer(0) # turn off collision but allow other processing
+	
 	_animated_sprite.play(AnimatedSprite2DModded.ANIMATION_DIE)
 	await _animated_sprite.animation_finished
 	died.emit(self)
@@ -126,13 +140,6 @@ func get_max_speed() -> float:
 		push_warning(self, " has no enemy_info to get speed")
 		return 10.0
 
-func get_max_health() -> float:
-	if _enemy_info:
-		return _enemy_info.get_max_health()
-	else: 
-		push_warning(self, " has no enemy_info to get health")
-		return 100.0
-
 func send_event(event: String) -> void:
 	if _state_machine:
 		_state_machine.send_event.call_deferred(event)
@@ -146,11 +153,4 @@ func stop_animation(animation: String) -> void:
 		if _animated_sprite.get_animation() == animation:
 			_animated_sprite.stop()
 
-func _set_health(value : float) -> void:
-	_health = value
-	if _health_ui:
-		_health_ui.set_health_ratio(_health / get_max_health())
-	if _health <= 0.0:
-		_die()
-
-func take_damage(value : float) -> void: _health -= value
+func take_damage(damage_delt : float) -> void: _health_info.take_damage(damage_delt)

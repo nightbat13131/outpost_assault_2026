@@ -5,9 +5,27 @@ signal suppression_update(value: bool)
 
 @export var _hide_when_full := false
 @export var _hide_when_empty := false
+
 @onready var health_bar: Range = %HealthBar
 @onready var red_under_bar: Range = %RedUnderBar
+var _health_info: HealthInfo : set = set_health_info
+
 var _suppress := false : set = set_suppressed
+
+func set_health_info(info: HealthInfo) -> void:
+	if _health_info == info:
+		# no change
+		return 
+	if _health_info:
+		_health_info.changed.disconnect(_on_health_changed)
+		_health_info.die.disconnect(_on_die)
+	_health_info = info
+	if _health_info:
+		_health_info.changed.connect(_on_health_changed)
+		_health_info.die.connect(_on_die)
+		_on_health_changed()
+	else: 
+		set_health_ratio(0)
 
 func set_health_ratio(value: float, insta_red := false) -> void:
 	if value <= 0 and _hide_when_empty:
@@ -40,3 +58,12 @@ func set_suppressed(_is_suppressed) -> void:
 		hide()
 	else:
 		show()
+
+func _on_health_changed() -> void:
+	if _health_info:
+		set_health_ratio(_health_info.get_health_ratio())
+	else:
+		push_error(self, "HealthUI failed to disconnect from a change signal")
+
+func _on_die() -> void:
+	set_health_info(null)

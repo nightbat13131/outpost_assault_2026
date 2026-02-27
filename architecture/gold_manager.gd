@@ -29,7 +29,7 @@ func _set_gold(value: float) -> void:
 				result = display_value[i] + result
 				count += 1
 				if count % 3 == 0 and i != 0:
-					result = "," + result ## TODO beware this symbole if you go multi language
+					result = "," + result ## TODO beware this symbol if you go multi language
 			display_value = result
 	label_gold_value.set_text(display_value)
 

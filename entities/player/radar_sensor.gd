@@ -1,41 +1,75 @@
 class_name RadarSensor extends Area2D
 
 enum TargetingMethod {NA = 0, RADIAN_CLOSE = 1}
-enum TargetShape {NA = 0, CIRCLE_FILLED = 1}
+enum TargetShape {NA = 0, CIRCLE_FILLED = 1, ARCH_FILLED = 2}
+
+
+## helpful for debuggin mask values https://www.bitmask.foo/
+## Collision layer number must be between 1 and 32 inclusive, instead of starting at 0.
 
 const COLLISION_ENEMY_HUMANS = 3
-
 const COLLISION_ANY_BUILDING = 9
 const COLLISION_ENEMY_BUILDING = 10
 const COLLISION_PLAYER_BUILDING = 11
 
 const RADAR_FADE := .25
 
-@onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
-
 @export var _debugging_targets := false
-var _radar_preview: float = 2.0
-var _targets : Array =[]
+
 @export var _targeting_method := TargetingMethod.NA
-var _upgrades : FoundationUpgrades
+@export var _radar_shape := TargetShape.CIRCLE_FILLED
+
+@onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
+@onready var collision_polygon_2d: CollisionPolygon2D = %CollisionPolygon2D
+
 var _shooter : Shooter
+var _player_outpost : PlayerOutpost
+var _targets : Array =[]
+var _outer_range := 100.0
+var _arch_radius := 1.0
 
 func _ready() -> void:
-	collision_shape_2d.set_shape(CircleShape2D.new())
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	_setup_collision()
+
+func _setup_collision() -> void:
+	match _radar_shape:
+		TargetShape.CIRCLE_FILLED:
+			collision_shape_2d.set_shape(CircleShape2D.new())
+			collision_polygon_2d.set_disabled(true)
+			collision_polygon_2d.set_polygon([])
+		TargetShape.ARCH_FILLED:
+			collision_shape_2d.set_shape(CircleShape2D.new())
+			collision_shape_2d.set_disabled(true)
+			collision_polygon_2d.set_polygon([])
+	_refresh_collision_shapes()
+
+func _refresh_collision_shapes() -> void:
+	match _radar_shape:
+		TargetShape.CIRCLE_FILLED:
+			collision_shape_2d.get_shape().set_radius(_outer_range)
+		TargetShape.ARCH_FILLED:
+			collision_polygon_2d.set_polygon(Utilties.get_arch_points(_outer_range, _arch_radius))
 
 func has_target() -> bool: return !_targets.is_empty()
 
 func set_shooter(shooter: Shooter) -> void: _shooter = shooter
 
-func on_tower_died() -> void: set_radar_outer_range(0.0)
+func die() -> void: 
+	for each_child in get_children():
+		if each_child.has_method("set_disabled"):
+			each_child.set_disabled(true)
 
-func set_radar_outer_range(range_: float) -> void: 
-	collision_shape_2d.get_shape().set_radius(range_)
-	queue_redraw()
+func set_range(range_: float) -> void:
+	_outer_range = range_
+	_refresh_collision_shapes()
+
+func set_arch_radius(radian: float) -> void:
+	_arch_radius = radian
+	_refresh_collision_shapes()
 
 func set_target_collition_types(target_collition_mask: int) -> void:
 	set_collision_mask(target_collition_mask)
@@ -43,25 +77,23 @@ func set_target_collition_types(target_collition_mask: int) -> void:
 
 func set_target_method(target_method: TargetingMethod) -> void:
 	_targeting_method = target_method
-	#TODO: recalculate targets in current area
 
-func set_target_logic() -> void:
-	pass
+func set_target_logic() -> void: pass
 
 func get_target() -> Node2D:
 	if _targets.is_empty():
 		return null
+	if _targets.has(_player_outpost):
+		return _player_outpost
 	match _targeting_method:
 		TargetingMethod.RADIAN_CLOSE:
 			return _get_target_radian_close()
 	return _targets[0]
 
-func preview_radar_range_tower(tower_type:= TowerInfo.TowerType.NA) -> void: 
-	if TowerInfo.TowerType.NA:
-		_radar_preview = 0.0
-	else:
-		_radar_preview = TowerInfo.get_radar_range(tower_type, _upgrades)
-	queue_redraw()
+## For when the Radar's rotation needs to match a different node.
+func set_rotation_parent(node: Node2D) -> void: 
+	#_rotation_parent = node
+	Utilties.reparent(self, node)
 
 func _draw() -> void:
 	if !_debugging_targets:
@@ -90,13 +122,13 @@ func _on_area_entered(area: Area2D) -> void:
 	if !_targets.has(area):
 		_targets.append(area)
 		queue_redraw()
-	print(_targets)
+	#print(_targets)
 
 func _on_area_exited(area: Area2D) -> void:
 	while _targets.has(area):
 		_targets.erase(area)
 		queue_redraw()
-	print(_targets)
+	#print(_targets)
 
 func _on_body_entered(body: Node2D) -> void:
 	if !_targets.has(body):

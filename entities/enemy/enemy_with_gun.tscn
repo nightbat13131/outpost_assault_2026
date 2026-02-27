@@ -1,7 +1,22 @@
 [gd_scene format=3 uid="uid://drfqmnxu83xf6"]
 
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="1_pylal"]
-[ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/player/towers/shooter_base.tscn" id="2_c3r84"]
+[ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_base.tscn" id="2_c3r84"]
+[ext_resource type="Script" uid="uid://bc3v0fgsir0ya" path="res://entities/enemy/enemy_shooter.gd" id="2_nnjro"]
+[ext_resource type="Script" uid="uid://bgsj5t26153la" path="res://entities/enemy/enemy_unit_info.gd" id="3_kpr4w"]
+[ext_resource type="Script" uid="uid://dmp1d6bqc3nt6" path="res://entities/projectile/reload_info.gd" id="5_bwkq7"]
+[ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="5_hpllm"]
+
+[sub_resource type="Resource" id="Resource_hpllm"]
+script = ExtResource("3_kpr4w")
+metadata/_custom_type_script = "uid://bgsj5t26153la"
+
+[sub_resource type="Resource" id="Resource_wejlq"]
+script = ExtResource("5_bwkq7")
+_clip_reload_base = 1.0
+_clip_ammo_size_base = 6
+_burst_delay_seconds_base = 0.25
+metadata/_custom_type_script = "uid://dmp1d6bqc3nt6"
 
 [sub_resource type="Gradient" id="Gradient_nnjro"]
 interpolation_mode = 1
@@ -14,17 +29,42 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="GunMan" unique_id=1456879393 instance=ExtResource("1_pylal")]
-_rotation_speed_deg_sec = 180
+script = ExtResource("2_nnjro")
+_enemy_info = SubResource("Resource_hpllm")
+
+[node name="StateChart" parent="." index="5" unique_id=411729324]
+track_in_editor = true
 
 [node name="Shooter" parent="." index="6" unique_id=1614296909 instance=ExtResource("2_c3r84")]
+unique_name_in_owner = true
+_limit_roation = true
+_rotation_speed_deg_sec = 120
+_clip_information = SubResource("Resource_wejlq")
 
-[node name="RadarSensor" parent="Shooter" index="0" unique_id=790780675]
+[node name="RadarSensor" parent="Shooter" index="0" unique_id=1930009677]
+z_index = 100
 collision_mask = 1024
+_debugging_targets = true
+_radar_shape = 2
+
+[node name="Node" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
+position = Vector2(26, -8)
 
 [node name="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
-collision_mask = 516
+position = Vector2(0, -8)
 
 [node name="Sprite2D" parent="Shooter" index="3" unique_id=383995293]
 texture = SubResource("GradientTexture2D_kpr4w")
+
+[node name="Sprite2D2" parent="Shooter" index="4" unique_id=1556594203]
+position = Vector2(12.999998, -8.5)
+scale = Vector2(0.40625, 0.078125015)
+
+[node name="NoTarget" parent="Shooter/ShooterStateChart/ShootingStates/TargetState" parent_id_path=PackedInt32Array(1614296909, 1472020959) index="1" unique_id=385167069]
+look_forward = true
+
+[node name="ClipReloadUI" parent="UIAnchor/VBoxContainer" parent_id_path=PackedInt32Array(1790658355) index="1" unique_id=1750592590 instance=ExtResource("5_hpllm")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [editable path="Shooter"]

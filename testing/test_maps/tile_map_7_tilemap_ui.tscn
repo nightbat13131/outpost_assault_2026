@@ -19,17 +19,17 @@
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="9_trnwt"]
 [ext_resource type="Resource" uid="uid://cw13vv36kxkjl" path="res://testing/test_chatacter_b.tres" id="9_xlhsi"]
 [ext_resource type="Texture2D" uid="uid://cbom43uaay1ac" path="res://assets/tilemaps/field_tilesheet_logic.png" id="10_fwhd0"]
-[ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://map/spawn_manager.gd" id="10_iah57"]
-[ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawner.gd" id="11_uqibm"]
-[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawn_point.gd" id="12_1mdwh"]
-[ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://map/spawner_building_1x2.tscn" id="13_a1dwg"]
+[ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="10_iah57"]
+[ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="11_uqibm"]
+[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="12_1mdwh"]
+[ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://entities/enemy/spawners/spawner_building_1x2.tscn" id="13_a1dwg"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="15_lsrd0"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="16_2g0lw"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="17_cajcd"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="18_dfm72"]
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="19_dqrcy"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="20_ebfhy"]
-[ext_resource type="PackedScene" uid="uid://km2nahn1x27p" path="res://entities/player/main_base/player_base.tscn" id="21_3ucha"]
+[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/main_base/player_outpost.tscn" id="30_xlhsi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -293,7 +293,7 @@ offset_right = 395.0
 offset_bottom = 726.0
 text = "Deal Damage"
 script = ExtResource("2_orddc")
-damage_target = NodePath("../../../PlayerBase")
+damage_target = NodePath("")
 damage_amount = 23.0
 
 [node name="Button4" type="Button" parent="test/Damage" unique_id=923848532 node_paths=PackedStringArray("damage_target")]
@@ -418,17 +418,17 @@ _hard_spawn_cap = 1
 _spawn_speed = 2.5
 metadata/_edit_group_ = true
 
-[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
+[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
 position = Vector2(154, -197)
 is_disabled = true
 
-[node name="Spawn_NW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
+[node name="Spawn_NW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
 next_target_weights = Array[ExtResource("9_trnwt")]([SubResource("Resource_rahqt")])
 
-[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="2" unique_id=588862786]
+[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="2" unique_id=588862786]
 is_disabled = true
 
-[node name="Spawn_SW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="3" unique_id=194821967]
+[node name="Spawn_SW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="3" unique_id=194821967]
 next_target_weights = Array[ExtResource("9_trnwt")]([SubResource("Resource_h1wdl")])
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("15_lsrd0")]
@@ -457,7 +457,8 @@ upgrades = SubResource("Resource_fvtu7")
 position = Vector2(707, 959)
 upgrades = SubResource("Resource_fvtu7")
 
-[node name="PlayerBase" parent="." unique_id=831910580 instance=ExtResource("21_3ucha")]
-position = Vector2(236, 581)
+[node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("30_xlhsi")]
+position = Vector2(251, 574)
 
 [editable path="SpawnManager/SpawnerBuilding_1x2"]
+[editable path="SpawnManager/SpawnerBuilding_1x2/Building"]

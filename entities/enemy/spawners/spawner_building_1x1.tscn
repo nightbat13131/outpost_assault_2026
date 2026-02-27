@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://ep5n0oef5o1f"]
+
+[ext_resource type="Script" uid="uid://c7cgc6ppvr5q4" path="res://entities/enemy/spawners/spawner_building.gd" id="1_4h0ng"]
+[ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/player/main_base/building_template.tscn" id="1_sqi0b"]
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="2_a6824"]
+[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="3_3ipqg"]
+[ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_3ceep"]
+[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="5_eqv62"]
+[ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/broken_foundation/populate_broken_foundations.gd" id="9_eqv62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqi0b"]
+size = Vector2(66, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj7jd"]
+atlas = ExtResource("2_a6824")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0t3g"]
+atlas = ExtResource("2_a6824")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lhbv"]
+atlas = ExtResource("2_a6824")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etn8y"]
+atlas = ExtResource("2_a6824")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd32w"]
+atlas = ExtResource("2_a6824")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okpnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj7jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0t3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lhbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etn8y")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd32w")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_16vwn"]
+script = ExtResource("4_3ceep")
+point_path = NodePath("Spawn_E")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_gluir"]
+script = ExtResource("4_3ceep")
+point_path = NodePath("Spawn_W")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[node name="Spawner_1x1" type="Node2D" unique_id=664660667]
+script = ExtResource("1_4h0ng")
+
+[node name="Building" parent="." unique_id=831910580 instance=ExtResource("1_sqi0b")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" parent="Building" index="0" unique_id=1126154183]
+position = Vector2(-1, -4.5)
+shape = SubResource("RectangleShape2D_sqi0b")
+
+[node name="Button" parent="Building" index="1" unique_id=1509464480]
+offset_left = -33.0
+offset_top = -40.0
+offset_right = 33.0
+offset_bottom = 33.0
+
+[node name="AnimatedSprite2D" parent="Building" index="3" unique_id=1893754338]
+position = Vector2(-1.4999995, -7.000002)
+scale = Vector2(0.546875, 1.0625)
+sprite_frames = SubResource("SpriteFrames_okpnb")
+animation = &"die"
+
+[node name="BuildingUI" parent="Building" index="4" unique_id=168524684]
+offset_top = 66.0
+offset_bottom = 74.0
+
+[node name="FoundationPoints" type="Node2D" parent="." unique_id=725093312]
+unique_name_in_owner = true
+script = ExtResource("9_eqv62")
+metadata/_edit_lock_ = true
+
+[node name="SpawnPointPerson" type="Node2D" parent="." unique_id=1438190680]
+unique_name_in_owner = true
+script = ExtResource("3_3ipqg")
+unit_types = Array[int]([100])
+next_target_weights = Array[ExtResource("4_3ceep")]([SubResource("Resource_16vwn"), SubResource("Resource_gluir")])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="Spawn_E" type="Node2D" parent="SpawnPointPerson" unique_id=100200813]
+unique_name_in_owner = true
+position = Vector2(45, -1)
+script = ExtResource("5_eqv62")
+target_distance = 10.0
+
+[node name="Spawn_W" type="Node2D" parent="SpawnPointPerson" unique_id=971029430]
+unique_name_in_owner = true
+position = Vector2(-47, 1)
+script = ExtResource("5_eqv62")
+target_distance = 10.0
+
+[editable path="Building"]

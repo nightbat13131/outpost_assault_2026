@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://o8lbby237l0n"]
+
+[ext_resource type="PackedScene" uid="uid://dro1735nlrdor" path="res://entities/player/towers/tower_shooters/tower_shooter_base.tscn" id="1_dimkb"]
+[ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/broken_foundation/tower_info.gd" id="2_r601a"]
+
+[sub_resource type="Resource" id="Resource_dcwa2"]
+script = ExtResource("2_r601a")
+my_type = -11
+metadata/_custom_type_script = "uid://dy47gmggu5xbd"
+
+[sub_resource type="Gradient" id="Gradient_r601a"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.54028434, 0.6387665)
+colors = PackedColorArray(0.42922634, 0.35399625, 0.5740683, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dcwa2"]
+gradient = SubResource("Gradient_r601a")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="TowerShooterBase" unique_id=1226539165 instance=ExtResource("1_dimkb")]
+_tower_info = SubResource("Resource_dcwa2")
+
+[node name="Sprite2D" parent="Shooter" parent_id_path=PackedInt32Array(1614296909) index="3" unique_id=383995293]
+texture = SubResource("GradientTexture2D_dcwa2")
+
+[editable path="Shooter"]

@@ -15,7 +15,6 @@ func get_buttons(count: int) -> Array[CostButton]:
 	return out
 
 func _add_buttons(count: int) -> void:
-	## TODO test this
 	var new_ : CostButton
 	for i in range(count):
 		new_ = load(CostButton.SCENE_PATH).instantiate()
