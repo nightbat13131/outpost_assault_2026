@@ -2,12 +2,11 @@ class_name RepairPurchaser extends PurchaseManager
 
 signal start_repair
 
-@export_category("CostButton")
-@export var _cost_info: CostButtonInfo_BrokenFoundation
+var _cost_info : CostButtonInfo_BrokenFoundation
 var _broken_foundation: BrokenFoundation
 
-func _ready() -> void:
-	_cost_info = _cost_info.duplicate()
+func set_cost_info(info: CostButtonInfo_BrokenFoundation) -> void:
+	_cost_info = info
 	_cost_info.set_purchase_manager(self)
 
 func set_broken_foundation(broken_foundation: BrokenFoundation) -> void:

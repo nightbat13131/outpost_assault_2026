@@ -88,5 +88,6 @@ func get_radar_preview() -> RadarPreview: return _radar_preview
 func _on_tower_dead(tower: Tower) -> void:
 	if _current_tower == tower:
 		_current_tower = null
-		_health_ui.set_suppressed(true)
+		_health_ui.set_health_info(null)
+		_clip_reload_ui.set_reload_info(null)
 	_update_display_info()

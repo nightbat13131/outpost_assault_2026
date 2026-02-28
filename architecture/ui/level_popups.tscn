@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://chx7ohyvhvlcq"]
+
+[ext_resource type="Script" uid="uid://crunncddfibnp" path="res://architecture/ui/in_level_popups.gd" id="1_lmybm"]
+[ext_resource type="Script" uid="uid://dffcxsl5eun65" path="res://testing/test_maps/popup_buttons.gd" id="2_m231i"]
+[ext_resource type="Script" uid="uid://byme36t86h4q5" path="res://architecture/button_enhanced.gd" id="2_v4yi6"]
+
+[node name="LevelPopups" type="CanvasLayer" unique_id=1909061859 node_paths=PackedStringArray("pause_nodes", "game_over_nodes")]
+script = ExtResource("1_lmybm")
+pause_nodes = [NodePath("Background/CenterContainer/VBoxContainer/Level_Select"), NodePath("Background/CenterContainer/VBoxContainer/Settings"), NodePath("Background/CenterContainer/VBoxContainer/CloseButton")]
+game_over_nodes = [NodePath("Background/CenterContainer/VBoxContainer/Level_Select"), NodePath("Background/CenterContainer/VBoxContainer/ResultReadout")]
+
+[node name="Background" type="Panel" parent="." unique_id=1945294053]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Background" unique_id=898281116]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/CenterContainer" unique_id=750585668]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MenuHeader" type="Label" parent="Background/CenterContainer/VBoxContainer" unique_id=1175273951]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Pause Menu"
+horizontal_alignment = 1
+
+[node name="Retry_Button" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=620944760]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retry"
+script = ExtResource("2_v4yi6")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Level_Select" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=1618963690]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Level Select"
+script = ExtResource("2_v4yi6")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Settings" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=612285719]
+layout_mode = 2
+text = "Settings"
+
+[node name="CloseButton" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=1764618862]
+layout_mode = 2
+script = ExtResource("2_m231i")
+_popup_type = 10
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="ResultReadout" type="Label" parent="Background/CenterContainer/VBoxContainer" unique_id=710926096]
+layout_mode = 2
+text = "[result readout]"
+horizontal_alignment = 1

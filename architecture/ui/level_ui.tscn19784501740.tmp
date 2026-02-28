@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://citf0bjrmxl7k" path="res://architecture/ui/gold_managment/cost_button.tscn" id="11_07nmt"]
 [ext_resource type="Script" uid="uid://2war3dwy2fbe" path="res://architecture/ui/gold_managment/earn_button.gd" id="13_l1g1f"]
 [ext_resource type="PackedScene" uid="uid://chx7ohyvhvlcq" path="res://architecture/ui/level_popups.tscn" id="17_mpbka"]
-[ext_resource type="Script" uid="uid://dffcxsl5eun65" path="res://testing/test_maps/popup_buttons.gd" id="17_vsohg"]
 
 [sub_resource type="GDScript" id="GDScript_mpbka"]
 script/source = "class_name ShadowHealthUI extends HealthUI
@@ -265,25 +264,9 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="FullScreen/LevelControls" unique_id=151169944]
-layout_mode = 2
-
-[node name="GameSpeedUI" parent="FullScreen/LevelControls/HBoxContainer" unique_id=861931387 instance=ExtResource("2_dl3bl")]
+[node name="GameSpeedUI" parent="FullScreen/LevelControls" unique_id=861931387 instance=ExtResource("2_dl3bl")]
 layout_mode = 2
 size_flags_vertical = 8
-
-[node name="Control" type="Control" parent="FullScreen/LevelControls/HBoxContainer" unique_id=1271623530]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ButtonEnhanced" type="Button" parent="FullScreen/LevelControls/HBoxContainer" unique_id=842071322]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Menu"
-script = ExtResource("17_vsohg")
-_popup_type = 1
-metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="LevelPopups" parent="." unique_id=1909061859 node_paths=PackedStringArray("pause_nodes", "game_over_nodes") instance=ExtResource("17_mpbka")]
 visible = false

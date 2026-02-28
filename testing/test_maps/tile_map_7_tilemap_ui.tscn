@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="10_iah57"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="11_uqibm"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="12_1mdwh"]
+[ext_resource type="Script" uid="uid://dffcxsl5eun65" path="res://testing/test_maps/popup_buttons.gd" id="12_mfrex"]
 [ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://entities/enemy/spawners/spawner_building_1x2.tscn" id="13_a1dwg"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="15_lsrd0"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="16_2g0lw"]
@@ -240,6 +241,7 @@ metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 script = ExtResource("16_2g0lw")
 rect_position = Vector2(-500, -500)
 rect_size = Vector2(3000, 2000)
+camera_start = Vector2(1000, 500)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [sub_resource type="Resource" id="Resource_fvtu7"]
@@ -293,7 +295,7 @@ offset_right = 395.0
 offset_bottom = 726.0
 text = "Deal Damage"
 script = ExtResource("2_orddc")
-damage_target = NodePath("")
+damage_target = NodePath("../../../PlayerOutpost")
 damage_amount = 23.0
 
 [node name="Button4" type="Button" parent="test/Damage" unique_id=923848532 node_paths=PackedStringArray("damage_target")]
@@ -338,9 +340,34 @@ metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="trigger_dialog2" type="Button" parent="test/DialogButtons" unique_id=935937387]
 layout_mode = 2
-text = "Dialog 1"
+text = "Dialog 2"
 script = ExtResource("6_jsqof")
 dialog_group = SubResource("Resource_mfrex")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="PopUpButtons" type="VBoxContainer" parent="test" unique_id=1125975768]
+offset_left = 1303.0
+offset_top = 437.0
+offset_right = 1373.0
+offset_bottom = 499.0
+metadata/_edit_group_ = true
+
+[node name="ButtonEnhanced" type="Button" parent="test/PopUpButtons" unique_id=1199099519]
+layout_mode = 2
+script = ExtResource("12_mfrex")
+_popup_type = 1
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="ButtonEnhanced2" type="Button" parent="test/PopUpButtons" unique_id=1572386774]
+layout_mode = 2
+script = ExtResource("12_mfrex")
+_popup_type = 2
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="ButtonEnhanced3" type="Button" parent="test/PopUpButtons" unique_id=1627307090]
+layout_mode = 2
+script = ExtResource("12_mfrex")
+_popup_type = 3
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]

@@ -9,6 +9,9 @@ func _ready() -> void:
 	super._ready()
 
 func get_target() -> Node2D:
+	if damage_target == null:
+		push_warning("No damange target set")
+		return null
 	if damage_target.has_method(METHOD):
 		return damage_target
 	for each_child in damage_target.get_children():

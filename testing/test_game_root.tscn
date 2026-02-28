@@ -9,4 +9,8 @@
 
 [node name="Test_Level_8" parent="LevelUI/FullScreen/CenterScreen/VBoxContainer/SubViewportContainer/LevelViewport" parent_id_path=PackedInt32Array(2003894573, 256052677) index="0" unique_id=820054972 instance=ExtResource("2_qupj3")]
 
+[node name="LevelPopups" parent="LevelUI" index="2" unique_id=1909061859 node_paths=PackedStringArray("pause_nodes", "game_over_nodes")]
+pause_nodes = [NodePath("Background/CenterContainer/VBoxContainer/Restart"), null, NodePath("Background/CenterContainer/VBoxContainer/Settings"), NodePath("Background/CenterContainer/VBoxContainer/CloseButton")]
+game_over_nodes = [NodePath("Background/CenterContainer/VBoxContainer/Retry"), null, NodePath("Background/CenterContainer/VBoxContainer/ResultReadout")]
+
 [editable path="LevelUI"]

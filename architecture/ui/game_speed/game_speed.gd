@@ -7,12 +7,12 @@ class_name GameSpeed extends Control
 
 signal speed_change(delta_mod: float)
 
-static var _instance : GameSpeed
+static var _instance : GameSpeed: get = get_instance
 static var _speed_mod := 1.0
-static var _is_paused := false
+static var _pause_from_popup := false
 
 static func get_delta_mod() -> float: 
-	if _is_paused:
+	if _pause_from_popup:
 		return 0.0
 	return _speed_mod
 
@@ -37,9 +37,19 @@ func _on_speed_requested(multi: float) -> void:
 	## Clicking an already active speed returns speet to 1.0
 	if _speed_mod == multi:
 		if multi != 1.0:
-			_1x_button.remote_press()
+			_force_to_one()
 	else:
 		_speed_mod = multi
 		speed_change.emit(GameSpeed.get_delta_mod())
 
-static func get_current_speed_manager() -> GameSpeed: return _instance
+func _force_to_one() -> void: _1x_button.remote_press()
+	
+
+static func get_instance() -> GameSpeed: return _instance
+
+static func request_pause_from_popup(is_paused: bool) -> void: 
+	_pause_from_popup = is_paused
+
+static func on_level_start() -> void:
+	if get_instance():
+		get_instance()._force_to_one()

@@ -1,8 +1,6 @@
 @abstract
 class_name CostButtonInfo extends Resource
 
-signal update
-
 @export var primary_icon : Texture2D : get = get_primary_icon
 var parent_node : PurchaseManager: set = set_purchase_manager
 
@@ -36,4 +34,4 @@ func on_pressed() -> void:
 		#else:
 		#	push_warning("CostButton info parent (" + _info.parent_node.name + ") does not have purchase_attempt_result")
 
-func signal_update() -> void: update.emit()
+func signal_change() -> void: changed.emit()

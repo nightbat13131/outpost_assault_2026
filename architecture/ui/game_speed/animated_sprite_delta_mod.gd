@@ -9,7 +9,7 @@ func _ready() -> void:
 	_speed_manager_connect.call_deferred()
 
 func _speed_manager_connect() -> void:
-	var speed_manager = GameSpeed.get_current_speed_manager()
+	var speed_manager = GameSpeed.get_instance()
 	if speed_manager:
 		speed_manager.speed_change.connect(_on_speed_change)
 	else:

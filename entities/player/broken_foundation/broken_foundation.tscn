@@ -30,17 +30,16 @@ fill_from = Vector2(0.5, 0.5)
 [node name="BrokenFoundation" type="Sprite2D" unique_id=400182285]
 texture = SubResource("GradientTexture2D_yjs82")
 script = ExtResource("1_vwu4y")
+_cost_info = ExtResource("6_qtpwa")
 
 [node name="Button" type="Button" parent="." unique_id=688348017]
 unique_name_in_owner = true
-offset_left = -37.0
-offset_top = -37.0
-offset_right = 30.0
-offset_bottom = 30.0
+offset_left = -33.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = 33.0
 script = ExtResource("2_vwu4y")
 active_cursor_overwrite = ExtResource("3_pghae")
-initial_state = 3
-metadata/_edit_lock_ = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=337061100]
 unique_name_in_owner = true
@@ -61,5 +60,4 @@ metadata/_custom_type_script = "uid://bs2gntwyjap36"
 [node name="RepairManager" type="Node" parent="." unique_id=1850035154]
 unique_name_in_owner = true
 script = ExtResource("7_s852h")
-_cost_info = ExtResource("6_qtpwa")
 section_name = "Repar Ruble"

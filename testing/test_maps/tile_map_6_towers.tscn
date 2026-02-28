@@ -189,7 +189,7 @@ offset_right = 395.0
 offset_bottom = 726.0
 text = "Deal Damage"
 script = ExtResource("1_iw66m")
-damage_target = NodePath("")
+damage_target = NodePath("../../PlayerOutpost")
 damage_amount = 23.0
 
 [node name="Button4" type="Button" parent="test" unique_id=923848532 node_paths=PackedStringArray("damage_target")]
@@ -341,6 +341,21 @@ position = Vector2(1219, 959)
 
 [node name="BrokenFoundation2" parent="TowerHolder" unique_id=454266272 instance=ExtResource("17_rfiec")]
 position = Vector2(705, 434)
+
+[node name="BrokenFoundation3" parent="TowerHolder" unique_id=2015548457 instance=ExtResource("17_rfiec")]
+position = Vector2(824, 452)
+
+[node name="BrokenFoundation4" parent="TowerHolder" unique_id=273983744 instance=ExtResource("17_rfiec")]
+position = Vector2(594, 455)
+
+[node name="BrokenFoundation5" parent="TowerHolder" unique_id=41594992 instance=ExtResource("17_rfiec")]
+position = Vector2(580, 606)
+
+[node name="BrokenFoundation6" parent="TowerHolder" unique_id=2110408739 instance=ExtResource("17_rfiec")]
+position = Vector2(812, 685)
+
+[node name="BrokenFoundation7" parent="TowerHolder" unique_id=2110417839 instance=ExtResource("17_rfiec")]
+position = Vector2(582, 720)
 
 [node name="TowerFoundation" parent="TowerHolder" unique_id=93634172 instance=ExtResource("18_lgomy")]
 position = Vector2(834, 577)

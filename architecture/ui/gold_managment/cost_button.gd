@@ -29,14 +29,14 @@ func set_info(info: CostButtonInfo) -> void:
 		_update_display()
 		return
 	if _info:
-		if _info.update.is_connected(_update_display):
-			_info.update.disconnect(_update_display)
+		if _info.changed.is_connected(_update_display):
+			_info.changed.disconnect(_update_display)
 	_info = info
 	if _info:
-		if _info.update.is_connected(_update_display):
+		if _info.changed.is_connected(_update_display):
 			push_warning("CostButton managing signal is failing")
 		else:
-			_info.update.connect(_update_display)
+			_info.changed.connect(_update_display)
 	_update_display()
 
 func _on_pressed() -> void:

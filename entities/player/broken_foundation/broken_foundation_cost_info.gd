@@ -2,9 +2,10 @@ class_name CostButtonInfo_BrokenFoundation extends CostButtonInfo
 
 @export var primary_icon_post : Texture2D : get = get_primary_icon
 
-var is_repairing := false
-
-#func repair_started() -> void: _is_repaired = true
+var is_repairing := false: 
+	set(value):
+		is_repairing = value
+		signal_change()
 
 func get_cost() -> float: 
 	if is_repairing:

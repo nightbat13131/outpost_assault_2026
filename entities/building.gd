@@ -25,7 +25,9 @@ func _ready() -> void:
 func _setup_display_info() -> void:
 	_display_info = DisplayHelper.new(self, _health_info, null, null)
 
-func get_health_ui() -> HealthUI: return _health_ui
+#func get_health_ui() -> HealthUI: return _health_ui
+
+func get_health_info() -> HealthInfo: return _health_info
 
 func get_clip_ui() -> ClipReloadUI: return _clip_reload_ui
 

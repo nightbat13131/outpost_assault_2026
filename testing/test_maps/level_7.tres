@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://cgwnyby4u37yq"]
+
+[ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_4qusw"]
+
+[resource]
+script = ExtResource("1_4qusw")
+level_name = "UI and Map"
+level_uid = "uid://c0fi0vwkdcxil"
+metadata/_custom_type_script = "uid://u6pais7e54pl"

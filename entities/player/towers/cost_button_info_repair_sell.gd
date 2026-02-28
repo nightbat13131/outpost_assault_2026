@@ -36,4 +36,4 @@ func on_pressed() -> void:
 			## GoldManager.earn_gold(get_cost()) ## tower calls the money gain
 			parent_node.purchase_attempt_result(true, self)
 
-func _on_health_changed() -> void: signal_update()
+func _on_health_changed() -> void: signal_change()

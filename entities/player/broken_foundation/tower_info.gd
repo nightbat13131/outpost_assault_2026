@@ -1,6 +1,8 @@
 class_name TowerInfo extends Resource
 ## TODO: tower values will be effected by foundation and global upgrades
 
+const RANK_EXPAND_RADAR : float = 0.1 # %
+
 enum TowerType {NA = 0, _NoShooter = 1, _TEST_SHOOTER = -10, _TEST_TRUCK = -11}
 
 @export var my_type: TowerType
@@ -59,9 +61,9 @@ static func get_tower_filepath(tower_type_: TowerType) -> String: return _type_t
 
 static func get_tower_max_health(tower_type_: TowerType) -> float: return _type_to_max_hp.get(tower_type_, 5)
 
-static func get_tower_radar_outer_range(tower_type_: TowerType, upgrades: FoundationUpgrades = null) -> float: 
+static func get_tower_radar_outer_range(tower_type_: TowerType, upgrades: FoundationUpgrades = null, delta_rank:=0) -> float: 
 	var base_range = _type_to_outer_range.get(tower_type_, 0.0)
-	if upgrades == null:
-		return base_range
-	base_range *= (upgrades.get_upgrade_level(FoundationUpgrades.UpgradeTypes.RADAR) + 1)
-	return base_range
+	var range_mod := 1.0
+	if upgrades:
+		range_mod += (upgrades.get_upgrade_level(FoundationUpgrades.UpgradeTypes.RADAR) + delta_rank) * RANK_EXPAND_RADAR
+	return base_range * range_mod

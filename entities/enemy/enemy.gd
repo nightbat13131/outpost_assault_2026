@@ -20,8 +20,6 @@ const DEFAULT_DESIRED_DISTANCE := 25.0
 var _g0_rotation : Array[CanvasItem] = []
 ## Have CanvasItem in this array keep their previous global rotation
 var _maintain_rotation : Array[CanvasItem] = []
-## Rotate With Unit instead of other parent
-var _sync_rotation : Array[CanvasItem]
 
 #@export var _rotation_speed_deg_sec := 180
 var _sound_player: AudioStreamPlayer2D

@@ -8,7 +8,8 @@ var _is_active := false
 
 func _ready() -> void:
 	for each in option_buttons:
-		each.pressed.connect(_on_option_pressed)
+		if each:
+			each.pressed.connect(_on_option_pressed)
 	_deactivate(true)
 
 func set_info(info: DialogInfo) -> void:

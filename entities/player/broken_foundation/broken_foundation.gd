@@ -3,26 +3,28 @@ class_name BrokenFoundation extends Sprite2D
 
 const SCENE_PATH = "uid://bk5nrgy052rvw"
 const BASE_REPAIR_DURATION = 2.0
+
+@export var _cost_info: CostButtonInfo_BrokenFoundation
+
 var _display_info: DisplayHelper
 var _repair_started := false
+var _is_selected := false
+
 @onready var _button: Button_Trigger_UI = %Button
 @onready var _repair_manager: RepairPurchaser = %RepairManager
 @onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
 @onready var repair_timer: TimerModded = %Repair_Timer
-var _is_selected := false
 
 func _ready() -> void:
 	texture_progress_bar.set_as_ratio(1.0)
+	_cost_info = _cost_info.duplicate()
 	_repair_manager.start_repair.connect(_do_repair)
 	_repair_manager.set_broken_foundation(self)
-	if _button:
-		_display_info = DisplayHelper.new(self, null, _repair_manager, null)
-		_display_info.unselected.connect(_on_selection_cancled)
-		var size := get_texture().get_size() * .9
-		_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
-		_button.set_size(size)
-		_button.set_position(size*-.5)
-		_button.selected.connect(on_selected)
+	_repair_manager.set_cost_info(_cost_info)
+	_display_info = DisplayHelper.new(self, null, _repair_manager, null)
+	_display_info.unselected.connect(_on_selection_cancled)
+	_button.selected.connect(on_selected)
+	_update_button()
 
 func get_display_info() -> DisplayHelper: return _display_info
 
@@ -33,10 +35,12 @@ func _process(_delta: float) -> void:
 func is_repairing() -> bool: return _repair_started
 
 func _do_repair() -> void:
-	if _repair_started: # prefent double start
+	if _repair_started: # prevent double start
 		return 
-	_button.set_state(ButtonEnhanced.ButtonStates.Active)
+	
 	_repair_started = true
+	_cost_info.is_repairing = true
+	_update_button()
 	repair_timer.set_wait_time(_get_repair_duration())
 	repair_timer.timeout.connect(_repair_complete)
 	repair_timer.start()
@@ -65,8 +69,17 @@ func on_selected() -> void:
 		_repair_manager.remote_update_buttons()
 	else:
 		_is_selected = DisplaySelected.request_display(_display_info)
+	_update_button()
 
-func _on_selection_cancled() -> void: _is_selected = false
+func _update_button() -> void:
+	if _is_selected and !is_repairing():
+		_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
+	else: 
+		_button.set_state(ButtonEnhanced.ButtonStates.Active)
+
+func _on_selection_cancled() -> void: 
+	_is_selected = false
+	_update_button()
 
 static func get_build_cost() -> float: 
 	return 100.0

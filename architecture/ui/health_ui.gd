@@ -12,10 +12,10 @@ var _health_info: HealthInfo : set = set_health_info
 
 var _suppress := false : set = set_suppressed
 
+func _ready() -> void:
+	set_health_info(_health_info)
+
 func set_health_info(info: HealthInfo) -> void:
-	if _health_info == info:
-		# no change
-		return 
 	if _health_info:
 		_health_info.changed.disconnect(_on_health_changed)
 		_health_info.die.disconnect(_on_die)
@@ -24,8 +24,9 @@ func set_health_info(info: HealthInfo) -> void:
 		_health_info.changed.connect(_on_health_changed)
 		_health_info.die.connect(_on_die)
 		_on_health_changed()
+		set_suppressed(false)
 	else: 
-		set_health_ratio(0)
+		set_suppressed(true)
 
 func set_health_ratio(value: float, insta_red := false) -> void:
 	if value <= 0 and _hide_when_empty:
