@@ -7,10 +7,15 @@ static var _instance
 
 @onready var label_gold_value: Label = %GoldValue
 var _gold := 1225.5 : set = _set_gold
+var _gold_spent := 0.0
 
 func _ready() -> void:
 	_instance = self
-	set_gold(_gold)
+	_set_gold(_gold)
+
+func _on_level_start(starting_gold: float) -> void:
+	_set_gold(starting_gold)
+	_gold_spent = 0
 
 func _set_gold(value: float) -> void:
 	_gold = value
@@ -37,18 +42,23 @@ func _attempt_purchase(cost: float) -> bool:
 	if _gold < cost:
 		return false
 	_gold -= cost
+	_gold_spent += cost
 	return true
+
+static func get_instance() -> GoldManager: return _instance
+
+static func on_level_start(starting_gold: float) -> void:
+	if get_instance():
+		get_instance()._on_level_start(starting_gold)
 
 static func get_gold() -> float:
 	if get_instance():
 		return get_instance()._gold
 	return 0.0
 
-static func get_instance() -> GoldManager: return _instance
-
-static func set_gold(value: float) -> void:
-	if _instance:
-		_instance._set_gold(value)
+#static func set_gold(value: float) -> void:
+	#if _instance:
+		#_instance._set_gold(value)
 
 static func attempt_purchase(cost : float) -> bool:
 	if get_instance():
@@ -61,3 +71,8 @@ static func earn_gold(profit: float) -> void:
 		return
 	if _instance:
 		_instance._gold += profit
+
+static func get_gold_spent() -> float:
+	if get_instance():
+		return get_instance()._gold_spent
+	return INF

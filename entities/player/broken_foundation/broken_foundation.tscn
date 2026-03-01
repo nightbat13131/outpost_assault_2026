@@ -7,20 +7,21 @@
 [ext_resource type="Resource" uid="uid://b5cm28nxwmcu" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation.tres" id="6_qtpwa"]
 [ext_resource type="Script" uid="uid://740xap0m15w5" path="res://entities/player/broken_foundation/repair_manager.gd" id="7_s852h"]
 
-[sub_resource type="Gradient" id="Gradient_qt00s"]
-colors = PackedColorArray(0.9072202, 0.621143, 0.53355825, 1, 0.39991796, 0.20376119, 0.05495917, 1)
+[sub_resource type="Gradient" id="Gradient_6ihc2"]
+colors = PackedColorArray(0.5766446, 0.37194836, 0.1512368, 1, 0.3212874, 0.7708278, 0.43155205, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yjs82"]
-gradient = SubResource("Gradient_qt00s")
-width = 75
-height = 75
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s852h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qtpwa"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_s852h")
+color_ramp = SubResource("Gradient_6ihc2")
 
 [sub_resource type="Gradient" id="Gradient_vwu4y"]
-offsets = PackedFloat32Array(0, 0.57462686, 0.79850745)
-colors = PackedColorArray(0, 0, 1, 1, 0.043137256, 0.43529412, 0.2784314, 1, 0.043137256, 0.43529412, 0.2784314, 0)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.1967742, 0.48064515, 0.61612904)
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 1, 1, 0.043137256, 0.43529412, 0.2784314, 1, 0.043137256, 0.43529412, 0.2784314, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_x7ois"]
 gradient = SubResource("Gradient_vwu4y")
@@ -28,7 +29,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="BrokenFoundation" type="Sprite2D" unique_id=400182285]
-texture = SubResource("GradientTexture2D_yjs82")
+texture = SubResource("NoiseTexture2D_qtpwa")
 script = ExtResource("1_vwu4y")
 _cost_info = ExtResource("6_qtpwa")
 

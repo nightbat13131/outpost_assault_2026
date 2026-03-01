@@ -11,6 +11,6 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	if level_info:
-		LevelSelect.request_level(level_info.get_level_path())
+		LevelSelect.request_level(level_info)
 	else:
 		push_warning("Level Select button has no Level Info")

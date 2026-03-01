@@ -19,6 +19,7 @@ var bound_index := 0
 
 func _ready() -> void:
 	if _redraw_press: pass # prevent unused variable warnings 
+	testing_index = testing_index # prevent outout bounds
 	if !Engine.is_editor_hint():
 		camera.set_bound(bounds[testing_index])
 
@@ -34,3 +35,10 @@ func _draw() -> void:
 	for each_bound in bounds:
 		each_bound.draw_bounds(self, Color.from_hsv(index/float(bounds.size()), 1, 1 ))
 		index += 1
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings:Array = [
+		"Camera Bounds Empty"]
+	if bounds.is_empty():
+		return warnings
+	return []

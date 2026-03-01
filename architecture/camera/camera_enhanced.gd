@@ -51,7 +51,6 @@ func _process(delta: float) -> void:
 		return
 	if _is_remote_moving:
 		return
-	
 	if action_move_keys and action_move_drag:
 		var direction := Vector2.ZERO
 		if action_move_keys.is_triggered():
@@ -75,7 +74,6 @@ func _process(delta: float) -> void:
 func set_bound(bound: CameraBounds) -> void:
 	_bounds = bound
 	set_limits(bound.get_limit_rect())
-	
 	_apply_bound()
 
 func _apply_bound() -> void:
@@ -131,6 +129,7 @@ func get_speed() -> float: return _max_speed * (1/zoom.length())
 func _on_zoom() -> void:
 	var value = action_zoom.value_axis_1d
 	var new_zoom = clamp(get_zoom().x*(1 + ZOOM_SPEED*value), min_zoom, max_zoom)
+	prints("scroll", new_zoom, min_zoom, max_zoom)
 	set_zoom(Vector2(new_zoom, new_zoom))
 	if action_move_keys and action_move_drag: 
 		if !(action_move_keys.is_triggered() or action_move_drag.is_triggered()):

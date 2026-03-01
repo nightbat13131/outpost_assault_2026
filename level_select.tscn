@@ -7,48 +7,59 @@
 [ext_resource type="Resource" uid="uid://unevfi1dldfn" path="res://testing/test_maps/level_6.tres" id="4_1wnlg"]
 [ext_resource type="Resource" uid="uid://cgwnyby4u37yq" path="res://testing/test_maps/level_7.tres" id="5_8qr5y"]
 [ext_resource type="Resource" uid="uid://ci5g16cd163n6" path="res://testing/test_maps/level_8.tres" id="6_05pd3"]
+[ext_resource type="Resource" uid="uid://7hkinaik6ndq" path="res://levels/2024 recreation/orignal_1.tres" id="7_1wnlg"]
 
 [node name="LevelSelect" type="Node2D" unique_id=977691685]
 script = ExtResource("1_il3u1")
 
 [node name="Button_Level_Select1" type="Button" parent="." unique_id=1227046029]
-offset_left = 139.0
-offset_top = 187.0
-offset_right = 201.0
-offset_bottom = 218.0
+offset_left = 85.0
+offset_top = 63.0
+offset_right = 147.0
+offset_bottom = 94.0
 text = "Level 1"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("3_1iyaf")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select2" type="Button" parent="." unique_id=1425752775]
-offset_left = 242.0
-offset_top = 276.0
-offset_right = 304.0
-offset_bottom = 307.0
+offset_left = 254.0
+offset_top = 65.0
+offset_right = 316.0
+offset_bottom = 96.0
 text = "Level 2"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("4_1wnlg")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select3" type="Button" parent="." unique_id=1059708307]
-offset_left = 430.0
-offset_top = 246.0
-offset_right = 492.0
-offset_bottom = 277.0
+offset_left = 431.0
+offset_top = 60.0
+offset_right = 493.0
+offset_bottom = 91.0
 text = "Level 3"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("5_8qr5y")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select4" type="Button" parent="." unique_id=1586238640]
-offset_left = 700.0
-offset_top = 184.0
-offset_right = 762.0
-offset_bottom = 215.0
+offset_left = 640.0
+offset_top = 69.0
+offset_right = 702.0
+offset_bottom = 100.0
 text = "Level 4"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("6_05pd3")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_Select5" type="Button" parent="." unique_id=2180782]
+offset_left = 103.0
+offset_top = 226.0
+offset_right = 165.0
+offset_bottom = 257.0
+text = "Level 4"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("7_1wnlg")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1903277945]
