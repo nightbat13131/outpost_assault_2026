@@ -18,12 +18,14 @@ var bound_index := 0
 @export var camera : Camera2DEnhanced
 
 func _ready() -> void:
-	if _redraw_press: pass # prevent unused variable warnings 
 	testing_index = testing_index # prevent outout bounds
 	if !Engine.is_editor_hint():
-		camera.set_bound(bounds[testing_index])
+		trigger_bound_index(testing_index)
+	else: 
+		trigger_bound_index(0)
 
 func _refresh_preview() -> void:
+	if _redraw_press: pass # prevent unused variable warnings 
 	if debug and camera:
 		bound_index = clamp(testing_index, 0, bounds.size())
 		camera.set_bound(bounds[testing_index])
@@ -42,3 +44,13 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if bounds.is_empty():
 		return warnings
 	return []
+
+func trigger_bound_index(index: int) -> void:
+	if index < 0:
+		## -1 used to skip calling indexes
+		return
+	elif index >= bounds.size():
+		push_error("CameraBinder.trigger_bound_index out of bound index called, ", index)
+		return
+	camera.set_bound(bounds[index])
+		

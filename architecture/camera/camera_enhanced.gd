@@ -1,13 +1,12 @@
 @tool
 class_name Camera2DEnhanced extends Camera2D
 
-## TODO add accecloration to movement
-## zoom might cause collision overlap issues if I change the size shape? 
-## HOME = snap to home base position
-## midle mouse button click drag
+## TODO add accecloration to hand movement
+## TODO add tween to remote movement
+## TODO fix midle mouse button click drag
 
 const ZOOM_SPEED := .05
-
+## Reminder that MinZoom does not work when running the Level without the UI
 var min_zoom : float = .5 : set = set_min_zoom
 var max_zoom : float = 2.5
 
@@ -17,6 +16,7 @@ static var dragging_cursor : CustomCursor = load("uid://dbw2fwmjcemp3")
 static var control_context : GUIDEMappingContext = load("uid://c2cn6t0iqekow")
 static var action_move_keys : GUIDEAction = load("uid://ta3akt5mo5ib")
 static var action_move_drag : GUIDEAction = load("uid://da8kwewg6uhwn")
+static var action_move_home : GUIDEAction = load("uid://dngiyneq1ddvy")
 static var action_zoom : GUIDEAction = load("uid://bl4ky3gf6gcji")
 
 @export var debug := true
@@ -37,6 +37,8 @@ func _ready() -> void:
 		GUIDE.enable_mapping_context(control_context)
 	if action_zoom:
 		action_zoom.triggered.connect(_on_zoom)
+	if action_move_home:
+		action_move_home.triggered.connect(_on_home)
 	setup_subviewport.call_deferred()
 
 func _draw() -> void:
@@ -129,12 +131,16 @@ func get_speed() -> float: return _max_speed * (1/zoom.length())
 func _on_zoom() -> void:
 	var value = action_zoom.value_axis_1d
 	var new_zoom = clamp(get_zoom().x*(1 + ZOOM_SPEED*value), min_zoom, max_zoom)
-	prints("scroll", new_zoom, min_zoom, max_zoom)
 	set_zoom(Vector2(new_zoom, new_zoom))
 	if action_move_keys and action_move_drag: 
 		if !(action_move_keys.is_triggered() or action_move_drag.is_triggered()):
 	#		# player not also scrolling camera while changing zoom
 			_move_to(position)
+
+func _on_home() -> void:
+	var home := PlayerOutpost.get_instance()
+	if home:
+		remote_move_to(home.global_position)
 
 func _set_is_drag_cursor(is_on) -> void:
 	if _is_drag_cursor == is_on:

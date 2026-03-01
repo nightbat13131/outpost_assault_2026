@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" format=3 uid="uid://dtgmruo0f45f"]
 
-[ext_resource type="Script" uid="uid://ywhi44barq8g" path="res://architecture/ui/dialog/character.gd" id="1_f41o4"]
+[ext_resource type="Script" uid="uid://ywhi44barq8g" path="res://architecture/ui/dialog/characters/character.gd" id="1_f41o4"]
 [ext_resource type="SpriteFrames" uid="uid://bjo248f53jdqb" path="res://testing/sprite_frames_character_a.tres" id="3_2jqaj"]
 [ext_resource type="AudioStream" uid="uid://cr2pmxv8d72ja" path="res://assets/sounds/sfx/yammering/yeah_5c.wav" id="3_iqjdo"]
 

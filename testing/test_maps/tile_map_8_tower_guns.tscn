@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dxgjwuny1ds3v"]
 
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_lqf21"]
+[ext_resource type="Resource" uid="uid://ci5g16cd163n6" path="res://testing/test_maps/level_8.tres" id="2_cyrgr"]
 [ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset_128.tres" id="6_pq15b"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="7_wryye"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="8_ale0m"]
@@ -88,6 +89,7 @@ metadata/_custom_type_script = "uid://mlap6q5cc1d1"
 
 [node name="Test_Level_8" type="Node2D" unique_id=820054972]
 script = ExtResource("1_lqf21")
+_level_info = ExtResource("2_cyrgr")
 
 [node name="Test" type="Node" parent="." unique_id=535787639]
 
@@ -148,6 +150,7 @@ target_distance = 100.0
 
 [node name="SpawnManager" type="Node2D" parent="." unique_id=1833308816]
 script = ExtResource("10_qc6ws")
+_debug = true
 metadata/_edit_lock_ = true
 
 [node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475]
@@ -198,6 +201,9 @@ _hard_spawn_cap = 1
 [node name="Spawner_1x1" parent="SpawnManager" unique_id=664660667 instance=ExtResource("17_p5dyt")]
 position = Vector2(840, 793)
 _hard_spawn_cap = 1
+
+[node name="Spawner_1x3" parent="SpawnManager" unique_id=1296999000 instance=ExtResource("19_n1xbh")]
+position = Vector2(1187, 423)
 
 [node name="TowerHolder" type="Node2D" parent="." unique_id=370330720]
 script = ExtResource("17_t84e2")
@@ -252,6 +258,3 @@ position = Vector2(980, 1085)
 position = Vector2(439, 726)
 collision_layer = 1
 collision_mask = 1
-
-[node name="Spawner_1x2" parent="." unique_id=1296999000 instance=ExtResource("19_n1xbh")]
-position = Vector2(1187, 423)

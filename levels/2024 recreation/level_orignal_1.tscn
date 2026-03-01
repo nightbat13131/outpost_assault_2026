@@ -1,103 +1,59 @@
 [gd_scene format=3 uid="uid://lmwp2c6lvi1m"]
 
-[ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_gdc0d"]
+[ext_resource type="PackedScene" uid="uid://b0t5s8j8ebkqx" path="res://levels/level_template.tscn" id="1_2p2oy"]
+[ext_resource type="Resource" uid="uid://7hkinaik6ndq" path="res://levels/2024 recreation/orignal_1.tres" id="2_36uud"]
 [ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map.tscn" id="2_m8bud"]
-[ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="3_j8x20"]
-[ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="4_2p2oy"]
-[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/main_base/player_outpost.tscn" id="5_2p2oy"]
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="5_p8art"]
-[ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="6_enfma"]
-[ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="7_o2ugc"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="8_6d675"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://entities/enemy/spawners/spawner_building_1x1.tscn" id="9_t362c"]
 
-[sub_resource type="Resource" id="Resource_p8art"]
-script = ExtResource("7_o2ugc")
-rect_position = Vector2(-500, -700)
-rect_size = Vector2(1920, 1080)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+[node name="Level_Orignal_1" unique_id=1060779039 instance=ExtResource("1_2p2oy")]
+_level_info = ExtResource("2_36uud")
 
-[sub_resource type="Resource" id="Resource_36uud"]
-script = ExtResource("7_o2ugc")
-rect_position = Vector2(-500, -700)
-rect_size = Vector2(2320, 1400)
-camera_start = Vector2(1500, 100)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
-[sub_resource type="Resource" id="Resource_rihjq"]
-script = ExtResource("7_o2ugc")
-rect_position = Vector2(-500, -1150)
-rect_size = Vector2(3600, 1900)
-camera_start = Vector2(2500, -500)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
-[node name="Level_Orignal1" type="Node2D" unique_id=1060779039]
-script = ExtResource("1_gdc0d")
-metadata/_custom_type_script = "uid://dkbdphlfllran"
-
-[node name="OrignalWorldMap" parent="." unique_id=1204732902 instance=ExtResource("2_m8bud")]
+[node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 instance=ExtResource("2_m8bud")]
 metadata/_edit_lock_ = true
 
-[node name="TowerHolder" type="Node2D" parent="." unique_id=1166047291]
-script = ExtResource("3_j8x20")
-metadata/_custom_type_script = "uid://ddqv7v6chewas"
-metadata/_edit_lock_ = true
-
-[node name="BrokenFoundation" parent="TowerHolder" unique_id=400182285 instance=ExtResource("8_6d675")]
+[node name="BrokenFoundation" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="0" unique_id=400182285 instance=ExtResource("8_6d675")]
 position = Vector2(-200, -191)
 
-[node name="BrokenFoundation2" parent="TowerHolder" unique_id=752073247 instance=ExtResource("8_6d675")]
+[node name="BrokenFoundation2" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="1" unique_id=1978485684 instance=ExtResource("8_6d675")]
 position = Vector2(1466, 323)
 
-[node name="BrokenFoundation3" parent="TowerHolder" unique_id=1559523668 instance=ExtResource("8_6d675")]
+[node name="BrokenFoundation3" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="2" unique_id=1954618198 instance=ExtResource("8_6d675")]
 position = Vector2(1855, -833)
 
-[node name="BrokenFoundation5" parent="TowerHolder" unique_id=1456284092 instance=ExtResource("8_6d675")]
+[node name="BrokenFoundation5" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="3" unique_id=1562518689 instance=ExtResource("8_6d675")]
 position = Vector2(2496, -712)
 
-[node name="BrokenFoundation4" parent="TowerHolder" unique_id=92079319 instance=ExtResource("8_6d675")]
+[node name="BrokenFoundation4" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="4" unique_id=350200195 instance=ExtResource("8_6d675")]
 position = Vector2(1727, -967)
 
-[node name="TowerFoundation" parent="TowerHolder" unique_id=1159948536 instance=ExtResource("5_p8art")]
+[node name="TowerFoundation" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="5" unique_id=69639286 instance=ExtResource("5_p8art")]
 position = Vector2(66, -318)
 
-[node name="TowerFoundation2" parent="TowerHolder" unique_id=295617362 instance=ExtResource("5_p8art")]
+[node name="TowerFoundation2" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="6" unique_id=923865178 instance=ExtResource("5_p8art")]
 position = Vector2(442, -201)
 
-[node name="TowerFoundation3" parent="TowerHolder" unique_id=315651402 instance=ExtResource("5_p8art")]
+[node name="TowerFoundation3" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="7" unique_id=1592936593 instance=ExtResource("5_p8art")]
 position = Vector2(306, -433)
 
-[node name="TowerFoundation4" parent="TowerHolder" unique_id=519787914 instance=ExtResource("5_p8art")]
+[node name="TowerFoundation4" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="8" unique_id=999219361 instance=ExtResource("5_p8art")]
 position = Vector2(721, -205)
 
-[node name="TowerFoundation5" parent="TowerHolder" unique_id=1325394692 instance=ExtResource("5_p8art")]
+[node name="TowerFoundation5" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="9" unique_id=803224533 instance=ExtResource("5_p8art")]
 position = Vector2(631, -437)
 
-[node name="TowerFoundation6" parent="TowerHolder" unique_id=692504871 instance=ExtResource("5_p8art")]
+[node name="TowerFoundation6" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="10" unique_id=917980779 instance=ExtResource("5_p8art")]
 position = Vector2(1089, -57)
 
-[node name="TowerFoundation7" parent="TowerHolder" unique_id=1008877533 instance=ExtResource("5_p8art")]
+[node name="TowerFoundation7" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="11" unique_id=1570353010 instance=ExtResource("5_p8art")]
 position = Vector2(960, 187)
 
-[node name="TowerFoundation8" parent="TowerHolder" unique_id=1204447168 instance=ExtResource("5_p8art")]
+[node name="TowerFoundation8" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="12" unique_id=1401834085 instance=ExtResource("5_p8art")]
 position = Vector2(1231, 440)
 
-[node name="SpawnManager" type="Node2D" parent="." unique_id=1550060747]
-script = ExtResource("4_2p2oy")
-metadata/_custom_type_script = "uid://cirjfxlvae6nx"
-metadata/_edit_lock_ = true
-
-[node name="Spawner_1x1" parent="SpawnManager" unique_id=664660667 instance=ExtResource("9_t362c")]
+[node name="Spawner_1x1" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="0" unique_id=664660667 instance=ExtResource("9_t362c")]
 position = Vector2(2174, -1051)
 
-[node name="Spawner_1x2" parent="SpawnManager" unique_id=2032127450 instance=ExtResource("9_t362c")]
+[node name="Spawner_1x2" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="1" unique_id=1123447422 instance=ExtResource("9_t362c")]
 position = Vector2(1606, 439)
-
-[node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("5_2p2oy")]
-position = Vector2(-66, 70)
-_max_hp = 200.0
-
-[node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("6_enfma")]
-visible = true
-testing_index = 0
-bounds = Array[ExtResource("7_o2ugc")]([SubResource("Resource_p8art"), SubResource("Resource_36uud"), SubResource("Resource_rihjq")])

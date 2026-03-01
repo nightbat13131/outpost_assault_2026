@@ -11,5 +11,5 @@ func get_level_name() -> String:
 
 func get_level_path() -> String: return level_uid
 
-func on_game_start() -> void: 
+func on_level_start() -> void: 
 	GoldManager.on_level_start(starting_gold)

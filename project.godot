@@ -47,7 +47,9 @@ enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://a
 [file_customization]
 
 folder_colors={
-"res://addons/": "gray"
+"res://addons/": "gray",
+"res://architecture/cursors/": "purple",
+"res://architecture/guide/": "teal"
 }
 
 [gui]

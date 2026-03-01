@@ -1,10 +1,7 @@
 class_name ButtonEnhanced extends Button
-# might end up with multiple types:
-## Full show active
-## Showing that it's deactivated (implies that it can be activated / unlocked)
-## Deactivated and pretnenting it's not there. 
 
-enum ButtonStates {Active = 0, Inactive = 1, Inactive_Hidden = 2, Active_Overwrite = 3}
+enum ButtonStates {Active = 0, # Inactive = 1, 
+	Inactive_Hidden = 2, Active_Overwrite = 3}
 
 static var standard_cursor : CustomCursor = load("uid://cb44gaxpio06i")
 static var button_cursor : CustomCursor = load("uid://cq7yoy3jauvdv")

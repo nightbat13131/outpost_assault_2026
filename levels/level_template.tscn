@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b0t5s8j8ebkqx"]
+
+[ext_resource type="Script" uid="uid://b4yct53kl2ldn" path="res://levels/2024 recreation/level_orignal_1.gd" id="1_2immw"]
+[ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="6_cos0i"]
+[ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="9_nb64v"]
+[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/main_base/player_outpost.tscn" id="11_c4b2s"]
+[ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_321xn"]
+
+[node name="Level_Template" type="Node2D" unique_id=1060779039]
+script = ExtResource("1_2immw")
+metadata/_custom_type_script = "uid://dkbdphlfllran"
+
+[node name="TowerHolder" type="Node2D" parent="." unique_id=1166047291]
+script = ExtResource("6_cos0i")
+metadata/_custom_type_script = "uid://ddqv7v6chewas"
+metadata/_edit_lock_ = true
+
+[node name="SpawnManager" type="Node2D" parent="." unique_id=1550060747]
+script = ExtResource("9_nb64v")
+metadata/_custom_type_script = "uid://cirjfxlvae6nx"
+metadata/_edit_lock_ = true
+
+[node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("11_c4b2s")]
+position = Vector2(-66, 70)
+_max_hp = 200.0
+
+[node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("12_321xn")]
+visible = true
+testing_index = 0

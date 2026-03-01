@@ -1,6 +1,7 @@
 @tool
 class_name Level extends Node2D
 
+const WARN_LEVEL_INFO = "Needs Level Info"
 const WARN_CAMERA = "Level Needs a CameraBinder"
 const WARN_TILEMAP = "How can you have a level without a tilemap?"
 const WARN_SPAWN_MANAGER = "Level needs a SpawnManager"
@@ -12,22 +13,42 @@ const WARN_FOUND_SPAWNER = "Spawner outside of SpawnHolder"
 
 static var _instance : Level
 
+@export var _level_info: LevelInfo
+
+@export var initial_dialog: DialogGroup
+
+var _camera_binder: CameraBinder
+var _spawn_manager: SpawnManager
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	_instance = self
-	var base = PlayerOutpost.get_instance()
-	if base:
-		base.died.connect(_on_base_death)
+	_conect_children()
+	_level_info.on_level_start()
 	GameSpeed.on_level_start()
-	## handel request reload
-	LevelPopUps.request_popup(LevelPopUps.PopupTypes.CLOSE_ALL) 
+	LevelPopUps.request_popup(LevelPopUps.PopupTypes.CLOSE_ALL) ## handel request reload
+
+func call_wave(wave_number: int) -> void: _spawn_manager.call_wave(wave_number)
+
+func send_dialog_group(dialog_group: DialogGroup) -> void:
+	DisplayDialog.set_dialog_group(dialog_group)
 
 func _on_base_death() -> void:
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_LOSS)
 	print("PlayerBase died, Game over.")
 
-static func get_instance() -> Level: return _instance
+func _conect_children() -> void:
+	for each_child in get_children():
+		if each_child is CameraBinder:
+			_camera_binder = each_child
+		#elif each_child is TileMapLayer:
+		elif each_child is SpawnManager:
+			_spawn_manager = each_child
+			
+		#elif each_child is TowerHolder:
+		elif each_child is PlayerOutpost:
+			each_child.died.connect(_on_base_death)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:Array = [
@@ -37,6 +58,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 		WARN_TOWER_HOLDER,
 		WARN_PLAYER_OUTPOST,
 	]
+	if !_level_info:
+		warnings.append(WARN_LEVEL_INFO)
 	for each_child in get_children():
 		if each_child is CameraBinder:
 			warnings.erase(WARN_CAMERA)
@@ -57,3 +80,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 		
 
 	return warnings
+
+func _on_wave_complete() -> void:
+	pass
+
+static func get_instance() -> Level: return _instance

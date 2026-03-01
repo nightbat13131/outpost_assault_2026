@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qmvep7nlcgj7" path="res://architecture/ui/level_ui.gd" id="1_dl3bl"]
 [ext_resource type="PackedScene" uid="uid://boq3rqx1s3mdj" path="res://architecture/ui/game_speed/game_speed_ui.tscn" id="2_dl3bl"]
+[ext_resource type="Script" uid="uid://bj7irql87ufs0" path="res://architecture/ui/display_wave_info.gd" id="2_jxaob"]
 [ext_resource type="PackedScene" uid="uid://catyutrhhegbh" path="res://architecture/ui/dialog/display_dialog.tscn" id="2_l1g1f"]
 [ext_resource type="Script" uid="uid://cld8myuw16xvu" path="res://architecture/ui/show_player_base.gd" id="2_m3x4y"]
 [ext_resource type="Script" uid="uid://cetwrrjf355o2" path="res://architecture/ui/level_viewport.gd" id="2_vsohg"]
@@ -83,38 +84,50 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="FullScreen/CenterScreen/VBoxContainer" unique_id=1532300227]
+[node name="DisplayWaveInfo" type="HBoxContainer" parent="FullScreen/CenterScreen/VBoxContainer" unique_id=1532300227]
+layout_mode = 2
+script = ExtResource("2_jxaob")
+
+[node name="Spacer" type="Panel" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=2016630165]
+custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
-[node name="LabelWaveHeader" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/HBoxContainer" unique_id=186220195]
+[node name="LabelWaveHeader" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=186220195]
 layout_mode = 2
 text = "Wave Info::"
 
-[node name="Spacer" type="Panel" parent="FullScreen/CenterScreen/VBoxContainer/HBoxContainer" unique_id=2016630165]
-custom_minimum_size = Vector2(5, 0)
-layout_mode = 2
-
-[node name="BuildingHeader" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/HBoxContainer" unique_id=2137085876]
-layout_mode = 2
-text = "Spawning Building: "
-
-[node name="BuildingRatio" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/HBoxContainer" unique_id=2006121739]
+[node name="WaveNumber" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=2006121739]
+unique_name_in_owner = true
 layout_mode = 2
 text = "X/Y"
 
-[node name="Spacer2" type="Panel" parent="FullScreen/CenterScreen/VBoxContainer/HBoxContainer" unique_id=1138738140]
+[node name="Spacer4" type="Panel" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=1932766815]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
-[node name="ModHeader" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/HBoxContainer" unique_id=137870706]
+[node name="BuildingHeader" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=1023792276]
+layout_mode = 2
+text = "Spawning Building: "
+
+[node name="BuildingRatio" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=666500983]
+unique_name_in_owner = true
+layout_mode = 2
+text = "X/Y"
+
+[node name="Spacer2" type="Panel" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=1138738140]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="ModHeader" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=137870706]
 layout_mode = 2
 text = "Creeps: "
 
-[node name="ModRatio" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/HBoxContainer" unique_id=601216543]
+[node name="ModRatio" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=601216543]
+unique_name_in_owner = true
 layout_mode = 2
 text = "A/B"
 
-[node name="Spacer3" type="Panel" parent="FullScreen/CenterScreen/VBoxContainer/HBoxContainer" unique_id=1464368208]
+[node name="Spacer3" type="Panel" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=1464368208]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
@@ -287,5 +300,5 @@ metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="LevelPopups" parent="." unique_id=1909061859 node_paths=PackedStringArray("pause_nodes", "game_over_nodes") instance=ExtResource("17_mpbka")]
 visible = false
-pause_nodes = [NodePath("Background/CenterContainer/VBoxContainer/Restart"), null, NodePath("Background/CenterContainer/VBoxContainer/Settings"), NodePath("Background/CenterContainer/VBoxContainer/CloseButton")]
-game_over_nodes = [NodePath("Background/CenterContainer/VBoxContainer/Retry"), null, NodePath("Background/CenterContainer/VBoxContainer/ResultReadout")]
+pause_nodes = [null, null, NodePath("Background/CenterContainer/VBoxContainer/Settings"), NodePath("Background/CenterContainer/VBoxContainer/CloseButton")]
+game_over_nodes = [null, null, NodePath("Background/CenterContainer/VBoxContainer/ResultReadout")]
