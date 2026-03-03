@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://citf0bjrmxl7k" path="res://architecture/ui/gold_managment/cost_button.tscn" id="11_07nmt"]
 [ext_resource type="Script" uid="uid://2war3dwy2fbe" path="res://architecture/ui/gold_managment/earn_button.gd" id="13_l1g1f"]
 [ext_resource type="PackedScene" uid="uid://chx7ohyvhvlcq" path="res://architecture/ui/level_popups.tscn" id="17_mpbka"]
-[ext_resource type="Script" uid="uid://dffcxsl5eun65" path="res://testing/test_maps/popup_buttons.gd" id="17_vsohg"]
+[ext_resource type="Script" uid="uid://dffcxsl5eun65" path="res://architecture/popup_buttons.gd" id="17_vsohg"]
 
 [sub_resource type="GDScript" id="GDScript_mpbka"]
 script/source = "class_name ShadowHealthUI extends HealthUI

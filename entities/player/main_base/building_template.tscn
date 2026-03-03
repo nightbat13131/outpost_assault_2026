@@ -18,7 +18,7 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ymx2g"]
 gradient = SubResource("Gradient_egiyi")
 
-[node name="BuildingTemplate" type="StaticBody2D" unique_id=473503224]
+[node name="BuildingTemplate" type="StaticBody2D" unique_id=1626251560]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_jlb6n")

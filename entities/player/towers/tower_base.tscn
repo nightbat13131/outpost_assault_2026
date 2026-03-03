@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bb30xxg577ntr" path="res://entities/player/tower.gd" id="1_uq4vj"]
 [ext_resource type="Script" uid="uid://b2e6b5gly4wug" path="res://entities/player/tower_foundation/gun_nest_purchase_manager.gd" id="1_w1wn5"]
-[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/tower_cost_info.gd" id="2_84w7n"]
+[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="2_84w7n"]
 [ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/cost_tower_shooter.tres" id="3_i1tp4"]
 [ext_resource type="Script" uid="uid://dlb5ll2qi1s32" path="res://entities/player/towers/button_manager_tower_context.gd" id="4_fpjj8"]
 [ext_resource type="Resource" uid="uid://cpni7pdywmkt0" path="res://entities/player/towers/repair_info.tres" id="5_8ijru"]

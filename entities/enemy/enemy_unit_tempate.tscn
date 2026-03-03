@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ffqucx6xrr6f"]
 
 [ext_resource type="Script" uid="uid://dfg0vn3c2if1i" path="res://entities/enemy/enemy.gd" id="1_30kr5"]
-[ext_resource type="Resource" uid="uid://bdd5u8cagqlab" path="res://entities/enemy/test_enemy_unit.tres" id="2_avlsx"]
+[ext_resource type="Resource" uid="uid://bjukj66fpbv7y" path="res://entities/enemy/scout_info.tres" id="2_8koau"]
 [ext_resource type="SpriteFrames" uid="uid://cee2ckge7fxoa" path="res://entities/godot_sprite_frames.tres" id="3_m50hi"]
 [ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/ui/game_speed/animated_sprite_delta_mod.gd" id="4_8koau"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="4_ako3l"]
@@ -27,7 +27,7 @@ collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_30kr5")
-_enemy_info = ExtResource("2_avlsx")
+_enemy_info = ExtResource("2_8koau")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025302939]
 visible = false

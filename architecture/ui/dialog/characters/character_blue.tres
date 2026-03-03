@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://c3nhig11mrh2l"]
+
+[ext_resource type="Texture2D" uid="uid://d4jq253utc7ht" path="res://architecture/ui/dialog/characters/background_ally.tres" id="1_apm2n"]
+[ext_resource type="Script" uid="uid://ywhi44barq8g" path="res://architecture/ui/dialog/characters/character.gd" id="1_bvu7q"]
+[ext_resource type="SpriteFrames" uid="uid://dyyog4b3biu73" path="res://architecture/ui/dialog/characters/sprite_blue_character.tres" id="2_bvu7q"]
+
+[resource]
+script = ExtResource("1_bvu7q")
+background = ExtResource("1_apm2n")
+sprite = ExtResource("2_bvu7q")
+_name = "Blue"
+metadata/_custom_type_script = "uid://ywhi44barq8g"

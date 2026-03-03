@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://c0fi0vwkdcxil"]
 
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_kla5u"]
+[ext_resource type="Resource" uid="uid://cgwnyby4u37yq" path="res://testing/test_maps/level_7.tres" id="2_7p1sr"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="2_orddc"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="3_2ucw7"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="4_fwhd0"]
@@ -22,7 +23,7 @@
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="10_iah57"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="11_uqibm"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="12_1mdwh"]
-[ext_resource type="Script" uid="uid://dffcxsl5eun65" path="res://testing/test_maps/popup_buttons.gd" id="12_mfrex"]
+[ext_resource type="Script" uid="uid://dffcxsl5eun65" path="res://architecture/popup_buttons.gd" id="12_mfrex"]
 [ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://entities/enemy/spawners/spawner_building_1x2.tscn" id="13_a1dwg"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="15_lsrd0"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="16_2g0lw"]
@@ -255,6 +256,7 @@ metadata/_custom_type_script = "uid://mlap6q5cc1d1"
 
 [node name="Test_Level_7" type="Node2D" unique_id=820054972]
 script = ExtResource("1_kla5u")
+_level_info = ExtResource("2_7p1sr")
 
 [node name="test" type="Node" parent="." unique_id=761061381]
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CostButtonInfo_Tower" format=3 uid="uid://da6q33nv25drd"]
 
-[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/tower_cost_info.gd" id="1_v22n5"]
+[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="1_v22n5"]
 
 [sub_resource type="Gradient" id="Gradient_jc3j1"]
 interpolation_mode = 1

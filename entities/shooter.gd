@@ -6,14 +6,18 @@ const EVENT_DIE = "die"
 const EVENT_JUST_SHOT = "just_shoot"
 const EVENT_HAS_AMMO = "clip_ready"
 
+@export_group("Projectile", "_projectile")
 @export var _projectile : PackedScene
+@export var _projectile_base_speed := 500.0
+@export var _projectile_base_damage := 3.0
+@export var _projectile_base_spread_deg := .5
 
 @export_group("Rotation", "_rotation")
 @export var _limit_roation := false
-@export var _rotation_limit := TAU/8.0 : set = set_rotation_limit
+@export var _rotation_limit := TAU/4.0 : set = set_rotation_limit
 @export var _rotation_speed_deg_sec := 45
 
-@export var _clip_information : ReloadInfo
+var _clip_information : ReloadInfo
 @onready var _radar_sensor: RadarSensor = %RadarSensor
 
 @onready var _aiming_sights: AimingSights = %AimingSights
@@ -27,11 +31,13 @@ func _ready() -> void:
 	_state_machine.propagate_call("set_shooter", [self])
 	_state_machine.propagate_call("set_radar_sensor", [_radar_sensor])
 	_radar_sensor.set_shooter(self)
-	_clip_information = _clip_information.duplicate()
-	_clip_information.state_update.connect(send_event)
+	if _clip_information:
+		_clip_information = _clip_information.duplicate()
+		_clip_information.state_update.connect(send_event)
 
-func set_foundation_upgrades(foundation_upgrades: FoundationUpgrades) -> void:
-	_clip_information.setup(self, foundation_upgrades)
+func set_clip_information(reload_info: ReloadInfo) -> void:
+	_clip_information = reload_info
+	_clip_information.state_update.connect(send_event)
 
 func set_targetting_mask(layer: int, flag := true) -> void:
 	if _radar_sensor:
@@ -56,7 +62,7 @@ func send_event(event: String) -> void:
 
 func get_rotation_speed_radian() -> float:
 	## todo: effected by upgrades
-	return _rotation_speed_deg_sec * (TAU/360.0)
+	return deg_to_rad(_rotation_speed_deg_sec)
 
 func get_radar_sensor() -> RadarSensor: return _radar_sensor
 
@@ -120,15 +126,12 @@ func try_shoot() -> void:
 
 func _shoot() -> void:
 	var projectile : Projectile = _projectile.instantiate()
-	var _projectile_speed = 100.0
-	var _projectile_range = _range
-	var _damage := 10.0
 	projectile.setup(
 		_muzzles.get_muzzle_location(), 
-		global_rotation, 
-		_projectile_speed, 
-		_damage,
-		_projectile_range,
+		global_rotation + get_projectile_spread_radian(), 
+		get_projectile_speed(), 
+		get_projectile_damage(),
+		get_projectile_range(),
 		_radar_sensor.get_collision_mask(),
 		null)
 	_clip_information.shots_fired()
@@ -142,3 +145,19 @@ func die() -> void:
 		_clip_information.die()
 	_radar_sensor.die()
 	send_event(EVENT_DIE)
+
+func get_projectile_damage() -> float: 
+	# TODO have projective damage be effected by upgrades
+	return _projectile_base_damage
+
+func get_projectile_speed() -> float: 
+	# TODO have projective speed be effected by upgrades
+	return _projectile_base_speed
+
+func get_projectile_spread_radian() -> float: 
+	# TODO have projective spread be effected by upgrades
+	return deg_to_rad(randf_range(_projectile_base_spread_deg*-1, _projectile_base_spread_deg ) )
+
+func get_projectile_range() -> float: 
+	# TODO have projective range? be effected by upgrades
+	return _range

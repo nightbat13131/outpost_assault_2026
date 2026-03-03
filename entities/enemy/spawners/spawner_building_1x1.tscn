@@ -69,7 +69,7 @@ script = ExtResource("4_3ceep")
 point_path = NodePath("Spawn_W")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[node name="Spawner_1x1" type="Node2D" unique_id=664660667]
+[node name="Spawner_1x1_" type="Node2D" unique_id=664660667]
 script = ExtResource("1_4h0ng")
 
 [node name="Building" parent="." unique_id=831910580 instance=ExtResource("1_sqi0b")]

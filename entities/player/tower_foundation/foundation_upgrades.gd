@@ -2,6 +2,12 @@ class_name FoundationUpgrades extends Resource
 
 enum UpgradeTypes {RADAR = 0, GEAR = 1, COOLING = 2}
 
+var upgrade_prices: Dictionary = {
+	UpgradeTypes.RADAR: 150,
+	UpgradeTypes.COOLING: 250,
+	UpgradeTypes.GEAR: 200,
+}
+
 var _foundation : TowerFoundation
 
 static var upgrade_levels_max : Dictionary[UpgradeTypes, int] = {
@@ -34,11 +40,13 @@ func set_foundation(foundation: TowerFoundation) -> void:
 func attempt_upgrade_request(info: CostButonInfo_FoundationUpgrads) -> void:
 	var _upgrade_type := info.get_upgrade_type()
 	if !is_type_maxed(_upgrade_type):
-		upgrade_levels[_upgrade_type] += 1
+		## in case the _upgrade_type is missing from the dictionary
+		upgrade_levels[_upgrade_type] = get_upgrade_level(_upgrade_type) +1
 		changed.emit()
 
 func is_type_maxed(upgrade_type: UpgradeTypes) -> bool:
-	return upgrade_levels[upgrade_type] >= upgrade_levels_max[upgrade_type]
+	## TODO have the max upgrade level effected by outpost and global unlocks 
+	return get_upgrade_level(upgrade_type) >= upgrade_levels_max[upgrade_type]
 
 func get_upgrade_tooltip(upgrade_type: UpgradeTypes) -> String: # because I might made this less static in the future
 	return upgrade_type_tooltips[upgrade_type]
@@ -46,12 +54,12 @@ func get_upgrade_tooltip(upgrade_type: UpgradeTypes) -> String: # because I migh
 func get_upgrade_cost(upgrade_type: UpgradeTypes) -> float: 
 	if is_type_maxed(upgrade_type):
 		return 0
-	return 100 + 20.0 * randi_range(1,5)
+	return upgrade_prices[upgrade_type] * (1 + get_upgrade_level(upgrade_type)*.1 )
 
 func get_upgrade_level(upgrade_type: UpgradeTypes) -> int:
-	return upgrade_levels[upgrade_type]
+	return upgrade_levels.get(upgrade_type, 0)
 
 func get_upgrade_ratio(upgrade_type: UpgradeTypes) -> float:
-	return upgrade_levels[upgrade_type] / float(upgrade_levels_max[upgrade_type])
+	return get_upgrade_level(upgrade_type) / float(upgrade_levels_max[upgrade_type])
 
 func get_foundation() -> TowerFoundation: return _foundation

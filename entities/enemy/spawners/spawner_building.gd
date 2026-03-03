@@ -1,5 +1,4 @@
 class_name SpawnerBuilding extends Spawner
-## Setup reminder: Set the Selction buttion size and location
 ## TODO: figure out how to have units walk around buildings while keeping that 
 ## enemies can walk OUT of buildings. Prototype just put buildings onto of non_walking places.
 
@@ -22,4 +21,5 @@ func _on_building_died() -> void:
 func _death_animation_complete() -> void:
 	if Engine.is_editor_hint():
 		return
+	_foundation_points.activate(_building.get_display_info())
 	queue_free()

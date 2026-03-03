@@ -6,10 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdji5"]
 size = Vector2(124, 124)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smrb1"]
+
 [node name="PlayerOutpost" unique_id=831910580 instance=ExtResource("1_vdji5")]
 script = ExtResource("2_smrb1")
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1126154183]
+unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_vdji5")
 
 [node name="Button" parent="." index="1" unique_id=1509464480]
@@ -18,9 +21,22 @@ offset_top = -62.0
 offset_right = 62.0
 offset_bottom = 62.0
 
+[node name="AnimatedSprite2D" parent="." index="3" unique_id=1893754338]
+animation = &"die"
+
 [node name="UpgradeManager" type="Node" parent="." index="4" unique_id=1839324587]
 unique_name_in_owner = true
 
 [node name="BuildingUI" parent="." index="5" unique_id=168524684]
 offset_top = 65.0
 offset_bottom = 73.0
+
+[node name="EnemyDetector" type="Area2D" parent="." index="6" unique_id=1710717898]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="DetectorCollisionShape2D" type="CollisionShape2D" parent="EnemyDetector" index="0" unique_id=1932159574]
+unique_name_in_owner = true
+visible = false
+shape = SubResource("RectangleShape2D_smrb1")

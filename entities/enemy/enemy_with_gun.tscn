@@ -3,20 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="1_pylal"]
 [ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_base.tscn" id="2_c3r84"]
 [ext_resource type="Script" uid="uid://bc3v0fgsir0ya" path="res://entities/enemy/enemy_shooter.gd" id="2_nnjro"]
-[ext_resource type="Script" uid="uid://bgsj5t26153la" path="res://entities/enemy/enemy_unit_info.gd" id="3_kpr4w"]
-[ext_resource type="Script" uid="uid://dmp1d6bqc3nt6" path="res://entities/projectile/reload_info.gd" id="5_bwkq7"]
+[ext_resource type="Resource" uid="uid://bf2wokstj3yme" path="res://entities/enemy/gun_man.tres" id="3_bwkq7"]
+[ext_resource type="Resource" uid="uid://b0scq7h37fb35" path="res://entities/enemy/reload_info_gun_man.tres" id="5_bwkq7"]
 [ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="5_hpllm"]
-
-[sub_resource type="Resource" id="Resource_hpllm"]
-script = ExtResource("3_kpr4w")
-metadata/_custom_type_script = "uid://bgsj5t26153la"
-
-[sub_resource type="Resource" id="Resource_wejlq"]
-script = ExtResource("5_bwkq7")
-_clip_reload_base = 1.0
-_clip_ammo_size_base = 6
-_burst_delay_seconds_base = 0.25
-metadata/_custom_type_script = "uid://dmp1d6bqc3nt6"
 
 [sub_resource type="Gradient" id="Gradient_nnjro"]
 interpolation_mode = 1
@@ -30,16 +19,17 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="GunMan" unique_id=1456879393 instance=ExtResource("1_pylal")]
 script = ExtResource("2_nnjro")
-_enemy_info = SubResource("Resource_hpllm")
+_reload_info = ExtResource("5_bwkq7")
+_enemy_info = ExtResource("3_bwkq7")
 
 [node name="StateChart" parent="." index="5" unique_id=411729324]
 track_in_editor = true
 
 [node name="Shooter" parent="." index="6" unique_id=1614296909 instance=ExtResource("2_c3r84")]
 unique_name_in_owner = true
+_projectile_base_speed = 1000.0
 _limit_roation = true
 _rotation_speed_deg_sec = 120
-_clip_information = SubResource("Resource_wejlq")
 
 [node name="RadarSensor" parent="Shooter" index="0" unique_id=1930009677]
 z_index = 100

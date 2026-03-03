@@ -32,7 +32,6 @@ func _get_cost() -> float: return _get_tower_info().get_cost()
 
 func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, _clip_reload_ui: ClipReloadUI) -> void:
 	_tower_info = _tower_info.duplicate()
-	
 	_founation_upgrades = upgrades
 	_founation_upgrades.changed.connect(_on_upgrade_changed)
 	_deffered_setup.call_deferred(health_ui)
@@ -46,12 +45,9 @@ func repair() -> void: _health_info.full_heal()
 
 func get_repair_cost() -> float: return _get_tower_info().get_repair_value()
 
-
 func get_display_name() -> String: return _get_tower_info().get_display_name()
 
 func take_damage(damage_delt: float) -> void: _health_info.take_damage(damage_delt)
-
-#func get_health_ui() -> HealthUI: return _health_ui
 
 func has_shooter() -> bool: return false
 

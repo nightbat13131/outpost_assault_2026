@@ -38,10 +38,17 @@ func _ready() -> void:
 		return
 	_detect_children()
 	_health_info = HealthInfo.new()
+	#set_collision_layer_value(RadarSensor.COLLISION_ENEMY_HUMANS, true)
 	_health_info.set_max_health(_enemy_info.get_max_health(), true)
 	_health_ui.set_health_info(_health_info)
 	_health_info.die.connect(_die)
 	_g0_rotation.append(%UIAnchor)
+
+func get_kill_reward() -> float: 
+	if _health_info.get_health_ratio() <= 0:
+		if _enemy_info:
+			return _enemy_info.get_kill_reward()
+	return 0.0
 
 func set_nav_target(node: Node2D) -> void:
 	_nav_target = node
@@ -62,7 +69,6 @@ func move(_delta_moded: float) -> void:
 	#var new_velocity: Vector2 = global_position.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
 	var target_direction = global_position.direction_to(next_path_pos)
 	var rotate_amount = Utilties.delta_radian(rotation, target_direction.angle())
-
 	_update_rotation(rotation + rotate_amount)
 	velocity = Vector2.from_angle(rotation) * get_max_speed()
 	if not _nav_agent.avoidance_enabled:
@@ -152,3 +158,8 @@ func stop_animation(animation: String) -> void:
 			_animated_sprite.stop()
 
 func take_damage(damage_delt : float) -> void: _health_info.take_damage(damage_delt)
+
+func on_outpost_entered(outpost: PlayerOutpost) -> void:
+	outpost.take_damage(_enemy_info.get_outpost_damange())
+	## TODO: animation other than die?
+	_die()

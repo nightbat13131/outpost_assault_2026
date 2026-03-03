@@ -27,7 +27,7 @@ var _enemy_spawned_count := 0
 ## Use with _hard_spawn_cap to limit spawns
 var _active_enemy_count:= 0
 ## Seconds between spawning units within the pulse
-@export_range(0.1, 10.0, .01) var _spawn_speed := 0.2
+@export_range(0.1, 10.0, .01) var _spawn_speed := 1.5
 # How many units spawn in each pulse
 @export_range(1,100, 1) var _pulse_unit_volume: int = 1
 

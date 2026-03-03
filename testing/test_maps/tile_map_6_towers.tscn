@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_5518w"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="1_iw66m"]
+[ext_resource type="Resource" uid="uid://unevfi1dldfn" path="res://testing/test_maps/level_6.tres" id="2_d8ypc"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="2_dxpro"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="3_k7ba1"]
 [ext_resource type="Script" uid="uid://cslh5sayhqyfm" path="res://testing/test_scripts/test_trigger_repair.gd" id="4_5518w"]
@@ -159,6 +160,7 @@ metadata/_custom_type_script = "uid://mlap6q5cc1d1"
 
 [node name="Test_Level_6" type="Node2D" unique_id=820054972]
 script = ExtResource("1_5518w")
+_level_info = ExtResource("2_d8ypc")
 
 [node name="test" type="Node" parent="." unique_id=761061381]
 

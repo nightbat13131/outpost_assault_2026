@@ -10,6 +10,8 @@
 script = ExtResource("1_2immw")
 metadata/_custom_type_script = "uid://dkbdphlfllran"
 
+[node name="NavPoints" type="Node2D" parent="." unique_id=1616807523]
+
 [node name="TowerHolder" type="Node2D" parent="." unique_id=1166047291]
 script = ExtResource("6_cos0i")
 metadata/_custom_type_script = "uid://ddqv7v6chewas"

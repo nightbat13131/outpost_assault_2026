@@ -79,7 +79,7 @@ script = ExtResource("5_jpby6")
 point_path = NodePath("Spawn_SW")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[node name="Spawner_1x2" type="Node2D" unique_id=1797158330 node_paths=PackedStringArray("spawn_points")]
+[node name="Spawner_1x2_" type="Node2D" unique_id=1797158330 node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("1_negn4")
 spawn_points = [NodePath("SpawnPointPeople")]
 

@@ -20,27 +20,20 @@ func get_outer_range() -> float: return get_tower_radar_outer_range(my_type, _up
 func get_sell_value() -> float: return get_cost() * _health_info.get_health_ratio()
 func get_repair_value() -> float: return get_cost() * (1.0- _health_info.get_health_ratio())
 
-
-#static var type_to_class :Dictionary = {
-	#TowerType.NA: Tower,
-	#TowerType._NoShooter: TowerNoGun,
-	#TowerType._TEST_SHOOTER: TowerShooter, 
-	#TowerType._TEST_TRUCK: TruckTower
-#}
 static var _type_to_outer_range :Dictionary[TowerType, float] = {
-	TowerType._TEST_SHOOTER: 105.0, 
-	TowerType._TEST_TRUCK: 145.0
+	TowerType._TEST_SHOOTER: 268.8, 
+	TowerType._TEST_TRUCK: 400.0
 }
 static var _type_to_cost :Dictionary[TowerType, float] = {
 	TowerType.NA: 5 ,
 	TowerType._NoShooter: 25,
-	TowerType._TEST_SHOOTER: 100,
+	TowerType._TEST_SHOOTER: 250,
 	TowerType._TEST_TRUCK: 150
 }
 static var _type_to_name :Dictionary[TowerType, String] = {
 	TowerType._NoShooter: "Decoy",
-	TowerType._TEST_SHOOTER: "Tower Shooter", 
-	TowerType._TEST_TRUCK: "Truck"
+	TowerType._TEST_SHOOTER: "Single Gun", 
+	TowerType._TEST_TRUCK: "Tower Truck"
 }
 static var _type_to_filepath : Dictionary[TowerType, String] = {
 	TowerType._NoShooter: "uid://n0l8egj3gjg6",
@@ -49,7 +42,7 @@ static var _type_to_filepath : Dictionary[TowerType, String] = {
 }
 static var _type_to_max_hp :Dictionary[TowerType, float] = {
 	TowerType._NoShooter: 400,
-	TowerType._TEST_SHOOTER: 100.0, 
+	TowerType._TEST_SHOOTER: 151.0, 
 	TowerType._TEST_TRUCK: 150.0
 }
 

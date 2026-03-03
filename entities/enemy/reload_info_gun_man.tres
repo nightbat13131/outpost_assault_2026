@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ReloadInfo_Enemy" format=3 uid="uid://b0scq7h37fb35"]
+
+[ext_resource type="Script" uid="uid://bfegomsx6qine" path="res://entities/projectile/reload_info_enemy.gd" id="1_ifwmo"]
+
+[resource]
+script = ExtResource("1_ifwmo")
+_clip_reload_base = 1.0
+_clip_ammo_size_base = 6
+_burst_delay_seconds_base = 0.25
+metadata/_custom_type_script = "uid://dmp1d6bqc3nt6"

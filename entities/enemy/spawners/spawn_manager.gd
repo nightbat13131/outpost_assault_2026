@@ -33,8 +33,8 @@ func _on_child_entered_tree(node: Node) -> void:
 		_summoned_enemy_count += 1
 		_wave_check()
 
-func _on_enemy_unit_died(_unit: EnemyUnit) -> void:
-	## TODO: does money earnings go here?
+func _on_enemy_unit_died(unit: EnemyUnit) -> void:
+	GoldManager.earn_gold(unit.get_kill_reward())
 	_enemy_unit_count -= 1
 	_wave_check()
 

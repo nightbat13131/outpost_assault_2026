@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://3wa3aobxshrp"]
+
+[ext_resource type="Script" uid="uid://ywhi44barq8g" path="res://architecture/ui/dialog/characters/character.gd" id="1_nkkcj"]
+[ext_resource type="Texture2D" uid="uid://bdv6ueo6s13ax" path="res://architecture/ui/dialog/characters/enemy_background.tres" id="1_yd0el"]
+[ext_resource type="SpriteFrames" uid="uid://cara75yieskd1" path="res://architecture/ui/dialog/characters/sprite_black_character.tres" id="2_nkkcj"]
+
+[resource]
+script = ExtResource("1_nkkcj")
+background = ExtResource("1_yd0el")
+sprite = ExtResource("2_nkkcj")
+_name = "Black"
+metadata/_custom_type_script = "uid://ywhi44barq8g"
