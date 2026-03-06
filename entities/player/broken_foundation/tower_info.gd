@@ -27,8 +27,8 @@ static var _type_to_outer_range :Dictionary[TowerType, float] = {
 static var _type_to_cost :Dictionary[TowerType, float] = {
 	TowerType.NA: 5 ,
 	TowerType._NoShooter: 25,
-	TowerType._TEST_SHOOTER: 250,
-	TowerType._TEST_TRUCK: 150
+	TowerType._TEST_SHOOTER: 150,
+	TowerType._TEST_TRUCK: 250
 }
 static var _type_to_name :Dictionary[TowerType, String] = {
 	TowerType._NoShooter: "Decoy",
@@ -37,7 +37,7 @@ static var _type_to_name :Dictionary[TowerType, String] = {
 }
 static var _type_to_filepath : Dictionary[TowerType, String] = {
 	TowerType._NoShooter: "uid://n0l8egj3gjg6",
-	TowerType._TEST_SHOOTER: "uid://dro1735nlrdor", 
+	TowerType._TEST_SHOOTER: "uid://dofehy3c0bks6", 
 	TowerType._TEST_TRUCK: "uid://o8lbby237l0n"
 }
 static var _type_to_max_hp :Dictionary[TowerType, float] = {
@@ -45,6 +45,12 @@ static var _type_to_max_hp :Dictionary[TowerType, float] = {
 	TowerType._TEST_SHOOTER: 151.0, 
 	TowerType._TEST_TRUCK: 150.0
 }
+
+static var _type_to_damage :Dictionary[TowerType, float] = {
+	TowerType._TEST_SHOOTER: 5.0, 
+	TowerType._TEST_TRUCK: 150.0
+}
+
 
 static func get_tower_display_name(tower_type_: TowerType) -> String: return _type_to_name.get(tower_type_, "No Name Set for " + str(int(tower_type_)))
 

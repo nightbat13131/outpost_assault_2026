@@ -28,7 +28,7 @@ var _enemy_spawned_count := 0
 var _active_enemy_count:= 0
 ## Seconds between spawning units within the pulse
 @export_range(0.1, 10.0, .01) var _spawn_speed := 1.5
-# How many units spawn in each pulse
+## How many units spawn in each pulse
 @export_range(1,100, 1) var _pulse_unit_volume: int = 1
 
 @export var spawn_types : Dictionary[EnemyUnitInfo.EnemyTypes, int] = {}
@@ -60,6 +60,7 @@ func _populate_spawn_points() -> void:
 		spawn_points.erase(null)
 
 func start_wave(wave_number) -> void:
+	prints(self, wave_number, _waves.is_empty() , _waves.has(wave_number))
 	if _is_disabled:
 		return
 	if _waves.is_empty() or _waves.has(wave_number):
@@ -138,8 +139,9 @@ func _get_spawn_point(enemy_type: EnemyUnitInfo.EnemySpawnTypes) -> SpawnPoint:
 		return null
 	spawn_points.shuffle() 
 	for each_point in spawn_points:
-		if each_point.is_type_valid(enemy_type):
-			return each_point
+		if each_point:
+			if each_point.is_type_valid(enemy_type):
+				return each_point
 	push_warning(self, " no spawn point match with enemey type: ", enemy_type)
 	return spawn_points[0]
 

@@ -50,6 +50,9 @@ texture = SubResource("GradientTexture2D_kpr4w")
 position = Vector2(12.999998, -8.5)
 scale = Vector2(0.40625, 0.078125015)
 
+[node name="die" parent="Shooter/ShooterStateChart/ShootingStates/TargetState" parent_id_path=PackedInt32Array(1614296909, 1472020959) index="0" unique_id=955560172]
+event = &"died"
+
 [node name="NoTarget" parent="Shooter/ShooterStateChart/ShootingStates/TargetState" parent_id_path=PackedInt32Array(1614296909, 1472020959) index="1" unique_id=385167069]
 look_forward = true
 

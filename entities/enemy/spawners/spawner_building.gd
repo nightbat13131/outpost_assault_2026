@@ -4,6 +4,7 @@ class_name SpawnerBuilding extends Spawner
 
 @onready var _foundation_points: BrokenFoundationSpawner = %FoundationPoints
 @onready var _building: Building = %Building
+@onready var _kill_reward := 300.0
 
 func _ready() -> void:
 	super._ready()
@@ -17,6 +18,8 @@ func _on_building_died() -> void:
 	_is_disabled = true
 	_end_wave()
 	_foundation_points.activate(_building.get_display_info())
+	# TODO: effect building kill gold by unlocks
+	GoldManager.earn_gold(_kill_reward)
 
 func _death_animation_complete() -> void:
 	if Engine.is_editor_hint():

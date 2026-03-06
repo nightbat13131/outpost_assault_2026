@@ -9,6 +9,7 @@ enum EnemyTypes {
 
 static var EnemyScenePaths : Dictionary[EnemyTypes, String] = {
 	EnemyTypes.DEBUG_WALKER: "uid://ffqucx6xrr6f",
+	EnemyTypes.SCOUT: "uid://ffqucx6xrr6f",
 	EnemyTypes.GUN: "uid://drfqmnxu83xf6",
 }
 

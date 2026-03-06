@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://qwqas3cdsffr"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_2qixr"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="2_m1jeq"]
+[ext_resource type="Resource" uid="uid://3wa3aobxshrp" path="res://architecture/ui/dialog/characters/character_black.tres" id="2_rm0as"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="3_wulvx"]
+
+[sub_resource type="Resource" id="Resource_dp1kl"]
+script = ExtResource("1_2qixr")
+_character = ExtResource("2_rm0as")
+_dialog = "Surrender your tower technology or we'll take it by force."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_ewyll"]
+script = ExtResource("1_2qixr")
+_character = ExtResource("3_wulvx")
+_dialog = "I know the sign says no solicitors, but the no thieves is implied."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("2_m1jeq")
+_dialogs = Array[ExtResource("1_2qixr")]([SubResource("Resource_dp1kl"), SubResource("Resource_ewyll")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

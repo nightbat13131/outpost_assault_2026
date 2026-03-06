@@ -5,6 +5,7 @@ class_name NavPoint extends Node2D
 
 #@export var next_target_weights: Dictionary[NavPoint, int] # started crashing the engine after about 30 minutes
 ## Paths for next nav points and their weights. 
+@export var next_targets : Array[NavPoint]
 @export var next_target_weights: Array[NavPointWeight] = []
 ## The distance threshold before the target is considered to be reached.
 @export var is_disabled := false
@@ -13,7 +14,6 @@ class_name NavPoint extends Node2D
 		target_distance = abs(value)
 		queue_redraw()
 @onready var _picker: WeightedPicker
-
 
 func _ready() -> void:
 	if is_disabled:
@@ -31,7 +31,7 @@ func _draw() -> void:
 		return
 	if Engine.is_editor_hint():
 		draw_circle(Vector2.ZERO, target_distance, Color.RED, false, 3.0)
-		if next_target_weights.is_empty():
+		if next_targets.is_empty():
 			draw_polyline(
 				[Vector2.from_angle(TAU*.25)*target_distance,
 				Vector2.from_angle(TAU*.5)*target_distance,
@@ -42,11 +42,11 @@ func _draw() -> void:
 				Color.ORANGE, 2)
 		else:
 			var end_point : Vector2
-			for each_point: NavPointWeight in next_target_weights:
-				if each_point.get_nav_point():
-					if !each_point.get_nav_point().is_disabled:
-						end_point = to_local(each_point.get_nav_point().global_position)
-						draw_line(Vector2.ZERO, end_point, Color.ORANGE, each_point.get_weight()*4)
+			for each_point: NavPoint in next_targets:
+				if each_point:
+					if !each_point.is_disabled:
+						end_point = to_local(each_point.global_position)
+						draw_line(Vector2.ZERO, end_point, Color.ORANGE, 4)
 						draw_polyline([
 							Vector2.from_angle(end_point.angle()-.2)*target_distance*1,
 							Vector2.from_angle(end_point.angle())   *target_distance*1.25,
@@ -54,7 +54,39 @@ func _draw() -> void:
 							],
 					Color.BLUE, 2)
 
-func get_next_point() -> NavPoint: return _picker.pick_one()
+func _draw_0() -> void:
+	if is_disabled:
+		return
+	if Engine.is_editor_hint():
+		draw_circle(Vector2.ZERO, target_distance, Color.RED, false, 3.0)
+		if next_target_weights.is_empty():
+			draw_polyline(
+				[Vector2.from_angle(TAU*.25)*target_distance,
+				Vector2.from_angle(TAU*.5)*target_distance,
+				Vector2.from_angle(TAU*.75)*target_distance,
+				Vector2.from_angle(TAU*1.0)*target_distance,
+				Vector2.from_angle(TAU*.25)*target_distance,
+				],
+				Color.ORANGE, 2)
+		#else:
+			#var end_point : Vector2
+			#for each_point: NavPointWeight in next_target_weights:
+				#if each_point.get_nav_point():
+					#if !each_point.get_nav_point().is_disabled:
+						#end_point = to_local(each_point.get_nav_point().global_position)
+						#draw_line(Vector2.ZERO, end_point, Color.ORANGE, each_point.get_weight()*4)
+						#draw_polyline([
+							#Vector2.from_angle(end_point.angle()-.2)*target_distance*1,
+							#Vector2.from_angle(end_point.angle())   *target_distance*1.25,
+							#Vector2.from_angle(end_point.angle()+.2)*target_distance*1,
+							#],
+					#Color.BLUE, 2)
+
+func get_next_point() -> NavPoint: 
+	if next_targets.is_empty():
+		return null
+	return next_targets.pick_random()
+	#return _picker.pick_one()
 
 func get_target_location() -> Vector2: 
 	return Vector2.from_angle(randf() * TAU) * target_distance *.5 + global_position
@@ -74,6 +106,14 @@ func apply_nav_agent(nav_agent: NavigationAgent2D) -> void:
 			)
 		nav_agent.set_target_desired_distance(target_distance * .5) # 5 is too small and nav agent gets stuck trying to be close enough
 
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings:Array = [
+		"No next nav points set"
+	]
+	if next_targets.is_empty():
+		return warnings
+	return []
+
 class WeightedPicker:
 	var _total: float = 0.0
 	var _choices: Array[NavPointWeight]
@@ -85,13 +125,15 @@ class WeightedPicker:
 		if _choices.is_empty():
 			return null
 		if _choices.size() == 1:
-			return _choices[0].get_nav_point()
+			#return _choices[0].get_nav_point()
+			return null
 		var roll : float = randf_range(0, _total)
 		var current_weight : float = 0.0
 		for each in _choices:
 			current_weight = each.get_weight()
 			if roll <= current_weight:
-				return each.get_nav_point()
+				#return each.get_nav_point()
+				return null
 			roll -= current_weight
 		return null
 

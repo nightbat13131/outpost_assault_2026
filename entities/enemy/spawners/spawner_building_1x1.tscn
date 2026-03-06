@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/player/main_base/building_template.tscn" id="1_sqi0b"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="2_a6824"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="3_3ipqg"]
-[ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_3ceep"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="5_eqv62"]
 [ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/broken_foundation/populate_broken_foundations.gd" id="9_eqv62"]
 
@@ -59,16 +58,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_16vwn"]
-script = ExtResource("4_3ceep")
-point_path = NodePath("Spawn_E")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_gluir"]
-script = ExtResource("4_3ceep")
-point_path = NodePath("Spawn_W")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
 [node name="Spawner_1x1_" type="Node2D" unique_id=664660667]
 script = ExtResource("1_4h0ng")
 
@@ -100,11 +89,12 @@ unique_name_in_owner = true
 script = ExtResource("9_eqv62")
 metadata/_edit_lock_ = true
 
-[node name="SpawnPointPerson" type="Node2D" parent="." unique_id=1438190680]
+[node name="SpawnPointPerson" type="Node2D" parent="." unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 script = ExtResource("3_3ipqg")
 unit_types = Array[int]([100])
-next_target_weights = Array[ExtResource("4_3ceep")]([SubResource("Resource_16vwn"), SubResource("Resource_gluir")])
+next_targets = [NodePath("Spawn_E"), NodePath("Spawn_W")]
+target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="Spawn_E" type="Node2D" parent="SpawnPointPerson" unique_id=100200813]

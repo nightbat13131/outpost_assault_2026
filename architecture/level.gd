@@ -15,7 +15,10 @@ static var _instance : Level
 
 @export var _level_info: LevelInfo
 
-@export var initial_dialog: DialogGroup
+@export var _dialog_groups: Array[DialogGroup]
+
+
+var _next_trigger : Callable
 
 var _camera_binder: CameraBinder
 var _spawn_manager: SpawnManager
@@ -31,24 +34,34 @@ func _ready() -> void:
 
 func call_wave(wave_number: int) -> void: _spawn_manager.call_wave(wave_number)
 
-func send_dialog_group(dialog_group: DialogGroup) -> void:
+func call_camera_bounds(index: int) -> void: _camera_binder.trigger_bound_index(index)
+
+## for calling dialog via the standard array
+func trigger_dialog_group_index(index: int) -> void: 
+	if index >= _dialog_groups.size():
+		push_warning(self, "send_dialog_group index out of bounds. index: ", index, " size: ", _dialog_groups.size())
+	else: 
+		send_dialog_group(_dialog_groups[index])
+
+## for calling dialog group that may not be in the standard array
+func send_dialog_group(dialog_group: DialogGroup) -> void: 
 	DisplayDialog.set_dialog_group(dialog_group)
 
 func _on_base_death() -> void:
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_LOSS)
-	print("PlayerBase died, Game over.")
+	# print("PlayerBase died, Game over.")
 
 func _conect_children() -> void:
 	for each_child in get_children():
 		if each_child is CameraBinder:
 			_camera_binder = each_child
-		#elif each_child is TileMapLayer:
 		elif each_child is SpawnManager:
 			_spawn_manager = each_child
-			
-		#elif each_child is TowerHolder:
+			_spawn_manager.wave_complete.connect(_on_wave_complete)
 		elif each_child is PlayerOutpost:
 			each_child.died.connect(_on_base_death)
+		#elif each_child is TowerHolder:
+		#elif each_child is TileMapLayer:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:Array = [
@@ -77,11 +90,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 			warnings.append(WARN_FOUND_FOUNDATION)
 		elif each_child is Spawner:
 			warnings.append(WARN_FOUND_SPAWNER)
-		
-
 	return warnings
 
-func _on_wave_complete() -> void:
-	pass
+func _on_wave_complete() -> void: _next_trigger.call()
 
 static func get_instance() -> Level: return _instance
+
+func _on_victory() -> void: LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_WIN)

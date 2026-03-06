@@ -19,6 +19,8 @@ static func get_instance()-> DisplayDialog: return _instance
 static func set_dialog_group(group: DialogGroup) -> void:
 	# TODO: what if Dialog already qued up, currently replaces. 
 	_current_group = group
+	if _current_group:
+		_current_group.refresh()
 	if _instance:
 		_instance._display_next()
 

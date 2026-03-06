@@ -9,3 +9,5 @@ func get_dialog_info() -> DialogInfo:
 		return null
 	_index += 1
 	return _dialogs[_index-1]
+
+func refresh() -> void: _index = 0

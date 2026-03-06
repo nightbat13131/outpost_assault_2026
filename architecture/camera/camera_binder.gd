@@ -53,4 +53,3 @@ func trigger_bound_index(index: int) -> void:
 		push_error("CameraBinder.trigger_bound_index out of bound index called, ", index)
 		return
 	camera.set_bound(bounds[index])
-		

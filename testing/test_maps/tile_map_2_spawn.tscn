@@ -8,7 +8,9 @@
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="4_oisr6"]
 [ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://entities/enemy/spawners/spawner_building_1x2.tscn" id="9_ily7b"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="9_ti3ma"]
+[ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="10_8g177"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="10_obju6"]
+[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="11_48muq"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="12_yjs82"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
@@ -79,6 +81,31 @@ metadata/_custom_type_script = "uid://cevi7gporuhwq"
 [sub_resource type="Resource" id="Resource_l0owh"]
 script = ExtResource("4_5w2jj")
 point_path = NodePath("../NavPoint_SE")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_48muq"]
+script = ExtResource("4_5w2jj")
+point_path = NodePath("../../../../NavPoint_N")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_dlurb"]
+script = ExtResource("4_5w2jj")
+point_path = NodePath("../../../../NavPoint_S")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_gwc1m"]
+script = ExtResource("4_5w2jj")
+point_path = NodePath("../../../../NavPoint_E")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_o1u67"]
+script = ExtResource("4_5w2jj")
+point_path = NodePath("../../../../NavPoint_SE")
+metadata/_custom_type_script = "uid://cevi7gporuhwq"
+
+[sub_resource type="Resource" id="Resource_8g177"]
+script = ExtResource("4_5w2jj")
+point_path = NodePath("../../../NavPoint_NW")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
 [node name="TileMapLogicLayer" type="TileMapLayer" unique_id=1836936977]
@@ -153,6 +180,7 @@ target_distance = 100.0
 
 [node name="SpawnManager" type="Node2D" parent="." unique_id=1833308816]
 script = ExtResource("4_f5dm3")
+_debug = true
 metadata/_edit_lock_ = true
 
 [node name="SpawnerBuilding_1x2" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("9_ily7b")]
@@ -162,19 +190,37 @@ spawn_types = Dictionary[int, int]({
 110: 1
 })
 
-[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
-position = Vector2(141, -115)
+[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
+position = Vector2(141, -116)
+next_target_weights = Array[ExtResource("4_5w2jj")]([SubResource("Resource_48muq")])
 
-[node name="Spawn_NW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
+[node name="Spawn_NW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
 position = Vector2(-152, -114)
+next_target_weights = Array[ExtResource("4_5w2jj")]([SubResource("Resource_dlurb")])
 
-[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="2" unique_id=588862786]
+[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="2" unique_id=588862786]
 position = Vector2(140, 99)
+next_target_weights = Array[ExtResource("4_5w2jj")]([SubResource("Resource_gwc1m")])
 
-[node name="Spawn_SW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="3" unique_id=194821967]
+[node name="Spawn_SW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="3" unique_id=194821967]
 position = Vector2(-155, 93)
+next_target_weights = Array[ExtResource("4_5w2jj")]([SubResource("Resource_o1u67")])
+
+[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=519372992 node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("10_8g177")
+spawn_points = [NodePath("SpawnPoint")]
+metadata/_custom_type_script = "uid://r0ygm2bqav7d"
+metadata/_edit_lock_ = true
+
+[node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner" unique_id=514450202]
+position = Vector2(296, 230)
+script = ExtResource("11_48muq")
+unit_types = Array[int]([100])
+next_target_weights = Array[ExtResource("4_5w2jj")]([SubResource("Resource_8g177")])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="BrokenFoundation" parent="." unique_id=400182285 instance=ExtResource("12_yjs82")]
 position = Vector2(1595, 851)
 
 [editable path="SpawnManager/SpawnerBuilding_1x2"]
+[editable path="SpawnManager/SpawnerBuilding_1x2/Building"]

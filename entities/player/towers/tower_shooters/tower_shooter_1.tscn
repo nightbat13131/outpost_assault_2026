@@ -23,10 +23,9 @@ _tower_info = SubResource("Resource_dcwa2")
 
 [node name="Shooter" parent="." index="3" unique_id=1614296909]
 _projectile_base_speed = 800.0
-_projectile_base_damage = 5.0
+_projectile_base_damage = 10.0
 _projectile_base_spread_deg = 0.25
 _rotation_speed_deg_sec = 80
-_clip_information = null
 
 [node name="Sprite2D" parent="Shooter" index="3" unique_id=383995293]
 texture = SubResource("GradientTexture2D_dcwa2")

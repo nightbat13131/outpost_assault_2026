@@ -18,6 +18,7 @@ func _ready() -> void:
 			each_child.spawner_stopped.connect(_on_spawner_stop)
 	DisplayWaveUI.connect_spawn_manager(self)
 	if _debug:
+		print_debug("Debug on")
 		call_wave(1)
 
 func call_wave(wave_number: int) -> void:
@@ -31,12 +32,12 @@ func _on_child_entered_tree(node: Node) -> void:
 		node.died.connect(_on_enemy_unit_died)
 		_enemy_unit_count += 1
 		_summoned_enemy_count += 1
-		_wave_check()
+		_wave_check.call_deferred()
 
 func _on_enemy_unit_died(unit: EnemyUnit) -> void:
 	GoldManager.earn_gold(unit.get_kill_reward())
 	_enemy_unit_count -= 1
-	_wave_check()
+	_wave_check.call_deferred()
 
 func _on_spawner_start(spawner: Spawner) -> void:
 	_active_spawners.append(spawner)
@@ -45,7 +46,7 @@ func _on_spawner_start(spawner: Spawner) -> void:
 func _on_spawner_stop(spawner: Spawner) -> void:
 	while _active_spawners.has(spawner):
 		_active_spawners.erase(spawner)
-	_wave_check()
+	_wave_check.call_deferred()
 
 func _wave_check() -> void:
 	#print_debug("Spawner count: ", _active_spawners.size(), " enemy count: ", _enemy_unit_count)

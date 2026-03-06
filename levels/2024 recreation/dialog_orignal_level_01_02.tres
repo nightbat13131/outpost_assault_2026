@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://bkfgda4vqpl8f"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_djdc8"]
+[ext_resource type="Resource" uid="uid://e4geyxdtixw8" path="res://architecture/ui/dialog/characters/character_hint.tres" id="2_8viae"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="2_i27bj"]
+
+[sub_resource type="Resource" id="Resource_h3nw5"]
+script = ExtResource("1_djdc8")
+_character = ExtResource("2_8viae")
+_dialog = "Build Towers out of broken foundations."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("2_i27bj")
+_dialogs = Array[ExtResource("1_djdc8")]([SubResource("Resource_h3nw5")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"
