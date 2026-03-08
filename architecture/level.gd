@@ -17,8 +17,7 @@ static var _instance : Level
 
 @export var _dialog_groups: Array[DialogGroup]
 
-
-var _next_trigger : Callable
+var _trigger_on_wave_complete : Callable
 
 var _camera_binder: CameraBinder
 var _spawn_manager: SpawnManager
@@ -93,8 +92,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 func _on_wave_complete() -> void: 
-	print_debug(_next_trigger)
-	_next_trigger.call()
+	print_debug(_trigger_on_wave_complete)
+	_trigger_on_wave_complete.call()
 
 static func get_instance() -> Level: return _instance
 

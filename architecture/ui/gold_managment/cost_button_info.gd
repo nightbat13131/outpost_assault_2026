@@ -18,6 +18,8 @@ func get_purchase_type() -> CostButton.PurchaseTypes: return CostButton.Purchase
 
 func get_level() -> int: return -1
 
+func has_missing_dependency() -> bool: return false
+
 func on_mouse_entered() -> void: pass
 
 func on_mouse_exited() -> void: pass

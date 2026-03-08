@@ -60,7 +60,7 @@ func _populate_spawn_points() -> void:
 		spawn_points.erase(null)
 
 func start_wave(wave_number) -> void:
-	prints(self, wave_number, _waves.is_empty() , _waves.has(wave_number))
+	#prints(self, wave_number, _waves.is_empty() , _waves.has(wave_number))
 	if _is_disabled:
 		return
 	if _waves.is_empty() or _waves.has(wave_number):

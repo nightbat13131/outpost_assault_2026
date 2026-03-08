@@ -32,8 +32,8 @@ static var _type_to_cost :Dictionary[TowerType, float] = {
 }
 static var _type_to_name :Dictionary[TowerType, String] = {
 	TowerType._NoShooter: "Decoy",
-	TowerType._TEST_SHOOTER: "Single Gun", 
-	TowerType._TEST_TRUCK: "Tower Truck"
+	TowerType._TEST_SHOOTER: "Test Unit Shooter", 
+	TowerType._TEST_TRUCK: "Test Ground Vehical Shooter"
 }
 static var _type_to_filepath : Dictionary[TowerType, String] = {
 	TowerType._NoShooter: "uid://n0l8egj3gjg6",
@@ -66,3 +66,15 @@ static func get_tower_radar_outer_range(tower_type_: TowerType, upgrades: Founda
 	if upgrades:
 		range_mod += (upgrades.get_upgrade_level(FoundationUpgrades.UpgradeTypes.RADAR) + delta_rank) * RANK_EXPAND_RADAR
 	return base_range * range_mod
+
+static func get_tower_unlock_statis(tower_type: TowerType) -> GlobalUnlocks.UnlockStatus:
+	## TODO: reference a global unlock object
+	match tower_type:
+		TowerType._NoShooter:
+			return GlobalUnlocks.UnlockStatus.LOCKED_VISIBLE
+		TowerType._TEST_SHOOTER:
+			return GlobalUnlocks.UnlockStatus.AVAILABLE
+		TowerType._TEST_TRUCK:
+			return GlobalUnlocks.UnlockStatus.HIDDEN
+	
+	return GlobalUnlocks.UnlockStatus.LOCKED_VISIBLE

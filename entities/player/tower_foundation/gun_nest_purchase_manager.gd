@@ -4,9 +4,20 @@ class_name PurchaseManager_GunNest extends PurchaseManager
 var _foundation : TowerFoundation
 
 func _ready() -> void:
+	_validate_infos()
+
+func _validate_infos() -> void:
+	## if towers become unlockable during levels instead of between, consider a used list vs an initial list. 
+	var availability: GlobalUnlocks.UnlockStatus
 	for index in range(cost_tower_infos.size()):
-		cost_tower_infos[index] = cost_tower_infos[index].duplicate()
-		cost_tower_infos[index].set_purchase_manager(self)
+		availability = TowerInfo.get_tower_unlock_statis(cost_tower_infos[index].get_tower_type())
+		if availability == GlobalUnlocks.UnlockStatus.HIDDEN:
+			cost_tower_infos[index] = null
+		else:
+			cost_tower_infos[index] = cost_tower_infos[index].duplicate()
+			cost_tower_infos[index].set_purchase_manager(self)
+	while cost_tower_infos.has(null):
+		cost_tower_infos.erase(null)
 
 func _connect_to_section() -> void:
 	_get_buttons(cost_tower_infos.size())

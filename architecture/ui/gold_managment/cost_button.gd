@@ -70,16 +70,19 @@ func _update_display() -> void:
 		hide()
 		return
 	show()
+	## Primary Text content and formating
 	var args = {COLOR: _get_cost_color().to_html(), VALUE : int(get_cost()), LABEL : get_label()}
-	var _text = str("[color={"+COLOR+"}]{"+VALUE+"}[/color]\n{"+LABEL+"}").format(args)
-	if args[VALUE] <= 0:
-		_text = str("{"+LABEL+"}").format(args)
+	var _text = str("{"+LABEL+"}").format(args)
+	if args[VALUE] > 0:
+		_text = str("[color={"+COLOR+"}]{"+VALUE+"}[/color]\n{"+LABEL+"}").format(args)
 	rich_text_label.set_text(_text)
+	## LevelLable number show/hide
 	if _get_level() > -1: 
 		level_label.show()
 		level_label.set_text(str(_get_level()))
 	else:
 		level_label.hide()
+	## Left Icon for Purchase Type (under level number if showing)
 	if _info.get_purchase_type() == CostButton.PurchaseTypes.INFORMATION:
 		_button.set_state(ButtonEnhanced.ButtonStates.Inactive_Hidden)
 	else: 
@@ -88,7 +91,8 @@ func _update_display() -> void:
 		else:
 			_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
 	type_icon.set_texture(_info.primary_icon)
-	coin_icon.set_texture(CoinTextures.get_coin_texture(_info.get_purchase_type(), _can_afford()) )
+	## Right icon for Coin Icon 
+	coin_icon.set_texture(CoinTextures.get_coin_texture(_info.get_purchase_type(), _can_afford(), _info.has_missing_dependency() ))
 	_button.set_tooltip_text(_info.get_tooltip())
 
 func _get_level() -> int: return _info.get_level()
