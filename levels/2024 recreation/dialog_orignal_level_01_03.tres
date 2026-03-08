@@ -10,7 +10,13 @@ _character = ExtResource("2_d1m7d")
 _dialog = "Looks like they setup their Outpost outside of our firing zone, or at least that's what they think."
 metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
 
+[sub_resource type="Resource" id="Resource_ea8a5"]
+script = ExtResource("1_bndnq")
+_character = ExtResource("2_d1m7d")
+_dialog = "They're just going to keep coming. Take out their Outpost before we get overwhelmed!"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
 [resource]
 script = ExtResource("2_ea8a5")
-_dialogs = Array[ExtResource("1_bndnq")]([SubResource("Resource_1yr53")])
+_dialogs = Array[ExtResource("1_bndnq")]([SubResource("Resource_1yr53"), SubResource("Resource_ea8a5")])
 metadata/_custom_type_script = "uid://crrqgfxgv78rb"

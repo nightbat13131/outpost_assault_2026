@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://b0t5s8j8ebkqx" path="res://levels/level_template.tscn" id="1_2p2oy"]
 [ext_resource type="Resource" uid="uid://7hkinaik6ndq" path="res://levels/2024 recreation/levelinfo_orignal_1.tres" id="2_36uud"]
-[ext_resource type="Resource" uid="uid://b2trtdhpkvdye" path="res://levels/2024 recreation/dialog_orignal_level_01_hint.tres" id="2_g78eb"]
 [ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map.tscn" id="2_m8bud"]
 [ext_resource type="Resource" uid="uid://4klk5oa5qbbd" path="res://levels/2024 recreation/dialog_orignal_level_01_00.tres" id="4_36uud"]
 [ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="4_t362c"]
@@ -67,14 +66,14 @@ metadata/_custom_type_script = "uid://cevi7gporuhwq"
 script = ExtResource("11_36uud")
 rect_position = Vector2(-600, -600)
 rect_size = Vector2(1920, 950)
-camera_start = Vector2(500, 200)
+camera_start = Vector2(1000, 200)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [sub_resource type="Resource" id="Resource_n5q85"]
 script = ExtResource("11_36uud")
 rect_position = Vector2(-600, -600)
 rect_size = Vector2(2390, 1300)
-camera_start = Vector2(1300, 300)
+camera_start = Vector2(1400, 300)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [sub_resource type="Resource" id="Resource_x5kss"]
@@ -85,7 +84,6 @@ camera_start = Vector2(1300, 300)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [node name="Level_Orignal_1" unique_id=1060779039 instance=ExtResource("1_2p2oy")]
-_hint_dialog = ExtResource("2_g78eb")
 _level_info = ExtResource("2_36uud")
 _dialog_groups = Array[ExtResource("4_t362c")]([ExtResource("4_36uud"), ExtResource("5_h8cbg"), ExtResource("6_fyums"), ExtResource("7_fyums")])
 
@@ -230,9 +228,8 @@ position = Vector2(960, 187)
 [node name="TowerFoundation8" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="12" unique_id=1401834085 instance=ExtResource("5_p8art")]
 position = Vector2(1231, 440)
 
-[node name="Spawner_1x1_0_1" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="0" unique_id=1868334442 instance=ExtResource("9_t362c")]
+[node name="Spawner_1x1" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="0" unique_id=1868334442 instance=ExtResource("9_t362c")]
 position = Vector2(1604, 450)
-_waves = Array[int]([0, 1])
 _pulse_per_wave = 5
 _pulse_unit_volume = 2
 spawn_types = Dictionary[int, int]({
@@ -240,12 +237,12 @@ spawn_types = Dictionary[int, int]({
 110: 1
 })
 
-[node name="Spawn_E" parent="SpawnManager/Spawner_1x1_0_1/SpawnPointPerson" parent_id_path=PackedInt32Array(1868334442, 1438190680) index="0" unique_id=100200813 node_paths=PackedStringArray("next_targets")]
+[node name="Spawn_E" parent="SpawnManager/Spawner_1x1/SpawnPointPerson" parent_id_path=PackedInt32Array(1868334442, 1438190680) index="0" unique_id=100200813 node_paths=PackedStringArray("next_targets")]
 position = Vector2(6, 83)
 next_targets = [NodePath("../../../../NavPoints/NavPoint_04")]
 next_target_weights = Array[ExtResource("12_fyums")]([SubResource("Resource_g78eb"), SubResource("Resource_atulc")])
 
-[node name="Spawn_W" parent="SpawnManager/Spawner_1x1_0_1/SpawnPointPerson" parent_id_path=PackedInt32Array(1868334442, 1438190680) index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
+[node name="Spawn_W" parent="SpawnManager/Spawner_1x1/SpawnPointPerson" parent_id_path=PackedInt32Array(1868334442, 1438190680) index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
 position = Vector2(-59, -3)
 next_targets = [NodePath("../../../../NavPoints/NavPoint_03_5")]
 next_target_weights = Array[ExtResource("12_fyums")]([SubResource("Resource_c150j")])
@@ -292,11 +289,10 @@ next_targets = [NodePath("../../../../NavPoints/NavPoint_10_W")]
 metadata/_edit_lock_ = true
 
 [node name="CameraBinder" parent="." index="5" unique_id=1105577396]
-visible = false
 debug = false
 bounds = Array[ExtResource("11_36uud")]([SubResource("Resource_fyums"), SubResource("Resource_n5q85"), SubResource("Resource_x5kss")])
 
-[editable path="SpawnManager/Spawner_1x1_0_1"]
-[editable path="SpawnManager/Spawner_1x1_0_1/Building"]
+[editable path="SpawnManager/Spawner_1x1"]
+[editable path="SpawnManager/Spawner_1x1/Building"]
 [editable path="SpawnManager/Spawner_1x1_4"]
 [editable path="SpawnManager/Spawner_1x1_4/Building"]

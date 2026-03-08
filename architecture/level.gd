@@ -92,7 +92,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 			warnings.append(WARN_FOUND_SPAWNER)
 	return warnings
 
-func _on_wave_complete() -> void: _next_trigger.call()
+func _on_wave_complete() -> void: 
+	print_debug(_next_trigger)
+	_next_trigger.call()
 
 static func get_instance() -> Level: return _instance
 

@@ -1,16 +1,8 @@
 [gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://b2trtdhpkvdye"]
 
 [ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_otsbe"]
-[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="2_e1si3"]
 [ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_scqs5"]
-
-[sub_resource type="Resource" id="Resource_4kh4v"]
-script = ExtResource("1_otsbe")
-_character = ExtResource("2_e1si3")
-_dialog = "They're just going to keep coming. Take out their Outpost before we get overwhelmed!"
-metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
 
 [resource]
 script = ExtResource("3_scqs5")
-_dialogs = Array[ExtResource("1_otsbe")]([SubResource("Resource_4kh4v")])
 metadata/_custom_type_script = "uid://crrqgfxgv78rb"

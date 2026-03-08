@@ -1,5 +1,7 @@
 class_name SpawnManager extends Node2D
 
+const WAVE_END_PADDING = 1.0
+
 signal wave_complete
 signal wave_start(wave_number: int, building_count: int)
 
@@ -8,8 +10,10 @@ var _current_wave: int
 var _active_spawners: Array[Spawner] = []
 var _enemy_unit_count := 0
 var _summoned_enemy_count := 0 ## tracking for end of level readout
+#@onready var _padding: SceneTreeTimer
 
 func _ready() -> void:
+	#_setup_padding_timer()
 	child_entered_tree.connect(_on_child_entered_tree)
 	for each_child in get_children():
 		if each_child is Spawner:
@@ -21,8 +25,13 @@ func _ready() -> void:
 		print_debug("Debug on")
 		call_wave(1)
 
+#func _setup_padding_timer() -> void:
+#	_padding = get_tree().create_timer(WAVE_END_PADDING)
+
 func call_wave(wave_number: int) -> void:
+#	_setup_padding_timer()
 	_current_wave = wave_number
+	# get_children instead of an array because this is not called often and the spawners get freed.
 	for each_child in get_children():
 		if each_child is Spawner:
 			each_child.start_wave(_current_wave)
@@ -49,6 +58,8 @@ func _on_spawner_stop(spawner: Spawner) -> void:
 	_wave_check.call_deferred()
 
 func _wave_check() -> void:
+#	if _padding.time_left > 0.0:
+#		return
 	#print_debug("Spawner count: ", _active_spawners.size(), " enemy count: ", _enemy_unit_count)
 	if _active_spawners.is_empty() and _enemy_unit_count <= 0:
 		wave_complete.emit()

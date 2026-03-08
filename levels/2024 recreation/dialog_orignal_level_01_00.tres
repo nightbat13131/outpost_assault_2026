@@ -14,10 +14,10 @@ metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
 [sub_resource type="Resource" id="Resource_h8cbg"]
 script = ExtResource("1_s25ei")
 _character = ExtResource("3_d7akm")
-_dialog = "\"Hey boss, scouts incoming. Shall I roll out the welcome wagon for them?\""
+_dialog = "\"Hey boss, Scouts incoming. Shall I roll out the welcome wagon for them?\""
 metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
 
 [resource]
 script = ExtResource("4_f17mm")
-_dialogs = Array[ExtResource("1_s25ei")]([SubResource("Resource_rihjq"), SubResource("Resource_h8cbg"), null])
+_dialogs = Array[ExtResource("1_s25ei")]([SubResource("Resource_rihjq"), SubResource("Resource_h8cbg")])
 metadata/_custom_type_script = "uid://crrqgfxgv78rb"

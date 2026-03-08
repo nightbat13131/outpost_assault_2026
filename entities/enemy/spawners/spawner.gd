@@ -64,6 +64,8 @@ func start_wave(wave_number) -> void:
 	if _is_disabled:
 		return
 	if _waves.is_empty() or _waves.has(wave_number):
+		_enemy_spawned_count = 0
+		_started_pulse_count = 0
 		_timer.set_wait_time(_inital_delay)
 		_timer.start()
 		spawner_started.emit(self)

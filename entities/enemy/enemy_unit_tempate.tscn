@@ -42,8 +42,8 @@ animation = &"die"
 script = ExtResource("4_8koau")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1421716584]
-position = Vector2(12.5, 0)
-scale = Vector2(0.421875, 0.07812499)
+position = Vector2(11, 1.1920929e-07)
+scale = Vector2(0.06250001, 0.3125)
 texture = SubResource("GradientTexture2D_yc1ed")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1632763171]
