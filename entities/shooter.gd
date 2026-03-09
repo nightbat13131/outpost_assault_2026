@@ -12,7 +12,7 @@ const EVENT_HAS_AMMO = "clip_ready"
 @export var _projectile_base_damage := 3.0
 @export var _projectile_base_spread_deg := .5
 
-@export var _radar_shape: RadarShapeInfo
+#@export var _radar_shape: RadarShapeInfo
 
 @export_group("Rotation", "_rotation")
 @export var _limit_roation := false
@@ -20,8 +20,8 @@ const EVENT_HAS_AMMO = "clip_ready"
 @export var _rotation_speed_deg_sec := 45
 
 var _clip_information : ReloadInfo
+var _radar_shape : RadarShapeInfo
 @onready var _radar_sensor: RadarSensor = %RadarSensor
-
 @onready var _aiming_sights: AimingSights = %AimingSights
 @onready var _state_machine: StateChart = %ShooterStateChart
 @onready var _muzzles: ShooterMuzzles = %Muzzles
@@ -32,10 +32,14 @@ var _range := 100.0
 func _ready() -> void:
 	_state_machine.propagate_call("set_shooter", [self])
 	_state_machine.propagate_call("set_radar_sensor", [_radar_sensor])
-	_radar_sensor.set_shooter(self)
+	_radar_sensor.set_shooter.call_deferred(self)
 	if _clip_information:
 		_clip_information = _clip_information.duplicate()
 		_clip_information.state_update.connect(send_event)
+
+func set_radar_shape(shape_info: RadarShapeInfo) -> void: 
+	_radar_shape = shape_info
+	_radar_sensor.set_radar_shape_info(shape_info)
 
 func set_clip_information(reload_info: ReloadInfo) -> void:
 	_clip_information = reload_info
@@ -47,15 +51,11 @@ func set_targetting_mask(layer: int, flag := true) -> void:
 	if _aiming_sights:
 		_aiming_sights.set_collision_mask_value(layer, flag)
 
-func set_range(range_: float) -> void:
-	_range = range_
-	_aiming_sights.set_range(_range)
-	_radar_shape.set_outer_radius(range_)
-	#_radar_sensor.set_range(_range)
+func set_range(range_: float) -> void: _aiming_sights.set_range(_range)
 
 func set_rotation_limit(degree: float) -> void: 
 	_rotation_limit_deg = degree
-	_radar_shape.set_arch_degrees(degree)
+	#_radar_shape.set_arch_degrees(degree)
 	#_radar_sensor.set_arch_radius(radian)
 
 func send_event(event: String) -> void:

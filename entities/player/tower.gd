@@ -27,19 +27,23 @@ func _get_tower_info() -> TowerInfo: return _tower_info
 
 func _get_cost() -> float: return _get_tower_info().get_cost()
 
+func get_reload_info() -> ReloadInfo: return _tower_info.get_reload_info()
+
 func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, _clip_reload_ui: ClipReloadUI) -> void:
 	_tower_info = _tower_info.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
 	_tower_info.post_duplication()
 	_founation_upgrades = upgrades
 	_founation_upgrades.changed.connect(_on_upgrade_changed)
+	_get_tower_info().set_upgrade_info(_founation_upgrades)
 	_deffered_setup.call_deferred(health_ui)
 
 func _deffered_setup(health_ui) -> void:
-	health_ui.set_health_info(_health_info)
-	_get_tower_info()._upgrades = _founation_upgrades
+	health_ui.set_health_info(get_health_info())
 	_on_upgrade_changed.call_deferred()
 
 func repair() -> void: _health_info.full_heal()
+
+func get_radar_shape() -> RadarShapeInfo: return _get_tower_info().get_radar_shape()
 
 func get_repair_cost() -> float: return _get_tower_info().get_repair_value()
 

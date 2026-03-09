@@ -373,6 +373,15 @@ position = Vector2(582, 720)
 position = Vector2(834, 577)
 starting_tower = -10
 
+[node name="TowerFoundation4" parent="TowerHolder" unique_id=2097486488 instance=ExtResource("18_lgomy")]
+position = Vector2(1333, 439)
+
+[node name="TowerFoundation5" parent="TowerHolder" unique_id=75215562 instance=ExtResource("18_lgomy")]
+position = Vector2(1341, 548)
+
+[node name="TowerFoundation6" parent="TowerHolder" unique_id=2001587829 instance=ExtResource("18_lgomy")]
+position = Vector2(1330, 669)
+
 [node name="TowerFoundation2" parent="TowerHolder" unique_id=914457105 instance=ExtResource("18_lgomy")]
 position = Vector2(704, 709)
 upgrades = SubResource("Resource_fvtu7")

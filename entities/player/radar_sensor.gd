@@ -15,16 +15,17 @@ const RADAR_FADE := .25
 @export var _debugging_targets := false
 
 @export var _targeting_method := TargetingMethod.NA
-@export var _radar_shape := RadarShapeInfo.TargetShape.CIRCLE_FILLED
+#@export var _radar_shape := RadarShapeInfo.TargetShape.CIRCLE_FILLED
 
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 @onready var collision_polygon_2d: CollisionPolygon2D = %CollisionPolygon2D
 
 var _shooter : Shooter
 var _player_outpost : PlayerOutpost
+var _radar_shape : RadarShapeInfo
 var _targets : Array =[]
-var _outer_range := 100.0
-var _arch_radius := 1.0
+#var _outer_range := 100.0
+#var _arch_radius := 1.0
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -33,17 +34,17 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 	#_setup_collision()
 
-func _setup_collision_old() -> void:
-	match _radar_shape:
-		RadarShapeInfo.TargetShape.CIRCLE_FILLED:
-			collision_shape_2d.set_shape(CircleShape2D.new())
-			collision_polygon_2d.set_disabled(true)
-			collision_polygon_2d.set_polygon([])
-		RadarShapeInfo.TargetShape.ARCH_FILLED:
-			collision_shape_2d.set_shape(CircleShape2D.new())
-			collision_shape_2d.set_disabled(true)
-			collision_polygon_2d.set_polygon([])
-	#_refresh_collision_shapes()
+#func _setup_collision_old() -> void:
+	#match _radar_shape:
+		#RadarShapeInfo.TargetShape.CIRCLE_FILLED:
+			#collision_shape_2d.set_shape(CircleShape2D.new())
+			#collision_polygon_2d.set_disabled(true)
+			#collision_polygon_2d.set_polygon([])
+		#RadarShapeInfo.TargetShape.ARCH_FILLED:
+			#collision_shape_2d.set_shape(CircleShape2D.new())
+			#collision_shape_2d.set_disabled(true)
+			#collision_polygon_2d.set_polygon([])
+	##_refresh_collision_shapes()
 '
 func _refresh_collision_shapes() -> void:
 	match _radar_shape:
@@ -54,11 +55,16 @@ func _refresh_collision_shapes() -> void:
 '
 func has_target() -> bool: return !_targets.is_empty()
 
-func get_radar_shape() -> RadarShapeInfo: return _shooter.get_radar_shape()
+func get_radar_shape() -> RadarShapeInfo: return _radar_shape
+
+func set_radar_shape_info(shape_info: RadarShapeInfo) -> void: 
+	_radar_shape = shape_info
+	if _radar_shape:
+		_radar_shape.changed.connect(queue_redraw)
+	queue_redraw()
 
 func set_shooter(shooter: Shooter) -> void: 
 	_shooter = shooter
-	_shooter.get_radar_shape().changed.connect(queue_redraw)
 
 func die() -> void: 
 	for each_child in get_children():
@@ -99,6 +105,8 @@ func set_rotation_parent(node: Node2D) -> void:
 	Utilties.reparent(self, node)
 
 func _draw() -> void:
+	#if !_shooter: # wait for shooter to be setup in deffered
+		#return
 	get_radar_shape().draw(self)
 	if !_debugging_targets:
 		return

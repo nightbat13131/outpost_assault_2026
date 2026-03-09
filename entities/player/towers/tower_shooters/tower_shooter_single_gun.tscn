@@ -21,14 +21,8 @@ _radar_shape = SubResource("Resource_nk33w")
 _reload_info = ExtResource("3_fi713")
 metadata/_custom_type_script = "uid://dy47gmggu5xbd"
 
-[sub_resource type="Resource" id="Resource_fi713"]
-script = ExtResource("8_nk33w")
-_radar_shape = 1
-metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
-
 [node name="TowerShooterSingleGun" unique_id=1226539165 instance=ExtResource("1_jy8ry")]
 script = ExtResource("2_nk33w")
-_reload_info = ExtResource("3_fi713")
 _tower_info = SubResource("Resource_8y7pg")
 
 [node name="TowerPurchaseManager" parent="." index="1" unique_id=1756272085]
@@ -37,7 +31,6 @@ cost_tower_infos = Array[ExtResource("5_gy4wa")]([ExtResource("6_hp11c")])
 [node name="Shooter" parent="." index="3" unique_id=1614296909 instance=ExtResource("7_0xf5n")]
 _projectile_base_speed = 800.0
 _projectile_base_damage = 5.0
-_radar_shape = SubResource("Resource_fi713")
 
 [node name="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
 collision_mask = 516

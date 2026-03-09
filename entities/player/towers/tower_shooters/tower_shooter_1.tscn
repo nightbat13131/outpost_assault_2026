@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://o8lbby237l0n"]
 
 [ext_resource type="PackedScene" uid="uid://dro1735nlrdor" path="res://entities/player/towers/tower_shooters/tower_shooter_base.tscn" id="1_dimkb"]
-[ext_resource type="Resource" uid="uid://c4nsugsjwknst" path="res://entities/player/towers/tower_shooters/truck_tower_reload_info.tres" id="2_dcwa2"]
 [ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/broken_foundation/tower_info.gd" id="2_r601a"]
 
 [sub_resource type="Resource" id="Resource_dcwa2"]
@@ -20,7 +19,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="TowerShooter_Truck" unique_id=1226539165 instance=ExtResource("1_dimkb")]
-_reload_info = ExtResource("2_dcwa2")
 _tower_info = SubResource("Resource_dcwa2")
 
 [node name="Shooter" parent="." index="3" unique_id=1614296909]

@@ -13,16 +13,28 @@ var _health_info: HealthInfo # because health effects some calculations
 var _upgrades : FoundationUpgrades
 
 func post_duplication() -> void:
-	_reload_info.set_tower_type(my_type)
+	# testing showed I need nested dupilcation
+	#_radar_shape = _radar_shape.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+	#_radar_shape = RadarShapeInfo.new()
+	#_radar_shape.set_shape(RadarShapeInfo.TargetShape.CIRCLE_FILLED)
+		
+	if _reload_info:
+		_reload_info = _reload_info.duplicate(true)
+		_reload_info.set_tower_type(my_type)
 
 func get_health_info() -> HealthInfo: 
 	if _health_info == null:
 		_health_info = HealthInfo.new()
 		_health_info.set_max_health(get_max_health(), true)
 	return _health_info
-func set_upgrade_info(info: FoundationUpgrades) -> void: _upgrades = info
+
+func set_upgrade_info(info: FoundationUpgrades) -> void: 
+	_reload_info.set_foundation_upgrades(info)
+	_upgrades = info
 
 func get_radar_shape() -> RadarShapeInfo: return _radar_shape
+
+func get_reload_info() -> ReloadInfo: return _reload_info
 
 func get_max_health() -> float: return get_tower_max_health(my_type)
 func get_cost() -> float: return get_tower_cost(my_type)
