@@ -1,12 +1,27 @@
 class_name RadarPreview extends Node2D
 
+
+# regardless of current tower
+## on purchase tower mouse over:
+### over: show_new
+### missing: hide_new
+
+# if has tower
+## on foundation mouse over and foundation select:
+### over: show_current
+### missing: hide_current
+
+## on radar upgrade mouse over
+### over: show_next
+### missing: hide_next
+
 const OUTER_RADIUS = "outer_radius"
 
 var _preview_on := false
-var _radar_shape := RadarSensor.TargetShape.CIRCLE_FILLED
+var _radar_shape := RadarShapeInfo.TargetShape.CIRCLE_FILLED
 var _outer_radius := 150.0
 
-func set_preview(shape: RadarSensor.TargetShape, args : Dictionary) -> void:
+func set_preview(shape: RadarShapeInfo.TargetShape, args : Dictionary) -> void:
 	queue_redraw()
 	_preview_on = true
 	_radar_shape = shape
@@ -21,7 +36,7 @@ func _draw() -> void:
 	if !_preview_on:
 		return
 	match _radar_shape:
-		RadarSensor.TargetShape.CIRCLE_FILLED:
+		RadarShapeInfo.TargetShape.CIRCLE_FILLED:
 			draw_filled_circle(self, _outer_radius)
 		_: 
 			draw_x(self, _outer_radius)

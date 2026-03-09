@@ -8,7 +8,7 @@ static var _instance : GameLevelUI : get = get_instance
 @export var is_left = true
 
 func _ready() -> void:
-	deactivate()
+	#deactivate()
 	_instance = self
 	if is_left:
 		full_screen.move_child(level_controls, 0)

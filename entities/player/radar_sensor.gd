@@ -1,8 +1,6 @@
 class_name RadarSensor extends Area2D
 
 enum TargetingMethod {NA = 0, RADIAN_CLOSE = 1}
-enum TargetShape {NA = 0, CIRCLE_FILLED = 1, ARCH_FILLED = 2}
-
 
 ## helpful for debuggin mask values https://www.bitmask.foo/
 ## Collision layer number must be between 1 and 32 inclusive, instead of starting at 0.
@@ -17,7 +15,7 @@ const RADAR_FADE := .25
 @export var _debugging_targets := false
 
 @export var _targeting_method := TargetingMethod.NA
-@export var _radar_shape := TargetShape.CIRCLE_FILLED
+@export var _radar_shape := RadarShapeInfo.TargetShape.CIRCLE_FILLED
 
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 @onready var collision_polygon_2d: CollisionPolygon2D = %CollisionPolygon2D
@@ -33,43 +31,48 @@ func _ready() -> void:
 	area_exited.connect(_on_area_exited)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	_setup_collision()
+	#_setup_collision()
 
-func _setup_collision() -> void:
+func _setup_collision_old() -> void:
 	match _radar_shape:
-		TargetShape.CIRCLE_FILLED:
+		RadarShapeInfo.TargetShape.CIRCLE_FILLED:
 			collision_shape_2d.set_shape(CircleShape2D.new())
 			collision_polygon_2d.set_disabled(true)
 			collision_polygon_2d.set_polygon([])
-		TargetShape.ARCH_FILLED:
+		RadarShapeInfo.TargetShape.ARCH_FILLED:
 			collision_shape_2d.set_shape(CircleShape2D.new())
 			collision_shape_2d.set_disabled(true)
 			collision_polygon_2d.set_polygon([])
-	_refresh_collision_shapes()
-
+	#_refresh_collision_shapes()
+'
 func _refresh_collision_shapes() -> void:
 	match _radar_shape:
-		TargetShape.CIRCLE_FILLED:
+		RadarShapeInfo.TargetShape.CIRCLE_FILLED:
 			collision_shape_2d.get_shape().set_radius(_outer_range)
-		TargetShape.ARCH_FILLED:
+		RadarShapeInfo.TargetShape.ARCH_FILLED:
 			collision_polygon_2d.set_polygon(Utilties.get_arch_points(_outer_range, _arch_radius))
-
+'
 func has_target() -> bool: return !_targets.is_empty()
 
-func set_shooter(shooter: Shooter) -> void: _shooter = shooter
+func get_radar_shape() -> RadarShapeInfo: return _shooter.get_radar_shape()
+
+func set_shooter(shooter: Shooter) -> void: 
+	_shooter = shooter
+	_shooter.get_radar_shape().changed.connect(queue_redraw)
 
 func die() -> void: 
 	for each_child in get_children():
 		if each_child.has_method("set_disabled"):
 			each_child.set_disabled(true)
+	queue_free()
 
-func set_range(range_: float) -> void:
-	_outer_range = range_
-	_refresh_collision_shapes()
+#func set_range(range_: float) -> void:
+	#_outer_range = range_
+	#_refresh_collision_shapes()
 
-func set_arch_radius(radian: float) -> void:
-	_arch_radius = radian
-	_refresh_collision_shapes()
+#func set_arch_radius(radian: float) -> void:
+	#_arch_radius = radian
+	#_refresh_collision_shapes()
 
 func set_target_collition_types(target_collition_mask: int) -> void:
 	set_collision_mask(target_collition_mask)
@@ -96,6 +99,7 @@ func set_rotation_parent(node: Node2D) -> void:
 	Utilties.reparent(self, node)
 
 func _draw() -> void:
+	get_radar_shape().draw(self)
 	if !_debugging_targets:
 		return
 	if has_target():

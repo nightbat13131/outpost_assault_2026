@@ -147,9 +147,19 @@ metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 script = ExtResource("15_fm1tj")
 rect_position = Vector2(-500, -500)
 rect_size = Vector2(3000, 2000)
+camera_start = Vector2(1000, 750)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [sub_resource type="Resource" id="Resource_fvtu7"]
+script = ExtResource("19_cen4m")
+upgrade_levels = Dictionary[int, int]({
+0: 2,
+1: 1,
+2: 0
+})
+metadata/_custom_type_script = "uid://mlap6q5cc1d1"
+
+[sub_resource type="Resource" id="Resource_d8ypc"]
 script = ExtResource("19_cen4m")
 upgrade_levels = Dictionary[int, int]({
 0: 3,
@@ -366,11 +376,12 @@ starting_tower = -10
 [node name="TowerFoundation2" parent="TowerHolder" unique_id=914457105 instance=ExtResource("18_lgomy")]
 position = Vector2(704, 709)
 upgrades = SubResource("Resource_fvtu7")
+starting_tower = -10
 
 [node name="TowerFoundation3" parent="TowerHolder" unique_id=413108212 instance=ExtResource("18_lgomy")]
 position = Vector2(707, 959)
-upgrades = SubResource("Resource_fvtu7")
-starting_tower = -11
+upgrades = SubResource("Resource_d8ypc")
+starting_tower = -10
 
 [node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("21_8aiei")]
 position = Vector2(96, 648)

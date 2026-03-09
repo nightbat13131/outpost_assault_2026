@@ -19,9 +19,7 @@ func set_tower(tower: Tower) -> void:
 	if _sell_info:
 		_sell_info.set_tower(_tower)
 
-func _connect_to_section() -> void:
-	
-	pass
+func _connect_to_section() -> void: pass
 
 func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void:
 	if !is_successful: 

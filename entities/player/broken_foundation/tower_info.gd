@@ -6,11 +6,23 @@ const RANK_EXPAND_RADAR : float = 0.1 # %
 enum TowerType {NA = 0, _NoShooter = 1, _TEST_SHOOTER = -10, _TEST_TRUCK = -11}
 
 @export var my_type: TowerType
+@export var _radar_shape: RadarShapeInfo
+@export var _reload_info : ReloadInfo_Tower
+
 var _health_info: HealthInfo # because health effects some calculations
 var _upgrades : FoundationUpgrades
 
-func set_health_info(info: HealthInfo) -> void: _health_info = info
+func post_duplication() -> void:
+	_reload_info.set_tower_type(my_type)
+
+func get_health_info() -> HealthInfo: 
+	if _health_info == null:
+		_health_info = HealthInfo.new()
+		_health_info.set_max_health(get_max_health(), true)
+	return _health_info
 func set_upgrade_info(info: FoundationUpgrades) -> void: _upgrades = info
+
+func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 
 func get_max_health() -> float: return get_tower_max_health(my_type)
 func get_cost() -> float: return get_tower_cost(my_type)
@@ -45,7 +57,6 @@ static var _type_to_max_hp :Dictionary[TowerType, float] = {
 	TowerType._TEST_SHOOTER: 151.0, 
 	TowerType._TEST_TRUCK: 150.0
 }
-
 static var _type_to_damage :Dictionary[TowerType, float] = {
 	TowerType._TEST_SHOOTER: 5.0, 
 	TowerType._TEST_TRUCK: 150.0

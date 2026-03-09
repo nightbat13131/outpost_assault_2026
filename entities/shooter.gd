@@ -12,9 +12,11 @@ const EVENT_HAS_AMMO = "clip_ready"
 @export var _projectile_base_damage := 3.0
 @export var _projectile_base_spread_deg := .5
 
+@export var _radar_shape: RadarShapeInfo
+
 @export_group("Rotation", "_rotation")
 @export var _limit_roation := false
-@export var _rotation_limit := TAU/4.0 : set = set_rotation_limit
+@export var _rotation_limit_deg := 45.0 : set = set_rotation_limit
 @export var _rotation_speed_deg_sec := 45
 
 var _clip_information : ReloadInfo
@@ -48,11 +50,13 @@ func set_targetting_mask(layer: int, flag := true) -> void:
 func set_range(range_: float) -> void:
 	_range = range_
 	_aiming_sights.set_range(_range)
-	_radar_sensor.set_range(_range)
+	_radar_shape.set_outer_radius(range_)
+	#_radar_sensor.set_range(_range)
 
-func set_rotation_limit(radian: float) -> void: 
-	_rotation_limit = radian
-	_radar_sensor.set_arch_radius(radian)
+func set_rotation_limit(degree: float) -> void: 
+	_rotation_limit_deg = degree
+	_radar_shape.set_arch_degrees(degree)
+	#_radar_sensor.set_arch_radius(radian)
 
 func send_event(event: String) -> void:
 	if _state_machine:
@@ -63,6 +67,8 @@ func send_event(event: String) -> void:
 func get_rotation_speed_radian() -> float:
 	## todo: effected by upgrades
 	return deg_to_rad(_rotation_speed_deg_sec)
+
+func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 
 func get_radar_sensor() -> RadarSensor: return _radar_sensor
 
@@ -112,8 +118,8 @@ func update_rotation(radian: float) -> void:
 	if _limit_roation:
 		radian = clampf(
 			radian, 
-			_rotation_limit *-1,
-			_rotation_limit
+			 deg_to_rad( _rotation_limit_deg *-1),
+			deg_to_rad(_rotation_limit_deg)
 		)
 	rotation = radian
 

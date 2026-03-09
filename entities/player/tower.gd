@@ -5,33 +5,31 @@ signal dead(tower: Tower) ## I don't think the foundation cares between sold and
 
 @export var _tower_info : TowerInfo: get = _get_tower_info
 
-var _health_info : HealthInfo
-#var _max_hp :  float = 100
-#var _hp : float = 100: set = set_health
-#var _health_ui : HealthUI
+var _health_info : HealthInfo: get = get_health_info
 
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _context_manager: TowerContextManager = %TowerContextManager
 var _founation_upgrades : FoundationUpgrades
 
 func _ready() -> void:
-	_health_info = HealthInfo.new()
-	_health_info.die.connect(_die)
+	#_health_info = HealthInfo.new()
+	get_health_info().die.connect(_die)
 	# _tower_info = _tower_info.duplicate() # called in pre-ready setup
-	_tower_info.set_health_info(_health_info)
-	_health_info.set_max_health(_tower_info.get_max_health(), true)
+	#_tower_info.set_health_info(_health_info)
+	#_health_info.set_max_health(_tower_info.get_max_health(), true)
 	_tower_purchase_manager.set_foundation(get_foundation())
 	_context_manager.set_tower(self)
 	set_collision_layer_value(RadarSensor.COLLISION_PLAYER_BUILDING, true)
 
-func get_health_info() -> HealthInfo: return _health_info
+func get_health_info() -> HealthInfo: return _tower_info.get_health_info()
 
 func _get_tower_info() -> TowerInfo: return _tower_info
 
 func _get_cost() -> float: return _get_tower_info().get_cost()
 
 func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, _clip_reload_ui: ClipReloadUI) -> void:
-	_tower_info = _tower_info.duplicate()
+	_tower_info = _tower_info.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+	_tower_info.post_duplication()
 	_founation_upgrades = upgrades
 	_founation_upgrades.changed.connect(_on_upgrade_changed)
 	_deffered_setup.call_deferred(health_ui)

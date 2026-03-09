@@ -30,7 +30,7 @@ func set_foundation(foundation: TowerFoundation) -> void:
 
 func on_mouse_entered() -> void:
 	if _radar_preview:
-		_radar_preview.set_preview(RadarSensor.TargetShape.CIRCLE_FILLED,
+		_radar_preview.set_preview(RadarShapeInfo.TargetShape.CIRCLE_FILLED,
 		{RadarPreview.OUTER_RADIUS: TowerInfo.get_tower_radar_outer_range(tower_type, _foundation_upgrades)}
 		)
 

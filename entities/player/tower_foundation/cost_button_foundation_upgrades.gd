@@ -33,3 +33,13 @@ func get_purchase_type() -> CostButton.PurchaseTypes:
 			return CostButton.PurchaseTypes.INFORMATION
 		return CostButton.PurchaseTypes.UPGRADE
 	return super.get_purchase_type()
+
+func on_mouse_entered() -> void:
+	if _upgrade_type != FoundationUpgrades.UpgradeTypes.RADAR:
+		return
+	print("Show radar upgrade")
+
+func on_mouse_exited() -> void:
+	if _upgrade_type != FoundationUpgrades.UpgradeTypes.RADAR:
+		return
+	print("Hide radar upgrade")

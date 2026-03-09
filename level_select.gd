@@ -16,6 +16,7 @@ func _ready() -> void:
 func activate() -> void:
 	set_physics_process(true)
 	sprite_2d.hide()
+	GameLevelUI.get_instance().deactivate.call_deferred()
 	show()
 
 func deactivate() -> void:
