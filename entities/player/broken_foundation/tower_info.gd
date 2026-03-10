@@ -1,26 +1,17 @@
-class_name TowerInfo extends Resource
+class_name TowerInfo extends TowerInfo_reference
 ## TODO: tower values will be effected by foundation and global upgrades
 
-const RANK_EXPAND_RADAR : float = 0.1 # %
-
-enum TowerType {NA = 0, _NoShooter = 1, _TEST_SHOOTER = -10, _TEST_TRUCK = -11}
-
 @export var my_type: TowerType
-@export var _radar_shape: RadarShapeInfo
-@export var _reload_info : ReloadInfo_Tower
+@export var _radar_shape: RadarShapeInfo: get = get_radar_shape
+@export var _reload_info : ReloadInfo_Tower: get = get_reload_info
 
 var _health_info: HealthInfo # because health effects some calculations
-var _upgrades : FoundationUpgrades
+var _upgrades : FoundationUpgrades : set = set_upgrade_info
 
 func post_duplication() -> void:
-	# testing showed I need nested dupilcation
-	#_radar_shape = _radar_shape.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
-	#_radar_shape = RadarShapeInfo.new()
-	#_radar_shape.set_shape(RadarShapeInfo.TargetShape.CIRCLE_FILLED)
-		
-	if _reload_info:
-		_reload_info = _reload_info.duplicate(true)
-		_reload_info.set_tower_type(my_type)
+	if get_reload_info():
+		_reload_info = get_reload_info().duplicate(true)
+		get_reload_info().set_tower_type(my_type)
 
 func get_health_info() -> HealthInfo: 
 	if _health_info == null:
@@ -29,75 +20,26 @@ func get_health_info() -> HealthInfo:
 	return _health_info
 
 func set_upgrade_info(info: FoundationUpgrades) -> void: 
-	_reload_info.set_foundation_upgrades(info)
 	_upgrades = info
+	_upgrades.changed.connect(_on_upgrade_changed)
+	if _reload_info:
+		_reload_info.set_foundation_upgrades(info)
+
+func _on_upgrade_changed() -> void:
+	_radar_shape.set_outer_radius(get_outer_range())
 
 func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 
-func get_reload_info() -> ReloadInfo: return _reload_info
+func get_reload_info() -> ReloadInfo_Tower: return _reload_info
 
 func get_max_health() -> float: return get_tower_max_health(my_type)
+
 func get_cost() -> float: return get_tower_cost(my_type)
+
 func get_display_name() -> String: return get_tower_display_name(my_type)
+
 func get_outer_range() -> float: return get_tower_radar_outer_range(my_type, _upgrades)
 
 func get_sell_value() -> float: return get_cost() * _health_info.get_health_ratio()
+
 func get_repair_value() -> float: return get_cost() * (1.0- _health_info.get_health_ratio())
-
-static var _type_to_outer_range :Dictionary[TowerType, float] = {
-	TowerType._TEST_SHOOTER: 268.8, 
-	TowerType._TEST_TRUCK: 400.0
-}
-static var _type_to_cost :Dictionary[TowerType, float] = {
-	TowerType.NA: 5 ,
-	TowerType._NoShooter: 25,
-	TowerType._TEST_SHOOTER: 150,
-	TowerType._TEST_TRUCK: 250
-}
-static var _type_to_name :Dictionary[TowerType, String] = {
-	TowerType._NoShooter: "Decoy",
-	TowerType._TEST_SHOOTER: "Test Unit Shooter", 
-	TowerType._TEST_TRUCK: "Test Ground Vehical Shooter"
-}
-static var _type_to_filepath : Dictionary[TowerType, String] = {
-	TowerType._NoShooter: "uid://n0l8egj3gjg6",
-	TowerType._TEST_SHOOTER: "uid://dofehy3c0bks6", 
-	TowerType._TEST_TRUCK: "uid://o8lbby237l0n"
-}
-static var _type_to_max_hp :Dictionary[TowerType, float] = {
-	TowerType._NoShooter: 400,
-	TowerType._TEST_SHOOTER: 151.0, 
-	TowerType._TEST_TRUCK: 150.0
-}
-static var _type_to_damage :Dictionary[TowerType, float] = {
-	TowerType._TEST_SHOOTER: 5.0, 
-	TowerType._TEST_TRUCK: 150.0
-}
-
-
-static func get_tower_display_name(tower_type_: TowerType) -> String: return _type_to_name.get(tower_type_, "No Name Set for " + str(int(tower_type_)))
-
-static func get_tower_cost(tower_type_: TowerType) -> float: return _type_to_cost.get(tower_type_, 10)
-
-static func get_tower_filepath(tower_type_: TowerType) -> String: return _type_to_filepath.get(tower_type_, "noFilepathSet")
-
-static func get_tower_max_health(tower_type_: TowerType) -> float: return _type_to_max_hp.get(tower_type_, 5)
-
-static func get_tower_radar_outer_range(tower_type_: TowerType, upgrades: FoundationUpgrades = null, delta_rank:=0) -> float: 
-	var base_range = _type_to_outer_range.get(tower_type_, 0.0)
-	var range_mod := 1.0
-	if upgrades:
-		range_mod += (upgrades.get_upgrade_level(FoundationUpgrades.UpgradeTypes.RADAR) + delta_rank) * RANK_EXPAND_RADAR
-	return base_range * range_mod
-
-static func get_tower_unlock_statis(tower_type: TowerType) -> GlobalUnlocks.UnlockStatus:
-	## TODO: reference a global unlock object
-	match tower_type:
-		TowerType._NoShooter:
-			return GlobalUnlocks.UnlockStatus.LOCKED_VISIBLE
-		TowerType._TEST_SHOOTER:
-			return GlobalUnlocks.UnlockStatus.AVAILABLE
-		TowerType._TEST_TRUCK:
-			return GlobalUnlocks.UnlockStatus.HIDDEN
-	
-	return GlobalUnlocks.UnlockStatus.LOCKED_VISIBLE

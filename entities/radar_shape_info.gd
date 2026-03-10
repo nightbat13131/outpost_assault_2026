@@ -1,11 +1,14 @@
 class_name RadarShapeInfo extends Resource
 
+signal shape_changed
+signal poly_changed
+
 enum TargetShape {NA = 0, CIRCLE_FILLED = 1, ARCH_FILLED = 2}
 
-@export var _radar_shape := TargetShape.NA
+@export var _radar_shape := TargetShape.NA: set = set_shape
 
-var _shapes : Array[Shape2D]
-var _polygons : Array[PackedVector2Array]
+var _shapes : Array[Shape2D] : get= get_shapes
+var _polygons : Array[PackedVector2Array] : get = get_polygons
 
 var _outer_radius := 100.0
 var _inner_radius := 75.0
@@ -20,25 +23,30 @@ func set_outer_radius(value: float) -> void:
 	_outer_radius = value
 	_refresh_shapes_details()
 
+func get_outer_radius() -> float: return _outer_radius
+
 func set_inner_radius(value: float) -> void: 
 	_inner_radius = value
 	_refresh_shapes_details()
 
 func set_shape(shape: TargetShape) -> void:
-	if _radar_shape == shape:
+	if _radar_shape == shape and (!_shapes.is_empty() or !_polygons.is_empty()) :
 		return # no change
 	_radar_shape = shape
 	_setup_shape_arrays()
+	shape_changed.emit()
 
 func draw(node: Node2D) -> void:
 	# outline
-	node.draw_circle(
-		Vector2.ZERO, 
-		_outer_radius,
-		Utilties.COLOR_RADAR_PREVIEW, 
-		false,
-		5.0
-	)
+	match _radar_shape:
+		TargetShape.CIRCLE_FILLED:
+			_draw_circle_filled(node)
+		TargetShape.ARCH_FILLED:
+			_draw_single_poly(node)
+
+func get_shapes() -> Array[Shape2D]: return _shapes
+
+func get_polygons() -> Array[PackedVector2Array]: return _polygons
 
 func _setup_shape_arrays() -> void:
 	_polygons = []
@@ -64,4 +72,23 @@ func _refresh_shapes_details() -> void:
 			_shapes[0].set_radius(_outer_radius)
 		RadarShapeInfo.TargetShape.ARCH_FILLED:
 			_polygons[0] = Utilties.get_arch_points(_outer_radius, deg_to_rad(_arch_degrees)*.5)
+			poly_changed.emit()
 	changed.emit()
+
+func _draw_circle_filled(node: Node2D) -> void:
+	node.draw_circle(
+		Vector2.ZERO, 
+		_outer_radius,
+		Utilties.COLOR_RADAR_PREVIEW, 
+		false,
+		5.0
+	)
+
+func _draw_single_poly(node: Node2D) -> void:
+	var points = get_polygons()[0]
+	points.append(points[0])
+	node.draw_polyline(
+		points, 
+		Utilties.COLOR_RADAR_PREVIEW, 
+		5.0
+	)

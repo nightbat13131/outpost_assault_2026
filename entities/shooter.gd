@@ -19,31 +19,30 @@ const EVENT_HAS_AMMO = "clip_ready"
 @export var _rotation_limit_deg := 45.0 : set = set_rotation_limit
 @export var _rotation_speed_deg_sec := 45
 
-var _clip_information : ReloadInfo
-var _radar_shape : RadarShapeInfo
+var _reload_info : ReloadInfo : set = set_reload_info
+var _radar_shape : RadarShapeInfo : set = set_radar_shape, get = get_radar_shape
 @onready var _radar_sensor: RadarSensor = %RadarSensor
 @onready var _aiming_sights: AimingSights = %AimingSights
 @onready var _state_machine: StateChart = %ShooterStateChart
 @onready var _muzzles: ShooterMuzzles = %Muzzles
 
 ## calculated and passed by parent because parents can be very different
-var _range := 100.0
 
 func _ready() -> void:
 	_state_machine.propagate_call("set_shooter", [self])
 	_state_machine.propagate_call("set_radar_sensor", [_radar_sensor])
 	_radar_sensor.set_shooter.call_deferred(self)
-	if _clip_information:
-		_clip_information = _clip_information.duplicate()
-		_clip_information.state_update.connect(send_event)
 
 func set_radar_shape(shape_info: RadarShapeInfo) -> void: 
 	_radar_shape = shape_info
 	_radar_sensor.set_radar_shape_info(shape_info)
+	if _limit_roation:
+		_radar_shape._arch_degrees = _limit_roation
+	_aiming_sights.set_radar_shape(shape_info)
 
-func set_clip_information(reload_info: ReloadInfo) -> void:
-	_clip_information = reload_info
-	_clip_information.state_update.connect(send_event)
+func set_reload_info(reload_info: ReloadInfo) -> void:
+	_reload_info = reload_info
+	_reload_info.state_update.connect(send_event)
 
 func set_targetting_mask(layer: int, flag := true) -> void:
 	if _radar_sensor:
@@ -51,12 +50,7 @@ func set_targetting_mask(layer: int, flag := true) -> void:
 	if _aiming_sights:
 		_aiming_sights.set_collision_mask_value(layer, flag)
 
-func set_range(range_: float) -> void: _aiming_sights.set_range(_range)
-
-func set_rotation_limit(degree: float) -> void: 
-	_rotation_limit_deg = degree
-	#_radar_shape.set_arch_degrees(degree)
-	#_radar_sensor.set_arch_radius(radian)
+func set_rotation_limit(degree: float) -> void: _rotation_limit_deg = degree
 
 func send_event(event: String) -> void:
 	if _state_machine:
@@ -72,12 +66,12 @@ func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 
 func get_radar_sensor() -> RadarSensor: return _radar_sensor
 
-func get_reload_info() -> ReloadInfo: return _clip_information
+func get_reload_info() -> ReloadInfo: return _reload_info
 
 ## Called by the State Machine
 func state_process(modded_delta: float) -> void:
-	if _clip_information:
-		_clip_information.process(modded_delta)
+	if _reload_info:
+		_reload_info.process(modded_delta)
 
 ## Called by the State Machine
 func turn_towards(delta_moded: float, target_global_pos: Vector2) -> void:
@@ -140,15 +134,15 @@ func _shoot() -> void:
 		get_projectile_range(),
 		_radar_sensor.get_collision_mask(),
 		null)
-	_clip_information.shots_fired()
+	get_reload_info().shots_fired()
 	if TowerHolder.get_instance():
 		TowerHolder.get_instance().add_child(projectile)
 	else:
 		push_warning("no home for projetile to get added to")
 
 func die() -> void:
-	if _clip_information:
-		_clip_information.die()
+	if get_reload_info():
+		get_reload_info().die()
 	_radar_sensor.die()
 	send_event(EVENT_DIE)
 
@@ -164,6 +158,8 @@ func get_projectile_spread_radian() -> float:
 	# TODO have projective spread be effected by upgrades
 	return deg_to_rad(randf_range(_projectile_base_spread_deg*-1, _projectile_base_spread_deg ) )
 
-func get_projectile_range() -> float: 
-	# TODO have projective range? be effected by upgrades
-	return _range
+func get_projectile_range() -> float: return _radar_shape.get_outer_radius()
+
+func set_parent_hovered(is_hover: bool ) -> void: _radar_sensor.set_parent_hovered(is_hover)
+
+func set_parent_selected(is_selected: bool) -> void: _radar_sensor.set_parent_selected(is_selected)

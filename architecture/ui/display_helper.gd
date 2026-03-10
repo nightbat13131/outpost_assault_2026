@@ -9,7 +9,7 @@ var _parent : Object
 var _display_name : String = ''
 #var _health_ui : HealthUI
 var _health_info: HealthInfo
-var _reload_info : ReloadInfo
+var _reload_info : ReloadInfo: set = set_reload_info, get = get_reload_info
 var _position : Vector2 = DEFAULT_POS
 var _purchaser_0 : PurchaseManager
 var _purchaser_1 : PurchaseManager

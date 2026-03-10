@@ -28,9 +28,7 @@ func _process(_delta: float) -> void:
 		return # not loading a level
 	var progress = []
 	var status = ResourceLoader.load_threaded_get_status(_level_to_load.get_level_path(), progress)
-	#print(status, progress)
 	if status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
-		#print(progress[0])
 		pass
 	elif status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 		GameLevelUI.show_level(ResourceLoader.load_threaded_get(_level_to_load.get_level_path()))

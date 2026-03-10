@@ -29,8 +29,8 @@ func set_preview(shape: RadarShapeInfo.TargetShape, args : Dictionary) -> void:
 		_outer_radius = args[OUTER_RADIUS]
 
 func cancle_preview() -> void: 
-	queue_redraw()
 	_preview_on = false
+	queue_redraw()
 
 func _draw() -> void:
 	if !_preview_on:

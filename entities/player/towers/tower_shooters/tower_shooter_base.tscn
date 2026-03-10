@@ -3,15 +3,35 @@
 [ext_resource type="PackedScene" uid="uid://dfliur4n7vbax" path="res://entities/player/towers/tower_base.tscn" id="1_giylo"]
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="2_2pbwi"]
 [ext_resource type="Script" uid="uid://ce2q3c6wba28d" path="res://entities/player/towers/tower_shooters/tower_shooter.gd" id="2_chclv"]
+[ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/radar_shape_info.gd" id="3_8y7pg"]
 [ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/cost_truck_tower.tres" id="3_chclv"]
+[ext_resource type="Script" uid="uid://b7u1oc30l57em" path="res://entities/projectile/reload_info_tower.gd" id="4_o0bvt"]
 [ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_base.tscn" id="5_chclv"]
+[ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/broken_foundation/tower_info.gd" id="5_lvvon"]
 
-[node name="TowerShooterBase" unique_id=1226539165 instance=ExtResource("1_giylo")]
+[sub_resource type="Resource" id="Resource_xoslf"]
+script = ExtResource("3_8y7pg")
+metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
+
+[sub_resource type="Resource" id="Resource_hj1yo"]
+script = ExtResource("4_o0bvt")
+_test_text = "5556"
+metadata/_custom_type_script = "uid://b7u1oc30l57em"
+
+[sub_resource type="Resource" id="Resource_lti16"]
+script = ExtResource("5_lvvon")
+my_type = -11
+_radar_shape = SubResource("Resource_xoslf")
+_reload_info = SubResource("Resource_hj1yo")
+metadata/_custom_type_script = "uid://dy47gmggu5xbd"
+
+[node name="TowerShooter_Truck" unique_id=1226539165 instance=ExtResource("1_giylo")]
 script = ExtResource("2_chclv")
-_reload_info = null
+_tower_info = SubResource("Resource_lti16")
 
 [node name="TowerPurchaseManager" parent="." index="1" unique_id=1756272085]
 cost_tower_infos = Array[ExtResource("2_2pbwi")]([ExtResource("3_chclv")])
+section_name = "Tower - Truck"
 
 [node name="Shooter" parent="." index="3" unique_id=1614296909 instance=ExtResource("5_chclv")]
 

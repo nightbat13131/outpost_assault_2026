@@ -63,13 +63,12 @@ script = ExtResource("1_bi0t7")
 
 [node name="Button" type="Button" parent="." unique_id=688348017]
 unique_name_in_owner = true
-offset_left = -37.0
-offset_top = -37.0
-offset_right = 30.0
-offset_bottom = 30.0
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
 script = ExtResource("2_u36w5")
 active_cursor_overwrite = ExtResource("3_53k03")
-metadata/_edit_lock_ = true
 
 [node name="RadarPreview" type="Node2D" parent="." unique_id=1196884570]
 unique_name_in_owner = true

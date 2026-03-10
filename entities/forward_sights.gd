@@ -1,6 +1,7 @@
 class_name AimingSights extends Node
 
 var _rays : Array[RayCast2D] = []
+var _radar_shape : RadarShapeInfo
 
 func _ready() -> void:
 	for each_child in get_children():
@@ -22,3 +23,10 @@ func is_colliding() -> bool:
 		if each_ray.is_colliding():
 			return true
 	return false
+
+func set_radar_shape(info: RadarShapeInfo) -> void:
+	_radar_shape = info
+	_radar_shape.changed.connect(_on_radar_shape_change)
+
+func _on_radar_shape_change() -> void:
+	set_range(_radar_shape.get_outer_radius())

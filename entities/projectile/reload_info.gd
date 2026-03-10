@@ -9,8 +9,6 @@ const H_SV_GREEN = 110
 ## Shooter that is using the Reload Info
 var _shooter : Shooter
 
-
-
 ## Base speed for how long reloadding a full clip takes
 @export var _clip_reload_base : float = 0.1
 ## How long it takes to reload a full clip with upgrades
@@ -36,6 +34,9 @@ var _clip_ammo_used: int = 0
 ## or the delay between firing within a burst 
 var _fire_rate_timer_remaining : float = 0.0
 var _is_fire_timer_running := true
+
+#func _init() -> void:
+	#print_debug(self)
 
 func set_shooter(shooter: Shooter)-> void:
 	_shooter = shooter
@@ -88,6 +89,7 @@ func get_ratio_clipped_reload() -> float:
 	return get_fire_rate_ratio()
 
 func shots_fired(shots_fired_ : int = 1) -> void:
+	#print_debug(self)
 	_clip_ammo_used += shots_fired_
 	if get_clip_ammmo_remaining() <= 0: # reload clip
 		_fire_rate_timer_remaining = get_clip_reload_seconds()

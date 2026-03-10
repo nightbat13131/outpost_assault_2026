@@ -27,6 +27,7 @@ _tower_info = SubResource("Resource_8y7pg")
 
 [node name="TowerPurchaseManager" parent="." index="1" unique_id=1756272085]
 cost_tower_infos = Array[ExtResource("5_gy4wa")]([ExtResource("6_hp11c")])
+section_name = "Tower - Gun"
 
 [node name="Shooter" parent="." index="3" unique_id=1614296909 instance=ExtResource("7_0xf5n")]
 _projectile_base_speed = 800.0

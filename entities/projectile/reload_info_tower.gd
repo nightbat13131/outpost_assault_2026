@@ -1,7 +1,7 @@
 class_name ReloadInfo_Tower extends ReloadInfo
 
 ## Tower Type for calculations
-var _tower_type: TowerInfo.TowerType
+var _tower_type: TowerInfo.TowerType : set = set_tower_type
 ## Upgrade reference for the shooter's foundation
 var _foundation_upgrades : FoundationUpgrades
 

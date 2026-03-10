@@ -147,8 +147,17 @@ metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 script = ExtResource("15_fm1tj")
 rect_position = Vector2(-500, -500)
 rect_size = Vector2(3000, 2000)
-camera_start = Vector2(1000, 750)
+camera_start = Vector2(1000, 550)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
+[sub_resource type="Resource" id="Resource_c8ieg"]
+script = ExtResource("19_cen4m")
+upgrade_levels = Dictionary[int, int]({
+0: 6,
+1: 0,
+2: 0
+})
+metadata/_custom_type_script = "uid://mlap6q5cc1d1"
 
 [sub_resource type="Resource" id="Resource_fvtu7"]
 script = ExtResource("19_cen4m")
@@ -195,10 +204,10 @@ damage_target = NodePath("../../SpawnManager/SpawnerBuilding_1x2")
 damage_amount = 23.0
 
 [node name="Button3" type="Button" parent="test" unique_id=501823648 node_paths=PackedStringArray("damage_target")]
-offset_left = 284.0
-offset_top = 695.0
-offset_right = 395.0
-offset_bottom = 726.0
+offset_left = 339.0
+offset_top = 697.0
+offset_right = 450.0
+offset_bottom = 728.0
 text = "Deal Damage"
 script = ExtResource("1_iw66m")
 damage_target = NodePath("../../PlayerOutpost")
@@ -245,42 +254,48 @@ tile_set = ExtResource("5_a25qy")
 script = ExtResource("6_xfd45")
 metadata/_edit_lock_ = true
 
-[node name="NavPoint_NW" type="Node2D" parent="." unique_id=401102862]
+[node name="NavPoint_NW" type="Node2D" parent="." unique_id=401102862 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(382, 385)
 script = ExtResource("7_0dutj")
+next_targets = [NodePath("../NavPoint_N"), NodePath("../NavPoint_SW")]
 next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_5w2jj"), SubResource("Resource_qj5ga")])
 
-[node name="NavPoint_SW" type="Node2D" parent="." unique_id=1855747950]
+[node name="NavPoint_SW" type="Node2D" parent="." unique_id=1855747950 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(334, 1084)
 script = ExtResource("7_0dutj")
+next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_S")]
 next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_obju6"), SubResource("Resource_oisr6")])
 target_distance = 50.0
 
-[node name="NavPoint_S" type="Node2D" parent="." unique_id=1426916265]
+[node name="NavPoint_S" type="Node2D" parent="." unique_id=1426916265 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(980, 1111)
 script = ExtResource("7_0dutj")
+next_targets = [NodePath("../NavPoint_SW"), NodePath("../NavPoint_N"), NodePath("../NavPoint_SE")]
 next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_3qehr"), SubResource("Resource_j7vok"), SubResource("Resource_okpnb")])
 
-[node name="NavPoint_N" type="Node2D" parent="." unique_id=998014482]
+[node name="NavPoint_N" type="Node2D" parent="." unique_id=998014482 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(1022, 320)
 script = ExtResource("7_0dutj")
+next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_S"), NodePath("../NavPoint_E")]
 next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_k4ynb"), SubResource("Resource_yd7jv"), SubResource("Resource_avvtc")])
 
-[node name="NavPoint_E" type="Node2D" parent="." unique_id=274391533]
+[node name="NavPoint_E" type="Node2D" parent="." unique_id=274391533 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(1591, 816)
 script = ExtResource("7_0dutj")
+next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_SW"), NodePath("../NavPoint_S"), NodePath("../NavPoint_N"), NodePath("../NavPoint_SE")]
 next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_5i2wj"), SubResource("Resource_bcd2k"), SubResource("Resource_l0owh")])
 target_distance = 100.0
 
-[node name="NavPoint_SE" type="Node2D" parent="." unique_id=249487478]
+[node name="NavPoint_SE" type="Node2D" parent="." unique_id=249487478 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(1732, 1104)
 script = ExtResource("7_0dutj")
+next_targets = [NodePath("../NavPoint_NW")]
 target_distance = 100.0
 
 [node name="SpawnManager" type="Node2D" parent="." unique_id=1833308816]
@@ -298,11 +313,12 @@ _spawn_speed = 4.0
 _pulse_unit_volume = 2
 metadata/_edit_lock_ = true
 
-[node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner" unique_id=1670429763]
+[node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner" unique_id=1670429763 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(-8, 48)
 script = ExtResource("11_tsdtp")
 unit_types = Array[int]([100])
+next_targets = [NodePath("../../../NavPoint_NW")]
 next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_ti3ma")])
 target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
@@ -371,29 +387,31 @@ position = Vector2(582, 720)
 
 [node name="TowerFoundation" parent="TowerHolder" unique_id=93634172 instance=ExtResource("18_lgomy")]
 position = Vector2(834, 577)
+upgrades = SubResource("Resource_c8ieg")
 starting_tower = -10
 
 [node name="TowerFoundation4" parent="TowerHolder" unique_id=2097486488 instance=ExtResource("18_lgomy")]
 position = Vector2(1333, 439)
+starting_tower = -11
 
 [node name="TowerFoundation5" parent="TowerHolder" unique_id=75215562 instance=ExtResource("18_lgomy")]
 position = Vector2(1341, 548)
 
 [node name="TowerFoundation6" parent="TowerHolder" unique_id=2001587829 instance=ExtResource("18_lgomy")]
 position = Vector2(1330, 669)
+starting_tower = -10
 
 [node name="TowerFoundation2" parent="TowerHolder" unique_id=914457105 instance=ExtResource("18_lgomy")]
 position = Vector2(704, 709)
 upgrades = SubResource("Resource_fvtu7")
-starting_tower = -10
 
 [node name="TowerFoundation3" parent="TowerHolder" unique_id=413108212 instance=ExtResource("18_lgomy")]
 position = Vector2(707, 959)
 upgrades = SubResource("Resource_d8ypc")
-starting_tower = -10
+starting_tower = -11
 
 [node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("21_8aiei")]
-position = Vector2(96, 648)
+position = Vector2(230, 695)
 
 [editable path="SpawnManager/SpawnerBuilding_1x2"]
 [editable path="SpawnManager/SpawnerBuilding_1x2/Building"]

@@ -31,6 +31,7 @@ func _draw() -> void:
 		return
 	if Engine.is_editor_hint():
 		draw_circle(Vector2.ZERO, target_distance, Color.RED, false, 3.0)
+		# no destination dimond
 		if next_targets.is_empty():
 			draw_polyline(
 				[Vector2.from_angle(TAU*.25)*target_distance,
@@ -42,17 +43,20 @@ func _draw() -> void:
 				Color.ORANGE, 2)
 		else:
 			var end_point : Vector2
+			var poly_points : Array[Vector2]
+			var tri_sides := 40.0
 			for each_point: NavPoint in next_targets:
 				if each_point:
 					if !each_point.is_disabled:
 						end_point = to_local(each_point.global_position)
+						poly_points = [
+							Vector2.from_angle(end_point.angle()-.2)*tri_sides*1,
+							Vector2.from_angle(end_point.angle())   *tri_sides*1.25, ## tip
+							Vector2.from_angle(end_point.angle()+.2)*tri_sides*1,
+						]
+						poly_points.append(poly_points[0])
 						draw_line(Vector2.ZERO, end_point, Color.ORANGE, 4)
-						draw_polyline([
-							Vector2.from_angle(end_point.angle()-.2)*target_distance*1,
-							Vector2.from_angle(end_point.angle())   *target_distance*1.25,
-							Vector2.from_angle(end_point.angle()+.2)*target_distance*1,
-							],
-					Color.BLUE, 2)
+						draw_polyline(poly_points, Color.BLUE, 2)
 
 func _draw_0() -> void:
 	if is_disabled:
@@ -107,12 +111,12 @@ func apply_nav_agent(nav_agent: NavigationAgent2D) -> void:
 		nav_agent.set_target_desired_distance(target_distance * .5) # 5 is too small and nav agent gets stuck trying to be close enough
 
 func _get_configuration_warnings() -> PackedStringArray:
-	var warnings:Array = [
-		"No next nav points set"
-	]
+	var warnings:Array = []
 	if next_targets.is_empty():
-		return warnings
-	return []
+		warnings.append("No next nav points set")
+	elif next_targets.has(self):
+		warnings.append("Nav points back at itself")
+	return warnings
 
 class WeightedPicker:
 	var _total: float = 0.0

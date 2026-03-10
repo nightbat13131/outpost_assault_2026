@@ -22,38 +22,28 @@ const RADAR_FADE := .25
 
 var _shooter : Shooter
 var _player_outpost : PlayerOutpost
-var _radar_shape : RadarShapeInfo
+var _radar_shape : RadarShapeInfo: set = set_radar_shape_info, get = get_radar_shape
 var _targets : Array =[]
-#var _outer_range := 100.0
-#var _arch_radius := 1.0
+var _parent_selected := false 
+var _parent_hovered := false 
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	#_setup_collision()
 
-#func _setup_collision_old() -> void:
-	#match _radar_shape:
-		#RadarShapeInfo.TargetShape.CIRCLE_FILLED:
-			#collision_shape_2d.set_shape(CircleShape2D.new())
-			#collision_polygon_2d.set_disabled(true)
-			#collision_polygon_2d.set_polygon([])
-		#RadarShapeInfo.TargetShape.ARCH_FILLED:
-			#collision_shape_2d.set_shape(CircleShape2D.new())
-			#collision_shape_2d.set_disabled(true)
-			#collision_polygon_2d.set_polygon([])
-	##_refresh_collision_shapes()
-'
-func _refresh_collision_shapes() -> void:
-	match _radar_shape:
-		RadarShapeInfo.TargetShape.CIRCLE_FILLED:
-			collision_shape_2d.get_shape().set_radius(_outer_range)
-		RadarShapeInfo.TargetShape.ARCH_FILLED:
-			collision_polygon_2d.set_polygon(Utilties.get_arch_points(_outer_range, _arch_radius))
-'
-func has_target() -> bool: return !_targets.is_empty()
+func _on_radar_shape_change() -> void: 
+	collision_shape_2d.set_disabled(!_radar_shape.has_shapes())
+	if _radar_shape.has_shapes():
+		collision_shape_2d.set_shape(_radar_shape.get_shapes()[0])
+	else: 
+		collision_shape_2d.set_shape(null)
+	collision_polygon_2d.set_disabled(!_radar_shape.has_polygons())
+	if _radar_shape.has_polygons():
+		collision_polygon_2d.set_polygon(_radar_shape.get_polygons()[0])
+	else:
+		collision_polygon_2d.set_polygon([])
 
 func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 
@@ -61,6 +51,9 @@ func set_radar_shape_info(shape_info: RadarShapeInfo) -> void:
 	_radar_shape = shape_info
 	if _radar_shape:
 		_radar_shape.changed.connect(queue_redraw)
+		_radar_shape.shape_changed.connect(_on_radar_shape_change)
+		_radar_shape.poly_changed.connect(_on_radar_shape_change)
+	_on_radar_shape_change()
 	queue_redraw()
 
 func set_shooter(shooter: Shooter) -> void: 
@@ -72,42 +65,23 @@ func die() -> void:
 			each_child.set_disabled(true)
 	queue_free()
 
-#func set_range(range_: float) -> void:
-	#_outer_range = range_
-	#_refresh_collision_shapes()
-
-#func set_arch_radius(radian: float) -> void:
-	#_arch_radius = radian
-	#_refresh_collision_shapes()
-
-func set_target_collition_types(target_collition_mask: int) -> void:
-	set_collision_mask(target_collition_mask)
-	#TODO: recalculate targets in current area
-
-func set_target_method(target_method: TargetingMethod) -> void:
-	_targeting_method = target_method
-
-func set_target_logic() -> void: pass
-
-func get_target() -> Node2D:
-	if _targets.is_empty():
-		return null
-	if _targets.has(_player_outpost):
-		return _player_outpost
-	match _targeting_method:
-		TargetingMethod.RADIAN_CLOSE:
-			return _get_target_radian_close()
-	return _targets[0]
-
 ## For when the Radar's rotation needs to match a different node.
 func set_rotation_parent(node: Node2D) -> void: 
 	#_rotation_parent = node
 	Utilties.reparent(self, node)
 
+func set_parent_hovered(is_hover: bool ) -> void:
+	_parent_hovered = is_hover
+	queue_redraw()
+
+func set_parent_selected(is_selected: bool) -> void:
+	_parent_selected = is_selected
+	queue_redraw()
+
 func _draw() -> void:
-	#if !_shooter: # wait for shooter to be setup in deffered
-		#return
-	get_radar_shape().draw(self)
+	if get_radar_shape():
+		if _parent_hovered or _parent_selected or _debugging_targets:
+			get_radar_shape().draw(self)
 	if !_debugging_targets:
 		return
 	if has_target():
@@ -129,6 +103,43 @@ func _process(_delta: float) -> void:
 		return
 	if has_target():
 		queue_redraw()
+
+func has_target() -> bool: return !_targets.is_empty()
+
+func set_target_collition_types(target_collition_mask: int) -> void:
+	set_collision_mask(target_collition_mask)
+	#TODO: recalculate targets in current area ?
+
+func set_target_method(target_method: TargetingMethod) -> void:
+	_targeting_method = target_method
+
+func set_target_logic() -> void: pass
+
+func get_target() -> Node2D:
+	if _targets.is_empty():
+		return null
+	if _targets.has(_player_outpost):
+		return _player_outpost
+	match _targeting_method:
+		TargetingMethod.RADIAN_CLOSE:
+			return _get_target_radian_close()
+	return _targets[0]
+
+func _get_target_radian_close() -> Node2D:
+	var starting_radian = _shooter.global_rotation
+	var min_delta_rotation := TAU
+	var min_target : Node2D = null
+	
+	var each_rotation := TAU
+	var each_delta_radian := TAU
+	
+	for each in _targets:
+		each_rotation = global_position.angle_to_point(each.get_global_position())
+		each_delta_radian = Utilties.delta_radian(starting_radian, each_rotation)
+		if abs(each_delta_radian) < min_delta_rotation:
+			min_delta_rotation = abs(each_delta_radian)
+			min_target = each
+	return min_target
 
 func _on_area_entered(area: Area2D) -> void:
 	if !_targets.has(area):
@@ -152,19 +163,3 @@ func _on_body_exited(body: Node2D) -> void:
 	while _targets.has(body):
 		_targets.erase(body)
 		queue_redraw()
-
-func _get_target_radian_close() -> Node2D:
-	var starting_radian = _shooter.global_rotation
-	var min_delta_rotation := TAU
-	var min_target : Node2D = null
-	
-	var each_rotation := TAU
-	var each_delta_radian := TAU
-	
-	for each in _targets:
-		each_rotation = global_position.angle_to_point(each.get_global_position())
-		each_delta_radian = Utilties.delta_radian(starting_radian, each_rotation)
-		if abs(each_delta_radian) < min_delta_rotation:
-			min_delta_rotation = abs(each_delta_radian)
-			min_target = each
-	return min_target
