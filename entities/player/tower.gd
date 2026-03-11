@@ -2,7 +2,7 @@ class_name Tower extends Area2D
 
 signal dead(tower: Tower) ## I don't think the foundation cares between sold and destroyed.
 
-@export var _tower_info : TowerInfo: get = _get_tower_info
+@export var _tower_info : TowerInfo: get = get_tower_info
 
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _context_manager: TowerContextManager = %TowerContextManager
@@ -13,9 +13,9 @@ func _ready() -> void:
 
 func get_health_info() -> HealthInfo: return _tower_info.get_health_info()
 
-func _get_tower_info() -> TowerInfo: return _tower_info
+func get_tower_info() -> TowerInfo: return _tower_info
 
-func _get_cost() -> float: return _get_tower_info().get_cost()
+func _get_cost() -> float: return get_tower_info().get_cost()
 
 func get_reload_info() -> ReloadInfo: return _tower_info.get_reload_info()
 
@@ -36,11 +36,11 @@ func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, _clip_reload_ui: C
 
 func repair() -> void: get_health_info().full_heal()
 
-func get_radar_shape() -> RadarShapeInfo: return _get_tower_info().get_radar_shape()
+func get_radar_shape() -> RadarShapeInfo: return get_tower_info().get_radar_shape()
 
-func get_repair_cost() -> float: return _get_tower_info().get_repair_value()
+func get_repair_cost() -> float: return get_tower_info().get_repair_value()
 
-func get_display_name() -> String: return _get_tower_info().get_display_name()
+func get_display_name() -> String: return get_tower_info().get_display_name()
 
 func take_damage(damage_delt: float) -> void: get_health_info().take_damage(damage_delt)
 
@@ -53,7 +53,7 @@ func sell() -> void:
 	dead.emit(self)
 	queue_free()
 
-func get_sell_value() -> float: return _get_tower_info().get_sell_value()
+func get_sell_value() -> float: return get_tower_info().get_sell_value()
 
 func being_replaced() -> void: queue_free()
 
@@ -68,6 +68,6 @@ func get_context_manager() -> TowerContextManager: return _context_manager
 
 static func get_scene_path() -> String: return "Method needs overriting missing"
 
-func set_parent_hovered(is_hover: bool ) -> void: pass
+func set_parent_hovered(_is_hover: bool ) -> void: pass
 
-func set_parent_selected(is_selected: bool) -> void: pass
+func set_parent_selected(_is_selected: bool) -> void: pass

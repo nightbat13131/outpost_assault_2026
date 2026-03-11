@@ -20,6 +20,9 @@ func get_health_info() -> HealthInfo:
 	return _health_info
 
 func set_upgrade_info(info: FoundationUpgrades) -> void: 
+	_on_upgrade_changed()
+	if _upgrades == info: # no change needed
+		return
 	_upgrades = info
 	_upgrades.changed.connect(_on_upgrade_changed)
 	if _reload_info:
@@ -43,3 +46,5 @@ func get_outer_range() -> float: return get_tower_radar_outer_range(my_type, _up
 func get_sell_value() -> float: return get_cost() * _health_info.get_health_ratio()
 
 func get_repair_value() -> float: return get_cost() * (1.0- _health_info.get_health_ratio())
+
+func get_upgraded_range() -> float: return get_tower_radar_outer_range(my_type, _upgrades, 1.0)

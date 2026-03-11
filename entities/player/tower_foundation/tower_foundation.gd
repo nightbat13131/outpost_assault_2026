@@ -29,20 +29,22 @@ func _ready() -> void:
 	add_tower.call_deferred(starting_tower)
 
 func _connect_purchasers() -> void:
-	_tower_purchase_manager.set_foundation(self)
 	if upgrades == null:
 		upgrades = FoundationUpgrades.new()
 	else:
-		upgrades = upgrades.duplicate_deep(Resource.DEEP_DUPLICATE_ALL) # testing showed this needed to be deep
+		upgrades = upgrades.duplicate_deep(Resource.DEEP_DUPLICATE_ALL) # deep as uses 
+		
+	_tower_purchase_manager.set_foundation(self)
 	upgrades.set_foundation(self)
 	upgrade_manager.set_upgrade_info(upgrades)
+	upgrade_manager.preview_upgrade.connect(_on_preview_upgrade)
+	_radar_preview.set_foundation_upgrades(upgrades)
 	for each_child : UpgradeVisualizer in %VisualizeUpgrades.get_children():
 		each_child.set_upgrade_info(upgrades)
 
 func add_tower(tower_type: TowerInfo.TowerType) -> void:
 	_update_display_info.call_deferred()
 	if tower_type != TowerInfo.TowerType.NA:
-		print_debug(self)
 		_add_tower(tower_type)
 
 func _add_tower(tower_type: TowerInfo.TowerType) -> void:
@@ -104,3 +106,11 @@ func _draw() -> void:
 	if Engine.is_editor_hint():
 		if starting_tower != TowerInfo.TowerType.NA:
 			draw_circle(Vector2.ZERO, 25.0, Color.BROWN, false, 5.0)
+
+func _on_preview_upgrade(upgrade_type: FoundationUpgrades.UpgradeTypes , show_preview: bool) -> void:
+	## TODO have upgrades blink when you hover over them
+	if upgrade_type == FoundationUpgrades.UpgradeTypes.RADAR:
+		if _current_tower and show_preview:
+			_radar_preview.set_preview(_current_tower.get_tower_info(), true)
+		else:
+			_radar_preview.cancle_preview()

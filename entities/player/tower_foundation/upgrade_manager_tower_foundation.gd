@@ -1,5 +1,7 @@
 class_name UpgradeManager_TowerFoundation extends PurchaseManager
 
+signal preview_upgrade(upgrade_type: FoundationUpgrades.UpgradeTypes , show_preview: bool)
+
 @export var cost_upgrade_infos : Array[CostButonInfo_FoundationUpgrads]
 
 var _upgrade_info : FoundationUpgrades
@@ -10,6 +12,7 @@ func set_upgrade_info(info: FoundationUpgrades) -> void:
 		cost_upgrade_infos[index] = cost_upgrade_infos[index].duplicate()
 		cost_upgrade_infos[index].set_purchase_manager(self)
 		cost_upgrade_infos[index].set_upgrade_info(_upgrade_info)
+		cost_upgrade_infos[index].preview_upgrade.connect(_on_preview_upgrade)
 
 func _connect_to_section() -> void:
 	_get_buttons(cost_upgrade_infos.size())
@@ -27,3 +30,6 @@ func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void
 		return
 	_upgrade_info.attempt_upgrade_request(info)
 	_update_buttons() 
+
+func _on_preview_upgrade(upgrade_type: FoundationUpgrades.UpgradeTypes , show_preview: bool) -> void: 
+	preview_upgrade.emit(upgrade_type, show_preview)

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="CostButtonInfo_Tower" format=3 uid="uid://cslsmaaty1d1w"]
 
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="1_s1352"]
+[ext_resource type="Resource" uid="uid://ckkfembrq1big" path="res://entities/player/towers/tower_no_shooter.tres" id="2_metrp"]
 
 [sub_resource type="Gradient" id="Gradient_s1352"]
 offsets = PackedFloat32Array(0, 0.95962733)
@@ -17,5 +18,6 @@ fill_to = Vector2(0, 0)
 [resource]
 script = ExtResource("1_s1352")
 tower_type = 1
+tower_info = ExtResource("2_metrp")
 primary_icon = SubResource("GradientTexture2D_metrp")
 metadata/_custom_type_script = "uid://c1qpm4n8xf5ai"

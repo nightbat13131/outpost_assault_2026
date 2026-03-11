@@ -92,7 +92,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 func _on_wave_complete() -> void: 
-	print_debug(_trigger_on_wave_complete)
 	if _trigger_on_wave_complete:
 		_trigger_on_wave_complete.call()
 

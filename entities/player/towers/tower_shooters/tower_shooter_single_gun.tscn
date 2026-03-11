@@ -2,28 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://dfliur4n7vbax" path="res://entities/player/towers/tower_base.tscn" id="1_jy8ry"]
 [ext_resource type="Script" uid="uid://ce2q3c6wba28d" path="res://entities/player/towers/tower_shooters/tower_shooter.gd" id="2_nk33w"]
-[ext_resource type="Resource" uid="uid://bd6o3yk1dc5s6" path="res://entities/player/towers/tower_shooters/gun_tower_reload_info.tres" id="3_fi713"]
-[ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/broken_foundation/tower_info.gd" id="4_nkbc3"]
+[ext_resource type="Resource" uid="uid://vcjycdbg8yjn" path="res://entities/player/towers/tower_single_gun.tres" id="3_tmcmt"]
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="5_gy4wa"]
 [ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/cost_truck_tower.tres" id="6_hp11c"]
 [ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_base.tscn" id="7_0xf5n"]
-[ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/radar_shape_info.gd" id="8_nk33w"]
-
-[sub_resource type="Resource" id="Resource_nk33w"]
-script = ExtResource("8_nk33w")
-_radar_shape = 1
-metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
-
-[sub_resource type="Resource" id="Resource_8y7pg"]
-script = ExtResource("4_nkbc3")
-my_type = -10
-_radar_shape = SubResource("Resource_nk33w")
-_reload_info = ExtResource("3_fi713")
-metadata/_custom_type_script = "uid://dy47gmggu5xbd"
 
 [node name="TowerShooterSingleGun" unique_id=1226539165 instance=ExtResource("1_jy8ry")]
 script = ExtResource("2_nk33w")
-_tower_info = SubResource("Resource_8y7pg")
+_tower_info = ExtResource("3_tmcmt")
 
 [node name="TowerPurchaseManager" parent="." index="1" unique_id=1756272085]
 cost_tower_infos = Array[ExtResource("5_gy4wa")]([ExtResource("6_hp11c")])

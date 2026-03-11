@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TowerInfo" format=3 uid="uid://ckkfembrq1big"]
+
+[ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/broken_foundation/tower_info.gd" id="1_opkn2"]
+
+[resource]
+script = ExtResource("1_opkn2")
+my_type = 1
+metadata/_custom_type_script = "uid://dy47gmggu5xbd"

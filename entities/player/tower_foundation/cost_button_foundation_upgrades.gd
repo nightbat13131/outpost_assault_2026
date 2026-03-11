@@ -1,7 +1,10 @@
 class_name CostButonInfo_FoundationUpgrads extends CostButtonInfo
 
+signal preview_upgrade(upgrade_type: FoundationUpgrades.UpgradeTypes , show_preview: bool)
+
 @export var _upgrade_type : FoundationUpgrades.UpgradeTypes
 var _upgrade_info : FoundationUpgrades
+#var _radar_preview : RadarPreview
 
 func set_upgrade_info(info: FoundationUpgrades) -> void: _upgrade_info = info
 
@@ -35,11 +38,7 @@ func get_purchase_type() -> CostButton.PurchaseTypes:
 	return super.get_purchase_type()
 
 func on_mouse_entered() -> void:
-	if _upgrade_type != FoundationUpgrades.UpgradeTypes.RADAR:
-		return
-	print("Show radar upgrade")
+	preview_upgrade.emit(_upgrade_type, true)
 
 func on_mouse_exited() -> void:
-	if _upgrade_type != FoundationUpgrades.UpgradeTypes.RADAR:
-		return
-	print("Hide radar upgrade")
+	preview_upgrade.emit(_upgrade_type, false)

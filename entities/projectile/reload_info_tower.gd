@@ -9,6 +9,8 @@ func set_tower_type(tower_type: TowerInfo.TowerType) -> void:
 	_tower_type = tower_type
 
 func set_foundation_upgrades(foundation_upgrads: FoundationUpgrades) -> void:
+	if _foundation_upgrades: 
+		_foundation_upgrades.changed.disconnect(_on_upgrade_changed)
 	_foundation_upgrades = foundation_upgrads
 	_foundation_upgrades.changed.connect(_on_upgrade_changed)
 	_on_upgrade_changed()

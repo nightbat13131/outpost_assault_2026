@@ -35,7 +35,6 @@ static var _type_to_damage :Dictionary[TowerType, float] = {
 	TowerType._TEST_TRUCK: 150.0
 }
 
-
 static func get_tower_display_name(tower_type_: TowerType) -> String: return _type_to_name.get(tower_type_, "No Name Set for " + str(int(tower_type_)))
 
 static func get_tower_cost(tower_type_: TowerType) -> float: return _type_to_cost.get(tower_type_, 10)
@@ -52,13 +51,4 @@ static func get_tower_radar_outer_range(tower_type_: TowerType, upgrades: Founda
 	return base_range * range_mod
 
 static func get_tower_unlock_statis(tower_type: TowerType) -> GlobalUnlocks.UnlockStatus:
-	## TODO: reference a global unlock object
-	match tower_type:
-		TowerType._NoShooter:
-			return GlobalUnlocks.UnlockStatus.LOCKED_VISIBLE
-		TowerType._TEST_SHOOTER:
-			return GlobalUnlocks.UnlockStatus.AVAILABLE
-		TowerType._TEST_TRUCK:
-			return GlobalUnlocks.UnlockStatus.HIDDEN
-	
-	return GlobalUnlocks.UnlockStatus.LOCKED_VISIBLE
+	return GlobalUnlocks.get_tower_unlock_statis(tower_type)

@@ -15,7 +15,6 @@ const RADAR_FADE := .25
 @export var _debugging_targets := false
 
 @export var _targeting_method := TargetingMethod.NA
-#@export var _radar_shape := RadarShapeInfo.TargetShape.CIRCLE_FILLED
 
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 @onready var collision_polygon_2d: CollisionPolygon2D = %CollisionPolygon2D
