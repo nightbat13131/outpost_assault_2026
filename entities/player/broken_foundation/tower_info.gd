@@ -29,7 +29,8 @@ func set_upgrade_info(info: FoundationUpgrades) -> void:
 		_reload_info.set_foundation_upgrades(info)
 
 func _on_upgrade_changed() -> void:
-	_radar_shape.set_outer_radius(get_outer_range())
+	if _radar_shape:
+		_radar_shape.set_outer_radius(get_outer_range())
 
 func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 

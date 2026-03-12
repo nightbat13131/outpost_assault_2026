@@ -17,7 +17,6 @@ fill_from = Vector2(0.5, 0.5)
 
 [resource]
 script = ExtResource("1_v22n5")
-tower_type = -10
 tower_info = ExtResource("2_i60k7")
 primary_icon = SubResource("GradientTexture2D_g6uuf")
 metadata/_custom_type_script = "uid://c1qpm4n8xf5ai"

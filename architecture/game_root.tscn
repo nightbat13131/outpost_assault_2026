@@ -5,6 +5,6 @@
 
 [node name="GameRoot" type="Node2D" unique_id=487124777]
 
-[node name="LevelSelect" parent="." unique_id=977691685 instance=ExtResource("1_fvvr4")]
-
 [node name="LevelUI" parent="." unique_id=2003894573 instance=ExtResource("2_2r24p")]
+
+[node name="LevelSelect" parent="." unique_id=977691685 instance=ExtResource("1_fvvr4")]

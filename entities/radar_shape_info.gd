@@ -14,7 +14,7 @@ var _outer_radius := 100.0 : set = set_outer_radius, get = get_outer_radius
 var _inner_radius := 75.0 : set = set_inner_radius
 
 ## When the target shape is an arch, what is the starting degree of that arch
-@export var _arch_degrees := 45.0 : set = set_arch_degrees
+@export var _arch_degrees := 45.0 : set = set_arch_degrees, get = get_arch_degrees
 
 func has_shapes() -> bool: return !_shapes.is_empty()
 func has_polygons() -> bool: return !_polygons.is_empty()
@@ -40,10 +40,12 @@ func set_arch_degrees(degrees: float) -> void :
 	_arch_degrees = degrees
 	_refresh_shapes_details()
 
+func get_arch_degrees() -> float: return _arch_degrees
+
 func replicate(recipiant: RadarShapeInfo) -> void:
 	recipiant.set_outer_radius(get_outer_radius())
 	recipiant.set_inner_radius(_inner_radius)
-	recipiant.set_arch_degrees(_arch_degrees)
+	recipiant.set_arch_degrees(get_arch_degrees())
 	recipiant.set_shape(_radar_shape)
 
 func get_shapes() -> Array[Shape2D]: return _shapes
@@ -71,9 +73,9 @@ func _refresh_shapes_details() -> void:
 	# assuming that _setup_shape_arrays has the correct stuff in the arrays
 	match _radar_shape:
 		RadarShapeInfo.TargetShape.CIRCLE_FILLED:
-			_shapes[0].set_radius(_outer_radius)
+			_shapes[0].set_radius(get_outer_radius())
 		RadarShapeInfo.TargetShape.ARCH_FILLED:
-			_polygons[0] = Utilties.get_arch_points(_outer_radius, deg_to_rad(_arch_degrees)*.5)
+			_polygons[0] = Utilties.get_arch_points(get_outer_radius(), deg_to_rad(get_arch_degrees())*.5)
 			poly_changed.emit()
 	changed.emit()
 

@@ -11,7 +11,7 @@ const EVENT_DIED = "died"
 
 const DEFAULT_DESIRED_DISTANCE := 25.0
 
-@export var _enemy_info : EnemyUnitInfo
+@export var _enemy_info : EnemyUnitInfo: get = get_enemy_info
 @export_category("Sounds")
 @export var _sounds_movment : Array[AudioStream]
 @export var _sounds_death : Array[AudioStream]
@@ -30,25 +30,24 @@ var _nav_agent : NavigationAgent2D
 var _nav_target : Node2D :set = set_nav_target
 @onready var _health_ui: HealthUI = %HealthUI
 
-var _health_info: HealthInfo
+#var _health_info: HealthInfo
 #var _health : float = 100.0 : set = _set_health
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	_detect_children()
-	_health_info = HealthInfo.new()
-	#set_collision_layer_value(RadarSensor.COLLISION_ENEMY_HUMANS, true)
-	_health_info.set_max_health(_enemy_info.get_max_health(), true)
-	_health_ui.set_health_info(_health_info)
-	_health_info.die.connect(_die)
+	_enemy_info = get_enemy_info().duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+	get_enemy_info().set_enemy(self)
+	_health_ui.set_health_info(get_enemy_info().get_health_info())
+	_enemy_info.die.connect(_die)
 	_g0_rotation.append(%UIAnchor)
 
-func get_kill_reward() -> float: 
-	if _health_info.get_health_ratio() <= 0:
-		if _enemy_info:
-			return _enemy_info.get_kill_reward()
-	return 0.0
+func get_enemy_info() -> EnemyUnitInfo: return _enemy_info
+
+func get_reload_info() -> ReloadInfo: return get_enemy_info().get_reload_info()
+
+func get_kill_reward() -> float: return get_enemy_info().get_kill_reward()
 
 func set_nav_target(node: Node2D) -> void:
 	_nav_target = node
@@ -128,7 +127,7 @@ func _die() -> void:
 	# death sound
 	send_event(EVENT_DIED)
 	set_collision_layer(0) # turn off collision but allow other processing
-	
+
 	_animated_sprite.play(AnimatedSprite2DModded.ANIMATION_DIE)
 	await _animated_sprite.animation_finished
 	died.emit(self)
@@ -138,8 +137,8 @@ func _die() -> void:
 
 ## Takes delta mod into account 
 func get_max_speed() -> float:
-	if _enemy_info:
-		return _enemy_info.get_max_speed() * GameSpeed.get_delta_mod()
+	if get_enemy_info():
+		return get_enemy_info().get_max_speed() * GameSpeed.get_delta_mod()
 	else: 
 		push_warning(self, " has no enemy_info to get speed")
 		return 10.0
@@ -157,9 +156,9 @@ func stop_animation(animation: String) -> void:
 		if _animated_sprite.get_animation() == animation:
 			_animated_sprite.stop()
 
-func take_damage(damage_delt : float) -> void: _health_info.take_damage(damage_delt)
+func take_damage(damage_delt : float) -> void: get_enemy_info().take_damage(damage_delt)
 
 func on_outpost_entered(outpost: PlayerOutpost) -> void:
-	outpost.take_damage(_enemy_info.get_outpost_damange())
+	outpost.take_damage(get_enemy_info().get_outpost_damange())
 	## TODO: animation other than die?
 	_die()

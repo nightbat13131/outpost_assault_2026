@@ -3,7 +3,6 @@ class_name TowerShooter extends Tower
 var _shooter: Shooter
 var _radar_sensor : RadarSensor
 
-
 func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
 	#print("B 1")
 	super.setup(upgrades, health_ui, clip_reload_ui)

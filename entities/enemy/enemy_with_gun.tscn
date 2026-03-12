@@ -3,8 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="1_pylal"]
 [ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_base.tscn" id="2_c3r84"]
 [ext_resource type="Script" uid="uid://bc3v0fgsir0ya" path="res://entities/enemy/enemy_shooter.gd" id="2_nnjro"]
-[ext_resource type="Resource" uid="uid://bf2wokstj3yme" path="res://entities/enemy/gun_man.tres" id="3_bwkq7"]
-[ext_resource type="Resource" uid="uid://b0scq7h37fb35" path="res://entities/enemy/reload_info_gun_man.tres" id="5_bwkq7"]
 [ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="5_hpllm"]
 
 [sub_resource type="Gradient" id="Gradient_nnjro"]
@@ -19,8 +17,6 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="GunMan" unique_id=1456879393 instance=ExtResource("1_pylal")]
 script = ExtResource("2_nnjro")
-_reload_info = ExtResource("5_bwkq7")
-_enemy_info = ExtResource("3_bwkq7")
 
 [node name="StateChart" parent="." index="5" unique_id=411729324]
 track_in_editor = true
@@ -35,7 +31,6 @@ _rotation_speed_deg_sec = 120
 z_index = 100
 collision_mask = 1024
 _debugging_targets = true
-_radar_shape = 2
 
 [node name="Node" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
 position = Vector2(26, -8)
@@ -53,7 +48,7 @@ scale = Vector2(0.40625, 0.078125015)
 [node name="die" parent="Shooter/ShooterStateChart/ShootingStates/TargetState" parent_id_path=PackedInt32Array(1614296909, 1472020959) index="0" unique_id=955560172]
 event = &"died"
 
-[node name="NoTarget" parent="Shooter/ShooterStateChart/ShootingStates/TargetState" parent_id_path=PackedInt32Array(1614296909, 1472020959) index="1" unique_id=385167069]
+[node name="NoTarget" parent="Shooter/ShooterStateChart/ShootingStates/TargetState" parent_id_path=PackedInt32Array(1614296909, 1472020959) index="3" unique_id=385167069]
 look_forward = true
 
 [node name="ClipReloadUI" parent="UIAnchor/VBoxContainer" parent_id_path=PackedInt32Array(1790658355) index="1" unique_id=1750592590 instance=ExtResource("5_hpllm")]

@@ -40,4 +40,4 @@ func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void
 	if !is_successful:
 		return
 	if info is CostButtonInfo_Tower: #cast for autocomplete
-		_foundation.add_tower(info.tower_type)
+		_foundation.add_tower(info.get_tower_type())

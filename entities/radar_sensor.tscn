@@ -13,10 +13,8 @@ _targeting_method = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=472168192]
 unique_name_in_owner = true
-visible = false
 shape = SubResource("CircleShape2D_uq4vj")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=260281344]
 unique_name_in_owner = true
-visible = false
 polygon = PackedVector2Array(0, -15, 92, -100, 102, 92, 0, 14)

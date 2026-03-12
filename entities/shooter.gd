@@ -16,6 +16,7 @@ const EVENT_HAS_AMMO = "clip_ready"
 
 @export_group("Rotation", "_rotation")
 @export var _limit_roation := false
+## Gets sent to Radar Shape
 @export var _rotation_limit_deg := 45.0 : set = set_rotation_limit
 @export var _rotation_speed_deg_sec := 45
 
@@ -37,7 +38,7 @@ func set_radar_shape(shape_info: RadarShapeInfo) -> void:
 	_radar_shape = shape_info
 	_radar_sensor.set_radar_shape_info(shape_info)
 	if _limit_roation:
-		_radar_shape._arch_degrees = _limit_roation
+		_radar_shape._arch_degrees = _rotation_limit_deg
 	_aiming_sights.set_radar_shape(shape_info)
 
 func set_reload_info(reload_info: ReloadInfo) -> void:

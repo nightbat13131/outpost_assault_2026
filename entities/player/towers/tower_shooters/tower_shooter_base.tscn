@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://ce2q3c6wba28d" path="res://entities/player/towers/tower_shooters/tower_shooter.gd" id="2_chclv"]
 [ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/radar_shape_info.gd" id="3_8y7pg"]
 [ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/cost_truck_tower.tres" id="3_chclv"]
-[ext_resource type="Script" uid="uid://b7u1oc30l57em" path="res://entities/projectile/reload_info_tower.gd" id="4_o0bvt"]
+[ext_resource type="Script" uid="uid://b7u1oc30l57em" path="res://entities/reload_info_tower.gd" id="4_o0bvt"]
 [ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_base.tscn" id="5_chclv"]
 [ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/broken_foundation/tower_info.gd" id="5_lvvon"]
 

@@ -7,7 +7,7 @@ const RELOAD_RATE_DECRESE =-.05 # %
 const H_SV_GREEN = 110
 
 ## Shooter that is using the Reload Info
-var _shooter : Shooter
+#var _shooter : Shooter
 
 ## Base speed for how long reloadding a full clip takes
 @export var _clip_reload_base : float = 0.1
@@ -38,8 +38,8 @@ var _is_fire_timer_running := true
 #func _init() -> void:
 	#print_debug(self)
 
-func set_shooter(shooter: Shooter)-> void:
-	_shooter = shooter
+#func set_shooter(shooter: Shooter)-> void:
+#	_shooter = shooter
 
 ## called by the shooter since Resources don't process
 func process(delta_moded: float) -> void: 
