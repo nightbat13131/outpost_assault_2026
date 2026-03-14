@@ -28,7 +28,9 @@ var _animated_sprite : AnimatedSprite2D
 var _state_machine: StateChart
 var _nav_agent : NavigationAgent2D
 var _nav_target : Node2D :set = set_nav_target
+@onready var _ui_anchor: Control = %UIAnchor
 @onready var _health_ui: HealthUI = %HealthUI
+
 
 #var _health_info: HealthInfo
 #var _health : float = 100.0 : set = _set_health
@@ -41,7 +43,7 @@ func _ready() -> void:
 	get_enemy_info().set_enemy(self)
 	_health_ui.set_health_info(get_enemy_info().get_health_info())
 	_enemy_info.die.connect(_die)
-	_g0_rotation.append(%UIAnchor)
+	_g0_rotation.append(_ui_anchor)
 
 func get_enemy_info() -> EnemyUnitInfo: return _enemy_info
 
@@ -126,6 +128,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 func _die() -> void:
 	# death sound
 	send_event(EVENT_DIED)
+	_ui_anchor.hide()
 	set_collision_layer(0) # turn off collision but allow other processing
 
 	_animated_sprite.play(AnimatedSprite2DModded.ANIMATION_DIE)

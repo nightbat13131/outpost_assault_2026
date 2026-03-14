@@ -6,6 +6,7 @@ class_name Camera2DEnhanced extends Camera2D
 ## TODO fix midle mouse button click drag
 
 const ZOOM_SPEED := .05
+const TWEEN_DURATION := .5
 ## Reminder that MinZoom does not work when running the Level without the UI
 var min_zoom : float = .5 : set = set_min_zoom
 var max_zoom : float = 2.5
@@ -21,11 +22,10 @@ static var action_zoom : GUIDEAction = load("uid://bl4ky3gf6gcji")
 
 @export var debug := true
 var _is_drag_cursor := true : set = _set_is_drag_cursor
-
 var _limit_rect : Rect2
 var _max_speed := 500.0
 var _velocity := Vector2.ZERO
-var _is_remote_moving := false
+var _is_remote_moving := false : set = _set_is_remote_moving
 var _viewport : SubViewport: get = get_subviewport
 var _bounds : CameraBounds
 var _last_drag_direction : Vector2
@@ -151,9 +151,15 @@ func _set_is_drag_cursor(is_on) -> void:
 	else: 
 		standard_cursor.force_to_default()
 
-func remote_move_to(position_ : Vector2, target_zoom:= Vector2.ZERO) -> void: 
+func _set_is_remote_moving(is_moving: bool) -> void: _is_remote_moving = is_moving
+
+func remote_move_to(next_position : Vector2, target_zoom:= Vector2.ZERO) -> void: 
 	# TODO tween
-	_move_to(position_)
+	var tween = create_tween()
+	_set_is_remote_moving(true)
+	tween.tween_method(_move_to, position, next_position, TWEEN_DURATION)
+	tween.tween_callback(_set_is_remote_moving.bind(false) )
+#	_move_to(position_)
 	if target_zoom != Vector2.ZERO:
 		# TODO include zoom_change
 		pass

@@ -44,6 +44,7 @@ position = Vector2(63, 0)
 
 [node name="AimingSights" type="Node2D" parent="." unique_id=1309291640]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("6_xi2q4")
 
 [node name="RayCast2D" type="RayCast2D" parent="AimingSights" unique_id=309270866]

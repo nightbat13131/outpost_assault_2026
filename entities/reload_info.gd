@@ -71,7 +71,6 @@ func can_shoot() -> bool:
 ## How many shots are left in the current clip
 func get_clip_ammmo_remaining() -> int: return get_clip_ammo_size() - _clip_ammo_used
 
-
 func get_fire_rate_ratio() -> float:
 	return  1.0 - (_fire_rate_timer_remaining / get_clip_reload_seconds())
 
@@ -83,6 +82,8 @@ func get_ui_color() -> Color:
 	return Color.from_hsv( (ratio * H_SV_GREEN) / 360.0, 1, 1)
 
 func get_ratio_clipped_reload() -> float: 
+	if _clip_count == 0: # empty or dead:
+		return 0.0
 	if _clip_ammo_used != 0: # currently empting the clip
 		return get_clip_ammmo_remaining() / float(get_clip_ammo_size())
 	#wiating for full reload:
@@ -105,3 +106,4 @@ func shots_fired(shots_fired_ : int = 1) -> void:
 func die():
 	_clip_count = 0
 	_is_fire_timer_running = false
+	changed.emit()

@@ -21,6 +21,9 @@ func _ready() -> void:
 	testing_index = testing_index # prevent outout bounds
 	if !Engine.is_editor_hint():
 		trigger_bound_index(testing_index)
+		for each_bound in bounds:
+			if !each_bound.changed.is_connected(queue_redraw):
+				each_bound.changed.connect(queue_redraw)
 	else: 
 		trigger_bound_index(0)
 

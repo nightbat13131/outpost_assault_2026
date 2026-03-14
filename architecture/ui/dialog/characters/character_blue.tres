@@ -3,10 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://d4jq253utc7ht" path="res://architecture/ui/dialog/characters/background_ally.tres" id="1_apm2n"]
 [ext_resource type="Script" uid="uid://ywhi44barq8g" path="res://architecture/ui/dialog/characters/character.gd" id="1_bvu7q"]
 [ext_resource type="SpriteFrames" uid="uid://dyyog4b3biu73" path="res://architecture/ui/dialog/characters/sprite_blue_character.tres" id="2_bvu7q"]
+[ext_resource type="AudioStream" uid="uid://bjdlgsugvrrs0" path="res://assets/sounds/sfx/yammering/breathyOo_5c.wav" id="4_tq2k3"]
 
 [resource]
 script = ExtResource("1_bvu7q")
 background = ExtResource("1_apm2n")
 sprite = ExtResource("2_bvu7q")
+talking_sound = ExtResource("4_tq2k3")
 _name = "Blue"
 metadata/_custom_type_script = "uid://ywhi44barq8g"

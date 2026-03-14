@@ -3,7 +3,7 @@ class_name GlobalUnlocks extends RefCounted
 enum UnlockStatus {UNKNOWN = -1, AVAILABLE = 0, LOCKED_VISIBLE = 1, HIDDEN = 2}
 
 
-static func get_tower_unlock_statis(tower_type: TowerInfo.TowerType) -> UnlockStatus:
+static func get_tower_unlock_statis(_tower_type: TowerInfo.TowerType) -> UnlockStatus:
 	return GlobalUnlocks.UnlockStatus.AVAILABLE
 	
 	#match tower_type:

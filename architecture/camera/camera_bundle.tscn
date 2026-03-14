@@ -46,7 +46,7 @@ offset_right = 887.0
 offset_bottom = 784.99994
 
 [node name="Camera2DEnhanced" type="Camera2D" parent="." unique_id=1518509055]
-position = Vector2(1000, 600)
+position = Vector2(600, 488.5)
 limit_enabled = false
 editor_draw_screen = false
 script = ExtResource("4_t70hs")

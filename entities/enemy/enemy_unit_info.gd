@@ -33,7 +33,10 @@ func get_max_health() -> float: return max_health
 
 func get_health_info() -> HealthInfo: return _health_info
 
-func _on_die() -> void: die.emit()
+func _on_die() -> void: 
+	if get_reload_info():
+		get_reload_info().die()
+	die.emit()
 
 func get_kill_reward() -> float: 
 	if _health_info:
