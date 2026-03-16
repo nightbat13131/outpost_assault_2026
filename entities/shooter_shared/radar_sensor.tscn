@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7a6ttcmbwhq2"]
 
-[ext_resource type="Script" uid="uid://dl6q0mnhtofwi" path="res://entities/player/radar_sensor.gd" id="1_3elv1"]
+[ext_resource type="Script" uid="uid://dl6q0mnhtofwi" path="res://entities/shooter_shared/radar_sensor.gd" id="1_3elv1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uq4vj"]
 radius = 50.0

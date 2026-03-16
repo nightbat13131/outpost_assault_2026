@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="TowerInfo" format=3 uid="uid://c3g2s58x45u7o"]
 
-[ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/radar_shape_info.gd" id="1_jhc40"]
+[ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/shooter_shared/radar_shape_info.gd" id="1_jhc40"]
 [ext_resource type="Resource" uid="uid://c4nsugsjwknst" path="res://entities/player/towers/tower_shooters/truck_tower_reload_info.tres" id="2_qraid"]
-[ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/broken_foundation/tower_info.gd" id="3_7830u"]
+[ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/towers/tower_info.gd" id="3_7830u"]
 
 [sub_resource type="Resource" id="Resource_0ahnx"]
 script = ExtResource("1_jhc40")

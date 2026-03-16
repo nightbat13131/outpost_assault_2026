@@ -11,8 +11,8 @@
 [ext_resource type="Script" uid="uid://b2e6b5gly4wug" path="res://entities/player/tower_foundation/gun_nest_purchase_manager.gd" id="9_wyfg0"]
 [ext_resource type="Script" uid="uid://bn7s6o4wp6a85" path="res://entities/player/tower_foundation/upgrade_visualizer.gd" id="10_wyfg0"]
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="11_s1x18"]
-[ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/cost_tower_shooter.tres" id="12_dtpd0"]
-[ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/cost_truck_tower.tres" id="13_qw6nd"]
+[ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/tower_shooters/cost_tower_shooter.tres" id="12_dtpd0"]
+[ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/tower_shooters/cost_truck_tower.tres" id="13_qw6nd"]
 [ext_resource type="Resource" uid="uid://cslsmaaty1d1w" path="res://entities/player/towers/cost_tower_no_gun.tres" id="14_jyept"]
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="15_dtpd0"]
 [ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="16_jyept"]
@@ -24,8 +24,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0.0666666, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u36w5"]
 gradient = SubResource("Gradient_bi0t7")
-width = 75
-height = 75
+width = 128
+height = 128
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
@@ -63,10 +63,10 @@ script = ExtResource("1_bi0t7")
 
 [node name="Button" type="Button" parent="." unique_id=688348017]
 unique_name_in_owner = true
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
 script = ExtResource("2_u36w5")
 active_cursor_overwrite = ExtResource("3_53k03")
 
@@ -91,29 +91,29 @@ unique_name_in_owner = true
 
 [node name="Radar" type="Sprite2D" parent="VisualizeUpgrades" unique_id=151273423]
 unique_name_in_owner = true
-position = Vector2(-45, -34)
+position = Vector2(-72, -53)
 texture = SubResource("GradientTexture2D_wyfg0")
 script = ExtResource("10_wyfg0")
 
 [node name="Gearbox" type="Sprite2D" parent="VisualizeUpgrades" unique_id=2049828862]
 unique_name_in_owner = true
-position = Vector2(-45, 14)
+position = Vector2(-72, 24)
 texture = SubResource("GradientTexture2D_1f784")
 script = ExtResource("10_wyfg0")
 _upgrade_type = 1
 
 [node name="Cooling" type="Sprite2D" parent="VisualizeUpgrades" unique_id=1879276390]
 unique_name_in_owner = true
-position = Vector2(45, 30)
+position = Vector2(72, 47)
 texture = SubResource("GradientTexture2D_s1x18")
 script = ExtResource("10_wyfg0")
 _upgrade_type = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=54421661]
 offset_left = -20.0
-offset_top = 32.0
+offset_top = 53.0
 offset_right = 20.0
-offset_bottom = 40.0
+offset_bottom = 61.0
 size_flags_vertical = 4
 mouse_filter = 2
 metadata/_edit_group_ = true

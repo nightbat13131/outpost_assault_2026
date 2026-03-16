@@ -5,26 +5,21 @@ signal state_update(event: String)
 
 const RELOAD_RATE_DECRESE =-.05 # %
 const H_SV_GREEN = 110
+const SMALLEST_SPEED = 0.05
 
 ## Shooter that is using the Reload Info
 #var _shooter : Shooter
 
 ## Base speed for how long reloadding a full clip takes
 @export var _clip_reload_base : float = 0.1
-## How long it takes to reload a full clip with upgrades
-# var _reload_seconds := 0.5 : set = _set_reload_rate
 
 ## Base count of ammo in a clip / number of shots in a burst 
 @export var _clip_ammo_size_base : int = 1
-## The current max clip size after upgrades, how much ammo used in each burst
-#var _clip_ammo_size : int
 ## Shots fired from current clip
 var _clip_ammo_used: int = 0
 
 ## Base time between shots within a burst/ clip
 @export var _burst_delay_seconds_base : float = 0.03
-## Time Between shots within in a burst/clip after upgrades
-#var _burst_delay_seconds : float = 0.03 
 
 ## How many clips of ammo one starts with - Walking units only have so many bullets. -1 = infinity 
 ## Decrese when clip is EMPTY
@@ -34,12 +29,6 @@ var _clip_ammo_used: int = 0
 ## or the delay between firing within a burst 
 var _fire_rate_timer_remaining : float = 0.0
 var _is_fire_timer_running := true
-
-#func _init() -> void:
-	#print_debug(self)
-
-#func set_shooter(shooter: Shooter)-> void:
-#	_shooter = shooter
 
 ## called by the shooter since Resources don't process
 func process(delta_moded: float) -> void: 
@@ -53,17 +42,16 @@ func process(delta_moded: float) -> void:
 			_is_fire_timer_running = false
 			state_update.emit(Shooter.EVENT_HAS_AMMO)
 
-func get_clip_ammo_size() -> int: 
-	## TODO: clip_ammo_size effected by upgrades
-	return _clip_ammo_size_base
+## Overwrite these methods to have the values effect by an upgrade
+#region Upgradables
 
-func get_burst_delay_seconds() -> float: 
-	## TODO: clip_ammo_size effected by upgrades
-	return max(_burst_delay_seconds_base, 0.05) ## Protect against too small speeds
+func get_clip_ammo_size() -> int: return _clip_ammo_size_base
 
-func get_clip_reload_seconds() -> float:
-	## TODO: clip_ammo_size effected by upgrades
-	return max(_clip_reload_base, 0.05) ## Protect against too small speeds
+func get_burst_delay_seconds() -> float: return max(_burst_delay_seconds_base, 0.05) ## Protect against too small speeds
+
+func get_clip_reload_seconds() -> float: return max(_clip_reload_base, 0.05) ## Protect against too small speeds
+
+#endregion
 
 func can_shoot() -> bool: 
 	return !_is_fire_timer_running and _clip_count != 0 # -1 = infiniate

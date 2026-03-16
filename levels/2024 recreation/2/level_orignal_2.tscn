@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://cp03bto5sc4go"]
 
 [ext_resource type="PackedScene" uid="uid://b0t5s8j8ebkqx" path="res://levels/level_template.tscn" id="1_d88b2"]
-[ext_resource type="Resource" uid="uid://7hkinaik6ndq" path="res://levels/2024 recreation/1/levelinfo_orignal_1.tres" id="2_716ow"]
-[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_65hfh"]
-[ext_resource type="Resource" uid="uid://4klk5oa5qbbd" path="res://levels/2024 recreation/1/dialog_orignal_level_01_00.tres" id="4_r47ss"]
-[ext_resource type="Resource" uid="uid://qwqas3cdsffr" path="res://levels/2024 recreation/1/dialog_orignal_level_01_01.tres" id="5_6n7c7"]
-[ext_resource type="Resource" uid="uid://bkfgda4vqpl8f" path="res://levels/2024 recreation/1/dialog_orignal_level_01_02.tres" id="6_fqocc"]
-[ext_resource type="Resource" uid="uid://cmrq3jaeryy30" path="res://levels/2024 recreation/1/dialog_orignal_level_01_03.tres" id="7_q6gc2"]
+[ext_resource type="Script" uid="uid://cqn2yktneipi4" path="res://levels/2024 recreation/2/level_orignal_2.gd" id="2_hkf3y"]
+[ext_resource type="Resource" uid="uid://crs1yhl2hu4ce" path="res://levels/2024 recreation/2/levelinfo_orignal_2.tres" id="3_f5wxu"]
 [ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map.tscn" id="8_e6w5a"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="9_4rm8h"]
 [ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="10_ex630"]
@@ -62,35 +58,40 @@ script = ExtResource("10_ex630")
 point_path = NodePath("../../../../NavPoints/NavPoint_03_5")
 metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
-[sub_resource type="Resource" id="Resource_fyums"]
+[sub_resource type="Resource" id="Resource_f5wxu"]
 script = ExtResource("16_jbcrw")
-rect_position = Vector2(-600, -600)
-rect_size = Vector2(1920, 950)
-camera_start = Vector2(1000, 200)
+rect_position = Vector2(-1540, -1400)
+rect_size = Vector2(2880, 1620)
+camera_zoom = null
+camera_start = Vector2(0, -100)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
-[sub_resource type="Resource" id="Resource_n5q85"]
+[sub_resource type="Resource" id="Resource_vkqak"]
 script = ExtResource("16_jbcrw")
-rect_position = Vector2(-600, -600)
-rect_size = Vector2(2390, 1300)
-camera_start = Vector2(1400, 300)
+rect_position = Vector2(-2020, -1670)
+rect_size = Vector2(3360, 1890)
+camera_zoom = null
+camera_start = Vector2(0, -100)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
-[sub_resource type="Resource" id="Resource_x5kss"]
+[sub_resource type="Resource" id="Resource_p2nrg"]
 script = ExtResource("16_jbcrw")
-rect_position = Vector2(-600, -1250)
-rect_size = Vector2(3770, 1950)
-camera_start = Vector2(2150, -1050)
+rect_position = Vector2(-2500, -2050)
+rect_size = Vector2(4030, 2270)
+camera_zoom = null
+camera_start = Vector2(0, -100)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
-[node name="Level_Orignal_1" unique_id=1060779039 instance=ExtResource("1_d88b2")]
-_level_info = ExtResource("2_716ow")
-_dialog_groups = Array[ExtResource("3_65hfh")]([ExtResource("4_r47ss"), ExtResource("5_6n7c7"), ExtResource("6_fqocc"), ExtResource("7_q6gc2")])
+[node name="Level_Orignal_2" unique_id=1060779039 instance=ExtResource("1_d88b2")]
+script = ExtResource("2_hkf3y")
+_level_info = ExtResource("3_f5wxu")
 
 [node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 instance=ExtResource("8_e6w5a")]
+position = Vector2(-2176, 1024)
 metadata/_edit_lock_ = true
 
 [node name="NavPoints" parent="." index="1" unique_id=1616807523]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="NavPoint_Objective" type="Node2D" parent="NavPoints" index="0" unique_id=1736789045]
@@ -226,9 +227,13 @@ position = Vector2(1089, -57)
 position = Vector2(960, 187)
 
 [node name="TowerFoundation8" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="12" unique_id=1401834085 instance=ExtResource("12_m0ft8")]
-position = Vector2(1231, 440)
+position = Vector2(-443, -16)
+starting_tower = -10
 
-[node name="Spawner_1x1" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="0" unique_id=1868334442 instance=ExtResource("13_p0e1n")]
+[node name="SpawnManager" parent="." index="3" unique_id=1550060747]
+visible = false
+
+[node name="Spawner_1x1" parent="SpawnManager" index="0" unique_id=1868334442 instance=ExtResource("13_p0e1n")]
 position = Vector2(1604, 450)
 _pulse_per_wave = 5
 _pulse_unit_volume = 2
@@ -247,7 +252,7 @@ position = Vector2(-59, -3)
 next_targets = [NodePath("../../../../NavPoints/NavPoint_03_5")]
 next_target_weights = Array[ExtResource("10_ex630")]([SubResource("Resource_c150j")])
 
-[node name="Spawner_2_3" type="Node2D" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="1" unique_id=368389524]
+[node name="Spawner_2_3" type="Node2D" parent="SpawnManager" index="1" unique_id=368389524]
 script = ExtResource("14_am6ax")
 _waves = Array[int]([2, 3])
 spawn_types = Dictionary[int, int]({
@@ -265,7 +270,7 @@ next_targets = [NodePath("../../../NavPoints/NavPoint_04")]
 target_distance = 50.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="Spawner_1x1_4" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="2" unique_id=664660667 instance=ExtResource("13_p0e1n")]
+[node name="Spawner_1x1_4" parent="SpawnManager" index="2" unique_id=664660667 instance=ExtResource("13_p0e1n")]
 position = Vector2(2174, -1051)
 _waves = Array[int]([4])
 _pulse_gap = 1.5
@@ -289,9 +294,8 @@ next_targets = [NodePath("../../../../NavPoints/NavPoint_10_W")]
 metadata/_edit_lock_ = true
 
 [node name="CameraBinder" parent="." index="5" unique_id=1105577396]
-visible = false
 debug = false
-bounds = Array[ExtResource("16_jbcrw")]([SubResource("Resource_fyums"), SubResource("Resource_n5q85"), SubResource("Resource_x5kss")])
+bounds = Array[ExtResource("16_jbcrw")]([SubResource("Resource_f5wxu"), SubResource("Resource_vkqak"), SubResource("Resource_p2nrg")])
 
 [editable path="SpawnManager/Spawner_1x1"]
 [editable path="SpawnManager/Spawner_1x1/Building"]

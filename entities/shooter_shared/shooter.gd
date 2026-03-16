@@ -9,6 +9,7 @@ const EVENT_HAS_AMMO = "clip_ready"
 @export_group("Projectile", "_projectile")
 @export var _projectile : PackedScene
 @export var _projectile_base_speed := 500.0
+## TODO: move base damange to info
 @export var _projectile_base_damage := 3.0
 @export var _projectile_base_spread_deg := .5
 
@@ -59,9 +60,17 @@ func send_event(event: String) -> void:
 	else:
 		push_warning("shooter no state machine")
 
-func get_rotation_speed_radian() -> float:
-	## todo: effected by upgrades
-	return deg_to_rad(_rotation_speed_deg_sec)
+#region Overwrite to apply Upgrads
+
+func get_rotation_speed_radian() -> float: return deg_to_rad(_rotation_speed_deg_sec)
+
+func get_projectile_damage() -> float:  return _projectile_base_damage
+
+func get_projectile_speed() -> float: return _projectile_base_speed
+
+func get_projectile_spread_radian() -> float: return deg_to_rad(randf_range(_projectile_base_spread_deg*-1, _projectile_base_spread_deg ) )
+
+#endregion
 
 func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 
@@ -146,18 +155,6 @@ func die() -> void:
 		get_reload_info().die()
 	_radar_sensor.die()
 	send_event(EVENT_DIE)
-
-func get_projectile_damage() -> float: 
-	# TODO have projective damage be effected by upgrades
-	return _projectile_base_damage
-
-func get_projectile_speed() -> float: 
-	# TODO have projective speed be effected by upgrades
-	return _projectile_base_speed
-
-func get_projectile_spread_radian() -> float: 
-	# TODO have projective spread be effected by upgrades
-	return deg_to_rad(randf_range(_projectile_base_spread_deg*-1, _projectile_base_spread_deg ) )
 
 func get_projectile_range() -> float: return _radar_shape.get_outer_radius()
 

@@ -13,6 +13,7 @@ const LINE_WIDTH = 10.0
 		rect_size = value
 		_limit_rect.size = rect_size
 		emit_changed()
+@export var camera_zoom : float = -1.0
 @export var camera_start : Vector2:
 	set(value):
 		camera_start = value
@@ -21,11 +22,10 @@ const LINE_WIDTH = 10.0
 var _limit_rect : Rect2 : get = get_limit_rect
 
 func get_limit_rect() -> Rect2:
-	if !Engine.is_editor_hint():
-		if camera_start == Vector2.ZERO:
-			camera_start = rect_position + rect_size*.5
+	#if !Engine.is_editor_hint():
+	#	if camera_start == Vector2.ZERO:
+	#		camera_start = rect_position + rect_size*.5
 	return Rect2(rect_position, rect_size)
-	
 
 func draw_bounds(node: Node2D, color: Color = Color.RED) -> void:
 	node.draw_polyline([

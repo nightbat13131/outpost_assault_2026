@@ -2,6 +2,10 @@ class_name FoundationUpgrades extends Resource
 
 enum UpgradeTypes {RADAR = 0, GEAR = 1, COOLING = 2}
 
+const RANK_EXPAND_RADAR : float = 0.1 # %
+const RANK_EXPAND_COOLING : float = 0.05
+const RANK_EXPAND_GEAR : float = 0.05
+
 var upgrade_prices: Dictionary = {
 	UpgradeTypes.RADAR: 150,
 	UpgradeTypes.COOLING: 250,

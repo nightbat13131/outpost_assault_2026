@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dnjfh8iuvd8x5"]
 
-[ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/player/main_base/building_template.tscn" id="1_vdji5"]
-[ext_resource type="Script" uid="uid://x6eddo14cwyj" path="res://entities/player/main_base/player_outpost.gd" id="2_smrb1"]
+[ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/building/building_template.tscn" id="1_vdji5"]
+[ext_resource type="Script" uid="uid://x6eddo14cwyj" path="res://entities/player/player_outpost/player_outpost.gd" id="2_smrb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdji5"]
-size = Vector2(124, 124)
+size = Vector2(256, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_smrb1"]
 
@@ -16,10 +16,14 @@ unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_vdji5")
 
 [node name="Button" parent="." index="1" unique_id=1509464480]
-offset_left = -62.0
-offset_top = -62.0
-offset_right = 62.0
-offset_bottom = 62.0
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+
+[node name="GroundSprite2D" parent="." index="2" unique_id=152299447]
+position = Vector2(0, -0.5)
+scale = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" parent="." index="3" unique_id=1893754338]
 animation = &"die"
@@ -28,8 +32,8 @@ animation = &"die"
 unique_name_in_owner = true
 
 [node name="BuildingUI" parent="." index="5" unique_id=168524684]
-offset_top = 65.0
-offset_bottom = 73.0
+offset_top = 128.0
+offset_bottom = 136.0
 
 [node name="EnemyDetector" type="Area2D" parent="." index="6" unique_id=1710717898]
 unique_name_in_owner = true

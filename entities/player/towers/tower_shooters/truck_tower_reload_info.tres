@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ReloadInfo_Tower" format=3 uid="uid://c4nsugsjwknst"]
 
-[ext_resource type="Script" uid="uid://b7u1oc30l57em" path="res://entities/reload_info_tower.gd" id="1_f3y77"]
+[ext_resource type="Script" uid="uid://b7u1oc30l57em" path="res://entities/player/towers/reload_info_tower.gd" id="1_f3y77"]
 
 [resource]
 script = ExtResource("1_f3y77")

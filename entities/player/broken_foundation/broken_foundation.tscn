@@ -13,8 +13,8 @@ colors = PackedColorArray(0.5766446, 0.37194836, 0.1512368, 1, 0.3212874, 0.7708
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_s852h"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qtpwa"]
-width = 64
-height = 64
+width = 128
+height = 128
 noise = SubResource("FastNoiseLite_s852h")
 color_ramp = SubResource("Gradient_6ihc2")
 
@@ -25,6 +25,8 @@ colors = PackedColorArray(1, 1, 1, 0, 0, 0, 1, 1, 0.043137256, 0.43529412, 0.278
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_x7ois"]
 gradient = SubResource("Gradient_vwu4y")
+width = 128
+height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -35,19 +37,19 @@ _cost_info = ExtResource("6_qtpwa")
 
 [node name="Button" type="Button" parent="." unique_id=688348017]
 unique_name_in_owner = true
-offset_left = -33.0
-offset_top = -34.0
-offset_right = 34.0
-offset_bottom = 33.0
+offset_left = -61.0
+offset_top = -61.0
+offset_right = 62.0
+offset_bottom = 62.0
 script = ExtResource("2_vwu4y")
 active_cursor_overwrite = ExtResource("3_pghae")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=337061100]
 unique_name_in_owner = true
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
 mouse_filter = 2
 value = 75.0
 fill_mode = 4

@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://cgwnyby4u37yq" path="res://testing/test_maps/level_7.tres" id="5_8qr5y"]
 [ext_resource type="Resource" uid="uid://ci5g16cd163n6" path="res://testing/test_maps/level_8.tres" id="6_05pd3"]
 [ext_resource type="Resource" uid="uid://7hkinaik6ndq" path="res://levels/2024 recreation/1/levelinfo_orignal_1.tres" id="7_1wnlg"]
+[ext_resource type="Resource" uid="uid://crs1yhl2hu4ce" path="res://levels/2024 recreation/2/levelinfo_orignal_2.tres" id="8_8qr5y"]
 
 [node name="LevelSelect" type="Node2D" unique_id=977691685]
 script = ExtResource("1_il3u1")
@@ -67,9 +68,19 @@ offset_left = 103.0
 offset_top = 226.0
 offset_right = 165.0
 offset_bottom = 257.0
-text = "Level 4"
+text = "OG 1"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("7_1wnlg")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_Select7" type="Button" parent="." unique_id=431479391]
+offset_left = 224.0
+offset_top = 238.0
+offset_right = 286.0
+offset_bottom = 269.0
+text = "OG 2"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("8_8qr5y")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1903277945]

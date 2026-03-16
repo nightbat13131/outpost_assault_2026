@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cdwrnm3uudkw4"]
+
+[ext_resource type="PackedScene" uid="uid://dro1735nlrdor" path="res://entities/player/towers/tower_shooters/tower_shooter_base.tscn" id="1_20u0k"]
+[ext_resource type="Resource" uid="uid://bni2lanj6p33a" path="res://entities/player/towers/tower_shooters/og/og_gattling/tower_info_og_gattling.tres" id="2_8i8td"]
+
+[node name="Tower_OG_Gattling" unique_id=1226539165 instance=ExtResource("1_20u0k")]
+_tower_info = ExtResource("2_8i8td")
+
+[node name="Shooter" parent="." index="3" unique_id=1614296909]
+_projectile_base_speed = 800.0
+_projectile_base_damage = 5.0
+
+[editable path="Shooter"]
