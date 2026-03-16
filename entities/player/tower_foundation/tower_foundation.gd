@@ -1,6 +1,9 @@
 class_name TowerFoundation extends Sprite2D
 
 const SCENE_PATH = "uid://crf0po16hl0dv"
+const SCENE_PATH_OG = "uid://cpfajst60unk2"
+
+enum FoundationType {NA = 0, OG = 1 }
 
 @export var upgrades : FoundationUpgrades
 @export var starting_tower := TowerInfo.TowerType.NA
@@ -114,3 +117,8 @@ func _on_preview_upgrade(upgrade_type: FoundationUpgrades.UpgradeTypes , show_pr
 			_radar_preview.set_preview(_current_tower.get_tower_info(), true)
 		else:
 			_radar_preview.cancle_preview()
+
+static func get_packed_scene_path(foundation_type: FoundationType) -> String:
+	if foundation_type == FoundationType.OG:
+		return SCENE_PATH_OG
+	return SCENE_PATH

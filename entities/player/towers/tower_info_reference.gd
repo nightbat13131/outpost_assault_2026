@@ -32,6 +32,7 @@ static var _type_to_name :Dictionary[TowerType, String] = {
 	TowerType._OG_CANNON: "Cannon",
 	TowerType._OG_MISSILE: "Missile"
 }
+## Here instead of on TowerInfo so that foundation can _ready spawn a tower based on a dropdown
 static var _type_to_filepath : Dictionary[TowerType, String] = {
 	TowerType._NoShooter: "uid://n0l8egj3gjg6",
 	TowerType._TEST_SHOOTER: "uid://dofehy3c0bks6", 

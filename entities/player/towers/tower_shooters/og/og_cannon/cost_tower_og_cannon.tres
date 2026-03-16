@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CostButtonInfo_Tower" format=3 uid="uid://5ctrtm8rvr8k"]
+
+[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="1_1h1ef"]
+[ext_resource type="Resource" uid="uid://b7ustkwb5v5r8" path="res://entities/player/towers/tower_shooters/og/og_cannon/tower_info_og_cannon.tres" id="2_sxaur"]
+
+[resource]
+script = ExtResource("1_1h1ef")
+tower_info = ExtResource("2_sxaur")
+metadata/_custom_type_script = "uid://c1qpm4n8xf5ai"

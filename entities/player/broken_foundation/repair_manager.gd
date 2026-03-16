@@ -27,3 +27,5 @@ func _update_buttons() -> void:
 	_cost_info.is_repairing = _broken_foundation.is_repairing()
 	if !_buttons.is_empty():
 		_buttons[0].set_info(_cost_info)
+
+func get_foundation_type() -> TowerFoundation.FoundationType: return _cost_info.get_foundation_type()

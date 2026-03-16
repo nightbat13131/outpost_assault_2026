@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TowerInfo" format=3 uid="uid://b7ustkwb5v5r8"]
+
+[ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/shooter_shared/radar_shape_info.gd" id="1_or3it"]
+[ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/towers/tower_info.gd" id="1_qfaop"]
+[ext_resource type="Script" uid="uid://b7u1oc30l57em" path="res://entities/player/towers/reload_info_tower.gd" id="2_dvqfc"]
+
+[sub_resource type="Resource" id="Resource_bt7mg"]
+script = ExtResource("1_or3it")
+_radar_shape = 1
+metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
+
+[sub_resource type="Resource" id="Resource_q5cf7"]
+script = ExtResource("2_dvqfc")
+metadata/_custom_type_script = "uid://b7u1oc30l57em"
+
+[resource]
+script = ExtResource("1_qfaop")
+my_type = -22
+_radar_shape = SubResource("Resource_bt7mg")
+_reload_info = SubResource("Resource_q5cf7")
+metadata/_custom_type_script = "uid://dy47gmggu5xbd"

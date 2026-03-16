@@ -22,6 +22,7 @@ fill_to = Vector2(0.8, 0.8)
 
 [resource]
 script = ExtResource("1_sfvfy")
+_foundation_type = 1
 primary_icon_post = SubResource("GradientTexture2D_qqj28")
 primary_icon = SubResource("GradientTexture2D_sfvfy")
 metadata/_custom_type_script = "uid://cy1b5h26iijwn"

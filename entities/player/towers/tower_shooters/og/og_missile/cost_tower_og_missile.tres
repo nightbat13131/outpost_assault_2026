@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CostButtonInfo_Tower" format=3 uid="uid://5gb7no6s24wm"]
+
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="1_w43vp"]
+[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="2_cm5xn"]
+[ext_resource type="Resource" uid="uid://cqio4w5njunpk" path="res://entities/player/towers/tower_shooters/og/og_missile/tower_info_og_missile.tres" id="3_exeti"]
+
+[resource]
+script = ExtResource("2_cm5xn")
+tower_info = ExtResource("3_exeti")
+primary_icon = ExtResource("1_w43vp")
+metadata/_custom_type_script = "uid://c1qpm4n8xf5ai"
