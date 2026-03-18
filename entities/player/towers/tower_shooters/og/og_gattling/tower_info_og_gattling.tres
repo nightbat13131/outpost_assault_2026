@@ -13,6 +13,7 @@ metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
 script = ExtResource("2_5bj5x")
 _clip_reload_base = 2.0
 _clip_ammo_size_base = 6
+_burst_delay_seconds_base = 0.75
 metadata/_custom_type_script = "uid://b7u1oc30l57em"
 
 [resource]

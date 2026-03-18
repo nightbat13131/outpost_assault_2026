@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dcojfcwegryeo"]
+
+[ext_resource type="PackedScene" uid="uid://drfqmnxu83xf6" path="res://entities/enemy/enemy_shooter_base.tscn" id="1_ej4k2"]
+
+[node name="Gunman" unique_id=1456879393 instance=ExtResource("1_ej4k2")]
+
+[node name="Shooter" parent="." index="6" unique_id=1614296909]
+_limit_roation = false
+
+[editable path="Shooter"]

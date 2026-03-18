@@ -71,9 +71,10 @@ func start_wave(wave_number) -> void:
 		spawner_started.emit(self)
 
 func _start_pulse() -> void:
-	_started_pulse_count += 1
+	
 	# Clear to start
 	if (_started_pulse_count < _pulse_per_wave) or (_pulse_per_wave < 0):
+		_started_pulse_count += 1
 		_is_pulse_active = true
 		_enemy_spawned_count = 0
 		_timer.set_wait_time(_spawn_speed)

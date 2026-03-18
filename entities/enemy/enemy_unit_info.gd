@@ -25,7 +25,9 @@ func set_enemy(_unit: EnemyUnit) -> void:
 	_health_info = HealthInfo.new()
 	_health_info.die.connect(_on_die)
 	_health_info.set_max_health(get_max_health(), true)
-	_radar_shape.set_outer_radius(get_range())
+	if _radar_shape:
+		_radar_shape.duplicate(true)
+		_radar_shape.set_outer_radius(get_range())
 
 func get_max_speed() -> float: return speed
 

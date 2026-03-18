@@ -81,4 +81,7 @@ func _on_selection_cancled() -> void:
 	_is_selected = false
 	_update_button()
 
+func set_foundation_type(foundation_type: TowerFoundation.FoundationType) -> void:
+	_repair_manager.set_foundation_type(foundation_type)
+
 static func get_build_cost() -> float: return 100.0

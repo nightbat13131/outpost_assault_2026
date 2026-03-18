@@ -29,3 +29,10 @@ func _update_buttons() -> void:
 		_buttons[0].set_info(_cost_info)
 
 func get_foundation_type() -> TowerFoundation.FoundationType: return _cost_info.get_foundation_type()
+
+func set_foundation_type(foundation_type: TowerFoundation.FoundationType) -> void:
+	if foundation_type == get_foundation_type():
+		#no change needed
+		return
+	_cost_info = _cost_info.duplicate()
+	_cost_info.set_foundation_type(foundation_type)

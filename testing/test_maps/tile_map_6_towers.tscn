@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="17_rfiec"]
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="18_lgomy"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="19_cen4m"]
+[ext_resource type="Resource" uid="uid://fyilmatoyruw" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation_og.tres" id="20_c8ieg"]
 [ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost.tscn" id="21_8aiei"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
@@ -324,23 +325,27 @@ target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnerBuilding_1x2" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("12_y4ny3")]
-position = Vector2(1226, 572)
+position = Vector2(1216, 572)
 _hard_spawn_cap = 1
 _spawn_speed = 2.5
 metadata/_edit_group_ = true
 
 [node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
-position = Vector2(154, -197)
+position = Vector2(-89, -74)
 is_disabled = true
 
 [node name="Spawn_NW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
 next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_rahqt")])
 
 [node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="2" unique_id=588862786]
+position = Vector2(-92, 57)
 is_disabled = true
 
 [node name="Spawn_SW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="3" unique_id=194821967]
 next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_h1wdl")])
+
+[node name="FoundationPoints" parent="SpawnManager/SpawnerBuilding_1x2" index="2" unique_id=725093312]
+_foundation_type = 1
 
 [node name="SpawnerBuilding_1x1" parent="SpawnManager" unique_id=806376720 instance=ExtResource("13_11fy2")]
 position = Vector2(1541, 344)
@@ -368,41 +373,44 @@ metadata/_edit_lock_ = true
 position = Vector2(1219, 959)
 
 [node name="BrokenFoundation2" parent="TowerHolder" unique_id=454266272 instance=ExtResource("17_rfiec")]
-position = Vector2(705, 434)
+position = Vector2(707, 441)
 
 [node name="BrokenFoundation3" parent="TowerHolder" unique_id=2015548457 instance=ExtResource("17_rfiec")]
-position = Vector2(824, 452)
+position = Vector2(835, 448)
+_cost_info = ExtResource("20_c8ieg")
 
 [node name="BrokenFoundation4" parent="TowerHolder" unique_id=273983744 instance=ExtResource("17_rfiec")]
-position = Vector2(594, 455)
+position = Vector2(577, 445)
+_cost_info = ExtResource("20_c8ieg")
 
 [node name="BrokenFoundation5" parent="TowerHolder" unique_id=41594992 instance=ExtResource("17_rfiec")]
-position = Vector2(580, 606)
+position = Vector2(578, 572)
 
 [node name="BrokenFoundation6" parent="TowerHolder" unique_id=2110408739 instance=ExtResource("17_rfiec")]
-position = Vector2(812, 685)
+position = Vector2(833, 702)
 
 [node name="BrokenFoundation7" parent="TowerHolder" unique_id=2110417839 instance=ExtResource("17_rfiec")]
-position = Vector2(582, 720)
+position = Vector2(576, 702)
+_cost_info = ExtResource("20_c8ieg")
 
 [node name="TowerFoundation" parent="TowerHolder" unique_id=93634172 instance=ExtResource("18_lgomy")]
-position = Vector2(834, 577)
+position = Vector2(835, 577)
 upgrades = SubResource("Resource_c8ieg")
 starting_tower = -10
 
 [node name="TowerFoundation4" parent="TowerHolder" unique_id=2097486488 instance=ExtResource("18_lgomy")]
-position = Vector2(1333, 439)
+position = Vector2(1341, 443)
 starting_tower = -11
 
 [node name="TowerFoundation5" parent="TowerHolder" unique_id=75215562 instance=ExtResource("18_lgomy")]
-position = Vector2(1341, 548)
+position = Vector2(1344, 568)
 
 [node name="TowerFoundation6" parent="TowerHolder" unique_id=2001587829 instance=ExtResource("18_lgomy")]
-position = Vector2(1330, 669)
+position = Vector2(1345, 703)
 starting_tower = -10
 
 [node name="TowerFoundation2" parent="TowerHolder" unique_id=914457105 instance=ExtResource("18_lgomy")]
-position = Vector2(704, 709)
+position = Vector2(708, 703)
 upgrades = SubResource("Resource_fvtu7")
 
 [node name="TowerFoundation3" parent="TowerHolder" unique_id=413108212 instance=ExtResource("18_lgomy")]

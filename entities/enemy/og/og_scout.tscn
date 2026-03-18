@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dw14xfa1aivcl"]
+
+[ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="1_5f43a"]
+
+[node name="Scout" unique_id=1456879393 instance=ExtResource("1_5f43a")]

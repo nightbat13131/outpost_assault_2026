@@ -6,14 +6,14 @@ class_name NavPoint extends Node2D
 #@export var next_target_weights: Dictionary[NavPoint, int] # started crashing the engine after about 30 minutes
 ## Paths for next nav points and their weights. 
 @export var next_targets : Array[NavPoint]
-@export var next_target_weights: Array[NavPointWeight] = []
+#@export var next_target_weights: Array[NavPointWeight] = []
 ## The distance threshold before the target is considered to be reached.
 @export var is_disabled := false
 @export var target_distance := 20.0 :
 	set(value):
 		target_distance = abs(value)
 		queue_redraw()
-@onready var _picker: WeightedPicker
+#@onready var _picker: WeightedPicker
 
 func _ready() -> void:
 	if is_disabled:
@@ -21,10 +21,10 @@ func _ready() -> void:
 			return
 		#queue_free()
 		return
-	for each in next_target_weights:
-		if each:
-			each.set_parent(self)
-	_picker = WeightedPicker.new(next_target_weights)
+	#for each in next_target_weights:
+	#	if each:
+	#		each.set_parent(self)
+	#_picker = WeightedPicker.new(next_target_weights)
 
 func _draw() -> void:
 	if is_disabled:
@@ -58,20 +58,20 @@ func _draw() -> void:
 						draw_line(Vector2.ZERO, end_point, Color.ORANGE, 4)
 						draw_polyline(poly_points, Color.BLUE, 2)
 
-func _draw_0() -> void:
-	if is_disabled:
-		return
-	if Engine.is_editor_hint():
-		draw_circle(Vector2.ZERO, target_distance, Color.RED, false, 3.0)
-		if next_target_weights.is_empty():
-			draw_polyline(
-				[Vector2.from_angle(TAU*.25)*target_distance,
-				Vector2.from_angle(TAU*.5)*target_distance,
-				Vector2.from_angle(TAU*.75)*target_distance,
-				Vector2.from_angle(TAU*1.0)*target_distance,
-				Vector2.from_angle(TAU*.25)*target_distance,
-				],
-				Color.ORANGE, 2)
+#func _draw_0() -> void:
+	#if is_disabled:
+		#return
+	#if Engine.is_editor_hint():
+		#draw_circle(Vector2.ZERO, target_distance, Color.RED, false, 3.0)
+		#if next_target_weights.is_empty():
+			#draw_polyline(
+				#[Vector2.from_angle(TAU*.25)*target_distance,
+				#Vector2.from_angle(TAU*.5)*target_distance,
+				#Vector2.from_angle(TAU*.75)*target_distance,
+				#Vector2.from_angle(TAU*1.0)*target_distance,
+				#Vector2.from_angle(TAU*.25)*target_distance,
+				#],
+				#Color.ORANGE, 2)
 		#else:
 			#var end_point : Vector2
 			#for each_point: NavPointWeight in next_target_weights:

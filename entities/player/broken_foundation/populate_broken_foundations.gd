@@ -1,6 +1,7 @@
 class_name BrokenFoundationSpawner extends Node2D
 ## TODO: add a checker that the spawn cords are far enough apart based on the final size of the brokenfoundations
 
+@export var _foundation_type := TowerFoundation.FoundationType.NA
 var _tower_holder : TowerHolder
 var _spawn_cords : Array[Vector2]
 var _count := 0
@@ -24,6 +25,7 @@ func __populate_foundation(global_position_: Vector2) -> void:
 	var new_ = load(BrokenFoundation.SCENE_PATH).instantiate() as BrokenFoundation
 	new_.set_global_position(global_position_)
 	_tower_holder.add_child(new_)
+	new_.set_foundation_type(_foundation_type)
 	if _count == 0:
 		if DisplaySelected.replace_information(_parent_display_info, new_.get_display_info()):
 			new_.on_selected()

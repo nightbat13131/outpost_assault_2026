@@ -38,9 +38,8 @@ static var _type_to_filepath : Dictionary[TowerType, String] = {
 	TowerType._TEST_SHOOTER: "uid://dofehy3c0bks6", 
 	TowerType._TEST_TRUCK: "uid://o8lbby237l0n",
 	TowerType._OG_GATTLING: 'uid://cdwrnm3uudkw4',
-	TowerType._OG_CANNON: "Cannon",
-	TowerType._OG_MISSILE: "Missile"
-	
+	TowerType._OG_CANNON: "uid://cxahwditwpjao",
+	TowerType._OG_MISSILE: "uid://ddy7nmx6u5axg"
 }
 static var _type_to_max_hp :Dictionary[TowerType, float] = {
 	TowerType._NoShooter: 400,

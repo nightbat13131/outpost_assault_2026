@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_jbt0k"]
 script = ExtResource("1_b7t8p")
-_radar_shape = 2
+_radar_shape = 1
 metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
 
 [resource]

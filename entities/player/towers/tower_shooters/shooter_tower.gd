@@ -9,7 +9,7 @@ func set_reload_info(reload_info: ReloadInfo) -> void:
 func get_upgrades() -> FoundationUpgrades: 
 	var reload_info = get_reload_info()
 	if reload_info is ReloadInfo_Tower:
-		return reload_info.get_upgrade()
+		return reload_info.get_upgrades()
 	return null
 
 func get_tower_type() -> TowerInfo.TowerType:
@@ -22,10 +22,10 @@ func get_tower_type() -> TowerInfo.TowerType:
 
 func get_rotation_speed_radian() -> float:
 	var out := super.get_rotation_speed_radian()
-	if get_upgrades():
+	if get_upgrades() and false:
 		var gear_level := get_upgrades().get_upgrade_level(FoundationUpgrades.UpgradeTypes.GEAR)
 		out *= 1.0 + (gear_level * gear_level * FoundationUpgrades.RANK_EXPAND_GEAR)
-	return deg_to_rad(out)
+	return out
 
 func get_projectile_damage() -> float: 
 	var out = super.get_projectile_damage()
@@ -49,6 +49,6 @@ func get_projectile_speed() -> float:
 	return _projectile_base_speed
 
 func get_projectile_spread_radian() -> float: 
-	# TODO have projective spread be effected by upgrades
+	# TODO have projectile spread be effected by upgrades
 	return deg_to_rad(randf_range(_projectile_base_spread_deg*-1, _projectile_base_spread_deg ) )
 #endregion

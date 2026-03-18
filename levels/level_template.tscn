@@ -28,9 +28,8 @@ _max_hp = 200.0
 
 [node name="NavPoint_Objective" type="Node2D" parent="PlayerOutpost" unique_id=2114320725]
 script = ExtResource("5_yglgk")
-target_distance = 60.0
+target_distance = 120.0
 metadata/_custom_type_script = "uid://msom3gj4mhg6"
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("12_321xn")]
-visible = true
 testing_index = 0

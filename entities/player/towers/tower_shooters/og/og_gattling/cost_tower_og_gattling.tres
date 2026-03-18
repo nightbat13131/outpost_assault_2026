@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="CostButtonInfo_Tower" format=3 uid="uid://ba7veij6lf65e"]
 
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="1_j863w"]
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="1_s5fys"]
+[ext_resource type="Resource" uid="uid://bni2lanj6p33a" path="res://entities/player/towers/tower_shooters/og/og_gattling/tower_info_og_gattling.tres" id="2_3bfqb"]
 
 [resource]
 script = ExtResource("1_s5fys")
+tower_info = ExtResource("2_3bfqb")
+primary_icon = ExtResource("1_j863w")
 metadata/_custom_type_script = "uid://c1qpm4n8xf5ai"

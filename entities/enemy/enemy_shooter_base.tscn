@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="1_pylal"]
 [ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_shared/shooter_base.tscn" id="2_c3r84"]
 [ext_resource type="Script" uid="uid://bc3v0fgsir0ya" path="res://entities/enemy/enemy_shooter.gd" id="2_nnjro"]
-[ext_resource type="Resource" uid="uid://bf2wokstj3yme" path="res://entities/enemy/gun_man.tres" id="3_hpllm"]
+[ext_resource type="Resource" uid="uid://bf2wokstj3yme" path="res://entities/enemy/og/info _gunman.tres" id="3_hpllm"]
 [ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="5_hpllm"]
 
 [sub_resource type="Gradient" id="Gradient_nnjro"]

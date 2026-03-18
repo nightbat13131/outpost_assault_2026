@@ -93,6 +93,7 @@ func turn_towards(delta_moded: float, target_global_pos: Vector2) -> void:
 	var delta_radian : float = Utilties.delta_radian(global_rotation, target_global_angle)
 	if is_equal_approx(delta_radian, 0.0):
 		return # no rotation needed
+	print(get_rotation_speed_radian())
 	var max_radian_swing = get_rotation_speed_radian() * delta_moded
 	if delta_radian < 0.0:
 		max_radian_swing *= -1
