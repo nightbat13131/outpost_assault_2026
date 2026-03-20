@@ -1,4 +1,4 @@
-class_name Utilties extends GDScript
+class_name Utilities extends GDScript
 
 const COLOR_RADAR_PREVIEW = Color.BLACK
 const COLOR_RADAR_FILL = Color.DARK_ORCHID
@@ -36,4 +36,16 @@ static func get_arch_points(radius: float, start_radian: float, point_count: int
 			) * radius
 		)
 		current_radian += radian_delta
+	return out
+
+## introduced by https://www.youtube.com/watch?v=PrCza2z0Log
+static func property_dictionary(_name: String, _type: Variant.Type, _hint: PropertyHint, _hint_string: String = '' ) -> Dictionary:
+	var out = {
+		"name": _name, 
+		"type": _type,
+		"usage": PROPERTY_USAGE_DEFAULT, 
+		"hint": _hint, 
+	}
+	if _hint_string != '':
+		out["hint_string"] = _hint_string
 	return out

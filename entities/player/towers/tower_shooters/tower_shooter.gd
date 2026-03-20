@@ -14,6 +14,7 @@ func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: Cl
 			_shooter.set_targetting_mask(RadarSensor.COLLISION_ENEMY_BUILDING)
 			_shooter.set_targetting_mask(RadarSensor.COLLISION_ENEMY_HUMANS)
 			_shooter.set_radar_shape(get_radar_shape())
+			_shooter.set_projectile_info(get_tower_info().get_projectile_info())
 
 func _set_radar_range() -> void:
 	if _shooter:

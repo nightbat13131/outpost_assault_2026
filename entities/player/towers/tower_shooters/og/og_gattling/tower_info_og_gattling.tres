@@ -1,8 +1,16 @@
 [gd_resource type="Resource" script_class="TowerInfo" format=3 uid="uid://bni2lanj6p33a"]
 
 [ext_resource type="Script" uid="uid://dy47gmggu5xbd" path="res://entities/player/towers/tower_info.gd" id="1_fckef"]
+[ext_resource type="Script" uid="uid://dds1m7jnd4mkx" path="res://entities/shooter_shared/projectile_info.gd" id="1_pxa7p"]
 [ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/shooter_shared/radar_shape_info.gd" id="1_uq6xy"]
 [ext_resource type="Script" uid="uid://b7u1oc30l57em" path="res://entities/player/towers/reload_info_tower.gd" id="2_5bj5x"]
+
+[sub_resource type="Resource" id="Resource_8usjk"]
+script = ExtResource("1_pxa7p")
+_speed = 800.0
+_damage = 5.0
+_projectile_spread_deg = 3.6
+metadata/_custom_type_script = "uid://dds1m7jnd4mkx"
 
 [sub_resource type="Resource" id="Resource_5bj5x"]
 script = ExtResource("1_uq6xy")
@@ -21,4 +29,5 @@ script = ExtResource("1_fckef")
 my_type = -21
 _radar_shape = SubResource("Resource_5bj5x")
 _reload_info = SubResource("Resource_vmrba")
+_projectile = SubResource("Resource_8usjk")
 metadata/_custom_type_script = "uid://dy47gmggu5xbd"

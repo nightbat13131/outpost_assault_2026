@@ -1,3 +1,4 @@
+@tool
 class_name Spawner extends Node2D
 
 ## This Spawner is participating in the wave.
@@ -45,10 +46,20 @@ var _picker : WeightedPicker
 @onready var _timer := TimerModded.new(_inital_delay)
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	add_child(_timer) 
 	_timer.timeout.connect(_on_timer_timeout)
 	_populate_spawn_points()
 	_picker = WeightedPicker.new(spawn_types)
+
+func _draw() -> void:
+	if !Engine.is_editor_hint():
+		return
+	for each in spawn_points:
+		draw_line(
+			Vector2.ZERO, to_local(each.global_position), Color.AQUA, 5.0
+		)
 
 func _populate_spawn_points() -> void:
 	for each_child in get_children():

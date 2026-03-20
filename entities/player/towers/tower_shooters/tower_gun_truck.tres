@@ -7,6 +7,7 @@
 [sub_resource type="Resource" id="Resource_0ahnx"]
 script = ExtResource("1_jhc40")
 _radar_shape = 2
+_arch_degrees = 45.0
 metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
 
 [resource]

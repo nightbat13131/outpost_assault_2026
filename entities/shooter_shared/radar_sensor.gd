@@ -67,7 +67,7 @@ func die() -> void:
 ## For when the Radar's rotation needs to match a different node.
 func set_rotation_parent(node: Node2D) -> void: 
 	#_rotation_parent = node
-	Utilties.reparent(self, node)
+	Utilities.reparent(self, node)
 
 func set_parent_hovered(is_hover: bool ) -> void:
 	_parent_hovered = is_hover
@@ -134,7 +134,7 @@ func _get_target_radian_close() -> Node2D:
 	
 	for each in _targets:
 		each_rotation = global_position.angle_to_point(each.get_global_position())
-		each_delta_radian = Utilties.delta_radian(starting_radian, each_rotation)
+		each_delta_radian = Utilities.delta_radian(starting_radian, each_rotation)
 		if abs(each_delta_radian) < min_delta_rotation:
 			min_delta_rotation = abs(each_delta_radian)
 			min_target = each

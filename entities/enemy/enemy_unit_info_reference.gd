@@ -3,7 +3,11 @@ class_name EnemyUnitInfo_reference extends Resource
 enum EnemyTypes {
 	_OG_SCOUT = -10, 
 	_OG_GUNMAN = -11,
-	DEBUG_WALKER=0, 
+	_OG_RIFLE = -12,
+	_OG_GRENADIER = -13, 
+	_OG_TANK = -20,
+	_OG_HELICOPTER = -30,
+	DEBUG_WALKER=0,
 	SCOUT=100, 
 	GUN=110, RIFLE=120, GRENADIER=130, 
 	TANK=200, 
@@ -11,7 +15,7 @@ enum EnemyTypes {
 	}
 
 enum EnemySpawnTypes {NA=0,
-	PERSON = 100, VEHICLE_GROUN = 200, VEHICLE_AIR=300}
+	PERSON = 100, VEHICLE_GROUND = 200, VEHICLE_AIR=300}
 
 static var MapEnemyTypeMeta: Dictionary[EnemyTypes, EnemySpawnTypes] = {
 	EnemyTypes._OG_SCOUT: EnemySpawnTypes.PERSON,

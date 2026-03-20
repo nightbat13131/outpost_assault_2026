@@ -20,4 +20,7 @@ script = ExtResource("6_d4hq3")
 [node name="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
 collision_mask = 516
 
+[node name="Label" parent="." index="4" unique_id=1599518143]
+text = "T_Shoot Base"
+
 [editable path="Shooter"]

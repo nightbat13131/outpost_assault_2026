@@ -77,7 +77,7 @@ static func draw_filled_circle(node: Node2D, radius: float) -> void:
 	node.draw_circle(
 		Vector2.ZERO,
 		radius,
-		Utilties.COLOR_RADAR_PREVIEW, 
+		Utilities.COLOR_RADAR_PREVIEW, 
 		false, 
 		3
 	)

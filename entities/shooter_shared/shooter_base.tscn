@@ -39,7 +39,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("5_e5x61")
 
-[node name="Node" type="Node2D" parent="Muzzles" unique_id=1516804686]
+[node name="Node0" type="Node2D" parent="Muzzles" unique_id=1516804686]
 position = Vector2(63, 0)
 
 [node name="AimingSights" type="Node2D" parent="." unique_id=1309291640]
@@ -47,7 +47,7 @@ unique_name_in_owner = true
 visible = false
 script = ExtResource("6_xi2q4")
 
-[node name="RayCast2D" type="RayCast2D" parent="AimingSights" unique_id=309270866]
+[node name="RayCast2D_0" type="RayCast2D" parent="AimingSights" unique_id=309270866]
 target_position = Vector2(228, 0)
 collision_mask = 0
 collide_with_areas = true

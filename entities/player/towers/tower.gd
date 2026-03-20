@@ -19,7 +19,7 @@ func _get_cost() -> float: return get_tower_info().get_cost()
 
 func get_reload_info() -> ReloadInfo: return _tower_info.get_reload_info()
 
-func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, _clip_reload_ui: ClipReloadUI) -> void:
+func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
 	#print("C 1")
 	_tower_info = _tower_info.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
 	#print("C 2")
@@ -30,7 +30,7 @@ func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, _clip_reload_ui: C
 	_tower_purchase_manager.set_foundation(upgrades.get_foundation())
 	health_ui.set_health_info(get_health_info())
 	get_health_info().die.connect(_die)
-	_clip_reload_ui.set_reload_info(get_reload_info())
+	clip_reload_ui.set_reload_info(get_reload_info())
 	_on_upgrade_changed.call_deferred()
 	#print("C 4")
 

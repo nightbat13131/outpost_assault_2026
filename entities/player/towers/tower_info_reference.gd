@@ -2,18 +2,17 @@ class_name TowerInfo_reference extends Resource
 ## TODO: tower values will be effected by foundation and global upgrades
 
 enum TowerType {NA = 0, 
-_NoShooter = 1, 
-_TEST_SHOOTER = -10, _TEST_TRUCK = -11,
-_OG_GATTLING = -21, _OG_CANNON = -22, _OG_MISSILE = -23
-
+	_NoShooter = 1, 
+	_TEST_SHOOTER = -10, _TEST_TRUCK = -11,
+	_OG_GATTLING = -21, _OG_CANNON = -22, _OG_MISSILE = -23
 }
 
 static var _type_to_outer_range :Dictionary[TowerType, float] = {
 	TowerType._TEST_SHOOTER: 268.8, 
 	TowerType._TEST_TRUCK: 400.0, 
-	TowerType._OG_GATTLING: 358.4,
-	TowerType._OG_CANNON: 179.2,
-	TowerType._OG_MISSILE: 896
+	TowerType._OG_GATTLING: 360,
+	TowerType._OG_CANNON: 315,
+	TowerType._OG_MISSILE: 895,
 }
 static var _type_to_cost :Dictionary[TowerType, float] = {
 	TowerType.NA: 5 ,
@@ -46,11 +45,11 @@ static var _type_to_max_hp :Dictionary[TowerType, float] = {
 	TowerType._TEST_SHOOTER: 151.0, 
 	TowerType._TEST_TRUCK: 150.0, 
 	TowerType._OG_GATTLING: 151,
-	TowerType._OG_CANNON: 256,
+	TowerType._OG_CANNON: 226,
 	TowerType._OG_MISSILE: 201
 }
 
-## Currently being entered as a value for the Shooter 
+## Currently being entered as a value for the Projectile within TowerInfo 
 #static var _type_to_damage :Dictionary[TowerType, float] = {
 	#TowerType._TEST_SHOOTER: 5.0, 
 	#TowerType._TEST_TRUCK: 150.0, 

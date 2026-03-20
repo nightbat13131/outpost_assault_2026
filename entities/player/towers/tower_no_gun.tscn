@@ -17,3 +17,8 @@ _tower_info = ExtResource("2_dhc4r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1030103931]
 texture = SubResource("GradientTexture2D_w2ubc")
+
+[node name="Label" parent="." index="4" unique_id=1599518143]
+offset_left = -31.0
+offset_right = 36.0
+text = "Tower NoGun"

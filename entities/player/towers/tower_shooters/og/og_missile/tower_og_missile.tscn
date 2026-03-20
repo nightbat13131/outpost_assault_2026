@@ -1,13 +1,81 @@
 [gd_scene format=3 uid="uid://ddy7nmx6u5axg"]
 
 [ext_resource type="PackedScene" uid="uid://dro1735nlrdor" path="res://entities/player/towers/tower_shooters/tower_shooter_base.tscn" id="1_jn07q"]
-[ext_resource type="Resource" uid="uid://bni2lanj6p33a" path="res://entities/player/towers/tower_shooters/og/og_gattling/tower_info_og_gattling.tres" id="2_pyjsp"]
+[ext_resource type="Resource" uid="uid://cqio4w5njunpk" path="res://entities/player/towers/tower_shooters/og/og_missile/tower_info_og_missile.tres" id="2_hxc6g"]
+[ext_resource type="Script" uid="uid://dm3f7ybdht525" path="res://entities/shooter_shared/shooter_tower_series.gd" id="3_hxc6g"]
 
-[node name="Tower_OG_Gattling" unique_id=1226539165 instance=ExtResource("1_jn07q")]
-_tower_info = ExtResource("2_pyjsp")
+[sub_resource type="Gradient" id="Gradient_2pbwi"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u7p5d"]
+gradient = SubResource("Gradient_2pbwi")
+
+[node name="Tower_OG_Missile" unique_id=1226539165 instance=ExtResource("1_jn07q")]
+_tower_info = ExtResource("2_hxc6g")
 
 [node name="Shooter" parent="." index="3" unique_id=1614296909]
-_projectile_base_speed = 800.0
-_projectile_base_damage = 5.0
+script = ExtResource("3_hxc6g")
+_projectile = null
+_rotation_speed_deg_sec = 90
+
+[node name="Node0" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
+position = Vector2(58, -21)
+
+[node name="Node3" type="Node2D" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="1" unique_id=1704803547]
+position = Vector2(59, 20)
+
+[node name="Node1" type="Node2D" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="2" unique_id=674238081]
+position = Vector2(67, -9)
+
+[node name="Node2" type="Node2D" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="3" unique_id=588100306]
+position = Vector2(67, 6)
+
+[node name="AimingSights" parent="Shooter" index="2" unique_id=1309291640]
+visible = true
+
+[node name="RayCast2D_1" type="RayCast2D" parent="Shooter/AimingSights" index="1" unique_id=80853350]
+position = Vector2(0, -21)
+target_position = Vector2(228, 0)
+collision_mask = 516
+collide_with_areas = true
+
+[node name="RayCast2D_2" type="RayCast2D" parent="Shooter/AimingSights" index="2" unique_id=457413349]
+position = Vector2(0, 20)
+target_position = Vector2(228, 0)
+collision_mask = 516
+collide_with_areas = true
+
+[node name="RayCast2D_3" type="RayCast2D" parent="Shooter/AimingSights" index="3" unique_id=645168007]
+position = Vector2(0, 7)
+target_position = Vector2(228, 0)
+collision_mask = 516
+collide_with_areas = true
+
+[node name="RayCast2D_4" type="RayCast2D" parent="Shooter/AimingSights" index="4" unique_id=95171517]
+position = Vector2(0, -9)
+target_position = Vector2(228, 0)
+collision_mask = 516
+collide_with_areas = true
+
+[node name="Sprite2D2" parent="Shooter" index="4" unique_id=1556594203]
+position = Vector2(28, 19.999998)
+texture = SubResource("GradientTexture2D_u7p5d")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Shooter" index="5" unique_id=476252524]
+position = Vector2(36, -8.999996)
+scale = Vector2(0.96875006, 0.093749985)
+texture = SubResource("GradientTexture2D_u7p5d")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Shooter" index="6" unique_id=387003950]
+position = Vector2(36, 5.999998)
+scale = Vector2(0.96875006, 0.093749985)
+texture = SubResource("GradientTexture2D_u7p5d")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Shooter" index="7" unique_id=939590588]
+position = Vector2(27, -20.999998)
+scale = Vector2(0.96875006, 0.093749985)
+texture = SubResource("GradientTexture2D_u7p5d")
+
+[node name="Label" parent="." index="4" unique_id=1599518143]
+text = "OG Missile"
 
 [editable path="Shooter"]

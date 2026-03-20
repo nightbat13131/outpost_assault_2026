@@ -4,6 +4,7 @@ class_name TowerInfo extends TowerInfo_reference
 @export var my_type: TowerType
 @export var _radar_shape: RadarShapeInfo: get = get_radar_shape
 @export var _reload_info : ReloadInfo_Tower: get = get_reload_info
+@export var _projectile : ProjectileInfo
 
 var _health_info: HealthInfo # because health effects some calculations
 var _upgrades : FoundationUpgrades : set = set_upgrade_info
@@ -49,3 +50,5 @@ func get_sell_value() -> float: return get_cost() * _health_info.get_health_rati
 func get_repair_value() -> float: return get_cost() * (1.0- _health_info.get_health_ratio())
 
 func get_upgraded_range() -> float: return get_tower_radar_outer_range(my_type, _upgrades, 1.0)
+
+func get_projectile_info() -> ProjectileInfo: return _projectile

@@ -1,3 +1,4 @@
+@tool
 class_name RadarShapeInfo extends Resource
 
 signal shape_changed
@@ -14,7 +15,7 @@ var _outer_radius := 100.0 : set = set_outer_radius, get = get_outer_radius
 var _inner_radius := 75.0 : set = set_inner_radius
 
 ## When the target shape is an arch, what is the starting degree of that arch
-@export var _arch_degrees := 45.0 : set = set_arch_degrees, get = get_arch_degrees
+var _arch_degrees := 45.0 : set = set_arch_degrees, get = get_arch_degrees
 
 func has_shapes() -> bool: return !_shapes.is_empty()
 func has_polygons() -> bool: return !_polygons.is_empty()
@@ -35,6 +36,7 @@ func set_shape(shape: TargetShape) -> void:
 	_radar_shape = shape
 	_setup_shape_arrays()
 	shape_changed.emit()
+	notify_property_list_changed()
 
 func set_arch_degrees(degrees: float) -> void : 
 	_arch_degrees = degrees
@@ -75,7 +77,7 @@ func _refresh_shapes_details() -> void:
 		RadarShapeInfo.TargetShape.CIRCLE_FILLED:
 			_shapes[0].set_radius(get_outer_radius())
 		RadarShapeInfo.TargetShape.ARCH_FILLED:
-			_polygons[0] = Utilties.get_arch_points(get_outer_radius(), deg_to_rad(get_arch_degrees())*.5)
+			_polygons[0] = Utilities.get_arch_points(get_outer_radius(), deg_to_rad(get_arch_degrees())*.5)
 			poly_changed.emit()
 	changed.emit()
 
@@ -91,7 +93,7 @@ func _draw_circle_filled(node: Node2D) -> void:
 	node.draw_circle(
 		Vector2.ZERO, 
 		_outer_radius,
-		Utilties.COLOR_RADAR_PREVIEW, 
+		Utilities.COLOR_RADAR_PREVIEW, 
 		false,
 		5.0
 	)
@@ -101,6 +103,21 @@ func _draw_single_poly(node: Node2D) -> void:
 	points.append(points[0])
 	node.draw_polyline(
 		points, 
-		Utilties.COLOR_RADAR_PREVIEW, 
+		Utilities.COLOR_RADAR_PREVIEW, 
 		5.0
 	)
+
+func _get_property_list() -> Array[Dictionary]:
+	var properties: Array[Dictionary] = []
+	if [TargetShape.ARCH_FILLED].has(_radar_shape):
+		properties.append(
+			Utilities.property_dictionary("_arch_degrees", TYPE_FLOAT, PROPERTY_HINT_NONE, ""))
+	return properties
+
+func _property_can_revert(property: StringName) -> bool:
+	return property == "_arch_degrees"
+
+func _property_get_revert(property: StringName) -> Variant:
+	if property == "_arch_degrees":
+		return 45.0
+	return null

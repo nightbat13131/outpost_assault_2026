@@ -7,13 +7,12 @@ const EVENT_JUST_SHOT = "just_shoot"
 const EVENT_HAS_AMMO = "clip_ready"
 
 @export_group("Projectile", "_projectile")
+var _projectile_info : ProjectileInfo : set = set_projectile_info, get = get_projectile_info
 @export var _projectile : PackedScene
 @export var _projectile_base_speed := 500.0
 ## TODO: move base damange to info
 @export var _projectile_base_damage := 3.0
 @export var _projectile_base_spread_deg := .5
-
-#@export var _radar_shape: RadarShapeInfo
 
 @export_group("Rotation", "_rotation")
 @export var _limit_roation := false
@@ -34,6 +33,10 @@ func _ready() -> void:
 	_state_machine.propagate_call("set_shooter", [self])
 	_state_machine.propagate_call("set_radar_sensor", [_radar_sensor])
 	_radar_sensor.set_shooter.call_deferred(self)
+
+func set_projectile_info(info: ProjectileInfo) -> void: _projectile_info = info
+
+func get_projectile_info() -> ProjectileInfo: return _projectile_info
 
 func set_radar_shape(shape_info: RadarShapeInfo) -> void: 
 	_radar_shape = shape_info
@@ -64,11 +67,20 @@ func send_event(event: String) -> void:
 
 func get_rotation_speed_radian() -> float: return deg_to_rad(_rotation_speed_deg_sec)
 
-func get_projectile_damage() -> float:  return _projectile_base_damage
+func get_projectile_damage() -> float: 
+	if get_projectile_info():
+		return get_projectile_info().get_damage()
+	return _projectile_base_damage
 
-func get_projectile_speed() -> float: return _projectile_base_speed
+func get_projectile_speed() -> float: 
+	if get_projectile_info():
+		return get_projectile_info().get_speed()
+	return _projectile_base_speed
 
-func get_projectile_spread_radian() -> float: return deg_to_rad(randf_range(_projectile_base_spread_deg*-1, _projectile_base_spread_deg ) )
+func get_projectile_spread_radian() -> float: 
+	if get_projectile_info():
+		return get_projectile_info().get_projectile_spread_radian()
+	return deg_to_rad(randf_range(_projectile_base_spread_deg*-1, _projectile_base_spread_deg ) )
 
 #endregion
 
@@ -90,7 +102,7 @@ func turn_towards(delta_moded: float, target_global_pos: Vector2) -> void:
 	## lerp_angle slows down when getting close to target
 	## otherwise this does point AT the correct location 
 	#rotation = lerp_angle(rotation, target_angle, get_rotation_speed_radian() * delta_moded)
-	var delta_radian : float = Utilties.delta_radian(global_rotation, target_global_angle)
+	var delta_radian : float = Utilities.delta_radian(global_rotation, target_global_angle)
 	if is_equal_approx(delta_radian, 0.0):
 		return # no rotation needed
 	print(get_rotation_speed_radian())
@@ -132,24 +144,53 @@ func update_rotation(radian: float) -> void:
 func try_shoot() -> void:
 	if _aiming_sights.is_colliding():
 		## currently being handled by state machine
-		#if _clip_information.can_shoot():
-		_shoot()
+		#if get_reload_info().can_shoot():
+		if _projectile_info:
+			_shoot()
+		else: 
+			_shoot_no_info()
 
 func _shoot() -> void:
+	var projectile : Projectile # = _projectile.instantiate()
+	var shot_count := 0
+	for each_position in get_muzzle_locations():
+		projectile = get_projectile_info().get_projectile()
+		projectile.setup(
+			each_position, 
+			global_rotation + get_projectile_spread_radian(), 
+			get_projectile_speed(), 
+			get_projectile_damage(),
+			get_projectile_range(),
+			_radar_sensor.get_collision_mask(),
+			null)
+		if TowerHolder.get_instance():
+			TowerHolder.get_instance().add_child(projectile)
+			shot_count += 1
+		else:
+			push_warning("no home for projetile to get added to")
+	get_reload_info().shots_fired(shot_count)
+
+func _shoot_no_info() -> void:
 	var projectile : Projectile = _projectile.instantiate()
-	projectile.setup(
-		_muzzles.get_muzzle_location(), 
-		global_rotation + get_projectile_spread_radian(), 
-		get_projectile_speed(), 
-		get_projectile_damage(),
-		get_projectile_range(),
-		_radar_sensor.get_collision_mask(),
-		null)
-	get_reload_info().shots_fired()
-	if TowerHolder.get_instance():
-		TowerHolder.get_instance().add_child(projectile)
-	else:
-		push_warning("no home for projetile to get added to")
+	var shot_count := 0
+	for each_position in get_muzzle_locations():
+		projectile = _projectile.instantiate()
+		projectile.setup(
+			each_position, 
+			global_rotation + get_projectile_spread_radian(), 
+			get_projectile_speed(), 
+			get_projectile_damage(),
+			get_projectile_range(),
+			_radar_sensor.get_collision_mask(),
+			null)
+		if TowerHolder.get_instance():
+			TowerHolder.get_instance().add_child(projectile)
+			shot_count += 1
+		else:
+			push_warning("no home for projetile to get added to")
+	get_reload_info().shots_fired(shot_count)
+
+func get_muzzle_locations() -> Array[Vector2]: return _muzzles.get_muzzle_location()
 
 func die() -> void:
 	if get_reload_info():

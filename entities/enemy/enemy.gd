@@ -69,7 +69,7 @@ func move(_delta_moded: float) -> void:
 	var next_path_pos: Vector2 = _nav_agent.get_next_path_position()
 	#var new_velocity: Vector2 = global_position.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
 	var target_direction = global_position.direction_to(next_path_pos)
-	var rotate_amount = Utilties.delta_radian(rotation, target_direction.angle())
+	var rotate_amount = Utilities.delta_radian(rotation, target_direction.angle())
 	_update_rotation(rotation + rotate_amount)
 	velocity = Vector2.from_angle(rotation) * get_max_speed()
 	if not _nav_agent.avoidance_enabled:
@@ -85,7 +85,7 @@ func _update_rotation(radian: float) -> void:
 	rotation = radian
 	for each_lock in _g0_rotation:
 		if each_lock:
-			each_lock.rotation = Utilties.delta_radian(radian, 0)
+			each_lock.rotation = Utilities.delta_radian(radian, 0)
 	for key in dict_pre:
 		key.global_rotation = dict_pre[key]
 

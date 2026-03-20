@@ -30,3 +30,13 @@ unique_name_in_owner = true
 script = ExtResource("4_fpjj8")
 _repair_info = ExtResource("5_8ijru")
 _sell_info = ExtResource("6_6sg6d")
+
+[node name="Label" type="Label" parent="." unique_id=1599518143]
+z_index = 100
+z_as_relative = false
+offset_left = -28.0
+offset_top = -47.0
+offset_right = 28.0
+offset_bottom = -33.0
+theme_override_font_sizes/font_size = 10
+text = "Tower Base"
