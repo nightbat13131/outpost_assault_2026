@@ -3,9 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://b0t5s8j8ebkqx" path="res://levels/level_template.tscn" id="1_d88b2"]
 [ext_resource type="Script" uid="uid://cqn2yktneipi4" path="res://levels/2024 recreation/2/level_orignal_2.gd" id="2_hkf3y"]
 [ext_resource type="Resource" uid="uid://crs1yhl2hu4ce" path="res://levels/2024 recreation/2/levelinfo_orignal_2.tres" id="3_f5wxu"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="4_q50y7"]
+[ext_resource type="Resource" uid="uid://cyyc8hsp2avi1" path="res://levels/2024 recreation/2/dialog_orignal_level_02_00.tres" id="5_6fl5g"]
+[ext_resource type="Resource" uid="uid://cdwhe1vhfv8tl" path="res://levels/2024 recreation/2/dialog_orignal_level_02_01.tres" id="6_01q0o"]
+[ext_resource type="Resource" uid="uid://cof65ymo7cpdc" path="res://levels/2024 recreation/2/dialog_orignal_level_02_02.tres" id="7_0e3w7"]
 [ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map.tscn" id="8_e6w5a"]
+[ext_resource type="Resource" uid="uid://ru0pnh2pn4np" path="res://levels/2024 recreation/2/dialog_orignal_level_02_03.tres" id="8_iwi18"]
 [ext_resource type="Resource" uid="uid://fyilmatoyruw" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation_og.tres" id="8_vkqak"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="9_4rm8h"]
+[ext_resource type="Resource" uid="uid://dxvyil44jsd80" path="res://levels/2024 recreation/2/dialog_orignal_level_02_05.tres" id="9_ca6ex"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="10_f5wxu"]
 [ext_resource type="PackedScene" uid="uid://cpfajst60unk2" path="res://entities/player/tower_foundation/tower_foundation_og.tscn" id="10_p2nrg"]
 [ext_resource type="PackedScene" uid="uid://0u5aik17a2l0" path="res://entities/enemy/spawners/spawner_building_2x2.tscn" id="10_y22r7"]
@@ -37,6 +43,7 @@ metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 [node name="Level_Orignal_2" unique_id=1060779039 instance=ExtResource("1_d88b2")]
 script = ExtResource("2_hkf3y")
 _level_info = ExtResource("3_f5wxu")
+_dialog_groups = Array[ExtResource("4_q50y7")]([ExtResource("5_6fl5g"), ExtResource("6_01q0o"), ExtResource("7_0e3w7"), ExtResource("8_iwi18"), ExtResource("9_ca6ex")])
 
 [node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 instance=ExtResource("8_e6w5a")]
 position = Vector2(-2176, 1024)
@@ -394,6 +401,21 @@ spawn_types = Dictionary[int, int]({
 
 [node name="Building" parent="SpawnManager/Spawner_2x2_3_4_5" index="0" unique_id=831910580]
 _max_hp = 500.0
+
+[node name="SpawnPointPeople" parent="SpawnManager/Spawner_2x2_3_4_5" index="1" unique_id=1438190680]
+unit_types = Array[int]([100, 200])
+
+[node name="Spawn_NE" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="0" unique_id=100200813]
+position = Vector2(150, -82)
+
+[node name="Spawn_NW" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="1" unique_id=971029430]
+position = Vector2(-165, -99)
+
+[node name="Spawn_SE" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="2" unique_id=588862786]
+position = Vector2(163, 71)
+
+[node name="Spawn_SW" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="3" unique_id=194821967]
+position = Vector2(-164, 55)
 
 [node name="Spawner_2x2_6" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="7" unique_id=1639122881 instance=ExtResource("10_y22r7")]
 position = Vector2(-623, -1953)

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://bj81dyskp7xm4"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_p02ew"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="2_gjwwc"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_ywpoo"]
+
+[sub_resource type="Resource" id="Resource_u2huf"]
+script = ExtResource("1_p02ew")
+_character = ExtResource("2_gjwwc")
+_dialog = "Boss, we've got incoming. They've bridged the river!"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_ektl1"]
+script = ExtResource("1_p02ew")
+_character = ExtResource("2_gjwwc")
+_dialog = "Cancel our vacation plans, eh, boss? The north will have to wait."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("3_ywpoo")
+_dialogs = Array[ExtResource("1_p02ew")]([SubResource("Resource_u2huf"), SubResource("Resource_ektl1")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

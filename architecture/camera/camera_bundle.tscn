@@ -39,6 +39,7 @@ camera = NodePath("Camera2DEnhanced")
 metadata/_edit_lock_ = true
 
 [node name="GuideDebugger" parent="." unique_id=603218197 instance=ExtResource("3_04v4c")]
+visible = false
 offset_left = 731.0
 offset_top = 668.99994
 offset_right = 887.0

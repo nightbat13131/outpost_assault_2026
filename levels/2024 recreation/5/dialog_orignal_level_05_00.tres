@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://bvg2gbs32cgxl"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_xjhng"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="2_xwsfm"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_ijnqi"]
+[ext_resource type="Resource" uid="uid://b56w74s28lcns" path="res://architecture/ui/dialog/characters/character_red.tres" id="3_qt8nn"]
+
+[sub_resource type="Resource" id="Resource_qt8nn"]
+script = ExtResource("1_xjhng")
+_character = ExtResource("2_xwsfm")
+_dialog = "They want your towers so bad, lets give it to them, Boss."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_ah76y"]
+script = ExtResource("1_xjhng")
+_character = ExtResource("3_qt8nn")
+_dialog = "You're going to regret coming here."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("3_ijnqi")
+_dialogs = Array[ExtResource("1_xjhng")]([SubResource("Resource_qt8nn"), SubResource("Resource_ah76y")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

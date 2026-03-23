@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://bcahdjclouh"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_fvp5t"]
+[ext_resource type="Resource" uid="uid://3wa3aobxshrp" path="res://architecture/ui/dialog/characters/character_black.tres" id="2_4ek7x"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="2_cj7cq"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_4ek7x"]
+
+[sub_resource type="Resource" id="Resource_jivh6"]
+script = ExtResource("1_fvp5t")
+_character = ExtResource("2_4ek7x")
+_dialog = "I can see the writing on the wall. Here, take this."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_n4p3y"]
+script = ExtResource("1_fvp5t")
+_character = ExtResource("2_cj7cq")
+_dialog = "What is... oh, oh Boss. We're connected to their banking system now..."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_eh4c6"]
+script = ExtResource("1_fvp5t")
+_character = ExtResource("2_cj7cq")
+_dialog = "What do you say we put their extra resources to good use... against them."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("3_4ek7x")
+_dialogs = Array[ExtResource("1_fvp5t")]([SubResource("Resource_jivh6"), SubResource("Resource_n4p3y"), SubResource("Resource_eh4c6")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

@@ -42,5 +42,5 @@ static func request_deactivate() -> void:
 
 static func request_subviewport() -> SubViewport: 
 	if get_instance():
-		return _instance.level_viewport
+		return get_instance().level_viewport
 	return null

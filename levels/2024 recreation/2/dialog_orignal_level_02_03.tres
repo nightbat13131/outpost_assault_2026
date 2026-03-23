@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://ru0pnh2pn4np"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_3b5dj"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="2_h3a0o"]
+[ext_resource type="Resource" uid="uid://b56w74s28lcns" path="res://architecture/ui/dialog/characters/character_red.tres" id="3_b4502"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="4_r2o7c"]
+
+[sub_resource type="Resource" id="Resource_kjvil"]
+script = ExtResource("1_3b5dj")
+_character = ExtResource("2_h3a0o")
+_dialog = "Looks like our towers need a longer reach to get to that outpost. Upgrade their radar to close the gap."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_445x2"]
+script = ExtResource("1_3b5dj")
+_character = ExtResource("3_b4502")
+_dialog = "I'll crush your pathetic forces even if I have to do it myself!"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("4_r2o7c")
+_dialogs = Array[ExtResource("1_3b5dj")]([SubResource("Resource_kjvil"), SubResource("Resource_445x2")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

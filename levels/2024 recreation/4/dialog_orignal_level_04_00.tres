@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://d1h14jdmv544g"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_xogcl"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="2_upq3y"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_wyiqs"]
+
+[sub_resource type="Resource" id="Resource_8lybd"]
+script = ExtResource("1_xogcl")
+_character = ExtResource("2_upq3y")
+_dialog = "Shit, grenades! Our one weakness, how did they know?"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_upq3y"]
+script = ExtResource("1_xogcl")
+_character = ExtResource("2_upq3y")
+_dialog = "Lets show them what we think of their litte men with bombs."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("3_wyiqs")
+_dialogs = Array[ExtResource("1_xogcl")]([SubResource("Resource_8lybd"), SubResource("Resource_upq3y")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://butr3e0kecwms"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_0lfbr"]
+[ext_resource type="Resource" uid="uid://b56w74s28lcns" path="res://architecture/ui/dialog/characters/character_red.tres" id="2_0lfbr"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_mdufs"]
+
+[sub_resource type="Resource" id="Resource_jpsp2"]
+script = ExtResource("1_0lfbr")
+_character = ExtResource("2_0lfbr")
+_dialog = "We defend the Citadel with our lives!"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("3_mdufs")
+_dialogs = Array[ExtResource("1_0lfbr")]([SubResource("Resource_jpsp2")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://cof65ymo7cpdc"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_crk6o"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="2_45nxl"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_sb1c4"]
+
+[sub_resource type="Resource" id="Resource_wsf07"]
+script = ExtResource("1_crk6o")
+_character = ExtResource("2_45nxl")
+_dialog = "Now that doesn't sound like foot soldiers."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_x16o7"]
+script = ExtResource("1_crk6o")
+_character = ExtResource("2_45nxl")
+_dialog = "Good thing we've brought bigger guns."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("3_sb1c4")
+_dialogs = Array[ExtResource("1_crk6o")]([SubResource("Resource_wsf07"), SubResource("Resource_x16o7")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

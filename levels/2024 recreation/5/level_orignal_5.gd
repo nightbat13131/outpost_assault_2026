@@ -29,26 +29,16 @@ func _trigger(number: int) -> void:
 		3:
 			trigger_dialog_group_index(3)
 			call_wave(3)
-			call_camera_bounds(1)
+			#call_camera_bounds(1)
 			_trigger_on_wave_complete = _trigger.bind(4)
 		4:
-			#trigger_dialog_group_index(3)
+			trigger_dialog_group_index(4)
 			call_wave(4)
 			#call_camera_bounds(2)
-			_trigger_on_wave_complete = _trigger.bind(5)
-		5:
-			#trigger_dialog_group_index(3)
-			call_wave(5)
-			#call_camera_bounds(2)
-			_trigger_on_wave_complete = _trigger.bind(6)
-		6:
-			#trigger_dialog_group_index(3)
-			call_wave(6)
-			call_camera_bounds(2)
-			_trigger_on_wave_complete = _on_victory
+			_trigger_on_wave_complete =  _on_victory
 
-#func _triggerW(): 
-	#print("level2.TriggerW")
-	#var call_args = [TalkingHead.TALKER.RED, "Who do you think you are?!", true]
+
+#func _triggerW(): # wave 3 beat
+	#var call_args = [TalkingHead.TALKER.BLUE, "VICOTRY is OURS!!!!!!", false]
 	#dialog_box.start_event(call_args[0], call_args[1], call_args[2])
-	#_on_enemies_defeated()
+	#_on_enemies_defeated() 

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://00pch6wgajlv"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_lvos5"]
+[ext_resource type="Resource" uid="uid://3wa3aobxshrp" path="res://architecture/ui/dialog/characters/character_black.tres" id="2_m7vg7"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="4_8pfp6"]
+
+[sub_resource type="Resource" id="Resource_ne0gt"]
+script = ExtResource("1_lvos5")
+_character = ExtResource("2_m7vg7")
+_dialog = "Lets wrap this up."
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("4_8pfp6")
+_dialogs = Array[ExtResource("1_lvos5")]([SubResource("Resource_ne0gt")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://6jyj4jmy2q8p"]
+
+[ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_ljyxw"]
+
+[resource]
+script = ExtResource("1_ljyxw")
+level_name = "2024 Level 2"
+level_uid = "uid://cp03bto5sc4go"
+metadata/_custom_type_script = "uid://u6pais7e54pl"
