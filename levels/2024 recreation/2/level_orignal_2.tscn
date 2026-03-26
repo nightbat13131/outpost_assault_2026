@@ -35,8 +35,8 @@ metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [sub_resource type="Resource" id="Resource_p2nrg"]
 script = ExtResource("16_jbcrw")
-rect_position = Vector2(-2500, -2050)
-rect_size = Vector2(4030, 2270)
+rect_position = Vector2(-2500, -2250)
+rect_size = Vector2(4030, 2470)
 camera_start = Vector2(0, -100)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
@@ -203,6 +203,20 @@ next_targets = [NodePath("../NavPoint_w10_small")]
 target_distance = 120.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
+[node name="NavPoint_n" type="Node2D" parent="NavPoints" index="21" unique_id=387790237 node_paths=PackedStringArray("next_targets")]
+position = Vector2(-974, -1998)
+script = ExtResource("9_4rm8h")
+next_targets = [NodePath("../NavPoint_w10_big"), NodePath("../NavPoint_e07")]
+target_distance = 150.0
+metadata/_custom_type_script = "uid://msom3gj4mhg6"
+
+[node name="NavPoint_n1" type="Node2D" parent="NavPoints" index="22" unique_id=1207200461 node_paths=PackedStringArray("next_targets")]
+position = Vector2(-181, -1563)
+script = ExtResource("9_4rm8h")
+next_targets = [NodePath("../NavPoint_e07")]
+target_distance = 80.0
+metadata/_custom_type_script = "uid://msom3gj4mhg6"
+
 [node name="BrokenFoundation1" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="0" unique_id=400182285 instance=ExtResource("11_p7av3")]
 position = Vector2(-4, -643)
 _cost_info = ExtResource("8_vkqak")
@@ -353,8 +367,9 @@ _spawn_speed = 4.5
 _pulse_unit_volume = 12
 spawn_types = Dictionary[int, int]({
 -20: 1,
--11: 1,
--10: 1
+-12: 4,
+-11: 2,
+-10: 2
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
 
@@ -365,9 +380,10 @@ spawn_points = [NodePath("../../NavPoints/SpaPoint_e07_w"), NodePath("../../NavP
 _pulse_per_wave = 1
 _spawn_speed = 4.5
 spawn_types = Dictionary[int, int]({
--20: 1,
+-20: 2,
+-12: 1,
 -11: 1,
--10: 1
+-10: 2
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
 
@@ -377,20 +393,21 @@ script = ExtResource("10_f5wxu")
 spawn_points = [null]
 _pulse_per_wave = 1
 _spawn_speed = 4.5
-_pulse_unit_volume = 12
+_pulse_unit_volume = 10
 spawn_types = Dictionary[int, int]({
 -20: 1,
--11: 1,
--10: 1
+-12: 2,
+-11: 2,
+-10: 2
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
 
 [node name="Spawner_2x2_3_4_5" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="6" unique_id=1797158330 instance=ExtResource("10_y22r7")]
-position = Vector2(-1037, -1559)
+position = Vector2(-1021, -1663)
 _waves = Array[int]([3, 4, 5])
 _inital_delay = 3.0
-_pulse_per_wave = 1
-_spawn_speed = 5.0
+_pulse_per_wave = 2
+_spawn_speed = 0.5
 _pulse_unit_volume = 6
 spawn_types = Dictionary[int, int]({
 -20: 1,
@@ -402,23 +419,96 @@ spawn_types = Dictionary[int, int]({
 [node name="Building" parent="SpawnManager/Spawner_2x2_3_4_5" index="0" unique_id=831910580]
 _max_hp = 500.0
 
-[node name="SpawnPointPeople" parent="SpawnManager/Spawner_2x2_3_4_5" index="1" unique_id=1438190680]
+[node name="SpawnPointPeople" parent="SpawnManager/Spawner_2x2_3_4_5" index="1" unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
 unit_types = Array[int]([100, 200])
+next_targets = [NodePath("Spawn_NE"), NodePath("Spawn_NW"), NodePath("Spawn_SE"), NodePath("Spawn_SW")]
 
-[node name="Spawn_NE" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="0" unique_id=100200813]
-position = Vector2(150, -82)
+[node name="Spawn_NE" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="0" unique_id=100200813 node_paths=PackedStringArray("next_targets")]
+position = Vector2(139, -92)
+next_targets = [NodePath("../../../../NavPoints/NavPoint_e07")]
 
-[node name="Spawn_NW" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="1" unique_id=971029430]
-position = Vector2(-165, -99)
+[node name="Spawn_NW" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
+position = Vector2(-145, -86)
+next_targets = [NodePath("../../../../NavPoints/NavPoint_w10_big")]
 
-[node name="Spawn_SE" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="2" unique_id=588862786]
-position = Vector2(163, 71)
+[node name="Spawn_SE" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="2" unique_id=588862786 node_paths=PackedStringArray("next_targets")]
+position = Vector2(143, 73)
+next_targets = [NodePath("../../../../NavPoints/NavPoint_e07")]
 
-[node name="Spawn_SW" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="3" unique_id=194821967]
-position = Vector2(-164, 55)
+[node name="Spawn_SW" parent="SpawnManager/Spawner_2x2_3_4_5/SpawnPointPeople" index="3" unique_id=194821967 node_paths=PackedStringArray("next_targets")]
+position = Vector2(-142, 64)
+next_targets = [NodePath("../../../../NavPoints/NavPoint_w10_big")]
 
-[node name="Spawner_2x2_6" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="7" unique_id=1639122881 instance=ExtResource("10_y22r7")]
-position = Vector2(-623, -1953)
+[node name="Spawner_6e" type="Node2D" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="7" unique_id=390815609 node_paths=PackedStringArray("spawn_points")]
+position = Vector2(-904, -2399)
+script = ExtResource("10_f5wxu")
+spawn_points = [NodePath("SpaPoint_n")]
+_waves = Array[int]([6])
+_inital_delay = 2.5
+_pulse_gap = 5.0
+_pulse_per_wave = 2
+_spawn_speed = 0.5
+_pulse_unit_volume = 6
+spawn_types = Dictionary[int, int]({
+-12: 1,
+-11: 1,
+-10: 1,
+200: 1
+})
+metadata/_custom_type_script = "uid://r0ygm2bqav7d"
+
+[node name="SpaPoint_n" type="Node2D" parent="SpawnManager/Spawner_6e" index="0" unique_id=1788965749 node_paths=PackedStringArray("next_targets")]
+position = Vector2(-18, 47)
+script = ExtResource("11_vkqak")
+unit_types = Array[int]([100, 200])
+next_targets = [NodePath("../../../NavPoints/NavPoint_n")]
+target_distance = 80.0
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="Spawner_6w" type="Node2D" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="8" unique_id=398832537 node_paths=PackedStringArray("spawn_points")]
+position = Vector2(-1518, -2767)
+script = ExtResource("10_f5wxu")
+spawn_points = [NodePath("SpaPoint_nw")]
+_waves = Array[int]([6])
+_inital_delay = 1.75
+_pulse_per_wave = 2
+_spawn_speed = 4.0
+_pulse_unit_volume = 2
+spawn_types = Dictionary[int, int]({
+-12: 1,
+-11: 1,
+-10: 1,
+200: 1
+})
+metadata/_custom_type_script = "uid://r0ygm2bqav7d"
+
+[node name="SpaPoint_nw" type="Node2D" parent="SpawnManager/Spawner_6w" index="0" unique_id=1309585422 node_paths=PackedStringArray("next_targets")]
+position = Vector2(-20, 252)
+script = ExtResource("11_vkqak")
+unit_types = Array[int]([100, 200])
+next_targets = [NodePath("../../../NavPoints/NavPoint_w10_big")]
+target_distance = 200.0
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="Spawner_2x2_6" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="9" unique_id=1639122881 instance=ExtResource("10_y22r7")]
+position = Vector2(-385, -2046)
+metadata/_edit_group_ = true
+
+[node name="SpawnPointPeople" parent="SpawnManager/Spawner_2x2_6" index="1" unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
+next_targets = [NodePath("Spawn_NE")]
+
+[node name="Spawn_NE" parent="SpawnManager/Spawner_2x2_6/SpawnPointPeople" index="0" unique_id=100200813 node_paths=PackedStringArray("next_targets")]
+position = Vector2(144, 1)
+next_targets = [NodePath("../../../../NavPoints/NavPoint_n1")]
+
+[node name="Spawn_NW" parent="SpawnManager/Spawner_2x2_6/SpawnPointPeople" index="1" unique_id=971029430]
+is_disabled = true
+
+[node name="Spawn_SE" parent="SpawnManager/Spawner_2x2_6/SpawnPointPeople" index="2" unique_id=588862786]
+is_disabled = true
+
+[node name="Spawn_SW" parent="SpawnManager/Spawner_2x2_6/SpawnPointPeople" index="3" unique_id=194821967]
+is_disabled = true
 
 [node name="PlayerOutpost" parent="." index="4" unique_id=831910580]
 metadata/_edit_lock_ = true
@@ -429,3 +519,5 @@ bounds = Array[ExtResource("16_jbcrw")]([SubResource("Resource_f5wxu"), SubResou
 
 [editable path="SpawnManager/Spawner_2x2_3_4_5"]
 [editable path="SpawnManager/Spawner_2x2_3_4_5/Building"]
+[editable path="SpawnManager/Spawner_2x2_6"]
+[editable path="SpawnManager/Spawner_2x2_6/Building"]

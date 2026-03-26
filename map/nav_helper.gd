@@ -112,10 +112,12 @@ func apply_nav_agent(nav_agent: NavigationAgent2D) -> void:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:Array = []
-	if next_targets.is_empty():
-		warnings.append("No next nav points set")
-	elif next_targets.has(self):
-		warnings.append("Nav points back at itself")
+	if next_targets.has(self):
+		warnings.append("Nav points back to itself")
+	elif next_targets.is_empty() and !is_disabled:
+		warnings.append("No next nav points set.")
+	elif !next_targets.is_empty() and is_disabled:
+		warnings.append("Nav points set but is Disabled.")
 	return warnings
 
 class WeightedPicker:
