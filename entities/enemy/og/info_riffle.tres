@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyUnitInfo" format=3 uid="uid://bq27ql24m20ub"]
+
+[ext_resource type="Script" uid="uid://dds1m7jnd4mkx" path="res://entities/shooter_shared/projectile_info.gd" id="1_fwpsw"]
+[ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/shooter_shared/radar_shape_info.gd" id="1_tew8x"]
+[ext_resource type="Resource" uid="uid://b0scq7h37fb35" path="res://entities/enemy/reload_info_gun_man.tres" id="2_fwpsw"]
+[ext_resource type="Script" uid="uid://bgsj5t26153la" path="res://entities/enemy/enemy_unit_info.gd" id="3_2x3w5"]
+
+[sub_resource type="Resource" id="Resource_2x3w5"]
+script = ExtResource("1_fwpsw")
+_speed = 1000.0
+_projectile_spread_deg = 0.2
+metadata/_custom_type_script = "uid://dds1m7jnd4mkx"
+
+[sub_resource type="Resource" id="Resource_jbt0k"]
+script = ExtResource("1_tew8x")
+_radar_shape = 1
+metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
+
+[resource]
+script = ExtResource("3_2x3w5")
+_radar_shape = SubResource("Resource_jbt0k")
+_reload_info = ExtResource("2_fwpsw")
+_projectile = SubResource("Resource_2x3w5")
+_outpost_damage = 12.0
+rotate_speed_body_deg = 36.0
+metadata/_custom_type_script = "uid://bgsj5t26153la"

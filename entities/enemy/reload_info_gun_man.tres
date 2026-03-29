@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_ifwmo")
-_clip_reload_base = 1.0
+_clip_reload_base = 4.0
 _clip_ammo_size_base = 6
-_burst_delay_seconds_base = 0.25
+_burst_delay_seconds_base = 0.2
+_clip_count = 5
 metadata/_custom_type_script = "uid://dmp1d6bqc3nt6"

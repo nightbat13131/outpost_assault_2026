@@ -96,5 +96,4 @@ func _on_wave_complete() -> void:
 		_trigger_on_wave_complete.call()
 
 static func get_instance() -> Level: return _instance
-
 func _on_victory() -> void: LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_WIN)

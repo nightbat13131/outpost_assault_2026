@@ -5,6 +5,8 @@ const ANIMATION_DIE = "die"
 const ANIMATION_SHOOT = "shoot"
 const ANIMATION_IDLE = "idle"
 
+const ANIMATION_DEFAULT = "default"
+
 func _ready() -> void:
 	_speed_manager_connect.call_deferred()
 

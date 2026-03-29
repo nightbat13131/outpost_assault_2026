@@ -1,4 +1,5 @@
 class_name Shooter extends Node2D
+## TODO: remove exported shooter info for projectile as there' now a resource for that.
 
 const EVENT_NO_TARGET = "no_target"
 const EVENT_HAS_TARGET = "has_target"
@@ -6,18 +7,22 @@ const EVENT_DIE = "die"
 const EVENT_JUST_SHOT = "just_shoot"
 const EVENT_HAS_AMMO = "clip_ready"
 
-@export_group("Projectile", "_projectile")
 var _projectile_info : ProjectileInfo : set = set_projectile_info, get = get_projectile_info
-@export var _projectile : PackedScene
-@export var _projectile_base_speed := 500.0
-## TODO: move base damange to info
-@export var _projectile_base_damage := 3.0
-@export var _projectile_base_spread_deg := .5
+#@export_group("Projectile", "_projectile")
+
+#@export var _projectile : PackedScene
+#@export var _projectile_base_speed := 500.0
+### TODO: move base damange to info
+#@export var _projectile_base_damage := 3.0
+#@export var _projectile_base_spread_deg := .5
+
+@export var _muzzle_order := ShooterMuzzles.MuzzleOrder.SINGLE
 
 @export_group("Rotation", "_rotation")
 @export var _limit_roation := false
 ## Gets sent to Radar Shape
 @export var _rotation_limit_deg := 45.0 : set = set_rotation_limit
+## How quickly turns to face target
 @export var _rotation_speed_deg_sec := 45
 
 var _reload_info : ReloadInfo : set = set_reload_info
@@ -41,9 +46,11 @@ func get_projectile_info() -> ProjectileInfo: return _projectile_info
 func set_radar_shape(shape_info: RadarShapeInfo) -> void: 
 	_radar_shape = shape_info
 	_radar_sensor.set_radar_shape_info(shape_info)
-	if _limit_roation:
-		_radar_shape._arch_degrees = _rotation_limit_deg
 	_aiming_sights.set_radar_shape(shape_info)
+	if _limit_roation:
+		## TODO: consider the connection between limiting rotation and radar shape
+		_radar_shape._arch_degrees = _rotation_limit_deg
+	
 
 func set_reload_info(reload_info: ReloadInfo) -> void:
 	_reload_info = reload_info
@@ -70,17 +77,17 @@ func get_rotation_speed_radian() -> float: return deg_to_rad(_rotation_speed_deg
 func get_projectile_damage() -> float: 
 	if get_projectile_info():
 		return get_projectile_info().get_damage()
-	return _projectile_base_damage
+	return 1.0
 
 func get_projectile_speed() -> float: 
 	if get_projectile_info():
 		return get_projectile_info().get_speed()
-	return _projectile_base_speed
+	return 100.0
 
 func get_projectile_spread_radian() -> float: 
 	if get_projectile_info():
 		return get_projectile_info().get_projectile_spread_radian()
-	return deg_to_rad(randf_range(_projectile_base_spread_deg*-1, _projectile_base_spread_deg ) )
+	return randf_range(-1.0, 1.0)
 
 #endregion
 
@@ -148,7 +155,8 @@ func try_shoot() -> void:
 		if _projectile_info:
 			_shoot()
 		else: 
-			_shoot_no_info()
+			push_error("no projectile information to shoot with")
+			#_shoot_no_info()
 
 func _shoot() -> void:
 	var projectile : Projectile # = _projectile.instantiate()
@@ -170,27 +178,27 @@ func _shoot() -> void:
 			push_warning("no home for projetile to get added to")
 	get_reload_info().shots_fired(shot_count)
 
-func _shoot_no_info() -> void:
-	var projectile : Projectile = _projectile.instantiate()
-	var shot_count := 0
-	for each_position in get_muzzle_locations():
-		projectile = _projectile.instantiate()
-		projectile.setup(
-			each_position, 
-			global_rotation + get_projectile_spread_radian(), 
-			get_projectile_speed(), 
-			get_projectile_damage(),
-			get_projectile_range(),
-			_radar_sensor.get_collision_mask(),
-			null)
-		if TowerHolder.get_instance():
-			TowerHolder.get_instance().add_child(projectile)
-			shot_count += 1
-		else:
-			push_warning("no home for projetile to get added to")
-	get_reload_info().shots_fired(shot_count)
+#func _shoot_no_info() -> void:
+	#var projectile : Projectile = _projectile.instantiate()
+	#var shot_count := 0
+	#for each_position in get_muzzle_locations():
+		#projectile = _projectile.instantiate()
+		#projectile.setup(
+			#each_position, 
+			#global_rotation + get_projectile_spread_radian(), 
+			#get_projectile_speed(), 
+			#get_projectile_damage(),
+			#get_projectile_range(),
+			#_radar_sensor.get_collision_mask(),
+			#null)
+		#if TowerHolder.get_instance():
+			#TowerHolder.get_instance().add_child(projectile)
+			#shot_count += 1
+		#else:
+			#push_warning("no home for projetile to get added to")
+	#get_reload_info().shots_fired(shot_count)
 
-func get_muzzle_locations() -> Array[Vector2]: return _muzzles.get_muzzle_location()
+func get_muzzle_locations() -> Array[Vector2]: return _muzzles.get_muzzle_locations(_muzzle_order)
 
 func die() -> void:
 	if get_reload_info():

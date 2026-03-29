@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://coomq7s2gmil3"]
+
+[ext_resource type="PackedScene" uid="uid://drfqmnxu83xf6" path="res://entities/enemy/enemy_shooter_base.tscn" id="1_02u7y"]
+[ext_resource type="Resource" uid="uid://bl36u83hutllm" path="res://entities/enemy/og/info _grenadier.tres" id="2_02u7y"]
+
+[node name="Grenadier" unique_id=1456879393 instance=ExtResource("1_02u7y")]
+_enemy_info = ExtResource("2_02u7y")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1421716584]
+modulate = Color(1, 0.65, 0.65, 1)
+
+[node name="Shooter" parent="." index="6" unique_id=1614296909]
+_limit_roation = false
+_rotation_speed_deg_sec = 287
+
+[node name="Node0" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
+position = Vector2(52, 20)
+
+[node name="AimingSights" parent="Shooter" index="3" unique_id=1309291640]
+visible = true
+
+[node name="RayCast2D_0" parent="Shooter/AimingSights" index="0" unique_id=309270866]
+position = Vector2(0, 20)
+
+[node name="Sprite2D2" parent="Shooter" index="5" unique_id=1556594203]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+position = Vector2(27, 20)
+scale = Vector2(0.78125, 0.078125015)
+
+[node name="Label" type="Label" parent="." index="7" unique_id=483432879]
+offset_left = -49.0
+offset_top = 11.0
+offset_right = 27.0
+offset_bottom = 34.0
+text = "grenadier"
+
+[editable path="Shooter"]

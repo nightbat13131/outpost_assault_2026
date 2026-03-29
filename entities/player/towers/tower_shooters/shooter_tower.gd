@@ -46,9 +46,11 @@ func get_projectile_speed() -> float:
 	if get_upgrades():
 		var gear_level := get_upgrades().get_upgrade_level(FoundationUpgrades.UpgradeTypes.GEAR)
 		out *= 1.0 + (gear_level * gear_level * FoundationUpgrades.RANK_EXPAND_GEAR)
-	return _projectile_base_speed
+	return out
 
 func get_projectile_spread_radian() -> float: 
+	var out = super.get_projectile_spread_radian()
 	# TODO have projectile spread be effected by upgrades
-	return deg_to_rad(randf_range(_projectile_base_spread_deg*-1, _projectile_base_spread_deg ) )
+	return out
+
 #endregion

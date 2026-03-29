@@ -5,15 +5,19 @@ class_name NavPoint extends Node2D
 
 #@export var next_target_weights: Dictionary[NavPoint, int] # started crashing the engine after about 30 minutes
 ## Paths for next nav points and their weights. 
-@export var next_targets : Array[NavPoint]
 #@export var next_target_weights: Array[NavPointWeight] = []
-## The distance threshold before the target is considered to be reached.
+#@onready var _picker: WeightedPicker
+
+## If I really want weighted splits between next target, I can add it mulitple times. 
+@export var next_targets : Array[NavPoint]
+## For disabling the nav point when it has to be on screen but not being used. 
 @export var is_disabled := false
+## The distance threshold before the target is considered to be reached.
 @export var target_distance := 20.0 :
 	set(value):
 		target_distance = abs(value)
 		queue_redraw()
-#@onready var _picker: WeightedPicker
+
 
 func _ready() -> void:
 	if is_disabled:

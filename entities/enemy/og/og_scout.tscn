@@ -1,5 +1,17 @@
 [gd_scene format=3 uid="uid://dw14xfa1aivcl"]
 
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="1_5f43a"]
+[ext_resource type="Resource" uid="uid://bjukj66fpbv7y" path="res://entities/enemy/og/info_scout.tres" id="2_7pq01"]
 
 [node name="Scout" unique_id=1456879393 instance=ExtResource("1_5f43a")]
+_enemy_info = ExtResource("2_7pq01")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1421716584]
+modulate = Color(0.58000004, 1, 0.587, 1)
+
+[node name="Label" type="Label" parent="." index="7" unique_id=1766653676]
+offset_left = -25.0
+offset_top = 12.0
+offset_right = 18.0
+offset_bottom = 35.0
+text = "scout"

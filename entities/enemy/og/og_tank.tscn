@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://d2b7i20fjuoga"]
+
+[ext_resource type="PackedScene" uid="uid://drfqmnxu83xf6" path="res://entities/enemy/enemy_shooter_base.tscn" id="1_j3x8x"]
+[ext_resource type="Script" uid="uid://dtbreejrde4op" path="res://entities/enemy/og/enemy_shooter_vehicle.gd" id="2_j3x8x"]
+[ext_resource type="Resource" uid="uid://dppiwwt62g4bf" path="res://entities/enemy/og/info_tank.tres" id="3_qc3tu"]
+
+[sub_resource type="Gradient" id="Gradient_j3x8x"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qc3tu"]
+gradient = SubResource("Gradient_j3x8x")
+width = 155
+height = 120
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j3x8x"]
+radius = 60.074955
+
+[sub_resource type="Gradient" id="Gradient_qc3tu"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0031055901, 0.6, 0.70434785)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rjat1"]
+gradient = SubResource("Gradient_qc3tu")
+width = 75
+height = 70
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Tank" unique_id=1456879393 instance=ExtResource("1_j3x8x")]
+script = ExtResource("2_j3x8x")
+_enemy_info = ExtResource("3_qc3tu")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1421716584]
+modulate = Color(1, 0.62, 0.62, 1)
+texture = SubResource("GradientTexture2D_qc3tu")
+
+[node name="CollisionShape2D" parent="." index="4" unique_id=1025302939]
+shape = SubResource("CircleShape2D_j3x8x")
+
+[node name="Shooter" parent="." index="6" unique_id=1614296909]
+_limit_roation = false
+_rotation_speed_deg_sec = 229
+metadata/_edit_group_ = true
+
+[node name="MuzzleFlash" parent="Shooter" index="1" unique_id=499927114]
+position = Vector2(80, 0)
+
+[node name="Node0" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
+position = Vector2(78, 0)
+
+[node name="AimingSights" parent="Shooter" index="3" unique_id=1309291640]
+visible = true
+
+[node name="RayCast2D_0" parent="Shooter/AimingSights" index="0" unique_id=309270866]
+position = Vector2(0, 0)
+
+[node name="Sprite2D" parent="Shooter" index="4" unique_id=383995293]
+texture = SubResource("GradientTexture2D_rjat1")
+
+[node name="Sprite2D2" parent="Shooter" index="5" unique_id=1556594203]
+position = Vector2(52, 0)
+scale = Vector2(0.78125, 0.17968747)
+
+[node name="Label" type="Label" parent="." index="7" unique_id=483432879]
+offset_left = -73.0
+offset_top = 35.0
+offset_right = -33.0
+offset_bottom = 58.0
+text = "tank"
+
+[node name="VBoxContainer" parent="UIAnchor" parent_id_path=PackedInt32Array(2101593919) index="0" unique_id=1790658355]
+offset_top = 61.0
+offset_bottom = 69.0
+
+[editable path="Shooter"]

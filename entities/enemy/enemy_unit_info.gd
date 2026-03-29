@@ -4,6 +4,7 @@ signal die
 
 @export var _radar_shape: RadarShapeInfo: get = get_radar_shape
 @export var _reload_info : ReloadInfo_Enemy: get = get_reload_info
+@export var _projectile : ProjectileInfo
 var _health_info: HealthInfo
 #var _enemy : EnemyUnit
 
@@ -11,14 +12,17 @@ var _health_info: HealthInfo
 @export var _outpost_damage := 10.0
 ## Pixels per second
 @export var speed: float = 150.0
-## Degrees per second 
-@export var rotate_speed_body_deg := 10.0
+## Degrees per second - how quickly... not currelty used. 
+## Might try to use this value to control how fast items turn when taking a corner
+@export var rotate_speed_body_deg : float = TAU
 ## Unit Starting health
 @export var max_health := 100.0 : get = get_max_health
 ## Gold awarded upon death
 @export var kill_reward := 100.0 : get = get_kill_reward
 
 @export var _range := 150.0: get = get_range
+
+
 
 func set_enemy(_unit: EnemyUnit) -> void:
 	#_enemy = unit
@@ -60,3 +64,5 @@ func get_range() -> float: return _range
 func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 
 func get_reload_info() -> ReloadInfo_Enemy: return _reload_info
+
+func get_projectile_info() -> ProjectileInfo: return _projectile

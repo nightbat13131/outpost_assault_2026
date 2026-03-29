@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dro1735nlrdor" path="res://entities/player/towers/tower_shooters/tower_shooter_base.tscn" id="1_20u0k"]
 [ext_resource type="Resource" uid="uid://bni2lanj6p33a" path="res://entities/player/towers/tower_shooters/og/og_gattling/tower_info_og_gattling.tres" id="2_8i8td"]
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="3_8i8td"]
-[ext_resource type="Script" uid="uid://dnkvsumabf2my" path="res://entities/shooter_shared/shooter_tower_parallel.gd" id="4_7un7o"]
 
 [sub_resource type="Gradient" id="Gradient_2pbwi"]
 
@@ -17,17 +16,13 @@ _tower_info = ExtResource("2_8i8td")
 cost_tower_infos = Array[ExtResource("3_8i8td")]([])
 section_name = "OG_Gat"
 
-[node name="Shooter" parent="." index="3" unique_id=1614296909]
-script = ExtResource("4_7un7o")
-_projectile = null
-
 [node name="Node0" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
 position = Vector2(62, -10)
 
 [node name="Node1" type="Node2D" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="1" unique_id=1692565168]
 position = Vector2(62, 9)
 
-[node name="AimingSights" parent="Shooter" index="2" unique_id=1309291640]
+[node name="AimingSights" parent="Shooter" parent_id_path=PackedInt32Array(1614296909) index="3" unique_id=1309291640]
 visible = true
 
 [node name="RayCast2D_01" type="RayCast2D" parent="Shooter/AimingSights" index="1" unique_id=597578225]
@@ -42,13 +37,13 @@ target_position = Vector2(228, 0)
 collision_mask = 516
 collide_with_areas = true
 
-[node name="Sprite2D2" parent="Shooter" index="4" unique_id=1556594203]
-position = Vector2(31, -9.999999)
-texture = SubResource("GradientTexture2D_u7p5d")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Shooter" index="5" unique_id=1536760804]
+[node name="Sprite2D3" type="Sprite2D" parent="Shooter" parent_id_path=PackedInt32Array(1614296909) index="5" unique_id=1536760804]
 position = Vector2(31.000002, 8.999997)
 scale = Vector2(0.96875006, 0.093749985)
+texture = SubResource("GradientTexture2D_u7p5d")
+
+[node name="Sprite2D2" parent="Shooter" parent_id_path=PackedInt32Array(1614296909) index="6" unique_id=1556594203]
+position = Vector2(31, -9.999999)
 texture = SubResource("GradientTexture2D_u7p5d")
 
 [node name="Label" parent="." index="4" unique_id=1599518143]

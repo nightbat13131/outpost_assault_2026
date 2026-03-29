@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EnemyUnitInfo" format=3 uid="uid://ce802ueb7raek"]
+
+[ext_resource type="Script" uid="uid://bgsj5t26153la" path="res://entities/enemy/enemy_unit_info.gd" id="1_r6b15"]
+[ext_resource type="Script" uid="uid://dds1m7jnd4mkx" path="res://entities/shooter_shared/projectile_info.gd" id="1_t1iyv"]
+[ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/shooter_shared/radar_shape_info.gd" id="2_gov13"]
+[ext_resource type="Script" uid="uid://dld23owmrweec" path="res://entities/enemy/reload_info_enemy.gd" id="3_4tt3c"]
+
+[sub_resource type="Resource" id="Resource_3ttkx"]
+script = ExtResource("1_t1iyv")
+_projectile_type = 2
+_speed = 400.0
+_damage = 15.0
+_projectile_spread_deg = 0.0
+metadata/_custom_type_script = "uid://dds1m7jnd4mkx"
+
+[sub_resource type="Resource" id="Resource_r1bfy"]
+script = ExtResource("2_gov13")
+_radar_shape = 1
+metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
+
+[sub_resource type="Resource" id="Resource_h7gsl"]
+script = ExtResource("3_4tt3c")
+_clip_reload_base = 7.0
+_burst_delay_seconds_base = 7.0
+metadata/_custom_type_script = "uid://dld23owmrweec"
+
+[resource]
+script = ExtResource("1_r6b15")
+_radar_shape = SubResource("Resource_r1bfy")
+_reload_info = SubResource("Resource_h7gsl")
+_projectile = SubResource("Resource_3ttkx")
+_range = 537.0
+metadata/_custom_type_script = "uid://bgsj5t26153la"

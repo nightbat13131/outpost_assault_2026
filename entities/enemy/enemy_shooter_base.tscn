@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="1_pylal"]
 [ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_shared/shooter_base.tscn" id="2_c3r84"]
 [ext_resource type="Script" uid="uid://bc3v0fgsir0ya" path="res://entities/enemy/enemy_shooter.gd" id="2_nnjro"]
-[ext_resource type="Resource" uid="uid://bf2wokstj3yme" path="res://entities/enemy/og/info _gunman.tres" id="3_hpllm"]
 [ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="5_hpllm"]
 
 [sub_resource type="Gradient" id="Gradient_nnjro"]
@@ -18,9 +17,8 @@ height = 50
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="GunMan" unique_id=1456879393 instance=ExtResource("1_pylal")]
+[node name="EnemyShooter_Base" unique_id=1456879393 instance=ExtResource("1_pylal")]
 script = ExtResource("2_nnjro")
-_enemy_info = ExtResource("3_hpllm")
 
 [node name="StateChart" parent="." index="5" unique_id=411729324]
 track_in_editor = true
@@ -37,16 +35,16 @@ z_index = 100
 collision_mask = 1024
 _debugging_targets = true
 
-[node name="Node" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
+[node name="Node0" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
 position = Vector2(30, -20)
 
-[node name="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
+[node name="RayCast2D_0" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
 position = Vector2(0, -8)
 
-[node name="Sprite2D" parent="Shooter" index="3" unique_id=383995293]
+[node name="Sprite2D" parent="Shooter" index="4" unique_id=383995293]
 texture = SubResource("GradientTexture2D_kpr4w")
 
-[node name="Sprite2D2" parent="Shooter" index="4" unique_id=1556594203]
+[node name="Sprite2D2" parent="Shooter" index="5" unique_id=1556594203]
 position = Vector2(16, -19)
 scale = Vector2(0.40625, 0.078125015)
 

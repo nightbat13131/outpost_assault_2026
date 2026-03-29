@@ -2,7 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bgsj5t26153la" path="res://entities/enemy/enemy_unit_info.gd" id="1_3f2wg"]
 [ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/shooter_shared/radar_shape_info.gd" id="1_b7t8p"]
+[ext_resource type="Script" uid="uid://dds1m7jnd4mkx" path="res://entities/shooter_shared/projectile_info.gd" id="1_mfmts"]
 [ext_resource type="Resource" uid="uid://b0scq7h37fb35" path="res://entities/enemy/reload_info_gun_man.tres" id="2_n6vvl"]
+
+[sub_resource type="Resource" id="Resource_nkqax"]
+script = ExtResource("1_mfmts")
+_speed = 1000.0
+_projectile_spread_deg = 0.1
+metadata/_custom_type_script = "uid://dds1m7jnd4mkx"
 
 [sub_resource type="Resource" id="Resource_jbt0k"]
 script = ExtResource("1_b7t8p")
@@ -13,6 +20,7 @@ metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
 script = ExtResource("1_3f2wg")
 _radar_shape = SubResource("Resource_jbt0k")
 _reload_info = ExtResource("2_n6vvl")
+_projectile = SubResource("Resource_nkqax")
 _outpost_damage = 11.0
 speed = 90.0
 max_health = 25.0

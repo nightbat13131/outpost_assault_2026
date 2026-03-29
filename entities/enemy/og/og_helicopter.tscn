@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://c5cfbf3p4ar8n"]
+
+[ext_resource type="PackedScene" uid="uid://drfqmnxu83xf6" path="res://entities/enemy/enemy_shooter_base.tscn" id="1_wvqc7"]
+[ext_resource type="Script" uid="uid://dtbreejrde4op" path="res://entities/enemy/og/enemy_shooter_vehicle.gd" id="2_fw4r2"]
+[ext_resource type="Resource" uid="uid://ce802ueb7raek" path="res://entities/enemy/og/info _helicopter.tres" id="3_wvqc7"]
+
+[sub_resource type="Gradient" id="Gradient_uqvgh"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wvqc7"]
+gradient = SubResource("Gradient_uqvgh")
+width = 200
+height = 140
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvqc7"]
+radius = 64.0
+height = 198.0
+
+[sub_resource type="Gradient" id="Gradient_qc3tu"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0031055901, 0.6, 0.70434785)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rjat1"]
+gradient = SubResource("Gradient_qc3tu")
+width = 75
+height = 70
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_2pbwi"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u7p5d"]
+gradient = SubResource("Gradient_2pbwi")
+
+[node name="Helicopter" unique_id=1456879393 instance=ExtResource("1_wvqc7")]
+script = ExtResource("2_fw4r2")
+_enemy_info = ExtResource("3_wvqc7")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1421716584]
+modulate = Color(1, 0.62, 0.62, 1)
+texture = SubResource("GradientTexture2D_wvqc7")
+
+[node name="CollisionShape2D" parent="." index="4" unique_id=1025302939]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wvqc7")
+
+[node name="Shooter" parent="." index="6" unique_id=1614296909]
+_muzzle_order = 1
+_limit_roation = false
+_rotation_speed_deg_sec = 287
+metadata/_edit_group_ = true
+
+[node name="MuzzleFlash" parent="Shooter" index="1" unique_id=499927114]
+position = Vector2(80, 0)
+
+[node name="Node0" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
+position = Vector2(78, 0)
+
+[node name="AimingSights" parent="Shooter" index="3" unique_id=1309291640]
+visible = true
+
+[node name="RayCast2D_0" parent="Shooter/AimingSights" index="0" unique_id=309270866]
+position = Vector2(35, 0)
+
+[node name="RayCast2D_1" type="RayCast2D" parent="Shooter/AimingSights" index="1" unique_id=880546904]
+position = Vector2(50, -63)
+target_position = Vector2(228, 0)
+collision_mask = 0
+collide_with_areas = true
+
+[node name="RayCast2D_2" type="RayCast2D" parent="Shooter/AimingSights" index="2" unique_id=883598038]
+position = Vector2(50, 62)
+target_position = Vector2(228, 0)
+collision_mask = 0
+collide_with_areas = true
+
+[node name="Sprite2D" parent="Shooter" index="4" unique_id=383995293]
+texture = SubResource("GradientTexture2D_rjat1")
+
+[node name="Sprite2D2" parent="Shooter" index="5" unique_id=1556594203]
+position = Vector2(24.999992, -62)
+scale = Vector2(0.78125, 0.17968747)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Shooter" index="6" unique_id=549108355]
+position = Vector2(24.999998, 62)
+scale = Vector2(0.78125, 0.17968747)
+texture = SubResource("GradientTexture2D_u7p5d")
+
+[node name="Label" type="Label" parent="." index="7" unique_id=483432879]
+offset_left = -100.0
+offset_top = 47.0
+offset_right = -21.0
+offset_bottom = 70.0
+text = "helicopter"
+
+[node name="VBoxContainer" parent="UIAnchor" parent_id_path=PackedInt32Array(2101593919) index="0" unique_id=1790658355]
+offset_left = -21.0
+offset_top = 70.0
+offset_right = 19.0
+offset_bottom = 78.0
+
+[editable path="Shooter"]

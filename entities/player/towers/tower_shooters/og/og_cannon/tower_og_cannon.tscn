@@ -6,11 +6,6 @@
 [node name="Tower_OG_Cannon" unique_id=1226539165 instance=ExtResource("1_18qch")]
 _tower_info = ExtResource("2_ppo4o")
 
-[node name="Shooter" parent="." index="3" unique_id=1614296909]
-_projectile = null
-_projectile_base_speed = 800.0
-_projectile_base_damage = 5.0
-
 [node name="Label" parent="." index="4" unique_id=1599518143]
 text = "OG_Cannon"
 
