@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EnemyUnitInfo" format=3 uid="uid://bx0wmmu2ynumd"]
+
+[ext_resource type="Script" uid="uid://dds1m7jnd4mkx" path="res://entities/shooter_shared/projectile_info.gd" id="1_cio0d"]
+[ext_resource type="Script" uid="uid://bxhv4xwnwl2jc" path="res://entities/shooter_shared/radar_shape_info.gd" id="1_ecec8"]
+[ext_resource type="Script" uid="uid://bgsj5t26153la" path="res://entities/enemy/enemy_unit_info.gd" id="1_remxi"]
+[ext_resource type="Script" uid="uid://dld23owmrweec" path="res://entities/enemy/reload_info_enemy.gd" id="3_2cbf8"]
+
+[sub_resource type="Resource" id="Resource_pr3ip"]
+script = ExtResource("1_cio0d")
+metadata/_custom_type_script = "uid://dds1m7jnd4mkx"
+
+[sub_resource type="Resource" id="Resource_2m0ql"]
+script = ExtResource("1_ecec8")
+_radar_shape = 2
+_arch_degrees = 45.0
+metadata/_custom_type_script = "uid://bxhv4xwnwl2jc"
+
+[sub_resource type="Resource" id="Resource_y7cgn"]
+script = ExtResource("3_2cbf8")
+_clip_ammo_size_base = 2
+_clip_count = 6
+metadata/_custom_type_script = "uid://dld23owmrweec"
+
+[resource]
+script = ExtResource("1_remxi")
+_radar_shape = SubResource("Resource_2m0ql")
+_reload_info = SubResource("Resource_y7cgn")
+_projectile = SubResource("Resource_pr3ip")
+speed = 145.0
+max_health = 20.0
+kill_reward = 60.0
+metadata/_custom_type_script = "uid://bgsj5t26153la"

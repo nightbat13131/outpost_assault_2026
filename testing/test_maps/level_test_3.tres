@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://busxt7plco4qy"]
+
+[ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_ex06s"]
+
+[resource]
+script = ExtResource("1_ex06s")
+level_name = "Camera Test"
+level_uid = "uid://bvknqt5wqob0u"
+starting_gold = 1002.0
+metadata/_custom_type_script = "uid://u6pais7e54pl"

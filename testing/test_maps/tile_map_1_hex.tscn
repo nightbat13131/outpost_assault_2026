@@ -1,103 +1,52 @@
 [gd_scene format=4 uid="uid://4is0buklh5kj"]
 
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="1_4rt3m"]
+[ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_ciex5"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="2_7iiai"]
+[ext_resource type="Resource" uid="uid://dna5x61bu20l1" path="res://testing/test_maps/level_test_1.tres" id="2_81pk1"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="3_p8ga8"]
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="4_4m4l8"]
-[ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_7iiai"]
 [ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://testing/test_scripts/testing_nav_target.gd" id="5_dfnfr"]
 
-[sub_resource type="Resource" id="Resource_p8ga8"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[node name="Level_HexTest" type="Node2D" unique_id=1265585186]
+script = ExtResource("1_ciex5")
+_level_info = ExtResource("2_81pk1")
+metadata/_custom_type_script = "uid://dkbdphlfllran"
 
-[sub_resource type="Resource" id="Resource_4m4l8"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_7iiai"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_S")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_dfnfr"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_7ahur"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_qfweg"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_82yi8"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_E")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_28lgy"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_8piwk"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_S")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_cpxmo"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_E")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_wt3e8"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_snlfm"]
-script = ExtResource("4_7iiai")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[node name="TileMapLogicLayer" type="TileMapLayer" unique_id=1836936977]
+[node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]
 tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAEAAAAHAAEAAAAAAAEAAAAGAAEAAAAAAAEAAAAFAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAADAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAABAAQAAAAAAAEAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAIAAAAIAAAAAAAAAAIAAAAHAAAAAAAAAAIAAAAGAAAAAAAAAAIAAAAFAAAAAAAAAAIAAAAEAAAAAAAAAAIAAAADAAAAAAAAAAIAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAgAAAAAAAIAAAABAAgAAAAAAAEAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAAAAAIAAAAOAAcAAAAAAAIAAAAOAAYAAAAAAAIAAAAOAAUAAAAAAAIAAAAOAAQAAAAAAAIAAAAOAAMAAAAAAAIAAAAOAAIAAAAAAAIAAAAOAAEAAAAAAAIAAAAOAAAAAAAAAAIAAAANAAAAAAAAAAIAAAAMAAAAAAAAAAIAAAALAAAAAAAAAAIAAAAKAAAAAAAAAAIAAAABAAUAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAAAAAACAAcAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAABAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAFAAUAAAAAAAEAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAEAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAEAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAUAAAAAAAEAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAEAAAAJAAUAAAAAAAEAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAUAAAAAAAEAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAEAAAALAAEAAAAAAAEAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAALAAQAAAABAAAAAAALAAUAAAABAAAAAAALAAYAAAABAAAAAAALAAcAAAABAAAAAAAMAAEAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAAAAAAMAAQAAAABAAAAAAAMAAUAAAABAAAAAAAMAAYAAAABAAAAAAAMAAcAAAABAAAAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAD//wEAAAAAAAIAAAD//wIAAAAAAAIAAAD//wMAAAAAAAIAAAD//wQAAAAAAAIAAAD//wUAAAAAAAIAAAD//wYAAAAAAAIAAAD//wcAAAAAAAIAAAD//wgAAAAAAAIAAAD//wsAAAAAAAIAAAAAAAsAAAAAAAIAAAABAAsAAAAAAAIAAAACAAsAAAAAAAIAAAADAAsAAAAAAAIAAAAEAAsAAAAAAAIAAAAFAAsAAAAAAAIAAAAGAAsAAAAAAAIAAAAHAAsAAAAAAAIAAAAIAAsAAAAAAAIAAAAJAAsAAAAAAAIAAAAKAAsAAAAAAAIAAAALAAsAAAAAAAIAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAPAAoAAAAAAAIAAAAOAAoAAAAAAAIAAAANAAoAAAAAAAIAAAAMAAoAAAAAAAIAAAALAAoAAAAAAAIAAAAKAAoAAAAAAAIAAAAJAAoAAAAAAAIAAAAIAAoAAAAAAAIAAAAHAAoAAAAAAAIAAAAGAAoAAAAAAAIAAAAFAAoAAAAAAAIAAAAEAAoAAAAAAAIAAAADAAoAAAAAAAIAAAACAAoAAAAAAAIAAAABAAoAAAAAAAIAAAAAAAoAAAAAAAIAAAD//woAAAAAAAIAAAD//wkAAAAAAAIAAAAAAAkAAAAAAAEAAAABAAkAAAAAAAEAAAACAAkAAAAAAAEAAAADAAkAAAAAAAEAAAAEAAkAAAAAAAEAAAAFAAkAAAAAAAEAAAAGAAkAAAAAAAEAAAAHAAkAAAAAAAEAAAAIAAkAAAAAAAEAAAAJAAkAAAAAAAEAAAAKAAkAAAAAAAEAAAALAAkAAAAAAAEAAAAMAAkAAAAAAAEAAAANAAkAAAAAAAEAAAAOAAkAAAAAAAIAAAAPAAgAAAAAAAIAAAAPAAYAAAAAAAIAAAAPAAQAAAAAAAIAAAAPAAIAAAAAAAIAAAAPAAAAAAAAAAIAAAAOAP//AAAAAAIAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAABAP//AAAAAAIAAAACAP//AAAAAAIAAAADAP//AAAAAAIAAAAEAP//AAAAAAIAAAAFAP//AAAAAAIAAAAGAP//AAAAAAIAAAAHAP//AAAAAAIAAAAIAP//AAAAAAIAAAAJAP//AAAAAAIAAAAKAP//AAAAAAIAAAALAP//AAAAAAIAAAAMAP//AAAAAAIAAAANAP//AAAAAAIAAAD//wAAAAAAAAIAAAA=")
 tile_set = ExtResource("1_4rt3m")
 script = ExtResource("2_7iiai")
 
-[node name="NavPoint_NW" type="Marker2D" parent="." unique_id=938499847]
-position = Vector2(360, 363)
+[node name="NavPoint_NW" type="Marker2D" parent="." unique_id=938499847 node_paths=PackedStringArray("next_targets")]
+position = Vector2(404, 310)
 script = ExtResource("3_p8ga8")
-next_target_weights = Array[ExtResource("4_7iiai")]([SubResource("Resource_p8ga8"), SubResource("Resource_4m4l8")])
+next_targets = [NodePath("../NavPoint_SW"), NodePath("../NavPoint_N")]
+target_distance = 65.0
 
-[node name="NavPoint_SW" type="Marker2D" parent="." unique_id=1424122096]
-position = Vector2(323, 835)
+[node name="NavPoint_SW" type="Marker2D" parent="." unique_id=1424122096 node_paths=PackedStringArray("next_targets")]
+position = Vector2(403, 788)
 script = ExtResource("3_p8ga8")
-next_target_weights = Array[ExtResource("4_7iiai")]([SubResource("Resource_7iiai"), SubResource("Resource_dfnfr")])
-target_distance = 50.0
+next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_S")]
+target_distance = 75.0
 
-[node name="NavPoint_S" type="Marker2D" parent="." unique_id=1070101137]
-position = Vector2(976, 854)
+[node name="NavPoint_S" type="Marker2D" parent="." unique_id=1070101137 node_paths=PackedStringArray("next_targets")]
+position = Vector2(1020, 807)
 script = ExtResource("3_p8ga8")
-next_target_weights = Array[ExtResource("4_7iiai")]([SubResource("Resource_7ahur"), SubResource("Resource_qfweg"), SubResource("Resource_82yi8")])
+next_targets = [NodePath("../NavPoint_N"), NodePath("../NavPoint_SW"), NodePath("../NavPoint_E")]
+target_distance = 60.0
 
-[node name="NavPoint_N" type="Marker2D" parent="." unique_id=612239805]
-position = Vector2(1023, 263)
+[node name="NavPoint_N" type="Marker2D" parent="." unique_id=612239805 node_paths=PackedStringArray("next_targets")]
+position = Vector2(1008, 260)
 script = ExtResource("3_p8ga8")
-next_target_weights = Array[ExtResource("4_7iiai")]([SubResource("Resource_28lgy"), SubResource("Resource_8piwk"), SubResource("Resource_cpxmo")])
+next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_S"), NodePath("../NavPoint_E")]
+target_distance = 60.0
 
-[node name="NavPoint_E" type="Marker2D" parent="." unique_id=1847471354]
-position = Vector2(1594, 608)
+[node name="NavPoint_E" type="Marker2D" parent="." unique_id=1847471354 node_paths=PackedStringArray("next_targets")]
+position = Vector2(1577, 559)
 script = ExtResource("3_p8ga8")
-next_target_weights = Array[ExtResource("4_7iiai")]([SubResource("Resource_wt3e8"), SubResource("Resource_snlfm")])
-target_distance = 100.0
+next_targets = [NodePath("../NavPoint_S"), NodePath("../NavPoint_N")]
+target_distance = 90.0
 
 [node name="Enemy" parent="." unique_id=1456879393 instance=ExtResource("4_4m4l8")]
 position = Vector2(315, 340)

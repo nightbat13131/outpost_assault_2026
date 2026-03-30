@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="1_pylal"]
 [ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_shared/shooter_base.tscn" id="2_c3r84"]
 [ext_resource type="Script" uid="uid://bc3v0fgsir0ya" path="res://entities/enemy/enemy_shooter.gd" id="2_nnjro"]
+[ext_resource type="Resource" uid="uid://bx0wmmu2ynumd" path="res://entities/enemy/test_enemy_unit_shooter.tres" id="3_tusys"]
 [ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="5_hpllm"]
 
 [sub_resource type="Gradient" id="Gradient_nnjro"]
@@ -19,13 +20,13 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="EnemyShooter_Base" unique_id=1456879393 instance=ExtResource("1_pylal")]
 script = ExtResource("2_nnjro")
+_enemy_info = ExtResource("3_tusys")
 
 [node name="StateChart" parent="." index="5" unique_id=411729324]
 track_in_editor = true
 
 [node name="Shooter" parent="." index="6" unique_id=1614296909 instance=ExtResource("2_c3r84")]
 unique_name_in_owner = true
-_projectile_base_speed = 1000.0
 _limit_roation = true
 _rotation_limit_deg = 80.0
 _rotation_speed_deg_sec = 120

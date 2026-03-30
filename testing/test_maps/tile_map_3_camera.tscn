@@ -1,114 +1,88 @@
 [gd_scene format=4 uid="uid://bvknqt5wqob0u"]
 
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="1_087yg"]
+[ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_vsoyy"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="2_l5omd"]
+[ext_resource type="Resource" uid="uid://busxt7plco4qy" path="res://testing/test_maps/level_test_3.tres" id="2_vhete"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="3_tieqq"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="4_747j4"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="5_l7wik"]
+[ext_resource type="Script" uid="uid://boh4o2joni42q" path="res://testing/test_maps/test_camera_index.gd" id="5_vhete"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="6_qmthx"]
-[ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="7_a1ku7"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="8_g3vga"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="9_2bwjw"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="10_85e20"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://entities/enemy/spawners/spawner_building_1x1.tscn" id="11_sevtk"]
+[ext_resource type="Script" uid="uid://ced58t3iw2o3h" path="res://architecture/camera/fog_of_war_via_control_thing.gd" id="12_audif"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_l5omd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
 
-[sub_resource type="Resource" id="Resource_5w2jj"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="Gradient" id="Gradient_mfrex"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_qj5ga"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_33ny3"]
+gradient = SubResource("Gradient_mfrex")
+fill = 1
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0.3, 0.3)
 
-[sub_resource type="Resource" id="Resource_obju6"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="Gradient" id="Gradient_wgdyw"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
-[sub_resource type="Resource" id="Resource_oisr6"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_S")
-weight = 5.0
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vsoyy"]
+gradient = SubResource("Gradient_wgdyw")
+fill_to = Vector2(0, 1)
 
-[sub_resource type="Resource" id="Resource_3qehr"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="Gradient" id="Gradient_dm0mq"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_j7vok"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vhete"]
+gradient = SubResource("Gradient_dm0mq")
+fill = 1
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.7, 0.3)
 
-[sub_resource type="Resource" id="Resource_okpnb"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_E")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="Gradient" id="Gradient_oxtcp"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
-[sub_resource type="Resource" id="Resource_k4ynb"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_enrm6"]
+gradient = SubResource("Gradient_oxtcp")
 
-[sub_resource type="Resource" id="Resource_yd7jv"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_S")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="Gradient" id="Gradient_7p1sr"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_avvtc"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_E")
-weight = 3.0
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_axjm0"]
+gradient = SubResource("Gradient_7p1sr")
 
-[sub_resource type="Resource" id="Resource_5i2wj"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="Gradient" id="Gradient_exk40"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_bcd2k"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_438oj"]
+gradient = SubResource("Gradient_exk40")
+fill = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0.3, 0.7)
 
-[sub_resource type="Resource" id="Resource_l0owh"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../NavPoint_SE")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="Gradient" id="Gradient_uip3q"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
-[sub_resource type="Resource" id="Resource_ti3ma"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../../../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_snibe"]
+gradient = SubResource("Gradient_uip3q")
+fill_from = Vector2(1, 1)
 
-[sub_resource type="Resource" id="Resource_16vwn"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../../../../NavPoint_E")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="Gradient" id="Gradient_g74ev"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_gluir"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../../../../NavPoint_S")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ij4tt"]
+gradient = SubResource("Gradient_g74ev")
+fill = 1
 
-[sub_resource type="Resource" id="Resource_0pcpm"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../../../../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_n5djh"]
-script = ExtResource("7_a1ku7")
-point_path = NodePath("../../../../NavPoint_S")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[node name="Level" type="Node2D" unique_id=476098653]
+[node name="Level" type="Node2D" unique_id=488991574]
+script = ExtResource("1_vsoyy")
+_level_info = ExtResource("2_vhete")
+metadata/_custom_type_script = "uid://dkbdphlfllran"
 
 [node name="Testing" type="Node" parent="." unique_id=1056903005]
 
@@ -127,6 +101,14 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Testing/Test_KillZone" unique_id=1434252941]
 shape = SubResource("CircleShape2D_oisr6")
+
+[node name="SpinBox" type="SpinBox" parent="Testing" unique_id=950601344 node_paths=PackedStringArray("_camera_binder")]
+offset_left = 652.0
+offset_top = 441.0
+offset_right = 738.5
+offset_bottom = 472.0
+script = ExtResource("5_vhete")
+_camera_binder = NodePath("../../CameraBinder")
 
 [node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]
 tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAEAAAAHAAEAAAAAAAEAAAAGAAEAAAAAAAEAAAAFAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAADAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAABAAQAAAAAAAEAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAIAAAAIAAAAAAAAAAIAAAAHAAAAAAAAAAIAAAAGAAAAAAAAAAIAAAAFAAAAAAAAAAIAAAAEAAAAAAAAAAIAAAADAAAAAAAAAAIAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAgAAAAAAAIAAAABAAgAAAAAAAEAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAAAAAIAAAAOAAcAAAAAAAIAAAAOAAYAAAAAAAIAAAAOAAUAAAAAAAIAAAAOAAQAAAAAAAIAAAAOAAMAAAAAAAIAAAAOAAIAAAAAAAIAAAAOAAEAAAAAAAIAAAAOAAAAAAAAAAIAAAANAAAAAAAAAAIAAAAMAAAAAAAAAAIAAAALAAAAAAAAAAIAAAAKAAAAAAAAAAIAAAABAAUAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAAAAAACAAcAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAABAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAFAAUAAAAAAAEAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAEAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAEAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAUAAAAAAAEAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAEAAAAJAAUAAAAAAAEAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAUAAAAAAAEAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAEAAAALAAEAAAAAAAEAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAALAAQAAAABAAAAAAALAAUAAAABAAAAAAALAAYAAAABAAAAAAALAAcAAAABAAAAAAAMAAEAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAAAAAAMAAQAAAABAAAAAAAMAAUAAAABAAAAAAAMAAYAAAABAAAAAAAMAAcAAAABAAAAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAD//wEAAAAAAAIAAAD//wIAAAAAAAIAAAD//wMAAAAAAAIAAAD//wQAAAAAAAIAAAD//wUAAAAAAAIAAAD//wYAAAAAAAIAAAD//wcAAAAAAAIAAAD//wgAAAAAAAIAAAD//wsAAAAAAAIAAAAAAAsAAAAAAAIAAAABAAsAAAAAAAIAAAACAAsAAAAAAAIAAAADAAsAAAAAAAIAAAAEAAsAAAAAAAIAAAAFAAsAAAAAAAIAAAAGAAsAAAAAAAIAAAAHAAsAAAAAAAIAAAAIAAsAAAAAAAIAAAAJAAsAAAAAAAIAAAAKAAsAAAAAAAIAAAALAAsAAAAAAAIAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAPAAoAAAAAAAIAAAAOAAoAAAAAAAIAAAANAAoAAAAAAAIAAAAMAAoAAAAAAAIAAAALAAoAAAAAAAIAAAAKAAoAAAAAAAIAAAAJAAoAAAAAAAIAAAAIAAoAAAAAAAIAAAAHAAoAAAAAAAIAAAAGAAoAAAAAAAIAAAAFAAoAAAAAAAIAAAAEAAoAAAAAAAIAAAADAAoAAAAAAAIAAAACAAoAAAAAAAIAAAABAAoAAAAAAAIAAAAAAAoAAAAAAAIAAAD//woAAAAAAAIAAAD//wkAAAAAAAIAAAAAAAkAAAAAAAEAAAABAAkAAAAAAAEAAAACAAkAAAAAAAEAAAADAAkAAAAAAAEAAAAEAAkAAAAAAAEAAAAFAAkAAAAAAAEAAAAGAAkAAAAAAAEAAAAHAAkAAAAAAAEAAAAIAAkAAAAAAAEAAAAJAAkAAAAAAAEAAAAKAAkAAAAAAAEAAAALAAkAAAAAAAEAAAAMAAkAAAAAAAEAAAANAAkAAAAAAAEAAAAOAAkAAAAAAAIAAAAPAAgAAAAAAAIAAAAPAAYAAAAAAAIAAAAPAAQAAAAAAAIAAAAPAAIAAAAAAAIAAAAPAAAAAAAAAAIAAAAOAP//AAAAAAIAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAABAP//AAAAAAIAAAACAP//AAAAAAIAAAADAP//AAAAAAIAAAAEAP//AAAAAAIAAAAFAP//AAAAAAIAAAAGAP//AAAAAAIAAAAHAP//AAAAAAIAAAAIAP//AAAAAAIAAAAJAP//AAAAAAIAAAAKAP//AAAAAAIAAAALAP//AAAAAAIAAAAMAP//AAAAAAIAAAANAP//AAAAAAIAAAD//wAAAAAAAAIAAAA=")
@@ -148,32 +130,27 @@ damage_amount = 23.0
 unique_name_in_owner = true
 position = Vector2(360, 363)
 script = ExtResource("6_qmthx")
-next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_5w2jj"), SubResource("Resource_qj5ga")])
 
 [node name="NavPoint_SW" type="Node2D" parent="TileMapLogicLayer" unique_id=1855747950]
 unique_name_in_owner = true
 position = Vector2(321, 835)
 script = ExtResource("6_qmthx")
-next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_obju6"), SubResource("Resource_oisr6")])
 target_distance = 50.0
 
 [node name="NavPoint_S" type="Node2D" parent="TileMapLogicLayer" unique_id=1426916265]
 unique_name_in_owner = true
 position = Vector2(979, 853)
 script = ExtResource("6_qmthx")
-next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_3qehr"), SubResource("Resource_j7vok"), SubResource("Resource_okpnb")])
 
 [node name="NavPoint_N" type="Node2D" parent="TileMapLogicLayer" unique_id=998014482]
 unique_name_in_owner = true
 position = Vector2(1023, 263)
 script = ExtResource("6_qmthx")
-next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_k4ynb"), SubResource("Resource_yd7jv"), SubResource("Resource_avvtc")])
 
 [node name="NavPoint_E" type="Node2D" parent="TileMapLogicLayer" unique_id=274391533]
 unique_name_in_owner = true
 position = Vector2(1594, 608)
 script = ExtResource("6_qmthx")
-next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_5i2wj"), SubResource("Resource_bcd2k"), SubResource("Resource_l0owh")])
 target_distance = 100.0
 
 [node name="NavPoint_SE" type="Node2D" parent="TileMapLogicLayer" unique_id=249487478]
@@ -199,19 +176,73 @@ unique_name_in_owner = true
 position = Vector2(30, 18)
 script = ExtResource("10_85e20")
 unit_types = Array[int]([100])
-next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_ti3ma")])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnerBuilding" parent="TileMapLogicLayer/SpawnManager" unique_id=2112157350 instance=ExtResource("11_sevtk")]
 position = Vector2(1600, 307)
 _pulse_per_wave = 5
 
-[node name="Spawn_E" parent="TileMapLogicLayer/SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
-next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_16vwn"), SubResource("Resource_gluir")])
-
-[node name="Spawn_W" parent="TileMapLogicLayer/SpawnManager/SpawnerBuilding/SpawnPointBuilding" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
-next_target_weights = Array[ExtResource("7_a1ku7")]([SubResource("Resource_0pcpm"), SubResource("Resource_n5djh")])
-
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("12_l5omd")]
 
+[node name="Fog of war via control thing" type="GridContainer" parent="CameraBinder" unique_id=1085206693]
+self_modulate = Color(1, 1, 1, 0.4627451)
+offset_left = -50.0
+offset_top = -66.0
+offset_right = 2039.0
+offset_bottom = 1411.0
+mouse_filter = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+script = ExtResource("12_audif")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=2084312104]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_33ny3")
+
+[node name="TextureRect4" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=1052516530]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_vsoyy")
+
+[node name="TextureRect2" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=804905933]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_vhete")
+
+[node name="TextureRect3" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=210726402]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_enrm6")
+
+[node name="Control" type="Control" parent="CameraBinder/Fog of war via control thing" unique_id=457858235]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect5" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=1797657364]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_axjm0")
+
+[node name="TextureRect6" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=18044718]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_438oj")
+
+[node name="TextureRect7" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=669021519]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_snibe")
+
+[node name="TextureRect8" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=157766216]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_ij4tt")
+
 [editable path="TileMapLogicLayer/SpawnManager/SpawnerBuilding"]
+[editable path="TileMapLogicLayer/SpawnManager/SpawnerBuilding/Building"]

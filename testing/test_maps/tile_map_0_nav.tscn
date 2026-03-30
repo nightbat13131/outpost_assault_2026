@@ -3,75 +3,10 @@
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_3jtwd"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="1_nq712"]
 [ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset_128.tres" id="1_wcnh8"]
-[ext_resource type="Resource" uid="uid://b0sq1cbi5tey2" path="res://testing/test_maps/level_0.tres" id="2_0db7x"]
-[ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="4_5m4o8"]
+[ext_resource type="Resource" uid="uid://b0sq1cbi5tey2" path="res://testing/test_maps/level_test_0.tres" id="2_0db7x"]
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="4_rbfhg"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="9_wxrse"]
 [ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://testing/test_scripts/testing_nav_target.gd" id="10_abknn"]
-
-[sub_resource type="Resource" id="Resource_5m4o8"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_w6k3g"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_p5ln4"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_rljvs"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_S")
-weight = 10.0
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_jx64k"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_N")
-weight = 3.0
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_nl8ey"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_E")
-weight = 5.0
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_pftil"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_4tk5l"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_dba86"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_S")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_q63uy"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_E")
-weight = 5.0
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_r6kwo"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_bfwus"]
-script = ExtResource("4_5m4o8")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
 [node name="Level" type="Node2D" unique_id=457305952]
 script = ExtResource("1_3jtwd")
@@ -84,31 +19,34 @@ tile_set = ExtResource("1_wcnh8")
 script = ExtResource("1_nq712")
 metadata/_edit_lock_ = true
 
-[node name="NavPoint_NW" type="Marker2D" parent="TileMapLogicLayer" unique_id=938499847]
+[node name="NavPoint_NW" type="Marker2D" parent="TileMapLogicLayer" unique_id=938499847 node_paths=PackedStringArray("next_targets")]
 position = Vector2(360, 363)
 script = ExtResource("9_wxrse")
-next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_5m4o8"), SubResource("Resource_w6k3g")])
+next_targets = [NodePath("../NavPoint_N"), NodePath("../NavPoint_SW")]
+target_distance = 100.0
 
-[node name="NavPoint_SW" type="Marker2D" parent="TileMapLogicLayer" unique_id=1424122096]
+[node name="NavPoint_SW" type="Marker2D" parent="TileMapLogicLayer" unique_id=1424122096 node_paths=PackedStringArray("next_targets")]
 position = Vector2(323, 835)
 script = ExtResource("9_wxrse")
-next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_p5ln4"), SubResource("Resource_rljvs")])
+next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_S")]
 target_distance = 50.0
 
-[node name="NavPoint_S" type="Marker2D" parent="TileMapLogicLayer" unique_id=1070101137]
-position = Vector2(976, 854)
+[node name="NavPoint_S" type="Marker2D" parent="TileMapLogicLayer" unique_id=1070101137 node_paths=PackedStringArray("next_targets")]
+position = Vector2(958, 827)
 script = ExtResource("9_wxrse")
-next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_jx64k"), SubResource("Resource_nl8ey"), SubResource("Resource_pftil")])
+next_targets = [NodePath("../NavPoint_SW"), NodePath("../NavPoint_N"), NodePath("../NavPoint_E")]
+target_distance = 60.0
 
-[node name="NavPoint_N" type="Marker2D" parent="TileMapLogicLayer" unique_id=612239805]
-position = Vector2(963, 320)
+[node name="NavPoint_N" type="Marker2D" parent="TileMapLogicLayer" unique_id=612239805 node_paths=PackedStringArray("next_targets")]
+position = Vector2(958, 333)
 script = ExtResource("9_wxrse")
-next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_4tk5l"), SubResource("Resource_dba86"), SubResource("Resource_q63uy")])
+next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_S"), NodePath("../NavPoint_E")]
+target_distance = 65.0
 
-[node name="NavPoint_E" type="Marker2D" parent="TileMapLogicLayer" unique_id=1847471354]
-position = Vector2(1594, 608)
+[node name="NavPoint_E" type="Marker2D" parent="TileMapLogicLayer" unique_id=1847471354 node_paths=PackedStringArray("next_targets")]
+position = Vector2(1531, 563)
 script = ExtResource("9_wxrse")
-next_target_weights = Array[ExtResource("4_5m4o8")]([SubResource("Resource_r6kwo"), SubResource("Resource_bfwus")])
+next_targets = [NodePath("../NavPoint_N"), NodePath("../NavPoint_S")]
 target_distance = 100.0
 
 [node name="Enemy" parent="TileMapLogicLayer" unique_id=1456879393 instance=ExtResource("4_rbfhg")]

@@ -50,7 +50,6 @@ func set_radar_shape(shape_info: RadarShapeInfo) -> void:
 	if _limit_roation:
 		## TODO: consider the connection between limiting rotation and radar shape
 		_radar_shape._arch_degrees = _rotation_limit_deg
-	
 
 func set_reload_info(reload_info: ReloadInfo) -> void:
 	_reload_info = reload_info

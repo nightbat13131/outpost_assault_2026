@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_5518w"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="1_iw66m"]
-[ext_resource type="Resource" uid="uid://unevfi1dldfn" path="res://testing/test_maps/level_6.tres" id="2_d8ypc"]
+[ext_resource type="Resource" uid="uid://unevfi1dldfn" path="res://testing/test_maps/level_test_6.tres" id="2_d8ypc"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="2_dxpro"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="3_k7ba1"]
 [ext_resource type="Script" uid="uid://cslh5sayhqyfm" path="res://testing/test_scripts/test_trigger_repair.gd" id="4_5518w"]
 [ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset_128.tres" id="5_a25qy"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="6_xfd45"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="7_0dutj"]
-[ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="8_ci7bx"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="9_y7de0"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="10_byvmy"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="11_tsdtp"]
@@ -26,103 +25,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
-
-[sub_resource type="Resource" id="Resource_5w2jj"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_qj5ga"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_obju6"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_oisr6"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_S")
-weight = 5.0
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_3qehr"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_j7vok"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_okpnb"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_E")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_k4ynb"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_yd7jv"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_S")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_avvtc"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_E")
-weight = 3.0
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_5i2wj"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_bcd2k"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_l0owh"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../NavPoint_SE")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_ti3ma"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../../../NavPoint_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_rahqt"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../../../../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_h1wdl"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../../../../NavPoint_S")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_bfq08"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../../../../NavPoint_E")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_vdq2y"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../../../../NavPoint_N")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_rv4v8"]
-script = ExtResource("8_ci7bx")
-point_path = NodePath("../../../../NavPoint_E")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
 
 [sub_resource type="Resource" id="Resource_qmthx"]
 script = ExtResource("15_fm1tj")
@@ -255,44 +157,39 @@ tile_set = ExtResource("5_a25qy")
 script = ExtResource("6_xfd45")
 metadata/_edit_lock_ = true
 
-[node name="NavPoint_NW" type="Node2D" parent="." unique_id=401102862 node_paths=PackedStringArray("next_targets")]
+[node name="NavPoint_NW" type="Node2D" parent="TileMapLogicLayer" unique_id=401102862 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(382, 385)
 script = ExtResource("7_0dutj")
 next_targets = [NodePath("../NavPoint_N"), NodePath("../NavPoint_SW")]
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_5w2jj"), SubResource("Resource_qj5ga")])
 
-[node name="NavPoint_SW" type="Node2D" parent="." unique_id=1855747950 node_paths=PackedStringArray("next_targets")]
+[node name="NavPoint_SW" type="Node2D" parent="TileMapLogicLayer" unique_id=1855747950 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(334, 1084)
 script = ExtResource("7_0dutj")
 next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_S")]
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_obju6"), SubResource("Resource_oisr6")])
 target_distance = 50.0
 
-[node name="NavPoint_S" type="Node2D" parent="." unique_id=1426916265 node_paths=PackedStringArray("next_targets")]
+[node name="NavPoint_S" type="Node2D" parent="TileMapLogicLayer" unique_id=1426916265 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(980, 1111)
 script = ExtResource("7_0dutj")
 next_targets = [NodePath("../NavPoint_SW"), NodePath("../NavPoint_N"), NodePath("../NavPoint_SE")]
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_3qehr"), SubResource("Resource_j7vok"), SubResource("Resource_okpnb")])
 
-[node name="NavPoint_N" type="Node2D" parent="." unique_id=998014482 node_paths=PackedStringArray("next_targets")]
+[node name="NavPoint_N" type="Node2D" parent="TileMapLogicLayer" unique_id=998014482 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(1022, 320)
 script = ExtResource("7_0dutj")
 next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_S"), NodePath("../NavPoint_E")]
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_k4ynb"), SubResource("Resource_yd7jv"), SubResource("Resource_avvtc")])
 
-[node name="NavPoint_E" type="Node2D" parent="." unique_id=274391533 node_paths=PackedStringArray("next_targets")]
+[node name="NavPoint_E" type="Node2D" parent="TileMapLogicLayer" unique_id=274391533 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(1591, 816)
 script = ExtResource("7_0dutj")
 next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_SW"), NodePath("../NavPoint_S"), NodePath("../NavPoint_N"), NodePath("../NavPoint_SE")]
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_5i2wj"), SubResource("Resource_bcd2k"), SubResource("Resource_l0owh")])
 target_distance = 100.0
 
-[node name="NavPoint_SE" type="Node2D" parent="." unique_id=249487478 node_paths=PackedStringArray("next_targets")]
+[node name="NavPoint_SE" type="Node2D" parent="TileMapLogicLayer" unique_id=249487478 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 position = Vector2(1732, 1104)
 script = ExtResource("7_0dutj")
@@ -319,8 +216,7 @@ unique_name_in_owner = true
 position = Vector2(-8, 48)
 script = ExtResource("11_tsdtp")
 unit_types = Array[int]([100])
-next_targets = [NodePath("../../../NavPoint_NW")]
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_ti3ma")])
+next_targets = [NodePath("../../../TileMapLogicLayer/NavPoint_NW")]
 target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
@@ -334,15 +230,9 @@ metadata/_edit_group_ = true
 position = Vector2(-89, -74)
 is_disabled = true
 
-[node name="Spawn_NW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="1" unique_id=971029430]
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_rahqt")])
-
 [node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="2" unique_id=588862786]
 position = Vector2(-92, 57)
 is_disabled = true
-
-[node name="Spawn_SW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="3" unique_id=194821967]
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_h1wdl")])
 
 [node name="FoundationPoints" parent="SpawnManager/SpawnerBuilding_1x2" index="2" unique_id=725093312]
 _foundation_type = 1
@@ -353,12 +243,8 @@ _hard_spawn_cap = 1
 _spawn_speed = 2.0
 metadata/_edit_group_ = true
 
-[node name="Spawn_E" parent="SpawnManager/SpawnerBuilding_1x1/SpawnPointPerson" parent_id_path=PackedInt32Array(806376720, 1438190680) index="0" unique_id=100200813]
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_bfq08")])
-
 [node name="Spawn_W" parent="SpawnManager/SpawnerBuilding_1x1/SpawnPointPerson" parent_id_path=PackedInt32Array(806376720, 1438190680) index="1" unique_id=971029430]
 position = Vector2(-93, 13)
-next_target_weights = Array[ExtResource("8_ci7bx")]([SubResource("Resource_vdq2y"), SubResource("Resource_rv4v8")])
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("14_u04pn")]
 debug = false
@@ -396,18 +282,18 @@ _cost_info = ExtResource("20_c8ieg")
 [node name="TowerFoundation" parent="TowerHolder" unique_id=93634172 instance=ExtResource("18_lgomy")]
 position = Vector2(835, 577)
 upgrades = SubResource("Resource_c8ieg")
-starting_tower = -10
 
-[node name="TowerFoundation4" parent="TowerHolder" unique_id=2097486488 instance=ExtResource("18_lgomy")]
+[node name="TowerFoundation_og_gat" parent="TowerHolder" unique_id=2097486488 instance=ExtResource("18_lgomy")]
 position = Vector2(1341, 443)
-starting_tower = -11
+starting_tower = -21
 
-[node name="TowerFoundation5" parent="TowerHolder" unique_id=75215562 instance=ExtResource("18_lgomy")]
+[node name="TowerFoundation_og_can" parent="TowerHolder" unique_id=75215562 instance=ExtResource("18_lgomy")]
 position = Vector2(1344, 568)
+starting_tower = -22
 
-[node name="TowerFoundation6" parent="TowerHolder" unique_id=2001587829 instance=ExtResource("18_lgomy")]
+[node name="TowerFoundation_og_mis" parent="TowerHolder" unique_id=2001587829 instance=ExtResource("18_lgomy")]
 position = Vector2(1345, 703)
-starting_tower = -10
+starting_tower = -23
 
 [node name="TowerFoundation2" parent="TowerHolder" unique_id=914457105 instance=ExtResource("18_lgomy")]
 position = Vector2(708, 703)

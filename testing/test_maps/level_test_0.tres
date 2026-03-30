@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://b0sq1cbi5tey2"]
 
-[ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_wbgfx"]
+[ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_602po"]
 
 [resource]
-script = ExtResource("1_wbgfx")
-level_name = "Nav"
+script = ExtResource("1_602po")
+level_name = "Nav Test"
 level_uid = "uid://c0yokytp4v37t"
 metadata/_custom_type_script = "uid://u6pais7e54pl"

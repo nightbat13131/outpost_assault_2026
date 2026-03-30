@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bxa3yo1tcmn4m" path="res://level_select.gd" id="1_il3u1"]
 [ext_resource type="Script" uid="uid://dfiknig15k25s" path="res://button_level_select.gd" id="2_vomi7"]
-[ext_resource type="Resource" uid="uid://b0sq1cbi5tey2" path="res://testing/test_maps/level_0.tres" id="3_1iyaf"]
+[ext_resource type="Resource" uid="uid://b0sq1cbi5tey2" path="res://testing/test_maps/level_test_0.tres" id="3_1iyaf"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="3_wevku"]
-[ext_resource type="Resource" uid="uid://unevfi1dldfn" path="res://testing/test_maps/level_6.tres" id="4_1wnlg"]
-[ext_resource type="Resource" uid="uid://cgwnyby4u37yq" path="res://testing/test_maps/level_7.tres" id="5_8qr5y"]
-[ext_resource type="Resource" uid="uid://ci5g16cd163n6" path="res://testing/test_maps/level_8.tres" id="6_05pd3"]
+[ext_resource type="Resource" uid="uid://unevfi1dldfn" path="res://testing/test_maps/level_test_6.tres" id="4_1wnlg"]
+[ext_resource type="Resource" uid="uid://dna5x61bu20l1" path="res://testing/test_maps/level_test_1.tres" id="4_vnx2f"]
+[ext_resource type="Resource" uid="uid://c8mbqcr8h5dko" path="res://testing/test_maps/level_test_2.tres" id="5_7pkux"]
+[ext_resource type="Resource" uid="uid://cgwnyby4u37yq" path="res://testing/test_maps/level_test_7.tres" id="5_8qr5y"]
+[ext_resource type="Resource" uid="uid://ci5g16cd163n6" path="res://testing/test_maps/level__test_8.tres" id="6_05pd3"]
+[ext_resource type="Resource" uid="uid://busxt7plco4qy" path="res://testing/test_maps/level_test_3.tres" id="6_851in"]
 [ext_resource type="Resource" uid="uid://7hkinaik6ndq" path="res://levels/2024 recreation/1/levelinfo_orignal_1.tres" id="7_1wnlg"]
 [ext_resource type="Resource" uid="uid://crs1yhl2hu4ce" path="res://levels/2024 recreation/2/levelinfo_orignal_2.tres" id="8_8qr5y"]
 [ext_resource type="Resource" uid="uid://c5vuy8htsfep3" path="res://levels/2024 recreation/3/levelinfo_orignal_3.tres" id="9_rtb5x"]
@@ -17,40 +20,70 @@
 script = ExtResource("1_il3u1")
 
 [node name="Button_Level_Select1" type="Button" parent="." unique_id=1227046029]
-offset_left = 85.0
-offset_top = 63.0
-offset_right = 147.0
-offset_bottom = 94.0
+offset_left = 32.0
+offset_top = 45.0
+offset_right = 94.0
+offset_bottom = 76.0
 text = "Nav"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("3_1iyaf")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="Button_Level_Select2" type="Button" parent="." unique_id=1425752775]
-offset_left = 254.0
+[node name="Button_Level_Select6" type="Button" parent="." unique_id=1904736443]
+offset_left = 127.0
 offset_top = 65.0
-offset_right = 316.0
+offset_right = 189.0
 offset_bottom = 96.0
+text = "Hex"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("4_vnx2f")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_Select11" type="Button" parent="." unique_id=1264375507]
+offset_left = 222.0
+offset_top = 44.0
+offset_right = 284.0
+offset_bottom = 75.0
+text = "Spawn"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("5_7pkux")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_Select12" type="Button" parent="." unique_id=1001597758]
+offset_left = 303.0
+offset_top = 85.0
+offset_right = 365.0
+offset_bottom = 116.0
+text = "Camera"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("6_851in")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_Select2" type="Button" parent="." unique_id=1425752775]
+offset_left = 452.0
+offset_top = 78.0
+offset_right = 516.0
+offset_bottom = 109.0
 text = "Towers"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("4_1wnlg")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select3" type="Button" parent="." unique_id=1059708307]
-offset_left = 431.0
-offset_top = 60.0
-offset_right = 493.0
-offset_bottom = 91.0
+offset_left = 608.0
+offset_top = 64.0
+offset_right = 705.0
+offset_bottom = 95.0
 text = "UI and Map"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("5_8qr5y")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select4" type="Button" parent="." unique_id=1586238640]
-offset_left = 640.0
-offset_top = 69.0
-offset_right = 702.0
-offset_bottom = 100.0
+offset_left = 817.0
+offset_top = 73.0
+offset_right = 886.0
+offset_bottom = 104.0
 text = "Shooter"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("6_05pd3")

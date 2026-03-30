@@ -49,6 +49,6 @@ func get_sell_value() -> float: return get_cost() * _health_info.get_health_rati
 
 func get_repair_value() -> float: return get_cost() * (1.0- _health_info.get_health_ratio())
 
-func get_upgraded_range() -> float: return get_tower_radar_outer_range(my_type, _upgrades, 1.0)
+func get_upgraded_range() -> float: return get_tower_radar_outer_range(my_type, _upgrades, 1)
 
 func get_projectile_info() -> ProjectileInfo: return _projectile

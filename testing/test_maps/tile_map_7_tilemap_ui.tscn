@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://c0fi0vwkdcxil"]
 
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_kla5u"]
-[ext_resource type="Resource" uid="uid://cgwnyby4u37yq" path="res://testing/test_maps/level_7.tres" id="2_7p1sr"]
+[ext_resource type="Resource" uid="uid://cgwnyby4u37yq" path="res://testing/test_maps/level_test_7.tres" id="2_7p1sr"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="2_orddc"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="3_2ucw7"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="4_fwhd0"]
@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="19_dqrcy"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="20_ebfhy"]
 [ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost.tscn" id="30_xlhsi"]
-[ext_resource type="Script" uid="uid://ced58t3iw2o3h" path="res://testing/test_maps/fog_of_war_via_control_thing.gd" id="32_7p1sr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -162,66 +161,6 @@ rect_position = Vector2(-500, -500)
 rect_size = Vector2(3000, 2000)
 camera_start = Vector2(1000, 500)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
-[sub_resource type="Gradient" id="Gradient_mfrex"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7p1sr"]
-gradient = SubResource("Gradient_mfrex")
-fill = 1
-fill_from = Vector2(1, 1)
-fill_to = Vector2(0.3, 0.3)
-
-[sub_resource type="Gradient" id="Gradient_wgdyw"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_exk40"]
-gradient = SubResource("Gradient_wgdyw")
-fill_to = Vector2(0, 1)
-
-[sub_resource type="Gradient" id="Gradient_dm0mq"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uip3q"]
-gradient = SubResource("Gradient_dm0mq")
-fill = 1
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0.7, 0.3)
-
-[sub_resource type="Gradient" id="Gradient_oxtcp"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_g74ev"]
-gradient = SubResource("Gradient_oxtcp")
-
-[sub_resource type="Gradient" id="Gradient_7p1sr"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wgdyw"]
-gradient = SubResource("Gradient_7p1sr")
-
-[sub_resource type="Gradient" id="Gradient_exk40"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dm0mq"]
-gradient = SubResource("Gradient_exk40")
-fill = 1
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0.3, 0.7)
-
-[sub_resource type="Gradient" id="Gradient_uip3q"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_oxtcp"]
-gradient = SubResource("Gradient_uip3q")
-fill_from = Vector2(1, 1)
-
-[sub_resource type="Gradient" id="Gradient_g74ev"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xftoi"]
-gradient = SubResource("Gradient_g74ev")
-fill = 1
 
 [sub_resource type="Resource" id="Resource_fvtu7"]
 script = ExtResource("20_ebfhy")
@@ -430,65 +369,6 @@ is_disabled = true
 debug = false
 testing_index = 3
 bounds = Array[ExtResource("16_2g0lw")]([SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7"), SubResource("Resource_u1qnl")])
-
-[node name="Fog of war via control thing" type="GridContainer" parent="CameraBinder" unique_id=1319978989]
-offset_left = -50.0
-offset_top = -66.0
-offset_right = 2039.0
-offset_bottom = 1411.0
-mouse_filter = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 3
-script = ExtResource("32_7p1sr")
-metadata/_edit_group_ = true
-
-[node name="TextureRect" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=577521129]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_7p1sr")
-
-[node name="TextureRect4" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=700444108]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_exk40")
-
-[node name="TextureRect2" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=2119136136]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_uip3q")
-
-[node name="TextureRect3" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=525720559]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_g74ev")
-
-[node name="Control" type="Control" parent="CameraBinder/Fog of war via control thing" unique_id=43465076]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="TextureRect5" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=1035679054]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_wgdyw")
-
-[node name="TextureRect6" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=172999779]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_dm0mq")
-
-[node name="TextureRect7" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=2097290120]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_oxtcp")
-
-[node name="TextureRect8" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=508220593]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_xftoi")
 
 [node name="TowerHolder" type="Node2D" parent="." unique_id=370330720]
 script = ExtResource("17_cajcd")
