@@ -136,7 +136,7 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 		return
 	var next_enemy_packed_scene: PackedScene = load(next_enemy_path)
 	var next_enemy_instance: EnemyUnit = next_enemy_packed_scene.instantiate()
-	var spawn_point : SpawnPoint = _get_spawn_point(EnemyUnitInfo.EnemySpawnTypes.PERSON) # TODO dynamic type
+	var spawn_point : SpawnPoint = _get_spawn_point(EnemyUnitInfo.get_enemy_spawn_type(enemy_type)) 
 	next_enemy_instance.set_position(spawn_point.get_target_location())
 	get_unit_container().add_child(next_enemy_instance)
 	# set_nav_target doesn't work if happening before child_add.

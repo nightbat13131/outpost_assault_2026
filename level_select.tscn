@@ -8,10 +8,12 @@
 [ext_resource type="Resource" uid="uid://dna5x61bu20l1" path="res://testing/test_maps/level_test_1.tres" id="4_vnx2f"]
 [ext_resource type="Resource" uid="uid://c8mbqcr8h5dko" path="res://testing/test_maps/level_test_2.tres" id="5_7pkux"]
 [ext_resource type="Resource" uid="uid://cgwnyby4u37yq" path="res://testing/test_maps/level_test_7.tres" id="5_8qr5y"]
-[ext_resource type="Resource" uid="uid://ci5g16cd163n6" path="res://testing/test_maps/level__test_8.tres" id="6_05pd3"]
+[ext_resource type="Resource" uid="uid://ci5g16cd163n6" path="res://testing/test_maps/level_test_8.tres" id="6_05pd3"]
 [ext_resource type="Resource" uid="uid://busxt7plco4qy" path="res://testing/test_maps/level_test_3.tres" id="6_851in"]
 [ext_resource type="Resource" uid="uid://7hkinaik6ndq" path="res://levels/2024 recreation/1/levelinfo_orignal_1.tres" id="7_1wnlg"]
+[ext_resource type="Resource" uid="uid://bvfny5etnx82r" path="res://testing/test_maps/level_test_4.tres" id="7_ehng5"]
 [ext_resource type="Resource" uid="uid://crs1yhl2hu4ce" path="res://levels/2024 recreation/2/levelinfo_orignal_2.tres" id="8_8qr5y"]
+[ext_resource type="Resource" uid="uid://e62c62sf5nnd" path="res://testing/test_maps/level_test_5.tres" id="8_p532j"]
 [ext_resource type="Resource" uid="uid://c5vuy8htsfep3" path="res://levels/2024 recreation/3/levelinfo_orignal_3.tres" id="9_rtb5x"]
 [ext_resource type="Resource" uid="uid://6jyj4jmy2q8p" path="res://levels/2024 recreation/4/levelinfo_orignal_4.tres" id="10_vnx2f"]
 [ext_resource type="Resource" uid="uid://tjyfd2aicp2y" path="res://levels/2024 recreation/5/levelinfo_orignal_5.tres" id="11_7pkux"]
@@ -59,31 +61,51 @@ script = ExtResource("2_vomi7")
 level_info = ExtResource("6_851in")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
+[node name="Button_Level_Select13" type="Button" parent="." unique_id=821254342]
+offset_left = 419.0
+offset_top = 46.0
+offset_right = 488.0
+offset_bottom = 77.0
+text = "Building"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("7_ehng5")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_Select14" type="Button" parent="." unique_id=1577468241]
+offset_left = 534.0
+offset_top = 100.0
+offset_right = 606.0
+offset_bottom = 131.0
+text = "Map"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("8_p532j")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
 [node name="Button_Level_Select2" type="Button" parent="." unique_id=1425752775]
-offset_left = 452.0
-offset_top = 78.0
-offset_right = 516.0
-offset_bottom = 109.0
+offset_left = 643.0
+offset_top = 63.0
+offset_right = 707.0
+offset_bottom = 94.0
 text = "Towers"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("4_1wnlg")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select3" type="Button" parent="." unique_id=1059708307]
-offset_left = 608.0
-offset_top = 64.0
-offset_right = 705.0
-offset_bottom = 95.0
+offset_left = 761.0
+offset_top = 109.0
+offset_right = 858.0
+offset_bottom = 140.0
 text = "UI and Map"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("5_8qr5y")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select4" type="Button" parent="." unique_id=1586238640]
-offset_left = 817.0
-offset_top = 73.0
-offset_right = 886.0
-offset_bottom = 104.0
+offset_left = 903.0
+offset_top = 75.0
+offset_right = 972.0
+offset_bottom = 106.0
 text = "Shooter"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("6_05pd3")

@@ -1,5 +1,4 @@
 class_name Shooter extends Node2D
-## TODO: remove exported shooter info for projectile as there' now a resource for that.
 
 const EVENT_NO_TARGET = "no_target"
 const EVENT_HAS_TARGET = "has_target"
@@ -8,19 +7,12 @@ const EVENT_JUST_SHOT = "just_shoot"
 const EVENT_HAS_AMMO = "clip_ready"
 
 var _projectile_info : ProjectileInfo : set = set_projectile_info, get = get_projectile_info
-#@export_group("Projectile", "_projectile")
-
-#@export var _projectile : PackedScene
-#@export var _projectile_base_speed := 500.0
-### TODO: move base damange to info
-#@export var _projectile_base_damage := 3.0
-#@export var _projectile_base_spread_deg := .5
 
 @export var _muzzle_order := ShooterMuzzles.MuzzleOrder.SINGLE
 
 @export_group("Rotation", "_rotation")
 @export var _limit_roation := false
-## Gets sent to Radar Shape
+## Gets sent to Radar Shape?
 @export var _rotation_limit_deg := 45.0 : set = set_rotation_limit
 ## How quickly turns to face target
 @export var _rotation_speed_deg_sec := 45
@@ -32,7 +24,6 @@ var _radar_shape : RadarShapeInfo : set = set_radar_shape, get = get_radar_shape
 @onready var _state_machine: StateChart = %ShooterStateChart
 @onready var _muzzles: ShooterMuzzles = %Muzzles
 
-## calculated and passed by parent because parents can be very different
 
 func _ready() -> void:
 	_state_machine.propagate_call("set_shooter", [self])
@@ -111,7 +102,7 @@ func turn_towards(delta_moded: float, target_global_pos: Vector2) -> void:
 	var delta_radian : float = Utilities.delta_radian(global_rotation, target_global_angle)
 	if is_equal_approx(delta_radian, 0.0):
 		return # no rotation needed
-	print(get_rotation_speed_radian())
+	#print(get_rotation_speed_radian())
 	var max_radian_swing = get_rotation_speed_radian() * delta_moded
 	if delta_radian < 0.0:
 		max_radian_swing *= -1

@@ -16,5 +16,5 @@ static var projectile_paths : Dictionary[ProjectileType, String] = {
 }
 
 static func get_projectile_type_path(_projectile_type: ProjectileType) -> String:
-	# TODO: return dynamic path
+	# TODO: return dynamic projectile path
 	return projectile_paths.get(ProjectileType.BULLET, "uid://fmyfpa2i8oox")

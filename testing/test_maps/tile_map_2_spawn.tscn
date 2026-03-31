@@ -139,7 +139,7 @@ metadata/_custom_type_script = "uid://r0ygm2bqav7d"
 [node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner_Veh_Air" unique_id=1602803566 node_paths=PackedStringArray("next_targets")]
 position = Vector2(1309, 630)
 script = ExtResource("11_48muq")
-unit_types = Array[int]([200])
+unit_types = Array[int]([300])
 next_targets = [NodePath("../../../TileMapLogicLayer/NavPoint_NE"), NodePath("../../../TileMapLogicLayer/NavPoint_SE")]
 target_distance = 40.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"

@@ -19,15 +19,9 @@ enum EnemySpawnTypes {NA=0,
 	PERSON = 100, VEHICLE_GROUND = 200, VEHICLE_AIR=300}
 
 static var MapEnemyTypeMeta: Dictionary[EnemyTypes, EnemySpawnTypes] = {
-	EnemyTypes._OG_SCOUT: EnemySpawnTypes.PERSON,
-	EnemyTypes._OG_GUNMAN: EnemySpawnTypes.PERSON,
-	EnemyTypes._OG_RIFLE :EnemySpawnTypes.PERSON,
-	EnemyTypes._OG_GRENADIER :EnemySpawnTypes.PERSON,
 	EnemyTypes._OG_TANK : EnemySpawnTypes.VEHICLE_GROUND,
 	EnemyTypes._OG_HELICOPTER : EnemySpawnTypes.VEHICLE_AIR,
-	
-	EnemyTypes.DEBUG_WALKER: EnemySpawnTypes.PERSON, 
-	EnemyTypes.DEBUG_SHOOTER: EnemySpawnTypes.PERSON, 
+
 }
 
 static var EnemyScenePaths : Dictionary[EnemyTypes, String] = {
@@ -41,5 +35,8 @@ static var EnemyScenePaths : Dictionary[EnemyTypes, String] = {
 	EnemyTypes.DEBUG_WALKER: "uid://ffqucx6xrr6f",
 	EnemyTypes.DEBUG_SHOOTER: "uid://drfqmnxu83xf6",
 }
+
+static func get_enemy_spawn_type(enemy_type: EnemyTypes) -> EnemySpawnTypes:
+	return MapEnemyTypeMeta.get(enemy_type, EnemySpawnTypes.PERSON)
 
 static func get_enemy_scene_path(enemy_type: EnemyTypes) -> String: return EnemyScenePaths.get(enemy_type, "")

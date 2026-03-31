@@ -1,8 +1,10 @@
 class_name BrokenFoundation extends Sprite2D
-## TODO: add tooltop when pressing again will trigger the rebuild
 
 const SCENE_PATH = "uid://bk5nrgy052rvw"
 const BASE_REPAIR_DURATION = 2.0
+const TOOLTIP_NAME = 'Broken Foundation'
+const TOOLTIP_REPAIR = TOOLTIP_NAME + ": \n${0} Repair"
+const TOOLTIP_REPAIRING = TOOLTIP_NAME + ": \nRepairing"
 
 @export var _cost_info: CostButtonInfo_BrokenFoundation
 
@@ -10,7 +12,7 @@ var _display_info: DisplayHelper
 var _repair_started := false
 var _is_selected := false
 
-@onready var _button: Button_Trigger_UI = %Button
+@onready var _select_button: Button_Trigger_UI = %Button
 @onready var _repair_manager: RepairPurchaser = %RepairManager
 @onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
 @onready var repair_timer: TimerModded = %Repair_Timer
@@ -23,8 +25,8 @@ func _ready() -> void:
 	_repair_manager.set_cost_info(_cost_info)
 	_display_info = DisplayHelper.new(self, null, _repair_manager, null)
 	_display_info.unselected.connect(_on_selection_cancled)
-	_button.selected.connect(on_selected)
-	_update_button()
+	_select_button.selected.connect(on_selected)
+	_update_buttons()
 
 func get_display_info() -> DisplayHelper: return _display_info
 
@@ -40,7 +42,7 @@ func _do_repair() -> void:
 	
 	_repair_started = true
 	_cost_info.is_repairing = true
-	_update_button()
+	_update_buttons()
 	repair_timer.set_wait_time(_get_repair_duration())
 	repair_timer.timeout.connect(_repair_complete)
 	repair_timer.start()
@@ -69,17 +71,23 @@ func on_selected() -> void:
 		_repair_manager.remote_update_buttons()
 	else:
 		_is_selected = DisplaySelected.request_display(_display_info)
-	_update_button()
+	_update_buttons()
 
-func _update_button() -> void:
-	if _is_selected and !is_repairing():
-		_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
-	else: 
-		_button.set_state(ButtonEnhanced.ButtonStates.Active)
+func _update_buttons() -> void:
+	if is_repairing():
+		_select_button.set_state(ButtonEnhanced.ButtonStates.Active)
+		_select_button.set_tooltip_text(TOOLTIP_REPAIRING)
+	elif _is_selected:
+		_select_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
+		_select_button.set_tooltip_text(TOOLTIP_REPAIR.format([int(get_build_cost())])) #, "{}"))
+	else:
+		_select_button.set_state(ButtonEnhanced.ButtonStates.Active)
+		_select_button.set_tooltip_text(TOOLTIP_NAME)
+
 
 func _on_selection_cancled() -> void: 
 	_is_selected = false
-	_update_button()
+	_update_buttons()
 
 func set_foundation_type(foundation_type: TowerFoundation.FoundationType) -> void:
 	_repair_manager.set_foundation_type(foundation_type)
