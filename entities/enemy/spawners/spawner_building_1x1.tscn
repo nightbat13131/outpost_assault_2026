@@ -69,10 +69,10 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_sqi0b")
 
 [node name="Button" parent="Building" index="1" unique_id=1509464480]
-offset_left = -33.0
-offset_top = -40.0
-offset_right = 33.0
-offset_bottom = 33.0
+offset_left = -63.0
+offset_top = -64.0
+offset_right = 63.0
+offset_bottom = 63.0
 
 [node name="AnimatedSprite2D" parent="Building" index="3" unique_id=1893754338]
 position = Vector2(-1.4999995, -7.000002)
@@ -89,7 +89,7 @@ unique_name_in_owner = true
 script = ExtResource("9_eqv62")
 metadata/_edit_lock_ = true
 
-[node name="SpawnPointPerson" type="Node2D" parent="." unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
+[node name="SpawnPoint_0" type="Node2D" parent="." unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 script = ExtResource("3_3ipqg")
 unit_types = Array[int]([100])
@@ -97,13 +97,13 @@ next_targets = [NodePath("Spawn_E"), NodePath("Spawn_W")]
 target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="Spawn_E" type="Node2D" parent="SpawnPointPerson" unique_id=100200813]
+[node name="Spawn_E" type="Node2D" parent="SpawnPoint_0" unique_id=100200813]
 unique_name_in_owner = true
 position = Vector2(88, -2)
 script = ExtResource("5_eqv62")
 target_distance = 10.0
 
-[node name="Spawn_W" type="Node2D" parent="SpawnPointPerson" unique_id=971029430]
+[node name="Spawn_W" type="Node2D" parent="SpawnPoint_0" unique_id=971029430]
 unique_name_in_owner = true
 position = Vector2(-89, 1)
 script = ExtResource("5_eqv62")

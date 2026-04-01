@@ -17,7 +17,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
 
-[node name="Level_Spawn" type="Node2D" unique_id=2120268903]
+[node name="Level_Spawn" type="Node" unique_id=353460773]
 script = ExtResource("1_o0145")
 _level_info = ExtResource("2_8g177")
 metadata/_custom_type_script = "uid://dkbdphlfllran"

@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/building/building_template.tscn" id="2_ww00v"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="3_tj4qe"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="4_q5csn"]
-[ext_resource type="Script" uid="uid://cevi7gporuhwq" path="res://map/nav_point_weight.gd" id="5_jpby6"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="6_ro4op"]
 [ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/broken_foundation/populate_broken_foundations.gd" id="7_wt6me"]
 
@@ -59,29 +58,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_16vwn"]
-script = ExtResource("5_jpby6")
-point_path = NodePath("Spawn_NE")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_gluir"]
-script = ExtResource("5_jpby6")
-point_path = NodePath("Spawn_NW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_tmbkb"]
-script = ExtResource("5_jpby6")
-point_path = NodePath("Spawn_SE")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
-[sub_resource type="Resource" id="Resource_ggx7k"]
-script = ExtResource("5_jpby6")
-point_path = NodePath("Spawn_SW")
-metadata/_custom_type_script = "uid://cevi7gporuhwq"
-
 [node name="Spawner_2x2_" type="Node2D" unique_id=1797158330 node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("1_negn4")
-spawn_points = [NodePath("SpawnPointPeople")]
+spawn_points = [NodePath("SpawnPoint_0")]
 
 [node name="Building" parent="." unique_id=831910580 instance=ExtResource("2_ww00v")]
 unique_name_in_owner = true
@@ -91,9 +70,10 @@ position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_wqwim")
 
 [node name="Button" parent="Building" index="1" unique_id=1509464480]
-offset_left = -34.0
-offset_top = -67.0
-offset_bottom = 64.0
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 127.0
+offset_bottom = 127.0
 
 [node name="GroundSprite2D" parent="Building" index="2" unique_id=152299447]
 position = Vector2(-0.5, 0)
@@ -111,32 +91,32 @@ offset_top = 138.0
 offset_right = 19.0
 offset_bottom = 146.0
 
-[node name="SpawnPointPeople" type="Node2D" parent="." unique_id=1438190680]
+[node name="SpawnPoint_0" type="Node2D" parent="." unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 script = ExtResource("4_q5csn")
 unit_types = Array[int]([100])
-next_target_weights = Array[ExtResource("5_jpby6")]([SubResource("Resource_16vwn"), SubResource("Resource_gluir"), SubResource("Resource_tmbkb"), SubResource("Resource_ggx7k")])
+next_targets = [NodePath("Spawn_NE"), NodePath("Spawn_NW"), NodePath("Spawn_SE"), NodePath("Spawn_SW")]
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="Spawn_NE" type="Node2D" parent="SpawnPointPeople" unique_id=100200813]
+[node name="Spawn_NE" type="Node2D" parent="SpawnPoint_0" unique_id=100200813]
 unique_name_in_owner = true
 position = Vector2(185, 2)
 script = ExtResource("6_ro4op")
 target_distance = 10.0
 
-[node name="Spawn_NW" type="Node2D" parent="SpawnPointPeople" unique_id=971029430]
+[node name="Spawn_NW" type="Node2D" parent="SpawnPoint_0" unique_id=971029430]
 unique_name_in_owner = true
 position = Vector2(1, -181)
 script = ExtResource("6_ro4op")
 target_distance = 10.0
 
-[node name="Spawn_SE" type="Node2D" parent="SpawnPointPeople" unique_id=588862786]
+[node name="Spawn_SE" type="Node2D" parent="SpawnPoint_0" unique_id=588862786]
 unique_name_in_owner = true
 position = Vector2(3, 177)
 script = ExtResource("6_ro4op")
 target_distance = 10.0
 
-[node name="Spawn_SW" type="Node2D" parent="SpawnPointPeople" unique_id=194821967]
+[node name="Spawn_SW" type="Node2D" parent="SpawnPoint_0" unique_id=194821967]
 unique_name_in_owner = true
 position = Vector2(-171, 1)
 script = ExtResource("6_ro4op")

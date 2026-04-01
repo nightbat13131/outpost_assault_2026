@@ -25,6 +25,7 @@ func _ready() -> void:
 			return
 		#queue_free()
 		return
+	prune_targets()
 	#for each in next_target_weights:
 	#	if each:
 	#		each.set_parent(self)
@@ -123,6 +124,17 @@ func _get_configuration_warnings() -> PackedStringArray:
 	elif !next_targets.is_empty() and is_disabled:
 		warnings.append("Nav points set but is Disabled.")
 	return warnings
+
+func prune_targets() -> void:
+	var remove: Array[NavPoint]
+	for each in next_targets:
+		if each == null:
+			remove.append(each)
+		elif each.is_disabled:
+			remove.append(each)
+	while !remove.is_empty():
+		next_targets.erase(remove.pop_back())
+
 
 class WeightedPicker:
 	var _total: float = 0.0

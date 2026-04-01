@@ -1,5 +1,5 @@
 @tool
-class_name Level extends Node2D
+class_name Level extends Node
 
 const WARN_LEVEL_INFO = "Needs Level Info"
 const WARN_CAMERA = "Level Needs a CameraBinder"

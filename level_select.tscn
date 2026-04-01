@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://c5vuy8htsfep3" path="res://levels/2024 recreation/3/levelinfo_orignal_3.tres" id="9_rtb5x"]
 [ext_resource type="Resource" uid="uid://6jyj4jmy2q8p" path="res://levels/2024 recreation/4/levelinfo_orignal_4.tres" id="10_vnx2f"]
 [ext_resource type="Resource" uid="uid://tjyfd2aicp2y" path="res://levels/2024 recreation/5/levelinfo_orignal_5.tres" id="11_7pkux"]
+[ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/level_test_9.tres" id="12_doruf"]
 
 [node name="LevelSelect" type="Node2D" unique_id=977691685]
 script = ExtResource("1_il3u1")
@@ -109,6 +110,16 @@ offset_bottom = 106.0
 text = "Shooter"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("6_05pd3")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_Select15" type="Button" parent="." unique_id=1033218540]
+offset_left = 1058.0
+offset_top = 125.0
+offset_right = 1127.0
+offset_bottom = 156.0
+text = "3D"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("12_doruf")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select5" type="Button" parent="." unique_id=2180782]
