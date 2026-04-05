@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bw4hsn6svaiqv"]
+
+[ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_smbhm"]
+[ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/level_test_9.tres" id="2_mhfdu"]
+[ext_resource type="Script" uid="uid://bsjpqpuwen05s" path="res://testing/3d/area_3d_touch.gd" id="3_33iah"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fi3si"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_70k0u"]
+material = SubResource("StandardMaterial3D_fi3si")
+size = Vector2(0.5, 0.25)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_70k0u"]
+viewport_path = NodePath("Gui in 3D demo/SubViewport_Gui in 3D demo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xgro"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_70k0u")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_70k0u"]
+size = Vector3(0.4921875, 0.25634766, 0.044921875)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fs077"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_smbhm"]
+
+[node name="Node3D" type="Node" unique_id=932232121]
+script = ExtResource("1_smbhm")
+_level_info = ExtResource("2_mhfdu")
+metadata/_custom_type_script = "uid://dkbdphlfllran"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=239808225]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.6941979, 0)
+current = true
+
+[node name="Gui in 3D demo" type="Node3D" parent="." unique_id=138168992]
+
+[node name="SubViewport_Gui in 3D demo" type="SubViewport" parent="Gui in 3D demo" unique_id=973196468]
+gui_embed_subwindows = true
+size = Vector2i(250, 250)
+render_target_update_mode = 4
+
+[node name="Button_Gui in 3D demo" type="Button" parent="Gui in 3D demo/SubViewport_Gui in 3D demo" unique_id=124894282]
+offset_right = 250.0
+offset_bottom = 250.0
+text = "Based on \"GUI in 3d Demo\""
+
+[node name="Quad_Gui in 3D demo" type="MeshInstance3D" parent="Gui in 3D demo" unique_id=1777453252]
+editor_description = "To setup this MeshInstance3D:
+* Set Surface Material Override to a new StandardMaterial3D.
+* At the bottom of the StandardMaterial3D's properties, set \"Local to Scene\" to true.
+* Set the Albedo Texture of StandardMaterial3D to new ViewportTexture and set the Viewport Path.
+* Transparency to Alpha.
+* Shading to Unshaded."
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_70k0u")
+surface_material_override/0 = SubResource("StandardMaterial3D_7xgro")
+
+[node name="Area3D" type="Area3D" parent="Gui in 3D demo/Quad_Gui in 3D demo" unique_id=2021999253 node_paths=PackedStringArray("node_quad", "node_viewport")]
+script = ExtResource("3_33iah")
+node_quad = NodePath("..")
+node_viewport = NodePath("../../SubViewport_Gui in 3D demo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gui in 3D demo/Quad_Gui in 3D demo/Area3D" unique_id=1480239847]
+shape = SubResource("BoxShape3D_70k0u")
+
+[node name="Area_Test" type="Node3D" parent="." unique_id=1183079424]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.0241199, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="Area3D" type="Area3D" parent="Area_Test" unique_id=440065282 node_paths=PackedStringArray("node_quad", "node_viewport")]
+script = ExtResource("3_33iah")
+node_quad = NodePath("MeshInstance3D")
+node_viewport = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area_Test/Area3D" unique_id=1790868345]
+shape = SubResource("SphereShape3D_fs077")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area_Test/Area3D" unique_id=154280995]
+mesh = SubResource("QuadMesh_smbhm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=660857533]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, -1.5405574, 0)
+shadow_enabled = true

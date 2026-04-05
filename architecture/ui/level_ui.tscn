@@ -139,6 +139,8 @@ stretch = true
 
 [node name="LevelViewport" type="SubViewport" parent="FullScreen/CenterScreen/VBoxContainer/SubViewportContainer" unique_id=256052677]
 unique_name_in_owner = true
+handle_input_locally = false
+physics_object_picking = true
 size = Vector2i(1660, 1057)
 render_target_update_mode = 4
 script = ExtResource("2_vsohg")
