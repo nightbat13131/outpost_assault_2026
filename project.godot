@@ -28,6 +28,10 @@ buses/default_bus_layout="uid://bd8uaahcmppqa"
 GUIDE="*uid://p2jwrgjcbexr"
 CursorSetter="uid://b3ibs17oja4b8"
 
+[debug_draw_3d]
+
+settings/addon_root_folder="res://addons/debug_draw_3d"
+
 [display]
 
 window/size/viewport_width=1920
@@ -41,7 +45,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/button3D_addon/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/guide/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/guide/plugin.cfg")
 
 [file_customization]
 

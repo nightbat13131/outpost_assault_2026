@@ -3,6 +3,7 @@ class_name Utilities extends GDScript
 const COLOR_RADAR_PREVIEW = Color.BLACK
 const COLOR_RADAR_FILL = Color.DARK_ORCHID
 
+const PIX_PER_METTER = 128
 
 static func delta_radian(source_radian: float, target_radian: float) -> float:
 	var _delta_radian : float = target_radian - source_radian
@@ -49,3 +50,5 @@ static func property_dictionary(_name: String, _type: Variant.Type, _hint: Prope
 	if _hint_string != '':
 		out["hint_string"] = _hint_string
 	return out
+
+static func pix_to_meter(pixel_count: float) -> float: return pixel_count / float(PIX_PER_METTER)

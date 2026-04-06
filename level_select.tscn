@@ -17,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://c5vuy8htsfep3" path="res://levels/2024 recreation/3/levelinfo_orignal_3.tres" id="9_rtb5x"]
 [ext_resource type="Resource" uid="uid://6jyj4jmy2q8p" path="res://levels/2024 recreation/4/levelinfo_orignal_4.tres" id="10_vnx2f"]
 [ext_resource type="Resource" uid="uid://tjyfd2aicp2y" path="res://levels/2024 recreation/5/levelinfo_orignal_5.tres" id="11_7pkux"]
-[ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/level_test_9.tres" id="12_doruf"]
+[ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/leveltest_3d_0.tres" id="12_doruf"]
 
 [node name="LevelSelect" type="Node2D" unique_id=977691685]
 script = ExtResource("1_il3u1")

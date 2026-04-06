@@ -16,6 +16,8 @@ var last_event_time := -1.0
 ## Used for checking if the mouse is inside the Area3D.
 var is_mouse_inside: bool = false:
 	set(value):
+		if is_mouse_inside == value:
+			return # no change
 		is_mouse_inside = value
 		if mesh_color:
 			if is_mouse_inside:
@@ -45,11 +47,17 @@ func _mouse_exited_area() -> void:
 	is_mouse_inside = false
 	# Notify the viewport that the mouse is no longer hovering it.
 	if node_viewport:
-		node_viewport.notification(NOTIFICATION_VP_MOUSE_EXIT)
+		
+		#node_viewport.notification(NOTIFICATION_VP_MOUSE_EXIT) 
+		# ^ infinate recurtion on nested viewports
+		pass
 
 
 func _mouse_input_event(_camera: Camera3D, input_event_: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	# Get mesh size to detect edges and make conversions. This code only supports PlaneMesh and QuadMesh.
+	if mesh_quad == null:
+		return
+		
 	var quad_mesh_size: Vector2 = mesh_quad.mesh.size
 
 	# Event position in Area3D in world coordinate space.

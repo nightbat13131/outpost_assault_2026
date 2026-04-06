@@ -31,10 +31,6 @@ var _nav_target : Node2D :set = set_nav_target
 @onready var _ui_anchor: Control = %UIAnchor
 @onready var _health_ui: HealthUI = %HealthUI
 
-
-#var _health_info: HealthInfo
-#var _health : float = 100.0 : set = _set_health
-
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
