@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_nae6b"]
 [ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/leveltest_3d_0.tres" id="2_fs077"]
 [ext_resource type="Script" uid="uid://bsjpqpuwen05s" path="res://testing/test_scripts/3d/area_3d_touch.gd" id="3_y0mq5"]
-[ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_maps/collision_shape3d_enhanced.gd" id="4_u2bw1"]
+[ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="4_u2bw1"]
 [ext_resource type="Script" uid="uid://ihs1wqtf2l7j" path="res://testing/test_scripts/3d/character_body_3d.gd" id="5_0hso4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fi3si"]
