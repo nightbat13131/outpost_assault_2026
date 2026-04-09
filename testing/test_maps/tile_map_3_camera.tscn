@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="8_g3vga"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="9_2bwjw"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="10_85e20"]
-[ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://entities/enemy/spawners/spawner_building_1x1.tscn" id="11_sevtk"]
+[ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://entities/enemy/spawners/spawner_building2d_1x1.tscn" id="11_sevtk"]
 [ext_resource type="Script" uid="uid://ced58t3iw2o3h" path="res://architecture/camera/fog_of_war_via_control_thing.gd" id="12_audif"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_l5omd"]
 

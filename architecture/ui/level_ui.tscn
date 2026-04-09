@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://catyutrhhegbh" path="res://architecture/ui/dialog/display_dialog.tscn" id="2_l1g1f"]
 [ext_resource type="Script" uid="uid://cld8myuw16xvu" path="res://architecture/ui/show_player_base.gd" id="2_m3x4y"]
 [ext_resource type="Script" uid="uid://cetwrrjf355o2" path="res://architecture/ui/level_viewport.gd" id="2_vsohg"]
+[ext_resource type="Script" uid="uid://3qllkqrb0we2" path="res://architecture/ui/sub_viewport_container_enhanced.gd" id="3_3m4xm"]
 [ext_resource type="Script" uid="uid://dbo1xoodfi6q7" path="res://architecture/gold_manager.gd" id="3_hyik4"]
 [ext_resource type="Script" uid="uid://b8re4y454lk4w" path="res://architecture/ui/display_selected.gd" id="3_qyk0y"]
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="5_5c5v8"]
@@ -74,11 +75,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="CenterScreen" type="PanelContainer" parent="FullScreen" unique_id=277394409]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FullScreen/CenterScreen" unique_id=323968457]
 layout_mode = 2
@@ -136,11 +137,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
+script = ExtResource("3_3m4xm")
 
 [node name="LevelViewport" type="SubViewport" parent="FullScreen/CenterScreen/VBoxContainer/SubViewportContainer" unique_id=256052677]
 unique_name_in_owner = true
 handle_input_locally = false
-physics_object_picking = true
 size = Vector2i(1660, 1057)
 render_target_update_mode = 4
 script = ExtResource("2_vsohg")

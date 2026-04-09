@@ -4,7 +4,7 @@ class_name SpawnerBuilding extends Spawner
 ## enemies can walk OUT of buildings. Prototype just put buildings onto of non_walking places.
 
 @onready var _foundation_points: BrokenFoundationSpawner = %FoundationPoints
-@onready var _building: Building = %Building
+@onready var _building: Building2D = %Building
 @export var _kill_reward := 300.0
 
 func _ready() -> void:

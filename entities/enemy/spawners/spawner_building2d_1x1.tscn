@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ep5n0oef5o1f"]
 
-[ext_resource type="Script" uid="uid://c7cgc6ppvr5q4" path="res://entities/enemy/spawners/spawner_building.gd" id="1_4h0ng"]
-[ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/building/building_template.tscn" id="1_sqi0b"]
+[ext_resource type="Script" uid="uid://c7cgc6ppvr5q4" path="res://entities/enemy/spawners/spawner_building2d.gd" id="1_4h0ng"]
+[ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/building/building2d_template.tscn" id="1_sqi0b"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="2_a6824"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="3_3ipqg"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="5_eqv62"]

@@ -1,4 +1,4 @@
-class_name PlayerOutpost extends Building
+class_name PlayerOutpost extends Building2D
 
 static var _instatnce : PlayerOutpost
 

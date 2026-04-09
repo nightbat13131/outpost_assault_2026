@@ -1,4 +1,4 @@
-class_name Building extends StaticBody2D
+class_name Building2D extends StaticBody2D
 
 signal died
 @export var _max_hp : float = 100.0

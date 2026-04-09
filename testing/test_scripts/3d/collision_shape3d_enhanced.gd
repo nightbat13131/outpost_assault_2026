@@ -1,7 +1,7 @@
 @tool
 class_name CollitionShape3D_Enhanced extends CollisionShape3D
 
-## A mesh to mimic the size of. Assumes a shared parent for position.
+## A mesh to mimic the size of. Assumes a shared parent for position, or at least Vector.Zero parents. 
 @export var mimic_mesh: MeshInstance3D
 
 
@@ -28,5 +28,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings : Array[String]
 	if mimic_mesh:
 		if mimic_mesh.get_parent() != self.get_parent():
-			warnings.append("Self and Mimic do not share parents.")
+			#warnings.append("Self and Mimic do not share parents.")
+			pass
+	else: 
+		warnings.append("No Mimic selected.")
 	return warnings

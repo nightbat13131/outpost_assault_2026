@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="3_i28xo"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="4_f5dm3"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="4_oisr6"]
-[ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://entities/enemy/spawners/spawner_building_1x2.tscn" id="9_ily7b"]
+[ext_resource type="PackedScene" uid="uid://dhtlvdgyb6fna" path="res://entities/enemy/spawners/spawner_building2d_1x2.tscn" id="9_ily7b"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="9_ti3ma"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="10_8g177"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="10_obju6"]
