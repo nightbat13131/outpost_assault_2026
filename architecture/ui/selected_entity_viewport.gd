@@ -17,7 +17,6 @@ func set_camera_focus(info: DisplayHelper) -> void:
 		_set_camera_focus_3d(info.get_camera_position3d())
 	else:
 		_no_display()
-		
 
 func _no_display() -> void:
 	camera_3d.position = Vector3.ZERO

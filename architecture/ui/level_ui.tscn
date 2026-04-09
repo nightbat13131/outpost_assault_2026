@@ -136,13 +136,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
-mouse_target = true
 
 [node name="LevelViewport" type="SubViewport" parent="FullScreen/CenterScreen/VBoxContainer/SubViewportContainer" unique_id=256052677]
 unique_name_in_owner = true
-handle_input_locally = false
 size = Vector2i(1660, 1057)
-render_target_update_mode = 4
 script = ExtResource("2_vsohg")
 
 [node name="DialogPointOfReferance" type="Control" parent="FullScreen/CenterScreen" unique_id=2047275902]
@@ -228,13 +225,11 @@ layout_mode = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="FullScreen/LevelControls/DisplaySelected" unique_id=631780335]
 layout_mode = 2
-mouse_target = true
+mouse_filter = 0
 
 [node name="DisplaySelectedViewport" type="SubViewport" parent="FullScreen/LevelControls/DisplaySelected/SubViewportContainer" unique_id=1467878820 node_paths=PackedStringArray("world_source")]
 unique_name_in_owner = true
-handle_input_locally = false
-size = Vector2i(256, 256)
-render_target_update_mode = 4
+size = Vector2i(260, 260)
 script = ExtResource("6_vw2lh")
 world_source = NodePath("../../../../CenterScreen/VBoxContainer/SubViewportContainer/LevelViewport")
 

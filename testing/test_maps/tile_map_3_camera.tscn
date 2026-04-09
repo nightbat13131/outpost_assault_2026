@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://entities/enemy/spawners/spawner_building2d_1x1.tscn" id="11_sevtk"]
 [ext_resource type="Script" uid="uid://ced58t3iw2o3h" path="res://architecture/camera/fog_of_war_via_control_thing.gd" id="12_audif"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_l5omd"]
+[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="14_enrm6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -181,6 +182,12 @@ metadata/_custom_type_script = "uid://cbrnrqxijffds"
 [node name="SpawnerBuilding" parent="TileMapLogicLayer/SpawnManager" unique_id=2112157350 instance=ExtResource("11_sevtk")]
 position = Vector2(834, 272)
 _pulse_per_wave = 5
+
+[node name="GuideDebugger" parent="TileMapLogicLayer/SpawnManager" unique_id=2108058716 instance=ExtResource("14_enrm6")]
+offset_left = 20.0
+offset_top = 55.0
+offset_right = 196.0
+offset_bottom = 167.0
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("12_l5omd")]
 

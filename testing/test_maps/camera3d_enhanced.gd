@@ -69,9 +69,6 @@ func _process(delta: float) -> void:
 		_velocity = Vector3(direction.x, 0, direction.y ) * _get_speed() * delta
 		_move_to(position + _velocity)
 
-func _unhandled_input(event: InputEvent) -> void:
-	## overcomes the viewport subviewport.set_physics_object_picking(true) problems I was having for 3D.
-	GUIDE.inject_input(event)
 
 func setup_subviewport() -> void: 
 	var new_viewport = GameLevelUI.request_subviewport()

@@ -34,10 +34,19 @@ func deactivate() -> void:
 
 
 func configure_for_3d() -> void:
-	set_physics_object_picking(true) # mouse recognized with 3d area & body, but scrolling and other mouse clicks don't get picked up by GUIDE
+	set_physics_object_picking(true) # mouse recognized with 3d area & body, but scrolling and other mouse clicks don't get picked up by GUIDE. 
 	#_sub_viewport_container.set_mouse_target(false) # ??
+	pass
 
 func configure_for_2d() -> void:
 	## middle mouse button pressed not being detected? 
-	_sub_viewport_container.set_mouse_target(true) ## based on old configs
+	# _sub_viewport_container.set_mouse_filter(Control.MOUSE_FILTER_PASS) ## scrolling works, 2d buttons work, no middle mouse button, no mouse movement
+	# _sub_viewport_container.set_mouse_filter(Control.MOUSE_FILTER_IGNORE) ## scrolling works, 2d buttons fail, no middle mouse button, no mouse movement
+	# _sub_viewport_container.set_mouse_filter(Control.MOUSE_FILTER_STOP) ## scrolling works, 2d buttons work, no middle mouse button, no mouse movement
+	#_sub_viewport_container.set_mouse_target(true) ## matches on old configs
 	set_physics_object_picking(false) # otherwise mouse scrolling not recognized in viewport
+	pass
+
+func _unhandled_input(event: InputEvent) -> void:
+	## overcomes the viewport seemily blocking mouse movement problems I was having for 3D and suddnely 2D..
+	GUIDE.inject_input(event)
