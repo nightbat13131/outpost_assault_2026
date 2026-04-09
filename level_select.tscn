@@ -24,7 +24,7 @@
 [node name="LevelSelect" type="Node2D" unique_id=977691685]
 script = ExtResource("1_il3u1")
 
-[node name="2g" type="Node" parent="." unique_id=1716972175]
+[node name="2g" type="Node2D" parent="." unique_id=197555447]
 
 [node name="Button_Level_Select1" type="Button" parent="2g" unique_id=1227046029]
 offset_left = 32.0
@@ -116,7 +116,7 @@ script = ExtResource("2_vomi7")
 level_info = ExtResource("6_05pd3")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="3g" type="Node" parent="." unique_id=419421944]
+[node name="3g" type="Node2D" parent="." unique_id=367558629]
 
 [node name="Button_Level_Select15" type="Button" parent="3g" unique_id=1033218540]
 offset_left = 80.0
@@ -148,7 +148,7 @@ script = ExtResource("2_vomi7")
 level_info = ExtResource("14_w6pwf")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="OG" type="Node" parent="." unique_id=737077164]
+[node name="OG" type="Node2D" parent="." unique_id=1908257614]
 
 [node name="Button_Level_Select5" type="Button" parent="OG" unique_id=2180782]
 offset_left = 1232.0

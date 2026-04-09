@@ -6,4 +6,5 @@
 script = ExtResource("1_krwj2")
 level_name = "Hex Test"
 level_uid = "uid://4is0buklh5kj"
+view_mode = 2
 metadata/_custom_type_script = "uid://u6pais7e54pl"

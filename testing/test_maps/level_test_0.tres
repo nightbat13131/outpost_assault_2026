@@ -6,4 +6,5 @@
 script = ExtResource("1_602po")
 level_name = "Nav Test"
 level_uid = "uid://c0yokytp4v37t"
+view_mode = 2
 metadata/_custom_type_script = "uid://u6pais7e54pl"

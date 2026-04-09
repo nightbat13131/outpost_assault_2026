@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dnianrpo4gp0o"]
 
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_bi2u1"]
-[ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/leveltest_3d_0.tres" id="2_3p3ij"]
+[ext_resource type="Resource" uid="uid://w18rxggasu2d" path="res://testing/test_maps/leveltest_3d_2.tres" id="2_x8146"]
 [ext_resource type="Script" uid="uid://chfte728oiulj" path="res://testing/test_scripts/3d/stitch_nav_3d.gd" id="3_cfc2o"]
 [ext_resource type="Script" uid="uid://c44d6gbtdyd7o" path="res://testing/test_maps/camera3d_enhanced.gd" id="4_c7i1g"]
 [ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="4_x8146"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://uaw38bunshsl" path="res://testing/nav_node3d.gd" id="6_pp447"]
 [ext_resource type="Script" uid="uid://ihs1wqtf2l7j" path="res://testing/test_scripts/3d/character_body_3d.gd" id="7_p45ln"]
 [ext_resource type="PackedScene" uid="uid://cuags342jh0ux" path="res://assets/models/tree_00.glb" id="8_3p3ij"]
-[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="10_pp447"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_afdlk"]
 vertices = PackedVector3Array(29.5, 0.5, -8.5, 22, 0.5, -8.5, 21.75, 0.5, -6, 29.5, 0.5, 29.5, 16.75, 0.5, -11, 18.5, 0.5, -11.25, 18.25, 0.5, -29.5, -29.5, 0.5, -29.5, 17, 0.5, -6, -29.5, 0.5, 29.5, 21.75, 0.5, -11.25, 29.5, 0.5, -29.5, 17.75, 1.5, -10.25, 17.75, 1.5, -7, 21, 1.5, -7, 21, 1.5, -10.25)
@@ -57,7 +56,7 @@ height = 0.5
 
 [node name="Node3D" type="Node" unique_id=932232121]
 script = ExtResource("1_bi2u1")
-_level_info = ExtResource("2_3p3ij")
+_level_info = ExtResource("2_x8146")
 metadata/_custom_type_script = "uid://dkbdphlfllran"
 
 [node name="Testing" type="Node" parent="." unique_id=1092759490]
@@ -247,9 +246,3 @@ mimic_mesh = NodePath("../Pivot/MeshInstance3D")
 
 [node name="tree_00" parent="." unique_id=1391008575 instance=ExtResource("8_3p3ij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8854842, 0, -0.31607425)
-
-[node name="GuideDebugger" parent="." unique_id=642717583 instance=ExtResource("10_pp447")]
-offset_left = -7.0
-offset_top = -4.0
-offset_right = -1271.0
-offset_bottom = -4.0

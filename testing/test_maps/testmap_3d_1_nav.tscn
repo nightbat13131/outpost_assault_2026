@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dxam1a1pwj4tn"]
 
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_rbcnc"]
-[ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/leveltest_3d_0.tres" id="2_wbb11"]
+[ext_resource type="Resource" uid="uid://8rb2hbtsle65" path="res://testing/test_maps/leveltest_3d_1.tres" id="2_a41uu"]
 [ext_resource type="Script" uid="uid://chfte728oiulj" path="res://testing/test_scripts/3d/stitch_nav_3d.gd" id="3_a41uu"]
 [ext_resource type="Script" uid="uid://uaw38bunshsl" path="res://testing/nav_node3d.gd" id="3_afdlk"]
 [ext_resource type="Script" uid="uid://bsjpqpuwen05s" path="res://testing/test_scripts/3d/area_3d_touch.gd" id="3_wgiqb"]
@@ -54,7 +54,7 @@ height = 0.5
 
 [node name="Node3D" type="Node" unique_id=932232121]
 script = ExtResource("1_rbcnc")
-_level_info = ExtResource("2_wbb11")
+_level_info = ExtResource("2_a41uu")
 metadata/_custom_type_script = "uid://dkbdphlfllran"
 
 [node name="Testing" type="Node" parent="." unique_id=1092759490]

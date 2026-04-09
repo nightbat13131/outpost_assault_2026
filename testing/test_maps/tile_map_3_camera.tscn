@@ -179,7 +179,7 @@ unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnerBuilding" parent="TileMapLogicLayer/SpawnManager" unique_id=2112157350 instance=ExtResource("11_sevtk")]
-position = Vector2(1600, 307)
+position = Vector2(834, 272)
 _pulse_per_wave = 5
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("12_l5omd")]

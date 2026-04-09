@@ -6,5 +6,6 @@
 script = ExtResource("1_ex06s")
 level_name = "Camera Test"
 level_uid = "uid://bvknqt5wqob0u"
+view_mode = 2
 starting_gold = 1002.0
 metadata/_custom_type_script = "uid://u6pais7e54pl"

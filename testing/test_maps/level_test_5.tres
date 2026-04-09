@@ -6,5 +6,6 @@
 script = ExtResource("1_06e3o")
 level_name = "Map Stuff"
 level_uid = "uid://b8xekqbva6ixd"
+view_mode = 2
 starting_gold = 1005.0
 metadata/_custom_type_script = "uid://u6pais7e54pl"

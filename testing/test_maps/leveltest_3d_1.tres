@@ -6,4 +6,6 @@
 script = ExtResource("1_3vveo")
 level_name = "3D Nav"
 level_uid = "uid://dxam1a1pwj4tn"
+view_mode = 3
+starting_gold = 1100.0
 metadata/_custom_type_script = "uid://u6pais7e54pl"

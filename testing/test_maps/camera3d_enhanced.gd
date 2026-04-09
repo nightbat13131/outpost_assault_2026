@@ -8,7 +8,7 @@ class_name Camera3D_Enhanced extends Camera3D
 const ZOOM_SPEED := .05
 const TWEEN_DURATION := .5
 ## Reminder that MinZoom does not work when running the Level without the UI
-var min_zoom : float = .5 : set = set_min_zoom
+var min_zoom : float = .5 : set = _set_min_zoom
 var max_zoom : float = 2.5
 var _zoom := 1.0: set = _set_zoom, get = _get_zoom
 var initial_height : float
@@ -66,8 +66,12 @@ func _process(delta: float) -> void:
 			_set_is_drag_cursor(false)
 		if direction == Vector2.ZERO:
 			return
-		_velocity = Vector3(direction.x, 0, direction.y ) * get_speed() * delta
+		_velocity = Vector3(direction.x, 0, direction.y ) * _get_speed() * delta
 		_move_to(position + _velocity)
+
+func _unhandled_input(event: InputEvent) -> void:
+	## overcomes the viewport subviewport.set_physics_object_picking(true) problems I was having for 3D.
+	GUIDE.inject_input(event)
 
 func setup_subviewport() -> void: 
 	var new_viewport = GameLevelUI.request_subviewport()
@@ -82,6 +86,7 @@ func setup_subviewport() -> void:
 			_on_viewport_size_changed()
 
 func set_bound(bound: CameraBounds) -> void:
+	# 2D
 	_bounds = bound
 	set_limits(bound.get_limit_rect())
 	_apply_bound()
@@ -112,10 +117,9 @@ func _apply_bound() -> void:
 	#remote_move_to(_bounds.get_camera_starting_position())
 	#queue_redraw()
 
-func get_viewport_rect() -> Rect2:
+func get_viewport_rect() -> Rect2: 
+	## TODO this is a patch while figuring out 3d. Find where this is called from and figure out how to get the real viewport and why
 	return Rect2(Vector2.ZERO, Vector2(1000,1000))
-
-
 
 func get_subviewport() -> SubViewport: return _viewport
 
@@ -132,8 +136,8 @@ func _on_zoom() -> void:
 	#		# player not also scrolling camera while changing zoom
 			_move_to(position)
 
-
 func _on_home() -> void:
+	# TODO center over PlayerOutpost instead of reset zoom
 	var home := PlayerOutpost.get_instance()
 	
 	global_position.y = initial_height
@@ -152,10 +156,9 @@ func _set_is_drag_cursor(is_on) -> void:
 	else: 
 		standard_cursor.force_to_default()
 
-func get_speed() -> float: return 5 #_max_speed * (1/zoom.length())
+func _get_speed() -> float: return 5 #_max_speed * (1/zoom.length())
 
-
-func set_min_zoom(value: float) -> void:
+func _set_min_zoom(value: float) -> void:
 	min_zoom = value
 	if Engine.is_editor_hint():
 		return
@@ -165,11 +168,10 @@ func set_min_zoom(value: float) -> void:
 func _set_zoom(value: float) -> void:
 	_zoom = clampf(value, min_zoom, max_zoom)
 	var new_y := initial_height * _zoom
-	prints(_zoom, new_y)
+	#prints(_zoom, new_y)
 	global_position.y = new_y
 
 func _get_zoom() -> float: return _zoom
-
 
 func remote_move_to(next_position : Vector3, target_zoom: float= 0.0) -> void: 
 	var tween = create_tween()

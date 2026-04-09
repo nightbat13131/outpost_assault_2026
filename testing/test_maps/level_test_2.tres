@@ -6,5 +6,6 @@
 script = ExtResource("1_i4mop")
 level_name = "Spawn Test"
 level_uid = "uid://c58tb1ifwm0ti"
+view_mode = 2
 starting_gold = 1002.0
 metadata/_custom_type_script = "uid://u6pais7e54pl"

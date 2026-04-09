@@ -2,17 +2,40 @@ class_name DisplaySelected_SubViewport extends SubViewport
 
 @export var world_source : SubViewport
 @onready var camera_2d: Camera2D = %Camera2D
-
+@onready var camera_3d: Camera3D = %Camera3D
 
 func _ready() -> void:
+	_no_display() 
 	if world_source:
 		world_2d = world_source.world_2d# get_tree().root.get_world_2d()
+		world_3d = world_source.world_3d
 
-func set_camera_focus(position: Vector2) -> void:
+func set_camera_focus(info: DisplayHelper) -> void:
+	if info.is_2d():
+		_set_camera_focus_2d(info.get_camera_position2d())
+	elif info.is_3d():
+		_set_camera_focus_3d(info.get_camera_position3d())
+	else:
+		_no_display()
+		
+
+func _no_display() -> void:
+	camera_3d.position = Vector3.ZERO
+	camera_2d.position = Vector2.ZERO
+	get_parent().hide()
+
+func _set_camera_focus_3d(position: Vector3) -> void:
 	 ## TODO: camera shutter when changing locations
-	if position == DisplayHelper.DEFAULT_POS:
-		camera_2d.position = Vector2.ZERO
-		get_parent().hide()
+	if position == DisplayHelper.DEFAULT_POS_3D:
+		_no_display()
+	else: 
+		camera_3d.position = position
+		get_parent().show()
+
+func _set_camera_focus_2d(position: Vector2) -> void:
+	 ## TODO: camera shutter when changing locations
+	if position == DisplayHelper.DEFAULT_POS_2D:
+		_no_display()
 	else: 
 		camera_2d.position = position
 		get_parent().show()

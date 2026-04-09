@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func configure_for_3d() -> void:
 	level_viewport.set_physics_object_picking(true) # mouse recognized with 3d area & body, but scrolling and other mouse clicks get lost
-	# set_mouse_target(true)
+	set_mouse_target(true)
 	
 	pass
 

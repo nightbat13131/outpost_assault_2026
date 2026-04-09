@@ -41,6 +41,7 @@ func _loading_done() -> void:
 	sprite_2d.hide()
 	_last_laoded = _level_to_load
 	_level_to_load = null
+	deactivate()
 
 static func get_instance() -> LevelSelect: return _instance
 

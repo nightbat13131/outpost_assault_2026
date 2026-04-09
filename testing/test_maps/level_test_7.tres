@@ -6,4 +6,5 @@
 script = ExtResource("1_4qusw")
 level_name = "UI and Map"
 level_uid = "uid://c0fi0vwkdcxil"
+view_mode = 2
 metadata/_custom_type_script = "uid://u6pais7e54pl"
