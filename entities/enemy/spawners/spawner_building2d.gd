@@ -1,6 +1,6 @@
 @tool
 class_name SpawnerBuilding extends Spawner
-## TODO: figure out how to have units walk around buildings while keeping that 
+## TODO: figure out how to have units walk around buildings while keeping that. 
 ## enemies can walk OUT of buildings. Prototype just put buildings onto of non_walking places.
 
 @onready var _foundation_points: BrokenFoundationSpawner = %FoundationPoints

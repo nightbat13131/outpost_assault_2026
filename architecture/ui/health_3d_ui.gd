@@ -3,9 +3,6 @@ class_name HealthUI3D extends Sprite3D
 const SHADER_PRIMARY_HEALTH = "primary_health"
 const SHADER_GHOST_HEALTH = "ghost_health"
 
-#signal ratio_update(value: float)
-#signal suppression_update(value: bool)
-
 @export var _hide_when_full := false
 @export var _hide_when_empty := false
 

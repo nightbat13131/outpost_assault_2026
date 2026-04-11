@@ -5,6 +5,8 @@ still up on github.
 
 
 #Resources 
+3D ProgressBar Shader template: https://godotshaders.com/shader/3d-health-bar/
+
 
 ## Cursors
 From Kenney.ly
