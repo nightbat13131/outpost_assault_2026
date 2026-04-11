@@ -22,6 +22,13 @@ func _engine_resize() -> void:
 		if get_shape() is SphereShape3D:
 			set_position(mimic_mesh.get_position())
 			get_shape().set_radius(mesh.radius)
+	elif mesh is CylinderMesh:
+		if get_shape() is CylinderShape3D:
+			set_position(mimic_mesh.get_position())
+			get_shape().set_radius((mesh.get_top_radius() + mesh.get_bottom_radius())*.5)
+			get_shape().set_height(mesh.get_height())
+			set_rotation(mimic_mesh.get_rotation())
+
 
 
 func _get_configuration_warnings() -> PackedStringArray:

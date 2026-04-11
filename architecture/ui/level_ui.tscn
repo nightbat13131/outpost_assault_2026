@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cetwrrjf355o2" path="res://architecture/ui/level_viewport.gd" id="2_vsohg"]
 [ext_resource type="Script" uid="uid://dbo1xoodfi6q7" path="res://architecture/gold_manager.gd" id="3_hyik4"]
 [ext_resource type="Script" uid="uid://b8re4y454lk4w" path="res://architecture/ui/display_selected.gd" id="3_qyk0y"]
-[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui.tscn" id="5_5c5v8"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health2d_ui.tscn" id="5_5c5v8"]
 [ext_resource type="Script" uid="uid://c0j8mplyiibwb" path="res://architecture/ui/selected_entity_viewport.gd" id="6_vw2lh"]
 [ext_resource type="Script" uid="uid://dfifo1iryhsgu" path="res://architecture/ui/null_ui_selection_button.gd" id="7_7mwho"]
 [ext_resource type="Script" uid="uid://didbyugt5lxvi" path="res://architecture/ui/gold_managment/purchase_interface.gd" id="7_yq572"]
@@ -139,7 +139,9 @@ stretch = true
 
 [node name="LevelViewport" type="SubViewport" parent="FullScreen/CenterScreen/VBoxContainer/SubViewportContainer" unique_id=256052677]
 unique_name_in_owner = true
+handle_input_locally = false
 size = Vector2i(1660, 1057)
+render_target_update_mode = 4
 script = ExtResource("2_vsohg")
 
 [node name="DialogPointOfReferance" type="Control" parent="FullScreen/CenterScreen" unique_id=2047275902]
@@ -229,7 +231,9 @@ mouse_filter = 0
 
 [node name="DisplaySelectedViewport" type="SubViewport" parent="FullScreen/LevelControls/DisplaySelected/SubViewportContainer" unique_id=1467878820 node_paths=PackedStringArray("world_source")]
 unique_name_in_owner = true
+handle_input_locally = false
 size = Vector2i(260, 260)
+render_target_update_mode = 4
 script = ExtResource("6_vw2lh")
 world_source = NodePath("../../../../CenterScreen/VBoxContainer/SubViewportContainer/LevelViewport")
 
@@ -239,6 +243,9 @@ zoom = Vector2(0.75, 0.75)
 
 [node name="Camera3D" type="Camera3D" parent="FullScreen/LevelControls/DisplaySelected/SubViewportContainer/DisplaySelectedViewport" unique_id=2069364982]
 unique_name_in_owner = true
+transform = Transform3D(-1, -1.509958e-07, -6.600236e-15, 0, -4.371139e-08, 1, -1.509958e-07, 1, 4.371139e-08, 0, 40, 0)
+projection = 1
+size = 10.0
 
 [node name="PurchaseInterface" type="VBoxContainer" parent="FullScreen/LevelControls/DisplaySelected" unique_id=1204477422]
 unique_name_in_owner = true

@@ -1,4 +1,7 @@
-class_name HealthUI extends Control
+class_name HealthUI3D extends Sprite3D
+
+const SHADER_PRIMARY_HEALTH = "primary_health"
+const SHADER_GHOST_HEALTH = "ghost_health"
 
 #signal ratio_update(value: float)
 #signal suppression_update(value: bool)
@@ -6,13 +9,22 @@ class_name HealthUI extends Control
 @export var _hide_when_full := false
 @export var _hide_when_empty := false
 
-@onready var health_bar: Range = %HealthBar
-@onready var red_under_bar: Range = %RedUnderBar
+var _primary_ratio := .75: 
+	set(value):
+		_primary_ratio = value
+		_set_shader_parameter(SHADER_PRIMARY_HEALTH, _primary_ratio)
+
+var _ghost_ratio := .80:
+	set(value):
+		_ghost_ratio = value
+		_set_shader_parameter(SHADER_GHOST_HEALTH, _ghost_ratio)
+
 var _health_info: HealthInfo : set = set_health_info
 
 var _suppress := false : set = set_suppressed
 
 func _ready() -> void:
+	# TODO set health ui colors based on utlities/accessabilty settings 
 	set_health_info(_health_info)
 
 func set_health_info(info: HealthInfo) -> void:
@@ -29,28 +41,29 @@ func set_health_info(info: HealthInfo) -> void:
 		set_suppressed(true)
 
 func set_health_ratio(value: float, insta_red := false) -> void:
-	if value <= 0 and _hide_when_empty:
+	var is_healing : bool = value > _primary_ratio
+	_primary_ratio = clampf(value, 0.0, 1.0)
+	if _primary_ratio <= 0 and _hide_when_empty:
 		hide()
-	elif value >= 1.0 and _hide_when_full: 
+	elif _primary_ratio >= 1.0 and _hide_when_full: 
 		hide()
 	else:
 		show()
-	if _hide_when_empty:
-		if value <= 0.0:
-			hide()
-	value = clampf(value, 0.0, 1.0)
-	var is_healing : bool = value > health_bar.ratio
-	health_bar.set_as_ratio(value)
-	#ratio_update.emit(value)
 	if is_healing or insta_red: 
-		red_under_bar.set_as_ratio(value-0.01)
+		_ghost_ratio = _primary_ratio - 0.01
 
-func get_ratio() -> float: return health_bar.ratio
+func _set_shader_parameter(param: StringName, value: Variant) -> void:
+	#print(get_material_override().get_shader_parameter(param))
+	#get_material_override().
+	set_instance_shader_parameter(param, value)
+
+
+func _get_health_ratio() -> float: return _health_info.ratio
 
 func _process(delta: float) -> void:
-	if red_under_bar.ratio >= get_ratio():
+	if _ghost_ratio >= _primary_ratio:
 		delta *= GameSpeed.get_delta_mod()
-		red_under_bar.ratio -= delta
+		_ghost_ratio -= delta
 
 func set_suppressed(_is_suppressed) -> void:
 	_suppress = _is_suppressed 

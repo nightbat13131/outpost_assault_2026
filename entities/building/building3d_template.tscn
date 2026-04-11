@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://f1xco5y88yrp"]
+
+[ext_resource type="Script" uid="uid://bryp3vjucta0e" path="res://entities/building/building3d.gd" id="1_aqsqj"]
+[ext_resource type="Resource" uid="uid://scjcjf05x7qc" path="res://architecture/guide/select_building.tres" id="2_b8i8c"]
+[ext_resource type="Shader" uid="uid://gnxmll3rnb31" path="res://architecture/ui/progress_3d.gdshader" id="3_wt0dh"]
+[ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="3_x1mg5"]
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="4_b8i8c"]
+[ext_resource type="Script" uid="uid://cwhnwg27f611g" path="res://architecture/ui/health_3d_ui.gd" id="5_wt0dh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2oxv1"]
+render_priority = 0
+shader = ExtResource("3_wt0dh")
+shader_parameter/use_billboard = true
+shader_parameter/primary_color = Color(0.23150009, 1, 0.13, 1)
+shader_parameter/ghost_color = Color(1, 0.13, 0.13, 1)
+shader_parameter/background_color = Color(0, 0, 0, 0.83137256)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a41uu"]
+size = Vector3(3.95, 2, 3.95)
+
+[sub_resource type="BoxMesh" id="BoxMesh_38hd5"]
+size = Vector3(3.95, 2, 3.95)
+
+[node name="StaticBody3D_building" type="StaticBody3D" unique_id=992371182]
+script = ExtResource("1_aqsqj")
+action_select = ExtResource("2_b8i8c")
+metadata/_edit_group_ = true
+
+[node name="Node3D" type="Node3D" parent="." unique_id=727769521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9800866, 2.0676253)
+metadata/_edit_group_ = true
+
+[node name="Health3d_UI" type="Sprite3D" parent="Node3D" unique_id=1953698918]
+unique_name_in_owner = true
+material_override = SubResource("ShaderMaterial_2oxv1")
+instance_shader_parameters/ghost_health = 0.800000038
+instance_shader_parameters/primary_health = 0.518000024605
+texture = ExtResource("4_b8i8c")
+script = ExtResource("5_wt0dh")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=827431519]
+visible = false
+radius = 0.75
+vertices = PackedVector3Array(-0.4, 0, -0.4, -0.4, 0, 0.4, 0.4, 0, 0.4, 0.4, 0, -0.4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=940541688 node_paths=PackedStringArray("mimic_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+shape = SubResource("BoxShape3D_a41uu")
+script = ExtResource("3_x1mg5")
+mimic_mesh = NodePath("../MeshInstance3D_building")
+
+[node name="MeshInstance3D_building" type="MeshInstance3D" parent="." unique_id=481259357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+mesh = SubResource("BoxMesh_38hd5")

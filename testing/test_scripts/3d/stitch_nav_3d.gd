@@ -5,6 +5,8 @@ extends Node
 @export var mob: CharacterBody3D
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	if nav_point and mob:
 		if mob.has_method("set_nav_target"):
 			mob.set_nav_target(nav_point)

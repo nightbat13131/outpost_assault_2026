@@ -2,7 +2,7 @@ extends ButtonEnhanced
 
 const METHOD = "take_damage"
 
-@export var damage_target : Node2D : get = get_target
+@export var damage_target : Node : get = get_target
 @export var damage_amount : float = 10.0
 
 func _ready() -> void:

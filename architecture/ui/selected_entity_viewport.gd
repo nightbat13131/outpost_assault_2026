@@ -23,18 +23,19 @@ func _no_display() -> void:
 	camera_2d.position = Vector2.ZERO
 	get_parent().hide()
 
-func _set_camera_focus_3d(position: Vector3) -> void:
+func _set_camera_focus_3d(cam_position: Vector3) -> void:
 	 ## TODO: camera shutter when changing locations
-	if position == DisplayHelper.DEFAULT_POS_3D:
+	if cam_position == DisplayHelper.DEFAULT_POS_3D:
 		_no_display()
 	else: 
-		camera_3d.position = position
+		cam_position.y = 10 #camera_3d.position.y
+		camera_3d.position = cam_position
 		get_parent().show()
 
-func _set_camera_focus_2d(position: Vector2) -> void:
+func _set_camera_focus_2d(cam_position: Vector2) -> void:
 	 ## TODO: camera shutter when changing locations
-	if position == DisplayHelper.DEFAULT_POS_2D:
+	if cam_position == DisplayHelper.DEFAULT_POS_2D:
 		_no_display()
 	else: 
-		camera_2d.position = position
+		camera_2d.position = cam_position
 		get_parent().show()

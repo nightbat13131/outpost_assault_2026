@@ -5,6 +5,11 @@ const COLOR_RADAR_FILL = Color.DARK_ORCHID
 
 const PIX_PER_METTER = 128
 
+static func try_divide(numerator: float,  denominator: float, alternate: float = 0) -> float:
+	if is_equal_approx(denominator, 0.0):
+		return alternate
+	return numerator / denominator
+
 static func delta_radian(source_radian: float, target_radian: float) -> float:
 	var _delta_radian : float = target_radian - source_radian
 	if abs(_delta_radian) > PI:

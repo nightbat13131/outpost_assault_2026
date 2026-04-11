@@ -12,6 +12,7 @@ var min_zoom : float = .5 : set = _set_min_zoom
 var max_zoom : float = 2.5
 var _zoom := 1.0: set = _set_zoom, get = _get_zoom
 var initial_height : float
+var initial_fov : float
 
 static var standard_cursor : CustomCursor = load("uid://cb44gaxpio06i")
 static var dragging_cursor : CustomCursor = load("uid://dbw2fwmjcemp3")
@@ -25,7 +26,7 @@ static var action_zoom : GUIDEAction = load("uid://bl4ky3gf6gcji")
 @export var debug := true
 var _is_drag_cursor := true : set = _set_is_drag_cursor
 var _limit_rect : Rect2
-var _max_speed := 500.0
+var _max_speed := 5.0
 var _velocity := Vector3.ZERO
 var _is_remote_moving := false : set = _set_is_remote_moving
 var _viewport : SubViewport: get = get_subviewport
@@ -33,7 +34,11 @@ var _bounds : CameraBounds
 var _last_drag_direction : Vector2
 
 func _ready() -> void:
+	## TODO dev values
 	initial_height = global_position.y
+	initial_fov = fov
+	_limit_rect = Rect2(Vector2.ONE * -1000, Vector2.ONE * 4000)
+	##
 	if Engine.is_editor_hint():
 		return
 	if control_context:
@@ -45,8 +50,8 @@ func _ready() -> void:
 	setup_subviewport.call_deferred()
 
 func _process(delta: float) -> void:
-	#if Engine.is_editor_hint():
-	#	return
+	if Engine.is_editor_hint():
+		return
 	if _is_remote_moving:
 		return
 	if action_move_keys and action_move_drag:
@@ -66,9 +71,8 @@ func _process(delta: float) -> void:
 			_set_is_drag_cursor(false)
 		if direction == Vector2.ZERO:
 			return
-		_velocity = Vector3(direction.x, 0, direction.y ) * _get_speed() * delta
+		_velocity = Vector3(direction.x, 0.0, direction.y ) * _get_speed() * delta
 		_move_to(position + _velocity)
-
 
 func setup_subviewport() -> void: 
 	var new_viewport = GameLevelUI.request_subviewport()
@@ -116,7 +120,7 @@ func _apply_bound() -> void:
 
 func get_viewport_rect() -> Rect2: 
 	## TODO this is a patch while figuring out 3d. Find where this is called from and figure out how to get the real viewport and why
-	return Rect2(Vector2.ZERO, Vector2(1000,1000))
+	return Rect2(Vector2.ONE * -500, Vector2.ONE * 1000)
 
 func get_subviewport() -> SubViewport: return _viewport
 
@@ -125,19 +129,23 @@ func _on_viewport_size_changed() -> void: _apply_bound()
 func set_limits(rect: Rect2) -> void: _limit_rect = rect
 
 func _on_zoom() -> void:
+	if _is_remote_moving:
+		return
 	var value = action_zoom.value_axis_1d
 	var new_zoom = clamp(_get_zoom()*(1 + ZOOM_SPEED*value), min_zoom, max_zoom)
 	_set_zoom(new_zoom)
 	if action_move_keys and action_move_drag: 
 		if !(action_move_keys.is_triggered() or action_move_drag.is_triggered()):
-	#		# player not also scrolling camera while changing zoom
+			# player not also scrolling camera while changing zoom
 			_move_to(position)
 
 func _on_home() -> void:
+	if _is_remote_moving:
+		return
 	# TODO center over PlayerOutpost instead of reset zoom
 	var home := PlayerOutpost.get_instance()
-	
 	global_position.y = initial_height
+	fov = initial_fov
 	if home:
 		#remote_move_to(home.global_position)
 		pass
@@ -153,7 +161,7 @@ func _set_is_drag_cursor(is_on) -> void:
 	else: 
 		standard_cursor.force_to_default()
 
-func _get_speed() -> float: return 5 #_max_speed * (1/zoom.length())
+func _get_speed() -> float: return _max_speed * Utilities.try_divide(1, _get_zoom(), 1.0)
 
 func _set_min_zoom(value: float) -> void:
 	min_zoom = value
@@ -164,9 +172,12 @@ func _set_min_zoom(value: float) -> void:
 
 func _set_zoom(value: float) -> void:
 	_zoom = clampf(value, min_zoom, max_zoom)
+	## Change y? 
 	var new_y := initial_height * _zoom
-	#prints(_zoom, new_y)
 	global_position.y = new_y
+	## Change FOV?
+	#var new_fov = clampf(initial_fov * _zoom, 1, 179)
+	#fov = new_fov
 
 func _get_zoom() -> float: return _zoom
 
@@ -180,7 +191,7 @@ func remote_move_to(next_position : Vector3, target_zoom: float= 0.0) -> void:
 		pass
 
 func _move_to(next_position_: Vector3) -> void:
-	return
+	"""
 	var screen_size := get_viewport_rect().size / _get_zoom()
 	var internal_bounds = Rect2(_limit_rect.position + screen_size * .5, _limit_rect.size - screen_size) # y works GREAT
 	if screen_size.x >= _limit_rect.size.x:
@@ -189,6 +200,8 @@ func _move_to(next_position_: Vector3) -> void:
 	if screen_size.y >= _limit_rect.size.y:
 		internal_bounds.size.y = 10
 		internal_bounds.position.y = _limit_rect.get_center().y
-	next_position_.y = clamp(next_position_.y, internal_bounds.position.y, internal_bounds.end.y)
 	next_position_.x = clamp(next_position_.x, internal_bounds.position.x, internal_bounds.end.x)
-	position = next_position_
+	next_position_.z = clamp(next_position_.y, internal_bounds.position.y, internal_bounds.end.y)
+	"""
+	position.x = next_position_.x
+	position.z = next_position_.z
