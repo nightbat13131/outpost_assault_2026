@@ -1,5 +1,7 @@
 class_name DisplayHelper extends Resource
 
+const DEFAULT_NAME = "Name Missing"
+
 signal process_update
 signal unselected
 
@@ -7,7 +9,7 @@ const DEFAULT_POS_2D = Vector2.INF
 const DEFAULT_POS_3D = Vector3.INF
 
 var _parent : Object
-var _display_name : String = ''
+var _display_name : String = DEFAULT_NAME
 var _health_info: HealthInfo
 var _reload_info : ReloadInfo: set = set_reload_info, get = get_reload_info
 var _position2D : Vector2 = DEFAULT_POS_2D
@@ -16,14 +18,18 @@ var _purchaser_0 : PurchaseManager
 var _purchaser_1 : PurchaseManager
 var _tower :Tower
 
+
 func is_3d() -> bool: return _position3D != DisplayHelper.DEFAULT_POS_3D
 
 func is_2d() -> bool: return _position2D != DisplayHelper.DEFAULT_POS_2D
 
-func _init(parent: Object, health_info: HealthInfo, purchaser_0: PurchaseManager, purchaser_1: PurchaseManager) -> void:
+func _init(parent: Object, health_info: HealthInfo, purchaser_0: PurchaseManager, purchaser_1: PurchaseManager, display_name: String = DEFAULT_NAME) -> void:
 	_parent = parent
 	_health_info = health_info
+	_display_name = display_name
 	if _parent:
+		if _display_name == DEFAULT_NAME:
+				_display_name = _parent.name
 		if _parent is Node2D:
 			_position2D = _parent.get_global_position()
 			_position3D = DisplayHelper.DEFAULT_POS_3D
@@ -36,10 +42,12 @@ func _init(parent: Object, health_info: HealthInfo, purchaser_0: PurchaseManager
 func set_display_name(text: String) -> void: _display_name = text
 
 func get_display_name() -> String:
-	if _display_name.length() > 0:
+	if _parent:
 		return _display_name
-	elif _parent:
-		return str(_parent.name)
+	#if _display_name.length() > 0:
+	#	return _display_name
+	#elif _parent:
+	#	return str(_parent.name)
 	return "No Selection"
 
 func get_purchaser(index: int) -> PurchaseManager:

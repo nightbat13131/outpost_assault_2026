@@ -41,7 +41,7 @@ var _is_pulse_active := false
 ## Used to indicate the Spawn Point is destroyed
 var _is_disabled := false 
 
-var _picker : WeightedPicker
+var _unit_picker : WeightedPicker
 
 @onready var _timer := TimerModded.new(_inital_delay)
 
@@ -51,7 +51,7 @@ func _ready() -> void:
 	add_child(_timer) 
 	_timer.timeout.connect(_on_timer_timeout)
 	_populate_spawn_points()
-	_picker = WeightedPicker.new(spawn_types)
+	_unit_picker = WeightedPicker.new(spawn_types)
 
 func _draw() -> void:
 	if !Engine.is_editor_hint():
@@ -159,7 +159,7 @@ func _get_spawn_point(enemy_type: EnemyUnitInfo.EnemySpawnTypes) -> SpawnPoint:
 	push_warning(self, " no spawn point match with enemey type: ", enemy_type)
 	return spawn_points[0]
 
-func _pick_enemy() -> EnemyUnitInfo.EnemyTypes: return _picker.pick_one()
+func _pick_enemy() -> EnemyUnitInfo.EnemyTypes: return _unit_picker.pick_one()
 
 func _end_wave() -> void: spawner_stopped.emit(self)
 

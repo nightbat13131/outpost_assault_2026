@@ -1,4 +1,4 @@
-class_name SpawnManager extends Node2D
+class_name SpawnManager extends Node
 
 const WAVE_END_PADDING = 1.0
 

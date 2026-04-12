@@ -185,8 +185,6 @@ position = Vector2(1362, 442)
 script = ExtResource("16_waqtc")
 unit_types = Array[int]([100])
 next_targets = [NodePath("../../../NavPoints/NavPoint_03")]
-is_disabled = true
-target_distance = null
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="Spawner_2_3" type="Node2D" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="1" unique_id=368389524]
@@ -203,12 +201,11 @@ metadata/_custom_type_script = "uid://r0ygm2bqav7d"
 metadata/_edit_lock_ = true
 
 [node name="SpawnPoint_People" type="Node2D" parent="SpawnManager/Spawner_2_3" index="0" unique_id=448674188 node_paths=PackedStringArray("next_targets")]
-position = Vector2(1852, 571)
+position = Vector2(1865, 573)
 script = ExtResource("16_waqtc")
 unit_types = Array[int]([100])
 next_targets = [NodePath("../../../NavPoints/NavPoint_04")]
-is_disabled = true
-target_distance = null
+target_distance = 60.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="Spawner_2x2_4" parent="SpawnManager" parent_id_path=PackedInt32Array(1550060747) index="2" unique_id=1797158330 node_paths=PackedStringArray("spawn_points") instance=ExtResource("16_aerbt")]
@@ -227,26 +224,25 @@ spawn_types = Dictionary[int, int]({
 [node name="Building" parent="SpawnManager/Spawner_2x2_4" index="0" unique_id=831910580]
 _max_hp = 250.0
 
-[node name="SpawnPointPeople" parent="SpawnManager/Spawner_2x2_4" index="1" unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("Spawn_NE"), NodePath("Spawn_NW"), NodePath("Spawn_SE"), NodePath("Spawn_SW")]
-is_disabled = true
-target_distance = null
-
-[node name="Spawn_NE" parent="SpawnManager/Spawner_2x2_4/SpawnPointPeople" index="0" unique_id=100200813 node_paths=PackedStringArray("next_targets")]
-position = Vector2(182, -80)
+[node name="Spawn_NE" parent="SpawnManager/Spawner_2x2_4/SpawnPoint_0" parent_id_path=PackedInt32Array(1797158330, 1438190680) index="0" unique_id=100200813 node_paths=PackedStringArray("next_targets")]
+position = Vector2(202, -80)
 next_targets = [NodePath("../../../../NavPoints/NavPoint_10_E")]
+target_distance = 30.0
 
-[node name="Spawn_NW" parent="SpawnManager/Spawner_2x2_4/SpawnPointPeople" index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
-position = Vector2(-174, -102)
+[node name="Spawn_NW" parent="SpawnManager/Spawner_2x2_4/SpawnPoint_0" parent_id_path=PackedInt32Array(1797158330, 1438190680) index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
+position = Vector2(-203, -88)
 next_targets = [NodePath("../../../../NavPoints/NavPoint_10_W")]
+target_distance = 30.0
 
-[node name="Spawn_SE" parent="SpawnManager/Spawner_2x2_4/SpawnPointPeople" index="2" unique_id=588862786 node_paths=PackedStringArray("next_targets")]
-position = Vector2(172, 76)
+[node name="Spawn_SE" parent="SpawnManager/Spawner_2x2_4/SpawnPoint_0" parent_id_path=PackedInt32Array(1797158330, 1438190680) index="2" unique_id=588862786 node_paths=PackedStringArray("next_targets")]
+position = Vector2(190, 63)
 next_targets = [NodePath("../../../../NavPoints/NavPoint_10_E")]
+target_distance = 30.0
 
-[node name="Spawn_SW" parent="SpawnManager/Spawner_2x2_4/SpawnPointPeople" index="3" unique_id=194821967 node_paths=PackedStringArray("next_targets")]
-position = Vector2(-166, 67)
+[node name="Spawn_SW" parent="SpawnManager/Spawner_2x2_4/SpawnPoint_0" parent_id_path=PackedInt32Array(1797158330, 1438190680) index="3" unique_id=194821967 node_paths=PackedStringArray("next_targets")]
+position = Vector2(-181, 64)
 next_targets = [NodePath("../../../../NavPoints/NavPoint_10_W")]
+target_distance = 30.0
 
 [node name="FoundationPoints" parent="SpawnManager/Spawner_2x2_4" index="2" unique_id=725093312]
 _foundation_type = 1

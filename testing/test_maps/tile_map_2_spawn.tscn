@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="10_obju6"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="11_48muq"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="13_48muq"]
+[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost_2d.tscn" id="14_gwc1m"]
+[ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="15_o1u67"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -71,11 +73,10 @@ next_targets = [NodePath("../NavPoint_NE"), NodePath("../NavPoint_Kill")]
 target_distance = 100.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="NavPoint_Kill" type="Node2D" parent="TileMapLogicLayer" unique_id=249487478 node_paths=PackedStringArray("next_targets")]
+[node name="NavPoint_Kill" type="Node2D" parent="TileMapLogicLayer" unique_id=249487478]
 unique_name_in_owner = true
 position = Vector2(1736, 843)
 script = ExtResource("3_i28xo")
-next_targets = [null]
 target_distance = 100.0
 
 [node name="SpawnManager" type="Node2D" parent="." unique_id=1833308816]
@@ -92,22 +93,9 @@ spawn_types = Dictionary[int, int]({
 1: 1
 })
 
-[node name="SpawnPointPeople" parent="SpawnManager/SpawnerBuilding_People" index="1" unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
+[node name="SpawnPoint_0" parent="SpawnManager/SpawnerBuilding_People" index="1" unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
 position = Vector2(6, -2)
 next_targets = [NodePath("Spawn_NE")]
-
-[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_People/SpawnPointPeople" index="0" unique_id=100200813 node_paths=PackedStringArray("next_targets")]
-position = Vector2(-87, -109)
-next_targets = [NodePath("../../../../TileMapLogicLayer/NavPoint_N"), NodePath("../../../../TileMapLogicLayer/NavPoint_S")]
-
-[node name="Spawn_NW" parent="SpawnManager/SpawnerBuilding_People/SpawnPointPeople" index="1" unique_id=971029430]
-position = Vector2(-152, -114)
-
-[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_People/SpawnPointPeople" index="2" unique_id=588862786]
-position = Vector2(-95, 98)
-
-[node name="Spawn_SW" parent="SpawnManager/SpawnerBuilding_People/SpawnPointPeople" index="3" unique_id=194821967]
-position = Vector2(-155, 93)
 
 [node name="Spawner_Veh_Grou" type="Node2D" parent="SpawnManager" unique_id=519372992 node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("10_8g177")
@@ -174,6 +162,13 @@ shape = SubResource("CircleShape2D_oisr6")
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("13_48muq")]
 testing_index = 0
+
+[node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("14_gwc1m")]
+position = Vector2(90, 1027)
+
+[node name="TowerHolder" type="Node2D" parent="." unique_id=1642654037]
+script = ExtResource("15_o1u67")
+metadata/_custom_type_script = "uid://ddqv7v6chewas"
 
 [editable path="SpawnManager/SpawnerBuilding_People"]
 [editable path="SpawnManager/SpawnerBuilding_People/Building"]

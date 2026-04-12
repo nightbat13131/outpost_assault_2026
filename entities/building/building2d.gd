@@ -1,6 +1,7 @@
 class_name Building2D extends StaticBody2D
 
 signal died
+signal selected
 @export var _max_hp : float = 100.0
 
 var _display_info: DisplayHelper
@@ -36,6 +37,7 @@ func get_display_info() -> DisplayHelper: return _display_info
 func take_damage(damage_delt: float) -> void: _health_info.take_damage(damage_delt)
 
 func _on_selected() -> void:
+	selected.emit()
 	DisplaySelected.request_display(_display_info)
 
 func _die() -> void:

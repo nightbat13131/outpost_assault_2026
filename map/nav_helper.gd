@@ -18,7 +18,6 @@ class_name NavPoint extends Node2D
 		target_distance = abs(value)
 		queue_redraw()
 
-
 func _ready() -> void:
 	if is_disabled:
 		if Engine.is_editor_hint():
@@ -126,11 +125,11 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 func prune_targets() -> void:
+	while next_targets.has(null):
+		next_targets.erase(null)
 	var remove: Array[NavPoint]
 	for each in next_targets:
-		if each == null:
-			remove.append(each)
-		elif each.is_disabled:
+		if each.is_disabled:
 			remove.append(each)
 	while !remove.is_empty():
 		next_targets.erase(remove.pop_back())
