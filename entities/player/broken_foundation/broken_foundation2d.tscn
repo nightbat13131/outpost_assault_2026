@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bk5nrgy052rvw"]
 
-[ext_resource type="Script" uid="uid://bugwpf5p6rp43" path="res://entities/player/broken_foundation/broken_foundation.gd" id="1_vwu4y"]
+[ext_resource type="Script" uid="uid://bugwpf5p6rp43" path="res://entities/player/broken_foundation/broken_foundation2d.gd" id="1_vwu4y"]
 [ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="2_vwu4y"]
 [ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="3_pghae"]
 [ext_resource type="Script" uid="uid://bs2gntwyjap36" path="res://architecture/ui/game_speed/timer_delta_mod.gd" id="4_x7ois"]

@@ -23,14 +23,16 @@ size = Vector3(3.95, 2, 3.95)
 [sub_resource type="BoxMesh" id="BoxMesh_38hd5"]
 size = Vector3(3.95, 2, 3.95)
 
-[node name="StaticBody3D_building" type="StaticBody3D" unique_id=992371182]
+[node name="StaticBody3D_building" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("health_3d_ui")]
 script = ExtResource("1_aqsqj")
+health_3d_ui = NodePath("UI/Health3d_UI")
 metadata/_edit_group_ = true
 
 [node name="MouseInteractionNode" type="Node" parent="." unique_id=228840158 node_paths=PackedStringArray("_collision_node")]
 unique_name_in_owner = true
 script = ExtResource("7_2oxv1")
 _collision_node = NodePath("..")
+debug = true
 action_select = ExtResource("2_b8i8c")
 mouse_in_cursor = ExtResource("4_adcgw")
 

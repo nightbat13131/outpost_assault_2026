@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cpfajst60unk2"]
 
-[ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="1_fyg2p"]
+[ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation_2d.tscn" id="1_fyg2p"]
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="2_13lcl"]
 [ext_resource type="Resource" uid="uid://ba7veij6lf65e" path="res://entities/player/towers/tower_shooters/og/og_gattling/cost_tower_og_gattling.tres" id="3_l1bca"]
 [ext_resource type="Resource" uid="uid://5ctrtm8rvr8k" path="res://entities/player/towers/tower_shooters/og/og_cannon/cost_tower_og_cannon.tres" id="4_lvtvu"]

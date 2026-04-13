@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://dsmjn8prjtp52"]
+
+[ext_resource type="Script" uid="uid://d1l3wbx0rqaie" path="res://entities/player/broken_foundation/broken_foundation3d.gd" id="1_scmbp"]
+[ext_resource type="Resource" uid="uid://b5cm28nxwmcu" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation.tres" id="2_ypmrv"]
+[ext_resource type="Script" uid="uid://bl1jlns0m3333" path="res://entities/building/mouse_interaction_node_sticky.gd" id="3_yb2om"]
+[ext_resource type="Resource" uid="uid://scjcjf05x7qc" path="res://architecture/guide/select_building.tres" id="3_ypmrv"]
+[ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="4_ypmrv"]
+[ext_resource type="Resource" uid="uid://cq7yoy3jauvdv" path="res://architecture/cursors/pointing_hand.tres" id="4_ywsl8"]
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="6_gkpdv"]
+[ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="8_58ogx"]
+[ext_resource type="Script" uid="uid://740xap0m15w5" path="res://entities/player/broken_foundation/repair_manager.gd" id="9_yb2om"]
+[ext_resource type="Script" uid="uid://bs2gntwyjap36" path="res://architecture/ui/game_speed/timer_delta_mod.gd" id="10_ypmrv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a41uu"]
+size = Vector3(3.95, 2, 3.95)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypmrv"]
+albedo_color = Color(0.81786, 0.86, 0.49880004, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_38hd5"]
+material = SubResource("StandardMaterial3D_ypmrv")
+size = Vector3(3.95, 2, 3.95)
+
+[node name="BrokenFoundation3D" type="StaticBody3D" unique_id=992371182]
+script = ExtResource("1_scmbp")
+_cost_info = ExtResource("2_ypmrv")
+metadata/_edit_group_ = true
+
+[node name="MouseInteractionNode" type="Node" parent="." unique_id=228840158 node_paths=PackedStringArray("_collision_node")]
+unique_name_in_owner = true
+script = ExtResource("3_yb2om")
+while_selected_cursor = ExtResource("4_ypmrv")
+_collision_node = NodePath("..")
+action_select = ExtResource("3_ypmrv")
+mouse_in_cursor = ExtResource("4_ywsl8")
+
+[node name="RepairManager" type="Node" parent="." unique_id=1927032831]
+unique_name_in_owner = true
+script = ExtResource("9_yb2om")
+section_name = "Repar Ruble"
+
+[node name="Repair_Timer" type="Node" parent="." unique_id=1554656331]
+unique_name_in_owner = true
+script = ExtResource("10_ypmrv")
+metadata/_custom_type_script = "uid://bs2gntwyjap36"
+
+[node name="UI" type="Node3D" parent="." unique_id=355365874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0070786, 0)
+metadata/_edit_group_ = true
+
+[node name="TextureProgressSprite" type="Sprite3D" parent="UI" unique_id=1953698918]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.99895644, 0)
+billboard = 1
+texture = ExtResource("6_gkpdv")
+region_rect = Rect2(0, 0, 128, 21)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=827431519]
+visible = false
+radius = 0.75
+vertices = PackedVector3Array(-0.4, 0, -0.4, -0.4, 0, 0.4, 0.4, 0, 0.4, 0.4, 0, -0.4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=940541688 node_paths=PackedStringArray("mimic_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+shape = SubResource("BoxShape3D_a41uu")
+script = ExtResource("8_58ogx")
+mimic_mesh = NodePath("../MeshInstance3D_building")
+
+[node name="MeshInstance3D_building" type="MeshInstance3D" parent="." unique_id=481259357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+mesh = SubResource("BoxMesh_38hd5")

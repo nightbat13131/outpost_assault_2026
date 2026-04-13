@@ -83,9 +83,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 			warnings.erase(WARN_TOWER_HOLDER)
 		elif each_child is PlayerOutpost:
 			warnings.erase(WARN_PLAYER_OUTPOST)
-		elif each_child is BrokenFoundation:
+		elif each_child is BrokenFoundation2D:
 			warnings.append(WARN_FOUND_BROKEN)
-		elif each_child is TowerFoundation:
+		elif each_child is TowerFoundation2D:
 			warnings.append(WARN_FOUND_FOUNDATION)
 		elif each_child is Spawner:
 			warnings.append(WARN_FOUND_SPAWNER)

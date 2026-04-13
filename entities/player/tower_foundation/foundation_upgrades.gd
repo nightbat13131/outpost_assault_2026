@@ -12,7 +12,7 @@ var upgrade_prices: Dictionary = {
 	UpgradeTypes.GEAR: 200,
 }
 
-var _foundation : TowerFoundation
+var _foundation : Object
 
 static var upgrade_levels_max : Dictionary[UpgradeTypes, int] = {
 	UpgradeTypes.RADAR : 5, 
@@ -38,8 +38,11 @@ static var upgrade_type_tooltips : Dictionary[UpgradeTypes, String] = {
 	UpgradeTypes.COOLING : 0
 	}
 
-func set_foundation(foundation: TowerFoundation) -> void:
-	_foundation = foundation
+func set_foundation(foundation: Object) -> void:
+	if foundation is TowerFoundation2D or foundation is TowerFoundation3D:
+		_foundation = foundation
+	else: 
+		push_error(self, " FoundationUpgrades was send ", foundation ," instead of a foundation.")
 
 func attempt_upgrade_request(info: CostButonInfo_FoundationUpgrads) -> void:
 	var _upgrade_type := info.get_upgrade_type()
@@ -66,4 +69,4 @@ func get_upgrade_level(upgrade_type: UpgradeTypes) -> int:
 func get_upgrade_ratio(upgrade_type: UpgradeTypes) -> float:
 	return get_upgrade_level(upgrade_type) / float(upgrade_levels_max[upgrade_type])
 
-func get_foundation() -> TowerFoundation: return _foundation
+func get_foundation() -> Object: return _foundation

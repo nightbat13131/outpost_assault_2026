@@ -1,4 +1,4 @@
-class_name TowerFoundation extends Sprite2D
+class_name TowerFoundation2D extends Sprite2D
 
 const SCENE_PATH = "uid://crf0po16hl0dv"
 const SCENE_PATH_OG = "uid://cpfajst60unk2"

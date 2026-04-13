@@ -1,7 +1,7 @@
 class_name PurchaseManager_GunNest extends PurchaseManager
 
 @export var cost_tower_infos : Array[CostButtonInfo_Tower]
-var _foundation : TowerFoundation
+var _foundation : Object
 
 func _ready() -> void:
 	_validate_infos()
@@ -23,8 +23,9 @@ func _connect_to_section() -> void:
 	_get_buttons(cost_tower_infos.size())
 	_update_buttons()
 
-func set_foundation(node: TowerFoundation) -> void:
-	_foundation = node
+func set_foundation(foundation: Object) -> void:
+	if foundation is TowerFoundation2D or foundation is TowerFoundation3D:
+		_foundation = foundation
 	for index in range(cost_tower_infos.size()):
 		#cost_tower_infos[index].set_radar_preview(_foundation.get_radar_preview())
 		cost_tower_infos[index].set_foundation(_foundation)
@@ -40,4 +41,7 @@ func purchase_attempt_result(is_successful : bool, info: CostButtonInfo) -> void
 	if !is_successful:
 		return
 	if info is CostButtonInfo_Tower: #cast for autocomplete
-		_foundation.add_tower(info.get_tower_type())
+		if _foundation.has_method("add_tower"):
+			_foundation.add_tower(info.get_tower_type())
+		else:
+			push_error(_foundation, " in ", self, " PurchaseManager_GunNest does not have add_tower")

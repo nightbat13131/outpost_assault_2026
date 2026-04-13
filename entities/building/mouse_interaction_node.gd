@@ -8,6 +8,11 @@ signal mouse_in(is_in: bool)
 @export var action_select : GUIDEAction ## curently nested within the context_camera
 @export var mouse_in_cursor: CustomCursor
 
+var _mouse_in := false: 
+	set(is_in):
+		_mouse_in = is_in
+		mouse_in.emit(_mouse_in)
+
 func _ready() -> void:
 	_collision_node.input_event.connect(_on_input_event)
 	_collision_node.mouse_entered.connect(_on_mouse_entered)
@@ -22,15 +27,20 @@ func _on_input_event(_camera: Node, _event: InputEvent, _event_position: Vector3
 				prints(_collision_node.name, "select")
 
 func _on_mouse_entered() -> void:
-	mouse_in.emit(true)
-	if mouse_in_cursor:
-		CursorSetter.cursor_overwrite(self, mouse_in_cursor, true)
-		pass
-	if print_debug:
+	_mouse_in = true
+	_send_cursor()
+	if debug:
 		prints(_collision_node.name, "entered")
 
 func _on_mouse_exited() -> void:
-	mouse_in.emit(false)
-	CursorSetter.cursor_overwrite(self, null, false)
-	if print_debug:
+	_mouse_in = false
+	_send_cursor()
+	if debug:
 		prints(_collision_node.name, "exit")
+
+func _send_cursor() -> void:
+	if _mouse_in:
+		if mouse_in_cursor:
+			CursorSetter.cursor_overwrite(self, mouse_in_cursor, true)
+	else: 
+		CursorSetter.cursor_overwrite(self, null, false)

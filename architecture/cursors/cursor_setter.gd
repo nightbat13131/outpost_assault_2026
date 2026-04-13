@@ -18,6 +18,11 @@ static func cursor_overwrite(object: Object, cursor_info: CustomCursor, start_ov
 	else:
 		_end_cursor_(object)
 
+static func cursor_overwrite_update(object: Object, cursor_info: CustomCursor)  -> void:
+	if _overwrite_requester != object:
+		return # wrong object requesting update
+	cursor_info.activate_as_default_overwrite()
+
 static func _start_cursor_(object: Object, cursor_info: CustomCursor) -> void:
 	_overwrite_requester = object
 	cursor_info.activate_as_default_overwrite()

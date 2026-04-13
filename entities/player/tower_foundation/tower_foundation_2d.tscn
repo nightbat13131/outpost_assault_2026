@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crf0po16hl0dv"]
 
-[ext_resource type="Script" uid="uid://b0cpcl2hrysyo" path="res://entities/player/tower_foundation/tower_foundation.gd" id="1_bi0t7"]
+[ext_resource type="Script" uid="uid://b0cpcl2hrysyo" path="res://entities/player/tower_foundation/tower_foundation_2d.gd" id="1_bi0t7"]
 [ext_resource type="Script" uid="uid://bechd8jc61f3f" path="res://architecture/ui/button_trigger_ui.gd" id="2_u36w5"]
 [ext_resource type="Resource" uid="uid://dm285hlfne56a" path="res://architecture/cursors/repair.tres" id="3_53k03"]
 [ext_resource type="Script" uid="uid://cui255p7jwfm2" path="res://entities/player/tower_foundation/upgrade_manager_tower_foundation.gd" id="4_bi0t7"]

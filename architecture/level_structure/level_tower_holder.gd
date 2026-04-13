@@ -1,4 +1,4 @@
-class_name TowerHolder extends Node2D
+class_name TowerHolder extends Node
 
 static var _instance : TowerHolder
 
