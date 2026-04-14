@@ -186,7 +186,10 @@ script = ExtResource("11_v8nlx")
 [node name="TowerFoundation3D" parent="NavigationRegion3D/TowerHolder" unique_id=1724053501 instance=ExtResource("11_gxc2u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6700506, 0.09997487, -11.733249)
 
-[node name="BrokenFoundation3D" parent="NavigationRegion3D/TowerHolder" unique_id=992371182 instance=ExtResource("13_p45ln")]
+[node name="TowerFoundation3D2" parent="NavigationRegion3D/TowerHolder" unique_id=992371182 instance=ExtResource("11_gxc2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.362555, 0.09997487, -4.3433905)
+
+[node name="BrokenFoundation3D" parent="NavigationRegion3D/TowerHolder" unique_id=1589107544 instance=ExtResource("13_p45ln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.176757, 0.09997487, 8.354839)
 
 [node name="Node3D_Map" type="Node3D" parent="." unique_id=1244598056]

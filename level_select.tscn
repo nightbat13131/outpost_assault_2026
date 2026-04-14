@@ -129,20 +129,20 @@ level_info = ExtResource("12_doruf")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select16" type="Button" parent="3g" unique_id=465383948]
-offset_left = 240.0
-offset_top = 207.0
-offset_right = 309.0
-offset_bottom = 238.0
+offset_left = 183.0
+offset_top = 190.0
+offset_right = 252.0
+offset_bottom = 221.0
 text = "3D"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("13_473rj")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select17" type="Button" parent="3g" unique_id=1866460831]
-offset_left = 402.0
-offset_top = 223.0
-offset_right = 471.0
-offset_bottom = 254.0
+offset_left = 319.0
+offset_top = 284.0
+offset_right = 388.0
+offset_bottom = 315.0
 text = "3D"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("14_w6pwf")

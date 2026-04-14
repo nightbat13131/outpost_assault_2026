@@ -36,7 +36,7 @@ func is_repairing() -> bool: return _repair_started
 func _do_repair() -> void:
 	if _repair_started: # prevent double start
 		return 
-	
+	_is_selected = false
 	_repair_started = true
 	_cost_info.is_repairing = true
 	_update_buttons()
@@ -62,14 +62,16 @@ func _get_repair_duration() -> float: return BrokenFoundation2D.BASE_REPAIR_DURA
 func _setup_display_info() -> void:
 	_display_info = DisplayHelper.new(self, null, _repair_manager, null, "Broken Foundation")
 
-
 func _on_selected() -> void: 
 	on_selected()
-	#selected.emit()
-	#DisplaySelected.request_display(_display_info)
+
 
 func on_selected() -> void:
-	if _is_selected:
+	super._on_selected()
+	if is_repairing():
+		_is_selected = false
+		pass # nothing else special
+	elif _is_selected:
 		print("try repair")
 		if !is_repairing():
 			if GoldManager.attempt_purchase(get_build_cost()):
