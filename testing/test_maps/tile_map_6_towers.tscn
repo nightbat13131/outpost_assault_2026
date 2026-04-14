@@ -226,11 +226,14 @@ _hard_spawn_cap = 1
 _spawn_speed = 2.5
 metadata/_edit_group_ = true
 
-[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
+[node name="SpawnPoint_0" parent="SpawnManager/SpawnerBuilding_1x2" index="1" unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
+next_targets = [NodePath("Spawn_NW"), NodePath("Spawn_SW")]
+
+[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPoint_0" index="0" unique_id=100200813]
 position = Vector2(-89, -74)
 is_disabled = true
 
-[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="2" unique_id=588862786]
+[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPoint_0" index="2" unique_id=588862786]
 position = Vector2(-92, 57)
 is_disabled = true
 
@@ -243,7 +246,7 @@ _hard_spawn_cap = 1
 _spawn_speed = 2.0
 metadata/_edit_group_ = true
 
-[node name="Spawn_W" parent="SpawnManager/SpawnerBuilding_1x1/SpawnPointPerson" parent_id_path=PackedInt32Array(806376720, 1438190680) index="1" unique_id=971029430]
+[node name="Spawn_W" parent="SpawnManager/SpawnerBuilding_1x1/SpawnPoint_0" parent_id_path=PackedInt32Array(806376720, 1438190680) index="1" unique_id=971029430]
 position = Vector2(-93, 13)
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("14_u04pn")]

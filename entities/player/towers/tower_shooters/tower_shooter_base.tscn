@@ -2,13 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://dfliur4n7vbax" path="res://entities/player/towers/tower_base.tscn" id="1_giylo"]
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="2_2pbwi"]
-[ext_resource type="Script" uid="uid://ce2q3c6wba28d" path="res://entities/player/towers/tower_shooters/tower_shooter.gd" id="2_chclv"]
 [ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/tower_shooters/cost_truck_tower.tres" id="3_chclv"]
 [ext_resource type="PackedScene" uid="uid://cjv1k5x0a1urk" path="res://entities/shooter_shared/shooter_base.tscn" id="5_chclv"]
 [ext_resource type="Script" uid="uid://8oh76wqkrmq4" path="res://entities/player/towers/tower_shooters/shooter_tower.gd" id="6_d4hq3"]
 
 [node name="TowerShooter_Base" unique_id=1226539165 instance=ExtResource("1_giylo")]
-script = ExtResource("2_chclv")
 
 [node name="TowerPurchaseManager" parent="." index="1" unique_id=1756272085]
 cost_tower_infos = Array[ExtResource("2_2pbwi")]([ExtResource("3_chclv")])
@@ -17,7 +15,7 @@ section_name = "Tower - Truck"
 [node name="Shooter" parent="." index="3" unique_id=1614296909 instance=ExtResource("5_chclv")]
 script = ExtResource("6_d4hq3")
 
-[node name="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
+[node name="RayCast2D_0" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
 collision_mask = 516
 
 [node name="Label" parent="." index="4" unique_id=1599518143]

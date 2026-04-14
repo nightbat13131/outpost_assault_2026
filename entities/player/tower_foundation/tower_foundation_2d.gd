@@ -12,6 +12,7 @@ var _display_info: DisplayHelper: get = get_display_info
 var _current_tower: Tower
 @onready var _button: Button_Trigger_UI = %Button
 @onready var upgrade_manager: UpgradeManager_TowerFoundation = %UpgradeManager
+@onready var visualize_upgrades: UpgradeVisualizer2D = %VisualizeUpgrades
 
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _health_ui: HealthUI = %HealthUI
@@ -42,8 +43,7 @@ func _connect_purchasers() -> void:
 	upgrade_manager.set_upgrade_info(upgrades)
 	upgrade_manager.preview_upgrade.connect(_on_preview_upgrade)
 	_radar_preview.set_foundation_upgrades(upgrades)
-	for each_child : UpgradeVisualizer in %VisualizeUpgrades.get_children():
-		each_child.set_upgrade_info(upgrades)
+	visualize_upgrades.set_upgrade_info(upgrades)
 
 func add_tower(tower_type: TowerInfo.TowerType) -> void:
 	_update_display_info.call_deferred()

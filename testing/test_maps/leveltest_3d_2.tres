@@ -7,5 +7,5 @@ script = ExtResource("1_fr8ue")
 level_name = "3D Buildings"
 level_uid = "uid://dnianrpo4gp0o"
 view_mode = 3
-starting_gold = 1200.0
+starting_gold = 120000.0
 metadata/_custom_type_script = "uid://u6pais7e54pl"

@@ -80,18 +80,15 @@ func on_selected() -> void:
 	_update_buttons()
 
 func _update_buttons() -> void:
+	## TODO: tooltips
 	return
 	"""
 	if is_repairing():
-		_select_button.set_state(ButtonEnhanced.ButtonStates.Active)
 		_select_button.set_tooltip_text(BrokenFoundation2D.TOOLTIP_REPAIRING)
 	elif _is_selected:
-		_select_button.set_state(ButtonEnhanced.ButtonStates.Active_Overwrite)
 		_select_button.set_tooltip_text(BrokenFoundation2D.TOOLTIP_REPAIR.format([int(get_build_cost())])) #, "{}"))
 	else:
-		_select_button.set_state(ButtonEnhanced.ButtonStates.Active)
 		_select_button.set_tooltip_text(BrokenFoundation2D.TOOLTIP_NAME)
-	
 	"""
 
 

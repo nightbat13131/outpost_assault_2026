@@ -125,11 +125,13 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 func prune_targets() -> void:
-	while next_targets.has(null):
+	while next_targets.has(null): ## not working, maybe something to do with null not being an object to compare against
 		next_targets.erase(null)
 	var remove: Array[NavPoint]
 	for each in next_targets:
-		if each.is_disabled:
+		if each == null:
+			remove.append(each)
+		elif each.is_disabled:
 			remove.append(each)
 	while !remove.is_empty():
 		next_targets.erase(remove.pop_back())
