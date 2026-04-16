@@ -1,6 +1,6 @@
-class_name PlayerOutpost extends Building2D
+class_name PlayerOutpost2D extends Building2D
 
-static var _instatnce : PlayerOutpost
+static var _instatnce : PlayerOutpost2D
 
 var upgrade_manager: PurchaseManager
 @onready var enemy_detector: Area2D = %EnemyDetector
@@ -29,4 +29,4 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is EnemyUnit:
 		body.on_outpost_entered(self)
 
-static func get_instance() -> PlayerOutpost: return _instatnce
+static func get_instance() -> PlayerOutpost2D: return _instatnce

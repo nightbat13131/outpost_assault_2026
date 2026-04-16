@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dnjfh8iuvd8x5"]
 
 [ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/building/building2d_template.tscn" id="1_vdji5"]
-[ext_resource type="Script" uid="uid://x6eddo14cwyj" path="res://entities/player/player_outpost/player_outpost.gd" id="2_smrb1"]
+[ext_resource type="Script" uid="uid://x6eddo14cwyj" path="res://entities/player/player_outpost/player_outpost_2d.gd" id="2_smrb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdji5"]
 size = Vector2(256, 256)

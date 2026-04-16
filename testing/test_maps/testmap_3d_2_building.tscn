@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://rtyqyhrfekvc" path="res://entities/player/tower_foundation/tower_foundation_3d.tscn" id="11_gxc2u"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="11_v8nlx"]
 [ext_resource type="PackedScene" uid="uid://dsmjn8prjtp52" path="res://entities/player/broken_foundation/broken_foundation_3d.tscn" id="13_p45ln"]
+[ext_resource type="PackedScene" uid="uid://c7quy5x5ni6lg" path="res://entities/player/player_outpost/player_outpost_3d.tscn" id="16_l8agd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cfc2o"]
 ground_bottom_color = Color(0.19263999, 0.28, 0.1792, 1)
@@ -77,7 +78,7 @@ _level_info = ExtResource("2_x8146")
 environment = SubResource("Environment_c7i1g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=660857533]
-transform = Transform3D(-0.29073334, 0.7004581, 0.65179175, -0.57979894, -0.6708735, 0.46234387, 0.76112235, -0.24348947, 0.6011703, -2.2137392, 0, 0)
+transform = Transform3D(0.078576945, -0.9008557, -0.42694807, -0.366333, -0.424401, 0.8280603, -0.92715997, 0.09133872, -0.36336136, -2.2137392, 0, 0)
 light_color = Color(0.8682667, 0.704, 0.88, 1)
 shadow_enabled = true
 
@@ -94,26 +95,35 @@ nav_point = NodePath("../../Node3D_Map/NavNode2")
 mob = NodePath("../../CharacterBody3D3")
 
 [node name="ButtonEnhanced" type="Button" parent="Testing" unique_id=328841025]
-offset_left = 351.0
-offset_top = 82.0
-offset_right = 423.0
-offset_bottom = 113.0
+offset_left = 31.0
+offset_top = 39.0
+offset_right = 103.0
+offset_bottom = 70.0
+text = "Damage"
+script = ExtResource("4_pp447")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="ButtonEnhanced3" type="Button" parent="Testing" unique_id=881159927]
+offset_left = 40.0
+offset_top = 95.0
+offset_right = 112.0
+offset_bottom = 126.0
 text = "Damage"
 script = ExtResource("4_pp447")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="ButtonEnhanced2" type="Button" parent="Testing" unique_id=1298841703 node_paths=PackedStringArray("damage_target")]
-offset_left = 19.0
-offset_top = 96.0
-offset_right = 91.0
-offset_bottom = 127.0
-text = "Damage"
+offset_left = 64.0
+offset_top = 165.0
+offset_right = 136.0
+offset_bottom = 196.0
+text = "Damage - outpost"
 script = ExtResource("4_pp447")
-damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building2")
+damage_target = NodePath("../../PlayerOutpost")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Camera3D_Overhead" type="Camera3D" parent="." unique_id=402352859]
-transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, 0, 30, -5.2584343)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, -5.2584343)
 current = true
 size = 35.313
 script = ExtResource("4_c7i1g")
@@ -294,3 +304,6 @@ mimic_mesh = NodePath("../Pivot/MeshInstance3D")
 
 [node name="tree_00" parent="." unique_id=1391008575 instance=ExtResource("8_3p3ij")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8854842, 0, -0.31607425)
+
+[node name="PlayerOutpost" parent="." unique_id=2026485468 instance=ExtResource("16_l8agd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.611589, 0.09997487, 12.099096)

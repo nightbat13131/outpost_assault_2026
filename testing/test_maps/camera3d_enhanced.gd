@@ -143,11 +143,13 @@ func _on_home() -> void:
 	if _is_remote_moving:
 		return
 	# TODO center over PlayerOutpost instead of reset zoom
-	var home := PlayerOutpost.get_instance()
-	global_position.y = initial_height
-	fov = initial_fov
+	#_set_zoom(1.0)
+	var home := PlayerOutpost3D.get_instance()
+	# global_position.y = initial_height
+	# fov = initial_fov
+	
 	if home:
-		#remote_move_to(home.global_position)
+		remote_move_to(home.global_position)
 		pass
 
 func _set_is_remote_moving(is_moving: bool) -> void: _is_remote_moving = is_moving

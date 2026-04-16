@@ -20,7 +20,10 @@ shader_parameter/background_color = Color(0, 0, 0, 0.83137256)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a41uu"]
 size = Vector3(3.95, 2, 3.95)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adcgw"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_38hd5"]
+material = SubResource("StandardMaterial3D_adcgw")
 size = Vector3(3.95, 2, 3.95)
 
 [node name="StaticBody3D_building" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("health_3d_ui")]
@@ -32,7 +35,6 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 script = ExtResource("7_2oxv1")
 _collision_node = NodePath("..")
-debug = true
 action_select = ExtResource("2_b8i8c")
 mouse_in_cursor = ExtResource("4_adcgw")
 

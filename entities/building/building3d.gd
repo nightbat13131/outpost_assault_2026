@@ -32,7 +32,7 @@ func setup(health_info: HealthInfo) -> void:
 func _setup_display_info() -> void:
 	_display_info = DisplayHelper.new(self, _health_info, null, null, "Default Building")
 
-#func get_health_info() -> HealthInfo: return _health_info
+func get_health_info() -> HealthInfo: return _health_info
 
 #func get_clip_ui() -> ClipReloadUI: return _clip_reload_ui
 

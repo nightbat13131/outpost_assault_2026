@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://c7quy5x5ni6lg"]
+
+[ext_resource type="Script" uid="uid://csv12af1i33cv" path="res://entities/player/player_outpost/player_outpost_3d.gd" id="1_mupyd"]
+[ext_resource type="PackedScene" uid="uid://dc4u8xhm8ujr8" path="res://assets/models/outpost_0.glb" id="2_124wu"]
+[ext_resource type="Script" uid="uid://ca5bfmlwytgdq" path="res://entities/building/mouse_interaction_node.gd" id="2_ubpl3"]
+[ext_resource type="Resource" uid="uid://scjcjf05x7qc" path="res://architecture/guide/select_building.tres" id="3_124wu"]
+[ext_resource type="PackedScene" uid="uid://bxdf27mnkjhr6" path="res://assets/models/outpost_1.glb" id="3_y1noq"]
+[ext_resource type="Resource" uid="uid://cq7yoy3jauvdv" path="res://architecture/cursors/pointing_hand.tres" id="4_y1noq"]
+[ext_resource type="Shader" uid="uid://gnxmll3rnb31" path="res://architecture/ui/progress_3d.gdshader" id="5_asxvq"]
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="6_jflvm"]
+[ext_resource type="Script" uid="uid://cwhnwg27f611g" path="res://architecture/ui/health_3d_ui.gd" id="7_04pmc"]
+[ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="8_guu31"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2oxv1"]
+render_priority = 0
+shader = ExtResource("5_asxvq")
+shader_parameter/use_billboard = true
+shader_parameter/primary_color = Color(0.23150009, 1, 0.13, 1)
+shader_parameter/ghost_color = Color(1, 0.13, 0.13, 1)
+shader_parameter/background_color = Color(0, 0, 0, 0.83137256)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a41uu"]
+size = Vector3(5, 2, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mupyd"]
+albedo_color = Color(0.60349965, 0.71768194, 0.9797291, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_38hd5"]
+material = SubResource("StandardMaterial3D_mupyd")
+size = Vector3(5, 2, 5)
+
+[node name="PlayerOutpost" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("health_3d_ui")]
+script = ExtResource("1_mupyd")
+health_3d_ui = NodePath("UI/Health3d_UI")
+metadata/_edit_group_ = true
+
+[node name="outpost_0" parent="." unique_id=1504039691 instance=ExtResource("2_124wu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5)
+visible = false
+
+[node name="outpost_1" parent="." unique_id=268009794 instance=ExtResource("3_y1noq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26438665, 0, 0)
+
+[node name="MouseInteractionNode" type="Node" parent="." unique_id=228840158 node_paths=PackedStringArray("_collision_node")]
+unique_name_in_owner = true
+script = ExtResource("2_ubpl3")
+_collision_node = NodePath("..")
+debug = true
+action_select = ExtResource("3_124wu")
+mouse_in_cursor = ExtResource("4_y1noq")
+
+[node name="UI" type="Node3D" parent="." unique_id=727769521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9800866, 2.0676253)
+metadata/_edit_group_ = true
+
+[node name="Health3d_UI" type="Sprite3D" parent="UI" unique_id=1953698918]
+unique_name_in_owner = true
+material_override = SubResource("ShaderMaterial_2oxv1")
+instance_shader_parameters/ghost_health = 0.800000038
+instance_shader_parameters/primary_health = 0.518000024605
+texture = ExtResource("6_jflvm")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 21)
+script = ExtResource("7_04pmc")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=827431519]
+visible = false
+radius = 0.75
+vertices = PackedVector3Array(-0.4, 0, -0.4, -0.4, 0, 0.4, 0.4, 0, 0.4, 0.4, 0, -0.4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=940541688 node_paths=PackedStringArray("mimic_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+shape = SubResource("BoxShape3D_a41uu")
+script = ExtResource("8_guu31")
+mimic_mesh = NodePath("../MeshInstance3D_building")
+
+[node name="MeshInstance3D_building" type="MeshInstance3D" parent="." unique_id=481259357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+visible = false
+mesh = SubResource("BoxMesh_38hd5")
+
+[node name="EnemyDetector" type="Area3D" parent="." unique_id=743446113]
+unique_name_in_owner = true
+visible = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="EnemyDetector" unique_id=487817028 node_paths=PackedStringArray("mimic_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+shape = SubResource("BoxShape3D_a41uu")
+script = ExtResource("8_guu31")
+mimic_mesh = NodePath("../../MeshInstance3D_building")

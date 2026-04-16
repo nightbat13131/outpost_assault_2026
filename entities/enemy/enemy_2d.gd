@@ -157,7 +157,7 @@ func stop_animation(animation: String) -> void:
 
 func take_damage(damage_delt : float) -> void: get_enemy_info().take_damage(damage_delt)
 
-func on_outpost_entered(outpost: PlayerOutpost) -> void:
+func on_outpost_entered(outpost: PlayerOutpost2D) -> void:
 	outpost.take_damage(get_enemy_info().get_outpost_damange())
 	## TODO: animation other than die?
 	_die()

@@ -20,7 +20,7 @@ const RADAR_FADE := .25
 @onready var collision_polygon_2d: CollisionPolygon2D = %CollisionPolygon2D
 
 var _shooter : Shooter
-var _player_outpost : PlayerOutpost
+var _player_outpost : PlayerOutpost2D
 var _radar_shape : RadarShapeInfo: set = set_radar_shape_info, get = get_radar_shape
 var _targets : Array =[]
 var _parent_selected := false 

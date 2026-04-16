@@ -138,7 +138,7 @@ func _on_zoom() -> void:
 			_move_to(position)
 
 func _on_home() -> void:
-	var home := PlayerOutpost.get_instance()
+	var home := PlayerOutpost2D.get_instance()
 	if home:
 		remote_move_to(home.global_position)
 
