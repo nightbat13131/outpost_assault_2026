@@ -55,18 +55,15 @@ metadata/_edit_group_ = true
 
 [node name="Health3d_UI" type="Sprite3D" parent="UI" unique_id=1953698918]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13556337, 0.4064498)
 material_override = SubResource("ShaderMaterial_2oxv1")
 instance_shader_parameters/ghost_health = 0.800000038
 instance_shader_parameters/primary_health = 0.518000024605
+render_priority = 1
 texture = ExtResource("6_jflvm")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 21)
 script = ExtResource("7_04pmc")
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=827431519]
-visible = false
-radius = 0.75
-vertices = PackedVector3Array(-0.4, 0, -0.4, -0.4, 0, 0.4, 0.4, 0, 0.4, 0.4, 0, -0.4)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=940541688 node_paths=PackedStringArray("mimic_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)

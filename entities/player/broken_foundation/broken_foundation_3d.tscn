@@ -9,7 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="6_gkpdv"]
 [ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="8_58ogx"]
 [ext_resource type="Script" uid="uid://740xap0m15w5" path="res://entities/player/broken_foundation/repair_manager.gd" id="9_yb2om"]
+[ext_resource type="Shader" uid="uid://cnxm1rh8rfbni" path="res://entities/player/broken_foundation/progress_radial_3d.gdshader" id="9_ywsl8"]
 [ext_resource type="Script" uid="uid://bs2gntwyjap36" path="res://architecture/ui/game_speed/timer_delta_mod.gd" id="10_ypmrv"]
+[ext_resource type="Script" uid="uid://dd3be32bf0x3p" path="res://entities/player/broken_foundation/repari_progress_sprite_3d.gd" id="11_s3v04"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3v04"]
+render_priority = 0
+shader = ExtResource("9_ywsl8")
+shader_parameter/albedo = ExtResource("6_gkpdv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a41uu"]
 size = Vector3(3.95, 2, 3.95)
@@ -48,12 +55,16 @@ metadata/_custom_type_script = "uid://bs2gntwyjap36"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0070786, 0)
 metadata/_edit_group_ = true
 
-[node name="TextureProgressSprite" type="Sprite3D" parent="UI" unique_id=1953698918]
+[node name="RepairProgressSprite3D" type="Sprite3D" parent="UI" unique_id=1953698918]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.99895644, 0)
+material_override = SubResource("ShaderMaterial_s3v04")
+pixel_size = 0.02
 billboard = 1
 texture = ExtResource("6_gkpdv")
 region_rect = Rect2(0, 0, 128, 21)
+script = ExtResource("11_s3v04")
+metadata/_edit_lock_ = true
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=827431519]
 visible = false

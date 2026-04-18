@@ -12,10 +12,9 @@ var _nav_target : NavPoint3D :set = set_nav_target
 # Maximum speed of the mob in meters per second.
 @export var max_speed := 18.0
 # The downward acceleration when in the air, in meters per second squared.
-@export var fall_acceleration = 75
+#@export var fall_acceleration = 75
 #var direction : Vector3
 var _state_machine: StateChart
-
 
 var speed : float
 var target_velocity : Vector3
@@ -41,7 +40,7 @@ func _physics_process(delta):
 	#target_velocity.z = rotation.z * speed
 	#print(is_on_floor())
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+		target_velocity.y = target_velocity.y - (Utilities.get_gravity() * delta)
 		
 	velocity = target_velocity
 	#prints(speed, rotation, velocity)
@@ -86,7 +85,7 @@ func move(delta_moded: float) -> void:
 	
 	# apply gravity to y
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
-		velocity.y = velocity.y - (fall_acceleration * delta_moded)
+		velocity.y = velocity.y - (5 * delta_moded)
 		
 	if _nav_agent.avoidance_enabled:
 		#_nav_agent.set_velocity(velocity)
@@ -113,5 +112,5 @@ func facing_move(delta_moded: float) -> void:
 	
 	# apply gravity to y
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
-		velocity.y = velocity.y - (fall_acceleration * delta_moded)
+		velocity.y = velocity.y - (Utilities.get_gravity() * delta_moded)
 	move_and_slide()

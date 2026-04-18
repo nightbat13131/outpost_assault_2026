@@ -12,7 +12,7 @@ var _is_selected := false:
 			mouse_interaction_node.set_is_selected(_is_selected)
 
 @onready var _repair_manager: RepairPurchaser = %RepairManager
-@onready var texture_progress_sprite: Sprite3D = %TextureProgressSprite ## TODO 3d progress
+@onready var repair_progress_sprite_3d: RepairUI3D = %RepairProgressSprite3D
 @onready var repair_timer: TimerModded = %Repair_Timer
 
 func _ready() -> void:
@@ -28,8 +28,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if _repair_started:
-		#texture_progress_bar.set_as_ratio(repair_timer.get_ratio())
-		pass
+		repair_progress_sprite_3d.set_primary_ratio(repair_timer.get_ratio())
 
 func is_repairing() -> bool: return _repair_started
 
@@ -62,9 +61,7 @@ func _get_repair_duration() -> float: return BrokenFoundation2D.BASE_REPAIR_DURA
 func _setup_display_info() -> void:
 	_display_info = DisplayHelper.new(self, null, _repair_manager, null, "Broken Foundation")
 
-func _on_selected() -> void: 
-	on_selected()
-
+func _on_selected() -> void: on_selected()
 
 func on_selected() -> void:
 	super._on_selected()
