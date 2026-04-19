@@ -159,7 +159,6 @@ skeleton = NodePath("")
 unique_name_in_owner = true
 script = ExtResource("8_pp447")
 _collision_node = NodePath("..")
-debug = true
 metadata/_custom_type_script = "uid://ca5bfmlwytgdq"
 
 [node name="StaticBody_Ground" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1332677109]
