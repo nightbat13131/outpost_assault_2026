@@ -18,8 +18,8 @@ func get_purchase_type() -> CostButton.PurchaseTypes:
 		return CostButton.PurchaseTypes.ONE_SHOT
 	return CostButton.PurchaseTypes.INFORMATION
 
-func set_foundation(foundation: Object) -> void:
-	if foundation is TowerFoundation2D:
+func set_foundation(foundation: TowerFoundation) -> void:
+	if foundation is TowerFoundation:
 		_radar_preview = foundation.get_radar_preview()
 		tower_info = tower_info.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
 	else: 

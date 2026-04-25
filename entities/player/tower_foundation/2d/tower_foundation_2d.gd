@@ -1,4 +1,4 @@
-class_name TowerFoundation2D extends Sprite2D
+class_name TowerFoundation_2D extends Sprite2D
 
 const SCENE_PATH = "uid://crf0po16hl0dv"
 const SCENE_PATH_OG = "uid://cpfajst60unk2"
@@ -38,8 +38,8 @@ func _connect_purchasers() -> void:
 	else:
 		upgrades = upgrades.duplicate_deep(Resource.DEEP_DUPLICATE_ALL) # deep as uses 
 		
-	_tower_purchase_manager.set_foundation(self)
-	upgrades.set_foundation(self)
+	#_tower_purchase_manager.set_foundation(self)
+	#upgrades.set_foundation(self)
 	upgrade_manager.set_upgrade_info(upgrades)
 	upgrade_manager.preview_upgrade.connect(_on_preview_upgrade)
 	_radar_preview.set_foundation_upgrades(upgrades)
@@ -59,7 +59,7 @@ func _add_tower(tower_type: TowerInfo.TowerType) -> void:
 	_current_tower.dead.connect(_on_tower_dead)
 	add_child(_current_tower)
 	#print("A 3 tower added as child")
-	_current_tower.setup(upgrades, _health_ui, _clip_reload_ui)
+	_current_tower.setup_2d(upgrades, _health_ui, _clip_reload_ui)
 	#print("A 4 tower setup complete")
 
 func get_display_info() -> DisplayHelper: return _display_info

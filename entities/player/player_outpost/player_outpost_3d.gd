@@ -1,6 +1,6 @@
-class_name PlayerOutpost3D extends Building3D
+class_name PlayerOutpost extends Building
 
-static var _instatnce : PlayerOutpost3D
+static var _instatnce : PlayerOutpost
 
 var upgrade_manager: PurchaseManager
 @onready var enemy_detector: Area3D = %EnemyDetector
@@ -14,7 +14,7 @@ func _ready() -> void:
 	enemy_detector.body_entered.connect(_on_body_entered)
 	_finish_setup.call_deferred()
 
-static func get_instance() -> PlayerOutpost3D: return _instatnce
+static func get_instance() -> PlayerOutpost: return _instatnce
 
 func _die() -> void:
 	if _instatnce == self:

@@ -5,8 +5,8 @@ static var _null_information : DisplayHelper
 
 var _information : DisplayHelper
 @onready var display_name: Label = %DisplayName
-@onready var display_health: HealthUI = %Display_Health
-@onready var clip_reload_ui: ClipReloadUI = %ClipReloadUI
+@onready var display_health: HealthUI_Control = %Display_Health
+@onready var clip_reload_ui: ClipReloadUI_Control = %ClipReloadUI
 @onready var display_selected_viewport: DisplaySelected_SubViewport = %DisplaySelectedViewport
 @onready var purchase_interface: PurchaseInterface = %PurchaseInterface
 @onready var tower_interface: DisplayTowerInterface = %TowerInterface

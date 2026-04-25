@@ -1,4 +1,4 @@
-class_name BrokenFoundation2D extends Sprite2D
+class_name BrokenFoundation_2D extends Sprite2D
 
 const SCENE_PATH = "uid://bk5nrgy052rvw"
 const BASE_REPAIR_DURATION = 2.0
@@ -21,7 +21,7 @@ func _ready() -> void:
 	texture_progress_bar.set_as_ratio(1.0)
 	_cost_info = _cost_info.duplicate()
 	_repair_manager.start_repair.connect(_do_repair)
-	_repair_manager.set_broken_foundation(self, null)
+	#_repair_manager.set_broken_foundation(self, null)
 	_repair_manager.set_cost_info(_cost_info)
 	_display_info = DisplayHelper.new(self, null, _repair_manager, null)
 	_display_info.unselected.connect(_on_selection_cancled)
@@ -50,7 +50,7 @@ func _do_repair() -> void:
 func _repair_complete() -> void:
 	texture_progress_bar.hide()
 	queue_free()
-	var new_ = load(TowerFoundation2D.get_packed_scene_path(_repair_manager.get_foundation_type())).instantiate() as TowerFoundation2D
+	var new_# = load(TowerFoundation_2D.get_packed_scene_path(_repair_manager.get_foundation_type())).instantiate() as TowerFoundation_2D
 	var _parent = TowerHolder.get_instance()
 	if !_parent:
 		push_error("Parent missing for TowerHolder.")
@@ -89,7 +89,7 @@ func _on_selection_cancled() -> void:
 	_is_selected = false
 	_update_buttons()
 
-func set_foundation_type(foundation_type: TowerFoundation2D.FoundationType) -> void:
+func set_foundation_type(foundation_type: TowerFoundation.FoundationType) -> void:
 	_repair_manager.set_foundation_type(foundation_type)
 
 static func get_build_cost() -> float: return 100.0

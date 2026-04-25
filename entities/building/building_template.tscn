@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://f1xco5y88yrp"]
 
-[ext_resource type="Script" uid="uid://bryp3vjucta0e" path="res://entities/building/building3d.gd" id="1_aqsqj"]
+[ext_resource type="Script" uid="uid://bryp3vjucta0e" path="res://entities/building/building.gd" id="1_aqsqj"]
 [ext_resource type="Resource" uid="uid://scjcjf05x7qc" path="res://architecture/guide/select_building.tres" id="2_b8i8c"]
 [ext_resource type="Shader" uid="uid://gnxmll3rnb31" path="res://architecture/ui/progress_3d.gdshader" id="3_wt0dh"]
 [ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="3_x1mg5"]
 [ext_resource type="Resource" uid="uid://cq7yoy3jauvdv" path="res://architecture/cursors/pointing_hand.tres" id="4_adcgw"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="4_b8i8c"]
-[ext_resource type="Script" uid="uid://cwhnwg27f611g" path="res://architecture/ui/health_3d_ui.gd" id="5_wt0dh"]
+[ext_resource type="Script" uid="uid://cwhnwg27f611g" path="res://architecture/ui/health_ui.gd" id="5_wt0dh"]
 [ext_resource type="Script" uid="uid://ca5bfmlwytgdq" path="res://entities/building/mouse_interaction_node.gd" id="7_2oxv1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2oxv1"]

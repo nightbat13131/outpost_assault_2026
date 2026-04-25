@@ -144,7 +144,7 @@ func _on_home() -> void:
 		return
 	# TODO center over PlayerOutpost instead of reset zoom
 	#_set_zoom(1.0)
-	var home := PlayerOutpost3D.get_instance()
+	var home := PlayerOutpost.get_instance()
 	# global_position.y = initial_height
 	# fov = initial_fov
 	

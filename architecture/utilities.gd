@@ -58,4 +58,4 @@ static func property_dictionary(_name: String, _type: Variant.Type, _hint: Prope
 
 static func pix_to_meter(pixel_count: float) -> float: return pixel_count / float(PIX_PER_METTER)
 
-static func get_gravity() -> float: return 72
+static func get_gravity() -> float: return 172

@@ -1,6 +1,6 @@
 class_name CostButtonInfo_BrokenFoundation extends CostButtonInfo
 
-@export var _foundation_type := TowerFoundation2D.FoundationType.NA: set = set_foundation_type, get = get_foundation_type
+@export var _foundation_type := TowerFoundation.FoundationType.NA: set = set_foundation_type, get = get_foundation_type
 
 @export var primary_icon_post : Texture2D : get = get_primary_icon
 
@@ -12,7 +12,7 @@ var is_repairing := false:
 func get_cost() -> float: 
 	if is_repairing:
 		return 0
-	return BrokenFoundation2D.get_build_cost()
+	return BrokenFoundation.get_build_cost()
 
 func get_label() -> String: 
 	if is_repairing:
@@ -36,7 +36,7 @@ func get_purchase_type() -> CostButton.PurchaseTypes:
 
 func get_level() -> int: return -1
 
-func get_foundation_type() -> TowerFoundation2D.FoundationType: return _foundation_type
+func get_foundation_type() -> TowerFoundation.FoundationType: return _foundation_type
 
-func set_foundation_type(foundation_type: TowerFoundation2D.FoundationType) -> void:
+func set_foundation_type(foundation_type: TowerFoundation.FoundationType) -> void:
 	_foundation_type = foundation_type

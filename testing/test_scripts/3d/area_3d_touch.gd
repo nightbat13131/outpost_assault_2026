@@ -6,7 +6,7 @@ extends Area3D
 @export var node_viewport : SubViewport
 @onready var node_area : Area3D = self
 
-@onready var mouse_interaction_node: MouseInteractionNode = %MouseInteractionNode
+@onready var mouse_interaction_node: MouseInteractionNode # = %MouseInteractionNode
 
 #var mesh_material: Material
 
@@ -31,9 +31,12 @@ var is_mouse_inside: bool = true:
 				mesh_color.get_mesh().get_material().set_albedo(Color.RED)
 
 func _ready() -> void:
-	if mouse_interaction_node:
-		mouse_interaction_node.selected.connect(_on_selected)
-		mouse_interaction_node.mouse_in.connect(_on_mouse_in)
+	for each_child in get_children():
+		if each_child is MouseInteractionNode:
+			mouse_interaction_node = each_child
+			mouse_interaction_node.selected.connect(_on_selected)
+			mouse_interaction_node.mouse_in.connect(_on_mouse_in)
+			break
 	is_mouse_inside = false
 
 func _on_selected() -> void:

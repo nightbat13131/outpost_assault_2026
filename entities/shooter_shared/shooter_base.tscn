@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cjv1k5x0a1urk"]
 
 [ext_resource type="Script" uid="uid://bev376lk5u2op" path="res://entities/shooter_shared/shooter.gd" id="1_1dgyw"]
-[ext_resource type="PackedScene" uid="uid://fmyfpa2i8oox" path="res://entities/projectile/projectile_base.tscn" id="2_amlh6"]
 [ext_resource type="PackedScene" uid="uid://b7a6ttcmbwhq2" path="res://entities/shooter_shared/radar_sensor.tscn" id="4_8gwr2"]
 [ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/ui/game_speed/animated_sprite_delta_mod.gd" id="4_vo861"]
 [ext_resource type="Script" uid="uid://ipgq0kvenlqo" path="res://entities/shooter_shared/shooter_muzzles.gd" id="5_e5x61"]
@@ -31,7 +30,6 @@ gradient = SubResource("Gradient_2pbwi")
 
 [node name="Shooter" type="Node2D" unique_id=1614296909]
 script = ExtResource("1_1dgyw")
-_projectile = ExtResource("2_amlh6")
 
 [node name="RadarSensor" parent="." unique_id=1930009677 instance=ExtResource("4_8gwr2")]
 unique_name_in_owner = true

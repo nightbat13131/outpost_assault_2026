@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://rtyqyhrfekvc"]
 
-[ext_resource type="Script" uid="uid://1yhrjfm32syq" path="res://entities/player/tower_foundation/tower_foundation_3d.gd" id="1_n8c4c"]
+[ext_resource type="Script" uid="uid://1yhrjfm32syq" path="res://entities/player/tower_foundation/tower_foundation.gd" id="1_n8c4c"]
 [ext_resource type="Script" uid="uid://ca5bfmlwytgdq" path="res://entities/building/mouse_interaction_node.gd" id="2_8jg6t"]
 [ext_resource type="Resource" uid="uid://scjcjf05x7qc" path="res://architecture/guide/select_building.tres" id="3_53rgc"]
 [ext_resource type="Resource" uid="uid://cq7yoy3jauvdv" path="res://architecture/cursors/pointing_hand.tres" id="4_myfpp"]
 [ext_resource type="Shader" uid="uid://gnxmll3rnb31" path="res://architecture/ui/progress_3d.gdshader" id="5_3yv28"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="6_wp02b"]
-[ext_resource type="Script" uid="uid://cwhnwg27f611g" path="res://architecture/ui/health_3d_ui.gd" id="7_fitt2"]
+[ext_resource type="Script" uid="uid://cwhnwg27f611g" path="res://architecture/ui/health_ui.gd" id="7_fitt2"]
 [ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="8_fqsmo"]
 [ext_resource type="Script" uid="uid://cui255p7jwfm2" path="res://entities/player/tower_foundation/upgrade_manager_tower_foundation.gd" id="9_ypmpt"]
 [ext_resource type="Script" uid="uid://dua3ofi61w5vo" path="res://entities/player/tower_foundation/cost_button_foundation_upgrades.gd" id="10_6o7s2"]
@@ -18,15 +18,16 @@
 [ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/tower_shooters/cost_tower_shooter.tres" id="16_5m4an"]
 [ext_resource type="Resource" uid="uid://cl6ces7kwqj4a" path="res://entities/player/towers/tower_shooters/cost_truck_tower.tres" id="17_2syp0"]
 [ext_resource type="Resource" uid="uid://cslsmaaty1d1w" path="res://entities/player/towers/cost_tower_no_gun.tres" id="18_lqerl"]
+[ext_resource type="Script" uid="uid://b1h848l3rucm5" path="res://architecture/ui/clip_reload_ui.gd" id="18_s3esa"]
 [ext_resource type="Script" uid="uid://c3doldjanm8jr" path="res://entities/player/tower_foundation/upgrade_visualizer_3g.gd" id="19_6o7s2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2oxv1"]
 render_priority = 0
 shader = ExtResource("5_3yv28")
 shader_parameter/use_billboard = true
-shader_parameter/primary_color = Color(0.23150009, 1, 0.13, 1)
-shader_parameter/ghost_color = Color(1, 0.13, 0.13, 1)
-shader_parameter/background_color = Color(0, 0, 0, 0.83137256)
+shader_parameter/ghost_color = Color(1, 0.1, 0.1, 1)
+shader_parameter/background_color = Color(0, 0, 0, 0.5)
+shader_parameter/segment_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a41uu"]
 size = Vector3(3.95, 2, 3.95)
@@ -44,8 +45,10 @@ size = Vector3(3.95, 2, 3.95)
 
 [sub_resource type="TorusMesh" id="TorusMesh_iq4fo"]
 
-[node name="TowerFoundation3D" type="StaticBody3D" unique_id=992371182]
+[node name="TowerFoundation" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("health_ui", "_clip_reload_ui")]
 script = ExtResource("1_n8c4c")
+health_ui = NodePath("UI/Health_UI")
+_clip_reload_ui = NodePath("UI/Clip_UI")
 metadata/_edit_group_ = true
 
 [node name="TowerPurchaseManager" type="Node" parent="." unique_id=1704728990]
@@ -71,15 +74,23 @@ mouse_in_cursor = ExtResource("4_myfpp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9800866, 2.0676253)
 metadata/_edit_group_ = true
 
-[node name="Health3d_UI" type="Sprite3D" parent="UI" unique_id=1953698918]
+[node name="Health_UI" type="Sprite3D" parent="UI" unique_id=1953698918]
 unique_name_in_owner = true
 material_override = SubResource("ShaderMaterial_2oxv1")
-instance_shader_parameters/ghost_health = 0.800000038
-instance_shader_parameters/primary_health = 0.518000024605
 texture = ExtResource("6_wp02b")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 21)
 script = ExtResource("7_fitt2")
+
+[node name="Clip_UI" type="Sprite3D" parent="UI" unique_id=1350054834]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.23297048)
+material_override = SubResource("ShaderMaterial_2oxv1")
+instance_shader_parameters/segments = 2
+texture = ExtResource("6_wp02b")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 21)
+script = ExtResource("18_s3esa")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=827431519]
 radius = 0.75

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://c26qugohqfber" path="res://entities/states/state_moving.gd" id="8_nfqd2"]
 [ext_resource type="Script" uid="uid://do2q360go1ps6" path="res://entities/states/state_dead.gd" id="8_yc1ed"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="9_312dl"]
-[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health2d_ui.tscn" id="10_8hf7l"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui_control.tscn" id="10_8hf7l"]
 [ext_resource type="Script" uid="uid://cfi163httter2" path="res://entities/states/state_still.gd" id="12_44qss"]
 
 [sub_resource type="Gradient" id="Gradient_8koau"]

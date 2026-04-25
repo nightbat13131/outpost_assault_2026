@@ -8,14 +8,14 @@
 [ext_resource type="Resource" uid="uid://qwqas3cdsffr" path="res://levels/2024 recreation/1/dialog_orignal_level_01_01.tres" id="5_h8cbg"]
 [ext_resource type="Resource" uid="uid://bkfgda4vqpl8f" path="res://levels/2024 recreation/1/dialog_orignal_level_01_02.tres" id="6_fyums"]
 [ext_resource type="Resource" uid="uid://cmrq3jaeryy30" path="res://levels/2024 recreation/1/dialog_orignal_level_01_03.tres" id="7_fyums"]
-[ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation2d.tscn" id="8_6d675"]
+[ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://2d/broken_foundation2d.tscn" id="8_6d675"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="8_h8cbg"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="11_36uud"]
 [ext_resource type="Resource" uid="uid://fyilmatoyruw" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation_og.tres" id="12_hb4kt"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="15_atulc"]
 [ext_resource type="PackedScene" uid="uid://0u5aik17a2l0" path="res://entities/enemy/spawners/spawner_building2d_2x2.tscn" id="16_aerbt"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="16_waqtc"]
-[ext_resource type="PackedScene" uid="uid://cpfajst60unk2" path="res://entities/player/tower_foundation/tower_foundation_2d_og.tscn" id="17_aerbt"]
+[ext_resource type="PackedScene" uid="uid://cpfajst60unk2" path="res://entities/player/tower_foundation/2d/tower_foundation_2d_og.tscn" id="17_aerbt"]
 
 [sub_resource type="Resource" id="Resource_fyums"]
 script = ExtResource("11_36uud")

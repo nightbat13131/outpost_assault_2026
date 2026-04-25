@@ -14,7 +14,7 @@ func _ready() -> void:
 	_finish_setup.call_deferred()
 
 func _finish_setup() -> void: 
-	DisplayPlayerBase.connect_base(self)
+	#DisplayPlayerBase.connect_base(self)
 	%DetectorCollisionShape2D.set_shape(%CollisionShape2D.get_shape())
 
 func _setup_display_info() -> void:

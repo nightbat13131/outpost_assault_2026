@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://dmg36kkeg4imh"]
+
+[ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_6tnmw"]
+
+[resource]
+script = ExtResource("1_6tnmw")
+level_name = "3D Towers"
+level_uid = "uid://dq8506pslu7ve"
+view_mode = 3
+starting_gold = 120000.0
+metadata/_custom_type_script = "uid://u6pais7e54pl"

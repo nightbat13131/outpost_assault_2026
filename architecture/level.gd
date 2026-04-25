@@ -57,11 +57,9 @@ func _conect_children() -> void:
 		elif each_child is SpawnManager:
 			_spawn_manager = each_child
 			_spawn_manager.wave_complete.connect(_on_wave_complete)
-		elif (each_child is PlayerOutpost2D) or (each_child is PlayerOutpost3D):
-			if each_child.has_signal('died'):
-				each_child.died.connect(_on_base_death)
-			else:
-				push_error("Missing died signal on ", each_child)
+		elif each_child is PlayerOutpost:
+			each_child.died.connect(_on_base_death)
+
 		#elif each_child is TowerHolder:
 		#elif each_child is TileMapLayer:
 
@@ -84,12 +82,12 @@ func _get_configuration_warnings() -> PackedStringArray:
 			warnings.erase(WARN_SPAWN_MANAGER)
 		elif each_child is TowerHolder:
 			warnings.erase(WARN_TOWER_HOLDER)
-		elif each_child is  PlayerOutpost2D or PlayerOutpost3D:
+		elif each_child is  PlayerOutpost:
 			warnings.erase(WARN_PLAYER_OUTPOST)
-			
-		elif each_child is BrokenFoundation2D:
+
+		elif each_child is BrokenFoundation:
 			warnings.append(WARN_FOUND_BROKEN)
-		elif each_child is TowerFoundation2D:
+		elif each_child is TowerFoundation:
 			warnings.append(WARN_FOUND_FOUNDATION)
 		elif each_child is Spawner:
 			warnings.append(WARN_FOUND_SPAWNER)

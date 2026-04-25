@@ -9,7 +9,7 @@ var _health_info : HealthInfo
 #var _hp : float: set = _set_health
 
 @onready var _health_ui: HealthUI = %HealthUI
-@onready var _clip_reload_ui: ClipReloadUI = %ClipReloadUI
+@onready var _clip_reload_ui: ClipReloadUI_Control = %ClipReloadUI
 @onready var _button: Button_Trigger_UI = %Button
 @onready var _animated_sprite_2d: AnimatedSprite2DModded = %AnimatedSprite2D
 
@@ -30,7 +30,7 @@ func _setup_display_info() -> void:
 
 func get_health_info() -> HealthInfo: return _health_info
 
-func get_clip_ui() -> ClipReloadUI: return _clip_reload_ui
+func get_clip_ui() -> ClipReloadUI_Control: return _clip_reload_ui
 
 func get_display_info() -> DisplayHelper: return _display_info
 

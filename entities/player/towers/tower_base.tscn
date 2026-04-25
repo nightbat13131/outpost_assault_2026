@@ -3,21 +3,42 @@
 [ext_resource type="Script" uid="uid://bb30xxg577ntr" path="res://entities/player/towers/tower.gd" id="1_uq4vj"]
 [ext_resource type="Script" uid="uid://b2e6b5gly4wug" path="res://entities/player/tower_foundation/gun_nest_purchase_manager.gd" id="1_w1wn5"]
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="2_84w7n"]
+[ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="2_fui2v"]
 [ext_resource type="Resource" uid="uid://da6q33nv25drd" path="res://entities/player/towers/tower_shooters/cost_tower_shooter.tres" id="3_i1tp4"]
 [ext_resource type="Script" uid="uid://dlb5ll2qi1s32" path="res://entities/player/towers/button_manager_tower_context.gd" id="4_fpjj8"]
 [ext_resource type="Resource" uid="uid://cpni7pdywmkt0" path="res://entities/player/towers/repair_info.tres" id="5_8ijru"]
 [ext_resource type="Resource" uid="uid://bajuwissp7k18" path="res://entities/player/towers/sell_info.tres" id="6_6sg6d"]
+[ext_resource type="Script" uid="uid://ca5bfmlwytgdq" path="res://entities/building/mouse_interaction_node.gd" id="9_pfk4p"]
+[ext_resource type="Resource" uid="uid://scjcjf05x7qc" path="res://architecture/guide/select_building.tres" id="10_u6xvl"]
+[ext_resource type="Resource" uid="uid://cq7yoy3jauvdv" path="res://architecture/cursors/pointing_hand.tres" id="11_4h866"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr1aj"]
-size = Vector2(64, 64)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iq4fo"]
+albedo_color = Color(0.48209232, 0.8084676, 0.3643723, 1)
 
-[node name="Tower_Base" type="Area2D" unique_id=1226539165]
+[sub_resource type="CylinderMesh" id="CylinderMesh_1qlbf"]
+material = SubResource("StandardMaterial3D_iq4fo")
+top_radius = 0.25
+bottom_radius = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gyqvi"]
+radius = 1.375
+
+[node name="Tower_Base" type="StaticBody3D" unique_id=1822479634]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_uq4vj")
+metadata/_custom_type_script = "uid://bryp3vjucta0e"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=308655744]
-shape = SubResource("RectangleShape2D_pr1aj")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=571508989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98086405, 0)
+mesh = SubResource("CylinderMesh_1qlbf")
+
+[node name="CollisionShape3D_Enhanced" type="CollisionShape3D" parent="." unique_id=1657977160 node_paths=PackedStringArray("mimic_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98086405, 0)
+shape = SubResource("CylinderShape3D_gyqvi")
+script = ExtResource("2_fui2v")
+mimic_mesh = NodePath("../MeshInstance3D")
+metadata/_custom_type_script = "uid://c1rtq1h4wrm68"
 
 [node name="TowerPurchaseManager" type="Node" parent="." unique_id=1756272085]
 unique_name_in_owner = true
@@ -31,12 +52,9 @@ script = ExtResource("4_fpjj8")
 _repair_info = ExtResource("5_8ijru")
 _sell_info = ExtResource("6_6sg6d")
 
-[node name="Label" type="Label" parent="." unique_id=1599518143]
-z_index = 100
-z_as_relative = false
-offset_left = -28.0
-offset_top = -47.0
-offset_right = 28.0
-offset_bottom = -33.0
-theme_override_font_sizes/font_size = 10
-text = "Tower Base"
+[node name="MouseInteractionNode" type="Node" parent="." unique_id=1821888238]
+unique_name_in_owner = true
+script = ExtResource("9_pfk4p")
+action_select = ExtResource("10_u6xvl")
+mouse_in_cursor = ExtResource("11_4h866")
+metadata/_custom_type_script = "uid://ca5bfmlwytgdq"

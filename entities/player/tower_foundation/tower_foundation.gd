@@ -1,4 +1,4 @@
-class_name TowerFoundation3D extends Building3D
+class_name TowerFoundation extends Building
 
 const SCENE_PATH = "uid://rtyqyhrfekvc" ## TODO not real
 #const SCENE_PATH_OG = "uid://cpfajst60unk2"
@@ -14,6 +14,7 @@ var _current_tower: Tower
 @onready var visualize_upgrades: UpgradeVisualizer3D = %VisualizeUpgrades
 
 
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
@@ -21,23 +22,17 @@ func _ready() -> void:
 	_connect_purchasers()
 	mouse_interaction_node.mouse_in.connect(_on_hover)
 	mouse_interaction_node.selected.connect(on_selected)
-	
-	#	_display_info = DisplayHelper.new(self, null, upgrade_manager, null)
-	#_display_info.unselected.connect(_on_unselected)
-	
-
 	#add_tower.call_deferred(starting_tower)
 
 func _setup_display_info() -> void:
 	_display_info = DisplayHelper.new(self, null, upgrade_manager, null, "Tower Foundation")
-
+	_display_info.unselected.connect(_on_unselected)
 
 func _connect_purchasers() -> void:
 	if upgrades == null:
 		upgrades = FoundationUpgrades.new()
 	else:
 		upgrades = upgrades.duplicate_deep(Resource.DEEP_DUPLICATE_ALL) # deep as uses 
-		
 	_tower_purchase_manager.set_foundation(self)
 	upgrades.set_foundation(self)
 	upgrade_manager.set_upgrade_info(upgrades)
@@ -101,7 +96,7 @@ func get_radar_preview() -> RadarPreview: return null # _radar_preview
 func _on_tower_dead(tower: Tower) -> void:
 	if _current_tower == tower:
 		_current_tower = null
-		health_3d_ui.set_health_info(null)
+		health_ui.set_health_info(null)
 		_clip_reload_ui.set_reload_info(null)
 	_update_display_info()
 
@@ -122,7 +117,7 @@ func _on_preview_upgrade(upgrade_type: FoundationUpgrades.UpgradeTypes , show_pr
 			pass
 			
 
-static func get_packed_scene_path(_foundation_type: TowerFoundation2D.FoundationType) -> String:
+static func get_packed_scene_path(_foundation_type: TowerFoundation.FoundationType) -> String:
 	#if foundation_type == FoundationType.OG:
 		#return SCENE_PATH_OG
 	return SCENE_PATH

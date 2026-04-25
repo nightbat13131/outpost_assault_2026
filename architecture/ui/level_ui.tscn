@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cetwrrjf355o2" path="res://architecture/ui/level_viewport.gd" id="2_vsohg"]
 [ext_resource type="Script" uid="uid://dbo1xoodfi6q7" path="res://architecture/gold_manager.gd" id="3_hyik4"]
 [ext_resource type="Script" uid="uid://b8re4y454lk4w" path="res://architecture/ui/display_selected.gd" id="3_qyk0y"]
-[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health2d_ui.tscn" id="5_5c5v8"]
+[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui_control.tscn" id="5_5c5v8"]
 [ext_resource type="Script" uid="uid://c0j8mplyiibwb" path="res://architecture/ui/selected_entity_viewport.gd" id="6_vw2lh"]
 [ext_resource type="Script" uid="uid://dfifo1iryhsgu" path="res://architecture/ui/null_ui_selection_button.gd" id="7_7mwho"]
 [ext_resource type="Script" uid="uid://didbyugt5lxvi" path="res://architecture/ui/gold_managment/purchase_interface.gd" id="7_yq572"]
@@ -19,42 +19,6 @@
 [ext_resource type="Script" uid="uid://2war3dwy2fbe" path="res://architecture/ui/gold_managment/earn_button.gd" id="13_l1g1f"]
 [ext_resource type="PackedScene" uid="uid://chx7ohyvhvlcq" path="res://architecture/ui/level_popups.tscn" id="17_mpbka"]
 [ext_resource type="Script" uid="uid://dffcxsl5eun65" path="res://architecture/popup_buttons.gd" id="17_vsohg"]
-
-[sub_resource type="GDScript" id="GDScript_mpbka"]
-script/source = "class_name ShadowHealthUI extends HealthUI
-
-var _primary : HealthUI
-
-func _ready() -> void: 
-	set_suppressed(true)
-
-func set_primary(health_iu: HealthUI) -> void:
-	if _primary == health_iu:
-		return # no change
-	if _primary:
-		if _primary.ratio_update.is_connected(_on_ratio_change):
-			_primary.ratio_update.disconnect(_on_ratio_change)
-		if _primary.suppression_update.is_connected(_on_suppressed_changed):
-			_primary.suppression_update.disconnect(_on_suppressed_changed)
-	_primary = health_iu
-	if _primary == null:
-		set_suppressed(true)
-		return
-	if !_primary.ratio_update.is_connected(_on_ratio_change):
-		_primary.ratio_update.connect(_on_ratio_change)
-	else:
-		push_error(\"Managing Signal connections for ShadowHealthUI is failling A\")
-	if !_primary.suppression_update.is_connected(_on_suppressed_changed):
-		_primary.suppression_update.connect(_on_suppressed_changed)
-	else:
-		push_error(\"Managing Signal connections for ShadowHealthUI is failling B\")
-	set_health_ratio(_primary.get_ratio(), true)
-	set_suppressed(_primary._suppress)
-
-func _on_ratio_change(value: float) -> void: set_health_ratio(value)
-
-func _on_suppressed_changed(value: bool) -> void: set_suppressed(value)
-"
 
 [node name="LevelUI" type="CanvasLayer" unique_id=2003894573]
 follow_viewport_enabled = true
@@ -178,7 +142,6 @@ text = "HP"
 
 [node name="HealthUI" parent="FullScreen/LevelControls/ShowPlayerBase/BaseHP" unique_id=1121219286 instance=ExtResource("5_5c5v8")]
 layout_mode = 2
-script = SubResource("GDScript_mpbka")
 
 [node name="GoldManager" type="HBoxContainer" parent="FullScreen/LevelControls/ShowPlayerBase" unique_id=186258949]
 layout_mode = 2
@@ -236,10 +199,6 @@ size = Vector2i(260, 260)
 render_target_update_mode = 4
 script = ExtResource("6_vw2lh")
 world_source = NodePath("../../../../CenterScreen/VBoxContainer/SubViewportContainer/LevelViewport")
-
-[node name="Camera2D" type="Camera2D" parent="FullScreen/LevelControls/DisplaySelected/SubViewportContainer/DisplaySelectedViewport" unique_id=793698142]
-unique_name_in_owner = true
-zoom = Vector2(0.75, 0.75)
 
 [node name="Camera3D" type="Camera3D" parent="FullScreen/LevelControls/DisplaySelected/SubViewportContainer/DisplaySelectedViewport" unique_id=2069364982]
 unique_name_in_owner = true

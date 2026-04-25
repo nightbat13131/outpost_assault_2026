@@ -1,4 +1,4 @@
-class_name Building3D extends StaticBody3D
+class_name Building extends StaticBody3D
 
 signal died
 signal selected
@@ -7,27 +7,28 @@ signal selected
 var _display_info: DisplayHelper
 var _health_info : HealthInfo
 
-@export var health_3d_ui: HealthUI3D # = %Health3d_UI
-@onready var _clip_reload_ui: ClipReloadUI # =  %ClipReloadUI
+@export var health_ui: HealthUI 
+@export var _clip_reload_ui: ClipReloadUI 
 @onready var mouse_interaction_node: MouseInteractionNode = %MouseInteractionNode
 
 func _ready() -> void:
-	mouse_interaction_node.selected.connect(_on_selected)
-	if health_3d_ui:
+	if mouse_interaction_node:
+		mouse_interaction_node.selected.connect(_on_selected)
+	if health_ui:
 		_health_info = HealthInfo.new()
 		_health_info.set_max_health(_max_hp, true)
 		_health_info.die.connect(_die)
-		health_3d_ui.set_health_info(_health_info)
+		health_ui.set_health_info(_health_info)
 	set_collision_layer_value(RadarSensor.COLLISION_ANY_BUILDING, true)
 	_setup_display_info()
 	_display_info.unselected.connect(_on_selection_cancled)
 
 func setup(health_info: HealthInfo) -> void:
 	_health_info = health_info
-	if health_3d_ui:
-		health_3d_ui.set_health_info(_health_info)
+	if health_ui:
+		health_ui.set_health_info(_health_info)
 	else: 
-		push_warning(self, " Building3D has no health_3d_ui")
+		push_warning(self, " Building has no health_ui")
 
 func _setup_display_info() -> void:
 	_display_info = DisplayHelper.new(self, _health_info, null, null, "Default Building")

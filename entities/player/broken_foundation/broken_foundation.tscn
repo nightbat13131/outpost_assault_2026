@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dsmjn8prjtp52"]
 
-[ext_resource type="Script" uid="uid://d1l3wbx0rqaie" path="res://entities/player/broken_foundation/broken_foundation3d.gd" id="1_scmbp"]
+[ext_resource type="Script" uid="uid://d1l3wbx0rqaie" path="res://entities/player/broken_foundation/broken_foundation.gd" id="1_scmbp"]
 [ext_resource type="Resource" uid="uid://b5cm28nxwmcu" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation.tres" id="2_ypmrv"]
 [ext_resource type="Script" uid="uid://bl1jlns0m3333" path="res://entities/building/mouse_interaction_node_sticky.gd" id="3_yb2om"]
 [ext_resource type="Resource" uid="uid://scjcjf05x7qc" path="res://architecture/guide/select_building.tres" id="3_ypmrv"]
@@ -28,7 +28,7 @@ albedo_color = Color(0.81786, 0.86, 0.49880004, 1)
 material = SubResource("StandardMaterial3D_ypmrv")
 size = Vector3(3.95, 2, 3.95)
 
-[node name="BrokenFoundation3D" type="StaticBody3D" unique_id=992371182]
+[node name="BrokenFoundation" type="StaticBody3D" unique_id=992371182]
 script = ExtResource("1_scmbp")
 _cost_info = ExtResource("2_ypmrv")
 metadata/_edit_group_ = true

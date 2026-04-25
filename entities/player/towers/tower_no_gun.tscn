@@ -3,22 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://dfliur4n7vbax" path="res://entities/player/towers/tower_base.tscn" id="1_dhc4r"]
 [ext_resource type="Resource" uid="uid://ckkfembrq1big" path="res://entities/player/towers/tower_no_shooter.tres" id="2_dhc4r"]
 
-[sub_resource type="Gradient" id="Gradient_dhc4r"]
-offsets = PackedFloat32Array(0, 0.6460481, 1)
-colors = PackedColorArray(0.48481947, 0.11801656, 0.37160185, 1, 0.905514, 0.465829, 0.74513775, 1, 1, 1, 1, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhc4r"]
+albedo_color = Color(0.6021, 0.81, 0.5265, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_w2ubc"]
-gradient = SubResource("Gradient_dhc4r")
-fill = 2
-fill_from = Vector2(0.5, 0.5)
+[sub_resource type="CylinderMesh" id="CylinderMesh_w2ubc"]
+material = SubResource("StandardMaterial3D_dhc4r")
+top_radius = 1.75
+bottom_radius = 1.0
 
 [node name="TowerNoGun" unique_id=1226539165 instance=ExtResource("1_dhc4r")]
 _tower_info = ExtResource("2_dhc4r")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1030103931]
-texture = SubResource("GradientTexture2D_w2ubc")
-
-[node name="Label" parent="." index="4" unique_id=1599518143]
-offset_left = -31.0
-offset_right = 36.0
-text = "Tower NoGun"
+[node name="MeshInstance3D" parent="." index="0" unique_id=571508989]
+mesh = SubResource("CylinderMesh_w2ubc")

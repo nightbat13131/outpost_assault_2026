@@ -1,8 +1,14 @@
 extends CharacterBody3D
+## Some deeper thoughts on working with Nav Agents 
+
+## Note: One way to keep the nav agent from locking up, is to have the "parent" node be touching the ground
+### Or simulate touching the ground via adjusting the Path Height Offset
 
 @export var facing_movement := false
+@export var minimal_refresh := false
 @export var _nav_agent: NavigationAgent3D
 @export var pivot: Node3D
+@export var ground_collider: CollisionShape3D_Enhanced
 
 var _nav_target : NavPoint3D :set = set_nav_target
 
@@ -26,11 +32,13 @@ func _ready() -> void:
 	if _nav_agent:
 		_nav_agent.target_reached.connect(_on_target_reached)
 		_nav_agent.navigation_finished.connect(_on_target_reached)
+		if ground_collider:
+			_nav_agent.set_path_height_offset(ground_collider.get_y_offset())
 
 func _physics_process(delta):
 	if _nav_agent:
 		if facing_movement:
-			facing_move(delta)
+			move_facing(delta)
 		else: 
 			move(delta)
 		return
@@ -50,6 +58,7 @@ func _on_target_reached() -> void:
 	if _nav_target is NavPoint3D:
 		set_nav_target.call_deferred(_nav_target.get_next_point())
 
+
 func set_nav_target(node: NavPoint3D) -> void:
 	_nav_target = node
 	if _nav_agent:
@@ -59,13 +68,15 @@ func set_nav_target(node: NavPoint3D) -> void:
 				_nav_target.apply_nav_agent(_nav_agent)
 			else:
 				_nav_agent.set_target_position(_nav_target.global_position)
-				_nav_agent.set_target_desired_distance(EnemyUnit.DEFAULT_DESIRED_DISTANCE)
+				#_nav_agent.set_target_desired_distance(EnemyUnit.DEFAULT_DESIRED_DISTANCE)
 		else: 
 			send_event(EnemyUnit.EVENT_NO_NAV_TARGET)
 
 func send_event(event: String) -> void:
 	if _state_machine:
 		_state_machine.send_event.call_deferred(event)
+
+
 
 func move(delta_moded: float) -> void:
 	var next_path_pos: Vector3 = _nav_agent.get_next_path_position()
@@ -94,7 +105,7 @@ func move(delta_moded: float) -> void:
 		move_and_slide()
 		#_nav_agent.set_velocity(velocity)
 
-func facing_move(delta_moded: float) -> void:
+func move_facing(delta_moded: float) -> void:
 	
 	var next_path_pos: Vector3 = _nav_agent.get_next_path_position()
 	
@@ -104,8 +115,10 @@ func facing_move(delta_moded: float) -> void:
 	var target_direction : Vector3 = global_position.direction_to(next_path_pos)
 	
 	#print(next_path_pos, target_direction, Vector2(target_direction.x, target_direction.x).angle()) 
+	#prints(_nav_agent.distance_to_target(), global_position, _nav_agent.get_final_position(), _nav_agent.is_target_reachable())
 	if pivot.global_position.distance_squared_to(next_path_pos) > .1:
-		pivot.look_at(next_path_pos) ## of corse there's a function for it...
+		pivot.look_at(next_path_pos) ## of course there's a function for it...
+	
 	
 	## TODO acceloration
 	velocity = target_direction * speed

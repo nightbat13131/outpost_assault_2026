@@ -1,4 +1,4 @@
-class_name Tower extends Area2D
+class_name Tower extends Building
 
 signal dead(tower: Tower) ## I don't think the foundation cares between sold and destroyed.
 
@@ -9,6 +9,7 @@ signal dead(tower: Tower) ## I don't think the foundation cares between sold and
 var _founation_upgrades : FoundationUpgrades
 
 func _ready() -> void:
+	super._ready()
 	set_collision_layer_value(RadarSensor.COLLISION_PLAYER_BUILDING, true)
 
 func get_health_info() -> HealthInfo: return _tower_info.get_health_info()
@@ -19,7 +20,7 @@ func _get_cost() -> float: return get_tower_info().get_cost()
 
 func get_reload_info() -> ReloadInfo: return _tower_info.get_reload_info()
 
-func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
+func setup_tower(health_ui: HealthUI, upgrades: FoundationUpgrades, clip_reload_ui: ClipReloadUI) -> void:
 	#print("C 1")
 	_tower_info = _tower_info.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
 	#print("C 2")
