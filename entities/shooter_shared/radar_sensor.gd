@@ -20,7 +20,7 @@ const RADAR_FADE := .25
 @onready var collision_polygon_2d: CollisionPolygon2D = %CollisionPolygon2D
 
 var _shooter : Shooter
-var _player_outpost : PlayerOutpost2D
+var _player_outpost : PlayerOutpost
 var _radar_shape : RadarShapeInfo: set = set_radar_shape_info, get = get_radar_shape
 var _targets : Array =[]
 var _parent_selected := false 
@@ -114,7 +114,7 @@ func set_target_method(target_method: TargetingMethod) -> void:
 
 func set_target_logic() -> void: pass
 
-func get_target() -> Node2D:
+func get_target() -> Node3D:
 	if _targets.is_empty():
 		return null
 	if _targets.has(_player_outpost):
@@ -124,10 +124,10 @@ func get_target() -> Node2D:
 			return _get_target_radian_close()
 	return _targets[0]
 
-func _get_target_radian_close() -> Node2D:
+func _get_target_radian_close() -> Node3D:
 	var starting_radian = _shooter.global_rotation
 	var min_delta_rotation := TAU
-	var min_target : Node2D = null
+	var min_target : Node3D = null
 	
 	var each_rotation := TAU
 	var each_delta_radian := TAU

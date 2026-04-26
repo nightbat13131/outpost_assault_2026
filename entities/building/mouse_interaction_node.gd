@@ -14,6 +14,12 @@ var _mouse_in := false:
 		mouse_in.emit(_mouse_in)
 
 func _ready() -> void:
+	if _collision_node == null:
+		if get_parent() is CollisionObject3D:
+			_collision_node = get_parent()
+		else: 
+			push_error("MouseInteractionNode under ", get_parent(),  " was unable to find a _collision_node .")
+			return
 	_collision_node.input_event.connect(_on_input_event)
 	_collision_node.mouse_entered.connect(_on_mouse_entered)
 	_collision_node.mouse_exited.connect(_on_mouse_exited)

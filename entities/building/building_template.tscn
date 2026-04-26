@@ -8,14 +8,23 @@
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="4_b8i8c"]
 [ext_resource type="Script" uid="uid://cwhnwg27f611g" path="res://architecture/ui/health_ui.gd" id="5_wt0dh"]
 [ext_resource type="Script" uid="uid://ca5bfmlwytgdq" path="res://entities/building/mouse_interaction_node.gd" id="7_2oxv1"]
+[ext_resource type="Script" uid="uid://b1h848l3rucm5" path="res://architecture/ui/clip_reload_ui.gd" id="8_8lwd0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2oxv1"]
 render_priority = 0
 shader = ExtResource("3_wt0dh")
 shader_parameter/use_billboard = true
-shader_parameter/primary_color = Color(0.23150009, 1, 0.13, 1)
 shader_parameter/ghost_color = Color(1, 0.13, 0.13, 1)
 shader_parameter/background_color = Color(0, 0, 0, 0.83137256)
+shader_parameter/segment_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8us4a"]
+render_priority = 0
+shader = ExtResource("3_wt0dh")
+shader_parameter/use_billboard = true
+shader_parameter/ghost_color = Color(1, 0.1, 0.1, 1)
+shader_parameter/background_color = Color(0, 0, 0, 0.5)
+shader_parameter/segment_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a41uu"]
 size = Vector3(3.95, 2, 3.95)
@@ -26,9 +35,10 @@ size = Vector3(3.95, 2, 3.95)
 material = SubResource("StandardMaterial3D_adcgw")
 size = Vector3(3.95, 2, 3.95)
 
-[node name="StaticBody3D_building" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("health_3d_ui")]
+[node name="StaticBody3D_building" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("_health_ui", "_clip_ui")]
 script = ExtResource("1_aqsqj")
-health_3d_ui = NodePath("UI/Health3d_UI")
+_health_ui = NodePath("UI/Health3d_UI")
+_clip_ui = NodePath("UI/Clip_UI")
 metadata/_edit_group_ = true
 
 [node name="MouseInteractionNode" type="Node" parent="." unique_id=228840158 node_paths=PackedStringArray("_collision_node")]
@@ -45,12 +55,20 @@ metadata/_edit_group_ = true
 [node name="Health3d_UI" type="Sprite3D" parent="UI" unique_id=1953698918]
 unique_name_in_owner = true
 material_override = SubResource("ShaderMaterial_2oxv1")
-instance_shader_parameters/ghost_health = 0.800000038
-instance_shader_parameters/primary_health = 0.518000024605
 texture = ExtResource("4_b8i8c")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 21)
 script = ExtResource("5_wt0dh")
+
+[node name="Clip_UI" type="Sprite3D" parent="UI" unique_id=1123438320]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.23297048)
+material_override = SubResource("ShaderMaterial_8us4a")
+instance_shader_parameters/segments = 2
+texture = ExtResource("4_b8i8c")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 21)
+script = ExtResource("8_8lwd0")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=827431519]
 visible = false

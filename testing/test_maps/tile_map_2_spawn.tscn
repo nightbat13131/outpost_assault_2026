@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="10_obju6"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="11_48muq"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="13_48muq"]
-[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost_2d.tscn" id="14_gwc1m"]
+[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://2d/player_outpost_2d.tscn" id="14_gwc1m"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="15_o1u67"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]

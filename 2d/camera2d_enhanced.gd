@@ -138,9 +138,10 @@ func _on_zoom() -> void:
 			_move_to(position)
 
 func _on_home() -> void:
-	var home := PlayerOutpost2D.get_instance()
-	if home:
-		remote_move_to(home.global_position)
+	#var home := PlayerOutpost2D.get_instance()
+	#if home:
+		#remote_move_to(home.global_position)
+	pass
 
 func _set_is_drag_cursor(is_on) -> void:
 	if _is_drag_cursor == is_on:

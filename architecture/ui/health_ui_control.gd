@@ -1,8 +1,5 @@
 class_name HealthUI_Control extends Control
 
-#signal ratio_update(value: float)
-#signal suppression_update(value: bool)
-
 @export var _hide_when_full := false
 @export var _hide_when_empty := false
 
@@ -23,7 +20,9 @@ func set_health_info(info: HealthInfo) -> void:
 	if _health_info:
 		_health_info.changed.connect(_on_health_changed)
 		_health_info.die.connect(_on_die)
-		_on_health_changed()
+		
+		# _on_health_changed()
+		set_health_ratio(_health_info.get_health_ratio(), true)
 		set_suppressed(false)
 	else: 
 		set_suppressed(true)
@@ -41,7 +40,6 @@ func set_health_ratio(value: float, insta_red := false) -> void:
 	value = clampf(value, 0.0, 1.0)
 	var is_healing : bool = value > health_bar.ratio
 	health_bar.set_as_ratio(value)
-	#ratio_update.emit(value)
 	if is_healing or insta_red: 
 		red_under_bar.set_as_ratio(value-0.01)
 
@@ -54,7 +52,6 @@ func _process(delta: float) -> void:
 
 func set_suppressed(_is_suppressed) -> void:
 	_suppress = _is_suppressed 
-	#suppression_update.emit(_suppress)
 	if _suppress:
 		hide()
 	else:

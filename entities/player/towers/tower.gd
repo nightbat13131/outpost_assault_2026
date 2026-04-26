@@ -6,13 +6,16 @@ signal dead(tower: Tower) ## I don't think the foundation cares between sold and
 
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _context_manager: TowerContextManager = %TowerContextManager
-var _founation_upgrades : FoundationUpgrades
+#var _founation_upgrades : FoundationUpgrades
 
 func _ready() -> void:
 	super._ready()
 	set_collision_layer_value(RadarSensor.COLLISION_PLAYER_BUILDING, true)
 
-func get_health_info() -> HealthInfo: return _tower_info.get_health_info()
+func _on_selected() -> void: 
+	selected.emit()
+
+func _setup_display_info() -> void: pass
 
 func get_tower_info() -> TowerInfo: return _tower_info
 
@@ -20,7 +23,9 @@ func _get_cost() -> float: return get_tower_info().get_cost()
 
 func get_reload_info() -> ReloadInfo: return _tower_info.get_reload_info()
 
-func setup_tower(health_ui: HealthUI, upgrades: FoundationUpgrades, clip_reload_ui: ClipReloadUI) -> void:
+func get_health_info() -> HealthInfo: return get_tower_info().get_health_info()
+
+func setup_tower(upgrades: FoundationUpgrades, foundation_health_ui: HealthUI, foundation_clip_ui: ClipReloadUI) -> void:
 	#print("C 1")
 	_tower_info = _tower_info.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
 	#print("C 2")
@@ -29,9 +34,9 @@ func setup_tower(health_ui: HealthUI, upgrades: FoundationUpgrades, clip_reload_
 	_tower_info.set_upgrade_info(upgrades)
 	_context_manager.set_tower(self)
 	_tower_purchase_manager.set_foundation(upgrades.get_foundation())
-	health_ui.set_health_info(get_health_info())
+	foundation_health_ui.set_health_info(get_health_info())
 	get_health_info().die.connect(_die)
-	clip_reload_ui.set_reload_info(get_reload_info())
+	foundation_clip_ui.set_reload_info(get_reload_info())
 	_on_upgrade_changed.call_deferred()
 	#print("C 4")
 
@@ -42,8 +47,6 @@ func get_radar_shape() -> RadarShapeInfo: return get_tower_info().get_radar_shap
 func get_repair_cost() -> float: return get_tower_info().get_repair_value()
 
 func get_display_name() -> String: return get_tower_info().get_display_name()
-
-func take_damage(damage_delt: float) -> void: get_health_info().take_damage(damage_delt)
 
 func has_shooter() -> bool: return false
 
@@ -59,7 +62,8 @@ func get_sell_value() -> float: return get_tower_info().get_sell_value()
 func being_replaced() -> void: queue_free()
 
 func _die() -> void:
-	get_reload_info().die()
+	if get_reload_info():
+		get_reload_info().die()
 	#TODO : Explode
 	queue_free()
 	dead.emit(self)

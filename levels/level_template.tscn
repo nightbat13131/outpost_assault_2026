@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="5_yglgk"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="6_cos0i"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="9_nb64v"]
-[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost_2d.tscn" id="11_c4b2s"]
+[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://2d/player_outpost_2d.tscn" id="11_c4b2s"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_321xn"]
 
 [node name="Level_Template" type="Node2D" unique_id=1060779039]

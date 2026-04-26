@@ -21,13 +21,10 @@ var _is_selected := false:
 
 func _ready() -> void:
 	super._ready()
-	#texture_progress_bar.set_as_ratio(1.0)
 	_cost_info = _cost_info.duplicate()
 	_repair_manager.start_repair.connect(_do_repair)
 	_repair_manager.set_broken_foundation(self)
 	_repair_manager.set_cost_info(_cost_info)
-	#_display_info.unselected.connect(_on_selection_cancled)
-	#_select_button.selected.connect(on_selected)
 	_update_buttons()
 
 func _process(_delta: float) -> void:

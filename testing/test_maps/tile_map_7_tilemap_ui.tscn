@@ -30,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://2d/broken_foundation2d.tscn" id="18_dfm72"]
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/2d/tower_foundation_2d.tscn" id="19_dqrcy"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="20_ebfhy"]
-[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost_2d.tscn" id="30_xlhsi"]
+[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://2d/player_outpost_2d.tscn" id="30_xlhsi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0

@@ -1,4 +1,4 @@
-class_name Building2D extends StaticBody2D
+class_name Building_2D extends StaticBody2D
 
 signal died
 signal selected

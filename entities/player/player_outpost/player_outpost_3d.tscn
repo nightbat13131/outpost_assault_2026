@@ -15,9 +15,9 @@
 render_priority = 0
 shader = ExtResource("5_asxvq")
 shader_parameter/use_billboard = true
-shader_parameter/primary_color = Color(0.23150009, 1, 0.13, 1)
 shader_parameter/ghost_color = Color(1, 0.13, 0.13, 1)
 shader_parameter/background_color = Color(0, 0, 0, 0.83137256)
+shader_parameter/segment_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a41uu"]
 size = Vector3(5, 2, 5)
@@ -29,9 +29,9 @@ albedo_color = Color(0.60349965, 0.71768194, 0.9797291, 1)
 material = SubResource("StandardMaterial3D_mupyd")
 size = Vector3(5, 2, 5)
 
-[node name="PlayerOutpost" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("health_3d_ui")]
+[node name="PlayerOutpost" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("_health_ui")]
 script = ExtResource("1_mupyd")
-health_3d_ui = NodePath("UI/Health3d_UI")
+_health_ui = NodePath("UI/Health3d_UI")
 metadata/_edit_group_ = true
 
 [node name="outpost_0" parent="." unique_id=1504039691 instance=ExtResource("2_124wu")]
@@ -57,8 +57,6 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13556337, 0.4064498)
 material_override = SubResource("ShaderMaterial_2oxv1")
-instance_shader_parameters/ghost_health = 0.800000038
-instance_shader_parameters/primary_health = 0.518000024605
 render_priority = 1
 texture = ExtResource("6_jflvm")
 region_enabled = true

@@ -45,23 +45,28 @@ size = Vector3(3.95, 2, 3.95)
 
 [sub_resource type="TorusMesh" id="TorusMesh_iq4fo"]
 
-[node name="TowerFoundation" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("health_ui", "_clip_reload_ui")]
+[node name="TowerFoundation" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("_health_ui", "_clip_ui")]
 script = ExtResource("1_n8c4c")
-health_ui = NodePath("UI/Health_UI")
-_clip_reload_ui = NodePath("UI/Clip_UI")
+starting_tower = null
+_health_ui = NodePath("UI/Health_UI")
+_clip_ui = NodePath("UI/Clip_UI")
 metadata/_edit_group_ = true
 
-[node name="TowerPurchaseManager" type="Node" parent="." unique_id=1704728990]
+[node name="TowerPivot" type="Node3D" parent="." unique_id=169499711]
 unique_name_in_owner = true
-script = ExtResource("14_tr564")
-cost_tower_infos = Array[ExtResource("15_1yiy4")]([ExtResource("16_5m4an"), ExtResource("17_2syp0"), ExtResource("18_lqerl")])
-section_name = "Select Tower"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7722976, 0)
 
 [node name="UpgradeManager" type="Node" parent="." unique_id=538167449]
 unique_name_in_owner = true
 script = ExtResource("9_ypmpt")
 cost_upgrade_infos = Array[ExtResource("10_6o7s2")]([ExtResource("11_iq4fo"), ExtResource("12_n0bxt"), ExtResource("13_sab3s")])
 section_name = "Foundation Upgrades"
+
+[node name="TowerPurchaseManager" type="Node" parent="." unique_id=1704728990]
+unique_name_in_owner = true
+script = ExtResource("14_tr564")
+cost_tower_infos = Array[ExtResource("15_1yiy4")]([ExtResource("16_5m4an"), ExtResource("17_2syp0"), ExtResource("18_lqerl")])
+section_name = "Select Tower"
 
 [node name="MouseInteractionNode" type="Node" parent="." unique_id=228840158 node_paths=PackedStringArray("_collision_node")]
 unique_name_in_owner = true

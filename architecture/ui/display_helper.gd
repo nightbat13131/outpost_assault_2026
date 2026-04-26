@@ -10,7 +10,7 @@ const DEFAULT_POS_3D = Vector3.INF
 
 var _parent : Object
 var _display_name : String = DEFAULT_NAME
-var _health_info: HealthInfo
+var _health_info: HealthInfo: get = get_health_info
 var _reload_info : ReloadInfo: set = set_reload_info, get = get_reload_info
 var _position2D : Vector2 = DEFAULT_POS_2D
 var _position3D : Vector3 = DEFAULT_POS_3D

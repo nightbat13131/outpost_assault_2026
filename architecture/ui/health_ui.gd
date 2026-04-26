@@ -6,6 +6,10 @@ const SHADER_GHOST_HEALTH = &"ghost_ratio"
 @export var _hide_when_full := false
 @export var _hide_when_empty := false
 
+var _health_info: HealthInfo : set = set_health_info
+
+var _suppress := false : set = set_suppressed
+
 var _primary_ratio := .75: 
 	set(value):
 		_primary_ratio = value
@@ -15,10 +19,6 @@ var _ghost_ratio := .80:
 	set(value):
 		_ghost_ratio = value
 		_set_shader_parameter(SHADER_GHOST_HEALTH, _ghost_ratio)
-
-var _health_info: HealthInfo : set = set_health_info
-
-var _suppress := false : set = set_suppressed
 
 func _ready() -> void:
 	# TODO set health ui colors based on utlities/accessabilty settings 
@@ -36,6 +36,8 @@ func set_health_info(info: HealthInfo) -> void:
 		set_suppressed(false)
 	else: 
 		set_suppressed(true)
+
+func get_health_info() -> HealthInfo: return _health_info
 
 func set_health_ratio(value: float, insta_red := false) -> void:
 	var is_healing : bool = value > _primary_ratio

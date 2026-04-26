@@ -133,22 +133,34 @@ script = ExtResource("3_cfc2o")
 nav_point = NodePath("../../NavNodes/NavNode3")
 mob = NodePath("../../CharacterBody3D_3Red")
 
-[node name="ButtonEnhanced" type="Button" parent="Testing" unique_id=328841025]
-offset_left = 31.0
-offset_top = 39.0
-offset_right = 103.0
-offset_bottom = 70.0
+[node name="ButtonEnhanced" type="Button" parent="Testing" unique_id=328841025 node_paths=PackedStringArray("damage_target")]
+offset_left = 37.0
+offset_top = 11.0
+offset_right = 109.0
+offset_bottom = 42.0
 text = "Damage"
 script = ExtResource("4_pp447")
+damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building4")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="ButtonEnhanced3" type="Button" parent="Testing" unique_id=881159927]
-offset_left = 40.0
-offset_top = 95.0
-offset_right = 112.0
-offset_bottom = 126.0
+[node name="ButtonEnhanced3" type="Button" parent="Testing" unique_id=881159927 node_paths=PackedStringArray("damage_target")]
+offset_left = 45.0
+offset_top = 52.0
+offset_right = 117.0
+offset_bottom = 83.0
 text = "Damage"
 script = ExtResource("4_pp447")
+damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building3")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="ButtonEnhanced4" type="Button" parent="Testing" unique_id=1325213617 node_paths=PackedStringArray("damage_target")]
+offset_left = 54.0
+offset_top = 92.0
+offset_right = 126.0
+offset_bottom = 123.0
+text = "Damage"
+script = ExtResource("4_pp447")
+damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building2")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="ButtonEnhanced2" type="Button" parent="Testing" unique_id=1298841703 node_paths=PackedStringArray("damage_target")]
