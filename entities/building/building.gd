@@ -2,10 +2,9 @@ class_name Building extends StaticBody3D
 
 signal died
 signal selected
-#@export var _max_hp : float = 100.0
 
 var _display_info: DisplayHelper: get = get_display_info
-#var _health_info : HealthInfo: get = get_health_info,  set = set_health_info
+#var _health_info : HealthInfo : get = get_health_info,  set = set_health_info
 
 @export var _health_ui: HealthUI: get = get_health_ui
 @export var _clip_ui: ClipReloadUI: get = get_clip_ui
@@ -15,19 +14,18 @@ func _ready() -> void:
 	if mouse_interaction_node:
 		mouse_interaction_node.selected.connect(_on_selected)
 		mouse_interaction_node.mouse_in.connect(_on_hover)
-	#if get_health_ui():
-		#if _max_hp > 0:
-			#set_health_info(HealthInfo.new())
-			#_health_info.set_max_health(_max_hp, true)
-			#_health_info.die.connect(_die)
-			#get_health_ui().set_health_info(_health_info)
 	set_collision_layer_value(RadarSensor.COLLISION_ANY_BUILDING, true)
 	_setup_display_info()
 	if _display_info: # some buildings overwrite to have no display info
 		_display_info.unselected.connect(_on_selection_cancled)
 
 func set_health_info(health_info: HealthInfo) -> void:
+	if get_health_info() == health_info: # no change
+		return
+	if get_health_info():
+		get_health_info().die.disconnect(_die)
 	if get_health_ui():
+		health_info.die.connect(_die)
 		get_health_ui().set_health_info(health_info)
 	else: 
 		push_warning(self, " Building has no health_ui")
@@ -38,6 +36,7 @@ func _setup_display_info() -> void:
 func get_health_info() -> HealthInfo: 
 	if get_health_ui():
 		return get_health_ui().get_health_info()
+	push_warning(self, " Building has no health_ui")
 	return null
 
 func get_clip_ui() -> ClipReloadUI: return _clip_ui
@@ -58,7 +57,7 @@ func _on_selected() -> void:
 
 func _on_selection_cancled() -> void: pass
 
-func _on_hover(is_hover: bool) -> void: pass
+func _on_hover(_is_hover: bool) -> void: pass
 
 func _die() -> void:
 	#if _animated_sprite_2d.animation_finished.is_connected(_death_animation_complete):

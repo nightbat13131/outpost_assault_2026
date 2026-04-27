@@ -1,4 +1,4 @@
-class_name Shooter extends Node2D
+class_name Shooter extends Node3D
 
 const EVENT_NO_TARGET = "no_target"
 const EVENT_HAS_TARGET = "has_target"
@@ -93,24 +93,29 @@ func state_process(modded_delta: float) -> void:
 		_reload_info.process(modded_delta)
 
 ## Called by the State Machine
-func turn_towards(delta_moded: float, target_global_pos: Vector2) -> void:
+func turn_towards(delta_moded: float, target_global_pos: Vector3) -> void:
 	## TODO: consider rotational acceloration
-	var target_global_angle = global_position.angle_to_point(target_global_pos)
+	var target_global_angle_y = Utilities.shift_3d_to_2d(global_position).angle_to_point(Utilities.shift_3d_to_2d(target_global_pos))
 	## lerp_angle slows down when getting close to target
 	## otherwise this does point AT the correct location 
 	#rotation = lerp_angle(rotation, target_angle, get_rotation_speed_radian() * delta_moded)
-	var delta_radian : float = Utilities.delta_radian(global_rotation, target_global_angle)
+	var delta_radian : float = Utilities.delta_radian(global_rotation.y, target_global_angle_y)
 	if is_equal_approx(delta_radian, 0.0):
 		return # no rotation needed
 	#print(get_rotation_speed_radian())
 	var max_radian_swing = get_rotation_speed_radian() * delta_moded
-	if delta_radian < 0.0:
-		max_radian_swing *= -1
-	max_radian_swing = clampf(max_radian_swing, abs(delta_radian) *-1, abs(delta_radian))
-	var next_rotation = global_rotation + max_radian_swing
+	
+	delta_radian = clampf(delta_radian,max_radian_swing *-1, max_radian_swing )
+	
+	#if delta_radian < 0.0:
+	#	max_radian_swing *= -1
+	#max_radian_swing = clampf(max_radian_swing, abs(delta_radian) *-1, abs(delta_radian))
+	
+	
+	var next_rotation = global_rotation.y + delta_radian
 	#prints(global_rotation, rotation, global_rotation - rotation, get_parent().rotation)
 	#global_rotation = next_rotation
-	update_rotation(next_rotation - get_parent().rotation)
+	update_y_rotation(next_rotation - get_parent().rotation)
 
 ## Called by the State Machine
 func look_forward(delta_moded: float) -> void:
@@ -121,7 +126,7 @@ func look_forward(delta_moded: float) -> void:
 		turn_towards(delta_moded, point)
 
 ## use as a "set_rotation" so that limits on rotation can be maintained
-func update_rotation(radian: float) -> void:
+func update_y_rotation(radian: float) -> void:
 	if abs(radian) > PI:
 		#prints(radian, fmod(radian, TAU), radian + TAU)
 		## stops wierd studdering when the cirlce is being looped mathmaticly
@@ -135,7 +140,7 @@ func update_rotation(radian: float) -> void:
 			 deg_to_rad( _rotation_limit_deg *-1),
 			deg_to_rad(_rotation_limit_deg)
 		)
-	rotation = radian
+	rotation.y = radian
 
 ## Called by the State Machine
 func try_shoot() -> void:
@@ -155,7 +160,7 @@ func _shoot() -> void:
 		projectile = get_projectile_info().get_projectile()
 		projectile.setup(
 			each_position, 
-			global_rotation + get_projectile_spread_radian(), 
+			global_rotation.y + get_projectile_spread_radian(), 
 			get_projectile_speed(), 
 			get_projectile_damage(),
 			get_projectile_range(),

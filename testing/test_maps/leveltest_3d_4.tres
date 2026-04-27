@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://cjacpj8fdgr7s"]
+
+[ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_bcj8d"]
+
+[resource]
+script = ExtResource("1_bcj8d")
+level_name = "3D Enemies"
+level_uid = "uid://c2wog6t0wts02"
+starting_gold = 10000.0
+metadata/_custom_type_script = "uid://u6pais7e54pl"

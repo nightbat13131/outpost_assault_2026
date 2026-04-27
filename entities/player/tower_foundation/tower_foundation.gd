@@ -23,7 +23,6 @@ func _ready() -> void:
 
 func _setup_display_info() -> void:
 	_display_info = DisplayHelper.new(self, null, upgrade_manager, _tower_purchase_manager, "Tower Foundation")
-	_display_info.unselected.connect(_on_unselected)
 
 func _connect_purchasers() -> void:
 	if upgrades == null:
@@ -60,17 +59,14 @@ func _add_tower(tower_type: TowerInfo.TowerType) -> void:
 
 func get_display_info() -> DisplayHelper: return _display_info
 
-func _on_selected() -> void: 
+func _on_selected() -> void: on_selected()
+
+func on_selected() -> void: # remote seletion needed - example post broken tower repair. 
 	super._on_selected()
-	#on_selected()
-
-
-#func on_selected() -> void: 
-	#DisplaySelected.request_display(get_display_info())
 	if _has_tower():
 		_current_tower.set_parent_selected(true)
 
-func _on_unselected() -> void:
+func _on_selection_cancled() -> void:
 	if _has_tower():
 		_current_tower.set_parent_selected(false)
 
@@ -89,7 +85,6 @@ func _update_display_info() -> void:
 	#print("Foundation._update_display_info: ", get_reload_info() )
 	_display_info.set_reload_info(get_reload_info())
 	_display_info.set_tower(_current_tower)
-	_display_info
 	if _has_tower():
 		_display_info.set_purchaser(_current_tower.get_purchase_manager(), 1)
 		_display_info.set_display_name(_current_tower.get_display_name())
@@ -109,7 +104,7 @@ func _on_tower_dead(tower: Tower) -> void:
 	if _current_tower == tower:
 		_current_tower = null
 		get_health_ui().set_health_info(null)
-		get_health_ui().set_reload_info(null)
+		get_clip_ui().set_reload_info(null)
 	_update_display_info()
 
 func _on_preview_upgrade(upgrade_type: FoundationUpgrades.UpgradeTypes , show_preview: bool) -> void:

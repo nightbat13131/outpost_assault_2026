@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://8rb2hbtsle65" path="res://testing/test_maps/leveltest_3d_1.tres" id="13_473rj"]
 [ext_resource type="Resource" uid="uid://w18rxggasu2d" path="res://testing/test_maps/leveltest_3d_2.tres" id="14_w6pwf"]
 [ext_resource type="Resource" uid="uid://dmg36kkeg4imh" path="res://testing/test_maps/leveltest_3d_3.tres" id="15_w6pwf"]
+[ext_resource type="Resource" uid="uid://cjacpj8fdgr7s" path="res://testing/test_maps/leveltest_3d_4.tres" id="16_k1jds"]
 
 [node name="LevelSelect" type="Node2D" unique_id=977691685]
 script = ExtResource("1_il3u1")
@@ -150,13 +151,23 @@ level_info = ExtResource("14_w6pwf")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select18" type="Button" parent="3g" unique_id=717090814]
-offset_left = 474.0
-offset_top = 231.0
-offset_right = 543.0
-offset_bottom = 262.0
+offset_left = 438.0
+offset_top = 236.0
+offset_right = 507.0
+offset_bottom = 267.0
 text = "3D"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("15_w6pwf")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_Select19" type="Button" parent="3g" unique_id=887443328]
+offset_left = 553.0
+offset_top = 284.0
+offset_right = 622.0
+offset_bottom = 315.0
+text = "3D"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("16_k1jds")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="OG" type="Node2D" parent="." unique_id=1908257614]

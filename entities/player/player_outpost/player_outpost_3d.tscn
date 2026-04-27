@@ -45,7 +45,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26438665, 0, 0)
 unique_name_in_owner = true
 script = ExtResource("2_ubpl3")
 _collision_node = NodePath("..")
-debug = true
 action_select = ExtResource("3_124wu")
 mouse_in_cursor = ExtResource("4_y1noq")
 

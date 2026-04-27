@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name CollisionShape3D_Enhanced extends CollisionShape3D
 
 ## A mesh to mimic the size of. Assumes a shared parent for position, or at least Vector.Zero parents. 
@@ -22,6 +22,7 @@ func _engine_resize() -> void:
 	if mimic_mesh == null:
 		return
 	var mesh: Mesh = mimic_mesh.get_mesh()
+	#set_global_position(mimic_mesh.get_global_position())
 	if mesh is BoxMesh:
 		if get_shape() is BoxShape3D:
 			set_position(mimic_mesh.get_position())
@@ -32,7 +33,6 @@ func _engine_resize() -> void:
 			get_shape().set_radius(mesh.radius)
 	elif mesh is CylinderMesh:
 		if get_shape() is CylinderShape3D:
-			set_position(mimic_mesh.get_position())
 			get_shape().set_radius((mesh.get_top_radius() + mesh.get_bottom_radius())*.5)
 			get_shape().set_height(mesh.get_height())
 			set_rotation(mimic_mesh.get_rotation())

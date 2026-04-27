@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="7_sa0v5"]
 [ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="8_dyajw"]
 [ext_resource type="Resource" uid="uid://dtgmruo0f45f" path="res://testing/test_chatacter_a.tres" id="8_gd70f"]
-[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="8_sv24g"]
+[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://2d/nav_helper.gd" id="8_sv24g"]
 [ext_resource type="Texture2D" uid="uid://bcbk8wi2ytd24" path="res://assets/tilemaps/water.png" id="9_a6nin"]
 [ext_resource type="Texture2D" uid="uid://dwar38ssbsohp" path="res://architecture/cursors/tilemap.png" id="9_mfrex"]
 [ext_resource type="Resource" uid="uid://cw13vv36kxkjl" path="res://testing/test_chatacter_b.tres" id="9_xlhsi"]

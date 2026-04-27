@@ -1,4 +1,4 @@
-class_name PlayerOutpost_2D extends Building2D
+class_name PlayerOutpost_2D extends Building_2D
 
 static var _instatnce : PlayerOutpost_2D
 
@@ -26,7 +26,8 @@ func _die() -> void:
 	super._die()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is EnemyUnit:
-		body.on_outpost_entered(self)
+	#if body is EnemyUnit:
+	#	body.on_outpost_entered(self)
+	pass
 
 static func get_instance() -> PlayerOutpost_2D: return _instatnce

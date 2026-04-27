@@ -1,51 +1,90 @@
 [gd_scene format=3 uid="uid://ffqucx6xrr6f"]
 
-[ext_resource type="Script" uid="uid://dfg0vn3c2if1i" path="res://entities/enemy/enemy_2d.gd" id="1_30kr5"]
+[ext_resource type="Script" uid="uid://dfg0vn3c2if1i" path="res://entities/enemy/enemy.gd" id="1_30kr5"]
 [ext_resource type="Resource" uid="uid://bdd5u8cagqlab" path="res://entities/enemy/test_enemy_unit.tres" id="2_8koau"]
 [ext_resource type="SpriteFrames" uid="uid://cee2ckge7fxoa" path="res://entities/godot_sprite_frames.tres" id="3_m50hi"]
 [ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/ui/game_speed/animated_sprite_delta_mod.gd" id="4_8koau"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="4_ako3l"]
+[ext_resource type="Script" uid="uid://cjfpua6jxmmgm" path="res://entities/enemy/navigation_agent_enhanced.gd" id="4_mn563"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_l46ro"]
 [ext_resource type="Script" uid="uid://c26qugohqfber" path="res://entities/states/state_moving.gd" id="8_nfqd2"]
 [ext_resource type="Script" uid="uid://do2q360go1ps6" path="res://entities/states/state_dead.gd" id="8_yc1ed"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="9_312dl"]
-[ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health_ui_control.tscn" id="10_8hf7l"]
+[ext_resource type="Shader" uid="uid://gnxmll3rnb31" path="res://architecture/ui/progress_3d.gdshader" id="12_0em40"]
+[ext_resource type="Script" uid="uid://ihs1wqtf2l7j" path="res://testing/test_scripts/3d/character_body_3d.gd" id="12_3gkj5"]
 [ext_resource type="Script" uid="uid://cfi163httter2" path="res://entities/states/state_still.gd" id="12_44qss"]
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="13_mn563"]
+[ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="13_ocl4r"]
+[ext_resource type="Script" uid="uid://cwhnwg27f611g" path="res://architecture/ui/health_ui.gd" id="14_olsjq"]
+[ext_resource type="Script" uid="uid://b1h848l3rucm5" path="res://architecture/ui/clip_reload_ui.gd" id="15_kgdhy"]
 
-[sub_resource type="Gradient" id="Gradient_8koau"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a41uu"]
+albedo_color = Color(0.56196636, 0, 0.10882748, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yc1ed"]
-gradient = SubResource("Gradient_8koau")
-width = 50
-height = 60
+[sub_resource type="SphereMesh" id="SphereMesh_0em40"]
+material = SubResource("StandardMaterial3D_a41uu")
+radius = 1.0
+height = 2.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_14pbf"]
-radius = 25.0
+[sub_resource type="CylinderMesh" id="CylinderMesh_mn563"]
+top_radius = 0.0
+bottom_radius = 0.25
+height = 0.5
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1456879393]
-collision_layer = 4
+[sub_resource type="SphereShape3D" id="SphereShape3D_olsjq"]
+radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4wtx"]
+render_priority = 0
+shader = ExtResource("12_0em40")
+shader_parameter/use_billboard = true
+shader_parameter/ghost_color = Color(1, 0.13, 0.13, 1)
+shader_parameter/background_color = Color(0, 0, 0, 0.83137256)
+shader_parameter/segment_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dvckh"]
+render_priority = 0
+shader = ExtResource("12_0em40")
+shader_parameter/use_billboard = true
+shader_parameter/ghost_color = Color(1, 0.1, 0.1, 1)
+shader_parameter/background_color = Color(0, 0, 0, 0.5)
+shader_parameter/segment_color = Color(0, 0, 0, 1)
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1934706991]
+collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_30kr5")
 _enemy_info = ExtResource("2_8koau")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=528521657]
-debug_path_custom_line_width = 2.0
+[node name="Pivot_3" type="Node3D" parent="." unique_id=1281142686]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 1, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1421716584]
-texture = SubResource("GradientTexture2D_yc1ed")
+[node name="MeshInstance3D_3" type="MeshInstance3D" parent="Pivot_3" unique_id=81064790]
+mesh = SubResource("SphereMesh_0em40")
+
+[node name="MeshInstance3D2_nose" type="MeshInstance3D" parent="Pivot_3" unique_id=334746238]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.004999995, 0, -1.1944132)
+mesh = SubResource("CylinderMesh_mn563")
+
+[node name="CollisionShape3D_3Red" type="CollisionShape3D" parent="." unique_id=2102209466 node_paths=PackedStringArray("mimic_mesh")]
+transform = Transform3D(0.59441584, 0, -0.8041578, 0, 1, 0, 0.8041578, 0, 0.59441584, 0, 1.005176, 0)
+shape = SubResource("SphereShape3D_olsjq")
+script = ExtResource("13_ocl4r")
+mimic_mesh = NodePath("../Pivot_3/MeshInstance3D_3")
+
+[node name="NavigationAgent" type="NavigationAgent3D" parent="." unique_id=984417282]
+debug_enabled = true
+script = ExtResource("4_mn563")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=97795410]
 sprite_frames = ExtResource("3_m50hi")
 animation = &"die"
 script = ExtResource("4_8koau")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1632763171]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer3D" parent="." unique_id=1646499807]
 bus = &"SFX"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025302939]
-shape = SubResource("CircleShape2D_14pbf")
 
 [node name="StateChart" type="Node" parent="." unique_id=411729324]
 script = ExtResource("4_ako3l")
@@ -55,9 +94,8 @@ metadata/_custom_type_script = "uid://couw105c3bde4"
 script = ExtResource("5_l46ro")
 initial_state = NodePath("Alive")
 
-[node name="Death" type="Node" parent="StateChart/CompoundState" unique_id=401144249 node_paths=PackedStringArray("_unit")]
+[node name="Death" type="Node" parent="StateChart/CompoundState" unique_id=401144249]
 script = ExtResource("8_yc1ed")
-_unit = NodePath("../../..")
 
 [node name="Alive" type="Node" parent="StateChart/CompoundState" unique_id=1807098557]
 script = ExtResource("5_l46ro")
@@ -82,28 +120,43 @@ to = NodePath("../../Death")
 event = &"died"
 delay_in_seconds = "0.0"
 
-[node name="Moving" type="Node" parent="StateChart/CompoundState/Alive" unique_id=1646260745 node_paths=PackedStringArray("_unit")]
+[node name="Moving" type="Node" parent="StateChart/CompoundState/Alive" unique_id=1646260745]
 script = ExtResource("8_nfqd2")
-_unit = NodePath("../../../..")
 
-[node name="Still" type="Node" parent="StateChart/CompoundState/Alive" unique_id=532006940 node_paths=PackedStringArray("_unit")]
+[node name="Still" type="Node" parent="StateChart/CompoundState/Alive" unique_id=532006940]
 script = ExtResource("12_44qss")
-_unit = NodePath("../../../..")
 
-[node name="UIAnchor" type="Control" parent="." unique_id=2101593919]
+[node name="UIAnchor" type="Node3D" parent="." unique_id=636878055]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UIAnchor" unique_id=1790658355]
-layout_mode = 0
-offset_left = -20.0
-offset_top = 30.0
-offset_right = 20.0
-offset_bottom = 34.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.427468, 1.9800866, -0.02933383)
 metadata/_edit_group_ = true
 
-[node name="HealthUI" parent="UIAnchor/VBoxContainer" unique_id=1121219286 instance=ExtResource("10_8hf7l")]
+[node name="HealthUI" type="Sprite3D" parent="UIAnchor" unique_id=469693739]
 unique_name_in_owner = true
-layout_mode = 2
+material_override = SubResource("ShaderMaterial_t4wtx")
+texture = ExtResource("13_mn563")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 21)
+script = ExtResource("14_olsjq")
+
+[node name="Clip_UI" type="Sprite3D" parent="UIAnchor" unique_id=2041539821]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0, 0)
+material_override = SubResource("ShaderMaterial_dvckh")
+instance_shader_parameters/segments = 2
+texture = ExtResource("13_mn563")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 21)
+script = ExtResource("15_kgdhy")
+
+[node name="CharacterBody3D_3Red" type="CharacterBody3D" parent="." unique_id=97855025 node_paths=PackedStringArray("_nav_agent", "pivot", "ground_collider")]
+transform = Transform3D(0.59441584, 0, -0.8041578, 0, 1, 0, 0.8041578, 0, 0.59441584, 0, 0, 0)
+collision_layer = 0
+floor_constant_speed = true
+script = ExtResource("12_3gkj5")
+facing_movement = true
+_nav_agent = NodePath("../NavigationAgent")
+pivot = NodePath("../Pivot_3")
+ground_collider = NodePath("../CollisionShape3D_3Red")
+rand_face = false
+metadata/_edit_group_ = true

@@ -1,5 +1,5 @@
 @tool
-class_name NavPoint extends Node2D
+class_name NavPoint_2D extends Node2D
 ## NavigationLinks MIGHT serve this purpose, but I like the controle I have so far...
 ## Helper class to manually guide NavigationAgent2D
 
@@ -9,7 +9,7 @@ class_name NavPoint extends Node2D
 #@onready var _picker: WeightedPicker
 
 ## If I really want weighted splits between next target, I can add it mulitple times. 
-@export var next_targets : Array[NavPoint]
+@export var next_targets : Array[NavPoint_2D]
 ## For disabling the nav point when it has to be on screen but not being used. 
 @export var is_disabled := false
 ## The distance threshold before the target is considered to be reached.
@@ -49,7 +49,7 @@ func _draw() -> void:
 			var end_point : Vector2
 			var poly_points : Array[Vector2]
 			var tri_sides := 40.0
-			for each_point: NavPoint in next_targets:
+			for each_point: NavPoint_2D in next_targets:
 				if each_point:
 					if !each_point.is_disabled:
 						end_point = to_local(each_point.global_position)
@@ -90,7 +90,7 @@ func _draw() -> void:
 							#],
 					#Color.BLUE, 2)
 
-func get_next_point() -> NavPoint: 
+func get_next_point() -> NavPoint_2D: 
 	if next_targets.is_empty():
 		return null
 	return next_targets.pick_random()
@@ -127,7 +127,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 func prune_targets() -> void:
 	while next_targets.has(null): ## not working, maybe something to do with null not being an object to compare against
 		next_targets.erase(null)
-	var remove: Array[NavPoint]
+	var remove: Array[NavPoint_2D]
 	for each in next_targets:
 		if each == null:
 			remove.append(each)
@@ -144,7 +144,7 @@ class WeightedPicker:
 	func _init(array: Array[NavPointWeight]) -> void: 
 		populate_choices(array)
 	
-	func pick_one() -> NavPoint:
+	func pick_one() -> NavPoint_2D:
 		if _choices.is_empty():
 			return null
 		if _choices.size() == 1:

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://2d/building2d_template.tscn" id="2_ww00v"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="3_tj4qe"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="4_q5csn"]
-[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="6_ro4op"]
+[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://2d/nav_helper.gd" id="6_ro4op"]
 [ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/broken_foundation/populate_broken_foundations.gd" id="7_wt6me"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqwim"]

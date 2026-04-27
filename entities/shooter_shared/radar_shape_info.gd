@@ -8,7 +8,7 @@ enum TargetShape {NA = 0, CIRCLE_FILLED = 1, ARCH_FILLED = 2}
 
 @export var _radar_shape := TargetShape.NA: set = set_shape
 
-var _shapes : Array[Shape2D] : get= get_shapes
+var _shapes : Array[Shape3D] : get= get_shapes
 var _polygons : Array[PackedVector2Array] : get = get_polygons
 
 var _outer_radius := 100.0 : set = set_outer_radius, get = get_outer_radius
@@ -50,7 +50,7 @@ func replicate(recipiant: RadarShapeInfo) -> void:
 	recipiant.set_arch_degrees(get_arch_degrees())
 	recipiant.set_shape(_radar_shape)
 
-func get_shapes() -> Array[Shape2D]: return _shapes
+func get_shapes() -> Array[Shape3D]: return _shapes
 
 func get_polygons() -> Array[PackedVector2Array]: return _polygons
 
@@ -61,7 +61,7 @@ func _setup_shape_arrays() -> void:
 		TargetShape.NA:
 			return
 		TargetShape.CIRCLE_FILLED:
-			_shapes.append(CircleShape2D.new())
+			_shapes.append(CylinderShape3D.new())
 		TargetShape.ARCH_FILLED:
 			_polygons.append([])
 	_refresh_shapes_details()
@@ -72,7 +72,7 @@ func _refresh_shapes_details() -> void:
 	if !(has_polygons() or has_shapes()):
 		_setup_shape_arrays()
 		return
-	# assuming that _setup_shape_arrays has the correct stuff in the arrays
+	# assuming that _setup_shape_arrays has the correct shaped in the arrays
 	match _radar_shape:
 		RadarShapeInfo.TargetShape.CIRCLE_FILLED:
 			_shapes[0].set_radius(get_outer_radius())

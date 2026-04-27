@@ -3,9 +3,9 @@ class_name TowerShooter extends Tower
 var _shooter: Shooter
 var _radar_sensor : RadarSensor
 
-func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
+func setup_tower(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
 	#print("B 1")
-	super.setup(upgrades, health_ui, clip_reload_ui)
+	super.setup_tower(upgrades, health_ui, clip_reload_ui)
 	for each_child in get_children(): # so that no every tower HAS to have a shooter
 		if each_child is Shooter: 
 			_shooter = each_child

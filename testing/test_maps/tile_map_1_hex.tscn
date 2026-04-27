@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_ciex5"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="2_7iiai"]
 [ext_resource type="Resource" uid="uid://dna5x61bu20l1" path="res://testing/test_maps/level_test_1.tres" id="2_81pk1"]
-[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="3_p8ga8"]
+[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://2d/nav_helper.gd" id="3_p8ga8"]
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="4_4m4l8"]
-[ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://testing/test_scripts/testing_nav_target.gd" id="5_dfnfr"]
+[ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://2d/testing_nav_target.gd" id="5_dfnfr"]
 
 [node name="Level_HexTest" type="Node2D" unique_id=1265585186]
 script = ExtResource("1_ciex5")

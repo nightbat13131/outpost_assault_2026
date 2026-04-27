@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map.tscn" id="8_e6w5a"]
 [ext_resource type="Resource" uid="uid://ru0pnh2pn4np" path="res://levels/2024 recreation/2/dialog_orignal_level_02_03.tres" id="8_iwi18"]
 [ext_resource type="Resource" uid="uid://fyilmatoyruw" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation_og.tres" id="8_vkqak"]
-[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="9_4rm8h"]
+[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://2d/nav_helper.gd" id="9_4rm8h"]
 [ext_resource type="Resource" uid="uid://dxvyil44jsd80" path="res://levels/2024 recreation/2/dialog_orignal_level_02_05.tres" id="9_ca6ex"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="10_f5wxu"]
 [ext_resource type="PackedScene" uid="uid://cpfajst60unk2" path="res://entities/player/tower_foundation/2d/tower_foundation_2d_og.tscn" id="10_p2nrg"]

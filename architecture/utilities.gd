@@ -19,14 +19,13 @@ static func delta_radian(source_radian: float, target_radian: float) -> float:
 			_delta_radian += TAU
 	return _delta_radian
 
-static func reparent(child_node: Node2D, new_parent: Node2D) -> void:
+static func reparent(child_node: Node, new_parent: Node) -> void:
 	_reparent_defered.call_deferred(child_node, new_parent)
 
-static func _reparent_defered(child_node: Node2D, new_parent: Node2D) -> void:
+static func _reparent_defered(child_node: Node, new_parent: Node) -> void:
 	var old_parent = child_node.get_parent()
 	old_parent.remove_child(child_node)
 	new_parent.add_child(child_node)
-
 
 ## currently assumes mirrored over x access
 static func get_arch_points(radius: float, start_radian: float, point_count: int = 7, incldue_zero:= true) -> Array[Vector2]:
@@ -59,3 +58,7 @@ static func property_dictionary(_name: String, _type: Variant.Type, _hint: Prope
 static func pix_to_meter(pixel_count: float) -> float: return pixel_count / float(PIX_PER_METTER)
 
 static func get_gravity() -> float: return 172
+
+static func shift_3d_to_2d(point: Vector3) -> Vector2: return Vector2(point.x, point.z)
+
+static func shift_2d_to_3d(point: Vector2, level_with: Vector3) -> Vector3: return Vector3(point.x, level_with.y, point.y)

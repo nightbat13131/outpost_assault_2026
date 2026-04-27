@@ -1,5 +1,5 @@
-#@tool
-class_name EnemyUnit extends CharacterBody2D
+@tool
+class_name EnemyUnit extends CharacterBody3D
 ## TODO Does the spawner getting "died" ruin pathing because it frees the node for navigation reference
 ## - deal with it
 
@@ -9,7 +9,7 @@ const EVENT_NO_NAV_TARGET = "no nav target"
 const EVENT_NAV_TARGET = "has nav target"
 const EVENT_DIED = "died"
 
-const DEFAULT_DESIRED_DISTANCE := 25.0
+
 
 @export var _enemy_info : EnemyUnitInfo: get = get_enemy_info
 @export_category("Sounds")
@@ -17,18 +17,18 @@ const DEFAULT_DESIRED_DISTANCE := 25.0
 @export var _sounds_death : Array[AudioStream]
 
 ## Keep CanvasItem in this array locked to 0 global rotation
-var _g0_rotation : Array[CanvasItem] = []
+var _g0_rotation : Array[Object] = []
 ## Have CanvasItem in this array keep their previous global rotation
 var _maintain_rotation : Array[CanvasItem] = []
 
 #@export var _rotation_speed_deg_sec := 180
-var _sound_player: AudioStreamPlayer2D
+var _sound_player: AudioStreamPlayer3D
 
 var _animated_sprite : AnimatedSprite2D
 var _state_machine: StateChart
-var _nav_agent : NavigationAgent2D
-var _nav_target : Node2D :set = set_nav_target
-@onready var _ui_anchor: Control = %UIAnchor
+var _nav_agent : NavigationAgent_Unit
+var _nav_target : Node3D :set = set_nav_target
+@onready var _ui_anchor: Node3D = %UIAnchor
 @onready var _health_ui: HealthUI = %HealthUI
 
 func _ready() -> void:
@@ -36,6 +36,8 @@ func _ready() -> void:
 		return
 	_detect_children()
 	_enemy_info = get_enemy_info().duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+	set_collision_mask(RadarSensor.COLLISION_GROUND)
+	set_collision_layer(RadarSensor.COLLISION_ENEMY_HUMANS)
 	get_enemy_info().set_enemy(self)
 	_health_ui.set_health_info(get_enemy_info().get_health_info())
 	_enemy_info.die.connect(_die)
@@ -47,27 +49,32 @@ func get_reload_info() -> ReloadInfo: return get_enemy_info().get_reload_info()
 
 func get_kill_reward() -> float: return get_enemy_info().get_kill_reward()
 
-func set_nav_target(node: Node2D) -> void:
+func set_nav_target(node: Node3D) -> void:
 	_nav_target = node
 	if _nav_agent:
+		_nav_agent.set_nav_target(_nav_target)
+		return
 		if _nav_target:
 			send_event(EVENT_NAV_TARGET)
-			if _nav_target is NavPoint:
+			if _nav_target is NavPoint3D:
 				_nav_target.apply_nav_agent(_nav_agent)
 			else:
 				_nav_agent.set_target_position(_nav_target.global_position)
-				_nav_agent.set_target_desired_distance(DEFAULT_DESIRED_DISTANCE)
+				#_nav_agent.set_target_desired_distance(DEFAULT_DESIRED_DISTANCE)
 		else: 
 			send_event(EVENT_NO_NAV_TARGET)
 
-func move(_delta_moded: float) -> void:
+func move(delta_moded: float) -> void:
 	## maximum can rotate this frame if needed
-	var next_path_pos: Vector2 = _nav_agent.get_next_path_position()
+	var next_path_pos: Vector2 = Utilities.shift_3d_to_2d(_nav_agent.get_next_path_position())
 	#var new_velocity: Vector2 = global_position.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
-	var target_direction = global_position.direction_to(next_path_pos)
-	var rotate_amount = Utilities.delta_radian(rotation, target_direction.angle())
-	_update_rotation(rotation + rotate_amount)
-	velocity = Vector2.from_angle(rotation) * get_max_speed()
+	var target_direction = Utilities.shift_3d_to_2d(global_position).direction_to(next_path_pos)
+	var rotate_amount = Utilities.delta_radian(rotation.y, target_direction.angle())
+	_update_rotation(rotation.y + rotate_amount)
+	velocity = Utilities.shift_2d_to_3d(Vector2.from_angle(rotation.y) * get_raw_max_speed() * delta_moded, global_position)
+	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
+		velocity.y = velocity.y - (Utilities.get_gravity() * delta_moded)
+		
 	if not _nav_agent.avoidance_enabled:
 		move_and_slide()
 	else:
@@ -78,39 +85,29 @@ func _update_rotation(radian: float) -> void:
 	var dict_pre : Dictionary[Object, float]
 	for each_maintain in _maintain_rotation:
 		dict_pre[each_maintain] = each_maintain.global_rotation
-	rotation = radian
+	rotation.y = radian
 	for each_lock in _g0_rotation:
 		if each_lock:
-			each_lock.rotation = Utilities.delta_radian(radian, 0)
+			each_lock.rotation.y = Utilities.delta_radian(radian, 0)
 	for key in dict_pre:
-		key.global_rotation = dict_pre[key]
-
-## moves without rotating the body
-func move_old(_delta_moded: float) -> void:
-	var next_path_pos: Vector2 = _nav_agent.get_next_path_position()
-	var cur_agent_pos: Vector2 = global_position
-	var new_velocity: Vector2 = cur_agent_pos.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
-	if not _nav_agent.avoidance_enabled:
-		velocity = new_velocity
-		move_and_slide()
-	else:
-		_nav_agent.set_velocity(new_velocity)
+		key.global_rotation.y = dict_pre[key]
 
 func _detect_children() -> void:
 	for each_child in get_children():
 		if each_child is StateChart:
 			_state_machine = each_child
 			_state_machine.propagate_call("set_unit", [self])
-		elif each_child is NavigationAgent2D:
+		elif each_child is NavigationAgent3D:
 			_nav_agent = each_child
 			_nav_agent.target_reached.connect(_on_target_reached)
-		elif each_child is AudioStreamPlayer2D:
+			_nav_agent.event.connect(send_event)
+		elif each_child is AudioStreamPlayer3D:
 			_sound_player = each_child
-		elif each_child is AnimatedSprite2D:
+		elif each_child is AnimatedSprite2D: # TODO: prepair for 3D animation
 			_animated_sprite = each_child
 
 func _on_target_reached() -> void:
-	if _nav_target is NavPoint:
+	if _nav_target is NavPoint3D:
 		set_nav_target.call_deferred(_nav_target.get_next_point())
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -134,10 +131,9 @@ func _die() -> void:
 		return
 	queue_free()
 
-## Takes delta mod into account 
-func get_max_speed() -> float:
+func get_raw_max_speed() -> float:
 	if get_enemy_info():
-		return get_enemy_info().get_max_speed() * GameSpeed.get_delta_mod()
+		return get_enemy_info().get_max_speed()
 	else: 
 		push_warning(self, " has no enemy_info to get speed")
 		return 10.0

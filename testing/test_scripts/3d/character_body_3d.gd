@@ -6,7 +6,7 @@ extends CharacterBody3D
 
 @export var facing_movement := false
 @export var minimal_refresh := false
-@export var _nav_agent: NavigationAgent3D
+@export var _nav_agent: NavigationAgent_Unit
 @export var pivot: Node3D
 @export var ground_collider: CollisionShape3D_Enhanced
 
@@ -62,6 +62,8 @@ func _on_target_reached() -> void:
 func set_nav_target(node: NavPoint3D) -> void:
 	_nav_target = node
 	if _nav_agent:
+		_nav_agent.set_nav_target(_nav_target)
+		return
 		if _nav_target:
 			send_event(EnemyUnit.EVENT_NAV_TARGET)
 			if _nav_target is NavPoint3D:
@@ -117,7 +119,8 @@ func move_facing(delta_moded: float) -> void:
 	#print(next_path_pos, target_direction, Vector2(target_direction.x, target_direction.x).angle()) 
 	#prints(_nav_agent.distance_to_target(), global_position, _nav_agent.get_final_position(), _nav_agent.is_target_reachable())
 	if pivot.global_position.distance_squared_to(next_path_pos) > .1:
-		pivot.look_at(next_path_pos) ## of course there's a function for it...
+		#pivot.look_at(next_path_pos) ## of course there's a function for it...
+		pass
 	
 	
 	## TODO acceloration

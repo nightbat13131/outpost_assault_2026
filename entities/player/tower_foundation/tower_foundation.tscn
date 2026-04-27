@@ -47,7 +47,6 @@ size = Vector3(3.95, 2, 3.95)
 
 [node name="TowerFoundation" type="StaticBody3D" unique_id=992371182 node_paths=PackedStringArray("_health_ui", "_clip_ui")]
 script = ExtResource("1_n8c4c")
-starting_tower = null
 _health_ui = NodePath("UI/Health_UI")
 _clip_ui = NodePath("UI/Clip_UI")
 metadata/_edit_group_ = true

@@ -1,8 +1,10 @@
 @tool
-class_name NavPoint3D extends Node3D
+class_name NavPoint3D extends RayCast3D
 
 const DEBUGING = true
 const DEBUG_SHIFT = 2.0
+
+const DEFAULT_DESIRED_DISTANCE := 1.0
 
 ## NavigationLinks MIGHT serve this purpose, but I like the controle I have so far...
 ## Helper class to manually guide NavigationAgent3D
@@ -17,7 +19,7 @@ const DEBUG_SHIFT = 2.0
 ## For disabling the nav point when it has to be on screen but not being used. 
 @export var is_disabled := false
 ## The distance threshold before the target is considered to be reached.
-@export var target_distance := .5 :
+@export var target_distance := DEFAULT_DESIRED_DISTANCE :
 	set(value):
 		target_distance = abs(value)
 		#queue_redraw()
@@ -29,10 +31,7 @@ func _ready() -> void:
 		#queue_free()
 		return
 	prune_targets()
-	#for each in next_target_weights:
-	#	if each:
-	#		each.set_parent(self)
-	#_picker = WeightedPicker.new(next_target_weights)
+	set_collision_mask(RadarSensor.COLLISION_GROUND)
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint() or DEBUGING:
@@ -46,11 +45,11 @@ func _process(_delta: float) -> void:
 			, Color.BLUE_VIOLET
 		)
 		var line_start := global_position
-		line_start.y += DEBUG_SHIFT
+		#line_start.y += DEBUG_SHIFT
 		var line_target : Vector3
 		for each_navpoint in next_targets:
 			line_target = each_navpoint.global_position
-			line_target.y += DEBUG_SHIFT
+			#line_target.y += DEBUG_SHIFT
 			DebugDraw3D.draw_line_hit_offset(
 				line_start, # start: Vector3, 
 				line_target, #end: Vector3, 
@@ -71,21 +70,9 @@ func get_next_point() -> NavPoint3D:
 func get_target_location() -> Vector3: 
 	var v2 : Vector2 = Vector2.from_angle(randf() * TAU) * target_distance *.5 #+ global_position
 	var v3 : Vector3 = global_position + Vector3(v2.x, 0.0, v2.y)
+	if is_colliding():
+			v3.y = get_collision_point().y
 	return v3
-
-func apply_nav_agent(nav_agent: NavigationAgent3D) -> void:
-	if nav_agent:
-		### version 1 - towards center with target_distance as buffer 
-		## Gives very consisten path
-		#nav_agent.set_target_position(global_position)
-		#nav_agent.set_target_desired_distance(target_distance)
-		
-		### version 2 - towards random point near center bound within target_distance
-		## much better spread for travel, corners are still tightly hugged. Graphics might help.
-		nav_agent.set_target_position(
-			get_target_location()
-			)
-		nav_agent.set_target_desired_distance(target_distance * .5) # 5 is too small and nav agent gets stuck trying to be close enough
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:Array = []
@@ -98,7 +85,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 func prune_targets() -> void:
-	var remove: Array[NavPoint]
+	var remove: Array[NavPoint3D]
 	for each in next_targets:
 		if each == null:
 			remove.append(each)
@@ -114,7 +101,7 @@ class WeightedPicker:
 	func _init(array: Array[NavPointWeight]) -> void: 
 		populate_choices(array)
 	
-	func pick_one() -> NavPoint:
+	func pick_one() -> NavPoint3D:
 		if _choices.is_empty():
 			return null
 		if _choices.size() == 1:

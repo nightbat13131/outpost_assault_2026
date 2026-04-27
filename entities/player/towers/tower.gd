@@ -12,8 +12,7 @@ func _ready() -> void:
 	super._ready()
 	set_collision_layer_value(RadarSensor.COLLISION_PLAYER_BUILDING, true)
 
-func _on_selected() -> void: 
-	selected.emit()
+func _on_selected() -> void: selected.emit()
 
 func _setup_display_info() -> void: pass
 

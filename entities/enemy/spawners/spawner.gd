@@ -1,5 +1,5 @@
 @tool
-class_name Spawner extends Node2D
+class_name Spawner extends Node3D
 
 ## This Spawner is participating in the wave.
 signal spawner_started(spawner: Spawner)
@@ -35,7 +35,7 @@ var _active_enemy_count:= 0
 @export var spawn_types : Dictionary[EnemyUnitInfo.EnemyTypes, int] = {}
 
 ## Parent node for spawned units get added to as children.
-var _unit_container: Node2D: set = set_unit_container, get = get_unit_container
+var _unit_container: Node3D: set = set_unit_container, get = get_unit_container
 
 var _is_pulse_active := false
 ## Used to indicate the Spawn Point is destroyed
@@ -53,13 +53,13 @@ func _ready() -> void:
 	_populate_spawn_points()
 	_unit_picker = WeightedPicker.new(spawn_types)
 
-func _draw() -> void:
-	if !Engine.is_editor_hint():
-		return
-	for each in spawn_points:
-		draw_line(
-			Vector2.ZERO, to_local(each.global_position), Color.AQUA, 5.0
-		)
+#func _draw() -> void:
+	#if !Engine.is_editor_hint():
+		#return
+	#for each in spawn_points:
+		#draw_line(
+			#Vector2.ZERO, to_local(each.global_position), Color.AQUA, 5.0
+		#)
 
 func _populate_spawn_points() -> void:
 	for each_child in get_children():
@@ -110,9 +110,9 @@ func _check_pulse() -> void:
 	else:
 		_pulse_complete()
 
-func set_unit_container(node: Node2D) ->void: _unit_container = node
+func set_unit_container(node: Node3D) ->void: _unit_container = node
 
-func get_unit_container() -> Node2D:
+func get_unit_container() -> Node3D:
 	if _unit_container: 
 		return _unit_container
 	return self

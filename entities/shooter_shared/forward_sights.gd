@@ -1,11 +1,11 @@
 class_name AimingSights extends Node
 
-var _rays : Array[RayCast2D] = []
+var _rays : Array[RayCast3D] = []
 var _radar_shape : RadarShapeInfo
 
 func _ready() -> void:
 	for each_child in get_children():
-		if each_child is RayCast2D:
+		if each_child is RayCast3D:
 			each_child.set_collide_with_areas(true)
 			each_child.set_collide_with_bodies(true)
 			_rays.append(each_child)

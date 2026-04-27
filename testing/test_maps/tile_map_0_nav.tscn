@@ -5,8 +5,8 @@
 [ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset_128.tres" id="1_wcnh8"]
 [ext_resource type="Resource" uid="uid://b0sq1cbi5tey2" path="res://testing/test_maps/level_test_0.tres" id="2_0db7x"]
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="4_rbfhg"]
-[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="9_wxrse"]
-[ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://testing/test_scripts/testing_nav_target.gd" id="10_abknn"]
+[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://2d/nav_helper.gd" id="9_wxrse"]
+[ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://2d/testing_nav_target.gd" id="10_abknn"]
 
 [node name="Level" type="Node2D" unique_id=457305952]
 script = ExtResource("1_3jtwd")
@@ -50,25 +50,22 @@ next_targets = [NodePath("../NavPoint_N"), NodePath("../NavPoint_S")]
 target_distance = 100.0
 
 [node name="Enemy" parent="TileMapLogicLayer" unique_id=1456879393 instance=ExtResource("4_rbfhg")]
-position = Vector2(315, 340)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 315, 340, 0)
 
 [node name="Enemy2" parent="TileMapLogicLayer" unique_id=693323827 instance=ExtResource("4_rbfhg")]
-position = Vector2(302, 284)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 302, 284, 0)
 
 [node name="Enemy3" parent="TileMapLogicLayer" unique_id=1507657468 instance=ExtResource("4_rbfhg")]
-position = Vector2(350, 294)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 294, 0)
 
-[node name="TestingNavTarget" type="Node" parent="TileMapLogicLayer" unique_id=44730354 node_paths=PackedStringArray("unit", "nav_target")]
+[node name="TestingNavTarget" type="Node" parent="TileMapLogicLayer" unique_id=44730354 node_paths=PackedStringArray("unit")]
 script = ExtResource("10_abknn")
 unit = NodePath("../Enemy")
-nav_target = NodePath("../NavPoint_NW")
 
-[node name="TestingNavTarget2" type="Node" parent="TileMapLogicLayer" unique_id=71930452 node_paths=PackedStringArray("unit", "nav_target")]
+[node name="TestingNavTarget2" type="Node" parent="TileMapLogicLayer" unique_id=71930452 node_paths=PackedStringArray("unit")]
 script = ExtResource("10_abknn")
 unit = NodePath("../Enemy2")
-nav_target = NodePath("../NavPoint_NW")
 
-[node name="TestingNavTarget3" type="Node" parent="TileMapLogicLayer" unique_id=1844003515 node_paths=PackedStringArray("unit", "nav_target")]
+[node name="TestingNavTarget3" type="Node" parent="TileMapLogicLayer" unique_id=1844003515 node_paths=PackedStringArray("unit")]
 script = ExtResource("10_abknn")
 unit = NodePath("../Enemy3")
-nav_target = NodePath("../NavPoint_NW")

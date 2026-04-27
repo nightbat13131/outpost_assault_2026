@@ -8,7 +8,7 @@ enum TowerType {NA = 0,
 }
 
 static var _type_to_outer_range :Dictionary[TowerType, float] = {
-	TowerType._TEST_SHOOTER: 268.8, 
+	TowerType._TEST_SHOOTER: 268.8 *.05, 
 	TowerType._TEST_TRUCK: 400.0, 
 	TowerType._OG_GATTLING: 360,
 	TowerType._OG_CANNON: 315,

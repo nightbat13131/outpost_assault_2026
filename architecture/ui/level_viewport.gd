@@ -25,7 +25,8 @@ func add_level(level: Level) -> void:
 		Modes._3D:
 			configure_for_3d()
 		_:
-			push_warning(level_info.get_level_name(), " does not have a levelviewport_mode configured.")
+			configure_for_3d()
+			#push_warning(level_info.get_level_name(), " does not have a levelviewport_mode configured.")
 
 func deactivate() -> void:
 	## TODO going to have to remove Level in smarter way?

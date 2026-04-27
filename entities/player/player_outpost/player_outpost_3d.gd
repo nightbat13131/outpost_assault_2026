@@ -1,4 +1,4 @@
-class_name PlayerOutpost extends Building
+class_name PlayerOutpost extends Building_w_Health
 
 static var _instatnce : PlayerOutpost
 
@@ -30,6 +30,6 @@ func _setup_display_info() -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body: # is EnemyUnit: ## TODO: 3d version 
-		if body.has_method('on_outpost_entered'):
-			body.on_outpost_entered(self)
+	if body is EnemyUnit:  
+		#if body.has_method('on_outpost_entered'):
+		body.on_outpost_entered(self)

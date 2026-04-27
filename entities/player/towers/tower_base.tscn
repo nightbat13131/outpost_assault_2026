@@ -21,7 +21,7 @@ top_radius = 0.25
 bottom_radius = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gyqvi"]
-radius = 1.375
+radius = 0.625
 
 [node name="Tower_Base" type="StaticBody3D" unique_id=1822479634]
 collision_layer = 0
