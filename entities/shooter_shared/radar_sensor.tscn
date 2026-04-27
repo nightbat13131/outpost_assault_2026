@@ -7,7 +7,9 @@
 [node name="RadarSensor" type="Area3D" unique_id=925709353]
 collision_layer = 0
 collision_mask = 0
+input_ray_pickable = false
 script = ExtResource("1_3elv1")
+_debugging_targets = true
 _targeting_method = 1
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=342596402]

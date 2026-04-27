@@ -6,8 +6,6 @@ const DEBUG_SHIFT = 1.0
 
 enum TargetingMethod {NA = 0, RADIAN_CLOSE = 1}
 
-
-
 ## helpful for debuggin mask values https://www.bitmask.foo/
 ## Collision layer number must be between 1 and 32 inclusive, instead of starting at 0.
 
@@ -74,9 +72,7 @@ func die() -> void:
 	#queue_free()
 
 ## For when the Radar's rotation needs to match a different node.
-func set_rotation_parent(node: Node3D) -> void: 
-	#_rotation_parent = node
-	Utilities.reparent(self, node)
+func set_rotation_parent(node: Node3D) -> void: Utilities.reparent(self, node)
 
 func set_parent_hovered(is_hover: bool ) -> void:
 	_parent_hovered = is_hover
@@ -114,25 +110,40 @@ func _process(_delta: float) -> void:
 		var s_xf: Transform3D = global_transform
 		#DebugDraw3D.draw_sphere(s_xf.origin, target_distance, Color.BLUE_VIOLET)
 		#DebugDraw3D.draw_cylinder(s_xf, Color.BLUE_VIOLET, 0.0)
-		DebugDraw3D.draw_cylinder_ab(
-			Vector3(s_xf.origin)
-			,Vector3(s_xf.origin.x, s_xf.origin.y + DEBUG_SHIFT, s_xf.origin.z)
-			, radius
-			, Color.BLUE_VIOLET
-		)
+		#DebugDraw3D.draw_cylinder_ab(
+			#Vector3(s_xf.origin)
+			#,Vector3(s_xf.origin.x, s_xf.origin.y + DEBUG_SHIFT, s_xf.origin.z)
+			#, radius
+			#, Color.BLUE_VIOLET
+		#)
 	if !_debugging_targets:
 		return
-	if has_target():
-		#queue_redraw()
-		pass
-
+	DebugDraw3D.draw_sphere(
+		get_global_position(), 
+		1.0, 
+		Color(Color.NAVAJO_WHITE, .5),
+		#false, 2.0
+		)
 	
+	if has_target():
+		print_debug(_targets)
+		var center: Vector3 = get_global_position()
+		var color : Color
+		var count = _targets.size()
+		
+		for index in range(count):
+			center = _targets[index].get_global_position()
+			color = Color.from_hsv(index/float(count), 1,1,1)
+			DebugDraw3D.draw_sphere(
+			center, 
+			4.0, 
+			color,
+			#false, 2.0
+			)
 
 func has_target() -> bool: return !_targets.is_empty()
 
-func set_target_collition_types(target_collition_mask: int) -> void:
-	set_collision_mask(target_collition_mask)
-	#TODO: recalculate targets in current area ?
+func set_targetting_mask(layer: int, flag := true) -> void: set_collision_mask_value(layer, flag)
 
 func set_target_method(target_method: TargetingMethod) -> void:
 	_targeting_method = target_method
@@ -149,10 +160,8 @@ func get_target() -> Node3D:
 			return _get_target_radian_close()
 	return _targets[0]
 
-
-
 func _get_target_radian_close() -> Node3D:
-	var starting_radian = _shooter.global_rotation
+	var starting_radian := _shooter.global_rotation.y
 	var min_delta_rotation := TAU
 	var min_target : Node3D = null
 	
@@ -162,7 +171,7 @@ func _get_target_radian_close() -> Node3D:
 	var global_2d = Utilities.shift_3d_to_2d(global_position)
 	
 	for each in _targets: # TODO: this likely is broken
-		each_rotation = global_2d.angle_to_point(each.get_global_position())
+		each_rotation = global_2d.angle_to_point(Utilities.shift_3d_to_2d(each.get_global_position()))
 		each_delta_radian = Utilities.delta_radian(starting_radian, each_rotation)
 		if abs(each_delta_radian) < min_delta_rotation:
 			min_delta_rotation = abs(each_delta_radian)
@@ -175,19 +184,19 @@ func _on_area_entered(area: Area2D) -> void:
 		#queue_redraw()
 	#print(_targets)
 
-func _on_area_exited(area: Area2D) -> void:
+func _on_area_exited(area: Area3D) -> void:
 	while _targets.has(area):
 		_targets.erase(area)
 		#queue_redraw()
 	#print(_targets)
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node3D) -> void:
 	if !_targets.has(body):
 		_targets.append(body)
 		#queue_redraw()
 	#print(_targets)
 
-func _on_body_exited(body: Node2D) -> void:
+func _on_body_exited(body: Node3D) -> void:
 	while _targets.has(body):
 		_targets.erase(body)
 		#queue_redraw()

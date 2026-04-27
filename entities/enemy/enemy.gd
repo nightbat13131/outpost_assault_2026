@@ -36,8 +36,8 @@ func _ready() -> void:
 		return
 	_detect_children()
 	_enemy_info = get_enemy_info().duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
-	set_collision_mask(RadarSensor.COLLISION_GROUND)
-	set_collision_layer(RadarSensor.COLLISION_ENEMY_HUMANS)
+	set_collision_mask_value(RadarSensor.COLLISION_GROUND, true)
+	set_collision_layer_value(RadarSensor.COLLISION_ENEMY_HUMANS, true)
 	get_enemy_info().set_enemy(self)
 	_health_ui.set_health_info(get_enemy_info().get_health_info())
 	_enemy_info.die.connect(_die)

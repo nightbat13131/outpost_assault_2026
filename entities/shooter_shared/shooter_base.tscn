@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjv1k5x0a1urk"]
 
-[ext_resource type="Script" uid="uid://bev376lk5u2op" path="res://entities/shooter_shared/shooter.gd" id="1_1dgyw"]
+[ext_resource type="Script" uid="uid://8oh76wqkrmq4" path="res://entities/player/towers/tower_shooters/shooter_tower.gd" id="1_x0pio"]
 [ext_resource type="PackedScene" uid="uid://b7a6ttcmbwhq2" path="res://entities/shooter_shared/radar_sensor.tscn" id="4_8gwr2"]
 [ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/ui/game_speed/animated_sprite_delta_mod.gd" id="4_vo861"]
 [ext_resource type="Script" uid="uid://ipgq0kvenlqo" path="res://entities/shooter_shared/shooter_muzzles.gd" id="5_e5x61"]
@@ -18,7 +18,7 @@ top_radius = 0.2
 bottom_radius = 0.05
 
 [node name="Shooter" type="Node3D" unique_id=432062277]
-script = ExtResource("1_1dgyw")
+script = ExtResource("1_x0pio")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1131818244]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.99950373, 0, 0)
@@ -116,7 +116,6 @@ delay_in_seconds = "0.0"
 
 [node name="HasTarget" type="Node" parent="ShooterStateChart/ShootingStates/TargetState" unique_id=1199751053 node_paths=PackedStringArray("ammo_available_state")]
 script = ExtResource("11_td7l6")
-aiming_sights = null
 ammo_available_state = NodePath("../../MagazineStates/CanShoot")
 
 [node name="no_target" type="Node" parent="ShooterStateChart/ShootingStates/TargetState/HasTarget" unique_id=1465689197]

@@ -48,7 +48,7 @@ func set_reload_info(reload_info: ReloadInfo) -> void:
 
 func set_targetting_mask(layer: int, flag := true) -> void:
 	if _radar_sensor:
-		_radar_sensor.set_collision_mask_value(layer, flag)
+		_radar_sensor.set_targetting_mask(layer, flag)
 	if _aiming_sights:
 		_aiming_sights.set_collision_mask_value(layer, flag)
 
@@ -115,7 +115,7 @@ func turn_towards(delta_moded: float, target_global_pos: Vector3) -> void:
 	var next_rotation = global_rotation.y + delta_radian
 	#prints(global_rotation, rotation, global_rotation - rotation, get_parent().rotation)
 	#global_rotation = next_rotation
-	update_y_rotation(next_rotation - get_parent().rotation)
+	update_y_rotation(next_rotation - get_parent().rotation.y)
 
 ## Called by the State Machine
 func look_forward(delta_moded: float) -> void:

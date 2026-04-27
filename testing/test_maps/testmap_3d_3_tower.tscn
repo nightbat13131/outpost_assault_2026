@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="10_nuo30"]
 [ext_resource type="PackedScene" uid="uid://rtyqyhrfekvc" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="11_dklyh"]
 [ext_resource type="PackedScene" uid="uid://dsmjn8prjtp52" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="12_w63ui"]
+[ext_resource type="Script" uid="uid://uaw38bunshsl" path="res://testing/nav_node3d.gd" id="13_l1tf0"]
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="14_0nf2h"]
 [ext_resource type="Script" uid="uid://ihs1wqtf2l7j" path="res://testing/test_scripts/3d/character_body_3d.gd" id="14_2uwjw"]
 [ext_resource type="PackedScene" uid="uid://f1xco5y88yrp" path="res://entities/building/building_template.tscn" id="14_luk50"]
@@ -104,19 +105,19 @@ shadow_enabled = true
 
 [node name="StitchNav3D" type="Node" parent="Testing" unique_id=1159306657 node_paths=PackedStringArray("nav_point")]
 script = ExtResource("3_v6uh2")
-nav_point = NodePath("../../NavNodes/NavNode0")
+nav_point = NodePath("")
 
 [node name="StitchNav3D2" type="Node" parent="Testing" unique_id=1377950044 node_paths=PackedStringArray("nav_point")]
 script = ExtResource("3_v6uh2")
-nav_point = NodePath("../../NavNodes/NavNode1")
+nav_point = NodePath("")
 
 [node name="StitchNav3D3" type="Node" parent="Testing" unique_id=844509147 node_paths=PackedStringArray("nav_point")]
 script = ExtResource("3_v6uh2")
-nav_point = NodePath("../../NavNodes/NavNode2")
+nav_point = NodePath("")
 
 [node name="StitchNav3D4" type="Node" parent="Testing" unique_id=920977121 node_paths=PackedStringArray("nav_point")]
 script = ExtResource("3_v6uh2")
-nav_point = NodePath("../../NavNodes/NavNode3")
+nav_point = NodePath("")
 
 [node name="ButtonEnhanced" type="Button" parent="Testing" unique_id=328841025 node_paths=PackedStringArray("damage_target")]
 offset_left = 31.0
@@ -171,6 +172,35 @@ script = ExtResource("5_3mqry")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1726177614]
 navigation_mesh = SubResource("NavigationMesh_afdlk")
+
+[node name="NavNodes" type="Node3D" parent="NavigationRegion3D" unique_id=435265888]
+
+[node name="NavNode0" type="RayCast3D" parent="NavigationRegion3D/NavNodes" unique_id=1362914607 node_paths=PackedStringArray("next_targets")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.812412, 3.0321505, -1.8041878)
+target_position = Vector3(0, -10, 0)
+script = ExtResource("13_l1tf0")
+next_targets = [NodePath("../NavNode1")]
+
+[node name="NavNode1" type="RayCast3D" parent="NavigationRegion3D/NavNodes" unique_id=1135126235 node_paths=PackedStringArray("next_targets")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.0583158, -23.635805)
+target_position = Vector3(0, -10, 0)
+script = ExtResource("13_l1tf0")
+next_targets = [NodePath("../NavNode2")]
+target_distance = 2.0
+
+[node name="NavNode2" type="RayCast3D" parent="NavigationRegion3D/NavNodes" unique_id=37905751 node_paths=PackedStringArray("next_targets")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077276, 3.0757694, -0.7301552)
+target_position = Vector3(0, -10, 0)
+script = ExtResource("13_l1tf0")
+next_targets = [NodePath("../NavNode3")]
+target_distance = 3.0
+
+[node name="NavNode3" type="RayCast3D" parent="NavigationRegion3D/NavNodes" unique_id=1682996830 node_paths=PackedStringArray("next_targets")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8354735, 3.9752216, 22.238094)
+target_position = Vector3(0, -10, 0)
+script = ExtResource("13_l1tf0")
+next_targets = [NodePath("../NavNode0")]
+target_distance = 4.0
 
 [node name="StaticBody_Ground" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1332677109]
 transform = Transform3D(1, 0, 0, 0, 0.9918679, -0.12727234, 0, 0.12727234, 0.9918679, 0, 1.3714542, -14.363665)
@@ -228,20 +258,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.798526, 0.09997487, 6.206
 
 [node name="BrokenFoundation3D3" parent="NavigationRegion3D/TowerHolder" unique_id=580172511 instance=ExtResource("12_w63ui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.932571, 1.2873254, -13.338573)
-
-[node name="NavNodes" type="Node3D" parent="." unique_id=1244598056]
-
-[node name="NavNode0" type="Node3D" parent="NavNodes" unique_id=1596314658]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.812412, 0, -1.8041878)
-
-[node name="NavNode1" type="Node3D" parent="NavNodes" unique_id=1531076425]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 8.60772, -23.635805)
-
-[node name="NavNode2" type="Node3D" parent="NavNodes" unique_id=815264206]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.077276, 0, -0.7301552)
-
-[node name="NavNode3" type="Node3D" parent="NavNodes" unique_id=82600423]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8354735, 0, 22.238094)
 
 [node name="CharacterBody3D3" type="CharacterBody3D" parent="." unique_id=1185441998 node_paths=PackedStringArray("_nav_agent", "pivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2912174, 0.35098875, -1.7574487)
@@ -384,7 +400,7 @@ mimic_mesh = NodePath("../Pivot_3/MeshInstance3D_3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37960434, 0, -0.31607425)
 
 [node name="PlayerOutpost" parent="." unique_id=2026485468 instance=ExtResource("16_agtpy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.068493, 0.09997487, 13.727139)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.068493, 0.48593783, 13.727139)
 
 [node name="StaticBody3D_building" parent="." unique_id=1670374645 instance=ExtResource("14_luk50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.791672, -0.20184112, -0.5867145)

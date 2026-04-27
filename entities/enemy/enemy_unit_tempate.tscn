@@ -51,7 +51,6 @@ shader_parameter/background_color = Color(0, 0, 0, 0.5)
 shader_parameter/segment_color = Color(0, 0, 0, 1)
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1934706991]
-collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2
