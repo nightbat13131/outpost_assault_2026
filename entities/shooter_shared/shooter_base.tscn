@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjv1k5x0a1urk"]
 
-[ext_resource type="Script" uid="uid://8oh76wqkrmq4" path="res://entities/player/towers/tower_shooters/shooter_tower.gd" id="1_x0pio"]
+[ext_resource type="Script" uid="uid://bev376lk5u2op" path="res://entities/shooter_shared/shooter.gd" id="1_x0pio"]
 [ext_resource type="PackedScene" uid="uid://b7a6ttcmbwhq2" path="res://entities/shooter_shared/radar_sensor.tscn" id="4_8gwr2"]
 [ext_resource type="Script" uid="uid://bgce2t6w8nsxh" path="res://architecture/ui/game_speed/animated_sprite_delta_mod.gd" id="4_vo861"]
 [ext_resource type="Script" uid="uid://ipgq0kvenlqo" path="res://entities/shooter_shared/shooter_muzzles.gd" id="5_e5x61"]

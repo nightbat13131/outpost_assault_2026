@@ -66,12 +66,13 @@ func set_nav_target(node: Node3D) -> void:
 
 func move(delta_moded: float) -> void:
 	## maximum can rotate this frame if needed
-	var next_path_pos: Vector2 = Utilities.shift_3d_to_2d(_nav_agent.get_next_path_position())
+	var next_path_pos: Vector2 = Utilities.shift_3d_to_2d(_nav_agent.get_next_target_pos())
 	#var new_velocity: Vector2 = global_position.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
-	var target_direction = Utilities.shift_3d_to_2d(global_position).direction_to(next_path_pos)
+	var target_direction = Utilities.shift_3d_to_2d(global_position).direction_to(next_path_pos) # because how rotation 2d and rotation.y are different
 	var rotate_amount = Utilities.delta_radian(rotation.y, target_direction.angle())
 	_update_rotation(rotation.y + rotate_amount)
 	velocity = Utilities.shift_2d_to_3d(Vector2.from_angle(rotation.y) * get_raw_max_speed() * delta_moded, global_position)
+	#velocity = Vector3.MODEL_FRONT * get_raw_max_speed() * delta_moded m# movment not in facing direction 
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		velocity.y = velocity.y - (Utilities.get_gravity() * delta_moded)
 		
@@ -85,7 +86,7 @@ func _update_rotation(radian: float) -> void:
 	var dict_pre : Dictionary[Object, float]
 	for each_maintain in _maintain_rotation:
 		dict_pre[each_maintain] = each_maintain.global_rotation
-	rotation.y = radian
+	rotation.y = radian 
 	for each_lock in _g0_rotation:
 		if each_lock:
 			each_lock.rotation.y = Utilities.delta_radian(radian, 0)
@@ -99,16 +100,16 @@ func _detect_children() -> void:
 			_state_machine.propagate_call("set_unit", [self])
 		elif each_child is NavigationAgent3D:
 			_nav_agent = each_child
-			_nav_agent.target_reached.connect(_on_target_reached)
+			#_nav_agent.target_reached.connect(_on_target_reached)
 			_nav_agent.event.connect(send_event)
 		elif each_child is AudioStreamPlayer3D:
 			_sound_player = each_child
 		elif each_child is AnimatedSprite2D: # TODO: prepair for 3D animation
 			_animated_sprite = each_child
 
-func _on_target_reached() -> void:
-	if _nav_target is NavPoint3D:
-		set_nav_target.call_deferred(_nav_target.get_next_point())
+#func _on_target_reached() -> void:
+	#if _nav_target is NavPoint3D:
+		#set_nav_target.call_deferred(_nav_target.get_next_point())
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var out : Array[String] ## TODO configuration warnings

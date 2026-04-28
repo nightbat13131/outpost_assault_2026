@@ -62,3 +62,8 @@ static func get_gravity() -> float: return 172
 static func shift_3d_to_2d(point: Vector3) -> Vector2: return Vector2(point.x, point.z)
 
 static func shift_2d_to_3d(point: Vector2, level_with: Vector3) -> Vector3: return Vector3(point.x, level_with.y, point.y)
+
+static func distance_squared_2d(pointA: Vector3, pointB: Vector3) -> float:
+	return Vector2(pointA.x, pointA.z).distance_squared_to(Vector2(pointB.x, pointB.z))
+
+static func angle_to_2d() -> void: pass

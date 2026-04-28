@@ -95,7 +95,7 @@ func state_process(modded_delta: float) -> void:
 ## Called by the State Machine
 func turn_towards(delta_moded: float, target_global_pos: Vector3) -> void:
 	## TODO: consider rotational acceloration
-	var target_global_angle_y = Utilities.shift_3d_to_2d(global_position).angle_to_point(Utilities.shift_3d_to_2d(target_global_pos))
+	var target_global_angle_y = Utilities.shift_3d_to_2d(global_position).angle_to_point(Utilities.shift_3d_to_2d(target_global_pos))*-1 # *-1 because radian seem flipped in 3d vs 2d
 	## lerp_angle slows down when getting close to target
 	## otherwise this does point AT the correct location 
 	#rotation = lerp_angle(rotation, target_angle, get_rotation_speed_radian() * delta_moded)

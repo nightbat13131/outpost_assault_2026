@@ -103,21 +103,17 @@ shadow_enabled = true
 
 [node name="Testing" type="Node" parent="." unique_id=1092759490]
 
-[node name="StitchNav3D" type="Node" parent="Testing" unique_id=1159306657 node_paths=PackedStringArray("nav_point")]
+[node name="StitchNav3D" type="Node" parent="Testing" unique_id=1159306657]
 script = ExtResource("3_v6uh2")
-nav_point = NodePath("")
 
-[node name="StitchNav3D2" type="Node" parent="Testing" unique_id=1377950044 node_paths=PackedStringArray("nav_point")]
+[node name="StitchNav3D2" type="Node" parent="Testing" unique_id=1377950044]
 script = ExtResource("3_v6uh2")
-nav_point = NodePath("")
 
-[node name="StitchNav3D3" type="Node" parent="Testing" unique_id=844509147 node_paths=PackedStringArray("nav_point")]
+[node name="StitchNav3D3" type="Node" parent="Testing" unique_id=844509147]
 script = ExtResource("3_v6uh2")
-nav_point = NodePath("")
 
-[node name="StitchNav3D4" type="Node" parent="Testing" unique_id=920977121 node_paths=PackedStringArray("nav_point")]
+[node name="StitchNav3D4" type="Node" parent="Testing" unique_id=920977121]
 script = ExtResource("3_v6uh2")
-nav_point = NodePath("")
 
 [node name="ButtonEnhanced" type="Button" parent="Testing" unique_id=328841025 node_paths=PackedStringArray("damage_target")]
 offset_left = 31.0

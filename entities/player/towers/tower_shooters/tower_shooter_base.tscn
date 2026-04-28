@@ -17,7 +17,7 @@ visible = false
 cost_tower_infos = Array[ExtResource("2_2pbwi")]([ExtResource("3_chclv")])
 section_name = "Tower - Truck"
 
-[node name="Shooter" parent="." index="4" unique_id=1614296909 instance=ExtResource("5_chclv")]
+[node name="Shooter" parent="." index="6" unique_id=1614296909 instance=ExtResource("5_chclv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.454758, 0)
 script = ExtResource("6_d4hq3")
 
