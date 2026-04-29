@@ -23,7 +23,7 @@ func set_nav_target(node: Node3D) -> void:
 		#send_event(EVENT_NAV_TARGET)
 		if _nav_target is NavPoint3D:
 			set_target_position(_nav_target.get_target_location())
-			print(get_current_navigation_result().path)
+			#print(get_current_navigation_result().path)
 		else:
 			set_target_position(_nav_target.global_position)
 			set_target_desired_distance(NavPoint3D.DEFAULT_DESIRED_DISTANCE)
@@ -47,7 +47,7 @@ func get_next_target_pos() -> Vector3:
 	
 	
 	#print(get_current_navigation_result().path)
-	print(get_current_navigation_path_index())
+	#print(get_current_navigation_path_index())
 	return _last_target_pos # get_next_path_position()
 	# return Vector3.INF
 

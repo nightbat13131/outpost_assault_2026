@@ -4,6 +4,7 @@ class_name RadarSensor extends Area3D
 const DEBUGING = true
 const DEBUG_SHIFT = 1.0
 
+
 enum TargetingMethod {NA = 0, RADIAN_CLOSE = 1}
 
 ## helpful for debuggin mask values https://www.bitmask.foo/
@@ -108,25 +109,18 @@ func _process(_delta: float) -> void:
 		if _radar_shape:
 			radius = _radar_shape.get_outer_radius()
 		var s_xf: Transform3D = global_transform
-		#DebugDraw3D.draw_sphere(s_xf.origin, target_distance, Color.BLUE_VIOLET)
-		#DebugDraw3D.draw_cylinder(s_xf, Color.BLUE_VIOLET, 0.0)
-		#DebugDraw3D.draw_cylinder_ab(
-			#Vector3(s_xf.origin)
-			#,Vector3(s_xf.origin.x, s_xf.origin.y + DEBUG_SHIFT, s_xf.origin.z)
-			#, radius
-			#, Color.BLUE_VIOLET
-		#)
+
 	if !_debugging_targets:
 		return
-	DebugDraw3D.draw_sphere(
-		get_global_position(), 
-		1.0, 
-		Color(Color.NAVAJO_WHITE, .5),
-		#false, 2.0
-		)
+	#DebugDraw3D.draw_sphere(
+		#get_global_position(), 
+		#1.0, 
+		#Color(Color.NAVAJO_WHITE, .5),
+		##false, 2.0
+		#)
 	
 	if has_target():
-		print_debug(_targets)
+		#print_debug(_targets)
 		var center: Vector3 = get_global_position()
 		var color : Color
 		var count = _targets.size()

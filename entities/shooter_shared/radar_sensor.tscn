@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dl6q0mnhtofwi" path="res://entities/shooter_shared/radar_sensor.gd" id="1_3elv1"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_fqfmt"]
-
 [node name="RadarSensor" type="Area3D" unique_id=925709353]
 collision_layer = 0
 collision_mask = 0
@@ -14,7 +12,6 @@ _targeting_method = 1
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=342596402]
 unique_name_in_owner = true
-shape = SubResource("CylinderShape3D_fqfmt")
 
 [node name="CollisionPolygon" type="CollisionPolygon3D" parent="." unique_id=665467596]
 unique_name_in_owner = true

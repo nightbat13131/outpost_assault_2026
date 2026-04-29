@@ -5,14 +5,15 @@ signal shape_changed
 signal poly_changed
 
 enum TargetShape {NA = 0, CIRCLE_FILLED = 1, ARCH_FILLED = 2}
+const RADAR_THICKNESS = 10.0
 
 @export var _radar_shape := TargetShape.NA: set = set_shape
 
 var _shapes : Array[Shape3D] : get= get_shapes
 var _polygons : Array[PackedVector2Array] : get = get_polygons
 
-var _outer_radius := 100.0 : set = set_outer_radius, get = get_outer_radius
-var _inner_radius := 75.0 : set = set_inner_radius
+var _outer_radius := 10.0 : set = set_outer_radius, get = get_outer_radius
+var _inner_radius := 7.5 : set = set_inner_radius
 
 ## When the target shape is an arch, what is the starting degree of that arch
 var _arch_degrees := 45.0 : set = set_arch_degrees, get = get_arch_degrees
@@ -57,11 +58,14 @@ func get_polygons() -> Array[PackedVector2Array]: return _polygons
 func _setup_shape_arrays() -> void:
 	_polygons = []
 	_shapes = []
+	var holder 
 	match _radar_shape:
 		TargetShape.NA:
 			return
 		TargetShape.CIRCLE_FILLED:
-			_shapes.append(CylinderShape3D.new())
+			holder = CylinderShape3D.new()
+			holder.height = RADAR_THICKNESS
+			_shapes.append(holder)
 		TargetShape.ARCH_FILLED:
 			_polygons.append([])
 	_refresh_shapes_details()
