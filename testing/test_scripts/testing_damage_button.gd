@@ -25,6 +25,7 @@ func _on_pressed() -> void:
 		push_warning("Testing Damange button does not have a damange target.")
 		return
 	if damage_target.has_method(METHOD):
-		damage_target.take_damage(damage_amount)
+		if !damage_target.take_damage(damage_amount):
+			push_warning("Testing Damage button tried to damage target ", damage_target ," but came back false.")
 	else:
 		push_warning("Testing Damange button damage target ", damage_target ," does not have 'take_damage' method.")

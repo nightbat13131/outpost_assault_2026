@@ -7,4 +7,5 @@ func _ready() -> void:
 	color = Color.GREEN_YELLOW
 
 func _effect_enemy(body: EnemyUnit) -> void:
-	body.take_damage(damage)
+	if body.take_damage(damage):
+		pass

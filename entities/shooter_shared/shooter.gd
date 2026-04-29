@@ -193,7 +193,7 @@ func _shoot() -> void:
 			#push_warning("no home for projetile to get added to")
 	#get_reload_info().shots_fired(shot_count)
 
-func get_muzzle_locations() -> Array[Vector2]: return _muzzles.get_muzzle_locations(_muzzle_order)
+func get_muzzle_locations() -> Array[Vector3]: return _muzzles.get_muzzle_locations(_muzzle_order)
 
 func die() -> void:
 	if get_reload_info():

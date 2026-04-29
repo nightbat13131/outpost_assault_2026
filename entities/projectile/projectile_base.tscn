@@ -2,25 +2,30 @@
 
 [ext_resource type="Script" uid="uid://dmmd06xmmn5os" path="res://entities/projectile/projectile.gd" id="1_u816u"]
 
-[sub_resource type="Gradient" id="Gradient_4ikwk"]
-offsets = PackedFloat32Array(0, 0.5265958, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u816u"]
+radius = 0.15
+height = 0.75
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_v04px"]
-gradient = SubResource("Gradient_4ikwk")
-width = 10
-height = 10
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4ikwk"]
+radius = 0.1
+height = 0.5
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_udggx"]
-radius = 5.0
-
-[node name="Projectile" type="Area2D" unique_id=754666654]
+[node name="Projectile" type="Area3D" unique_id=1219189248]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_u816u")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=728102066]
-texture = SubResource("GradientTexture2D_v04px")
+[node name="CollisionShape2D" type="CollisionShape3D" parent="." unique_id=851232120]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_u816u")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=326739240]
-shape = SubResource("CircleShape2D_udggx")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1535216028]
+transform = Transform3D(1, 0, 0, 0, 0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_4ikwk")
+
+[node name="CosmeticPointOfReference" type="RayCast3D" parent="." unique_id=1778947034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24541235, -0.039569527)
+enabled = false
+exclude_parent = false
+target_position = Vector3(0, 0, -1)
+collision_mask = 0

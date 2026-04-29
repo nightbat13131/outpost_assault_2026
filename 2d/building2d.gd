@@ -34,7 +34,7 @@ func get_clip_ui() -> ClipReloadUI_Control: return _clip_reload_ui
 
 func get_display_info() -> DisplayHelper: return _display_info
 
-func take_damage(damage_delt: float) -> void: _health_info.take_damage(damage_delt)
+func take_damage(damage_delt: float) -> bool: return _health_info.take_damage(damage_delt)
 
 func _on_selected() -> void:
 	selected.emit()

@@ -47,8 +47,7 @@ func get_display_info() -> DisplayHelper: return _display_info
 
 func take_damage(damage_delt: float) -> bool: 
 	if get_health_info():
-		get_health_info().take_damage(damage_delt)
-		return true
+		return get_health_info().take_damage(damage_delt)
 	return false
 
 func _on_selected() -> void: 

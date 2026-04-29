@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c7quy5x5ni6lg" path="res://entities/player/player_outpost/player_outpost_3d.tscn" id="13_re1dr"]
 [ext_resource type="PackedScene" uid="uid://f1xco5y88yrp" path="res://entities/building/building_template.tscn" id="14_yhu5o"]
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="15_7uihp"]
+[ext_resource type="PackedScene" uid="uid://fmyfpa2i8oox" path="res://entities/projectile/projectile_base.tscn" id="16_t5nxb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cfc2o"]
 ground_bottom_color = Color(0.19263999, 0.28, 0.1792, 1)
@@ -329,3 +330,7 @@ text = "Damage - outpost"
 script = ExtResource("4_qmjxw")
 damage_target = NodePath("../../PlayerOutpost")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Projectile" parent="." unique_id=1219189248 instance=ExtResource("16_t5nxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.743988, 2.070858, -10.656987)
+collision_mask = 65535

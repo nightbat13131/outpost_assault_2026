@@ -53,7 +53,7 @@ func get_kill_reward() -> float:
 			return 0.0
 	return kill_reward
 
-func take_damage(damage: float) -> void: _health_info.take_damage(damage)
+func take_damage(damage: float) -> bool: return _health_info.take_damage(damage)
 
 func get_outpost_damange() -> float: return _outpost_damage
 
