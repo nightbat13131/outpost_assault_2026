@@ -95,26 +95,18 @@ func state_process(modded_delta: float) -> void:
 ## Called by the State Machine
 func turn_towards(delta_moded: float, target_global_pos: Vector3) -> void:
 	## TODO: consider rotational acceloration
-	var target_global_angle_y = Utilities.shift_3d_to_2d(global_position).angle_to_point(Utilities.shift_3d_to_2d(target_global_pos))*-1 # *-1 because radian seem flipped in 3d vs 2d
-	## lerp_angle slows down when getting close to target
-	## otherwise this does point AT the correct location 
-	#rotation = lerp_angle(rotation, target_angle, get_rotation_speed_radian() * delta_moded)
+	
+	## multipling angle by -1 and subtracking PI/2 to translate 2D rotation to 3D rotation.y. 
+	var target_global_angle_y = -1.0 * Utilities.shift_3d_to_2d(global_position).angle_to_point( Utilities.shift_3d_to_2d(target_global_pos)) - PI * .5
 	var delta_radian : float = Utilities.delta_radian(global_rotation.y, target_global_angle_y)
 	if is_equal_approx(delta_radian, 0.0):
 		return # no rotation needed
-	#print(get_rotation_speed_radian())
+		
 	var max_radian_swing = get_rotation_speed_radian() * delta_moded
-	
 	delta_radian = clampf(delta_radian,max_radian_swing *-1, max_radian_swing )
-	
-	#if delta_radian < 0.0:
-	#	max_radian_swing *= -1
-	#max_radian_swing = clampf(max_radian_swing, abs(delta_radian) *-1, abs(delta_radian))
-	
-	
+		
 	var next_rotation = global_rotation.y + delta_radian
-	#prints(global_rotation, rotation, global_rotation - rotation, get_parent().rotation)
-	#global_rotation = next_rotation
+	
 	update_y_rotation(next_rotation - get_parent().rotation.y)
 
 ## Called by the State Machine
@@ -127,9 +119,9 @@ func look_forward(delta_moded: float) -> void:
 
 ## use as a "set_rotation" so that limits on rotation can be maintained
 func update_y_rotation(radian: float) -> void:
+	## stops wierd studdering when the cirlce is being looped mathmaticly
 	if abs(radian) > PI:
 		#prints(radian, fmod(radian, TAU), radian + TAU)
-		## stops wierd studdering when the cirlce is being looped mathmaticly
 		if radian < 0:
 			radian += TAU
 		else :

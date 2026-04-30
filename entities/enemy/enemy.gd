@@ -65,22 +65,24 @@ func set_nav_target(node: Node3D) -> void:
 			send_event(EVENT_NO_NAV_TARGET)
 
 func move(delta_moded: float) -> void:
+	## TODO acceloration
 	## maximum can rotate this frame if needed
-	var next_path_pos: Vector2 = Utilities.shift_3d_to_2d(_nav_agent.get_next_target_pos())
-	#var new_velocity: Vector2 = global_position.direction_to(next_path_pos) * get_max_speed() ## TODO acceloration
-	var target_direction = Utilities.shift_3d_to_2d(global_position).direction_to(next_path_pos) # because how rotation 2d and rotation.y are different
-	var rotate_amount = Utilities.delta_radian(rotation.y, target_direction.angle())
+	
+	var next_path_pos:= Utilities.shift_3d_to_2d( _nav_agent.get_next_target_pos())
+	var target_direction =  Utilities.shift_3d_to_2d(global_position).direction_to(next_path_pos)
+	
+	## multipling angle by -1 and subtracking PI/2 to translate 2D rotation to 3D rotation.y. 
+	var rotate_amount = Utilities.delta_radian(rotation.y, -1* target_direction.angle()- PI * .5)
 	_update_rotation(rotation.y + rotate_amount)
 	
-	
-	#velocity = Utilities.shift_2d_to_3d(Vector2.from_angle(rotation.y) * get_raw_max_speed() * delta_moded, global_position)
-	velocity = Vector3.MODEL_FRONT.rotated(Vector3.UP, rotation.y) * get_raw_max_speed() * delta_moded
-	#velocity = Vector3.MODEL_FRONT * get_raw_max_speed() * delta_moded m# movment not in facing direction 
+	velocity = Vector3.FORWARD.rotated(Vector3.UP, rotation.y) * get_raw_max_speed() * delta_moded 
+
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		velocity.y = velocity.y - (Utilities.get_gravity() * delta_moded)
 		
 	if not _nav_agent.avoidance_enabled:
 		move_and_slide()
+		pass
 	else:
 		_nav_agent.set_velocity(velocity)
 		pass

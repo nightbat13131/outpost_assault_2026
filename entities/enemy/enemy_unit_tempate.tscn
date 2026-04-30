@@ -127,6 +127,7 @@ script = ExtResource("12_44qss")
 
 [node name="UIAnchor" type="Node3D" parent="." unique_id=636878055]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 metadata/_edit_group_ = true
 
 [node name="HealthUI" type="Sprite3D" parent="UIAnchor" unique_id=469693739]

@@ -253,7 +253,7 @@ script = ExtResource("6_16w35")
 mimic_mesh = NodePath("../Pivot_3/MeshInstance3D_3")
 
 [node name="tree_00" parent="." unique_id=1609104469 instance=ExtResource("12_uggq3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37960434, 0, -0.31607425)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.163707, 0, 3.3311362)
 
 [node name="PlayerOutpost" parent="." unique_id=2026485468 instance=ExtResource("13_re1dr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.068493, 0.09997487, 13.727139)
