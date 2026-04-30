@@ -6,8 +6,9 @@
 radius = 0.15
 height = 0.75
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4ikwk"]
-radius = 0.1
+[sub_resource type="CylinderMesh" id="CylinderMesh_u816u"]
+top_radius = 0.0
+bottom_radius = 0.1
 height = 0.5
 
 [node name="Projectile" type="Area3D" unique_id=1219189248]
@@ -16,16 +17,9 @@ collision_mask = 0
 script = ExtResource("1_u816u")
 
 [node name="CollisionShape2D" type="CollisionShape3D" parent="." unique_id=851232120]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_u816u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1535216028]
-transform = Transform3D(1, 0, 0, 0, 0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_4ikwk")
-
-[node name="CosmeticPointOfReference" type="RayCast3D" parent="." unique_id=1778947034]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24541235, -0.039569527)
-enabled = false
-exclude_parent = false
-target_position = Vector3(0, 0, -1)
-collision_mask = 0
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1.0000001, 0, -1.0000001, -4.3711392e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_u816u")

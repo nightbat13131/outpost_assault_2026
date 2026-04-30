@@ -16,7 +16,7 @@ func set_collision_mask_value(layer: int, flag:= true) -> void:
 
 func set_range(value: float) -> void:
 	for each_ray in _rays:
-		each_ray.target_position.x = value * 1.01
+		each_ray.target_position.z = value * -1.01
 
 func is_colliding() -> bool:
 	return true

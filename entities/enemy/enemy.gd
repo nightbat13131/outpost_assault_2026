@@ -71,7 +71,10 @@ func move(delta_moded: float) -> void:
 	var target_direction = Utilities.shift_3d_to_2d(global_position).direction_to(next_path_pos) # because how rotation 2d and rotation.y are different
 	var rotate_amount = Utilities.delta_radian(rotation.y, target_direction.angle())
 	_update_rotation(rotation.y + rotate_amount)
-	velocity = Utilities.shift_2d_to_3d(Vector2.from_angle(rotation.y) * get_raw_max_speed() * delta_moded, global_position)
+	
+	
+	#velocity = Utilities.shift_2d_to_3d(Vector2.from_angle(rotation.y) * get_raw_max_speed() * delta_moded, global_position)
+	velocity = Vector3.MODEL_FRONT.rotated(Vector3.UP, rotation.y) * get_raw_max_speed() * delta_moded
 	#velocity = Vector3.MODEL_FRONT * get_raw_max_speed() * delta_moded m# movment not in facing direction 
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		velocity.y = velocity.y - (Utilities.get_gravity() * delta_moded)

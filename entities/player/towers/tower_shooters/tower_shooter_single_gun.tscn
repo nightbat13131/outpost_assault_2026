@@ -6,4 +6,7 @@
 [node name="Tower_SingleGun" unique_id=1226539165 instance=ExtResource("1_6xqb4")]
 _tower_info = ExtResource("3_tmcmt")
 
+[node name="RayCast2D_0" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 2146733591) index="0" unique_id=1148775674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015524149, 0, -1.7487197)
+
 [editable path="Shooter"]

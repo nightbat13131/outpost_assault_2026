@@ -64,7 +64,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 1, 0)
 mesh = SubResource("SphereMesh_0em40")
 
 [node name="MeshInstance3D2_nose" type="MeshInstance3D" parent="Pivot_3" unique_id=334746238]
-transform = Transform3D(-0.09329158, -0.995638, 0, 0.995638, -0.093291596, 0, 0, 0, 0.9999993, -1.0936483, 2.3841858e-07, 0.0065737953)
+transform = Transform3D(1.9106838e-15, 4.3711342e-08, -0.99999917, 0.99999917, -4.3711342e-08, 0, -4.3711353e-08, -0.9999989, -4.3711353e-08, 0.01913552, 2.3841858e-07, -1.1795154)
 mesh = SubResource("CylinderMesh_mn563")
 
 [node name="CollisionShape3D_3Red" type="CollisionShape3D" parent="." unique_id=2102209466 node_paths=PackedStringArray("mimic_mesh")]
@@ -127,12 +127,11 @@ script = ExtResource("12_44qss")
 
 [node name="UIAnchor" type="Node3D" parent="." unique_id=636878055]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 metadata/_edit_group_ = true
 
 [node name="HealthUI" type="Sprite3D" parent="UIAnchor" unique_id=469693739]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9957484, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05972731, 0, 1.1812923)
 material_override = SubResource("ShaderMaterial_t4wtx")
 texture = ExtResource("13_mn563")
 region_enabled = true
@@ -141,7 +140,7 @@ script = ExtResource("14_olsjq")
 
 [node name="Clip_UI" type="Sprite3D" parent="UIAnchor" unique_id=2041539821]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2207484, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04640293, 0, 1.3918655)
 material_override = SubResource("ShaderMaterial_dvckh")
 instance_shader_parameters/segments = 2
 texture = ExtResource("13_mn563")

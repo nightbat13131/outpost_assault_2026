@@ -21,7 +21,7 @@ bottom_radius = 0.05
 script = ExtResource("1_x0pio")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1131818244]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.99950373, 0, 0)
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -0.011239886, 0, -1.0316639)
 mesh = SubResource("CylinderMesh_x0pio")
 skeleton = NodePath("")
 
@@ -38,15 +38,15 @@ unique_name_in_owner = true
 script = ExtResource("5_e5x61")
 
 [node name="Node0" type="Node3D" parent="Muzzles" unique_id=627097656]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0196118, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017619133, 0, -2.0420353)
 
 [node name="AimingSights" type="Node3D" parent="." unique_id=2146733591]
 unique_name_in_owner = true
 script = ExtResource("6_xi2q4")
 
 [node name="RayCast2D_0" type="RayCast3D" parent="AimingSights" unique_id=1148775674]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0066166, 0, 0)
-target_position = Vector3(2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0074021816, 0, -2.0085235)
+target_position = Vector3(0, 0, -2)
 collision_mask = 0
 collide_with_areas = true
 

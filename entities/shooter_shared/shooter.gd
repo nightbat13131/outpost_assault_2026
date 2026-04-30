@@ -157,8 +157,10 @@ func _shoot() -> void:
 	var projectile : Projectile # = _projectile.instantiate()
 	var shot_count := 0
 	for each_position in get_muzzle_locations():
-		projectile = get_projectile_info().get_projectile()
-		projectile.setup(
+		if TowerHolder.get_instance():
+			projectile = get_projectile_info().get_projectile()
+			TowerHolder.get_instance().add_child(projectile)
+			projectile.setup_projectile(
 			each_position, 
 			global_rotation.y + get_projectile_spread_radian(), 
 			get_projectile_speed(), 
@@ -166,8 +168,7 @@ func _shoot() -> void:
 			get_projectile_range(),
 			_radar_sensor.get_collision_mask(),
 			null)
-		if TowerHolder.get_instance():
-			TowerHolder.get_instance().add_child(projectile)
+
 			shot_count += 1
 		else:
 			push_warning("no home for projetile to get added to")
