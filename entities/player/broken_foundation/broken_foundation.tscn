@@ -29,6 +29,8 @@ material = SubResource("StandardMaterial3D_ypmrv")
 size = Vector3(3.95, 2, 3.95)
 
 [node name="BrokenFoundation" type="StaticBody3D" unique_id=992371182]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_scmbp")
 _cost_info = ExtResource("2_ypmrv")
 metadata/_edit_group_ = true

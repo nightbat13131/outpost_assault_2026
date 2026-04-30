@@ -243,7 +243,11 @@ script = ExtResource("10_nuo30")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9983244, 2.1629944, -15.031299)
 starting_tower = -10
 
-[node name="TowerFoundation3D2" parent="NavigationRegion3D/TowerHolder" unique_id=992371182 instance=ExtResource("11_dklyh")]
+[node name="TowerFoundation3D3" parent="NavigationRegion3D/TowerHolder" unique_id=992371182 instance=ExtResource("11_dklyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.56696, 1.080019, 23.036076)
+starting_tower = -10
+
+[node name="TowerFoundation3D2" parent="NavigationRegion3D/TowerHolder" unique_id=1717600997 instance=ExtResource("11_dklyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.362555, 0.35930467, -4.3433905)
 
 [node name="BrokenFoundation3D" parent="NavigationRegion3D/TowerHolder" unique_id=1589107544 instance=ExtResource("12_w63ui")]
@@ -399,10 +403,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37960434, 0, -0.31607425)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.068493, 0.48593783, 13.727139)
 
 [node name="StaticBody3D_building" parent="." unique_id=1670374645 instance=ExtResource("14_luk50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.791672, -0.20184112, -0.5867145)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.331154, -0.20184112, 17.92011)
 
 [node name="Enemy" parent="." unique_id=1934706991 instance=ExtResource("14_0nf2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.750798, 2.864026, -15.0259)
 
 [node name="Enemy2" parent="." unique_id=11417275 instance=ExtResource("14_0nf2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5200958, 2.864026, -9.500668)
+
+[node name="Enemy3" parent="." unique_id=1767731652 instance=ExtResource("14_0nf2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.061431, 0.8070755, 16.47785)

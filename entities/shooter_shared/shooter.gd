@@ -153,13 +153,13 @@ func _shoot() -> void:
 			projectile = get_projectile_info().get_projectile()
 			TowerHolder.get_instance().add_child(projectile)
 			projectile.setup_projectile(
-			each_position, 
-			global_rotation.y + get_projectile_spread_radian(), 
-			get_projectile_speed(), 
-			get_projectile_damage(),
-			get_projectile_range(),
-			_radar_sensor.get_collision_mask(),
-			null)
+				each_position, 
+				global_rotation.y + get_projectile_spread_radian(), 
+				get_projectile_speed(), 
+				get_projectile_damage(),
+				get_projectile_range(),
+				_radar_sensor.get_collision_mask(),
+				null)
 
 			shot_count += 1
 		else:

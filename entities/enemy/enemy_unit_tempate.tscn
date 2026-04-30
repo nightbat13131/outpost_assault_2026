@@ -34,6 +34,10 @@ height = 0.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_olsjq"]
 radius = 1.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mn563"]
+height = 5.8164063
+radius = 1.0927734
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t4wtx"]
 render_priority = 0
 shader = ExtResource("12_0em40")
@@ -51,6 +55,7 @@ shader_parameter/background_color = Color(0, 0, 0, 0.5)
 shader_parameter/segment_color = Color(0, 0, 0, 1)
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1934706991]
+collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2
@@ -67,11 +72,15 @@ mesh = SubResource("SphereMesh_0em40")
 transform = Transform3D(1.9106838e-15, 4.3711342e-08, -0.99999917, 0.99999917, -4.3711342e-08, 0, -4.3711353e-08, -0.9999989, -4.3711353e-08, 0.01913552, 2.3841858e-07, -1.1795154)
 mesh = SubResource("CylinderMesh_mn563")
 
-[node name="CollisionShape3D_3Red" type="CollisionShape3D" parent="." unique_id=2102209466 node_paths=PackedStringArray("mimic_mesh")]
+[node name="CollisionShape_ground" type="CollisionShape3D" parent="." unique_id=2102209466 node_paths=PackedStringArray("mimic_mesh")]
 transform = Transform3D(0.59441584, 0, -0.8041578, 0, 1, 0, 0.8041578, 0, 0.59441584, 0, 1.005176, 0)
 shape = SubResource("SphereShape3D_olsjq")
 script = ExtResource("13_ocl4r")
 mimic_mesh = NodePath("../Pivot_3/MeshInstance3D_3")
+
+[node name="CollisionShape_Hitbox" type="CollisionShape3D" parent="." unique_id=1564909050]
+transform = Transform3D(0.59441584, 0, -0.8041578, 0, 1, 0, 0.8041578, 0, 0.59441584, 0, 3.645412, 0)
+shape = SubResource("CylinderShape3D_mn563")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="." unique_id=984417282]
 debug_enabled = true
@@ -157,6 +166,6 @@ script = ExtResource("12_3gkj5")
 facing_movement = true
 _nav_agent = NodePath("../NavigationAgent")
 pivot = NodePath("../Pivot_3")
-ground_collider = NodePath("../CollisionShape3D_3Red")
+ground_collider = NodePath("../CollisionShape_ground")
 rand_face = false
 metadata/_edit_group_ = true
