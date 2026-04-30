@@ -1,7 +1,7 @@
 class_name ProjectileInfo extends ProjectileInfo_reference
 
 @export var _projectile_type := ProjectileType.BULLET
-@export var _speed : float = 500.0
+@export var _speed : float = 50.0
 @export var _damage := 3.0
 @export var _projectile_spread_deg := 1.0
 

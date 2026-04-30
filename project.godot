@@ -61,6 +61,8 @@ theme/custom="uid://uidwmqpmyjci"
 
 [layer_names]
 
+3d_render/layer_1="Normal"
+3d_render/layer_2="HideFromSideCamera"
 2d_navigation/layer_1="Ground"
 2d_navigation/layer_2="Sky"
 2d_physics/layer_3="Enemy Humans"

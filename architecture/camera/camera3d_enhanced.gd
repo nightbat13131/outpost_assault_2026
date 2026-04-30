@@ -1,9 +1,11 @@
 #@tool
 class_name Camera3D_Enhanced extends Camera3D
-
 ## TODO add accecloration to hand movement
 ## TODO add tween to remote movement
 ## TODO fix midle mouse button click drag
+
+const Visual_Layer_PrimaryOnly = 2
+const Visual_Layer_PrimaryAndSide = 1
 
 const ZOOM_SPEED := .05
 const TWEEN_DURATION := .5

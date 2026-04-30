@@ -23,6 +23,7 @@ var _ghost_ratio := .80:
 func _ready() -> void:
 	# TODO set health ui colors based on utlities/accessabilty settings 
 	set_health_info(_health_info)
+	set_layer_mask(Camera3D_Enhanced.Visual_Layer_PrimaryOnly)
 
 func set_health_info(info: HealthInfo) -> void:
 	if _health_info:

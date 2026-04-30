@@ -19,6 +19,7 @@ func set_range(value: float) -> void:
 		each_ray.target_position.x = value * 1.01
 
 func is_colliding() -> bool:
+	return true
 	for each_ray in _rays:
 		if each_ray.is_colliding():
 			return true

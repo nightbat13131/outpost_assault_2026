@@ -145,8 +145,8 @@ func update_y_rotation(radian: float) -> void:
 ## Called by the State Machine
 func try_shoot() -> void:
 	if _aiming_sights.is_colliding():
-		## currently being handled by state machine
-		#if get_reload_info().can_shoot():
+		
+		#if get_reload_info().can_shoot(): ## currently being handled by state machine
 		if _projectile_info:
 			_shoot()
 		else: 

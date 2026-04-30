@@ -203,6 +203,7 @@ world_source = NodePath("../../../../CenterScreen/VBoxContainer/SubViewportConta
 [node name="Camera3D" type="Camera3D" parent="FullScreen/LevelControls/DisplaySelected/SubViewportContainer/DisplaySelectedViewport" unique_id=2069364982]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 40, 0)
+cull_mask = 1048573
 projection = 1
 size = 10.0
 

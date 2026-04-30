@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dro1735nlrdor" path="res://entities/player/towers/tower_shooters/tower_shooter_base.tscn" id="1_6xqb4"]
 [ext_resource type="Resource" uid="uid://vcjycdbg8yjn" path="res://entities/player/towers/tower_shooters/tower_single_gun.tres" id="3_tmcmt"]
 
-[node name="Tower_TestGun" unique_id=1226539165 instance=ExtResource("1_6xqb4")]
+[node name="Tower_SingleGun" unique_id=1226539165 instance=ExtResource("1_6xqb4")]
 _tower_info = ExtResource("3_tmcmt")
 
 [editable path="Shooter"]

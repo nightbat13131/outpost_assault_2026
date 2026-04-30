@@ -3,6 +3,7 @@ class_name ClipReloadUI extends Sprite3D
 const SHADER_PRIMARY_RATIO = &"primary_ratio"
 const SHADER_GHOST_RATIO = &"ghost_ratio"
 const SHADER_PRIMARY_COLOR = &"primary_color"
+const SHADER_SEGMENTS = &"segments"
 
 var _reload_info : ReloadInfo: set = set_reload_info
 
@@ -22,6 +23,7 @@ func _ready() -> void:
 	# TODO set clip ui colors based on utlities/accessabilty settings 
 	_ghost_ratio = 0.0
 	set_reload_info(_reload_info)
+	set_layer_mask(Camera3D_Enhanced.Visual_Layer_PrimaryOnly)
 
 func set_reload_info(info: ReloadInfo) -> void:
 	#prints("ClipUI:",self, "old:", _reload_info, "new:",  info)
@@ -30,6 +32,7 @@ func set_reload_info(info: ReloadInfo) -> void:
 	if _reload_info:
 		#prints("ClipUI:",self, "_reload_info:", _reload_info)
 		_reload_info.changed.connect(_on_reload_change)
+		_set_shader_parameter(SHADER_SEGMENTS, info.get_clip_ammo_size())
 		_on_reload_change()
 		set_suppressed(false)
 	else: 
