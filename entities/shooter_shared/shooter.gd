@@ -97,7 +97,8 @@ func turn_towards(delta_moded: float, target_global_pos: Vector3) -> void:
 	## TODO: consider rotational acceloration
 	
 	## multipling angle by -1 and subtracking PI/2 to translate 2D rotation to 3D rotation.y. 
-	var target_global_angle_y = -1.0 * Utilities.shift_3d_to_2d(global_position).angle_to_point( Utilities.shift_3d_to_2d(target_global_pos)) - PI * .5
+	var target_global_angle_y = Utilities.shift_3d_to_2d(global_position).angle_to_point( Utilities.shift_3d_to_2d(target_global_pos))
+	target_global_angle_y = (target_global_angle_y + PI*.5)*-1 ## because the 2d to 3d translation
 	var delta_radian : float = Utilities.delta_radian(global_rotation.y, target_global_angle_y)
 	if is_equal_approx(delta_radian, 0.0):
 		return # no rotation needed

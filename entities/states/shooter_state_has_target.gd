@@ -17,11 +17,15 @@ func _on_state_processing(delta: float) -> void:
 	if !has_target():
 		send_event(Shooter.EVENT_NO_TARGET)
 		return
+
 	var target = get_radar_sensor().get_target()
-	get_shooter().turn_towards(delta, target.get_global_position())
-	if ammo_available_state:
-		if ammo_available_state.active:
-			get_shooter().try_shoot()
+	if target:
+		get_shooter().turn_towards(delta, target.get_global_position())
+		if ammo_available_state:
+			if ammo_available_state.active:
+				get_shooter().try_shoot()
+	else:
+		push_error("ShooterAtomicState.HasTarget._on_state_processing target failed")
 	#if aiming_sights:
 		#if aiming_sights.is_colliding():
 			#get_shooter().try_shoot()

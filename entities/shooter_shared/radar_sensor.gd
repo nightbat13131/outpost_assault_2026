@@ -120,7 +120,7 @@ func _process(_delta: float) -> void:
 		#)
 	
 	if has_target():
-		#print_debug(_targets)
+		#print_debug(_targets.size())
 		var center: Vector3 = get_global_position()
 		var color : Color
 		var count = _targets.size()
@@ -147,8 +147,11 @@ func set_target_logic() -> void: pass
 func get_target() -> Node3D:
 	if _targets.is_empty():
 		return null
+	
 	if _targets.has(_player_outpost):
 		return _player_outpost
+	elif _targets.size() == 1:
+		return _targets[0]
 	match _targeting_method:
 		TargetingMethod.RADIAN_CLOSE:
 			return _get_target_radian_close()
@@ -156,20 +159,32 @@ func get_target() -> Node3D:
 
 func _get_target_radian_close() -> Node3D:
 	var starting_radian := _shooter.global_rotation.y
-	var min_delta_rotation := TAU
+	starting_radian = (starting_radian + PI*.5)*-1 ## because the 2d to 3d translation
+	var min_angle_to_each := TAU
 	var min_target : Node3D = null
 	
-	var each_rotation := TAU
+	var angle_to_each := TAU
 	var each_delta_radian := TAU
 	
-	var global_2d = Utilities.shift_3d_to_2d(global_position)
-	
+	var global_2d := Utilities.shift_3d_to_2d(global_position)
+	#prints(global_position, global_2d, starting_radian)
+	var target_2d : Vector2
+	#var text := ""
 	for each in _targets: # TODO: this likely is broken
+		target_2d = Utilities.shift_3d_to_2d(each.global_position)
+		angle_to_each = (target_2d - global_2d).angle()
+		"""
 		each_rotation = global_2d.angle_to_point(Utilities.shift_3d_to_2d(each.get_global_position()))
-		each_delta_radian = Utilities.delta_radian(starting_radian, each_rotation)
-		if abs(each_delta_radian) < min_delta_rotation:
-			min_delta_rotation = abs(each_delta_radian)
+		text += str(each_rotation)
+		text += " "
+		"""
+		each_delta_radian = Utilities.delta_radian(starting_radian, angle_to_each)
+		#prints(global_2d, starting_radian, "|", target_2d, target_2d - global_2d, (target_2d - global_2d).angle(), "|", each_delta_radian)
+		#prints("[", global_2d*.1,",", target_2d*.1,",", (target_2d - global_2d)*.1,"]")
+		if min_angle_to_each > abs(each_delta_radian) :
+			min_angle_to_each = abs(each_delta_radian)
 			min_target = each
+	#prints(global_2d*.1, Utilities.shift_3d_to_2d(min_target.global_position)*.1, min_angle_to_each)
 	return min_target
 
 func _on_area_entered(area: Area2D) -> void:

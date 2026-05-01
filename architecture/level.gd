@@ -31,6 +31,15 @@ func _ready() -> void:
 	GameSpeed.on_level_start()
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.CLOSE_ALL) ## handel request reload
 
+func _process(delta: float) -> void:
+	var __size = 100
+	var __v_size = Vector3(__size*.5, 1, __size*.5)
+	DebugDraw3D.draw_grid(Vector3(0,-1,0), Vector3(__size,0,0), Vector3(0,0,__size), Vector2i(__size,__size), Color.DARK_GRAY, true)
+	
+	DebugDraw3D.draw_line(Vector3.RIGHT*__size, Vector3.LEFT*__size)
+	DebugDraw3D.draw_line(Vector3.FORWARD*__size, Vector3.BACK*__size)
+	#DebugDraw3D.draw_grid(Vector3.ZERO, Vector3.ONE, Vector3.ONE, Vector2i.ONE )
+
 func call_wave(wave_number: int) -> void: _spawn_manager.call_wave(wave_number)
 
 func call_camera_bounds(index: int) -> void: _camera_binder.trigger_bound_index(index)
@@ -48,7 +57,7 @@ func send_dialog_group(dialog_group: DialogGroup) -> void:
 
 func _on_base_death() -> void:
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_LOSS)
-	# print("PlayerBase died, Game over.")
+	print("PlayerBase died, Game over.")
 
 func _conect_children() -> void:
 	for each_child in get_children():

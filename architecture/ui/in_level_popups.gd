@@ -41,6 +41,7 @@ func deactivate() -> void:
 	set_physics_process(false)
 
 func _request_popup(popup_type: PopupTypes) -> void:
+	print(popup_type, Time.get_date_dict_from_system() )
 	var keep_array : Array[Control] = []
 	match popup_type:
 		PopupTypes.CLOSE_ALL:

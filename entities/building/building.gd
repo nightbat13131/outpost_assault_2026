@@ -62,6 +62,7 @@ func _die() -> void:
 	#if _animated_sprite_2d.animation_finished.is_connected(_death_animation_complete):
 		# _die already called
 	#	return 
+	
 	died.emit()
 	set_collision_layer(0)
 	#_animated_sprite_2d.play(AnimatedSprite2DModded.ANIMATION_DIE)

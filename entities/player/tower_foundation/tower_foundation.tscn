@@ -98,10 +98,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 128, 21)
 script = ExtResource("18_s3esa")
 
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=827431519]
-radius = 0.75
-vertices = PackedVector3Array(-0.4, 0, -0.4, -0.4, 0, 0.4, 0.4, 0, 0.4, 0.4, 0, -0.4)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=940541688 node_paths=PackedStringArray("mimic_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
 shape = SubResource("BoxShape3D_a41uu")

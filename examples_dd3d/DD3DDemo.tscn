@@ -731,13 +731,13 @@ transform = Transform3D(1.74492, 0.723785, -1.74493, -1.24976, -7.72562e-08, -1.
 rotation_edit_mode = 2
 
 [node name="Subdivision" type="Node3D" parent="Grids/GridCentered" unique_id=1471519748]
-transform = Transform3D(1, -6.03961e-14, -2.68221e-07, 3.55271e-13, 1, 1.42109e-14, -1.19209e-07, 1.1724e-13, 1, -0.2, 4.76837e-07, 0.4)
+transform = Transform3D(1.0000001, -6.039613e-14, -3.278255e-07, 6.82121e-13, 1.0000001, 2.2737368e-13, -1.1920914e-07, 1.1723955e-13, 1.0000001, -0.61607975, 0.7761879, 0.81608313)
 
 [node name="Grid" type="Node3D" parent="Grids" unique_id=72463057]
 transform = Transform3D(5, 0, 4.76837e-07, 0, 1, 0, -4.76837e-07, 0, 5, 0, 0, 0)
 
 [node name="Subdivision" type="Node3D" parent="Grids/Grid" unique_id=1538857159]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 0.999999, 1.90735e-05, 0, 4.65661e-10, 0.999999, 1, 0, 1)
+transform = Transform3D(1, 0, 2.9802322e-08, 0, 0.999999, 1.90735e-05, -5.9604645e-08, 4.65661e-10, 0.99999905, 0.98094356, 0, 1.0263054)
 
 [node name="PlaneOrigin" type="MeshInstance3D" parent="." unique_id=1411285461]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 11.0482, 7.33669, -13.1715)
@@ -745,6 +745,7 @@ mesh = SubResource("QuadMesh_1t0id")
 
 [node name="Lines" type="Node3D" parent="." unique_id=1534128416]
 transform = Transform3D(1.51514, 0.589536, 1.00858, -1.34875, 0.662262, 1.133, 0, -0.462445, 2.90833, 44.33065, -0.331599, -10.3326)
+visible = false
 
 [node name="1" type="Node3D" parent="Lines" unique_id=257555798]
 transform = Transform3D(1, 6.61592e-09, 2.23038e-08, 9.40939e-07, 1, 0, -2.76085e-08, -1.49012e-08, 1, -1.46213, -4.03317, 0.61692)

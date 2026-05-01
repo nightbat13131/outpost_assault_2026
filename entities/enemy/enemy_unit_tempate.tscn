@@ -18,15 +18,17 @@
 [ext_resource type="Script" uid="uid://cwhnwg27f611g" path="res://architecture/ui/health_ui.gd" id="14_olsjq"]
 [ext_resource type="Script" uid="uid://b1h848l3rucm5" path="res://architecture/ui/clip_reload_ui.gd" id="15_kgdhy"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a41uu"]
-albedo_color = Color(0.56196636, 0, 0.10882748, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mn563"]
+albedo_color = Color(1, 0.5, 0.5, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_0em40"]
-material = SubResource("StandardMaterial3D_a41uu")
-radius = 1.0
-height = 2.0
+[sub_resource type="CylinderMesh" id="CylinderMesh_olsjq"]
+material = SubResource("StandardMaterial3D_mn563")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgdhy"]
+albedo_color = Color(0.5943413, 0.39770204, 0.1480239, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mn563"]
+material = SubResource("StandardMaterial3D_kgdhy")
 top_radius = 0.0
 bottom_radius = 0.25
 height = 0.5
@@ -36,7 +38,6 @@ radius = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mn563"]
 height = 5.8164063
-radius = 1.0927734
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t4wtx"]
 render_priority = 0
@@ -66,10 +67,10 @@ _enemy_info = ExtResource("2_8koau")
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 1, 0)
 
 [node name="MeshInstance3D_3" type="MeshInstance3D" parent="Pivot_3" unique_id=81064790]
-mesh = SubResource("SphereMesh_0em40")
+mesh = SubResource("CylinderMesh_olsjq")
 
 [node name="MeshInstance3D2_nose" type="MeshInstance3D" parent="Pivot_3" unique_id=334746238]
-transform = Transform3D(1.9106838e-15, 4.3711342e-08, -0.99999917, 0.99999917, -4.3711342e-08, 0, -4.3711353e-08, -0.9999989, -4.3711353e-08, 0.01913552, 2.3841858e-07, -1.1795154)
+transform = Transform3D(1.9106833e-15, 4.3711335e-08, -0.99999905, 0.99999917, -4.3711342e-08, 0, -4.3711346e-08, -0.9999988, -4.3711346e-08, 0.019135516, 0.6833931, -0.6729118)
 mesh = SubResource("CylinderMesh_mn563")
 
 [node name="CollisionShape_ground" type="CollisionShape3D" parent="." unique_id=2102209466 node_paths=PackedStringArray("mimic_mesh")]
