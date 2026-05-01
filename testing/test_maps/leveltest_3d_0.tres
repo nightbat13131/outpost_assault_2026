@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ecpqr")
-level_name = "3D mouse and viewport"
-level_uid = "uid://bwinca270nntj"
+level_name = "3D mouse and camera"
+level_uid = "uid://c2vywofjhr2d"
 view_mode = 3
 metadata/_custom_type_script = "uid://u6pais7e54pl"

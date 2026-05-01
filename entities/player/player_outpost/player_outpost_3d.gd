@@ -8,7 +8,6 @@ var upgrade_manager: PurchaseManager
 func _ready() -> void:
 	super._ready()
 	_instatnce = self
-	tree_exiting.connect(_die)
 	set_collision_layer_value(RadarSensor.COLLISION_PLAYER_BUILDING, true)
 	set_collision_mask_value(RadarSensor.COLLISION_ENEMY_HUMANS, true)
 	enemy_detector.body_entered.connect(_on_body_entered)

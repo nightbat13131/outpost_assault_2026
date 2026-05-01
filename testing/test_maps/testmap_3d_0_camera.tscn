@@ -1,18 +1,19 @@
-[gd_scene format=3 uid="uid://dnianrpo4gp0o"]
+[gd_scene format=3 uid="uid://c2vywofjhr2d"]
 
-[ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_bi2u1"]
-[ext_resource type="Resource" uid="uid://w18rxggasu2d" path="res://testing/test_maps/leveltest_3d_2.tres" id="2_x8146"]
-[ext_resource type="Script" uid="uid://c44d6gbtdyd7o" path="res://architecture/camera/camera3d_enhanced.gd" id="4_c7i1g"]
-[ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="4_pp447"]
-[ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="4_x8146"]
-[ext_resource type="Script" uid="uid://bsjpqpuwen05s" path="res://testing/test_scripts/3d/area_3d_touch.gd" id="5_c7i1g"]
-[ext_resource type="PackedScene" uid="uid://f1xco5y88yrp" path="res://entities/building/building_template.tscn" id="7_x8146"]
-[ext_resource type="PackedScene" uid="uid://cuags342jh0ux" path="res://assets/models/tree_00.glb" id="8_3p3ij"]
-[ext_resource type="Script" uid="uid://ca5bfmlwytgdq" path="res://entities/building/mouse_interaction_node.gd" id="8_pp447"]
-[ext_resource type="PackedScene" uid="uid://rtyqyhrfekvc" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="11_gxc2u"]
-[ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="11_v8nlx"]
-[ext_resource type="PackedScene" uid="uid://dsmjn8prjtp52" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="13_p45ln"]
-[ext_resource type="PackedScene" uid="uid://c7quy5x5ni6lg" path="res://entities/player/player_outpost/player_outpost_3d.tscn" id="16_l8agd"]
+[ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_vtqig"]
+[ext_resource type="Resource" uid="uid://w18rxggasu2d" path="res://testing/test_maps/leveltest_3d_2.tres" id="2_g0kxw"]
+[ext_resource type="Script" uid="uid://chfte728oiulj" path="res://testing/test_scripts/3d/stitch_nav_3d.gd" id="3_0yxlr"]
+[ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="4_07iwy"]
+[ext_resource type="Script" uid="uid://c44d6gbtdyd7o" path="res://architecture/camera/camera3d_enhanced.gd" id="5_rkch0"]
+[ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="6_qu4vb"]
+[ext_resource type="PackedScene" uid="uid://rtyqyhrfekvc" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="7_4scpd"]
+[ext_resource type="PackedScene" uid="uid://dsmjn8prjtp52" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="8_esjwy"]
+[ext_resource type="Script" uid="uid://bsjpqpuwen05s" path="res://testing/test_scripts/3d/area_3d_touch.gd" id="9_rccrr"]
+[ext_resource type="Script" uid="uid://c1rtq1h4wrm68" path="res://testing/test_scripts/3d/collision_shape3d_enhanced.gd" id="10_qpwpi"]
+[ext_resource type="Script" uid="uid://ca5bfmlwytgdq" path="res://entities/building/mouse_interaction_node.gd" id="11_1te6j"]
+[ext_resource type="PackedScene" uid="uid://f1xco5y88yrp" path="res://entities/building/building_template.tscn" id="12_282bg"]
+[ext_resource type="PackedScene" uid="uid://cuags342jh0ux" path="res://assets/models/tree_00.glb" id="13_xo2t7"]
+[ext_resource type="PackedScene" uid="uid://c7quy5x5ni6lg" path="res://entities/player/player_outpost/player_outpost_3d.tscn" id="14_c50wn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cfc2o"]
 ground_bottom_color = Color(0.19263999, 0.28, 0.1792, 1)
@@ -57,8 +58,8 @@ height = 10.0
 radius = 1.0
 
 [node name="Node3D" type="Node3D" unique_id=962071718]
-script = ExtResource("1_bi2u1")
-_level_info = ExtResource("2_x8146")
+script = ExtResource("1_vtqig")
+_level_info = ExtResource("2_g0kxw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1378137086]
 environment = SubResource("Environment_c7i1g")
@@ -70,13 +71,25 @@ shadow_enabled = true
 
 [node name="Testing" type="Node" parent="." unique_id=1092759490]
 
+[node name="StitchNav3D" type="Node" parent="Testing" unique_id=1159306657]
+script = ExtResource("3_0yxlr")
+
+[node name="StitchNav3D2" type="Node" parent="Testing" unique_id=1377950044]
+script = ExtResource("3_0yxlr")
+
+[node name="StitchNav3D3" type="Node" parent="Testing" unique_id=844509147]
+script = ExtResource("3_0yxlr")
+
+[node name="StitchNav3D4" type="Node" parent="Testing" unique_id=920977121]
+script = ExtResource("3_0yxlr")
+
 [node name="ButtonEnhanced" type="Button" parent="Testing" unique_id=328841025 node_paths=PackedStringArray("damage_target")]
 offset_left = 37.0
 offset_top = 11.0
 offset_right = 109.0
 offset_bottom = 42.0
 text = "Damage"
-script = ExtResource("4_pp447")
+script = ExtResource("4_07iwy")
 damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building4")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
@@ -86,7 +99,7 @@ offset_top = 52.0
 offset_right = 117.0
 offset_bottom = 83.0
 text = "Damage"
-script = ExtResource("4_pp447")
+script = ExtResource("4_07iwy")
 damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building3")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
@@ -96,7 +109,7 @@ offset_top = 92.0
 offset_right = 126.0
 offset_bottom = 123.0
 text = "Damage"
-script = ExtResource("4_pp447")
+script = ExtResource("4_07iwy")
 damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building2")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
@@ -106,7 +119,7 @@ offset_top = 165.0
 offset_right = 136.0
 offset_bottom = 196.0
 text = "Damage - outpost"
-script = ExtResource("4_pp447")
+script = ExtResource("4_07iwy")
 damage_target = NodePath("../../PlayerOutpost")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
@@ -114,21 +127,21 @@ metadata/_custom_type_script = "uid://byme36t86h4q5"
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, -5.2584343)
 current = true
 size = 35.313
-script = ExtResource("4_c7i1g")
+script = ExtResource("5_rkch0")
 
 [node name="Camera3D_Side" type="Camera3D" parent="." unique_id=239808225]
 transform = Transform3D(0.45305717, 0, -0.89148146, 0, 1, 0, 0.89148146, 0, 0.45305717, -31.901367, 1.4132318, 12.5856)
 
 [node name="TowerHolder" type="Node3D" parent="." unique_id=1586273332]
-script = ExtResource("11_v8nlx")
+script = ExtResource("6_qu4vb")
 
-[node name="TowerFoundation3D" parent="TowerHolder" unique_id=1724053501 instance=ExtResource("11_gxc2u")]
+[node name="TowerFoundation3D" parent="TowerHolder" unique_id=1724053501 instance=ExtResource("7_4scpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9369097, 0.2947302, -12.978704)
 
-[node name="TowerFoundation3D2" parent="TowerHolder" unique_id=992371182 instance=ExtResource("11_gxc2u")]
+[node name="TowerFoundation3D2" parent="TowerHolder" unique_id=992371182 instance=ExtResource("7_4scpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.362555, -0.13624358, -4.3433905)
 
-[node name="BrokenFoundation3D" parent="TowerHolder" unique_id=1589107544 instance=ExtResource("13_p45ln")]
+[node name="BrokenFoundation3D" parent="TowerHolder" unique_id=1589107544 instance=ExtResource("8_esjwy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.176757, 0.09997487, 8.354839)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1726177614]
@@ -136,12 +149,12 @@ navigation_mesh = SubResource("NavigationMesh_afdlk")
 
 [node name="Area3D_buildingButton" type="Area3D" parent="NavigationRegion3D" unique_id=440065282 node_paths=PackedStringArray("mesh_color")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2924004, 0.45490742, -13.442692)
-script = ExtResource("5_c7i1g")
+script = ExtResource("9_rccrr")
 mesh_color = NodePath("MeshInstance3D2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Area3D_buildingButton" unique_id=1790868345 node_paths=PackedStringArray("mimic_mesh")]
 shape = SubResource("BoxShape3D_2tsml")
-script = ExtResource("4_x8146")
+script = ExtResource("10_qpwpi")
 mimic_mesh = NodePath("../MeshInstance3D2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/Area3D_buildingButton" unique_id=1668966234]
@@ -150,7 +163,7 @@ skeleton = NodePath("")
 
 [node name="MouseInteractionNode" type="Node" parent="NavigationRegion3D/Area3D_buildingButton" unique_id=2144542801 node_paths=PackedStringArray("_collision_node")]
 unique_name_in_owner = true
-script = ExtResource("8_pp447")
+script = ExtResource("11_1te6j")
 _collision_node = NodePath("..")
 metadata/_custom_type_script = "uid://ca5bfmlwytgdq"
 
@@ -160,7 +173,7 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody_Ground2" unique_id=74394301 node_paths=PackedStringArray("mimic_mesh")]
 shape = SubResource("BoxShape3D_pohyd")
-script = ExtResource("4_x8146")
+script = ExtResource("10_qpwpi")
 mimic_mesh = NodePath("../MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody_Ground2" unique_id=961441111]
@@ -178,20 +191,20 @@ mesh = SubResource("CylinderMesh_a41uu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody_Ground_bump" unique_id=51589989 node_paths=PackedStringArray("mimic_mesh")]
 transform = Transform3D(-4.371139e-08, -1, 2.9802319e-08, 1, -4.371139e-08, 1.3027009e-15, -1.0587912e-22, 2.9802319e-08, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_38hd5")
-script = ExtResource("4_x8146")
+script = ExtResource("10_qpwpi")
 mimic_mesh = NodePath("../MeshInstance3DBump")
 
-[node name="StaticBody3D_building4" parent="NavigationRegion3D" unique_id=438703917 instance=ExtResource("7_x8146")]
+[node name="StaticBody3D_building4" parent="NavigationRegion3D" unique_id=438703917 instance=ExtResource("12_282bg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.475119, 0.14243174, -13.742863)
 
-[node name="StaticBody3D_building3" parent="NavigationRegion3D" unique_id=617826431 instance=ExtResource("7_x8146")]
+[node name="StaticBody3D_building3" parent="NavigationRegion3D" unique_id=617826431 instance=ExtResource("12_282bg")]
 transform = Transform3D(0.79179955, 0, -0.6107811, 0, 1, 0, 0.6107811, 0, 0.79179955, 13.517052, 0.3501501, -7.596773)
 
-[node name="StaticBody3D_building2" parent="NavigationRegion3D" unique_id=1468169229 instance=ExtResource("7_x8146")]
+[node name="StaticBody3D_building2" parent="NavigationRegion3D" unique_id=1468169229 instance=ExtResource("12_282bg")]
 transform = Transform3D(0.81831026, 0, 0.57477677, 0, 1, 0, -0.57477677, 0, 0.81831026, -19.257797, 0.022663116, -13.345444)
 
-[node name="tree_00" parent="." unique_id=1609104469 instance=ExtResource("8_3p3ij")]
+[node name="tree_00" parent="." unique_id=1609104469 instance=ExtResource("13_xo2t7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37960434, 0, -0.31607425)
 
-[node name="PlayerOutpost" parent="." unique_id=2026485468 instance=ExtResource("16_l8agd")]
+[node name="PlayerOutpost" parent="." unique_id=2026485468 instance=ExtResource("14_c50wn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.611589, 0.09997487, 12.099096)

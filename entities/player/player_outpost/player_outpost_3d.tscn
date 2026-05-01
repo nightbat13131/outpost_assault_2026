@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c7quy5x5ni6lg"]
 
 [ext_resource type="Script" uid="uid://csv12af1i33cv" path="res://entities/player/player_outpost/player_outpost_3d.gd" id="1_mupyd"]
-[ext_resource type="PackedScene" uid="uid://dc4u8xhm8ujr8" path="res://assets/models/outpost_0.glb" id="2_124wu"]
 [ext_resource type="Script" uid="uid://ca5bfmlwytgdq" path="res://entities/building/mouse_interaction_node.gd" id="2_ubpl3"]
 [ext_resource type="Resource" uid="uid://scjcjf05x7qc" path="res://architecture/guide/select_building.tres" id="3_124wu"]
 [ext_resource type="PackedScene" uid="uid://bxdf27mnkjhr6" path="res://assets/models/outpost_1.glb" id="3_y1noq"]
@@ -33,10 +32,6 @@ size = Vector3(5, 2, 5)
 script = ExtResource("1_mupyd")
 _health_ui = NodePath("UI/Health3d_UI")
 metadata/_edit_group_ = true
-
-[node name="outpost_0" parent="." unique_id=1504039691 instance=ExtResource("2_124wu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5)
-visible = false
 
 [node name="outpost_1" parent="." unique_id=268009794 instance=ExtResource("3_y1noq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26438665, 0, 0)
