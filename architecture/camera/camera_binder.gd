@@ -1,5 +1,5 @@
 @tool
-class_name CameraBinder extends Node2D
+class_name CameraBinder extends Node3D
 
 var bound_index := 0
 
@@ -15,31 +15,52 @@ var bound_index := 0
 
 @export var bounds : Array[CameraBounds] = []
 @export_tool_button("Refresh", "CanvasLayer") var _redraw_press = _refresh_preview
-@export var camera : Camera2DEnhanced
+@export var camera : Camera3D_Enhanced
+
+@onready var visible_on_screen_notifier_3d_west: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier3D_West
+@onready var visible_on_screen_notifier_3d_north: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier3D_North
+@onready var visible_on_screen_notifier_3d_south: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier3D_South
+@onready var visible_on_screen_notifier_3d_east: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier3D_East
 
 func _ready() -> void:
 	testing_index = testing_index # prevent outout bounds
+	if camera:
+		camera.north_limit = visible_on_screen_notifier_3d_north
+		camera.south_limit = visible_on_screen_notifier_3d_south
+		camera.west_limit = visible_on_screen_notifier_3d_west
+		camera.east_limit = visible_on_screen_notifier_3d_east
 	if !Engine.is_editor_hint():
 		trigger_bound_index(testing_index)
-		for each_bound in bounds:
-			if !each_bound.changed.is_connected(queue_redraw):
-				each_bound.changed.connect(queue_redraw)
 	else: 
 		trigger_bound_index(0)
 
 func _refresh_preview() -> void:
+	trigger_bound_index(0)
+	return
 	if _redraw_press: pass # prevent unused variable warnings 
 	if debug and camera:
 		bound_index = clamp(testing_index, 0, bounds.size())
-		camera.set_bound(bounds[testing_index])
-	queue_redraw()
-	camera.queue_redraw()
 
-func _draw() -> void:
-	var index := 0
-	for each_bound in bounds:
-		each_bound.draw_bounds(self, Color.from_hsv(index/float(bounds.size()), 1, 1 ))
-		index += 1
+func _process(_delta: float) -> void:
+	if !(Engine.is_editor_hint() or debug):
+		return
+	#DebugDraw3D.draw_sphere(Vector3.ZERO, 5, Color.ORANGE)
+	var center: Vector3 = get_global_position()
+	var color : Color
+	var count = bounds.size()
+	
+	for index in range(count):
+		color = Color.from_hsv(index/float(count), 1,1,1)
+		bounds[index].draw_bounds(color, index)
+		continue
+		center = Utilities.shift_2d_to_3d(bounds[index].get_camera_starting_position(), Vector3.ZERO)
+		
+		DebugDraw3D.draw_sphere(
+		center, 
+		4.0, 
+		color,
+		#false, 2.0
+		)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:Array = [
@@ -55,4 +76,5 @@ func trigger_bound_index(index: int) -> void:
 	elif index >= bounds.size():
 		push_error("CameraBinder.trigger_bound_index out of bound index called, ", index)
 		return
-	camera.set_bound(bounds[index])
+	bounds[index].setup_bars(visible_on_screen_notifier_3d_north, visible_on_screen_notifier_3d_south, visible_on_screen_notifier_3d_east, visible_on_screen_notifier_3d_west)
+	

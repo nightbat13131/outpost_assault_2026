@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_vtqig"]
 [ext_resource type="Resource" uid="uid://w18rxggasu2d" path="res://testing/test_maps/leveltest_3d_2.tres" id="2_g0kxw"]
-[ext_resource type="Script" uid="uid://chfte728oiulj" path="res://testing/test_scripts/3d/stitch_nav_3d.gd" id="3_0yxlr"]
+[ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="3_g0kxw"]
+[ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="4_0yxlr"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="4_07iwy"]
-[ext_resource type="Script" uid="uid://c44d6gbtdyd7o" path="res://architecture/camera/camera3d_enhanced.gd" id="5_rkch0"]
+[ext_resource type="Script" uid="uid://boh4o2joni42q" path="res://testing/test_scripts/test_camera_index.gd" id="6_0yxlr"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="6_qu4vb"]
 [ext_resource type="PackedScene" uid="uid://rtyqyhrfekvc" path="res://entities/player/tower_foundation/tower_foundation.tscn" id="7_4scpd"]
 [ext_resource type="PackedScene" uid="uid://dsmjn8prjtp52" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="8_esjwy"]
@@ -14,6 +15,19 @@
 [ext_resource type="PackedScene" uid="uid://f1xco5y88yrp" path="res://entities/building/building_template.tscn" id="12_282bg"]
 [ext_resource type="PackedScene" uid="uid://cuags342jh0ux" path="res://assets/models/tree_00.glb" id="13_xo2t7"]
 [ext_resource type="PackedScene" uid="uid://c7quy5x5ni6lg" path="res://entities/player/player_outpost/player_outpost_3d.tscn" id="14_c50wn"]
+
+[sub_resource type="Resource" id="Resource_07iwy"]
+script = ExtResource("4_0yxlr")
+west_north = Vector2(30, 30)
+east_south = Vector2(30, 30)
+camera_start = Vector2(10, -10)
+metadata/_custom_type_script = "uid://dddpnw3b40kmo"
+
+[sub_resource type="Resource" id="Resource_uydb1"]
+script = ExtResource("4_0yxlr")
+west_north = Vector2(25, 35)
+east_south = Vector2(25, 35)
+metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cfc2o"]
 ground_bottom_color = Color(0.19263999, 0.28, 0.1792, 1)
@@ -61,6 +75,9 @@ radius = 1.0
 script = ExtResource("1_vtqig")
 _level_info = ExtResource("2_g0kxw")
 
+[node name="CameraBinder" parent="." unique_id=1275715189 instance=ExtResource("3_g0kxw")]
+bounds = Array[ExtResource("4_0yxlr")]([SubResource("Resource_07iwy"), SubResource("Resource_uydb1")])
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1378137086]
 environment = SubResource("Environment_c7i1g")
 
@@ -71,66 +88,51 @@ shadow_enabled = true
 
 [node name="Testing" type="Node" parent="." unique_id=1092759490]
 
-[node name="StitchNav3D" type="Node" parent="Testing" unique_id=1159306657]
-script = ExtResource("3_0yxlr")
-
-[node name="StitchNav3D2" type="Node" parent="Testing" unique_id=1377950044]
-script = ExtResource("3_0yxlr")
-
-[node name="StitchNav3D3" type="Node" parent="Testing" unique_id=844509147]
-script = ExtResource("3_0yxlr")
-
-[node name="StitchNav3D4" type="Node" parent="Testing" unique_id=920977121]
-script = ExtResource("3_0yxlr")
-
 [node name="ButtonEnhanced" type="Button" parent="Testing" unique_id=328841025 node_paths=PackedStringArray("damage_target")]
-offset_left = 37.0
-offset_top = 11.0
-offset_right = 109.0
-offset_bottom = 42.0
+offset_left = 20.0
+offset_top = 78.0
+offset_right = 92.0
+offset_bottom = 109.0
 text = "Damage"
 script = ExtResource("4_07iwy")
 damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building4")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="ButtonEnhanced3" type="Button" parent="Testing" unique_id=881159927 node_paths=PackedStringArray("damage_target")]
-offset_left = 45.0
-offset_top = 52.0
-offset_right = 117.0
-offset_bottom = 83.0
+offset_left = 28.0
+offset_top = 119.0
+offset_right = 100.0
+offset_bottom = 150.0
 text = "Damage"
 script = ExtResource("4_07iwy")
 damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building3")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="ButtonEnhanced4" type="Button" parent="Testing" unique_id=1325213617 node_paths=PackedStringArray("damage_target")]
-offset_left = 54.0
-offset_top = 92.0
-offset_right = 126.0
-offset_bottom = 123.0
+offset_left = 37.0
+offset_top = 159.0
+offset_right = 109.0
+offset_bottom = 190.0
 text = "Damage"
 script = ExtResource("4_07iwy")
 damage_target = NodePath("../../NavigationRegion3D/StaticBody3D_building2")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="ButtonEnhanced2" type="Button" parent="Testing" unique_id=1298841703 node_paths=PackedStringArray("damage_target")]
-offset_left = 64.0
-offset_top = 165.0
-offset_right = 136.0
-offset_bottom = 196.0
+offset_left = 47.0
+offset_top = 232.0
+offset_right = 193.0
+offset_bottom = 263.0
 text = "Damage - outpost"
 script = ExtResource("4_07iwy")
 damage_target = NodePath("../../PlayerOutpost")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="Camera3D_Overhead" type="Camera3D" parent="." unique_id=402352859]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, -5.2584343)
-current = true
-size = 35.313
-script = ExtResource("5_rkch0")
-
-[node name="Camera3D_Side" type="Camera3D" parent="." unique_id=239808225]
-transform = Transform3D(0.45305717, 0, -0.89148146, 0, 1, 0, 0.89148146, 0, 0.45305717, -31.901367, 1.4132318, 12.5856)
+[node name="SpinBox" type="SpinBox" parent="Testing" unique_id=371596516 node_paths=PackedStringArray("_camera_binder")]
+offset_right = 86.5
+offset_bottom = 31.0
+script = ExtResource("6_0yxlr")
+_camera_binder = NodePath("../../CameraBinder")
 
 [node name="TowerHolder" type="Node3D" parent="." unique_id=1586273332]
 script = ExtResource("6_qu4vb")

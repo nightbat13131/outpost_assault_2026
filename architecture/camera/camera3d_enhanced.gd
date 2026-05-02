@@ -26,20 +26,23 @@ static var action_move_home : GUIDEAction = load("uid://dngiyneq1ddvy")
 static var action_zoom : GUIDEAction = load("uid://bl4ky3gf6gcji")
 
 @export var debug := true
+
+var east_limit: VisibleOnScreenNotifier3D
+var west_limit: VisibleOnScreenNotifier3D
+var north_limit: VisibleOnScreenNotifier3D
+var south_limit: VisibleOnScreenNotifier3D
+
 var _is_drag_cursor := true : set = _set_is_drag_cursor
-var _limit_rect : Rect2
 var _max_speed := 5.0
 var _velocity := Vector3.ZERO
 var _is_remote_moving := false : set = _set_is_remote_moving
 var _viewport : SubViewport: get = get_subviewport
-var _bounds : CameraBounds
 var _last_drag_direction : Vector2
 
 func _ready() -> void:
 	## TODO dev values
 	initial_height = global_position.y
 	initial_fov = fov
-	_limit_rect = Rect2(Vector2.ONE * -1000, Vector2.ONE * 4000)
 	##
 	if Engine.is_editor_hint():
 		return
@@ -49,9 +52,10 @@ func _ready() -> void:
 		action_zoom.triggered.connect(_on_zoom)
 	if action_move_home:
 		action_move_home.triggered.connect(_on_home)
-	setup_subviewport.call_deferred()
 
 func _process(delta: float) -> void:
+	if !is_current():
+		return
 	if Engine.is_editor_hint():
 		return
 	if _is_remote_moving:
@@ -76,65 +80,13 @@ func _process(delta: float) -> void:
 		_velocity = Vector3(direction.x, 0.0, direction.y ) * _get_speed() * delta
 		_move_to(position + _velocity)
 
-func setup_subviewport() -> void: 
-	var new_viewport = GameLevelUI.request_subviewport()
-	if _viewport == new_viewport: # no change
-		return 
-	elif _viewport: # has a differnet viewport
-		_viewport.size_changed.disconnect(_on_viewport_size_changed)
-	_viewport = new_viewport
-	if _viewport:
-		if !_viewport.size_changed.is_connected(_on_viewport_size_changed):
-			_viewport.size_changed.connect(_on_viewport_size_changed)
-			_on_viewport_size_changed()
-
-func set_bound(bound: CameraBounds) -> void:
-	# 2D
-	_bounds = bound
-	set_limits(bound.get_limit_rect())
-	_apply_bound()
-
-func _apply_bound() -> void:
-	# zoom can't be calculated within Resource without Node reference
-	# Limit needs to be set before move to as limit restricts movement. 
-	return
-	if !_bounds: # nothing to apply
-		return
-	if !is_inside_tree():
-		await tree_entered
-	var screen : Vector2
-	if get_subviewport():
-		screen = get_subviewport().size
-	else: 
-		screen = get_viewport_rect().size
-	var limit_size =  _limit_rect.size #* .95
-	var new_zoom = Vector2(
-		screen.x / limit_size.x,
-		screen.y / limit_size.y)
-	if new_zoom.x < new_zoom.y: 
-		#set_min_zoom(new_zoom.y)
-		pass
-	else:
-		#set_min_zoom(new_zoom.x)
-		pass
-	#remote_move_to(_bounds.get_camera_starting_position())
-	#queue_redraw()
-
-func get_viewport_rect() -> Rect2: 
-	## TODO this is a patch while figuring out 3d. Find where this is called from and figure out how to get the real viewport and why
-	return Rect2(Vector2.ONE * -500, Vector2.ONE * 1000)
-
 func get_subviewport() -> SubViewport: return _viewport
-
-func _on_viewport_size_changed() -> void: _apply_bound()
-
-func set_limits(rect: Rect2) -> void: _limit_rect = rect
 
 func _on_zoom() -> void:
 	if _is_remote_moving:
 		return
 	var value = action_zoom.value_axis_1d
-	var new_zoom = clamp(_get_zoom()*(1 + ZOOM_SPEED*value), min_zoom, max_zoom)
+	var new_zoom = clamp(_get_zoom()*(1 + ZOOM_SPEED * value), min_zoom, max_zoom)
 	_set_zoom(new_zoom)
 	if action_move_keys and action_move_drag: 
 		if !(action_move_keys.is_triggered() or action_move_drag.is_triggered()):
@@ -144,15 +96,9 @@ func _on_zoom() -> void:
 func _on_home() -> void:
 	if _is_remote_moving:
 		return
-	# TODO center over PlayerOutpost instead of reset zoom
-	#_set_zoom(1.0)
 	var home := PlayerOutpost.get_instance()
-	# global_position.y = initial_height
-	# fov = initial_fov
-	
 	if home:
 		remote_move_to(home.global_position)
-		pass
 
 func _set_is_remote_moving(is_moving: bool) -> void: _is_remote_moving = is_moving
 
@@ -175,6 +121,10 @@ func _set_min_zoom(value: float) -> void:
 		_set_zoom(min_zoom)
 
 func _set_zoom(value: float) -> void:
+	var zoom_delta = _zoom - value
+	if is_full_screen() and zoom_delta < 0:
+		return
+		
 	_zoom = clampf(value, min_zoom, max_zoom)
 	## Change y? 
 	var new_y := initial_height * _zoom
@@ -191,7 +141,7 @@ func remote_move_to(next_position : Vector3, target_zoom: float= 0.0) -> void:
 	tween.tween_method(_move_to, position, next_position, TWEEN_DURATION)
 	tween.tween_callback(_set_is_remote_moving.bind(false) )
 	if target_zoom != 0:
-		# TODO include zoom_change
+		# TODO include zoom_change ?
 		pass
 
 func _move_to(next_position_: Vector3) -> void:
@@ -207,5 +157,40 @@ func _move_to(next_position_: Vector3) -> void:
 	next_position_.x = clamp(next_position_.x, internal_bounds.position.x, internal_bounds.end.x)
 	next_position_.z = clamp(next_position_.y, internal_bounds.position.y, internal_bounds.end.y)
 	"""
+	if is_full_screen():
+		return # no change posible
+	var position_delta = position - next_position_
+	if position_delta.x > 0 : 
+		if west_limit:
+			if west_limit.is_on_screen():
+				next_position_.x = position.x
+	elif position_delta.x < 0:
+		if east_limit:
+			if east_limit.is_on_screen():
+				next_position_.x = position.x
+				
+	if position_delta.z > 0 : 
+		if north_limit:
+			if north_limit.is_on_screen():
+				next_position_.z = position.z
+	elif position_delta.z < 0:
+		if south_limit:
+			if south_limit.is_on_screen():
+				next_position_.z = position.z
 	position.x = next_position_.x
 	position.z = next_position_.z
+
+func is_full_screen() -> bool:
+	if west_limit:
+		if !west_limit.is_on_screen():
+			return false
+	if east_limit:
+		if !east_limit.is_on_screen():
+			return false
+	if north_limit:
+		if !north_limit.is_on_screen():
+			return false
+	if south_limit:
+		if !south_limit.is_on_screen():
+			return false
+	return true

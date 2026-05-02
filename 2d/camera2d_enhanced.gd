@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 
 func set_bound(bound: CameraBounds) -> void:
 	_bounds = bound
-	set_limits(bound.get_limit_rect())
+	#set_limits(bound.get_limit_rect())
 	_apply_bound()
 
 func _apply_bound() -> void:

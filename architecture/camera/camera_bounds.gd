@@ -3,15 +3,13 @@ class_name CameraBounds extends Resource
 
 const LINE_WIDTH = 10.0
 
-@export var rect_position := Vector2.ZERO:
+@export var west_north := Vector2.ZERO:
 	set(value):
-		rect_position = value
-		_limit_rect.position = rect_position
+		west_north = value
 		emit_changed()
-@export var rect_size := Vector2(900,1200): 
+@export var east_south := Vector2(900,1200): 
 	set(value):
-		rect_size = value
-		_limit_rect.size = rect_size
+		east_south = value
 		emit_changed()
 @export var camera_zoom : float = -1.0
 @export var camera_start : Vector2:
@@ -19,21 +17,28 @@ const LINE_WIDTH = 10.0
 		camera_start = value
 		emit_changed()
 
-var _limit_rect : Rect2 : get = get_limit_rect
+func get_north() -> float: return west_north.y
 
-func get_limit_rect() -> Rect2:
-	#if !Engine.is_editor_hint():
-	#	if camera_start == Vector2.ZERO:
-	#		camera_start = rect_position + rect_size*.5
-	return Rect2(rect_position, rect_size)
+func get_west() -> float: return west_north.x
 
-func draw_bounds(node: Node2D, color: Color = Color.RED) -> void:
-	node.draw_polyline([
-		_limit_rect.position, Vector2(_limit_rect.end.x, _limit_rect.position.y), 
-		_limit_rect.end, Vector2(_limit_rect.position.x, _limit_rect.end.y), 
-		_limit_rect.position], color, LINE_WIDTH)
-	node.draw_line(camera_start + Vector2(1,1)*50, camera_start + Vector2(-1,-1)*50, color, LINE_WIDTH)
-	node.draw_line(camera_start + Vector2(1,-1)*50, camera_start + Vector2(-1,1)*50, color, LINE_WIDTH)
+func get_south() -> float: return east_south.y
+
+func get_east() -> float: return east_south.x
+
+func setup_bars(north_bar: VisibleOnScreenNotifier3D, south_bar: VisibleOnScreenNotifier3D, east_bar: VisibleOnScreenNotifier3D, west_bar: VisibleOnScreenNotifier3D) -> void:
+	for each_bar in [north_bar, south_bar, east_bar, west_bar]:
+		each_bar.position = Vector3.ZERO
+	print(north_bar, south_bar, east_bar, west_bar)
+	north_bar.aabb = AABB(Vector3(get_west()*-1, -1, get_north()*-1), Vector3(get_west() + get_east(), 1, -1))
+	south_bar.aabb = AABB(Vector3(get_west()*-1, -1, get_south()), 	  Vector3(get_west() + get_east(), 1, 1))
+	east_bar.aabb  = AABB(Vector3(get_east(),    -1, get_north()*-1), Vector3(1, 1, get_north()+get_south()))
+	west_bar.aabb  = AABB(Vector3(get_west()*-1, -1, get_north()*-1), Vector3(-1, 1,get_north()+get_south()))
 
 func get_camera_starting_position() -> Vector2: 
 	return camera_start
+
+func draw_bounds(color:= Color.WHITE, index  := 1.0) -> void:
+	index += 1
+	DebugDraw3D.draw_sphere(Utilities.shift_2d_to_3d(get_camera_starting_position(), Vector3.ZERO), 1, color )
+	DebugDraw3D.draw_box(Utilities.shift_2d_to_3d(west_north*-1, Vector3.DOWN*index), Quaternion.IDENTITY, Utilities.shift_2d_to_3d(west_north + east_south, Vector3.DOWN* index ), color)
+	

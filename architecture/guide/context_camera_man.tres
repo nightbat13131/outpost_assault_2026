@@ -97,27 +97,28 @@ metadata/_guide_input_mappings_collapsed = true
 script = ExtResource("10_4khh6")
 button = 5
 
-[sub_resource type="Resource" id="Resource_iwixo"]
-script = ExtResource("8_rwm2e")
-
 [sub_resource type="Resource" id="Resource_6qx1v"]
 script = ExtResource("3_2f0lo")
 input = SubResource("Resource_k74wc")
-modifiers = Array[ExtResource("5_rwm2e")]([SubResource("Resource_iwixo")])
 
 [sub_resource type="Resource" id="Resource_exxul"]
 script = ExtResource("10_4khh6")
 button = 4
 
+[sub_resource type="Resource" id="Resource_iwixo"]
+script = ExtResource("8_rwm2e")
+
 [sub_resource type="Resource" id="Resource_710fj"]
 script = ExtResource("3_2f0lo")
 input = SubResource("Resource_exxul")
+modifiers = Array[ExtResource("5_rwm2e")]([SubResource("Resource_iwixo")])
+metadata/_guide_modifiers_collapsed = false
 
 [sub_resource type="Resource" id="Resource_nncjg"]
 script = ExtResource("1_ynal3")
 action = ExtResource("9_h1li1")
 input_mappings = Array[ExtResource("3_2f0lo")]([SubResource("Resource_6qx1v"), SubResource("Resource_710fj")])
-metadata/_guide_input_mappings_collapsed = true
+metadata/_guide_input_mappings_collapsed = false
 
 [sub_resource type="Resource" id="Resource_tslu1"]
 script = ExtResource("9_tkmeg")

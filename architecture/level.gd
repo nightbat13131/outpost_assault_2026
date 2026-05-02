@@ -31,7 +31,8 @@ func _ready() -> void:
 	GameSpeed.on_level_start()
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.CLOSE_ALL) ## handel request reload
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	return
 	var __size = 100
 	var __v_size = Vector3(__size*.5, 1, __size*.5)
 	DebugDraw3D.draw_grid(Vector3(0,-1,0), Vector3(__size,0,0), Vector3(0,0,__size), Vector2i(__size,__size), Color.DARK_GRAY, true)

@@ -2,53 +2,46 @@
 
 [ext_resource type="Script" uid="uid://c0l57m82xemsh" path="res://architecture/camera/camera_binder.gd" id="1_sxemf"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="2_uydb1"]
-[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="3_04v4c"]
-[ext_resource type="Script" uid="uid://dhdn60j0x3fn6" path="res://2d/camera2d_enhanced.gd" id="4_t70hs"]
+[ext_resource type="Script" uid="uid://c44d6gbtdyd7o" path="res://architecture/camera/camera3d_enhanced.gd" id="2_xxgv4"]
 
 [sub_resource type="Resource" id="Resource_sxemf"]
 script = ExtResource("2_uydb1")
-rect_position = Vector2(-500, -550)
-rect_size = Vector2(3000, 2500)
+west_north = Vector2(30, 30)
+east_south = Vector2(30, 30)
+camera_start = Vector2(-15, -15)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
-[sub_resource type="Resource" id="Resource_qmthx"]
+[sub_resource type="Resource" id="Resource_uydb1"]
 script = ExtResource("2_uydb1")
-rect_size = Vector2(1200, 1200)
-camera_start = Vector2(200, 200)
+west_north = Vector2(25, 35)
+east_south = Vector2(25, 35)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
-[sub_resource type="Resource" id="Resource_l7wik"]
-script = ExtResource("2_uydb1")
-rect_position = Vector2(0, -100)
-rect_size = Vector2(2000, 1201)
-camera_start = Vector2(1000, 600)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
-[sub_resource type="Resource" id="Resource_a1ku7"]
-script = ExtResource("2_uydb1")
-rect_position = Vector2(0, -300)
-rect_size = Vector2(1400, 1300)
-camera_start = Vector2(600, 300)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
-[node name="CameraBinder" type="Node2D" unique_id=1105577396 node_paths=PackedStringArray("camera")]
+[node name="CameraBinder" type="Node3D" unique_id=1275715189 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_sxemf")
-testing_index = 1
-bounds = Array[ExtResource("2_uydb1")]([SubResource("Resource_sxemf"), SubResource("Resource_qmthx"), SubResource("Resource_l7wik"), SubResource("Resource_a1ku7")])
-camera = NodePath("Camera2DEnhanced")
+bounds = Array[ExtResource("2_uydb1")]([SubResource("Resource_sxemf"), SubResource("Resource_uydb1")])
+camera = NodePath("Camera3D")
 metadata/_edit_lock_ = true
 
-[node name="GuideDebugger" parent="." unique_id=603218197 instance=ExtResource("3_04v4c")]
-visible = false
-offset_left = 731.0
-offset_top = 668.99994
-offset_right = 887.0
-offset_bottom = 784.99994
+[node name="Camera3D" type="Camera3D" parent="." unique_id=832661813]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, -5.2584343)
+current = true
+size = 35.313
+script = ExtResource("2_xxgv4")
 
-[node name="Camera2DEnhanced" type="Camera2D" parent="." unique_id=1518509055]
-visible = false
-position = Vector2(425.5, 0)
-limit_enabled = false
-editor_draw_screen = false
-script = ExtResource("4_t70hs")
-metadata/_custom_type_script = "uid://dhdn60j0x3fn6"
+[node name="VisibleOnScreenNotifier3D_West" type="VisibleOnScreenNotifier3D" parent="." unique_id=492908955]
+unique_name_in_owner = true
+aabb = AABB(-30, -1, -30, -1, 1, 60)
+
+[node name="VisibleOnScreenNotifier3D_North" type="VisibleOnScreenNotifier3D" parent="." unique_id=26883326]
+unique_name_in_owner = true
+aabb = AABB(-30, -1, -30, 60, 1, -1)
+
+[node name="VisibleOnScreenNotifier3D_South" type="VisibleOnScreenNotifier3D" parent="." unique_id=191988542]
+unique_name_in_owner = true
+aabb = AABB(-30, -1, 30, 60, 1, 1)
+
+[node name="VisibleOnScreenNotifier3D_East" type="VisibleOnScreenNotifier3D" parent="." unique_id=607414446]
+unique_name_in_owner = true
+aabb = AABB(30, -1, -30, 1, 1, 60)
