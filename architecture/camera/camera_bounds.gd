@@ -12,7 +12,7 @@ const LINE_WIDTH = 10.0
 		east_south = value
 		emit_changed()
 @export var camera_zoom : float = -1.0
-@export var camera_start : Vector2:
+@export var camera_start := Vector3(0.0, 30.0, 0.0) :
 	set(value):
 		camera_start = value
 		emit_changed()
@@ -34,11 +34,11 @@ func setup_bars(north_bar: VisibleOnScreenNotifier3D, south_bar: VisibleOnScreen
 	east_bar.aabb  = AABB(Vector3(get_east(),    -1, get_north()*-1), Vector3(1, 1, get_north()+get_south()))
 	west_bar.aabb  = AABB(Vector3(get_west()*-1, -1, get_north()*-1), Vector3(-1, 1,get_north()+get_south()))
 
-func get_camera_starting_position() -> Vector2: 
+func get_camera_starting_position() -> Vector3: 
 	return camera_start
 
 func draw_bounds(color:= Color.WHITE, index  := 1.0) -> void:
 	index += 1
-	DebugDraw3D.draw_sphere(Utilities.shift_2d_to_3d(get_camera_starting_position(), Vector3.ZERO), 1, color )
+	DebugDraw3D.draw_sphere(get_camera_starting_position(), 1, color )
 	DebugDraw3D.draw_box(Utilities.shift_2d_to_3d(west_north*-1, Vector3.DOWN*index), Quaternion.IDENTITY, Utilities.shift_2d_to_3d(west_north + east_south, Vector3.DOWN* index ), color)
 	

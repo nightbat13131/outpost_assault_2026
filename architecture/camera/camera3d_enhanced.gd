@@ -27,8 +27,8 @@ static var action_zoom : GUIDEAction = load("uid://bl4ky3gf6gcji")
 
 @export var debug := true
 
-var east_limit: VisibleOnScreenNotifier3D
-var west_limit: VisibleOnScreenNotifier3D
+var east_limit:  VisibleOnScreenNotifier3D
+var west_limit:  VisibleOnScreenNotifier3D
 var north_limit: VisibleOnScreenNotifier3D
 var south_limit: VisibleOnScreenNotifier3D
 

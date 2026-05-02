@@ -15,6 +15,7 @@ metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 script = ExtResource("2_uydb1")
 west_north = Vector2(25, 35)
 east_south = Vector2(25, 35)
+camera_start = Vector2(0, 0)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [node name="CameraBinder" type="Node3D" unique_id=1275715189 node_paths=PackedStringArray("camera")]
@@ -25,7 +26,7 @@ metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=832661813]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, -5.2584343)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
 current = true
 size = 35.313
 script = ExtResource("2_xxgv4")
