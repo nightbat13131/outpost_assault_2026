@@ -39,6 +39,8 @@ func get_camera_starting_position() -> Vector3:
 
 func draw_bounds(color:= Color.WHITE, index  := 1.0) -> void:
 	index += 1
-	DebugDraw3D.draw_sphere(get_camera_starting_position(), 1, color )
+	var camera_center := get_camera_starting_position()
+	DebugDraw3D.draw_sphere(camera_center, 1, color )
+	DebugDraw3D.draw_line(camera_center, camera_center * Vector3(1,-1,1), color)
 	DebugDraw3D.draw_box(Utilities.shift_2d_to_3d(west_north*-1, Vector3.DOWN*index), Quaternion.IDENTITY, Utilities.shift_2d_to_3d(west_north + east_south, Vector3.DOWN* index ), color)
 	

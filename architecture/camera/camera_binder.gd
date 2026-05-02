@@ -52,15 +52,6 @@ func _process(_delta: float) -> void:
 	for index in range(count):
 		color = Color.from_hsv(index/float(count), 1,1,1)
 		bounds[index].draw_bounds(color, index)
-		continue
-		center = Utilities.shift_2d_to_3d(bounds[index].get_camera_starting_position(), Vector3.ZERO)
-		
-		DebugDraw3D.draw_sphere(
-		center, 
-		4.0, 
-		color,
-		#false, 2.0
-		)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:Array = [
@@ -76,5 +67,6 @@ func trigger_bound_index(index: int) -> void:
 	elif index >= bounds.size():
 		push_error("CameraBinder.trigger_bound_index out of bound index called, ", index)
 		return
-	bounds[index].setup_bars(visible_on_screen_notifier_3d_north, visible_on_screen_notifier_3d_south, visible_on_screen_notifier_3d_east, visible_on_screen_notifier_3d_west)
-	
+	var bound = bounds[index]
+	bound.setup_bars(visible_on_screen_notifier_3d_north, visible_on_screen_notifier_3d_south, visible_on_screen_notifier_3d_east, visible_on_screen_notifier_3d_west)
+	camera.remote_move_to(bound.get_camera_starting_position(), index == 0)

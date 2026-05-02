@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_vtqig"]
 [ext_resource type="Resource" uid="uid://w18rxggasu2d" path="res://testing/test_maps/leveltest_3d_2.tres" id="2_g0kxw"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="3_g0kxw"]
-[ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="4_0yxlr"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="4_07iwy"]
 [ext_resource type="Script" uid="uid://boh4o2joni42q" path="res://testing/test_scripts/test_camera_index.gd" id="6_0yxlr"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="6_qu4vb"]
@@ -15,19 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://f1xco5y88yrp" path="res://entities/building/building_template.tscn" id="12_282bg"]
 [ext_resource type="PackedScene" uid="uid://cuags342jh0ux" path="res://assets/models/tree_00.glb" id="13_xo2t7"]
 [ext_resource type="PackedScene" uid="uid://c7quy5x5ni6lg" path="res://entities/player/player_outpost/player_outpost_3d.tscn" id="14_c50wn"]
-
-[sub_resource type="Resource" id="Resource_07iwy"]
-script = ExtResource("4_0yxlr")
-west_north = Vector2(30, 30)
-east_south = Vector2(30, 30)
-camera_start = Vector2(10, -10)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
-[sub_resource type="Resource" id="Resource_uydb1"]
-script = ExtResource("4_0yxlr")
-west_north = Vector2(25, 35)
-east_south = Vector2(25, 35)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cfc2o"]
 ground_bottom_color = Color(0.19263999, 0.28, 0.1792, 1)
@@ -76,7 +62,6 @@ script = ExtResource("1_vtqig")
 _level_info = ExtResource("2_g0kxw")
 
 [node name="CameraBinder" parent="." unique_id=1275715189 instance=ExtResource("3_g0kxw")]
-bounds = Array[ExtResource("4_0yxlr")]([SubResource("Resource_07iwy"), SubResource("Resource_uydb1")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1378137086]
 environment = SubResource("Environment_c7i1g")

@@ -13,8 +13,9 @@ const TWEEN_DURATION := .5
 var min_zoom : float = .5 : set = _set_min_zoom
 var max_zoom : float = 2.5
 var _zoom := 1.0: set = _set_zoom, get = _get_zoom
+## TODO: instead of actyually changing a zoom value, calculate the value from current Y vs initial Y
 var initial_height : float
-var initial_fov : float
+#var initial_fov : float
 
 static var standard_cursor : CustomCursor = load("uid://cb44gaxpio06i")
 static var dragging_cursor : CustomCursor = load("uid://dbw2fwmjcemp3")
@@ -42,7 +43,7 @@ var _last_drag_direction : Vector2
 func _ready() -> void:
 	## TODO dev values
 	initial_height = global_position.y
-	initial_fov = fov
+	#initial_fov = fov
 	##
 	if Engine.is_editor_hint():
 		return
@@ -98,7 +99,9 @@ func _on_home() -> void:
 		return
 	var home := PlayerOutpost.get_instance()
 	if home:
-		remote_move_to(home.global_position)
+		var next_pos = home.global_position
+		next_pos.y = initial_height
+		remote_move_to(next_pos)
 
 func _set_is_remote_moving(is_moving: bool) -> void: _is_remote_moving = is_moving
 
@@ -135,14 +138,15 @@ func _set_zoom(value: float) -> void:
 
 func _get_zoom() -> float: return _zoom
 
-func remote_move_to(next_position : Vector3, target_zoom: float= 0.0) -> void: 
+func remote_move_to(next_position : Vector3, instant := false) -> void: 
+	if instant:
+		_move_to(next_position)
+		initial_height = next_position.y
+		return
 	var tween = create_tween()
 	_set_is_remote_moving(true)
 	tween.tween_method(_move_to, position, next_position, TWEEN_DURATION)
 	tween.tween_callback(_set_is_remote_moving.bind(false) )
-	if target_zoom != 0:
-		# TODO include zoom_change ?
-		pass
 
 func _move_to(next_position_: Vector3) -> void:
 	"""
@@ -164,21 +168,26 @@ func _move_to(next_position_: Vector3) -> void:
 		if west_limit:
 			if west_limit.is_on_screen():
 				next_position_.x = position.x
+				#next_position_.y = position.y
 	elif position_delta.x < 0:
 		if east_limit:
 			if east_limit.is_on_screen():
 				next_position_.x = position.x
-				
+				#next_position_.y = position.y
 	if position_delta.z > 0 : 
 		if north_limit:
 			if north_limit.is_on_screen():
 				next_position_.z = position.z
+				#next_position_.y = position.y
 	elif position_delta.z < 0:
 		if south_limit:
 			if south_limit.is_on_screen():
 				next_position_.z = position.z
+				#next_position_.y = position.y
+
 	position.x = next_position_.x
 	position.z = next_position_.z
+	position.y = next_position_.y
 
 func is_full_screen() -> bool:
 	if west_limit:

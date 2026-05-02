@@ -6,16 +6,16 @@
 
 [sub_resource type="Resource" id="Resource_sxemf"]
 script = ExtResource("2_uydb1")
-west_north = Vector2(30, 30)
-east_south = Vector2(30, 30)
-camera_start = Vector2(-15, -15)
+west_north = Vector2(300, 300)
+east_south = Vector2(300, 300)
+camera_start = Vector3(30, 30, -30)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [sub_resource type="Resource" id="Resource_uydb1"]
 script = ExtResource("2_uydb1")
-west_north = Vector2(25, 35)
-east_south = Vector2(25, 35)
-camera_start = Vector2(0, 0)
+west_north = Vector2(250, 280)
+east_south = Vector2(250, 280)
+camera_start = Vector3(-30, 30, 30)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [node name="CameraBinder" type="Node3D" unique_id=1275715189 node_paths=PackedStringArray("camera")]
