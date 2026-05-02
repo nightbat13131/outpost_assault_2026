@@ -24,9 +24,10 @@ func _engine_resize() -> void:
 	var mesh: Mesh = mimic_mesh.get_mesh()
 	#set_global_position(mimic_mesh.get_global_position())
 	if mesh is BoxMesh:
-		if get_shape() is BoxShape3D:
-			set_position(mimic_mesh.get_position())
-			get_shape().set_size(mesh.get_size())
+		#if get_shape() is BoxShape3D:
+		set_shape(BoxShape3D.new())
+		set_position(mimic_mesh.get_position())
+		get_shape().set_size(mesh.get_size())
 	elif mesh is SphereMesh:
 		if get_shape() is SphereShape3D:
 			set_position(mimic_mesh.get_position())

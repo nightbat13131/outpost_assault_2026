@@ -24,11 +24,12 @@ var bound_index := 0
 
 func _ready() -> void:
 	testing_index = testing_index # prevent outout bounds
-	if camera:
-		camera.north_limit = visible_on_screen_notifier_3d_north
-		camera.south_limit = visible_on_screen_notifier_3d_south
-		camera.west_limit = visible_on_screen_notifier_3d_west
-		camera.east_limit = visible_on_screen_notifier_3d_east
+	if !Engine.is_editor_hint():
+		if camera:
+			camera.north_limit = visible_on_screen_notifier_3d_north
+			camera.south_limit = visible_on_screen_notifier_3d_south
+			camera.west_limit = visible_on_screen_notifier_3d_west
+			camera.east_limit = visible_on_screen_notifier_3d_east
 	if !Engine.is_editor_hint():
 		trigger_bound_index(testing_index)
 	else: 
@@ -69,4 +70,6 @@ func trigger_bound_index(index: int) -> void:
 		return
 	var bound = bounds[index]
 	bound.setup_bars(visible_on_screen_notifier_3d_north, visible_on_screen_notifier_3d_south, visible_on_screen_notifier_3d_east, visible_on_screen_notifier_3d_west)
+	if Engine.is_editor_hint():
+		return
 	camera.remote_move_to(bound.get_camera_starting_position(), index == 0)

@@ -19,14 +19,14 @@ shader = ExtResource("9_ywsl8")
 shader_parameter/albedo = ExtResource("6_gkpdv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a41uu"]
-size = Vector3(3.95, 2, 3.95)
+size = Vector3(3.95, 0.52978516, 3.9430664)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypmrv"]
 albedo_color = Color(0.81786, 0.86, 0.49880004, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_38hd5"]
 material = SubResource("StandardMaterial3D_ypmrv")
-size = Vector3(3.95, 2, 3.95)
+size = Vector3(3.95, 0.5, 3.95)
 
 [node name="BrokenFoundation" type="StaticBody3D" unique_id=992371182]
 collision_layer = 0
@@ -54,12 +54,12 @@ script = ExtResource("10_ypmrv")
 metadata/_custom_type_script = "uid://bs2gntwyjap36"
 
 [node name="UI" type="Node3D" parent="." unique_id=355365874]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0070786, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 metadata/_edit_group_ = true
 
 [node name="RepairProgressSprite3D" type="Sprite3D" parent="UI" unique_id=1953698918]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.99895644, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_s3v04")
 pixel_size = 0.02
 billboard = 1
@@ -74,11 +74,11 @@ radius = 0.75
 vertices = PackedVector3Array(-0.4, 0, -0.4, -0.4, 0, 0.4, 0.4, 0, 0.4, 0.4, 0, -0.4)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=940541688 node_paths=PackedStringArray("mimic_mesh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1649177, 0.0034668446)
 shape = SubResource("BoxShape3D_a41uu")
 script = ExtResource("8_58ogx")
 mimic_mesh = NodePath("../MeshInstance3D_building")
 
 [node name="MeshInstance3D_building" type="MeshInstance3D" parent="." unique_id=481259357]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1674608, 0)
 mesh = SubResource("BoxMesh_38hd5")

@@ -37,7 +37,7 @@ albedo_color = Color(0.9785952, 0.57781523, 0.5582224, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_38hd5"]
 material = SubResource("StandardMaterial3D_n8c4c")
-size = Vector3(3.95, 2, 3.95)
+size = Vector3(3.95, 0.5, 3.95)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ypmpt"]
 
@@ -55,7 +55,7 @@ metadata/_edit_group_ = true
 
 [node name="TowerPivot" type="Node3D" parent="." unique_id=169499711]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7722976, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49, 0)
 
 [node name="UpgradeManager" type="Node" parent="." unique_id=538167449]
 unique_name_in_owner = true
@@ -105,7 +105,7 @@ script = ExtResource("8_fqsmo")
 mimic_mesh = NodePath("../MeshInstance3D_building")
 
 [node name="MeshInstance3D_building" type="MeshInstance3D" parent="." unique_id=481259357]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000251, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23474646, 0)
 mesh = SubResource("BoxMesh_38hd5")
 
 [node name="VisualizeUpgrades" type="Node3D" parent="." unique_id=2139818806 node_paths=PackedStringArray("nodes")]
