@@ -21,7 +21,7 @@ func _ready() -> void:
 	texture_progress_bar.set_as_ratio(1.0)
 	_cost_info = _cost_info.duplicate()
 	_repair_manager.start_repair.connect(_do_repair)
-	_repair_manager.set_broken_foundation(self, null)
+	_repair_manager.set_broken_foundation(self)
 	_repair_manager.set_cost_info(_cost_info)
 	_display_info = DisplayHelper.new(self, null, _repair_manager, null)
 	_display_info.unselected.connect(_on_selection_cancled)

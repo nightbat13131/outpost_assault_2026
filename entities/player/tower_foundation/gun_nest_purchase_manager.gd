@@ -24,7 +24,7 @@ func _connect_to_section() -> void:
 	_update_buttons()
 
 func set_foundation(foundation: Object) -> void:
-	if foundation is TowerFoundation2D or foundation is TowerFoundation3D:
+	if foundation is TowerFoundation2D:
 		_foundation = foundation
 	for index in range(cost_tower_infos.size()):
 		#cost_tower_infos[index].set_radar_preview(_foundation.get_radar_preview())

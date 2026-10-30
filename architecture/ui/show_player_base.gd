@@ -8,7 +8,7 @@ func _ready() -> void:
 	_instance = self
 
 func _connect_base(node: Object) -> void:
-	if node is PlayerOutpost2D or node is PlayerOutpost3D:
+	if node is PlayerOutpost2D:
 		if node:
 			health_ui.set_health_info(node.get_health_info())
 	else:
@@ -18,7 +18,7 @@ static func get_instance() -> DisplayPlayerBase: return _instance
 
 static func connect_base(base: Object) -> void: 
 	
-	if base is PlayerOutpost2D or base is PlayerOutpost3D:
+	if base is PlayerOutpost2D:
 		if _instance: 
 			_instance._connect_base(base)
 	else:

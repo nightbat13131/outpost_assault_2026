@@ -13,7 +13,10 @@ const DEFAULT_DESIRED_DISTANCE := 25.0
 
 @export var _enemy_info : EnemyUnitInfo: get = get_enemy_info
 @export_category("Sounds")
+
+@warning_ignore("unused_private_class_variable")
 @export var _sounds_movment : Array[AudioStream]
+@warning_ignore("unused_private_class_variable")
 @export var _sounds_death : Array[AudioStream]
 
 ## Keep CanvasItem in this array locked to 0 global rotation

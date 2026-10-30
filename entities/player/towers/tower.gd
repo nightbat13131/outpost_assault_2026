@@ -6,6 +6,8 @@ signal dead(tower: Tower) ## I don't think the foundation cares between sold and
 
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _context_manager: TowerContextManager = %TowerContextManager
+
+@warning_ignore("unused_private_class_variable")
 var _founation_upgrades : FoundationUpgrades
 
 func _ready() -> void:
@@ -19,6 +21,7 @@ func _get_cost() -> float: return get_tower_info().get_cost()
 
 func get_reload_info() -> ReloadInfo: return _tower_info.get_reload_info()
 
+#func setup_2d(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
 func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
 	#print("C 1")
 	_tower_info = _tower_info.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)

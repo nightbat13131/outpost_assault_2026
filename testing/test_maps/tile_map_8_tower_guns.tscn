@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://drfqmnxu83xf6" path="res://entities/enemy/enemy_shooter_base.tscn" id="17_5tif7"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://entities/enemy/spawners/spawner_building2d_1x1.tscn" id="17_p5dyt"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="17_t84e2"]
-[ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/tower_foundation_2d.tscn" id="19_gqrjr"]
+[ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/2d/tower_foundation_2d.tscn" id="19_gqrjr"]
 [ext_resource type="PackedScene" uid="uid://0u5aik17a2l0" path="res://entities/enemy/spawners/spawner_building2d_2x2.tscn" id="19_n1xbh"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="20_pbcjl"]
 

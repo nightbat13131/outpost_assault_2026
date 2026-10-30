@@ -83,4 +83,5 @@ static func request_popup(popup_type: PopupTypes) -> void:
 	if get_instance():
 		get_instance()._request_popup(popup_type)
 	else: 
-		push_warning("No LevelPopUps to request_popup")
+		pass
+		#push_warning("No LevelPopUps to request_popup")
