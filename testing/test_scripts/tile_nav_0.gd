@@ -25,7 +25,7 @@ func _draw() -> void:
 	while count > 0:
 		tile_nav.update_leg(_navigation_helper)
 
-		next_center = to_local( _navigation_helper.get_stop_global_position())
+		next_center = to_local( _navigation_helper.get_target_global_position())
 		draw_line(currnet_center, next_center, Color.from_hsv(randf(), 1.0, 1.0), width)
 		currnet_center = next_center
 		_navigation_helper.set_start( to_global( currnet_center), _navigation_helper.get_direction())

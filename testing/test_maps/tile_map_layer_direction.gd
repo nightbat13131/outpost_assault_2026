@@ -11,7 +11,6 @@ const DATA_LAYER_OUTOING_DIRECTIONS = &'OutoingDirecitons'
 		view_debug = value
 		queue_redraw()
 
-
 func get_current_cell_center_glob(global_pos: Vector2) -> Vector2:
 	return to_global( map_to_local( local_to_map(to_local(global_pos))))
 
@@ -64,9 +63,10 @@ func _get_leg_on_track(leg: NavigationLeg) -> void:
 	var start_pos_g :=  leg.get_start_global_position()
 	var cell_center := get_current_cell_center_glob(start_pos_g)
 	leg.set_destination(
-		cell_center, Vector2.ZERO
+		cell_center,
+		# Vector2.ZERO
 		# [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT].pick_random()
-		# (start - cell_center).normalized()
+		(start_pos_g - cell_center).normalized()
 	)
 
 func _get_next_direction(cord: Vector2i, incomning_direction := Vector2.INF) -> Vector2:

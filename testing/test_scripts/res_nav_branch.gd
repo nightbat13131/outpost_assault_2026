@@ -6,8 +6,9 @@ var _start_direction := Vector2.INF
 var _stop_global_position := Vector2.ONE
 var _travel_direction : Vector2
 
-func get_stop_global_position() -> Vector2:
-	return _stop_global_position
+var count := 0
+
+func get_target_global_position() -> Vector2: return _stop_global_position
 
 func set_start(global_position := Vector2.ZERO, start_direction := Vector2.INF) -> void:
 	_start_global_position = global_position
