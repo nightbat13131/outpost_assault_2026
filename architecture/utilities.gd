@@ -5,6 +5,9 @@ const COLOR_RADAR_FILL = Color.DARK_ORCHID
 
 const PIX_PER_METTER = 128
 
+static func get_random_color() -> Color: return Color.from_hsv(randf(), 1, 1)
+
+
 static func try_divide(numerator: float,  denominator: float, alternate: float = 0) -> float:
 	if is_equal_approx(denominator, 0.0):
 		return alternate

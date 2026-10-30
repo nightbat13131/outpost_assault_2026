@@ -20,22 +20,14 @@ func _draw() -> void:
 	#		currnet_center , 10, Color.RED
 	#	)
 	var next_center : Vector2
-	var count := 3
+	var count := 60
 	var width := 15.0
 	while count > 0:
 		tile_nav.update_leg(_navigation_helper)
-		"""
-		var next_direction : Vector2i = tile_nav.get_next_direction(global_position)
-		print(next_direction)
-		
-		draw_line(
-			currnet_center, currnet_center + ( Vector2( next_direction) * 100), Color.SEA_GREEN, 5
-		)
-		"""
-		
+
 		next_center = to_local( _navigation_helper.get_stop_global_position())
 		draw_line(currnet_center, next_center, Color.from_hsv(randf(), 1.0, 1.0), width)
 		currnet_center = next_center
 		_navigation_helper.set_start( to_global( currnet_center), _navigation_helper.get_direction())
 		count -= 1
-		width -= 1
+		width -= 2
