@@ -87,6 +87,7 @@ texture_region_size = Vector2i(128, 128)
 2:8/0/custom_data_1 = [8, 8, 0]
 0:2/0 = 0
 0:2/0/custom_data_0 = [Vector2(0, -1), Vector2(0, 1), Vector2(1, 0), Vector2(-1, 0)]
+0:2/0/custom_data_1 = [12, 4, 8, 0]
 0:3/0 = 0
 0:3/0/custom_data_3 = true
 
