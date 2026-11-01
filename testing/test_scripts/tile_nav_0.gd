@@ -8,10 +8,10 @@ var _navigation_helper : NavigationLeg
 
 func _ready() -> void:
 	_navigation_helper = NavigationLeg.new()
-	_navigation_helper.set_start(global_position)
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, 20, Color.BLACK)
+	_navigation_helper.set_start(global_position, Utilities.DIRECTION_INIT)
 	if !tile_nav:
 		return
 	var currnet_center = to_local( _navigation_helper.get_start_global_position() )
