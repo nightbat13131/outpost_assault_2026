@@ -1,0 +1,46 @@
+[gd_resource type="TileSet" format=3 uid="uid://16wo55d8xusn"]
+
+[ext_resource type="Texture2D" uid="uid://53jr3elhl4q6" path="res://assets/tilemaps/directions.png" id="1_6bweb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fdfc3"]
+texture = ExtResource("1_6bweb")
+texture_region_size = Vector2i(128, 128)
+4:0/0 = 0
+4:0/0/custom_data_3 = [0.0]
+4:0/0/custom_data_4 = [0]
+5:0/0 = 0
+5:0/0/custom_data_3 = [-60.0]
+5:0/0/custom_data_4 = [14]
+6:0/0 = 0
+6:0/0/custom_data_3 = [-120.0]
+6:0/0/custom_data_4 = [10]
+7:0/0 = 0
+7:0/0/custom_data_3 = [180.0]
+7:0/0/custom_data_4 = [8]
+8:0/0 = 0
+8:0/0/custom_data_3 = [120.0]
+8:0/0/custom_data_4 = [6]
+9:0/0 = 0
+9:0/0/custom_data_3 = [60.0]
+9:0/0/custom_data_4 = [2]
+4:2/0 = 0
+4:2/0/custom_data_3 = [0.0, 60.0, -60.0, 120.0, -120.0, 180.0]
+4:2/0/custom_data_4 = [0, 2, 6, 8, 10, 14]
+4:1/0 = 0
+4:1/0/custom_data_1 = true
+
+[resource]
+tile_shape = 3
+tile_layout = 5
+tile_size = Vector2i(128, 128)
+custom_data_layer_0/name = "OutoingDirecitons"
+custom_data_layer_0/type = 28
+custom_data_layer_1/name = "Continue"
+custom_data_layer_1/type = 1
+custom_data_layer_2/name = "Stop"
+custom_data_layer_2/type = 1
+custom_data_layer_3/name = "OutgoingAngles"
+custom_data_layer_3/type = 28
+custom_data_layer_4/name = "OutgoingCellNeighbor"
+custom_data_layer_4/type = 28
+sources/1 = SubResource("TileSetAtlasSource_fdfc3")

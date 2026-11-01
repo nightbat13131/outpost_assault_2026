@@ -5,6 +5,10 @@ const COLOR_RADAR_FILL = Color.DARK_ORCHID
 
 const PIX_PER_METTER = 128
 
+const DIRECTION_STOP : int = -1
+const DIRECTION_UKNOWN : int = -2
+const DIRECTION_INIT : int = -3
+
 static func get_random_color() -> Color: return Color.from_hsv(randf(), 1, 1)
 
 

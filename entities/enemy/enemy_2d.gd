@@ -1,7 +1,5 @@
 #@tool
 class_name EnemyUnit extends CharacterBody2D
-## TODO Does the spawner getting "died" ruin pathing because it frees the node for navigation reference?
-## - deal with it
 
 signal died(unit: EnemyUnit)
 
@@ -29,10 +27,10 @@ var _sound_player: AudioStreamPlayer2D
 
 var _animated_sprite : AnimatedSprite2D
 var _state_machine: StateChart
-var _nav_agent : NavigationAgent2D
+#var _nav_agent : NavigationAgent2D
 var _navigation_leg: NavigationLeg
 @export var _tile_map_directions : TileMapLayer_Directions
-var _nav_target : Node2D :set = set_nav_target
+#var _nav_target : Node2D :set = set_nav_target
 @onready var _ui_anchor: Control = %UIAnchor
 @onready var _health_ui: HealthUI = %HealthUI
 
@@ -46,8 +44,6 @@ func _ready() -> void:
 	_enemy_info.die.connect(_die)
 	_g0_rotation.append(_ui_anchor)
 	_navigation_leg = NavigationLeg.new()
-	_navigation_leg.set_start(global_position)
-	#_tile_map_directions.update_leg(_navigation_leg)
 	_update_navigation.call_deferred()
 
 func get_enemy_info() -> EnemyUnitInfo: return _enemy_info
@@ -60,8 +56,9 @@ func _update_navigation() -> void:
 	print("A")
 	if _tile_map_directions == null:
 		return
+	_navigation_leg.set_start( global_position, _navigation_leg.get_direction())
 	_tile_map_directions.update_leg(_navigation_leg)
-	if _navigation_leg.get_direction().length_squared() > 0:
+	if _navigation_leg.get_direction() >= 0:
 		##_nav_agent.set_target_position(  Vector2.ONE * randf() * 100  )# _navigation_leg.get_target_global_position()) 
 		#_nav_agent.set_target_position(  _navigation_leg.get_target_global_position()) 
 		#_nav_agent.set_target_desired_distance(DEFAULT_DESIRED_DISTANCE)
@@ -70,26 +67,26 @@ func _update_navigation() -> void:
 	else:
 		send_event(EVENT_NO_NAV_TARGET)
 
-func _process(_delta: float) -> void:
-	if !Engine.is_editor_hint():
-		#prints(_nav_agent.distance_to_target(), _nav_agent.get_final_position())
-		queue_redraw()
-		pass
+#func _process(_delta: float) -> void:
+	#if !Engine.is_editor_hint():
+		##prints(_nav_agent.distance_to_target(), _nav_agent.get_final_position())
+		#queue_redraw()
+		#pass
 
-func set_nav_target(node: Node2D) -> void:
-	return
-	_nav_target = node
-	if _nav_agent:
-		if _nav_target:
-			send_event(EVENT_NAV_TARGET)
-			if _nav_target is NavPoint:
-				_nav_target.apply_nav_agent(_nav_agent)
-			else:
-				#_nav_agent.set_target_position(_nav_target.global_position)
-				#_nav_agent.set_target_desired_distance(DEFAULT_DESIRED_DISTANCE)
-				pass
-		else: 
-			send_event(EVENT_NO_NAV_TARGET)
+#func set_nav_target(node: Node2D) -> void:
+	#return
+	#_nav_target = node
+	#if _nav_agent:
+		#if _nav_target:
+			#send_event(EVENT_NAV_TARGET)
+			#if _nav_target is NavPoint:
+				#_nav_target.apply_nav_agent(_nav_agent)
+			#else:
+				##_nav_agent.set_target_position(_nav_target.global_position)
+				##_nav_agent.set_target_desired_distance(DEFAULT_DESIRED_DISTANCE)
+				#pass
+		#else: 
+			#send_event(EVENT_NO_NAV_TARGET)
 
 func move(_delta_moded: float) -> void:
 	## maximum can rotate this frame if needed
@@ -104,7 +101,7 @@ func move(_delta_moded: float) -> void:
 	#if not _nav_agent.avoidance_enabled:
 	move_and_slide()
 	if global_position.distance_squared_to(next_path_pos) < DEFAULT_DESIRED_DISTANCE:
-		_on_target_reached()
+		_update_navigation()
 
 
 func _update_rotation(radian: float) -> void:
@@ -134,19 +131,19 @@ func _detect_children() -> void:
 		if each_child is StateChart:
 			_state_machine = each_child
 			_state_machine.propagate_call("set_unit", [self])
-		elif each_child is NavigationAgent2D:
-			_nav_agent = each_child
-			_nav_agent.target_reached.connect(_on_target_reached)
+		#elif each_child is NavigationAgent2D:
+			#_nav_agent = each_child
+			#_nav_agent.target_reached.connect(_on_target_reached)
 		elif each_child is AudioStreamPlayer2D:
 			_sound_player = each_child
 		elif each_child is AnimatedSprite2D:
 			_animated_sprite = each_child
 
-func _on_target_reached() -> void:
-	_navigation_leg.set_start( global_position, _navigation_leg.get_direction())
-	_thing_a()
-	#if _nav_target is NavPoint:
-	#	set_nav_target.call_deferred(_nav_target.get_next_point())
+#func _on_target_reached() -> void:
+	#_navigation_leg.set_start( global_position, _navigation_leg.get_direction())
+	#_thing_a()
+	##if _nav_target is NavPoint:
+	##	set_nav_target.call_deferred(_nav_target.get_next_point())
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var out : Array[String] ## TODO configuration warnings
