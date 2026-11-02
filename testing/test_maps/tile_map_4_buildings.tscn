@@ -1,8 +1,6 @@
 [gd_scene format=4 uid="uid://ntjvy0mnwu6g"]
 
-[ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_f3qir"]
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="1_iwm8r"]
-[ext_resource type="Resource" uid="uid://bvfny5etnx82r" path="res://testing/test_maps/level_test_4.tres" id="2_0srsy"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="2_dvj36"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="6_ttut0"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="7_ajhja"]
@@ -13,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://0u5aik17a2l0" path="res://entities/enemy/spawners/spawner_building2d_2x2.tscn" id="13_jsq3p"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="14_jlabc"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://entities/enemy/spawners/spawner_building2d_1x1.tscn" id="14_yetmv"]
+[ext_resource type="TileSet" uid="uid://16wo55d8xusn" path="res://map/ground_direction_tileset_128_hex.tres" id="15_6kh63"]
+[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://testing/test_maps/tile_map_layer_direction.gd" id="16_jsq3p"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="17_ttut0"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="18_u1qnl"]
 [ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost_2d.tscn" id="19_rpmhk"]
@@ -27,9 +27,7 @@ rect_size = Vector2(3000, 2000)
 camera_start = Vector2(200, 200)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
-[node name="Test_Level_4" type="Node" unique_id=1991591508]
-script = ExtResource("1_f3qir")
-_level_info = ExtResource("2_0srsy")
+[node name="Test_Level_4" type="Node2D" unique_id=2009660472]
 metadata/_custom_type_script = "uid://dkbdphlfllran"
 
 [node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]
@@ -38,68 +36,12 @@ tile_set = ExtResource("1_iwm8r")
 script = ExtResource("2_dvj36")
 metadata/_edit_lock_ = true
 
-[node name="NavPoint_NW" type="Node2D" parent="TileMapLogicLayer" unique_id=401102862 node_paths=PackedStringArray("next_targets")]
-unique_name_in_owner = true
-position = Vector2(214, 92)
-script = ExtResource("9_iinq7")
-next_targets = [NodePath("../../test/Test_KillZone/NavPoint_Killzone"), NodePath("../NavPoint_W"), NodePath("../NavPoint_N")]
-target_distance = 65.0
-
-[node name="NavPoint_W" type="Node2D" parent="TileMapLogicLayer" unique_id=1842814006 node_paths=PackedStringArray("next_targets")]
-unique_name_in_owner = true
-position = Vector2(45, 885)
-script = ExtResource("9_iinq7")
-next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_SW")]
-target_distance = 100.0
-
-[node name="NavPoint_SW" type="Node2D" parent="TileMapLogicLayer" unique_id=1855747950 node_paths=PackedStringArray("next_targets")]
-unique_name_in_owner = true
-position = Vector2(116, 1306)
-script = ExtResource("9_iinq7")
-next_targets = [NodePath("../NavPoint_W"), NodePath("../NavPoint_S")]
-target_distance = 100.0
-
-[node name="NavPoint_N" type="Node2D" parent="TileMapLogicLayer" unique_id=998014482 node_paths=PackedStringArray("next_targets")]
-unique_name_in_owner = true
-position = Vector2(1023, 263)
-script = ExtResource("9_iinq7")
-next_targets = [NodePath("../NavPoint_NW"), NodePath("../NavPoint_NE")]
-target_distance = 60.0
-
-[node name="NavPoint_0" type="Node2D" parent="TileMapLogicLayer" unique_id=864493267 node_paths=PackedStringArray("next_targets")]
-unique_name_in_owner = true
-position = Vector2(1017, 898)
-script = ExtResource("9_iinq7")
-next_targets = [NodePath("../NavPoint_N"), NodePath("../NavPoint_S"), NodePath("../NavPoint_E"), NodePath("../NavPoint_W"), NodePath("../../test/Test_KillZone/NavPoint_Killzone")]
-target_distance = 100.0
-
-[node name="NavPoint_S" type="Node2D" parent="TileMapLogicLayer" unique_id=1426916265 node_paths=PackedStringArray("next_targets")]
-unique_name_in_owner = true
-position = Vector2(884, 1341)
-script = ExtResource("9_iinq7")
-next_targets = [NodePath("../../test/Test_KillZone/NavPoint_Killzone"), NodePath("../NavPoint_SW"), null]
-target_distance = 75.0
-
-[node name="NavPoint_NE" type="Node2D" parent="TileMapLogicLayer" unique_id=1706079327 node_paths=PackedStringArray("next_targets")]
-unique_name_in_owner = true
-position = Vector2(2053, 31)
-script = ExtResource("9_iinq7")
-next_targets = [NodePath("../NavPoint_N"), NodePath("../NavPoint_E")]
-target_distance = 100.0
-
-[node name="NavPoint_E" type="Node2D" parent="TileMapLogicLayer" unique_id=274391533 node_paths=PackedStringArray("next_targets")]
-unique_name_in_owner = true
-position = Vector2(1790, 730)
-script = ExtResource("9_iinq7")
-next_targets = [NodePath("../NavPoint_NE"), NodePath("../NavPoint_SE"), NodePath("../../test/Test_KillZone/NavPoint_Killzone")]
-target_distance = 100.0
-
-[node name="NavPoint_SE" type="Node2D" parent="TileMapLogicLayer" unique_id=377104242 node_paths=PackedStringArray("next_targets")]
-unique_name_in_owner = true
-position = Vector2(1803, 1173)
-script = ExtResource("9_iinq7")
-next_targets = [NodePath("../../test/Test_KillZone/NavPoint_Killzone"), NodePath("../NavPoint_SW"), NodePath("../NavPoint_E")]
-target_distance = 75.0
+[node name="TileMapLayerDirection" type="TileMapLayer" parent="." unique_id=1693683284]
+tile_map_data = PackedByteArray("AAAXAPb/AQAAAAEAAAADAAQAAQAAAAEAAAADAAUAAQAHAAUAAAAEAAUAAQAGAAYAAAAFAAQAAQAAAAEAAAAGAAMAAQAAAAEAAAAGAAIAAQAAAAEAAAAFAAMAAQAAAAEAAAAEAAQAAQAAAAEAAAAFAAIAAQAAAAEAAAAHAAEAAQAAAAEAAAAGAAEAAQAAAAEAAAAFAAEAAQAAAAEAAAAHAAAAAQAAAAEAAAAGAAAAAQAAAAEAAAAIAAAAAQAAAAEAAAAJAP//AQAAAAEAAAAKAP7/AQAAAAEAAAALAP3/AQAAAAEAAAAMAPz/AQAAAAEAAAANAPv/AQAAAAEAAAAOAPr/AQAAAAEAAAAPAPn/AQAAAAEAAAAQAPj/AQAAAAEAAAARAPf/AQAAAAEAAAASAPb/AQAAAAEAAAASAPf/AQAAAAEAAAARAPj/AQAAAAEAAAASAPj/AQAAAAEAAAATAPj/AQAAAAEAAAAUAPf/AQAAAAEAAAAUAPj/AQAAAAEAAAAVAPf/AQAAAAEAAAAWAPb/AQAAAAEAAAAWAPf/AQAAAAEAAAAXAPf/AQAAAAEAAAAYAPb/AQAAAAEAAAAYAPX/AQAAAAEAAAAXAPX/AQAAAAEAAAAFAAUAAQAAAAEAAAAEAAYAAQAHAAUAAAAFAAYAAQAAAAEAAAAGAAYAAQAGAAYAAAAHAAYAAQABAAMAAAAIAAYAAQAEAAQAAAAGAAcAAQAHAAUAAAAHAAcAAQAFAAMAAAAIAAUAAQAGAAYAAAAHAAUAAQAAAAEAAAAGAAUAAQAAAAEAAAAJAAQAAQAAAAEAAAAKAAMAAQAAAAEAAAALAAIAAQAAAAEAAAAMAAEAAQAAAAEAAAANAAAAAQAAAAEAAAANAAEAAQAAAAEAAAAOAAAAAQAAAAEAAAAPAP//AQAAAAEAAAAQAP7/AQAAAAEAAAARAP3/AQAAAAEAAAARAPz/AQAAAAEAAAASAPv/AQAAAAEAAAATAPr/AQAAAAEAAAATAPn/AQAAAAEAAAAOAP//AQAAAAEAAAAOAP7/AQAAAAEAAAAOAP3/AQAAAAEAAAANAP7/AQAAAAEAAAANAP3/AQAAAAEAAAAMAP3/AQAAAAEAAAAMAAAAAQAAAAEAAAAMAP//AQAAAAEAAAAMAP7/AQAAAAEAAAALAP7/AQAAAAEAAAANAP//AQAAAAEAAAANAPz/AQAAAAEAAAAHAP//AQAAAAEAAAAIAP7/AQAAAAEAAAAJAP3/AQAAAAEAAAAKAPz/AQAAAAEAAAALAPv/AQAAAAEAAAAMAPr/AQAAAAEAAAANAPn/AQAAAAEAAAAOAPj/AQAAAAEAAAALAPz/AQAAAAEAAAAKAPv/AQAAAAEAAAAJAPv/AQAAAAEAAAAJAPr/AQAAAAEAAAAKAPr/AQAAAAEAAAALAPr/AQAAAAEAAAALAPn/AQAAAAEAAAAKAPn/AQAAAAEAAAADAP//AQAAAAEAAAAEAP//AQAAAAEAAAAFAP//AQAAAAEAAAAGAP//AQAAAAEAAAAEAAAAAQAAAAEAAAAFAAAAAQAAAAEAAAACAAQAAQAHAAUAAAADAAMAAQAGAAYAAAACAAMAAQAAAAEAAAABAAMAAQAHAAUAAAACAAIAAQAAAAEAAAABAAIAAQAAAAEAAAACAAEAAQAAAAEAAAABAAEAAQAAAAEAAAABAAAAAQAAAAEAAAABAP//AQAAAAEAAAACAP7/AQAAAAEAAAACAP3/AQAAAAEAAAADAP3/AQAAAAEAAAADAPz/AQAAAAEAAAAEAPv/AQAAAAEAAAAFAPr/AQAAAAEAAAAEAPz/AQAAAAEAAAAFAPv/AQAAAAEAAAAGAPr/AQAAAAEAAAAHAPn/AQAAAAEAAAAIAPj/AQAAAAEAAAAHAPj/AQAAAAEAAAAGAPn/AQAAAAEAAAAIAPf/AQAAAAEAAAAJAPb/AQAAAAEAAAAKAPX/AQAAAAEAAAALAPT/AQAAAAEAAAALAPP/AQAAAAEAAAAMAPP/AQAAAAEAAAAMAPL/AQAAAAEAAAANAPL/AQAAAAEAAAAOAPH/AQAAAAEAAAAPAPD/AQAAAAEAAAAQAO//AQAAAAEAAAAQAPD/AQAAAAEAAAAPAPH/AQAAAAEAAAAOAPL/AQAAAAEAAAAQAPH/AQAAAAEAAAARAPD/AQAAAAEAAAARAPH/AQAAAAEAAAASAPH/AQAAAAEAAAARAPL/AQAAAAEAAAASAPL/AQAAAAEAAAASAPP/AQAAAAEAAAARAPP/AQAAAAEAAAARAPT/AQAAAAEAAAARAPX/AQAAAAEAAAARAPb/AQAAAAEAAAAQAPf/AQAAAAEAAAAPAPj/AQAAAAEAAAAPAPf/AQAAAAEAAAAQAPb/AQAAAAEAAAAPAPb/AQAAAAEAAAAOAPb/AQAAAAEAAAANAPf/AQAAAAEAAAAOAPf/AQAAAAEAAAAMAPn/AQAAAAEAAAALAPj/AQAAAAEAAAALAPf/AQAAAAEAAAAKAPj/AQAAAAEAAAAJAPn/AQAAAAEAAAAIAPr/AQAAAAEAAAAHAPv/AQAAAAEAAAAGAPz/AQAAAAEAAAAFAP3/AQAAAAEAAAAEAP7/AQAAAAEAAAAMAPb/AQAAAAEAAAANAPX/AQAAAAEAAAANAPb/AQAAAAEAAAAOAPX/AQAAAAEAAAA=")
+tile_set = ExtResource("15_6kh63")
+navigation_enabled = false
+script = ExtResource("16_jsq3p")
+view_debug = true
 
 [node name="test" type="Node" parent="." unique_id=761061381]
 
@@ -162,7 +104,7 @@ shape = SubResource("CircleShape2D_oisr6")
 [node name="NavPoint_Killzone" type="Node2D" parent="test/Test_KillZone" unique_id=249487478 node_paths=PackedStringArray("next_targets")]
 unique_name_in_owner = true
 script = ExtResource("9_iinq7")
-next_targets = [NodePath("../../../TileMapLogicLayer/NavPoint_SE")]
+next_targets = [NodePath("")]
 target_distance = 100.0
 
 [node name="SpawnManager" type="Node2D" parent="." unique_id=1833308816]
@@ -178,24 +120,6 @@ spawn_types = Dictionary[int, int]({
 0: 1
 })
 
-[node name="SpawnPoint_0" parent="SpawnManager/SpawnerBuilding_1x2" index="1" unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
-unit_types = Array[int]([100, 200, 300])
-next_targets = [NodePath("Spawn_NW"), NodePath("Spawn_SW")]
-
-[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPoint_0" index="0" unique_id=100200813]
-position = Vector2(113, -92)
-is_disabled = true
-
-[node name="Spawn_NW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPoint_0" index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("../../../../TileMapLogicLayer/NavPoint_0")]
-
-[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPoint_0" index="2" unique_id=588862786]
-position = Vector2(108, 84)
-is_disabled = true
-
-[node name="Spawn_SW" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPoint_0" index="3" unique_id=194821967 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("../../../../TileMapLogicLayer/NavPoint_0")]
-
 [node name="SpawnerBuilding_1x1" parent="SpawnManager" unique_id=806376720 instance=ExtResource("14_yetmv")]
 position = Vector2(1581, 272)
 _hard_spawn_cap = 2
@@ -204,31 +128,11 @@ spawn_types = Dictionary[int, int]({
 0: 1
 })
 
-[node name="Spawn_E" parent="SpawnManager/SpawnerBuilding_1x1/SpawnPoint_0" parent_id_path=PackedInt32Array(806376720, 1438190680) index="0" unique_id=100200813]
-position = Vector2(86, 1)
-is_disabled = true
-
-[node name="Spawn_W" parent="SpawnManager/SpawnerBuilding_1x1/SpawnPoint_0" parent_id_path=PackedInt32Array(806376720, 1438190680) index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
-position = Vector2(-93, 13)
-next_targets = [NodePath("../../../../TileMapLogicLayer/NavPoint_0")]
-
 [node name="Spawner_2x2" parent="SpawnManager" unique_id=1797158330 instance=ExtResource("13_jsq3p")]
 position = Vector2(401, 471)
 spawn_types = Dictionary[int, int]({
 0: 1
 })
-
-[node name="Spawn_NE" parent="SpawnManager/Spawner_2x2/SpawnPoint_0" parent_id_path=PackedInt32Array(1797158330, 1438190680) index="0" unique_id=100200813]
-is_disabled = true
-
-[node name="Spawn_NW" parent="SpawnManager/Spawner_2x2/SpawnPoint_0" parent_id_path=PackedInt32Array(1797158330, 1438190680) index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("../../../../TileMapLogicLayer/NavPoint_NW")]
-
-[node name="Spawn_SE" parent="SpawnManager/Spawner_2x2/SpawnPoint_0" parent_id_path=PackedInt32Array(1797158330, 1438190680) index="2" unique_id=588862786 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("../../../../TileMapLogicLayer/NavPoint_0")]
-
-[node name="Spawn_SW" parent="SpawnManager/Spawner_2x2/SpawnPoint_0" parent_id_path=PackedInt32Array(1797158330, 1438190680) index="3" unique_id=194821967]
-is_disabled = true
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("17_ttut0")]
 debug = false
@@ -241,10 +145,3 @@ metadata/_edit_lock_ = true
 
 [node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("19_rpmhk")]
 position = Vector2(148, -140)
-
-[editable path="SpawnManager/SpawnerBuilding_1x2"]
-[editable path="SpawnManager/SpawnerBuilding_1x2/Building"]
-[editable path="SpawnManager/SpawnerBuilding_1x1"]
-[editable path="SpawnManager/SpawnerBuilding_1x1/Building"]
-[editable path="SpawnManager/Spawner_2x2"]
-[editable path="SpawnManager/Spawner_2x2/Building"]

@@ -6,7 +6,6 @@ signal selected
 
 var _display_info: DisplayHelper
 var _health_info : HealthInfo
-#var _hp : float: set = _set_health
 
 @onready var _health_ui: HealthUI = %HealthUI
 @onready var _clip_reload_ui: ClipReloadUI = %ClipReloadUI
@@ -25,8 +24,6 @@ func _ready() -> void:
 
 func _setup_display_info() -> void:
 	_display_info = DisplayHelper.new(self, _health_info, null, null)
-
-#func get_health_ui() -> HealthUI: return _health_ui
 
 func get_health_info() -> HealthInfo: return _health_info
 

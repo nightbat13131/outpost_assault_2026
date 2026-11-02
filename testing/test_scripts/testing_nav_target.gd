@@ -1,8 +1,8 @@
 extends Node
 
 @export var unit: EnemyUnit
-@export var nav_target: NavPoint
+@export var directions: TileMapLayer_Directions
 
 func _ready() -> void:
-	if nav_target and unit:
-		unit.set_nav_target(nav_target)
+	if directions and unit:
+		unit.set_tile_map_directions(directions)

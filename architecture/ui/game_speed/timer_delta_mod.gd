@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 ## Set how long the timer runs before signaling Timeout.
 func set_wait_time(seconds: float) -> void:
 	if seconds < 0.05:
-		push_warning(seconds, " TimerModded wait time too low. Setting to 0.05")
+		#push_warning(seconds, " TimerModded wait time too low. Setting to 0.05")
 		seconds = 0.05
 	_wait_time = seconds
 	_time_remaining = _wait_time

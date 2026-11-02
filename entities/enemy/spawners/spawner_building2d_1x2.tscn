@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://c7cgc6ppvr5q4" path="res://entities/enemy/spawners/spawner_building2d.gd" id="1_wqwim"]
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="3_vnl0w"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="5_ilptg"]
-[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="7_p0die"]
 [ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/broken_foundation/populate_broken_foundations.gd" id="9_gva82"]
 [ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/building/building2d_template.tscn" id="11_3vbnf"]
 
@@ -45,7 +44,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_etn8y")
 }],
-"loop": false,
+"loop": 0,
 "name": &"die",
 "speed": 5.0
 }, {
@@ -53,7 +52,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gd32w")
 }],
-"loop": false,
+"loop": 0,
 "name": &"idle",
 "speed": 5.0
 }]
@@ -89,36 +88,12 @@ animation = &"die"
 offset_top = 129.0
 offset_bottom = 137.0
 
-[node name="SpawnPoint_0" type="Node2D" parent="." unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
+[node name="SpawnPoint_0" type="Node2D" parent="." unique_id=1438190680]
 unique_name_in_owner = true
 script = ExtResource("5_ilptg")
 unit_types = Array[int]([100])
-next_targets = [NodePath("Spawn_NE"), NodePath("Spawn_NW"), NodePath("Spawn_SE"), NodePath("Spawn_SW")]
+is_disabled = null
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="Spawn_NE" type="Node2D" parent="SpawnPoint_0" unique_id=100200813]
-unique_name_in_owner = true
-position = Vector2(90, -102)
-script = ExtResource("7_p0die")
-target_distance = 10.0
-
-[node name="Spawn_NW" type="Node2D" parent="SpawnPoint_0" unique_id=971029430]
-unique_name_in_owner = true
-position = Vector2(-82, -102)
-script = ExtResource("7_p0die")
-target_distance = 10.0
-
-[node name="Spawn_SE" type="Node2D" parent="SpawnPoint_0" unique_id=588862786]
-unique_name_in_owner = true
-position = Vector2(90, 99)
-script = ExtResource("7_p0die")
-target_distance = 10.0
-
-[node name="Spawn_SW" type="Node2D" parent="SpawnPoint_0" unique_id=194821967]
-unique_name_in_owner = true
-position = Vector2(-83, 89)
-script = ExtResource("7_p0die")
-target_distance = 10.0
 
 [node name="FoundationPoints" type="Node2D" parent="." unique_id=725093312]
 unique_name_in_owner = true

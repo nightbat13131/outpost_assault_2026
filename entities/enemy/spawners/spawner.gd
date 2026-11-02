@@ -9,6 +9,8 @@ signal spawner_stopped(spawner: Spawner)
 signal enemy_spawned(unit: EnemyUnit)
 
 @export var spawn_points : Array[SpawnPoint] = []
+@export var tilemap_directions : TileMapLayer_Directions
+
 @export_category("Wave")
 ## Which level waves to participate in. No entries means every wave. 
 @export var _waves : Array[int]
@@ -110,7 +112,7 @@ func _check_pulse() -> void:
 	else:
 		_pulse_complete()
 
-func set_unit_container(node: Node2D) ->void: _unit_container = node
+func set_unit_container(node: Node2D) -> void: _unit_container = node
 
 func get_unit_container() -> Node2D:
 	if _unit_container: 
@@ -140,7 +142,8 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 	next_enemy_instance.set_position(spawn_point.get_target_location())
 	get_unit_container().add_child(next_enemy_instance)
 	# set_nav_target doesn't work if happening before child_add.
-	next_enemy_instance.set_nav_target(spawn_point.get_next_point())
+	#next_enemy_instance.set_nav_target(spawn_point.get_next_point())
+	next_enemy_instance.set_tile_map_directions(tilemap_directions)
 	next_enemy_instance.died.connect(_on_unit_death)
 	_active_enemy_count += 1
 	_enemy_spawned_count += 1

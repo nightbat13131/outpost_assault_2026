@@ -8,7 +8,6 @@ const DATA_LAYER_OUTOING_DIRECTIONS = &'OutoingDirecitons'
 const DATA_LAYER_OUTOING_ANGLES = &'OutgoingAngles'
 const DATA_LAYER_OUTOING_CELLNEIGHBOR = &'OutgoingCellNeighbor'
 
-@export var is_hex := false
 @export var view_debug := false: 
 	set(value):
 		view_debug = value
@@ -29,6 +28,8 @@ func update_leg(leg: NavigationLeg) -> void:
 	if outgoing_direction == Utilities.DIRECTION_STOP:
 		leg.set_destination( to_global( map_to_local(starting_cord)), outgoing_direction)
 		return
+	if outgoing_direction < 0 or outgoing_direction > 15:
+		prints("outgoing direction not expected", starting_cord, outgoing_direction)
 	var target_cord := get_neighbor_cell(starting_cord, outgoing_direction)
 	var target_data := get_cell_tile_data(target_cord)
 	var limit := 10
@@ -57,7 +58,10 @@ func _get_next_direction(start_cords: Vector2i, incomning_direction := Utilities
 func _is_stop(tile_data: TileData) -> bool:
 	if tile_data == null:
 		return true
-	return bool(tile_data.get_custom_data(DATA_LAYER_STOP))
+	var out = tile_data.get_custom_data(DATA_LAYER_STOP)
+	if out is bool:
+		return out
+	return false
 
 func _is_continue_no_turn(tile_data: TileData) -> bool:
 	if tile_data == null: 
@@ -86,7 +90,7 @@ func _get_leg_on_track(leg: NavigationLeg) -> void:
 func invert_direction(orignal_direction := Utilities.DIRECTION_UKNOWN ) -> int:
 	if orignal_direction < 0: 
 		return orignal_direction
-	if orignal_direction > 8:
+	if orignal_direction >= 8:
 		return orignal_direction - 8
 	return orignal_direction + 8
 
@@ -103,6 +107,8 @@ func _debug_tile_config() -> void:
 		color = Utilities.get_random_color()
 		center = map_to_local(each_cord)
 		tile_data = get_cell_tile_data(each_cord)
+		if tile_data == null:
+			prints("Tile data missing from cord ", each_cord)
 		draw_circle(center, 5, color, true) 
 		if tile_data:
 			if tile_data.get_custom_data(DATA_LAYER_CONTINUE) == true:

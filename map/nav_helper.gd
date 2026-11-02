@@ -22,13 +22,9 @@ func _ready() -> void:
 	if is_disabled:
 		if Engine.is_editor_hint():
 			return
-		#queue_free()
 		return
 	prune_targets()
-	#for each in next_target_weights:
-	#	if each:
-	#		each.set_parent(self)
-	#_picker = WeightedPicker.new(next_target_weights)
+
 
 func _draw() -> void:
 	if is_disabled:
