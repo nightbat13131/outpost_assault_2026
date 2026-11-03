@@ -71,27 +71,6 @@ func _update_navigation() -> void:
 	else:
 		send_event(EVENT_NO_NAV_TARGET)
 
-#func _process(_delta: float) -> void:
-	#if !Engine.is_editor_hint():
-		##prints(_nav_agent.distance_to_target(), _nav_agent.get_final_position())
-		#queue_redraw()
-		#pass
-
-#func set_nav_target(node: Node2D) -> void:
-	#return
-	#_nav_target = node
-	#if _nav_agent:
-		#if _nav_target:
-			#send_event(EVENT_NAV_TARGET)
-			#if _nav_target is NavPoint:
-				#_nav_target.apply_nav_agent(_nav_agent)
-			#else:
-				##_nav_agent.set_target_position(_nav_target.global_position)
-				##_nav_agent.set_target_desired_distance(DEFAULT_DESIRED_DISTANCE)
-				#pass
-		#else: 
-			#send_event(EVENT_NO_NAV_TARGET)
-
 func move(_delta_moded: float) -> void:
 	var next_path_pos := _navigation_leg.get_target_global_position()
 	var target_direction = global_position.direction_to(next_path_pos)

@@ -9,7 +9,7 @@ signal spawner_stopped(spawner: Spawner)
 signal enemy_spawned(unit: EnemyUnit)
 
 @export var spawn_points : Array[SpawnPoint] = []
-@export var tilemap_directions : TileMapLayer_Directions
+var tilemap_directions : TileMapLayer_Directions
 
 @export_category("Wave")
 ## Which level waves to participate in. No entries means every wave. 
@@ -167,6 +167,8 @@ func _pick_enemy() -> EnemyUnitInfo.EnemyTypes: return _unit_picker.pick_one()
 func _end_wave() -> void: spawner_stopped.emit(self)
 
 func _on_unit_death(_unit) -> void: _active_enemy_count -= 1
+
+func set_tilemap_direction(tilemap: TileMapLayer_Directions) -> void: tilemap_directions = tilemap
 
 class WeightedPicker:
 	var _total: float = 0

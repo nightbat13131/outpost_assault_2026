@@ -10,6 +10,7 @@ const WARN_PLAYER_OUTPOST = "Level needs a PlayerOutpost"
 const WARN_FOUND_BROKEN = "Broken Foundation outside of TowerHolder"
 const WARN_FOUND_FOUNDATION = "Foundation outside of TowerHolder"
 const WARN_FOUND_SPAWNER = "Spawner outside of SpawnHolder"
+const WARN_TILEMAP_DIRECTIONS = "Level needs Tilemap Directions"
 
 static var _instance : Level
 
@@ -26,7 +27,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	_instance = self
-	_conect_children()
+	_coneect_children()
 	_level_info.on_level_start()
 	GameSpeed.on_level_start()
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.CLOSE_ALL) ## handel request reload
@@ -50,10 +51,13 @@ func _on_base_death() -> void:
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_LOSS)
 	# print("PlayerBase died, Game over.")
 
-func _conect_children() -> void:
+func _coneect_children() -> void:
+	var tilemap : TileMapLayer_Directions
 	for each_child in get_children():
 		if each_child is CameraBinder:
 			_camera_binder = each_child
+		elif each_child is TileMapLayer_Directions:
+			tilemap = each_child
 		elif each_child is SpawnManager:
 			_spawn_manager = each_child
 			_spawn_manager.wave_complete.connect(_on_wave_complete)
@@ -62,6 +66,8 @@ func _conect_children() -> void:
 				each_child.died.connect(_on_base_death)
 			else:
 				push_error("Missing died signal on ", each_child)
+		if tilemap and _spawn_manager:
+			_spawn_manager.set_tilemap_direction(tilemap)
 		#elif each_child is TowerHolder:
 		#elif each_child is TileMapLayer:
 
@@ -72,13 +78,14 @@ func _get_configuration_warnings() -> PackedStringArray:
 		WARN_SPAWN_MANAGER,
 		WARN_TOWER_HOLDER,
 		WARN_PLAYER_OUTPOST,
+		WARN_TILEMAP_DIRECTIONS
 	]
 	if !_level_info:
 		warnings.append(WARN_LEVEL_INFO)
 	for each_child in get_children():
 		if each_child is CameraBinder:
 			warnings.erase(WARN_CAMERA)
-		elif each_child is TileMapLayer:
+		elif each_child is TileMapLogicLayer:
 			warnings.erase(WARN_TILEMAP)
 		elif each_child is SpawnManager:
 			warnings.erase(WARN_SPAWN_MANAGER)
@@ -86,6 +93,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 			warnings.erase(WARN_TOWER_HOLDER)
 		elif each_child is  PlayerOutpost2D:
 			warnings.erase(WARN_PLAYER_OUTPOST)
+		elif each_child is TileMapLayer_Directions:
+			warnings.erase(WARN_TILEMAP_DIRECTIONS)
 			
 		elif each_child is BrokenFoundation2D:
 			warnings.append(WARN_FOUND_BROKEN)

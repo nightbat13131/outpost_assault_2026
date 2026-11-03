@@ -1,4 +1,4 @@
-class_name SpawnManager extends Node
+class_name SpawnManager extends Node2D
 
 const WAVE_END_PADDING = 1.0
 
@@ -15,11 +15,10 @@ var _summoned_enemy_count := 0 ## tracking for end of level readout
 func _ready() -> void:
 	#_setup_padding_timer()
 	child_entered_tree.connect(_on_child_entered_tree)
-	for each_child in get_children():
-		if each_child is Spawner:
-			each_child.set_unit_container(self)
-			each_child.spawner_started.connect(_on_spawner_start)
-			each_child.spawner_stopped.connect(_on_spawner_stop)
+	for each_child in get_spawners():
+		each_child.set_unit_container(self)
+		each_child.spawner_started.connect(_on_spawner_start)
+		each_child.spawner_stopped.connect(_on_spawner_stop)
 	DisplayWaveUI.connect_spawn_manager(self)
 	if _debug:
 		print_debug("Debug on")
@@ -29,9 +28,15 @@ func call_wave(wave_number: int) -> void:
 #	_setup_padding_timer()
 	_current_wave = wave_number
 	# get_children instead of an array because this is not called often and the spawners get freed.
+	for each_child in get_spawners():
+		each_child.start_wave(_current_wave)
+
+func get_spawners() -> Array[Spawner]:
+	var out : Array[Spawner] = []
 	for each_child in get_children():
 		if each_child is Spawner:
-			each_child.start_wave(_current_wave)
+			out.append(each_child)
+	return out
 
 func _on_child_entered_tree(node: Node) -> void:
 	if node is EnemyUnit:
@@ -63,3 +68,7 @@ func _wave_check() -> void:
 		print("Wave complete.")
 
 func get_enemy_summoned_count() -> int: return _summoned_enemy_count
+
+func set_tilemap_direction(tilemap: TileMapLayer_Directions) -> void:
+	for each_spawner in get_spawners():
+		each_spawner.set_tilemap_direction(tilemap)

@@ -12,7 +12,10 @@ func _ready() -> void:
 	_setup_building()
 
 func _setup_building() -> void:
-	_building.died.connect(_on_building_died)
+	if _building.has_signal("died"):
+		_building.died.connect(_on_building_died)
+	else:
+		prints(self, "somehow doesn't find died signal on ", _building)
 	_building.set_collision_layer_value(RadarSensor.COLLISION_ENEMY_BUILDING, true)
 
 func _on_building_died() -> void:
