@@ -59,7 +59,7 @@ func _add_tower(tower_type: TowerInfo.TowerType) -> void:
 	_current_tower.dead.connect(_on_tower_dead)
 	add_child(_current_tower)
 	#print("A 3 tower added as child")
-	_current_tower.setup_2d(upgrades, _health_ui, _clip_reload_ui)
+	_current_tower.setup(upgrades, _health_ui, _clip_reload_ui)
 	#print("A 4 tower setup complete")
 
 func get_display_info() -> DisplayHelper: return _display_info

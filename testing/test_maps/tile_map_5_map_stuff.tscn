@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="3_3t1yr"]
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="4_tsyvc"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="5_1au5r"]
-[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="6_6m7lr"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="8_rqtgn"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="9_6gajh"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="10_4twi3"]
@@ -16,6 +15,8 @@
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="13_yegdq"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation2d.tscn" id="14_6ak7r"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="15_ytt62"]
+[ext_resource type="TileSet" uid="uid://16wo55d8xusn" path="res://map/ground_direction_tileset_128_hex.tres" id="17_0qspo"]
+[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://testing/test_maps/tile_map_layer_direction.gd" id="18_p3u3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -91,48 +92,14 @@ metadata/_edit_lock_ = true
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1916623478]
 tile_set = SubResource("TileSet_n76ps")
 
-[node name="NavPoints" type="Node" parent="." unique_id=96274821]
-
-[node name="NavPoint_NW" type="Node2D" parent="NavPoints" unique_id=401102862]
-unique_name_in_owner = true
-position = Vector2(360, 363)
-script = ExtResource("6_6m7lr")
-
-[node name="NavPoint_SW" type="Node2D" parent="NavPoints" unique_id=1855747950]
-unique_name_in_owner = true
-position = Vector2(321, 835)
-script = ExtResource("6_6m7lr")
-target_distance = 50.0
-
-[node name="NavPoint_S" type="Node2D" parent="NavPoints" unique_id=1426916265]
-unique_name_in_owner = true
-position = Vector2(979, 853)
-script = ExtResource("6_6m7lr")
-
-[node name="NavPoint_N" type="Node2D" parent="NavPoints" unique_id=998014482]
-unique_name_in_owner = true
-position = Vector2(1023, 263)
-script = ExtResource("6_6m7lr")
-
-[node name="NavPoint_E" type="Node2D" parent="NavPoints" unique_id=274391533]
-unique_name_in_owner = true
-position = Vector2(1594, 608)
-script = ExtResource("6_6m7lr")
-target_distance = 100.0
-
-[node name="NavPoint_SE" type="Node2D" parent="NavPoints" unique_id=249487478]
-unique_name_in_owner = true
-position = Vector2(1736, 843)
-script = ExtResource("6_6m7lr")
-target_distance = 100.0
-
 [node name="SpawnManager" type="Node2D" parent="." unique_id=1833308816]
 script = ExtResource("8_rqtgn")
 metadata/_edit_lock_ = true
 
-[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475]
+[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475 node_paths=PackedStringArray("tilemap_directions")]
 position = Vector2(273, 212)
 script = ExtResource("9_6gajh")
+tilemap_directions = NodePath("../../TileMapLayerDirection")
 _inital_delay = 3.0
 _pulse_gap = 3.0
 _pulse_per_wave = 3
@@ -172,5 +139,9 @@ position = Vector2(1541, 939)
 [node name="BrokenFoundation2" parent="TowerHolder" unique_id=454266272 instance=ExtResource("14_6ak7r")]
 position = Vector2(703, 378)
 
-[editable path="SpawnManager/SpawnerBuilding"]
-[editable path="SpawnManager/SpawnerBuilding/Building"]
+[node name="TileMapLayerDirection" type="TileMapLayer" parent="." unique_id=1333578793]
+tile_map_data = PackedByteArray("AAADAP//AQACAAAAAAAEAP7/AQAAAAMAAAAEAP//AQAAAAMAAAAFAAAAAQAFAAUAAAAFAAEAAQAEAAAAAAAGAAEAAQAFAAUAAAAHAP//AQAFAAQAAAAFAP3/AQACAAAAAAAGAPz/AQAAAAMAAAAHAPv/AQAAAAMAAAAIAPr/AQACAAAAAAAJAPn/AQACAAAAAAAKAPj/AQAAAAMAAAALAPf/AQAAAAMAAAAMAPb/AQAHAAAAAAANAPX/AQAGAAAAAAANAPb/AQAAAAMAAAANAPf/AQAHAAAAAAAOAPf/AQAHAAcAAAAPAPf/AQAHAAMAAAAQAPf/AQAAAAMAAAARAPf/AQADAAAAAAAQAPj/AQAAAAMAAAAPAPn/AQADAAAAAAAOAPr/AQAAAAMAAAANAPv/AQAAAAMAAAAMAPz/AQAFAAQAAAALAP3/AQAEAAMAAAAKAP7/AQAAAAMAAAAJAP//AQAAAAMAAAAIAAAAAQAFAAQAAAAHAAEAAQAFAAQAAAAFAP//AQAFAAUAAAAGAP//AQAFAAAAAAAGAAIAAQAEAAAAAAAHAAAAAQADAAAAAAALAPz/AQAAAAMAAAAOAPj/AQAHAAAAAAANAPn/AQAAAAMAAAAMAPr/AQAAAAMAAAALAPv/AQAFAAAAAAAKAPz/AQAEAAQAAAAJAP3/AQAAAAMAAAAIAP7/AQAAAAMAAAAKAPv/AQAAAAMAAAAKAPr/AQAGAAYAAAAJAPv/AQAEAAAAAAAJAPr/AQAAAAMAAAAGAAAAAQAAAAMAAAAQAPb/AQAAAAMAAAAPAPj/AQAGAAAAAAAEAAAAAQAEAAAAAAA=")
+tile_set = ExtResource("17_0qspo")
+navigation_enabled = false
+script = ExtResource("18_p3u3v")
+view_debug = true
