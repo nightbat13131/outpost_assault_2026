@@ -14,7 +14,7 @@ var _health_info : HealthInfo
 
 func _ready() -> void:
 	_health_info = HealthInfo.new()
-	_health_info.set_max_health(_max_hp, true)
+	set_max_health(_max_hp, true)
 	_health_info.die.connect(_die)
 	_health_ui.set_health_info(_health_info)
 	set_collision_layer_value(RadarSensor.COLLISION_ANY_BUILDING, true)
@@ -24,6 +24,11 @@ func _ready() -> void:
 
 func _setup_display_info() -> void:
 	_display_info = DisplayHelper.new(self, _health_info, null, null)
+
+# Used by Spanw wrapper
+func set_max_health(max_health: float, force_full:= true) -> void: 
+	_max_hp = max_health
+	_health_info.set_max_health(_max_hp, force_full)
 
 func get_health_info() -> HealthInfo: return _health_info
 

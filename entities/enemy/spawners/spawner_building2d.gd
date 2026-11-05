@@ -6,6 +6,7 @@ class_name SpawnerBuilding extends Spawner
 @onready var _foundation_points: BrokenFoundationSpawner = %FoundationPoints
 @onready var _building: Building2D = %Building
 @export var _kill_reward := 300.0
+@export var _building_health := 100.0
 
 func _ready() -> void:
 	super._ready()
