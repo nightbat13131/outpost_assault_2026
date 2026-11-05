@@ -22,7 +22,7 @@
 [ext_resource type="Resource" uid="uid://fyilmatoyruw" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation_og.tres" id="20_c8ieg"]
 [ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost_2d.tscn" id="21_8aiei"]
 [ext_resource type="TileSet" uid="uid://dtw6mws8m8n5f" path="res://map/ground_direction_tileset_128.tres" id="22_c8ieg"]
-[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://testing/test_maps/tile_map_layer_direction.gd" id="23_30f2f"]
+[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="23_30f2f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0

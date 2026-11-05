@@ -18,7 +18,9 @@
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="17_t84e2"]
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/2d/tower_foundation_2d.tscn" id="19_gqrjr"]
 [ext_resource type="PackedScene" uid="uid://0u5aik17a2l0" path="res://entities/enemy/spawners/spawner_building2d_2x2.tscn" id="19_n1xbh"]
+[ext_resource type="TileSet" uid="uid://dtw6mws8m8n5f" path="res://map/ground_direction_tileset_128.tres" id="20_lqf21"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="20_pbcjl"]
+[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="21_yl86e"]
 
 [sub_resource type="Resource" id="Resource_qmthx"]
 script = ExtResource("16_qvo71")
@@ -137,13 +139,11 @@ spawn_types = Dictionary[int, int]({
 })
 metadata/_edit_lock_ = true
 
-[node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner" unique_id=1670429763 node_paths=PackedStringArray("next_targets")]
+[node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner" unique_id=1670429763]
 unique_name_in_owner = true
 position = Vector2(-7, 68)
 script = ExtResource("12_uulvb")
 unit_types = Array[int]([100, 200, 300])
-next_targets = [NodePath("../../../navPoints/NavPoint_SW")]
-target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="Spawner2" type="Node2D" parent="SpawnManager" unique_id=919749807 node_paths=PackedStringArray("spawn_points")]
@@ -160,12 +160,10 @@ spawn_types = Dictionary[int, int]({
 })
 metadata/_edit_lock_ = true
 
-[node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner2" unique_id=387089588 node_paths=PackedStringArray("next_targets")]
+[node name="SpawnPoint" type="Node2D" parent="SpawnManager/Spawner2" unique_id=387089588]
 position = Vector2(1499, 932)
 script = ExtResource("12_uulvb")
 unit_types = Array[int]([100])
-next_targets = [NodePath("../../../navPoints/NavPoint_SE")]
-target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="Spawner_1x2" parent="SpawnManager" unique_id=1797158330 instance=ExtResource("10_kwkdg")]
@@ -175,20 +173,8 @@ spawn_types = Dictionary[int, int]({
 0: 1
 })
 
-[node name="SpawnPoint_0" parent="SpawnManager/Spawner_1x2" index="1" unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("Spawn_NW"), NodePath("Spawn_SW")]
-
-[node name="Spawn_NE" parent="SpawnManager/Spawner_1x2/SpawnPoint_0" index="0" unique_id=100200813]
-is_disabled = true
-
-[node name="Spawn_NW" parent="SpawnManager/Spawner_1x2/SpawnPoint_0" index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("../../../../navPoints/NavPoint_NE")]
-
-[node name="Spawn_SE" parent="SpawnManager/Spawner_1x2/SpawnPoint_0" index="2" unique_id=588862786 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("../../../../navPoints/NavPoint_SW")]
-
-[node name="Spawn_SW" parent="SpawnManager/Spawner_1x2/SpawnPoint_0" index="3" unique_id=194821967 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("../../../../navPoints/NavPoint_SE")]
+[node name="SpawnPoint_0" parent="SpawnManager/Spawner_1x2" index="1" unique_id=1438190680]
+is_disabled = false
 
 [node name="Spawner_1x1" parent="SpawnManager" unique_id=664660667 instance=ExtResource("17_p5dyt")]
 position = Vector2(840, 793)
@@ -197,33 +183,24 @@ spawn_types = Dictionary[int, int]({
 0: 1
 })
 
-[node name="Spawn_E" parent="SpawnManager/Spawner_1x1/SpawnPoint_0" parent_id_path=PackedInt32Array(664660667, 1438190680) index="0" unique_id=100200813 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("../../../../navPoints/NavPoint_NW")]
-
-[node name="Spawn_W" parent="SpawnManager/Spawner_1x1/SpawnPoint_0" parent_id_path=PackedInt32Array(664660667, 1438190680) index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("../../../../navPoints/NavPoint_SW")]
-
 [node name="Spawner_1x3" parent="SpawnManager" unique_id=1296999000 instance=ExtResource("19_n1xbh")]
 position = Vector2(1187, 423)
 spawn_types = Dictionary[int, int]({
 0: 1
 })
 
-[node name="SpawnPoint_0" parent="SpawnManager/Spawner_1x3" index="1" unique_id=1438190680 node_paths=PackedStringArray("next_targets")]
-next_targets = [NodePath("Spawn_NW"), NodePath("Spawn_SE"), NodePath("Spawn_SW")]
-
-[node name="Spawn_NE" parent="SpawnManager/Spawner_1x3/SpawnPoint_0" index="0" unique_id=100200813]
+[node name="Spawn_NE" parent="SpawnManager/Spawner_1x3/SpawnPoint_0" parent_id_path=PackedInt32Array(1296999000, 1438190680) index="0" unique_id=100200813]
 is_disabled = true
 
-[node name="Spawn_NW" parent="SpawnManager/Spawner_1x3/SpawnPoint_0" index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
+[node name="Spawn_NW" parent="SpawnManager/Spawner_1x3/SpawnPoint_0" parent_id_path=PackedInt32Array(1296999000, 1438190680) index="1" unique_id=971029430 node_paths=PackedStringArray("next_targets")]
 position = Vector2(-62, -152)
 next_targets = [NodePath("../../../../navPoints/NavPoint_SW")]
 
-[node name="Spawn_SE" parent="SpawnManager/Spawner_1x3/SpawnPoint_0" index="2" unique_id=588862786 node_paths=PackedStringArray("next_targets")]
+[node name="Spawn_SE" parent="SpawnManager/Spawner_1x3/SpawnPoint_0" parent_id_path=PackedInt32Array(1296999000, 1438190680) index="2" unique_id=588862786 node_paths=PackedStringArray("next_targets")]
 position = Vector2(-118, 161)
 next_targets = [NodePath("../../../../navPoints/NavPoint_SW")]
 
-[node name="Spawn_SW" parent="SpawnManager/Spawner_1x3/SpawnPoint_0" index="3" unique_id=194821967 node_paths=PackedStringArray("next_targets")]
+[node name="Spawn_SW" parent="SpawnManager/Spawner_1x3/SpawnPoint_0" parent_id_path=PackedInt32Array(1296999000, 1438190680) index="3" unique_id=194821967 node_paths=PackedStringArray("next_targets")]
 next_targets = [NodePath("../../../../navPoints/NavPoint_NW")]
 
 [node name="TowerHolder" type="Node2D" parent="." unique_id=370330720]
@@ -241,35 +218,35 @@ upgrades = SubResource("Resource_kwkdg")
 starting_tower = -11
 
 [node name="TowerFoundation2" parent="TowerHolder" unique_id=697662074 instance=ExtResource("19_gqrjr")]
-position = Vector2(892, 993)
+position = Vector2(835, 954)
 starting_tower = 1
 
 [node name="TowerFoundation3" parent="TowerHolder" unique_id=960408478 instance=ExtResource("19_gqrjr")]
-position = Vector2(757, 986)
+position = Vector2(706, 957)
 starting_tower = 1
 
 [node name="TowerFoundation4" parent="TowerHolder" unique_id=47419724 instance=ExtResource("19_gqrjr")]
-position = Vector2(629, 986)
+position = Vector2(574, 959)
 starting_tower = 1
 
 [node name="TowerFoundation5" parent="TowerHolder" unique_id=1607753332 instance=ExtResource("19_gqrjr")]
-position = Vector2(1039, 976)
+position = Vector2(1090, 957)
 starting_tower = 1
 
 [node name="TowerFoundation6" parent="TowerHolder" unique_id=804022297 instance=ExtResource("19_gqrjr")]
-position = Vector2(1155, 977)
+position = Vector2(1220, 963)
 starting_tower = 1
 
 [node name="TowerFoundation7" parent="TowerHolder" unique_id=1256701069 instance=ExtResource("19_gqrjr")]
-position = Vector2(1258, 974)
+position = Vector2(1346, 960)
 starting_tower = 1
 
 [node name="TowerFoundation8" parent="TowerHolder" unique_id=1365342521 instance=ExtResource("19_gqrjr")]
-position = Vector2(1356, 973)
+position = Vector2(1708, 819)
 starting_tower = 1
 
 [node name="TowerFoundation9" parent="TowerHolder" unique_id=1063076267 instance=ExtResource("19_gqrjr")]
-position = Vector2(1356, 973)
+position = Vector2(1725, 961)
 starting_tower = 1
 
 [node name="GunMan" parent="TowerHolder" unique_id=405636293 instance=ExtResource("17_5tif7")]
@@ -279,6 +256,14 @@ position = Vector2(980, 1085)
 position = Vector2(439, 726)
 collision_layer = 1
 collision_mask = 1
+
+[node name="TileMapLayerDirection" type="TileMapLayer" parent="." unique_id=433275547]
+tile_map_data = PackedByteArray("AAACAAIAAQACAAIAAAADAAIAAQADAAoAAAAGAAIAAQAAAAMAAAAHAAIAAQADAAoAAAAIAAIAAQAAAAMAAAAJAAIAAQAAAAMAAAAEAAIAAQAAAAMAAAAFAAIAAQAAAAMAAAAHAAMAAQABAAEAAAAMAAQAAQAAAAMAAAAMAAMAAQAAAAMAAAAMAAIAAQADAAIAAAALAAIAAQADAAoAAAALAAMAAQAAAAMAAAALAAQAAQAAAAMAAAADAAQAAQAAAAMAAAADAAMAAQAAAAMAAAACAAMAAQAAAAMAAAACAAcAAQAAAAMAAAACAAgAAQACAAEAAAADAAcAAQAAAAMAAAADAAgAAQAAAAkAAAAEAAgAAQAAAAMAAAAFAAgAAQAAAAMAAAAGAAgAAQAAAAMAAAAHAAcAAQAAAAMAAAAHAAgAAQAAAAkAAAAIAAgAAQAAAAMAAAAJAAgAAQAAAAMAAAAKAAgAAQAAAAMAAAALAAcAAQABAAAAAAALAAgAAQAAAAkAAAAMAAcAAQADABAAAAAMAAgAAQADAAEAAAACAAQAAQAAAAMAAAACAAYAAQAAAAMAAAADAAYAAQAAAAMAAAAFAAYAAQAAAAMAAAAIAAQAAQAAAAMAAAAJAAQAAQADAAkAAAAJAAUAAQADAAkAAAAJAAYAAQAAAAMAAAAIAAYAAQAAAAMAAAAHAAYAAQADABAAAAAHAAUAAQABAAEAAAAHAAQAAQABAAEAAAAKAAIAAQAAAAMAAAALAAUAAQABAAEAAAALAAYAAQADABAAAAAMAAUAAQADAAkAAAAMAAYAAQADAAAAAAAEAAYAAQAAAAMAAAAKAAYAAQAAAAMAAAANAAgAAQADAAEAAAANAAcAAQADAAIAAAACAAUAAQAAAAMAAAADAAUAAQAAAAQAAAAIAAUAAQAAAAMAAAAIAAMAAQAAAAMAAAAJAAMAAQADAAkAAAA=")
+tile_set = ExtResource("20_lqf21")
+navigation_enabled = false
+script = ExtResource("21_yl86e")
+view_debug = true
+metadata/_edit_lock_ = true
 
 [editable path="SpawnManager/Spawner_1x2"]
 [editable path="SpawnManager/Spawner_1x2/Building"]

@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_l5omd"]
 [ext_resource type="TileSet" uid="uid://16wo55d8xusn" path="res://map/ground_direction_tileset_128_hex.tres" id="14_axjm0"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="14_enrm6"]
-[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://testing/test_maps/tile_map_layer_direction.gd" id="15_438oj"]
+[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="15_438oj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0

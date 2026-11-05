@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://b0sq1cbi5tey2" path="res://testing/test_maps/level_test_0.tres" id="2_0db7x"]
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="4_rbfhg"]
 [ext_resource type="TileSet" uid="uid://dtw6mws8m8n5f" path="res://map/ground_direction_tileset_128.tres" id="5_0db7x"]
-[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://testing/test_maps/tile_map_layer_direction.gd" id="7_me1h8"]
+[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="7_me1h8"]
 [ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://testing/test_scripts/testing_nav_target.gd" id="8_me1h8"]
 [ext_resource type="Script" uid="uid://dry05cmbjj5we" path="res://testing/test_scripts/tile_direction_view.gd" id="10_pmty3"]
 

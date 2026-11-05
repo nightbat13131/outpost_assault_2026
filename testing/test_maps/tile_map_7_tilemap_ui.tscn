@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="7_sa0v5"]
 [ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="8_dyajw"]
 [ext_resource type="Resource" uid="uid://dtgmruo0f45f" path="res://testing/test_chatacter_a.tres" id="8_gd70f"]
-[ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="8_sv24g"]
 [ext_resource type="Texture2D" uid="uid://bcbk8wi2ytd24" path="res://assets/tilemaps/water.png" id="9_a6nin"]
 [ext_resource type="Texture2D" uid="uid://dwar38ssbsohp" path="res://architecture/cursors/tilemap.png" id="9_mfrex"]
 [ext_resource type="Resource" uid="uid://cw13vv36kxkjl" path="res://testing/test_chatacter_b.tres" id="9_xlhsi"]
@@ -31,6 +30,8 @@
 [ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/2d/tower_foundation_2d.tscn" id="19_dqrcy"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/foundation_upgrades.gd" id="20_ebfhy"]
 [ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost_2d.tscn" id="30_xlhsi"]
+[ext_resource type="TileSet" uid="uid://dtw6mws8m8n5f" path="res://map/ground_direction_tileset_128.tres" id="31_7p1sr"]
+[ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="32_wgdyw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
@@ -102,37 +103,16 @@ shader_parameter/overlay_tex_water = ExtResource("9_a6nin")
 shader_parameter/mask_water = Color(0, 0.6313726, 0.60784316, 1)
 shader_parameter/scale_tex = 0.01
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_fwhd0"]
-vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
-agent_radius = 0.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_a6nin"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_mlp51"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_5eoyu"]
-vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
-agent_radius = 0.0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6nin"]
 texture = ExtResource("10_fwhd0")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_fwhd0")
 2:0/0 = 0
-2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5eoyu")
 0:2/0 = 0
-0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_a6nin")
 0:4/0 = 0
-0:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_mlp51")
 
 [sub_resource type="TileSet" id="TileSet_2ucw7"]
 tile_size = Vector2i(64, 64)
-navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_a6nin")
 
 [sub_resource type="Resource" id="Resource_qmthx"]
@@ -230,13 +210,14 @@ damage_amount = 23.0
 [node name="Test_DamageZone" type="Area2D" parent="test/Damage" unique_id=796258337]
 position = Vector2(430, 399)
 script = ExtResource("3_2ucw7")
+damage = 1.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="test/Damage/Test_DamageZone" unique_id=1290235869]
 shape = SubResource("CircleShape2D_oisr6")
 
 [node name="Test_KillZone" type="Area2D" parent="test/Damage" unique_id=1411483130]
-position = Vector2(1728, 1108)
+position = Vector2(1871, 916)
 script = ExtResource("4_fwhd0")
 metadata/_edit_group_ = true
 
@@ -296,41 +277,9 @@ tile_set = SubResource("TileSet_2ucw7")
 script = ExtResource("7_5eoyu")
 metadata/_edit_lock_ = true
 
-[node name="NavPoint_NW" type="Node2D" parent="." unique_id=401102862]
-unique_name_in_owner = true
-position = Vector2(382, 385)
-script = ExtResource("8_sv24g")
-
-[node name="NavPoint_SW" type="Node2D" parent="." unique_id=1855747950]
-unique_name_in_owner = true
-position = Vector2(334, 1084)
-script = ExtResource("8_sv24g")
-target_distance = 50.0
-
-[node name="NavPoint_S" type="Node2D" parent="." unique_id=1426916265]
-unique_name_in_owner = true
-position = Vector2(980, 1111)
-script = ExtResource("8_sv24g")
-
-[node name="NavPoint_N" type="Node2D" parent="." unique_id=998014482]
-unique_name_in_owner = true
-position = Vector2(1022, 320)
-script = ExtResource("8_sv24g")
-
-[node name="NavPoint_E" type="Node2D" parent="." unique_id=274391533]
-unique_name_in_owner = true
-position = Vector2(1591, 816)
-script = ExtResource("8_sv24g")
-target_distance = 100.0
-
-[node name="NavPoint_SE" type="Node2D" parent="." unique_id=249487478]
-unique_name_in_owner = true
-position = Vector2(1732, 1104)
-script = ExtResource("8_sv24g")
-target_distance = 100.0
-
 [node name="SpawnManager" type="Node2D" parent="." unique_id=1833308816]
 script = ExtResource("10_iah57")
+_debug = true
 metadata/_edit_lock_ = true
 
 [node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475]
@@ -349,7 +298,6 @@ unique_name_in_owner = true
 position = Vector2(-8, 48)
 script = ExtResource("12_1mdwh")
 unit_types = Array[int]([100])
-target_distance = 0.0
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnerBuilding_1x2" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("13_a1dwg")]
@@ -357,13 +305,6 @@ position = Vector2(1665, 404)
 _hard_spawn_cap = 1
 _spawn_speed = 2.5
 metadata/_edit_group_ = true
-
-[node name="Spawn_NE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="0" unique_id=100200813]
-position = Vector2(154, -197)
-is_disabled = true
-
-[node name="Spawn_SE" parent="SpawnManager/SpawnerBuilding_1x2/SpawnPointPeople" parent_id_path=PackedInt32Array(2112157350, 1438190680) index="2" unique_id=588862786]
-is_disabled = true
 
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("15_lsrd0")]
 debug = false
@@ -394,5 +335,10 @@ upgrades = SubResource("Resource_fvtu7")
 [node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("30_xlhsi")]
 position = Vector2(251, 574)
 
-[editable path="SpawnManager/SpawnerBuilding_1x2"]
-[editable path="SpawnManager/SpawnerBuilding_1x2/Building"]
+[node name="TileMapLayerDirection" type="TileMapLayer" parent="." unique_id=611311585]
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAAEAAIAAQADAAIAAAAMAAMAAQAAAAMAAAALAAMAAQACAAAAAAALAAQAAQAAAAAAAAADAAQAAQACAAEAAAADAAMAAQAAAAMAAAAGAAgAAQAAAAMAAAAGAAQAAQACAAAAAAAFAAQAAQAMAAIAAAAFAAUAAQAJAAMAAAAFAAYAAQAAAAAAAAAGAAYAAQAJAAMAAAAIAAQAAQAAAAMAAAAJAAQAAQAAAAMAAAAHAAUAAQAAAAMAAAAHAAQAAQAAAAMAAAAQAAQAAQAAAAMAAAAQAAUAAQACAAAAAAATAAQAAQAAAAMAAAADAAIAAQACAAIAAAAEAAMAAQAAAAMAAAAEAAQAAQADABAAAAAEAAUAAQAAAAAAAAAGAAUAAQAAAAMAAAAGAAcAAQAAAAMAAAAGAAkAAQAAAAMAAAAGAAoAAQAAAAMAAAAGAAsAAQAAAAAAAAAGAAwAAQAAAAAAAAAFAAsAAQACAAAAAAAFAAwAAQALAAAAAAAFAA0AAQAAAAMAAAAFABEAAQADAAEAAAAGABAAAQADAAAAAAAGABEAAQAJAAMAAAAEABEAAQAAAAAAAAAEABAAAQAAAAMAAAAEAA8AAQAAAAMAAAAEAA4AAQAAAAMAAAAEAA0AAQAAAAMAAAAEAAwAAQACAAAAAAAHABEAAQAAAAMAAAAIABEAAQAAAAMAAAAJABEAAQAAAAMAAAAKABEAAQAAAAMAAAALABEAAQAAAAMAAAAMABEAAQAAAAMAAAANABEAAQAAAAMAAAAOABEAAQADAAAAAAAPABEAAQADAAAAAAARABEAAQAAAAMAAAASABEAAQADAAAAAAASABAAAQABAAAAAAATABAAAQAAAAMAAAAUABAAAQAAAAMAAAAVABAAAQAAAAMAAAAXABAAAQADAAMAAAAYABAAAQAAAAMAAAAZABAAAQADAAoAAAAaABAAAQADAAoAAAAbABAAAQADAAIAAAAbABEAAQADAAEAAAAaABEAAQAAAAkAAAAZABEAAQACAAEAAAAXAA8AAQAAAAMAAAAXAA4AAQABAAAAAAAXAA0AAQABAAAAAAAXAAwAAQABAAAAAAAXAAsAAQABAAAAAAAYAAsAAQADAAAAAAAZAAsAAQADAAAAAAAaAAsAAQADAAIAAAAaAAwAAQABAAEAAAAZAA4AAQADAAAAAAAYAA4AAQADAAAAAAAYAA0AAQADAAIAAAAYAAwAAQADAAEAAAAZAAwAAQACAAEAAAAYAAoAAQAAAAMAAAAYAAkAAQABAAAAAAAYAAgAAQAAAAMAAAAYAAcAAQAAAAMAAAAYAAYAAQAAAAMAAAAYAAUAAQABAAAAAAAYAAQAAQABAAAAAAAZAAQAAQADAAAAAAAaAAQAAQADAAAAAAAaAAUAAQADAAkAAAAaAAYAAQADAAkAAAAaAAcAAQADAAAAAAAZAAcAAQADAAAAAAAZAAYAAQADAAkAAAAZAAUAAQADAAkAAAAXAAUAAQACAAIAAAAXAAQAAQACAAIAAAAWAAQAAQAAAAMAAAAWAAUAAQAAAAMAAAAXAAYAAQABAAAAAAAXAAcAAQABAAAAAAAXAAgAAQABAAAAAAAXAAkAAQACAAAAAAAVAAUAAQAAAAMAAAAUAAUAAQACAAAAAAATAAUAAQAAAAMAAAASAAUAAQACAAAAAAARAAUAAQAAAAMAAAAPAAUAAQACAAIAAAAPAAQAAQACAAIAAAARAAQAAQAAAAMAAAASAAQAAQAKAAIAAAAUAAQAAQAKAAIAAAAVAAQAAQAAAAMAAAAQAAMAAQABAAAAAAAPAAMAAQACAAIAAAAOAAMAAQALAAEAAAANAAMAAQAAAAMAAAAKAAMAAQACAAAAAAAKAAQAAQAJAAIAAAAPAAYAAQAAAAMAAAAPAAcAAQADAAIAAAAPAAgAAQADAAAAAAAOAAcAAQABAAAAAAAOAAgAAQABAAAAAAAOAAkAAQAAAAMAAAAOAAoAAQAAAAMAAAAOAAsAAQACAAIAAAAOAAwAAQACAAIAAAAOAA0AAQACAAAAAAAPAAsAAQABAAAAAAAPAAwAAQABAAAAAAAPAA0AAQABAAAAAAAPAA4AAQAAAAMAAAAPABAAAQADAAoAAAAQABAAAQABAAAAAAAOABAAAQABAAAAAAAPAA8AAQAAAAMAAAAOAAQAAQACAAAAAAAFABAAAQAAAAAAAAAFAA4AAQAAAAMAAAAFAA8AAQAAAAMAAAAZAAoAAQABAAAAAAAaAA0AAQADAAEAAAAZAA0AAQACAAIAAAAWABAAAQAAAAMAAAAQABEAAQADAAAAAAA=")
+tile_set = ExtResource("31_7p1sr")
+navigation_enabled = false
+script = ExtResource("32_wgdyw")
+view_debug = true

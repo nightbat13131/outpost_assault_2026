@@ -61,7 +61,8 @@ func get_sell_value() -> float: return get_tower_info().get_sell_value()
 func being_replaced() -> void: queue_free()
 
 func _die() -> void:
-	get_reload_info().die()
+	if get_reload_info():
+		get_reload_info().die()
 	#TODO : Explode
 	queue_free()
 	dead.emit(self)
