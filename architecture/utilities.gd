@@ -34,7 +34,6 @@ static func _reparent_defered(child_node: Node2D, new_parent: Node2D) -> void:
 	old_parent.remove_child(child_node)
 	new_parent.add_child(child_node)
 
-
 ## currently assumes mirrored over x access
 static func get_arch_points(radius: float, start_radian: float, point_count: int = 7, incldue_zero:= true) -> Array[Vector2]:
 	var out : Array[Vector2] = []
@@ -63,6 +62,6 @@ static func property_dictionary(_name: String, _type: Variant.Type, _hint: Prope
 		out["hint_string"] = _hint_string
 	return out
 
-static func pix_to_meter(pixel_count: float) -> float: return pixel_count / float(PIX_PER_METTER)
+#static func pix_to_meter(pixel_count: float) -> float: return pixel_count / float(PIX_PER_METTER)
 
-static func get_gravity() -> float: return 172
+#static func get_gravity() -> float: return 172

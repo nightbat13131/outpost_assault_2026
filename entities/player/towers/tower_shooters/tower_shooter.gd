@@ -8,6 +8,8 @@ func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: Cl
 	super.setup(upgrades, health_ui, clip_reload_ui)
 	for each_child in get_children(): # so that no every tower HAS to have a shooter
 		if each_child is Shooter: 
+			if _shooter != null:
+				push_error("TowerShooter already has a shooter: ", self, _shooter)
 			_shooter = each_child
 			_radar_sensor = _shooter.get_radar_sensor()
 			_shooter.set_reload_info(get_reload_info())

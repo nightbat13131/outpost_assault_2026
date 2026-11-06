@@ -84,7 +84,6 @@ func start_wave(wave_number) -> void:
 		spawner_started.emit(self)
 
 func _start_pulse() -> void:
-	
 	# Clear to start
 	if (_started_pulse_count < _pulse_per_wave) or (_pulse_per_wave < 0):
 		_started_pulse_count += 1

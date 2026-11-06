@@ -22,16 +22,13 @@ position = Vector2(62, -10)
 [node name="Node1" type="Node2D" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="1" unique_id=1692565168]
 position = Vector2(62, 9)
 
-[node name="AimingSights" parent="Shooter" parent_id_path=PackedInt32Array(1614296909) index="3" unique_id=1309291640]
-visible = true
-
-[node name="RayCast2D_01" type="RayCast2D" parent="Shooter/AimingSights" index="1" unique_id=597578225]
+[node name="RayCast2D_01" type="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="1" unique_id=597578225]
 position = Vector2(0, -10)
 target_position = Vector2(228, 0)
 collision_mask = 516
 collide_with_areas = true
 
-[node name="RayCast2D_02" type="RayCast2D" parent="Shooter/AimingSights" index="2" unique_id=12073267]
+[node name="RayCast2D_02" type="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="2" unique_id=12073267]
 position = Vector2(0, 9)
 target_position = Vector2(228, 0)
 collision_mask = 516

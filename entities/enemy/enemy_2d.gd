@@ -57,16 +57,11 @@ func set_tile_map_directions(tilemap_directions : TileMapLayer_Directions) -> vo
 	_update_navigation.call_deferred()
 
 func _update_navigation() -> void:
-	print("A")
 	if _tile_map_directions == null:
 		return
 	_navigation_leg.set_start( global_position, _navigation_leg.get_direction())
 	_tile_map_directions.update_leg(_navigation_leg)
 	if _navigation_leg.get_direction() >= 0:
-		##_nav_agent.set_target_position(  Vector2.ONE * randf() * 100  )# _navigation_leg.get_target_global_position()) 
-		#_nav_agent.set_target_position(  _navigation_leg.get_target_global_position()) 
-		#_nav_agent.set_target_desired_distance(DEFAULT_DESIRED_DISTANCE)
-		#
 		send_event(EVENT_NAV_TARGET)
 	else:
 		send_event(EVENT_NO_NAV_TARGET)

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_rloen")
-level_name = "Shooter"
+level_name = "Simple Shooter"
 level_uid = "uid://dxgjwuny1ds3v"
 view_mode = 2
 metadata/_custom_type_script = "uid://u6pais7e54pl"

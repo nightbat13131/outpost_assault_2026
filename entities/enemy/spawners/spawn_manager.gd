@@ -60,12 +60,9 @@ func _on_spawner_stop(spawner: Spawner) -> void:
 	_wave_check.call_deferred()
 
 func _wave_check() -> void:
-#	if _padding.time_left > 0.0:
-#		return
-	print_debug("Spawner count: ", _active_spawners.size(), " enemy count: ", _enemy_unit_count)
 	if _active_spawners.is_empty() and _enemy_unit_count <= 0:
 		wave_complete.emit()
-		print("Wave complete.")
+		#print("Wave complete.")
 
 func get_enemy_summoned_count() -> int: return _summoned_enemy_count
 

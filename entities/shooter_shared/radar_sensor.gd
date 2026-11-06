@@ -47,6 +47,10 @@ func _on_radar_shape_change() -> void:
 func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 
 func set_radar_shape_info(shape_info: RadarShapeInfo) -> void: 
+	if _radar_shape: 
+		_radar_shape.changed.disconnect(queue_redraw)
+		_radar_shape.shape_changed.disconnect(_on_radar_shape_change)
+		_radar_shape.poly_changed.disconnect(_on_radar_shape_change)
 	_radar_shape = shape_info
 	if _radar_shape:
 		_radar_shape.changed.connect(queue_redraw)
