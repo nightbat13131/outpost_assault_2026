@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://d1awopu5ba40f"]
+
+[ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_4vk1e"]
+
+[resource]
+script = ExtResource("1_4vk1e")
+level_name = "Tower Museum"
+level_uid = "uid://cgbbihek1y4sp"
+starting_gold = 10000000.0
+metadata/_custom_type_script = "uid://u6pais7e54pl"

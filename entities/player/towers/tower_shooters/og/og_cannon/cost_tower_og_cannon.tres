@@ -4,8 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="1_grd0s"]
 [ext_resource type="Resource" uid="uid://b7ustkwb5v5r8" path="res://entities/player/towers/tower_shooters/og/og_cannon/tower_info_og_cannon.tres" id="2_sxaur"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2lh6"]
+atlas = ExtResource("1_grd0s")
+region = Rect2(16, 32, 48, 48)
+
 [resource]
 script = ExtResource("1_1h1ef")
 tower_info = ExtResource("2_sxaur")
-primary_icon = ExtResource("1_grd0s")
+primary_icon = SubResource("AtlasTexture_g2lh6")
 metadata/_custom_type_script = "uid://c1qpm4n8xf5ai"

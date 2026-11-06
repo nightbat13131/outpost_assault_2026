@@ -4,8 +4,12 @@
 [ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="1_s5fys"]
 [ext_resource type="Resource" uid="uid://bni2lanj6p33a" path="res://entities/player/towers/tower_shooters/og/og_gattling/tower_info_og_gattling.tres" id="2_3bfqb"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_grd0s"]
+atlas = ExtResource("1_j863w")
+region = Rect2(32, 0, 48, 48)
+
 [resource]
 script = ExtResource("1_s5fys")
 tower_info = ExtResource("2_3bfqb")
-primary_icon = ExtResource("1_j863w")
+primary_icon = SubResource("AtlasTexture_grd0s")
 metadata/_custom_type_script = "uid://c1qpm4n8xf5ai"

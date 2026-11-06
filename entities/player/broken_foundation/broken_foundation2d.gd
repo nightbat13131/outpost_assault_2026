@@ -6,6 +6,7 @@ const TOOLTIP_NAME = 'Broken Foundation'
 const TOOLTIP_REPAIR = TOOLTIP_NAME + ": \n${0} Repair"
 const TOOLTIP_REPAIRING = TOOLTIP_NAME + ": \nRepairing"
 
+## Set the type of tower this repairs into with this resource.
 @export var _cost_info: CostButtonInfo_BrokenFoundation
 
 var _display_info: DisplayHelper
@@ -92,4 +93,6 @@ func _on_selection_cancled() -> void:
 func set_foundation_type(foundation_type: TowerFoundation2D.FoundationType) -> void:
 	_repair_manager.set_foundation_type(foundation_type)
 
-static func get_build_cost() -> float: return 100.0
+static func get_build_cost(_foundation_type := TowerFoundation2D.FoundationType.NA ) -> float: 
+	## TODO: differnet costs for repairing different types
+	return 100.0

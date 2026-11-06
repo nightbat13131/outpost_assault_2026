@@ -18,9 +18,16 @@
 [ext_resource type="Resource" uid="uid://6jyj4jmy2q8p" path="res://levels/2024 recreation/4/levelinfo_orignal_4.tres" id="10_vnx2f"]
 [ext_resource type="Resource" uid="uid://tjyfd2aicp2y" path="res://levels/2024 recreation/5/levelinfo_orignal_5.tres" id="11_7pkux"]
 [ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/level_test_9.tres" id="12_doruf"]
+[ext_resource type="Resource" uid="uid://d1awopu5ba40f" path="res://testing/test_maps/museum_towers.tres" id="19_vebhf"]
 
 [node name="LevelSelect" type="Node2D" unique_id=977691685]
 script = ExtResource("1_il3u1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1903277945]
+unique_name_in_owner = true
+position = Vector2(548, 440)
+scale = Vector2(4, 4)
+texture = ExtResource("3_wevku")
 
 [node name="2g" type="Node2D" parent="." unique_id=197555447]
 
@@ -176,8 +183,14 @@ script = ExtResource("2_vomi7")
 level_info = ExtResource("11_7pkux")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1903277945]
-unique_name_in_owner = true
-position = Vector2(595, 682)
-scale = Vector2(4, 4)
-texture = ExtResource("3_wevku")
+[node name="Museums" type="Node2D" parent="." unique_id=280752917]
+
+[node name="Button_Level_M0" type="Button" parent="Museums" unique_id=605539489]
+offset_left = 61.0
+offset_top = 844.0
+offset_right = 189.0
+offset_bottom = 875.0
+text = "Tower Museum"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("19_vebhf")
+metadata/_custom_type_script = "uid://byme36t86h4q5"

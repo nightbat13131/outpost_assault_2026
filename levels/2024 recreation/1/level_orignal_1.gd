@@ -36,9 +36,3 @@ func _trigger(number: int) -> void:
 			call_wave(4)
 			call_camera_bounds(2)
 			_trigger_on_wave_complete = _on_victory
-
-#func _triggerW(): # wave 3 beat
-	#var call_args = [TalkingHead.TALKER.RED, "This isn't over.", false]
-	#dialog_box.start_event(call_args[0], call_args[1], call_args[2])
-	#next_trigger = trigger_types.none
-	#_on_enemies_defeated() 

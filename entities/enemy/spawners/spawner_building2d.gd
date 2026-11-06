@@ -3,9 +3,13 @@ class_name SpawnerBuilding extends Spawner
 ## TODO: figure out how to have units walk around buildings while keeping that. 
 ## enemies can walk OUT of buildings. Prototype just put buildings onto of non_walking places.
 
+## When building is detroyed, this builds the rubble. Set the rubble type on this object.
 @onready var _foundation_points: BrokenFoundationSpawner = %FoundationPoints
+## The building that is the body of this spawner
 @onready var _building: Building2D = %Building
+## Gold Reward when building is destroyed.
 @export var _kill_reward := 300.0
+## Starting health for the Building
 @export var _building_health := 100.0
 
 func _ready() -> void:
@@ -14,7 +18,9 @@ func _ready() -> void:
 
 func _setup_building() -> void:
 	if _building.has_signal("died"):
+		_building.set_max_health(_building_health)
 		_building.died.connect(_on_building_died)
+		
 	else:
 		prints(self, "somehow doesn't find died signal on ", _building)
 	_building.set_collision_layer_value(RadarSensor.COLLISION_ENEMY_BUILDING, true)

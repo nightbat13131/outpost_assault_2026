@@ -28,7 +28,7 @@ static var EnemyScenePaths : Dictionary[EnemyTypes, String] = {
 	EnemyTypes._OG_SCOUT: "uid://dw14xfa1aivcl",
 	EnemyTypes._OG_GUNMAN: "uid://dcojfcwegryeo",
 	EnemyTypes._OG_RIFLE :"uid://byga14u4wj7w",
-	EnemyTypes._OG_GRENADIER :"uid://coomq7s2gmil3",
+	EnemyTypes._OG_GRENADIER :"uid://coomq7s2gmil3", 
 	EnemyTypes._OG_TANK :"uid://d2b7i20fjuoga",
 	EnemyTypes._OG_HELICOPTER :"uid://c5cfbf3p4ar8n",
 	

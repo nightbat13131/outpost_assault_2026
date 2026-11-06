@@ -95,6 +95,10 @@ text = "A/B"
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
+[node name="Label" type="Label" parent="FullScreen/CenterScreen/VBoxContainer/DisplayWaveInfo" unique_id=262906495]
+layout_mode = 2
+text = "place holder"
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="FullScreen/CenterScreen/VBoxContainer" unique_id=1703908735]
 layout_mode = 2
 size_flags_horizontal = 3

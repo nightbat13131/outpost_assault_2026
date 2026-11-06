@@ -63,4 +63,4 @@ metadata/_custom_type_script = "uid://bs2gntwyjap36"
 [node name="RepairManager" type="Node" parent="." unique_id=1850035154]
 unique_name_in_owner = true
 script = ExtResource("7_s852h")
-section_name = "Repar Ruble"
+section_name = "Repair Ruble"

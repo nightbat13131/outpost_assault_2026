@@ -13,9 +13,10 @@ const DATA_LAYER_OUTOING_CELLNEIGHBOR = &'OutgoingCellNeighbor'
 		view_debug = value
 		queue_redraw()
 
-
-#func get_current_cell_center_glob(global_pos: Vector2) -> Vector2:
-	#return to_global( map_to_local( local_to_map(to_local(global_pos))))
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	set_modulate(Color(Color.WHITE, .5))
 
 
 func update_leg(leg: NavigationLeg) -> void:

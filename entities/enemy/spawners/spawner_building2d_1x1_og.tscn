@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cf57r582w71g6"]
+
+[ext_resource type="Script" uid="uid://c7cgc6ppvr5q4" path="res://entities/enemy/spawners/spawner_building2d.gd" id="1_bg6b7"]
+[ext_resource type="PackedScene" uid="uid://8flrnmx8mgux" path="res://entities/building/building2d_template.tscn" id="2_wl4cl"]
+[ext_resource type="Texture2D" uid="uid://cguwfqtjm6tlp" path="res://icon.svg" id="3_ieab8"]
+[ext_resource type="Script" uid="uid://dyhce2k841a6o" path="res://entities/player/broken_foundation/populate_broken_foundations.gd" id="4_ecwps"]
+[ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="5_g42qo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqi0b"]
+size = Vector2(127, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj7jd"]
+atlas = ExtResource("3_ieab8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0t3g"]
+atlas = ExtResource("3_ieab8")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lhbv"]
+atlas = ExtResource("3_ieab8")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etn8y"]
+atlas = ExtResource("3_ieab8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd32w"]
+atlas = ExtResource("3_ieab8")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okpnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj7jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0t3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lhbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etn8y")
+}],
+"loop": 0,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd32w")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Spawner_1x1_og" type="Node2D" unique_id=664660667]
+script = ExtResource("1_bg6b7")
+
+[node name="Building" parent="." unique_id=831910580 instance=ExtResource("2_wl4cl")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" parent="Building" index="0" unique_id=1126154183]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_sqi0b")
+
+[node name="Button" parent="Building" index="1" unique_id=1509464480]
+offset_left = -63.0
+offset_top = -64.0
+offset_right = 63.0
+offset_bottom = 63.0
+
+[node name="GroundSprite2D" parent="Building" index="2" unique_id=152299447]
+self_modulate = Color(0.32, 0.18826668, 0.016000003, 1)
+
+[node name="AnimatedSprite2D" parent="Building" index="3" unique_id=1893754338]
+position = Vector2(-1.4999995, -7.000002)
+scale = Vector2(0.546875, 1.0625)
+sprite_frames = SubResource("SpriteFrames_okpnb")
+animation = &"die"
+
+[node name="BuildingUI" parent="Building" index="4" unique_id=168524684]
+offset_top = 66.0
+offset_bottom = 74.0
+
+[node name="FoundationPoints" type="Node2D" parent="." unique_id=725093312]
+unique_name_in_owner = true
+script = ExtResource("4_ecwps")
+_foundation_type = 1
+metadata/_edit_lock_ = true
+
+[node name="SpawnPoint_0" type="Node2D" parent="." unique_id=1438190680]
+unique_name_in_owner = true
+script = ExtResource("5_g42qo")
+unit_types = Array[int]([100])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[editable path="Building"]

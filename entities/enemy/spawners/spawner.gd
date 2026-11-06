@@ -133,7 +133,7 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 		return
 	var next_enemy_path: = EnemyUnitInfo.get_enemy_scene_path(enemy_type)
 	if !next_enemy_path:
-		push_error("Failed to get enemy scene path")
+		push_error("Failed to get enemy scene path", enemy_type)
 		return
 	var next_enemy_packed_scene: PackedScene = load(next_enemy_path)
 	var next_enemy_instance: EnemyUnit = next_enemy_packed_scene.instantiate()
