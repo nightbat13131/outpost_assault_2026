@@ -18,6 +18,7 @@ func _ready() -> void:
 		return
 	set_modulate(Color(Color.WHITE, .5))
 
+func get_shape() -> TileSet.TileShape: return get_tile_set().get_tile_shape()
 
 func update_leg(leg: NavigationLeg) -> void:
 	var incoming_direction := invert_direction( leg.get_start_direction() )

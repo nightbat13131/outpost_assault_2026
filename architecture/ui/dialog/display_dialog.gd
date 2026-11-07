@@ -43,5 +43,7 @@ func _apply_dialog(info: DialogInfo) -> void:
 	_primary_container.set_info(info)
 	_speical_container.set_info(info)
 	_speical_container.set_info(info)
+	
 
-func _on_dialog_complete() -> void: _display_next()
+func _on_dialog_complete() -> void: 
+	_display_next()

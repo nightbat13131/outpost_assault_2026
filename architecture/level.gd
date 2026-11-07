@@ -27,7 +27,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	_instance = self
-	_coneect_children()
+	_connect_children()
 	_level_info.on_level_start()
 	GameSpeed.on_level_start()
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.CLOSE_ALL) ## handel request reload
@@ -37,11 +37,14 @@ func call_wave(wave_number: int) -> void: _spawn_manager.call_wave(wave_number)
 func call_camera_bounds(index: int) -> void: _camera_binder.trigger_bound_index(index)
 
 ## for calling dialog via the standard array
-func trigger_dialog_group_index(index: int) -> void: 
+func trigger_dialog_group_index(index: int) -> bool: 
 	if index >= _dialog_groups.size():
 		push_warning(self, "send_dialog_group index out of bounds. index: ", index, " size: ", _dialog_groups.size())
-	else: 
-		send_dialog_group(_dialog_groups[index])
+		return false
+	var d_group := _dialog_groups[index]
+	send_dialog_group(_dialog_groups[index])
+	await  d_group.dialog_complete
+	return true
 
 ## for calling dialog group that may not be in the standard array
 func send_dialog_group(dialog_group: DialogGroup) -> void: 
@@ -51,13 +54,16 @@ func _on_base_death() -> void:
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_LOSS)
 	# print("PlayerBase died, Game over.")
 
-func _coneect_children() -> void:
-	var tilemap : TileMapLayer_Directions
+func _connect_children() -> void:
+	var tilemap_directions : TileMapLayer_Directions
+	var tower_holder : TowerHolder
 	for each_child in get_children():
 		if each_child is CameraBinder:
 			_camera_binder = each_child
 		elif each_child is TileMapLayer_Directions:
-			tilemap = each_child
+			tilemap_directions = each_child
+		elif each_child is TowerHolder:
+			tower_holder = each_child
 		elif each_child is SpawnManager:
 			_spawn_manager = each_child
 			_spawn_manager.wave_complete.connect(_on_wave_complete)
@@ -66,10 +72,10 @@ func _coneect_children() -> void:
 				each_child.died.connect(_on_base_death)
 			else:
 				push_error("Missing died signal on ", each_child)
-		if tilemap and _spawn_manager:
-			_spawn_manager.set_tilemap_direction(tilemap)
-		#elif each_child is TowerHolder:
-		#elif each_child is TileMapLayer:
+	if tilemap_directions and _spawn_manager:
+		_spawn_manager.set_tilemap_direction(tilemap_directions)
+	if tilemap_directions and tower_holder:
+		tower_holder.set_tilemap_paths(tilemap_directions)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:Array = [
