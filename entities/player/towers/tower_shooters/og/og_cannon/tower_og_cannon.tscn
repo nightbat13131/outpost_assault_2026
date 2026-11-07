@@ -2,9 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://dro1735nlrdor" path="res://entities/player/towers/tower_shooters/tower_shooter_base.tscn" id="1_18qch"]
 [ext_resource type="Resource" uid="uid://b7ustkwb5v5r8" path="res://entities/player/towers/tower_shooters/og/og_cannon/tower_info_og_cannon.tres" id="2_ppo4o"]
+[ext_resource type="Script" uid="uid://c1qpm4n8xf5ai" path="res://entities/player/towers/cost_info_towers.gd" id="3_4bny5"]
 
 [node name="Tower_OG_Cannon" unique_id=1226539165 instance=ExtResource("1_18qch")]
 _tower_info = ExtResource("2_ppo4o")
+
+[node name="TowerPurchaseManager" parent="." index="1" unique_id=1756272085]
+cost_tower_infos = Array[ExtResource("3_4bny5")]([])
+section_name = "Tower - OG Cannon"
 
 [node name="Label" parent="." index="4" unique_id=1599518143]
 text = "OG_Cannon"

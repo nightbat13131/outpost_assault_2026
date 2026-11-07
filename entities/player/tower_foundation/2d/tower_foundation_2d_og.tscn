@@ -11,3 +11,10 @@ self_modulate = Color(0.72, 0.4824, 0.4824, 1)
 
 [node name="TowerPurchaseManager" parent="." index="3" unique_id=111647553]
 cost_tower_infos = Array[ExtResource("2_13lcl")]([ExtResource("3_l1bca"), ExtResource("4_lvtvu"), ExtResource("5_nx1g8")])
+
+[node name="VisualizeUpgrades" parent="." index="4" unique_id=1206129897 node_paths=PackedStringArray("nodes")]
+nodes = {
+0: NodePath("Radar"),
+1: NodePath("Gearbox"),
+2: NodePath("Cooling")
+}

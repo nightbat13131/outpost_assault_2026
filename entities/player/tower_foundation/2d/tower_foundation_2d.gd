@@ -10,6 +10,7 @@ enum FoundationType {NA = 0, OG = 1 }
 
 var _display_info: DisplayHelper: get = get_display_info
 var _current_tower: Tower
+var _is_selected : bool = false: set = _set_is_selected
 @onready var _button: Button_Trigger_UI = %Button
 @onready var upgrade_manager: UpgradeManager_TowerFoundation = %UpgradeManager
 @onready var visualize_upgrades: UpgradeVisualizer2D = %VisualizeUpgrades
@@ -17,7 +18,8 @@ var _current_tower: Tower
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _health_ui: HealthUI = %HealthUI
 @onready var _clip_reload_ui: ClipReloadUI = %ClipReloadUI
-@onready var _radar_preview: RadarPreview = %RadarPreview
+@onready var _radar_preview: RadarPreview = %RadarPreview : get = get_radar_preview
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -26,8 +28,8 @@ func _ready() -> void:
 	_connect_purchasers()
 	if _button:
 		_display_info = DisplayHelper.new(self, null, upgrade_manager, null)
-		_display_info.unselected.connect(_on_unselected)
-		_button.selected.connect(on_selected)
+		_display_info.unselected.connect(_set_is_selected.bind(false))
+		_button.selected.connect(_set_is_selected.bind(true))
 		_button.mouse_entered.connect(_on_hover.bind(true))
 		_button.mouse_exited.connect(_on_hover.bind(false))
 	add_tower.call_deferred(starting_tower)
@@ -37,12 +39,11 @@ func _connect_purchasers() -> void:
 		upgrades = FoundationUpgrades.new()
 	else:
 		upgrades = upgrades.duplicate_deep(Resource.DEEP_DUPLICATE_ALL) # deep as uses 
-		
 	_tower_purchase_manager.set_foundation(self)
 	upgrades.set_foundation(self)
 	upgrade_manager.set_upgrade_info(upgrades)
 	upgrade_manager.preview_upgrade.connect(_on_preview_upgrade)
-	_radar_preview.set_foundation_upgrades(upgrades)
+	get_radar_preview().set_foundation_upgrades(upgrades)
 	visualize_upgrades.set_upgrade_info(upgrades)
 
 func add_tower(tower_type: TowerInfo.TowerType) -> void:
@@ -61,17 +62,21 @@ func _add_tower(tower_type: TowerInfo.TowerType) -> void:
 	#print("A 3 tower added as child")
 	_current_tower.setup(upgrades, _health_ui, _clip_reload_ui)
 	#print("A 4 tower setup complete")
+	get_radar_preview().cancle_preview()
+	_current_tower.set_parent_selected(_is_selected)
 
 func get_display_info() -> DisplayHelper: return _display_info
 
-func on_selected() -> void: 
-	DisplaySelected.request_display(get_display_info())
-	if _has_tower():
-		_current_tower.set_parent_selected(true)
+func on_selected() -> void: _set_is_selected(true)
 
-func _on_unselected() -> void:
+#func _on_unselected() -> void: set_is_selected(false)
+
+func _set_is_selected(is_selected: bool) -> void:
+	_is_selected = is_selected
+	if _is_selected:
+		DisplaySelected.request_display(get_display_info())
 	if _has_tower():
-		_current_tower.set_parent_selected(false)
+		_current_tower.set_parent_selected(_is_selected)
 
 func _on_hover(is_hover: bool) -> void:
 	if _has_tower():
@@ -114,9 +119,9 @@ func _on_preview_upgrade(upgrade_type: FoundationUpgrades.UpgradeTypes , show_pr
 	## TODO have upgrades blink when you hover over them
 	if upgrade_type == FoundationUpgrades.UpgradeTypes.RADAR:
 		if _current_tower and show_preview:
-			_radar_preview.set_preview(_current_tower.get_tower_info(), true)
+			get_radar_preview().set_preview(_current_tower.get_tower_info(), true)
 		else:
-			_radar_preview.cancle_preview()
+			get_radar_preview().cancle_preview()
 
 static func get_packed_scene_path(foundation_type: FoundationType) -> String:
 	if foundation_type == FoundationType.OG:

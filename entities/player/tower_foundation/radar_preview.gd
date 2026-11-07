@@ -49,6 +49,7 @@ func get_radar_shape() -> RadarShapeInfo:
 	return null
 
 func cancle_preview() -> void: 
+	print_debug("Preview cancled")
 	_preview_on = false
 	_upgrade_preview = false
 	queue_redraw()
