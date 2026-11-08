@@ -1,7 +1,5 @@
 @tool
 class_name SpawnerBuilding extends Spawner
-## TODO: figure out how to have units walk around buildings while keeping that. 
-## enemies can walk OUT of buildings. Prototype just put buildings onto of non_walking places.
 
 ## When building is detroyed, this builds the rubble. Set the rubble type on this object.
 @onready var _foundation_points: BrokenFoundationSpawner = %FoundationPoints

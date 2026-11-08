@@ -77,10 +77,9 @@ metadata/_edit_lock_ = true
 position = Vector2(320, 965)
 _waves = Array[int]([0, 0])
 
-[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475 node_paths=PackedStringArray("spawn_points")]
+[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475]
 position = Vector2(160, 978)
 script = ExtResource("10_72asd")
-spawn_points = [NodePath("SpawnPoint")]
 _inital_delay = 3.0
 _pulse_gap = 3.0
 _pulse_per_wave = -1

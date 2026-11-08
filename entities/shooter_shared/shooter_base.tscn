@@ -127,9 +127,8 @@ to = NodePath("../../HasTarget")
 event = &"has_target"
 delay_in_seconds = "0.0"
 
-[node name="HasTarget" type="Node" parent="ShooterStateChart/ShootingStates/TargetState" unique_id=1199751053 node_paths=PackedStringArray("aiming_sights", "ammo_available_state")]
+[node name="HasTarget" type="Node" parent="ShooterStateChart/ShootingStates/TargetState" unique_id=1199751053 node_paths=PackedStringArray("ammo_available_state")]
 script = ExtResource("11_td7l6")
-aiming_sights = NodePath("../../../../AimingSights")
 ammo_available_state = NodePath("../../MagazineStates/CanShoot")
 
 [node name="no_target" type="Node" parent="ShooterStateChart/ShootingStates/TargetState/HasTarget" unique_id=1465689197]

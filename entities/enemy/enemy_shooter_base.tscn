@@ -22,8 +22,12 @@ fill_from = Vector2(0.5, 0.5)
 script = ExtResource("2_nnjro")
 _enemy_info = ExtResource("3_tusys")
 
-[node name="StateChart" parent="." index="5" unique_id=411729324]
+[node name="StateChart" parent="." index="4" unique_id=411729324]
 track_in_editor = true
+
+[node name="ClipReloadUI" parent="UIAnchor/VBoxContainer" parent_id_path=PackedInt32Array(1790658355) index="1" unique_id=1750592590 instance=ExtResource("5_hpllm")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="Shooter" parent="." index="6" unique_id=1614296909 instance=ExtResource("2_c3r84")]
 unique_name_in_owner = true
@@ -54,9 +58,5 @@ event = &"died"
 
 [node name="NoTarget" parent="Shooter/ShooterStateChart/ShootingStates/TargetState" parent_id_path=PackedInt32Array(1614296909, 1472020959) index="3" unique_id=385167069]
 look_forward = true
-
-[node name="ClipReloadUI" parent="UIAnchor/VBoxContainer" parent_id_path=PackedInt32Array(1790658355) index="1" unique_id=1750592590 instance=ExtResource("5_hpllm")]
-unique_name_in_owner = true
-layout_mode = 2
 
 [editable path="Shooter"]

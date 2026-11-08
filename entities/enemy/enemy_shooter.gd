@@ -12,6 +12,7 @@ func _ready() -> void:
 	_shooter.set_projectile_info(get_enemy_info().get_projectile_info())
 	_maintain_rotation.append(_shooter)
 	_shooter.get_radar_sensor().set_rotation_parent(self)
+	_shooter.configure_default_rotation(0.0, false, true)
 
 func send_event(event: String) -> void:
 	super.send_event(event)

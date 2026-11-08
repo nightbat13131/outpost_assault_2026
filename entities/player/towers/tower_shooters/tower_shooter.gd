@@ -3,9 +3,7 @@ class_name TowerShooter extends Tower
 var _shooter: Shooter
 var _radar_sensor : RadarSensor
 
-
 func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI, _default_rotation_glob: float) -> void:
-	#print("B 1")
 	super.setup(upgrades, health_ui, clip_reload_ui, _default_rotation_glob)
 	for each_child in get_children(): # so that no every tower HAS to have a shooter
 		if each_child is Shooter: 
@@ -18,7 +16,7 @@ func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: Cl
 			_shooter.set_targetting_mask(RadarSensor.COLLISION_ENEMY_HUMANS)
 			_shooter.set_radar_shape(get_radar_shape())
 			_shooter.set_projectile_info(get_tower_info().get_projectile_info())
-			_shooter.configure_default_rotation(_default_rotation_glob, true)
+			_shooter.configure_default_rotation(_default_rotation_glob, true, false)
 
 
 func _set_radar_range() -> void:

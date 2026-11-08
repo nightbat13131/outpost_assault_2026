@@ -22,15 +22,10 @@ var _g0_rotation : Array[CanvasItem] = []
 ## Have CanvasItem in this array keep their previous global rotation
 var _maintain_rotation : Array[CanvasItem] = []
 
-#@export var _rotation_speed_deg_sec := 180
 var _sound_player: AudioStreamPlayer2D
-
 var _animated_sprite : AnimatedSprite2D
 var _state_machine: StateChart
-#var _nav_agent : NavigationAgent2D
 var _navigation_leg: NavigationLeg
-var _tile_map_directions : TileMapLayer_Directions
-#var _nav_target : Node2D :set = set_nav_target
 @onready var _ui_anchor: Control = %UIAnchor
 @onready var _health_ui: HealthUI = %HealthUI
 

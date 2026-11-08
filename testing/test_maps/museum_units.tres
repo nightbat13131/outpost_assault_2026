@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_rgifr")
-level_name = "Tower Museum"
+level_name = "Unit Museum"
 level_uid = "uid://wf32uulrcnw4"
 starting_gold = 10000000.0
 metadata/_custom_type_script = "uid://u6pais7e54pl"

@@ -16,6 +16,10 @@ var _projectile_info : ProjectileInfo : set = set_projectile_info, get = get_pro
 @export var _rotation_limit_deg := 45.0 : set = set_rotation_limit
 ## How quickly turns to face target
 @export var _rotation_speed_deg_sec := 45
+var _default_rotation_glob := 0.0
+var _use_default_roation_glob := false
+var _use_default_roation_parent_forward := false
+
 
 var _reload_info : ReloadInfo : set = set_reload_info
 var _radar_shape : RadarShapeInfo : set = set_radar_shape, get = get_radar_shape
@@ -23,8 +27,7 @@ var _radar_shape : RadarShapeInfo : set = set_radar_shape, get = get_radar_shape
 @onready var _aiming_sights: AimingSights = %AimingSights
 @onready var _state_machine: StateChart = %ShooterStateChart
 @onready var _muzzles: ShooterMuzzles = %Muzzles
-var _default_rotation_glob := 0.0
-var _use_default_roation := false
+
 
 func _ready() -> void:
 	_state_machine.propagate_call("set_shooter", [self])
@@ -55,10 +58,13 @@ func set_targetting_mask(layer: int, flag := true) -> void:
 
 func set_rotation_limit(degree: float) -> void: _rotation_limit_deg = degree
 
-func configure_default_rotation(glob_degree: float, default_on : bool) -> void:
+func configure_default_rotation(glob_degree: float, default_global_on : bool, parent_foward_on: bool) -> void:
 	_default_rotation_glob = glob_degree
-	_use_default_roation = default_on
-	update_rotation(_default_rotation_glob)
+	_use_default_roation_glob = default_global_on
+	_use_default_roation_parent_forward = parent_foward_on
+	assert(not (_use_default_roation_glob and _use_default_roation_parent_forward) )
+	if _use_default_roation_glob:
+		update_rotation(_default_rotation_glob)
 
 func send_event(event: String) -> void:
 	if _state_machine:
@@ -118,19 +124,20 @@ func turn_towards(delta_moded: float, target_global_pos: Vector2) -> void:
 	#global_rotation = next_rotation
 	update_rotation(next_rotation - get_parent().rotation)
 
-func turn_towards_default(delta_moded: float) -> void:
-	if !_use_default_roation:
-		return
-	var glob_pos = to_global( Vector2.from_angle( _default_rotation_glob - rotation) *100 ) 
-	turn_towards(delta_moded, glob_pos)
-
 ## Called by the State Machine
-func look_forward(delta_moded: float) -> void:
-	var parent = get_parent() as Node2D
-	if parent:
-		var point = parent.get_global_position()
-		point += Vector2.from_angle(parent.global_rotation).normalized()
-		turn_towards(delta_moded, point)
+func turn_towards_default(delta_moded: float) -> void:
+	var target_point := Vector2.INF
+	if ! (_use_default_roation_parent_forward or _use_default_roation_glob):
+		return
+	assert(_use_default_roation_glob or _use_default_roation_parent_forward)
+	if _use_default_roation_parent_forward:
+		var parent = get_parent() as Node2D
+		if parent:
+			target_point = parent.get_global_position()
+			target_point += Vector2.from_angle(parent.global_rotation).normalized()
+	elif _use_default_roation_glob:
+		target_point = to_global( Vector2.from_angle( _default_rotation_glob - rotation) *100 ) 
+	turn_towards(delta_moded, target_point)
 
 ## use as a "set_rotation" so that limits on rotation can be maintained
 func update_rotation(radian: float) -> void:
