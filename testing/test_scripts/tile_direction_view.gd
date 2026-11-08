@@ -19,7 +19,7 @@ func _draw() -> void:
 	var count := step_count
 	var width := 15.0
 	while count > 0:
-		tile_nav.update_leg(_navigation_helper)
+		tile_nav._update_leg(_navigation_helper)
 		next_center = to_local( _navigation_helper.get_target_global_position())
 		draw_line(currnet_center, next_center, Color.from_hsv(randf(), 1.0, 1.0), width)
 		currnet_center = next_center

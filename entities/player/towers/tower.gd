@@ -3,7 +3,6 @@ class_name Tower extends Area2D
 signal dead(tower: Tower) ## I don't think the foundation cares between sold and destroyed.
 
 @export var _tower_info : TowerInfo: get = get_tower_info
-
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _context_manager: TowerContextManager = %TowerContextManager
 
@@ -22,7 +21,7 @@ func _get_cost() -> float: return get_tower_info().get_cost()
 func get_reload_info() -> ReloadInfo: return _tower_info.get_reload_info()
 
 #func setup_2d(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
-func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI) -> void:
+func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: ClipReloadUI, _unused_rotation: float) -> void:
 	#print("C 1")
 	_tower_info = _tower_info.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
 	#print("C 2")
@@ -71,8 +70,8 @@ func get_purchase_manager() -> PurchaseManager: return _tower_purchase_manager
 
 func get_context_manager() -> TowerContextManager: return _context_manager
 
-static func get_scene_path() -> String: return "Method needs overriting missing"
-
 func set_parent_hovered(_is_hover: bool ) -> void: pass
 
 func set_parent_selected(_is_selected: bool) -> void: pass
+
+static func get_scene_path() -> String: return "Method needs overriting missing"

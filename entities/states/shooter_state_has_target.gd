@@ -1,7 +1,7 @@
 @tool
 class_name HasTarget extends ShooterAtomicState
 
-@export var aiming_sights: AimingSights
+#@export var aiming_sights: AimingSights
 @export var ammo_available_state : AtomicState
 
 func _ready() -> void:
@@ -22,6 +22,3 @@ func _on_state_processing(delta: float) -> void:
 	if ammo_available_state:
 		if ammo_available_state.active:
 			get_shooter().try_shoot()
-	#if aiming_sights:
-		#if aiming_sights.is_colliding():
-			#get_shooter().try_shoot()

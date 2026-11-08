@@ -55,15 +55,15 @@ func _on_base_death() -> void:
 	# print("PlayerBase died, Game over.")
 
 func _connect_children() -> void:
-	var tilemap_directions : TileMapLayer_Directions
-	var tower_holder : TowerHolder
+	#var tilemap_directions : TileMapLayer_Directions
+	#var tower_holder : TowerHolder
 	for each_child in get_children():
 		if each_child is CameraBinder:
 			_camera_binder = each_child
-		elif each_child is TileMapLayer_Directions:
-			tilemap_directions = each_child
-		elif each_child is TowerHolder:
-			tower_holder = each_child
+		#elif each_child is TileMapLayer_Directions:
+			#tilemap_directions = each_child
+		#elif each_child is TowerHolder:
+			#tower_holder = each_child
 		elif each_child is SpawnManager:
 			_spawn_manager = each_child
 			_spawn_manager.wave_complete.connect(_on_wave_complete)
@@ -72,10 +72,10 @@ func _connect_children() -> void:
 				each_child.died.connect(_on_base_death)
 			else:
 				push_error("Missing died signal on ", each_child)
-	if tilemap_directions and _spawn_manager:
-		_spawn_manager.set_tilemap_direction(tilemap_directions)
-	if tilemap_directions and tower_holder:
-		tower_holder.set_tilemap_paths(tilemap_directions)
+	#if tilemap_directions and _spawn_manager:
+		#_spawn_manager.set_tilemap_direction(tilemap_directions)
+	#if tilemap_directions and tower_holder:
+		#tower_holder.set_tilemap_paths(tilemap_directions)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:Array = [

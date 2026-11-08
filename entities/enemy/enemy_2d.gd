@@ -52,15 +52,9 @@ func get_reload_info() -> ReloadInfo: return get_enemy_info().get_reload_info()
 
 func get_kill_reward() -> float: return get_enemy_info().get_kill_reward()
 
-func set_tile_map_directions(tilemap_directions : TileMapLayer_Directions) -> void:
-	_tile_map_directions = tilemap_directions
-	_update_navigation.call_deferred()
-
 func _update_navigation() -> void:
-	if _tile_map_directions == null:
-		return
 	_navigation_leg.set_start( global_position, _navigation_leg.get_direction())
-	_tile_map_directions.update_leg(_navigation_leg)
+	TileMapLayer_Directions.update_leg(_navigation_leg)
 	if _navigation_leg.get_direction() >= 0:
 		send_event(EVENT_NAV_TARGET)
 	else:

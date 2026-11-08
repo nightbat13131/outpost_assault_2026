@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://tjyfd2aicp2y" path="res://levels/2024 recreation/5/levelinfo_orignal_5.tres" id="11_7pkux"]
 [ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/level_test_9.tres" id="12_doruf"]
 [ext_resource type="Resource" uid="uid://d1awopu5ba40f" path="res://testing/test_maps/museum_towers.tres" id="19_vebhf"]
+[ext_resource type="Resource" uid="uid://df8cltxqp3rgn" path="res://testing/test_maps/museum_units.tres" id="20_473rj"]
 
 [node name="LevelSelect" type="Node2D" unique_id=977691685]
 script = ExtResource("1_il3u1")
@@ -186,11 +187,21 @@ metadata/_custom_type_script = "uid://byme36t86h4q5"
 [node name="Museums" type="Node2D" parent="." unique_id=280752917]
 
 [node name="Button_Level_M0" type="Button" parent="Museums" unique_id=605539489]
-offset_left = 61.0
-offset_top = 844.0
-offset_right = 189.0
-offset_bottom = 875.0
+offset_left = 53.0
+offset_top = 742.0
+offset_right = 181.0
+offset_bottom = 773.0
 text = "Tower Museum"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("19_vebhf")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_M1" type="Button" parent="Museums" unique_id=1458353386]
+offset_left = 253.0
+offset_top = 786.0
+offset_right = 381.0
+offset_bottom = 817.0
+text = "Unit Museum"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("20_473rj")
 metadata/_custom_type_script = "uid://byme36t86h4q5"

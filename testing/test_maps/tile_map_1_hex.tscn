@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="4_4m4l8"]
 [ext_resource type="TileSet" uid="uid://16wo55d8xusn" path="res://map/ground_direction_tileset_128_hex.tres" id="5_nbpfb"]
 [ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="6_mcbf6"]
-[ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://testing/test_scripts/testing_nav_target.gd" id="9_nbpfb"]
 [ext_resource type="Script" uid="uid://dry05cmbjj5we" path="res://testing/test_scripts/tile_direction_view.gd" id="10_mcbf6"]
 [ext_resource type="Script" uid="uid://maup88as3mgl" path="res://testing/test_scripts/test_path_angle.gd" id="10_ylhg6"]
 
@@ -51,21 +50,6 @@ tile_nav = NodePath("../../TileMapLayerDirection")
 position = Vector2(493, 623)
 script = ExtResource("10_mcbf6")
 tile_nav = NodePath("../../TileMapLayerDirection")
-
-[node name="NavTrigger" type="Node" parent="TestScrips" unique_id=1884649054 node_paths=PackedStringArray("unit", "directions")]
-script = ExtResource("9_nbpfb")
-unit = NodePath("../../EnemyHolder/Enemy")
-directions = NodePath("../../TileMapLayerDirection")
-
-[node name="NavTrigger2" type="Node" parent="TestScrips" unique_id=109748646 node_paths=PackedStringArray("unit", "directions")]
-script = ExtResource("9_nbpfb")
-unit = NodePath("../../EnemyHolder/Enemy2")
-directions = NodePath("../../TileMapLayerDirection")
-
-[node name="NavTrigger3" type="Node" parent="TestScrips" unique_id=816569133 node_paths=PackedStringArray("unit", "directions")]
-script = ExtResource("9_nbpfb")
-unit = NodePath("../../EnemyHolder/Enemy3")
-directions = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle" type="Node2D" parent="TestScrips" unique_id=437170305 node_paths=PackedStringArray("tilemap_d")]
 position = Vector2(512, 352)

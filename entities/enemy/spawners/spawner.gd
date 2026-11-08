@@ -8,7 +8,7 @@ signal spawner_stopped(spawner: Spawner)
 
 signal enemy_spawned(unit: EnemyUnit)
 
-@export var spawn_points : Array[SpawnPoint] = []
+var spawn_points : Array[SpawnPoint] = []
 var tilemap_directions : TileMapLayer_Directions
 
 @export_category("Wave")
@@ -142,7 +142,7 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 	get_unit_container().add_child(next_enemy_instance)
 	# set_nav_target doesn't work if happening before child_add.
 	#next_enemy_instance.set_nav_target(spawn_point.get_next_point())
-	next_enemy_instance.set_tile_map_directions(tilemap_directions)
+	#next_enemy_instance.set_tile_map_directions(tilemap_directions) - isntance managed now
 	next_enemy_instance.died.connect(_on_unit_death)
 	_active_enemy_count += 1
 	_enemy_spawned_count += 1
@@ -178,6 +178,7 @@ class WeightedPicker:
 	
 	func pick_one() -> EnemyUnitInfo.EnemyTypes:
 		if _choices.is_empty():
+			push_warning(self, "Has 0 Enemy types set")
 			return EnemyUnitInfo.EnemyTypes.DEBUG_WALKER
 		if _choices.size() == 1:
 			return _choices.keys()[0]

@@ -9,7 +9,7 @@ const DATA_LAYER_OUTOING_ANGLES = &'OutgoingAngles'
 const DATA_LAYER_OUTOING_CELLNEIGHBOR = &'OutgoingCellNeighbor'
 
 ## https://github.com/godotengine/godot/blob/ed1daf0bf001b61586d9930840f2f1394092c079/scene/resources/2d/tile_set.cpp#L2114
-const _SQUARE_DIRECTIONS : Array[TileSet.CellNeighbor] = [
+const _SQUARE_CELLNEIGHBORS : Array[TileSet.CellNeighbor] = [
 	TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE, 
 	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_RIGHT_CORNER, 
 	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE,
@@ -38,49 +38,62 @@ const _VERTICAL_OFFSET_DIRECTIONS : Array[TileSet.CellNeighbor] = [
 			TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_RIGHT_SIDE,
 	]
 
-
 @export var view_debug := false: 
 	set(value):
 		view_debug = value
 		queue_redraw()
 
+static var _instance : TileMapLayer_Directions
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	_instance = self
 	set_modulate(Color(Color.WHITE, .5))
+
+static func get_intsance() -> TileMapLayer_Directions: return _instance
 
 func get_shape() -> TileSet.TileShape: return get_tile_set().get_tile_shape()
 
 func get_offset() -> TileSet.TileOffsetAxis: return get_tile_set().get_tile_offset_axis()
 
-## Given the position of a tower, what direction should it face to cover the most path
-func get_facing_direction(pos_global: Vector2) -> float:
+## Given the position of a tower, what direction should it face to cover the most path.
+## If the value is greater than TAU*2, then the value is random.
+static func get_facing_direction(pos_global: Vector2) -> float:
+	if get_intsance():
+		return get_intsance()._get_facing_direction(pos_global)
+	return randf_range(0.0, TAU) + TAU * 3
+
+func _get_facing_direction(pos_global: Vector2) -> float:
 	var local_focus := to_local(pos_global)
 	var focus_cord := local_to_map( local_focus )
-	var _directions = _SQUARE_DIRECTIONS
+	var _cell_neighbors = _SQUARE_CELLNEIGHBORS
 	if get_shape() == TileSet.TileShape.TILE_SHAPE_HEXAGON:
 		if get_offset() == TileSet.TileOffsetAxis.TILE_OFFSET_AXIS_HORIZONTAL:
-			_directions = _HORIZONTAL_OFFSET_DIRECTIONS
+			_cell_neighbors = _HORIZONTAL_OFFSET_DIRECTIONS
 		else:
-			_directions = _VERTICAL_OFFSET_DIRECTIONS
+			_cell_neighbors = _VERTICAL_OFFSET_DIRECTIONS
 	var neighbor_cell : Vector2i
 	var second_point := Vector2.ZERO
-	var count := 1
-	for direction in _directions:
+	var data : TileData # debug
+	for direction in _cell_neighbors:
 		neighbor_cell = get_neighbor_cell(focus_cord, direction)
-		if get_cell_tile_data(neighbor_cell): 
+		data = get_cell_tile_data(neighbor_cell)
+		if data: 
 			# might add some kind of weighting in the future
-			count += 1
 			second_point += (  map_to_local(neighbor_cell) - local_focus ) 
-	second_point /= count
 	if second_point == Vector2.ZERO:
-		return Vector2.ONE.angle()
+		return randf_range(0.0, TAU) + TAU * 3
 	return second_point.angle()
 
 
 #region Leg Navigation
 
-func update_leg(leg: NavigationLeg) -> void:
+static func update_leg(leg: NavigationLeg) -> void:
+	if get_intsance():
+		get_intsance()._update_leg(leg)
+
+func _update_leg(leg: NavigationLeg) -> void:
 	var incoming_direction := invert_direction( leg.get_start_direction() )
 	if incoming_direction == Utilities.DIRECTION_INIT:
 		_get_leg_on_track(leg)

@@ -11,6 +11,7 @@ enum FoundationType {NA = 0, OG = 1 }
 var _display_info: DisplayHelper: get = get_display_info
 var _current_tower: Tower
 var _is_selected : bool = false: set = _set_is_selected
+
 @onready var _button: Button_Trigger_UI = %Button
 @onready var upgrade_manager: UpgradeManager_TowerFoundation = %UpgradeManager
 @onready var visualize_upgrades: UpgradeVisualizer2D = %VisualizeUpgrades
@@ -20,6 +21,8 @@ var _is_selected : bool = false: set = _set_is_selected
 @onready var _clip_reload_ui: ClipReloadUI = %ClipReloadUI
 @onready var _radar_preview: RadarPreview = %RadarPreview : get = get_radar_preview
 
+
+	
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -60,7 +63,7 @@ func _add_tower(tower_type: TowerInfo.TowerType) -> void:
 	_current_tower.dead.connect(_on_tower_dead)
 	add_child(_current_tower)
 	#print("A 3 tower added as child")
-	_current_tower.setup(upgrades, _health_ui, _clip_reload_ui)
+	_current_tower.setup(upgrades, _health_ui, _clip_reload_ui, TileMapLayer_Directions.get_facing_direction(global_position))
 	#print("A 4 tower setup complete")
 	get_radar_preview().cancle_preview()
 	_current_tower.set_parent_selected(_is_selected)

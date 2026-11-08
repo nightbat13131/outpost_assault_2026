@@ -23,7 +23,8 @@ var _radar_shape : RadarShapeInfo : set = set_radar_shape, get = get_radar_shape
 @onready var _aiming_sights: AimingSights = %AimingSights
 @onready var _state_machine: StateChart = %ShooterStateChart
 @onready var _muzzles: ShooterMuzzles = %Muzzles
-
+var _default_rotation_glob := 0.0
+var _use_default_roation := false
 
 func _ready() -> void:
 	_state_machine.propagate_call("set_shooter", [self])
@@ -53,6 +54,11 @@ func set_targetting_mask(layer: int, flag := true) -> void:
 		_aiming_sights.set_collision_mask_value(layer, flag)
 
 func set_rotation_limit(degree: float) -> void: _rotation_limit_deg = degree
+
+func configure_default_rotation(glob_degree: float, default_on : bool) -> void:
+	_default_rotation_glob = glob_degree
+	_use_default_roation = default_on
+	update_rotation(_default_rotation_glob)
 
 func send_event(event: String) -> void:
 	if _state_machine:
@@ -111,6 +117,12 @@ func turn_towards(delta_moded: float, target_global_pos: Vector2) -> void:
 	#prints(global_rotation, rotation, global_rotation - rotation, get_parent().rotation)
 	#global_rotation = next_rotation
 	update_rotation(next_rotation - get_parent().rotation)
+
+func turn_towards_default(delta_moded: float) -> void:
+	if !_use_default_roation:
+		return
+	var glob_pos = to_global( Vector2.from_angle( _default_rotation_glob - rotation) *100 ) 
+	turn_towards(delta_moded, glob_pos)
 
 ## Called by the State Machine
 func look_forward(delta_moded: float) -> void:

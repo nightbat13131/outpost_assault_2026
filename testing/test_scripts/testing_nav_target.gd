@@ -5,4 +5,5 @@ extends Node
 
 func _ready() -> void:
 	if directions and unit:
-		unit.set_tile_map_directions(directions)
+		#unit.set_tile_map_directions(directions)
+		return

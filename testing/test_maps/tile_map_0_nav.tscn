@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://ffqucx6xrr6f" path="res://entities/enemy/enemy_unit_tempate.tscn" id="4_rbfhg"]
 [ext_resource type="TileSet" uid="uid://dtw6mws8m8n5f" path="res://map/ground_direction_tileset_128.tres" id="5_0db7x"]
 [ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="7_me1h8"]
-[ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://testing/test_scripts/testing_nav_target.gd" id="8_me1h8"]
 [ext_resource type="Script" uid="uid://maup88as3mgl" path="res://testing/test_scripts/test_path_angle.gd" id="9_pmty3"]
 [ext_resource type="Script" uid="uid://dry05cmbjj5we" path="res://testing/test_scripts/tile_direction_view.gd" id="10_pmty3"]
 
@@ -48,68 +47,83 @@ position = Vector2(1625, 702)
 script = ExtResource("10_pmty3")
 tile_nav = NodePath("../../TileMapLayerDirection")
 
-[node name="NavTrigger" type="Node" parent="DebugScrips" unique_id=500359873 node_paths=PackedStringArray("unit", "directions")]
-script = ExtResource("8_me1h8")
-unit = NodePath("../../EnemyHolder/Enemy")
-directions = NodePath("../../TileMapLayerDirection")
-
-[node name="NavTrigger2" type="Node" parent="DebugScrips" unique_id=465004823 node_paths=PackedStringArray("unit", "directions")]
-script = ExtResource("8_me1h8")
-unit = NodePath("../../EnemyHolder/Enemy2")
-directions = NodePath("../../TileMapLayerDirection")
-
-[node name="NavTrigger3" type="Node" parent="DebugScrips" unique_id=314716618 node_paths=PackedStringArray("unit", "directions")]
-script = ExtResource("8_me1h8")
-unit = NodePath("../../EnemyHolder/Enemy3")
-directions = NodePath("../../TileMapLayerDirection")
-
-[node name="NavTrigger4" type="Node" parent="DebugScrips" unique_id=201355935 node_paths=PackedStringArray("unit", "directions")]
-script = ExtResource("8_me1h8")
-unit = NodePath("../../EnemyHolder/Enemy4")
-directions = NodePath("../../TileMapLayerDirection")
-
 [node name="PathAngle" type="Node2D" parent="DebugScrips" unique_id=166878870 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(832, 704)
+position = Vector2(192, 704)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
-[node name="PathAngle2" type="Node2D" parent="DebugScrips" unique_id=1594125030 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1088, 704)
+[node name="PathAngle2" type="Node2D" parent="DebugScrips" unique_id=1318260848 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(192, 576)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
-[node name="PathAngle4" type="Node2D" parent="DebugScrips" unique_id=168313555 node_paths=PackedStringArray("tilemap_d")]
+[node name="PathAngle3" type="Node2D" parent="DebugScrips" unique_id=609725318 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(576, 576)
+script = ExtResource("9_pmty3")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle4" type="Node2D" parent="DebugScrips" unique_id=1439881132 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(576, 448)
+script = ExtResource("9_pmty3")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle5" type="Node2D" parent="DebugScrips" unique_id=1169777789 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(576, 704)
+script = ExtResource("9_pmty3")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle6" type="Node2D" parent="DebugScrips" unique_id=2030498115 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(576, 832)
+script = ExtResource("9_pmty3")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle7" type="Node2D" parent="DebugScrips" unique_id=1746124032 node_paths=PackedStringArray("tilemap_d")]
 position = Vector2(576, 960)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
-[node name="PathAngle5" type="Node2D" parent="DebugScrips" unique_id=1548170053 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1344, 960)
+[node name="PathAngle8" type="Node2D" parent="DebugScrips" unique_id=538403765 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(704, 960)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
-[node name="PathAngle6" type="Node2D" parent="DebugScrips" unique_id=1200106704 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1344, 448)
+[node name="PathAngle9" type="Node2D" parent="DebugScrips" unique_id=1852572285 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(832, 960)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
-[node name="PathAngle7" type="Node2D" parent="DebugScrips" unique_id=931869143 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1344, 576)
+[node name="PathAngle10" type="Node2D" parent="DebugScrips" unique_id=194695122 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(832, 704)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
-[node name="PathAngle8" type="Node2D" parent="DebugScrips" unique_id=820451752 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1728, 320)
+[node name="PathAngle11" type="Node2D" parent="DebugScrips" unique_id=2079894934 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(704, 448)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
-[node name="PathAngle9" type="Node2D" parent="DebugScrips" unique_id=1018907930 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1728, 1472)
+[node name="PathAngle12" type="Node2D" parent="DebugScrips" unique_id=1305381954 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(832, 448)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
-[node name="PathAngle3" type="Node2D" parent="DebugScrips" unique_id=1878495312 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(576, 448)
+[node name="PathAngle13" type="Node2D" parent="DebugScrips" unique_id=1394549330 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(960, 192)
+script = ExtResource("9_pmty3")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle14" type="Node2D" parent="DebugScrips" unique_id=1098433796 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(192, 192)
+script = ExtResource("9_pmty3")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle15" type="Node2D" parent="DebugScrips" unique_id=1537008501 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(576, 192)
+script = ExtResource("9_pmty3")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle16" type="Node2D" parent="DebugScrips" unique_id=1658069833 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(192, 832)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
