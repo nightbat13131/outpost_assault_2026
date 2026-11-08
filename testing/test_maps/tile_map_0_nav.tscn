@@ -69,47 +69,47 @@ unit = NodePath("../../EnemyHolder/Enemy4")
 directions = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle" type="Node2D" parent="DebugScrips" unique_id=166878870 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(814, 700)
+position = Vector2(832, 704)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle2" type="Node2D" parent="DebugScrips" unique_id=1594125030 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1091, 691)
+position = Vector2(1088, 704)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle4" type="Node2D" parent="DebugScrips" unique_id=168313555 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(565, 979)
+position = Vector2(576, 960)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle5" type="Node2D" parent="DebugScrips" unique_id=1548170053 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1359, 984)
+position = Vector2(1344, 960)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle6" type="Node2D" parent="DebugScrips" unique_id=1200106704 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1351, 430)
+position = Vector2(1344, 448)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle7" type="Node2D" parent="DebugScrips" unique_id=931869143 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1356, 578)
+position = Vector2(1344, 576)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle8" type="Node2D" parent="DebugScrips" unique_id=820451752 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1712, 309)
+position = Vector2(1728, 320)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle9" type="Node2D" parent="DebugScrips" unique_id=1018907930 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(1698, 1417)
+position = Vector2(1728, 1472)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 
 [node name="PathAngle3" type="Node2D" parent="DebugScrips" unique_id=1878495312 node_paths=PackedStringArray("tilemap_d")]
-position = Vector2(573, 452)
+position = Vector2(576, 448)
 script = ExtResource("9_pmty3")
 tilemap_d = NodePath("../../TileMapLayerDirection")
 

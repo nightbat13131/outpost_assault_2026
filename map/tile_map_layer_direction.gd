@@ -8,6 +8,37 @@ const DATA_LAYER_OUTOING_DIRECTIONS = &'OutoingDirecitons'
 const DATA_LAYER_OUTOING_ANGLES = &'OutgoingAngles'
 const DATA_LAYER_OUTOING_CELLNEIGHBOR = &'OutgoingCellNeighbor'
 
+## https://github.com/godotengine/godot/blob/ed1daf0bf001b61586d9930840f2f1394092c079/scene/resources/2d/tile_set.cpp#L2114
+const _SQUARE_DIRECTIONS : Array[TileSet.CellNeighbor] = [
+	TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE, 
+	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_RIGHT_CORNER, 
+	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_LEFT_CORNER,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_LEFT_SIDE,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_LEFT_CORNER,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE, 
+	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_RIGHT_CORNER, 
+	]
+
+const _HORIZONTAL_OFFSET_DIRECTIONS : Array[TileSet.CellNeighbor] = [
+			TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_LEFT_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_LEFT_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_RIGHT_SIDE,
+	]
+
+const _VERTICAL_OFFSET_DIRECTIONS : Array[TileSet.CellNeighbor] = [
+			TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_LEFT_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE,
+			TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_RIGHT_SIDE,
+	]
+
+
 @export var view_debug := false: 
 	set(value):
 		view_debug = value
@@ -19,6 +50,35 @@ func _ready() -> void:
 	set_modulate(Color(Color.WHITE, .5))
 
 func get_shape() -> TileSet.TileShape: return get_tile_set().get_tile_shape()
+
+func get_offset() -> TileSet.TileOffsetAxis: return get_tile_set().get_tile_offset_axis()
+
+## Given the position of a tower, what direction should it face to cover the most path
+func get_facing_direction(pos_global: Vector2) -> float:
+	var local_focus := to_local(pos_global)
+	var focus_cord := local_to_map( local_focus )
+	var _directions = _SQUARE_DIRECTIONS
+	if get_shape() == TileSet.TileShape.TILE_SHAPE_HEXAGON:
+		if get_offset() == TileSet.TileOffsetAxis.TILE_OFFSET_AXIS_HORIZONTAL:
+			_directions = _HORIZONTAL_OFFSET_DIRECTIONS
+		else:
+			_directions = _VERTICAL_OFFSET_DIRECTIONS
+	var neighbor_cell : Vector2i
+	var second_point := Vector2.ZERO
+	var count := 1
+	for direction in _directions:
+		neighbor_cell = get_neighbor_cell(focus_cord, direction)
+		if get_cell_tile_data(neighbor_cell): 
+			# might add some kind of weighting in the future
+			count += 1
+			second_point += (  map_to_local(neighbor_cell) - local_focus ) 
+	second_point /= count
+	if second_point == Vector2.ZERO:
+		return Vector2.ONE.angle()
+	return second_point.angle()
+
+
+#region Leg Navigation
 
 func update_leg(leg: NavigationLeg) -> void:
 	var incoming_direction := invert_direction( leg.get_start_direction() )
@@ -95,6 +155,9 @@ func invert_direction(orignal_direction := Utilities.DIRECTION_UKNOWN ) -> int:
 	if orignal_direction >= 8:
 		return orignal_direction - 8
 	return orignal_direction + 8
+#endregion
+
+
 
 func _draw() -> void:
 	if view_debug:

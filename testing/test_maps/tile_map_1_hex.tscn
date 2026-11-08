@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="6_mcbf6"]
 [ext_resource type="Script" uid="uid://dbsunc8n7qpqs" path="res://testing/test_scripts/testing_nav_target.gd" id="9_nbpfb"]
 [ext_resource type="Script" uid="uid://dry05cmbjj5we" path="res://testing/test_scripts/tile_direction_view.gd" id="10_mcbf6"]
+[ext_resource type="Script" uid="uid://maup88as3mgl" path="res://testing/test_scripts/test_path_angle.gd" id="10_ylhg6"]
 
 [node name="Level_HexTest" type="Node2D" unique_id=1265585186]
 script = ExtResource("1_ciex5")
@@ -65,3 +66,38 @@ directions = NodePath("../../TileMapLayerDirection")
 script = ExtResource("9_nbpfb")
 unit = NodePath("../../EnemyHolder/Enemy3")
 directions = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle" type="Node2D" parent="TestScrips" unique_id=437170305 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(512, 352)
+script = ExtResource("10_ylhg6")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle2" type="Node2D" parent="TestScrips" unique_id=150488771 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(896, 352)
+script = ExtResource("10_ylhg6")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle3" type="Node2D" parent="TestScrips" unique_id=1439825728 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(896, 736)
+script = ExtResource("10_ylhg6")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle4" type="Node2D" parent="TestScrips" unique_id=232511531 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(1280, 544)
+script = ExtResource("10_ylhg6")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle5" type="Node2D" parent="TestScrips" unique_id=675075531 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(1728, 640)
+script = ExtResource("10_ylhg6")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle6" type="Node2D" parent="TestScrips" unique_id=934916829 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(1536, 736)
+script = ExtResource("10_ylhg6")
+tilemap_d = NodePath("../../TileMapLayerDirection")
+
+[node name="PathAngle7" type="Node2D" parent="TestScrips" unique_id=1278529110 node_paths=PackedStringArray("tilemap_d")]
+position = Vector2(896, 160)
+script = ExtResource("10_ylhg6")
+tilemap_d = NodePath("../../TileMapLayerDirection")
