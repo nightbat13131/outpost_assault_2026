@@ -6,7 +6,7 @@ var parent_node : PurchaseManager: set = set_purchase_manager
 
 func set_purchase_manager(purchase_manager: PurchaseManager) -> void: parent_node = purchase_manager
 
-func get_cost() -> float: return -1
+func get_cost() -> float: return 0
 
 func get_label() -> String: return "_Default_"
 

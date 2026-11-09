@@ -71,9 +71,9 @@ func _update_display() -> void:
 		return
 	show()
 	## Primary Text content and formating
-	var args = {COLOR: _get_cost_color().to_html(), VALUE : int(get_cost()), LABEL : get_label()}
+	var args = {COLOR: _get_cost_color().to_html(), VALUE : int(abs(get_cost()) ), LABEL : get_label()}
 	var _text = str("{"+LABEL+"}").format(args)
-	if args[VALUE] > 0:
+	if args[VALUE] != 0:
 		_text = str("[color={"+COLOR+"}]{"+VALUE+"}[/color]\n{"+LABEL+"}").format(args)
 	rich_text_label.set_text(_text)
 	## LevelLable number show/hide

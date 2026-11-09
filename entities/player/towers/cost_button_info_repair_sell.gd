@@ -10,7 +10,7 @@ func get_cost() -> float:
 		return -1
 	if _mode == RepairSell.REPAIR:
 		return _tower.get_repair_cost()
-	return _tower.get_sell_value()
+	return _tower.get_sell_value() *-1
 
 func get_label() -> String:
 	if _mode == RepairSell.REPAIR:
@@ -33,7 +33,7 @@ func on_pressed() -> void:
 		return
 	elif _mode == RepairSell.SELL:
 		if parent_node:
-			## GoldManager.earn_gold(get_cost()) ## tower calls the money gain
+			## GoldManager.earn_gold(get_cost()) ## tower calls the money gain when selling 
 			parent_node.purchase_attempt_result(true, self)
 
 func _on_health_changed() -> void: signal_change()
