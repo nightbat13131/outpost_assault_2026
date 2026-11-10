@@ -1,16 +1,23 @@
-[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://b624pmm2yjuy1"]
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://cveqmo1c1yxx8"]
 
 [ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_dma4r"]
-[ext_resource type="Resource" uid="uid://3wa3aobxshrp" path="res://architecture/ui/dialog/characters/character_black.tres" id="2_gsrte"]
+[ext_resource type="Resource" uid="uid://b56w74s28lcns" path="res://architecture/ui/dialog/characters/character_red.tres" id="2_gsrte"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="3_7jntv"]
 [ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_dvlt1"]
 
 [sub_resource type="Resource" id="Resource_pb14l"]
 script = ExtResource("1_dma4r")
 _character = ExtResource("2_gsrte")
-_dialog = "I dunno, Pinky. Haven't regretted watching the Boss beat your ass yet."
+_dialog = "Our Great city will not fall to the likes of you!!!"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[sub_resource type="Resource" id="Resource_lfee0"]
+script = ExtResource("1_dma4r")
+_character = ExtResource("3_7jntv")
+_dialog = "Light 'em if ya got 'em, boys. The big lady is going full Carmen."
 metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
 
 [resource]
 script = ExtResource("3_dvlt1")
-_dialogs = Array[ExtResource("1_dma4r")]([SubResource("Resource_pb14l")])
+_dialogs = Array[ExtResource("1_dma4r")]([SubResource("Resource_pb14l"), SubResource("Resource_lfee0")])
 metadata/_custom_type_script = "uid://crrqgfxgv78rb"

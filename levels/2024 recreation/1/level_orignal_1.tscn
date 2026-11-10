@@ -7,8 +7,9 @@
 [ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="4_t362c"]
 [ext_resource type="Resource" uid="uid://qwqas3cdsffr" path="res://levels/2024 recreation/1/dialog_orignal_level_01_01.tres" id="5_h8cbg"]
 [ext_resource type="Resource" uid="uid://bkfgda4vqpl8f" path="res://levels/2024 recreation/1/dialog_orignal_level_01_02.tres" id="6_fyums"]
-[ext_resource type="Resource" uid="uid://cmrq3jaeryy30" path="res://levels/2024 recreation/1/dialog_orignal_level_01_03.tres" id="7_fyums"]
+[ext_resource type="Resource" uid="uid://cmrq3jaeryy30" path="res://levels/2024 recreation/1/dialog_orignal_level_01_04.tres" id="7_fyums"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation2d.tscn" id="8_6d675"]
+[ext_resource type="Resource" uid="uid://c1u2mmv8jhhtw" path="res://levels/2024 recreation/1/dialog_orignal_level_01_victory.tres" id="8_81vn0"]
 [ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="9_hb4kt"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="11_36uud"]
 [ext_resource type="Resource" uid="uid://fyilmatoyruw" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation_og.tres" id="12_hb4kt"]
@@ -43,6 +44,7 @@ metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 [node name="Level_Orignal_1" unique_id=1060779039 instance=ExtResource("1_2p2oy")]
 _level_info = ExtResource("2_36uud")
 _dialog_groups = Array[ExtResource("4_t362c")]([ExtResource("4_36uud"), ExtResource("5_h8cbg"), ExtResource("6_fyums"), ExtResource("7_fyums")])
+_victory_dialog = ExtResource("8_81vn0")
 
 [node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 instance=ExtResource("2_m8bud")]
 script = ExtResource("9_hb4kt")

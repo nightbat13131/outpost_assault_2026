@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://cjx7dkhfnl5d5"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_58yrx"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="2_58yrx"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_klea8"]
+
+[sub_resource type="Resource" id="Resource_ne0gt"]
+script = ExtResource("1_58yrx")
+_character = ExtResource("2_58yrx")
+_dialog = "Duh duh duh duh... Oh, wait, wrong game. Sorry. Yay, we won!"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("3_klea8")
+_dialogs = Array[ExtResource("1_58yrx")]([SubResource("Resource_ne0gt")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

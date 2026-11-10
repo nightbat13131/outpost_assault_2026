@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://bvwtw2ajt2skj"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_650na"]
+[ext_resource type="Resource" uid="uid://c3nhig11mrh2l" path="res://architecture/ui/dialog/characters/character_blue.tres" id="2_650na"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_yb0hm"]
+
+[sub_resource type="Resource" id="Resource_jpsp2"]
+script = ExtResource("1_650na")
+_character = ExtResource("2_650na")
+_dialog = "VICOTRY is OURS!!!!!!"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("3_yb0hm")
+_dialogs = Array[ExtResource("1_650na")]([SubResource("Resource_jpsp2")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"
