@@ -12,43 +12,37 @@ func _ready() -> void:
 func _trigger(number: int) -> void:
 	match number:
 		0:
-			trigger_dialog_group_index(0)
-			call_wave(0)
 			call_camera_bounds(0)
+			await trigger_dialog_group_index(0)
+			call_wave(0)
 			_trigger_on_wave_complete = _trigger.bind(1)
 		1:
-			trigger_dialog_group_index(1)
-			call_wave(1)
 			#call_camera_bounds(0)
+			await trigger_dialog_group_index(1)
+			call_wave(1)
 			_trigger_on_wave_complete = _trigger.bind(2)
 		2:
-			trigger_dialog_group_index(2)
+			#call_camera_bounds(1)
+			await trigger_dialog_group_index(2)
 			call_wave(2)
-			call_camera_bounds(1)
 			_trigger_on_wave_complete = _trigger.bind(3)
 		3:
-			trigger_dialog_group_index(3)
-			call_wave(3)
 			call_camera_bounds(1)
+			await trigger_dialog_group_index(3)
+			call_wave(3)
 			_trigger_on_wave_complete = _trigger.bind(4)
 		4:
-			#trigger_dialog_group_index(3)
-			call_wave(4)
 			#call_camera_bounds(2)
+			#await trigger_dialog_group_index(3)
+			call_wave(4)
 			_trigger_on_wave_complete = _trigger.bind(5)
 		5:
-			#trigger_dialog_group_index(3)
-			call_wave(5)
 			#call_camera_bounds(2)
+			#await trigger_dialog_group_index(3)
+			call_wave(5)
 			_trigger_on_wave_complete = _trigger.bind(6)
 		6:
-			#trigger_dialog_group_index(3)
-			call_wave(6)
 			call_camera_bounds(2)
+			#await trigger_dialog_group_index(3)
+			call_wave(6)
 			_trigger_on_wave_complete = _on_victory
-
-#func _triggerW(): 
-	#print("level2.TriggerW")
-	#var call_args = [TalkingHead.TALKER.RED, "Who do you think you are?!", true]
-	#dialog_box.start_event(call_args[0], call_args[1], call_args[2])
-	#_on_enemies_defeated()

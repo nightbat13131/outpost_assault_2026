@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogGroup" format=3 uid="uid://dsid8jtwvttp4"]
+
+[ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="1_dgu7v"]
+[ext_resource type="Resource" uid="uid://b56w74s28lcns" path="res://architecture/ui/dialog/characters/character_red.tres" id="2_dgu7v"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="3_mm3x7"]
+
+[sub_resource type="Resource" id="Resource_js73d"]
+script = ExtResource("1_dgu7v")
+_character = ExtResource("2_dgu7v")
+_dialog = "Who do you think you are?!"
+metadata/_custom_type_script = "uid://dr6xn6eba7pwu"
+
+[resource]
+script = ExtResource("3_mm3x7")
+_dialogs = Array[ExtResource("1_dgu7v")]([SubResource("Resource_js73d")])
+metadata/_custom_type_script = "uid://crrqgfxgv78rb"

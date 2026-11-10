@@ -17,6 +17,7 @@ static var _instance : Level
 @export var _level_info: LevelInfo
 
 @export var _dialog_groups: Array[DialogGroup]
+@export var _victory_dialog: DialogGroup
 
 var _trigger_on_wave_complete : Callable
 
@@ -116,6 +117,10 @@ func _on_wave_complete() -> void:
 
 func get_level_info() -> LevelInfo : return _level_info
 
-func _on_victory() -> void: LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_WIN)
+func _on_victory() -> void: 
+	if _victory_dialog:
+		send_dialog_group(_victory_dialog)
+		await _victory_dialog.dialog_complete
+	LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_WIN)
 
 static func get_instance() -> Level: return _instance

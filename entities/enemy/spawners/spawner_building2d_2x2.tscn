@@ -57,9 +57,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Spawner_2x2_" type="Node2D" unique_id=1797158330 node_paths=PackedStringArray("spawn_points")]
+[node name="Spawner_2x2_" type="Node2D" unique_id=1797158330]
 script = ExtResource("1_negn4")
-spawn_points = [NodePath("SpawnPoint_0")]
 
 [node name="Building" parent="." unique_id=831910580 instance=ExtResource("2_ww00v")]
 unique_name_in_owner = true
