@@ -2,6 +2,9 @@
 class_name TileMapLayer_Directions
 extends TileMapLayer
 
+static var _instance : TileMapLayer_Directions
+
+const ATLAS_TARGET : Vector2i = Vector2i(0,2)
 const DATA_LAYER_STOP = &'Stop'
 const DATA_LAYER_CONTINUE = &'Continue'
 const DATA_LAYER_OUTOING_DIRECTIONS = &'OutoingDirecitons'
@@ -43,15 +46,79 @@ const _VERTICAL_OFFSET_DIRECTIONS : Array[TileSet.CellNeighbor] = [
 		view_debug = value
 		queue_redraw()
 
-static var _instance : TileMapLayer_Directions
+
+## Cord : Distance 
+var _path_distances: Dictionary[Vector2i, float] = {}
+
+func _init() -> void:
+	_instance = self
 
 func _ready() -> void:
+	_calculate_distnaces_no_direction()
 	if Engine.is_editor_hint():
 		return
-	_instance = self
 	set_modulate(Color(Color.WHITE, .5))
 
 static func get_intsance() -> TileMapLayer_Directions: return _instance
+
+#region Distance from target
+
+
+func _calculate_distnaces_no_direction() -> void:
+	var _focus_cell : Vector2i = _find_target_cell()
+	if _focus_cell == Vector2i.MAX: # no target
+		return
+	var _focus_value := -1.0
+	_path_distances.set(_focus_cell, _focus_value)
+	#var _value_n := INF
+	var _new_value := INF
+	var _atlas := Vector2i.MAX
+	var _next_cells : Array[Vector2i] = [_focus_cell ] #get_surrounding_cells(_focus_cell)
+	#var _neighbors : Array[Vector2i] = []
+	var limit := 1000000
+	while !_next_cells.is_empty() and limit > 0:
+		limit -= 1
+		_focus_cell = _next_cells.pop_front()
+		_atlas = get_cell_atlas_coords(_focus_cell) 
+		if get_cell_atlas_coords(_focus_cell) == Vector2i(-1,-1):  #no path at this location
+			continue
+		elif _atlas == ATLAS_TARGET:
+			_focus_value = -1
+		else:
+			_focus_value = _path_distances.get(_focus_cell, INF)
+			
+		_new_value = INF
+		#_neighbors = []
+		for n_cell in get_surrounding_cells(_focus_cell):
+			if get_cell_atlas_coords( n_cell ) != Vector2i(-1,-1): # path found at cell
+				#_neighbors.append(n_each) 
+				
+				if _path_distances.get(n_cell, INF) + 1 < _new_value:
+					_new_value = _path_distances.get(n_cell, INF) + 1
+				else:
+					if !_next_cells.has(n_cell):
+						_next_cells.append(n_cell)
+
+		if _path_distances.get(_focus_cell, INF) > _new_value: 
+			_path_distances.set(_focus_cell, _new_value)
+			#for each_n in _neighbors:
+			
+
+	print(_next_cells)
+	print(limit)
+	print(_path_distances)
+
+func _find_target_cell() -> Vector2i:
+	for each_cell in get_used_cells():
+		if get_cell_atlas_coords(each_cell) == ATLAS_TARGET:
+			return each_cell
+	return Vector2i.MAX
+
+#endregion
+
+
+
+#region Angle pointing at most paths
 
 func get_shape() -> TileSet.TileShape: return get_tile_set().get_tile_shape()
 
@@ -85,6 +152,7 @@ func _get_facing_direction(pos_global: Vector2) -> float:
 	if second_point == Vector2.ZERO:
 		return randf_range(0.0, TAU) + TAU * 3
 	return second_point.angle()
+#endregion
 
 
 #region Leg Navigation
@@ -170,11 +238,20 @@ func invert_direction(orignal_direction := Utilities.DIRECTION_UKNOWN ) -> int:
 	return orignal_direction + 8
 #endregion
 
-
-
 func _draw() -> void:
 	if view_debug:
-		_debug_tile_config()
+		#_debug_tile_config()
+		_debug_distance()
+
+func _debug_distance() -> void:
+	var center := Vector2.ZERO
+	var angle : float
+	for cell in _path_distances.keys():
+		center = map_to_local(cell)
+		angle = _path_distances.get(cell)
+		
+		draw_line(center, center + Vector2.from_angle(deg_to_rad( angle * 7) ) * angle * 2, Color.CADET_BLUE, 10)
+	pass
 
 func _debug_tile_config() -> void:
 	var color : Color

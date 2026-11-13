@@ -15,6 +15,8 @@ func _ready() -> void:
 	_setup_building()
 
 func _setup_building() -> void:
+	if Engine.is_editor_hint():
+		return
 	if _building.has_signal("died"):
 		_building.set_max_health(_building_health)
 		_building.died.connect(_on_building_died)
