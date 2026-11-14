@@ -14,7 +14,7 @@ const WARN_TILEMAP_DIRECTIONS = "Level needs Tilemap Directions"
 
 static var _instance : Level
 
-@export var _level_info: LevelInfo
+@export var _level_info: LevelInfo : get = get_level_info
 
 @export var _dialog_groups: Array[DialogGroup]
 @export var _victory_dialog: DialogGroup
@@ -24,31 +24,31 @@ var _trigger_on_wave_complete : Callable
 var _camera_binder: CameraBinder
 var _spawn_manager: SpawnManager
 
+func _init() -> void: _instance = self
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	_instance = self
 	_connect_children()
-	_level_info.on_level_start()
+	get_level_info().on_level_start()
 	GameSpeed.on_level_start()
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.CLOSE_ALL) ## handel request reload
 
-func call_wave(wave_number: int) -> void: _spawn_manager.call_wave(wave_number)
+func _call_wave(wave_number: int) -> void: _spawn_manager.call_wave(wave_number)
 
-func call_camera_bounds(index: int) -> void: _camera_binder.trigger_bound_index(index)
+func _call_camera_bounds(index: int) -> void: _camera_binder.trigger_bound_index(index)
 
 ## for calling dialog via the standard array
-func trigger_dialog_group_index(index: int) -> bool: 
-	if index >= _dialog_groups.size():
-		push_warning(self, "send_dialog_group index out of bounds. index: ", index, " size: ", _dialog_groups.size())
+func _trigger_dialog_group_index(index: int) -> bool: 
+	var d_group := get_level_info().get_dialog_group(index)# _dialog_groups[index]
+	if d_group == null:
 		return false
-	var d_group := _dialog_groups[index]
-	send_dialog_group(_dialog_groups[index])
+	_send_dialog_group(d_group)
 	await  d_group.dialog_complete
 	return true
 
 ## for calling dialog group that may not be in the standard array
-func send_dialog_group(dialog_group: DialogGroup) -> void: 
+func _send_dialog_group(dialog_group: DialogGroup) -> void: 
 	DisplayDialog.set_dialog_group(dialog_group)
 
 func _on_base_death() -> void:
@@ -115,12 +115,25 @@ func _on_wave_complete() -> void:
 	if _trigger_on_wave_complete:
 		_trigger_on_wave_complete.call()
 
-func get_level_info() -> LevelInfo : return _level_info
+func get_level_info() -> LevelInfo : 
+	if Engine.is_editor_hint():
+		return _level_info
+	if _level_info == null:
+		push_warning(self, " has no level info")
+		_level_info = LevelInfo.new()
+	return _level_info
 
 func _on_victory() -> void: 
-	if _victory_dialog:
-		send_dialog_group(_victory_dialog)
-		await _victory_dialog.dialog_complete
+	var victory_dialog = get_level_info()._get_victory_dialog()
+	if victory_dialog:
+		_send_dialog_group(victory_dialog)
+		await victory_dialog.dialog_complete
 	LevelPopUps.request_popup(LevelPopUps.PopupTypes.LEVEL_WIN)
 
 static func get_instance() -> Level: return _instance
+
+static func has_instance() -> bool: return _instance != null
+
+static func is_tower_allowed(tower: TowerInfo_reference.TowerType) -> void:
+	if has_instance():
+		get_instance().get_level_info().is_tower_available(tower)

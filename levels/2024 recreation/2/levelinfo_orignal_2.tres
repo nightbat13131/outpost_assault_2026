@@ -1,9 +1,18 @@
 [gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://crs1yhl2hu4ce"]
 
 [ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_e32ye"]
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="1_samso"]
+[ext_resource type="Resource" uid="uid://cyyc8hsp2avi1" path="res://levels/2024 recreation/2/dialog_orignal_level_02_00.tres" id="2_cqcfn"]
+[ext_resource type="Resource" uid="uid://cdwhe1vhfv8tl" path="res://levels/2024 recreation/2/dialog_orignal_level_02_01.tres" id="3_gsd3y"]
+[ext_resource type="Resource" uid="uid://cof65ymo7cpdc" path="res://levels/2024 recreation/2/dialog_orignal_level_02_02.tres" id="4_h6jhv"]
+[ext_resource type="Resource" uid="uid://ru0pnh2pn4np" path="res://levels/2024 recreation/2/dialog_orignal_level_02_03.tres" id="5_tupwb"]
+[ext_resource type="Resource" uid="uid://dxvyil44jsd80" path="res://levels/2024 recreation/2/dialog_orignal_level_02_05.tres" id="6_nrrwj"]
+[ext_resource type="Resource" uid="uid://dsid8jtwvttp4" path="res://levels/2024 recreation/dialog_orignal_level_02_03_victory.tres" id="7_qjxju"]
 
 [resource]
 script = ExtResource("1_e32ye")
 level_name = "2024 Level 2"
 level_uid = "uid://cp03bto5sc4go"
+_dialog_groups = Array[ExtResource("1_samso")]([ExtResource("2_cqcfn"), ExtResource("3_gsd3y"), ExtResource("4_h6jhv"), ExtResource("5_tupwb"), ExtResource("6_nrrwj")])
+_victory_dialog = ExtResource("7_qjxju")
 metadata/_custom_type_script = "uid://u6pais7e54pl"

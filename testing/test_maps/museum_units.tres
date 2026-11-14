@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://df8cltxqp3rgn"]
 
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="1_mr8jd"]
 [ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_rgifr"]
 
 [resource]
@@ -7,4 +8,5 @@ script = ExtResource("1_rgifr")
 level_name = "Unit Museum"
 level_uid = "uid://wf32uulrcnw4"
 starting_gold = 10000000.0
+_allow_all_towers = true
 metadata/_custom_type_script = "uid://u6pais7e54pl"

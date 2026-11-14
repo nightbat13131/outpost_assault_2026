@@ -101,6 +101,9 @@ spawn_types = Dictionary[int, int]({
 0: 1
 })
 
+[node name="Spawner_2x2_og" parent="SpawnManager" unique_id=1797158330 instance=ExtResource("19_qmy4o")]
+position = Vector2(385, 898)
+
 [node name="TowerHolder" type="Node2D" parent="." unique_id=370330720]
 script = ExtResource("15_6ib1j")
 metadata/_edit_lock_ = true
@@ -170,6 +173,3 @@ navigation_enabled = false
 script = ExtResource("21_nrnh1")
 view_debug = true
 metadata/_edit_lock_ = true
-
-[node name="Spawner_2x2_og" parent="." unique_id=1797158330 instance=ExtResource("19_qmy4o")]
-position = Vector2(385, 898)

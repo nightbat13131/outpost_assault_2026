@@ -1,9 +1,17 @@
 [gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://c5vuy8htsfep3"]
 
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="1_auw56"]
 [ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_gs6cm"]
+[ext_resource type="Resource" uid="uid://bj81dyskp7xm4" path="res://levels/2024 recreation/3/dialog_orignal_level_03_00.tres" id="2_rngnp"]
+[ext_resource type="Resource" uid="uid://c0um4tvle3120" path="res://levels/2024 recreation/3/dialog_orignal_level_03_02.tres" id="3_tw42f"]
+[ext_resource type="Resource" uid="uid://d1xl075ykvkqx" path="res://levels/2024 recreation/3/dialog_orignal_level_03_03.tres" id="4_3vmti"]
+[ext_resource type="Resource" uid="uid://rpf1m37in47g" path="res://levels/2024 recreation/3/dialog_orignal_level_03_04.tres" id="5_nj1ss"]
+[ext_resource type="Resource" uid="uid://dsid8jtwvttp4" path="res://levels/2024 recreation/dialog_orignal_level_02_03_victory.tres" id="6_cojjb"]
 
 [resource]
 script = ExtResource("1_gs6cm")
 level_name = "2024 Level 2"
 level_uid = "uid://cp03bto5sc4go"
+_dialog_groups = Array[ExtResource("1_auw56")]([ExtResource("2_rngnp"), ExtResource("3_tw42f"), ExtResource("4_3vmti"), ExtResource("5_nj1ss")])
+_victory_dialog = ExtResource("6_cojjb")
 metadata/_custom_type_script = "uid://u6pais7e54pl"
