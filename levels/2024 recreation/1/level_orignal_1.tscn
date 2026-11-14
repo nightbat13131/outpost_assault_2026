@@ -46,16 +46,18 @@ _level_info = ExtResource("2_36uud")
 _dialog_groups = Array[ExtResource("4_t362c")]([ExtResource("4_36uud"), ExtResource("5_h8cbg"), ExtResource("6_fyums"), ExtResource("7_fyums")])
 _victory_dialog = ExtResource("8_81vn0")
 
-[node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 instance=ExtResource("2_m8bud")]
+[node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 node_paths=PackedStringArray("_overwrite_tile_map") instance=ExtResource("2_m8bud")]
+_overwrite_tile_map = NodePath("TileMap_River")
 metadata/_edit_lock_ = true
 
-[node name="TileMapLayer" type="TileMapLayer" parent="OrignalWorldMap" index="4" unique_id=1412225723]
+[node name="TileMap_River" type="TileMapLayer" parent="OrignalWorldMap" index="4" unique_id=1412225723]
 position = Vector2(10, 10)
 tile_map_data = PackedByteArray("AAAXAP7/AAAAAAIAAAAWAP//AAAAAAIAAAAVAP7/AAAAAAEAAAAYAP//AAAAAAEAAAAZAP//AAAAAAEAAAAZAP7/AAAAAAEAAAAaAP7/AAAAAAEAAAAbAP7/AAAAAAEAAAAbAP3/AAAAAAEAAAAcAP3/AAAAAAEAAAAcAPz/AAAAAAEAAAAdAPz/AAAAAAEAAAAdAPv/AAAAAAEAAAAdAPr/AAAAAAEAAAAeAPr/AAAAAAEAAAAeAPn/AAAAAAEAAAAfAPn/AAAAAAEAAAAfAPj/AAAAAAEAAAAgAPj/AAAAAAEAAAAgAPn/AAAAAAEAAAAhAPn/AAAAAAEAAAAiAPn/AAAAAAEAAAAXAP//AAAAAAIAAAAWAP7/AAAAAAIAAAA=")
 tile_set = ExtResource("10_81vn0")
+metadata/_edit_lock_ = true
 
 [node name="BrokenFoundation" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="0" unique_id=400182285 instance=ExtResource("8_6d675")]
-position = Vector2(-191, -193)
+position = Vector2(-194, -194)
 _cost_info = ExtResource("12_hb4kt")
 
 [node name="BrokenFoundation2" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="1" unique_id=1978485684 instance=ExtResource("8_6d675")]
@@ -75,7 +77,7 @@ position = Vector2(1726, -1023)
 _cost_info = ExtResource("12_hb4kt")
 
 [node name="TowerFoundation_OG1" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="5" unique_id=61454238 instance=ExtResource("17_aerbt")]
-position = Vector2(58, -329)
+position = Vector2(61, -324)
 
 [node name="TowerFoundation_OG2" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="6" unique_id=99956400 instance=ExtResource("17_aerbt")]
 position = Vector2(320, -456)
@@ -161,3 +163,4 @@ tile_set = ExtResource("17_hb4kt")
 navigation_enabled = false
 script = ExtResource("18_81vn0")
 view_debug = true
+metadata/_edit_lock_ = true

@@ -96,10 +96,9 @@ tile_set = SubResource("TileSet_n76ps")
 script = ExtResource("8_rqtgn")
 metadata/_edit_lock_ = true
 
-[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475 node_paths=PackedStringArray("tilemap_directions")]
+[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475]
 position = Vector2(273, 212)
 script = ExtResource("9_6gajh")
-tilemap_directions = NodePath("../../TileMapLayerDirection")
 _inital_delay = 3.0
 _pulse_gap = 3.0
 _pulse_per_wave = 3

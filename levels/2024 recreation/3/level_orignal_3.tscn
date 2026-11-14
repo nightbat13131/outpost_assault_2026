@@ -49,11 +49,12 @@ _level_info = ExtResource("3_my2x4")
 _dialog_groups = Array[ExtResource("4_qt26v")]([ExtResource("5_lg4k2"), ExtResource("6_ec7su"), ExtResource("7_v6enr"), ExtResource("8_1ih0b"), ExtResource("9_ufeqe")])
 _victory_dialog = ExtResource("10_whlu0")
 
-[node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 instance=ExtResource("11_dl0bb")]
+[node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 node_paths=PackedStringArray("_overwrite_tile_map") instance=ExtResource("11_dl0bb")]
 position = Vector2(-2176, 1024)
+_overwrite_tile_map = NodePath("TileMapLayer_River")
 metadata/_edit_lock_ = true
 
-[node name="TileMapLayer" type="TileMapLayer" parent="OrignalWorldMap" index="4" unique_id=774917222]
+[node name="TileMapLayer_River" type="TileMapLayer" parent="OrignalWorldMap" index="4" unique_id=774917222]
 position = Vector2(10, 10)
 tile_map_data = PackedByteArray("AAAWAP//AAABAAAAAAAXAP//AAABAAAAAAAXAP7/AAABAAAAAAAWAP7/AAABAAAAAAAYAP7/AAAAAAAAAAAYAP//AAAAAAAAAAAVAP7/AAAAAAAAAAAVAP//AAAAAAAAAAA=")
 tile_set = ExtResource("12_bc3wu")
@@ -194,7 +195,7 @@ position = Vector2(2, -444)
 position = Vector2(326, -703)
 
 [node name="TowerFoundation_OG5" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="35" unique_id=1658838027 instance=ExtResource("14_pwgvq")]
-position = Vector2(961, -955)
+position = Vector2(957, -957)
 
 [node name="SpawnManager" parent="." index="2" unique_id=1550060747]
 visible = false

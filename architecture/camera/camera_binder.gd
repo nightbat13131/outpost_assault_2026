@@ -4,6 +4,7 @@ class_name CameraBinder extends Node2D
 var bound_index := 0
 
 @export var debug := true
+@export var _free_roam := false
 @export var testing_index := 0 : 
 	set(value): 
 		if bounds.is_empty():
@@ -19,13 +20,19 @@ var bound_index := 0
 
 func _ready() -> void:
 	testing_index = testing_index # prevent outout bounds
-	if !Engine.is_editor_hint():
+	if Engine.is_editor_hint():
+		return
+	if _free_roam:
+		camera._debug_freeroam = true
+	for each_bound in bounds:
+		if !each_bound.changed.is_connected(queue_redraw):
+			each_bound.changed.connect(queue_redraw)
+	if debug:
 		trigger_bound_index(testing_index)
-		for each_bound in bounds:
-			if !each_bound.changed.is_connected(queue_redraw):
-				each_bound.changed.connect(queue_redraw)
 	else: 
+		
 		trigger_bound_index(0)
+		
 
 func _refresh_preview() -> void:
 	if _redraw_press: pass # prevent unused variable warnings 

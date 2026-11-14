@@ -20,7 +20,8 @@ static var action_move_drag : GUIDEAction = load("uid://da8kwewg6uhwn")
 static var action_move_home : GUIDEAction = load("uid://dngiyneq1ddvy")
 static var action_zoom : GUIDEAction = load("uid://bl4ky3gf6gcji")
 
-@export var debug := true
+@export var debug_draw := true
+@export var _debug_freeroam := false
 var _is_drag_cursor := true : set = _set_is_drag_cursor
 var _limit_rect : Rect2
 var _max_speed := 500.0
@@ -42,7 +43,7 @@ func _ready() -> void:
 	setup_subviewport.call_deferred()
 
 func _draw() -> void:
-	if Engine.is_editor_hint() or debug:
+	if Engine.is_editor_hint() or debug_draw:
 		var base_radius = get_viewport_rect().size.y*.5
 		draw_circle(Vector2.ZERO, base_radius, Color.WHITE, false, 2.0, false) #100%
 		draw_circle(Vector2.ZERO, base_radius * 1/min_zoom, Color.GREEN, false, 2.0, false)
@@ -130,7 +131,11 @@ func get_speed() -> float: return _max_speed * (1/zoom.length())
 
 func _on_zoom() -> void:
 	var value = action_zoom.value_axis_1d
-	var new_zoom = clamp(get_zoom().x*(1 + ZOOM_SPEED*value), min_zoom, max_zoom)
+	var new_zoom = get_zoom().x*(1 + ZOOM_SPEED*value)
+	if _debug_freeroam:
+		set_zoom(Vector2(new_zoom, new_zoom))
+		return
+	new_zoom = clamp(new_zoom, min_zoom, max_zoom)
 	set_zoom(Vector2(new_zoom, new_zoom))
 	if action_move_keys and action_move_drag: 
 		if !(action_move_keys.is_triggered() or action_move_drag.is_triggered()):
@@ -165,6 +170,9 @@ func remote_move_to(next_position : Vector2, target_zoom:= Vector2.ZERO) -> void
 		pass
 
 func _move_to(next_position_: Vector2) -> void:
+	if _debug_freeroam:
+		position = next_position_
+		return
 	var screen_size := get_viewport_rect().size / zoom.x
 	var internal_bounds = Rect2(_limit_rect.position + screen_size * .5, _limit_rect.size - screen_size) # y works GREAT
 	if screen_size.x >= _limit_rect.size.x:

@@ -61,27 +61,27 @@ position = Vector2(-2124, -698)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation19" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="2" unique_id=953059959 instance=ExtResource("11_p7av3")]
-position = Vector2(-1628, -723)
+position = Vector2(-1602, -710)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation13" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="3" unique_id=1019222135 instance=ExtResource("11_p7av3")]
-position = Vector2(-787, -1103)
+position = Vector2(-708, -1092)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation21" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="4" unique_id=24039145 instance=ExtResource("11_p7av3")]
-position = Vector2(-536, -1103)
+position = Vector2(-509, -1089)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation12" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="5" unique_id=260662019 instance=ExtResource("11_p7av3")]
-position = Vector2(322, -1063)
+position = Vector2(316, -1090)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation7" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="6" unique_id=1099323724 instance=ExtResource("11_p7av3")]
-position = Vector2(-342, -645)
+position = Vector2(-325, -637)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation8" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="7" unique_id=1599058471 instance=ExtResource("11_p7av3")]
-position = Vector2(332, -689)
+position = Vector2(328, -694)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation9" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="8" unique_id=815600588 instance=ExtResource("11_p7av3")]
@@ -89,11 +89,11 @@ position = Vector2(0, -834)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation10" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="9" unique_id=2078279844 instance=ExtResource("11_p7av3")]
-position = Vector2(710, -852)
+position = Vector2(700, -834)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation11" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="10" unique_id=1812058086 instance=ExtResource("11_p7av3")]
-position = Vector2(914, -980)
+position = Vector2(957, -961)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation6" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="11" unique_id=1025943070 instance=ExtResource("11_p7av3")]
@@ -101,50 +101,50 @@ position = Vector2(-5, -457)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation2" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="12" unique_id=1978485684 instance=ExtResource("11_p7av3")]
-position = Vector2(-1205, -816)
+position = Vector2(-1150, -827)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation3" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="13" unique_id=1954618198 instance=ExtResource("11_p7av3")]
-position = Vector2(-1214, -1106)
+position = Vector2(-1151, -1095)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation14" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="14" unique_id=839427960 instance=ExtResource("11_p7av3")]
-position = Vector2(-1400, -1100)
+position = Vector2(-1342, -1087)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation15" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="15" unique_id=47341517 instance=ExtResource("11_p7av3")]
-position = Vector2(-2125, -1750)
+position = Vector2(-2111, -1731)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation16" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="16" unique_id=1915068977 instance=ExtResource("11_p7av3")]
-position = Vector2(-2263, -1329)
+position = Vector2(-2247, -1343)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation17" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="17" unique_id=1322015336 instance=ExtResource("11_p7av3")]
-position = Vector2(-1836, -1323)
+position = Vector2(-1854, -1337)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation18" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="18" unique_id=1408481201 instance=ExtResource("11_p7av3")]
-position = Vector2(-1827, -721)
+position = Vector2(-1850, -708)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation5" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="19" unique_id=1562518689 instance=ExtResource("11_p7av3")]
-position = Vector2(-715, -809)
+position = Vector2(-708, -832)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="BrokenFoundation4" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="20" unique_id=350200195 instance=ExtResource("11_p7av3")]
-position = Vector2(-307, -976)
+position = Vector2(-317, -966)
 _cost_info = ExtResource("8_vkqak")
 
 [node name="TowerFoundation_OG1" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="21" unique_id=316419391 instance=ExtResource("10_p2nrg")]
-position = Vector2(-468, 30)
+position = Vector2(-455, 1)
 starting_tower = -21
 
 [node name="TowerFoundation_OG2" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="22" unique_id=467384870 instance=ExtResource("10_p2nrg")]
 position = Vector2(-182, -268)
 
 [node name="TowerFoundation_OG4" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="23" unique_id=292747704 instance=ExtResource("10_p2nrg")]
-position = Vector2(-2260, -854)
+position = Vector2(-2248, -826)
 
 [node name="TowerFoundation_OG3" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="24" unique_id=178342697 instance=ExtResource("10_p2nrg")]
 position = Vector2(183, -269)
