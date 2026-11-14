@@ -13,6 +13,7 @@
 script = ExtResource("1_e32ye")
 level_name = "2024 Level 2"
 level_uid = "uid://cp03bto5sc4go"
+_availalbe_towers = Array[int]([-21, -22])
 _dialog_groups = Array[ExtResource("1_samso")]([ExtResource("2_cqcfn"), ExtResource("3_gsd3y"), ExtResource("4_h6jhv"), ExtResource("5_tupwb"), ExtResource("6_nrrwj")])
 _victory_dialog = ExtResource("7_qjxju")
 metadata/_custom_type_script = "uid://u6pais7e54pl"

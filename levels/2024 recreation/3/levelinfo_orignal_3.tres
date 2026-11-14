@@ -10,8 +10,9 @@
 
 [resource]
 script = ExtResource("1_gs6cm")
-level_name = "2024 Level 2"
-level_uid = "uid://cp03bto5sc4go"
+level_name = "2024 Level 3"
+level_uid = "uid://50lovpqof5li"
+_allow_all_towers = true
 _dialog_groups = Array[ExtResource("1_auw56")]([ExtResource("2_rngnp"), ExtResource("3_tw42f"), ExtResource("4_3vmti"), ExtResource("5_nj1ss")])
 _victory_dialog = ExtResource("6_cojjb")
 metadata/_custom_type_script = "uid://u6pais7e54pl"

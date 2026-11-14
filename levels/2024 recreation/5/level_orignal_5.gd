@@ -12,33 +12,28 @@ func _ready() -> void:
 func _trigger(number: int) -> void:
 	match number:
 		0:
-			trigger_dialog_group_index(0)
-			call_wave(0)
-			call_camera_bounds(0)
+			_call_camera_bounds(0)
+			await _trigger_dialog_group_index(0)
+			_call_wave(0)
+			
 			_trigger_on_wave_complete = _trigger.bind(1)
 		1:
-			trigger_dialog_group_index(1)
-			call_wave(1)
-			#call_camera_bounds(0)
+			#_call_camera_bounds(0)
+			await _trigger_dialog_group_index(1)
+			_call_wave(1)
 			_trigger_on_wave_complete = _trigger.bind(2)
 		2:
-			trigger_dialog_group_index(2)
-			call_wave(2)
-			call_camera_bounds(1)
+			_call_camera_bounds(1)
+			_trigger_dialog_group_index(2)
+			_call_wave(2)
 			_trigger_on_wave_complete = _trigger.bind(3)
 		3:
-			trigger_dialog_group_index(3)
-			call_wave(3)
-			#call_camera_bounds(1)
+			#_call_camera_bounds(1)
+			await _trigger_dialog_group_index(3)
+			_call_wave(3)
 			_trigger_on_wave_complete = _trigger.bind(4)
 		4:
-			trigger_dialog_group_index(4)
-			call_wave(4)
-			#call_camera_bounds(2)
+			#_call_camera_bounds(2)
+			await _trigger_dialog_group_index(4)
+			_call_wave(4)
 			_trigger_on_wave_complete =  _on_victory
-
-
-#func _triggerW(): # wave 3 beat
-	#var call_args = [TalkingHead.TALKER.BLUE, "VICOTRY is OURS!!!!!!", false]
-	#dialog_box.start_event(call_args[0], call_args[1], call_args[2])
-	#_on_enemies_defeated() 

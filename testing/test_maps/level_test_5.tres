@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://e62c62sf5nnd"]
 
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="1_2aytc"]
 [ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="1_06e3o"]
 
 [resource]
 script = ExtResource("1_06e3o")
 level_name = "Map Stuff"
 level_uid = "uid://b8xekqbva6ixd"
-view_mode = 2
 starting_gold = 1005.0
+_allow_all_towers = true
 metadata/_custom_type_script = "uid://u6pais7e54pl"

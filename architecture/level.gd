@@ -134,6 +134,7 @@ static func get_instance() -> Level: return _instance
 
 static func has_instance() -> bool: return _instance != null
 
-static func is_tower_allowed(tower: TowerInfo_reference.TowerType) -> void:
+static func is_tower_allowed(tower: TowerInfo_reference.TowerType) -> bool:
 	if has_instance():
-		get_instance().get_level_info().is_tower_available(tower)
+		return get_instance().get_level_info().is_tower_available(tower)
+	return false
