@@ -54,7 +54,7 @@ func _init() -> void:
 	_instance = self
 
 func _ready() -> void:
-	_calculate_distnaces_no_direction()
+	#_calculate_distnaces_no_direction()
 	if Engine.is_editor_hint():
 		return
 	set_modulate(Color(Color.WHITE, .5))
