@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://cmrq3jaeryy30" path="res://levels/2024 recreation/1/dialog_orignal_level_01_04.tres" id="7_fyums"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation2d.tscn" id="8_6d675"]
 [ext_resource type="Resource" uid="uid://c1u2mmv8jhhtw" path="res://levels/2024 recreation/1/dialog_orignal_level_01_victory.tres" id="8_81vn0"]
-[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="9_hb4kt"]
+[ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset_128.tres" id="10_81vn0"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="11_36uud"]
 [ext_resource type="Resource" uid="uid://fyilmatoyruw" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation_og.tres" id="12_hb4kt"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="15_atulc"]
@@ -47,12 +47,12 @@ _dialog_groups = Array[ExtResource("4_t362c")]([ExtResource("4_36uud"), ExtResou
 _victory_dialog = ExtResource("8_81vn0")
 
 [node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 instance=ExtResource("2_m8bud")]
-script = ExtResource("9_hb4kt")
 metadata/_edit_lock_ = true
 
-[node name="River" parent="." index="1" unique_id=1316684987 instance=ExtResource("2_m8bud")]
-tile_map_data = PackedByteArray("AAAVAP//AAAAAAEAAAAWAP7/AAAAAAIAAAAXAP//AAAAAAIAAAAYAP7/AAAAAAEAAAAWAP//AAAAAAIAAAAXAP7/AAAAAAIAAAAVAP7/AAAAAAEAAAAYAP//AAAAAAEAAAA=")
-metadata/_edit_lock_ = true
+[node name="TileMapLayer" type="TileMapLayer" parent="OrignalWorldMap" index="4" unique_id=1412225723]
+position = Vector2(10, 10)
+tile_map_data = PackedByteArray("AAAXAP7/AAAAAAIAAAAWAP//AAAAAAIAAAAVAP7/AAAAAAEAAAAYAP//AAAAAAEAAAAZAP//AAAAAAEAAAAZAP7/AAAAAAEAAAAaAP7/AAAAAAEAAAAbAP7/AAAAAAEAAAAbAP3/AAAAAAEAAAAcAP3/AAAAAAEAAAAcAPz/AAAAAAEAAAAdAPz/AAAAAAEAAAAdAPv/AAAAAAEAAAAdAPr/AAAAAAEAAAAeAPr/AAAAAAEAAAAeAPn/AAAAAAEAAAAfAPn/AAAAAAEAAAAfAPj/AAAAAAEAAAAgAPj/AAAAAAEAAAAgAPn/AAAAAAEAAAAhAPn/AAAAAAEAAAAiAPn/AAAAAAEAAAAXAP//AAAAAAIAAAAWAP7/AAAAAAIAAAA=")
+tile_set = ExtResource("10_81vn0")
 
 [node name="BrokenFoundation" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="0" unique_id=400182285 instance=ExtResource("8_6d675")]
 position = Vector2(-191, -193)
@@ -67,11 +67,11 @@ position = Vector2(1855, -833)
 _cost_info = ExtResource("12_hb4kt")
 
 [node name="BrokenFoundation5" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="3" unique_id=1562518689 instance=ExtResource("8_6d675")]
-position = Vector2(2496, -712)
+position = Vector2(2498, -702)
 _cost_info = ExtResource("12_hb4kt")
 
 [node name="BrokenFoundation4" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="4" unique_id=350200195 instance=ExtResource("8_6d675")]
-position = Vector2(1727, -967)
+position = Vector2(1726, -1023)
 _cost_info = ExtResource("12_hb4kt")
 
 [node name="TowerFoundation_OG1" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="5" unique_id=61454238 instance=ExtResource("17_aerbt")]
@@ -81,7 +81,7 @@ position = Vector2(58, -329)
 position = Vector2(320, -456)
 
 [node name="TowerFoundation_OG3" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="7" unique_id=1733687986 instance=ExtResource("17_aerbt")]
-position = Vector2(691, -455)
+position = Vector2(571, -450)
 
 [node name="TowerFoundation_OG4" parent="TowerHolder" parent_id_path=PackedInt32Array(1166047291) index="8" unique_id=1638650725 instance=ExtResource("17_aerbt")]
 position = Vector2(455, -183)
@@ -147,16 +147,16 @@ spawn_types = Dictionary[int, int]({
 -10: 2
 })
 
-[node name="PlayerOutpost" parent="." index="4" unique_id=831910580]
+[node name="PlayerOutpost" parent="." index="3" unique_id=831910580]
 position = Vector2(-59, 61)
 metadata/_edit_lock_ = true
 
-[node name="CameraBinder" parent="." index="5" unique_id=1105577396]
+[node name="CameraBinder" parent="." index="4" unique_id=1105577396]
 debug = false
 bounds = Array[ExtResource("11_36uud")]([SubResource("Resource_fyums"), SubResource("Resource_n5q85"), SubResource("Resource_x5kss")])
 
-[node name="TileMapLayerDirection" type="TileMapLayer" parent="." index="6" unique_id=1646530546]
-tile_map_data = PackedByteArray("AAAQAPf/AQADAAAAAAAQAPj/AQADAAAAAAARAPf/AQACAAAAAAARAPj/AQACAAAAAAASAPf/AQABAAAAAAASAPj/AQABAAAAAAASAPn/AQABAAAAAAASAPr/AQABAAAAAAATAPv/AQABAAAAAAAUAPz/AQABAAAAAAATAP//AQABAAAAAAASAAEAAQABAAAAAAAPAPf/AQABAAAAAAAPAPj/AQABAAAAAAAQAPn/AQACAAIAAAARAPr/AQACAAIAAAARAPn/AQACAAIAAAAPAPn/AQACAAAAAAAQAPr/AQACAAAAAAARAPv/AQACAAAAAAASAPz/AQACAAAAAAASAPv/AQACAAIAAAATAPz/AQACAAIAAAAUAP//AQADAAAAAAATAP3/AQAAAAMAAAATAP7/AQAAAAMAAAAUAP3/AQAAAAMAAAAUAP7/AQAAAAMAAAATAAAAAQADAAIAAAASAAAAAQABAAAAAAATAAEAAQADAAAAAAARAAIAAQABAAAAAAASAAMAAQADAAAAAAARAAMAAQADAAAAAAAQAAMAAQABAAAAAAAQAAQAAQADAAAAAAAPAAQAAQADAAAAAAAOAAQAAQADAAAAAAANAAQAAQADAAAAAAAMAAMAAQADAAAAAAAMAAQAAQADAAEAAAALAAQAAQAAAAAAAAALAAMAAQADAAAAAAAKAAIAAQADAAAAAAAKAAMAAQAAAAAAAAAJAAIAAQAAAAAAAAAJAAEAAQADAAAAAAAIAAEAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQADAAAAAAAHAP//AQADAAEAAAAHAP7/AQADAAAAAAAGAP//AQAAAAAAAAAGAP7/AQAAAAAAAAAGAP3/AQADAAAAAAAFAP3/AQAAAAMAAAAEAP3/AQAAAAMAAAADAP3/AQAAAAMAAAABAP3/AQABAAAAAAABAP7/AQADAAIAAAACAP7/AQADAAAAAAAAAP7/AQADAAIAAAD///7/AQABAAAAAAD/////AQADAAoAAAAAAP//AQADAAIAAAABAP//AQADAAAAAAD+////AQABAAAAAAD+/wAAAQACAAAAAAD//wEAAQAAAAAAAAAAAAEAAQADAAAAAAAAAAAAAQADAAIAAAD//wAAAQAAAAIAAAASAAIAAQADAAIAAAACAP3/AQADAAIAAAA=")
+[node name="TileMapLayerDirection" type="TileMapLayer" parent="." index="5" unique_id=1646530546]
+tile_map_data = PackedByteArray("AAAQAPf/AQABAAAAAAAQAPj/AQABAAAAAAARAPf/AQABAAAAAAARAPj/AQABAAAAAAASAPr/AQABAAAAAAATAPv/AQABAAAAAAAUAPz/AQABAAAAAAATAP//AQABAAAAAAASAAEAAQABAAAAAAAQAPn/AQACAAIAAAARAPr/AQACAAIAAAARAPn/AQACAAIAAAAQAPr/AQACAAAAAAARAPv/AQACAAAAAAASAPz/AQACAAAAAAASAPv/AQACAAIAAAATAPz/AQACAAIAAAAUAP//AQADAAAAAAATAP3/AQAAAAMAAAATAP7/AQAAAAMAAAAUAP3/AQAAAAMAAAAUAP7/AQAAAAMAAAATAAAAAQADAAIAAAASAAAAAQABAAAAAAATAAEAAQADAAAAAAARAAIAAQABAAAAAAASAAMAAQADAAAAAAARAAMAAQADAAAAAAAQAAMAAQABAAAAAAAQAAQAAQADAAAAAAAPAAQAAQADAAAAAAAOAAQAAQADAAAAAAANAAQAAQADAAAAAAAMAAMAAQADAAAAAAAMAAQAAQADAAEAAAALAAQAAQAAAAAAAAALAAMAAQADAAAAAAAKAAIAAQADAAAAAAAKAAMAAQAAAAAAAAAJAAIAAQAAAAAAAAAJAAEAAQADAAAAAAAIAAEAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQADAAAAAAAHAP//AQADAAEAAAAHAP7/AQADAAAAAAAGAP//AQAAAAAAAAAGAP7/AQAAAAAAAAAGAP3/AQADAAAAAAAFAP3/AQAAAAMAAAAEAP3/AQAAAAMAAAADAP3/AQAAAAMAAAABAP3/AQABAAAAAAABAP7/AQADAAIAAAACAP7/AQADAAAAAAAAAP7/AQADAAIAAAD///7/AQABAAAAAAD/////AQADAAoAAAAAAP//AQADAAIAAAABAP//AQADAAAAAAD+////AQABAAAAAAD+/wAAAQACAAAAAAD//wEAAQAAAAAAAAAAAAEAAQADAAAAAAAAAAAAAQADAAIAAAD//wAAAQAAAAIAAAASAAIAAQADAAIAAAACAP3/AQADAAIAAAASAPn/AQABAAAAAAA=")
 tile_set = ExtResource("17_hb4kt")
 navigation_enabled = false
 script = ExtResource("18_81vn0")
