@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b51eayc0tka3h" path="res://architecture/ui/purchase_interface_section.tscn" id="9_yq572"]
 [ext_resource type="Script" uid="uid://ceean4at1vaws" path="res://architecture/ui/display_tower_interface.gd" id="11_1cec3"]
 [ext_resource type="PackedScene" uid="uid://citf0bjrmxl7k" path="res://architecture/ui/gold_managment/cost_button.tscn" id="11_07nmt"]
+[ext_resource type="PackedScene" uid="uid://dk0ypfxlvysqw" path="res://architecture/ui/radar_direction_control.tscn" id="12_3m4xm"]
 [ext_resource type="Script" uid="uid://2war3dwy2fbe" path="res://architecture/ui/gold_managment/earn_button.gd" id="13_l1g1f"]
 [ext_resource type="PackedScene" uid="uid://chx7ohyvhvlcq" path="res://architecture/ui/level_popups.tscn" id="17_mpbka"]
 [ext_resource type="Script" uid="uid://dffcxsl5eun65" path="res://architecture/popup_buttons.gd" id="17_vsohg"]
@@ -207,6 +208,10 @@ world_source = NodePath("../../../../CenterScreen/VBoxContainer/SubViewportConta
 [node name="Camera2D" type="Camera2D" parent="FullScreen/LevelControls/DisplaySelected/SubViewportContainer/DisplaySelectedViewport" unique_id=793698142]
 unique_name_in_owner = true
 zoom = Vector2(0.75, 0.75)
+
+[node name="RadarRadianControl" parent="FullScreen/LevelControls/DisplaySelected/SubViewportContainer" unique_id=712450730 instance=ExtResource("12_3m4xm")]
+unique_name_in_owner = true
+position = Vector2(130, 130)
 
 [node name="PurchaseInterface" type="VBoxContainer" parent="FullScreen/LevelControls/DisplaySelected" unique_id=1204477422]
 unique_name_in_owner = true

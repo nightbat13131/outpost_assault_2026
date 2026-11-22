@@ -121,7 +121,7 @@ func get_level_info() -> LevelInfo :
 	return _level_info
 
 func _on_victory() -> void: 
-	var victory_dialog = get_level_info()._get_victory_dialog()
+	var victory_dialog = get_level_info().get_victory_dialog()
 	if victory_dialog:
 		_send_dialog_group(victory_dialog)
 		await victory_dialog.dialog_complete

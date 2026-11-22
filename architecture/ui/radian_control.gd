@@ -1,5 +1,4 @@
-@tool
-extends Node2D
+class_name RadarRadianControler extends Node2D
 
 @export var _target_foundation : TowerFoundation2D
 
@@ -11,18 +10,32 @@ var _in_process_radian := .3
 
 var _is_pressed := false
 
+#var _display_info : DisplayHelper
+
 func _ready() -> void:
 	if _button:
 		_button.button_down.connect(_on_down)
 		_button.button_up.connect(_on_up)
 	await get_tree().create_timer(.5).timeout
-	set_foundation(_target_foundation)
+	_set_foundation(_target_foundation)
 
-func set_foundation(node: TowerFoundation2D) -> void:
+func apply_information(_info: DisplayHelper) -> void:
+	if _info:
+		var parent = _info.get_parent()
+		if parent is TowerFoundation2D:
+			_set_foundation(parent)
+			return
+	_set_foundation(null)
+
+
+func _set_foundation(node: TowerFoundation2D) -> void:
 	_target_foundation = node
 	if _target_foundation:
 		_old_radian = _target_foundation.get_facing_radian()
 		_set_used_radian(_old_radian)
+		show()
+	else:
+		hide()
 	queue_redraw()
 
 func _set_used_radian(value: float) -> void:
@@ -36,6 +49,8 @@ func _on_up() -> void:
 	_is_pressed = false
 	if _target_foundation:
 		_target_foundation.set_facing_radian(_used_radian)
+		_old_radian = _used_radian
+	queue_redraw()
 
 func _process(_delta: float) -> void:
 	if _is_pressed and _target_foundation:
@@ -48,5 +63,6 @@ func _process(_delta: float) -> void:
 
 func _draw() -> void:
 	draw_line(Vector2.ZERO, Vector2.from_angle(_old_radian) * 75, Color.GRAY, 15)
-	draw_line(Vector2.ZERO, Vector2.from_angle(_used_radian) * 60, Color.BLACK, 10)
 	draw_line(Vector2.ZERO, Vector2.from_angle(_in_process_radian) * 45, Color.BLUE, 3)
+	if _is_pressed:
+		draw_line(Vector2.ZERO, Vector2.from_angle(_used_radian) * 60, Color.BLACK, 10)

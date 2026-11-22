@@ -19,7 +19,7 @@ var _purchaser_1 : PurchaseManager
 var _tower :Tower
 
 
-func is_3d() -> bool: return _position3D != DisplayHelper.DEFAULT_POS_3D
+#func is_3d() -> bool: return _position3D != DisplayHelper.DEFAULT_POS_3D
 
 func is_2d() -> bool: return _position2D != DisplayHelper.DEFAULT_POS_2D
 

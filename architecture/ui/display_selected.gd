@@ -11,6 +11,7 @@ var _information : DisplayHelper
 @onready var purchase_interface: PurchaseInterface = %PurchaseInterface
 @onready var tower_interface: DisplayTowerInterface = %TowerInterface
 @onready var display_nothing_button: Button = %DisplayNothing_Button
+@onready var radar_radian_control: RadarRadianControler = %RadarRadianControl
 
 
 func _ready() -> void:
@@ -57,6 +58,7 @@ func _apply_information(info: DisplayHelper) -> void:
 		display_selected_viewport.set_camera_focus(_information) # _information.get_camera_position2d())
 		display_name.set_text(_information.get_display_name())
 	# allow repeat calls / allow refresh
+	radar_radian_control.apply_information(_information)
 	display_health.set_health_info(_information.get_health_info())
 	purchase_interface.apply_purchase_manager(_information.get_purchaser(0), 0)
 	purchase_interface.apply_purchase_manager(_information.get_purchaser(1), 1)
