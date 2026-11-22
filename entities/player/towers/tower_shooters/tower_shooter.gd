@@ -16,8 +16,11 @@ func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: Cl
 			_shooter.set_targetting_mask(RadarSensor.COLLISION_ENEMY_HUMANS)
 			_shooter.set_radar_shape(get_radar_shape())
 			_shooter.set_projectile_info(get_tower_info().get_projectile_info())
-			_shooter.configure_default_rotation(_default_rotation_glob, true, false)
+			configure_default_rotation(_default_rotation_glob, true, false, true)
 
+func configure_default_rotation(glob_degree: float, default_global_on : bool, parent_foward_on: bool,   instant_rotation: bool) -> void:
+	if _shooter:
+		_shooter.configure_default_rotation(glob_degree, default_global_on, parent_foward_on , instant_rotation)
 
 func _set_radar_range() -> void:
 	if _shooter:

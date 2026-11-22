@@ -137,8 +137,9 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 		return
 	var next_enemy_packed_scene: PackedScene = load(next_enemy_path)
 	var next_enemy_instance: EnemyUnit = next_enemy_packed_scene.instantiate()
-	var spawn_point : SpawnPoint = _get_spawn_point(EnemyUnitInfo.get_enemy_spawn_type(enemy_type)) 
-	next_enemy_instance.set_position(spawn_point.get_target_location())
+	#var spawn_point : SpawnPoint = _get_spawn_point(EnemyUnitInfo.get_enemy_spawn_type(enemy_type)) 
+	#next_enemy_instance.set_position(spawn_point.get_target_location())
+	next_enemy_instance.set_position( _get_spawn_glob_location(EnemyUnitInfo.get_enemy_spawn_type(enemy_type)) ) # spawn_point.get_target_location())
 	get_unit_container().add_child(next_enemy_instance)
 	# set_nav_target doesn't work if happening before child_add.
 	#next_enemy_instance.set_nav_target(spawn_point.get_next_point())
@@ -149,17 +150,17 @@ func _spawn_new_enemy(enemy_type: EnemyUnitInfo.EnemyTypes) -> void:
 	enemy_spawned.emit(next_enemy_instance)
 	_check_pulse()
 
-func _get_spawn_point(enemy_type: EnemyUnitInfo.EnemySpawnTypes) -> SpawnPoint:
+func _get_spawn_glob_location(enemy_type: EnemyUnitInfo.EnemySpawnTypes) -> Vector2:
 	if spawn_points.is_empty():
-		push_warning(self, " has no spanw_points")
-		return null
+		#push_warning(self, " has no spanw_points")
+		return global_position
 	spawn_points.shuffle() 
 	for each_point in spawn_points:
 		if each_point:
 			if each_point.is_type_valid(enemy_type):
-				return each_point
+				return each_point.get_target_glob_location()
 	push_warning(self, " no spawn point match with enemey type: ", enemy_type)
-	return spawn_points[0]
+	return spawn_points[0].get_target_glob_location()
 
 func _pick_enemy() -> EnemyUnitInfo.EnemyTypes: return _unit_picker.pick_one()
 

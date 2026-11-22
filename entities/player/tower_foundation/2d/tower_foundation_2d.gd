@@ -2,6 +2,7 @@ class_name TowerFoundation2D extends Sprite2D
 
 const SCENE_PATH = "uid://crf0po16hl0dv"
 const SCENE_PATH_OG = "uid://cpfajst60unk2"
+const FACING_RADIAN_SNAP = TAU/16
 
 enum FoundationType {NA = 0, OG = 1 }
 
@@ -21,8 +22,7 @@ var _is_selected : bool = false: set = _set_is_selected
 @onready var _clip_reload_ui: ClipReloadUI = %ClipReloadUI
 @onready var _radar_preview: RadarPreview = %RadarPreview : get = get_radar_preview
 
-
-	
+var _facing_radian := 0.0
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -35,7 +35,25 @@ func _ready() -> void:
 		_button.selected.connect(_set_is_selected.bind(true))
 		_button.mouse_entered.connect(_on_hover.bind(true))
 		_button.mouse_exited.connect(_on_hover.bind(false))
-	add_tower.call_deferred(starting_tower)
+	_post_ready.call_deferred()
+
+func _post_ready() -> void:
+	set_facing_radian(TileMapLayer_Directions.get_facing_direction(global_position) )
+	queue_redraw()
+	add_tower(starting_tower)
+
+func uses_facing_radian() -> bool: return true
+
+func get_facing_radian() -> float: return _facing_radian
+
+func set_facing_radian(value: float) -> void:
+	## value = value % (TAU/4) ## fmod(value, TAU/4)
+	value = snappedf(value, FACING_RADIAN_SNAP)
+	
+	_facing_radian = value
+	queue_redraw()
+	if _has_tower():
+		_current_tower.configure_default_rotation(_facing_radian, true, false, false)
 
 func _connect_purchasers() -> void:
 	if upgrades == null:
@@ -63,7 +81,7 @@ func _add_tower(tower_type: TowerInfo.TowerType) -> void:
 	_current_tower.dead.connect(_on_tower_dead)
 	add_child(_current_tower)
 	#print("A 3 tower added as child")
-	_current_tower.setup(upgrades, _health_ui, _clip_reload_ui, TileMapLayer_Directions.get_facing_direction(global_position))
+	_current_tower.setup(upgrades, _health_ui, _clip_reload_ui, _facing_radian)
 	#print("A 4 tower setup complete")
 	get_radar_preview().cancle_preview()
 	_current_tower.set_parent_selected(_is_selected)
@@ -114,6 +132,7 @@ func _on_tower_dead(tower: Tower) -> void:
 	_update_display_info()
 
 func _draw() -> void:
+	draw_line(Vector2.ZERO, Vector2.from_angle(_facing_radian)*100, Color.BLACK, 10 )
 	if Engine.is_editor_hint():
 		if starting_tower != TowerInfo.TowerType.NA:
 			draw_circle(Vector2.ZERO, 25.0, Color.BROWN, false, 5.0)

@@ -3,12 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://b0t5s8j8ebkqx" path="res://levels/level_template.tscn" id="1_5ju20"]
 [ext_resource type="Script" uid="uid://pya36xpygh0y" path="res://levels/2024 recreation/3/level_orignal_3.gd" id="2_3vngc"]
 [ext_resource type="Resource" uid="uid://c5vuy8htsfep3" path="res://levels/2024 recreation/3/levelinfo_orignal_3.tres" id="3_3vngc"]
-[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="4_qt26v"]
-[ext_resource type="Resource" uid="uid://bj81dyskp7xm4" path="res://levels/2024 recreation/3/dialog_orignal_level_03_00.tres" id="5_bc3wu"]
-[ext_resource type="Resource" uid="uid://c0um4tvle3120" path="res://levels/2024 recreation/3/dialog_orignal_level_03_02.tres" id="6_ydbyb"]
-[ext_resource type="Resource" uid="uid://d1xl075ykvkqx" path="res://levels/2024 recreation/3/dialog_orignal_level_03_03.tres" id="7_ox3np"]
-[ext_resource type="Resource" uid="uid://rpf1m37in47g" path="res://levels/2024 recreation/3/dialog_orignal_level_03_04.tres" id="8_5r6xq"]
-[ext_resource type="Resource" uid="uid://dsid8jtwvttp4" path="res://levels/2024 recreation/dialog_orignal_level_02_03_victory.tres" id="10_whlu0"]
 [ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map.tscn" id="11_dl0bb"]
 [ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset_128.tres" id="12_bc3wu"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation2d.tscn" id="12_ga0tb"]
@@ -21,32 +15,23 @@
 [ext_resource type="TileSet" uid="uid://dtw6mws8m8n5f" path="res://map/ground_direction_tileset_128.tres" id="19_bxm8c"]
 [ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="20_ib10c"]
 
-[sub_resource type="Resource" id="Resource_f5wxu"]
+[sub_resource type="Resource" id="Resource_cxqau"]
 script = ExtResource("18_2p5di")
-rect_position = Vector2(-1540, -1400)
-rect_size = Vector2(2880, 1620)
+rect_position = Vector2(-585, -776)
+rect_size = Vector2(3392, 2048)
 camera_start = Vector2(0, -100)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
-[sub_resource type="Resource" id="Resource_vkqak"]
+[sub_resource type="Resource" id="Resource_vttb7"]
 script = ExtResource("18_2p5di")
-rect_position = Vector2(-2020, -1670)
-rect_size = Vector2(3360, 1890)
-camera_start = Vector2(0, -100)
-metadata/_custom_type_script = "uid://dddpnw3b40kmo"
-
-[sub_resource type="Resource" id="Resource_p2nrg"]
-script = ExtResource("18_2p5di")
-rect_position = Vector2(-2500, -2250)
-rect_size = Vector2(4030, 2470)
+rect_position = Vector2(-585, -1543)
+rect_size = Vector2(4736, 2815)
 camera_start = Vector2(0, -100)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
 [node name="Level_Orignal_3" unique_id=1060779039 instance=ExtResource("1_5ju20")]
 script = ExtResource("2_3vngc")
 _level_info = ExtResource("3_3vngc")
-_dialog_groups = Array[ExtResource("4_qt26v")]([ExtResource("5_bc3wu"), ExtResource("6_ydbyb"), ExtResource("7_ox3np"), ExtResource("8_5r6xq")])
-_victory_dialog = ExtResource("10_whlu0")
 
 [node name="OrignalWorldMap" parent="." index="0" unique_id=1204732902 node_paths=PackedStringArray("_overwrite_tile_map") instance=ExtResource("11_dl0bb")]
 position = Vector2(-2176, 1024)
@@ -200,7 +185,7 @@ position = Vector2(957, -957)
 metadata/_edit_group_ = true
 
 [node name="SpawnPoint_1_3NE" type="Node2D" parent="SpawnManager" index="0" unique_id=365052263]
-position = Vector2(2542, -1723)
+position = Vector2(201, -707)
 script = ExtResource("15_7jsie")
 _waves = Array[int]([0, 2])
 _inital_delay = 1.5
@@ -211,8 +196,8 @@ spawn_types = Dictionary[int, int]({
 -10: 1
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="SpaPoint_1_people" type="Node2D" parent="SpawnManager/SpawnPoint_1_3NE" index="0" unique_id=439470874]
 script = ExtResource("16_yodbd")
@@ -220,7 +205,7 @@ unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnPoint_2_4NW" type="Node2D" parent="SpawnManager" index="1" unique_id=1733505312]
-position = Vector2(2046, -1693)
+position = Vector2(-295, -677)
 script = ExtResource("15_7jsie")
 _waves = Array[int]([1])
 _pulse_per_wave = 2
@@ -230,8 +215,8 @@ spawn_types = Dictionary[int, int]({
 -10: 1
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="SpaPoint_2_people" type="Node2D" parent="SpawnManager/SpawnPoint_2_4NW" index="0" unique_id=2087650479]
 script = ExtResource("16_yodbd")
@@ -240,7 +225,7 @@ metadata/_custom_type_script = "uid://cbrnrqxijffds"
 metadata/_edit_lock_ = true
 
 [node name="SpawnPoint_5_7_NE" type="Node2D" parent="SpawnManager" index="2" unique_id=1275979852]
-position = Vector2(3406, -2389)
+position = Vector2(1065, -1373)
 script = ExtResource("15_7jsie")
 _waves = Array[int]([4, 6])
 _pulse_per_wave = 1
@@ -250,8 +235,8 @@ spawn_types = Dictionary[int, int]({
 -10: 1
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="SpaPoint_3_people" type="Node2D" parent="SpawnManager/SpawnPoint_5_7_NE" index="0" unique_id=1970705524]
 script = ExtResource("16_yodbd")
@@ -259,7 +244,7 @@ unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnPoint_4_6_NW" type="Node2D" parent="SpawnManager" index="3" unique_id=742740270]
-position = Vector2(1431, -1848)
+position = Vector2(-910, -832)
 script = ExtResource("15_7jsie")
 _waves = Array[int]([5, 6, 8])
 _pulse_per_wave = 1
@@ -270,8 +255,8 @@ spawn_types = Dictionary[int, int]({
 -10: 1
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="SpaPoint_4_people" type="Node2D" parent="SpawnManager/SpawnPoint_4_6_NW" index="0" unique_id=1950803772]
 script = ExtResource("16_yodbd")
@@ -279,7 +264,7 @@ unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnPoint_7_8N" type="Node2D" parent="SpawnManager" index="4" unique_id=1411665800]
-position = Vector2(1431, -1848)
+position = Vector2(-910, -832)
 script = ExtResource("15_7jsie")
 _waves = Array[int]([6, 7])
 _pulse_per_wave = 1
@@ -290,8 +275,8 @@ spawn_types = Dictionary[int, int]({
 -10: 2
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="SpaPoint_5_people" type="Node2D" parent="SpawnManager/SpawnPoint_7_8N" index="0" unique_id=1611187737]
 position = Vector2(2070, -679)
@@ -300,7 +285,7 @@ unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnPoint_1B" type="Node2D" parent="SpawnManager" index="5" unique_id=398832537]
-position = Vector2(5573, 62)
+position = Vector2(3232, 1078)
 script = ExtResource("15_7jsie")
 _waves = Array[int]([0])
 _inital_delay = 2.0
@@ -312,8 +297,8 @@ spawn_types = Dictionary[int, int]({
 -10: 1
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="SpaPoint_people" type="Node2D" parent="SpawnManager/SpawnPoint_1B" index="0" unique_id=1309585422]
 script = ExtResource("16_yodbd")
@@ -321,7 +306,7 @@ unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnPoint_2_4B" type="Node2D" parent="SpawnManager" index="6" unique_id=503055120]
-position = Vector2(5486, 39)
+position = Vector2(3145, 1055)
 script = ExtResource("15_7jsie")
 _waves = Array[int]([1, 3])
 _inital_delay = 0.5
@@ -334,8 +319,8 @@ spawn_types = Dictionary[int, int]({
 -10: 1
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="SpaPoint_people" type="Node2D" parent="SpawnManager/SpawnPoint_2_4B" index="0" unique_id=708386241]
 script = ExtResource("16_yodbd")
@@ -343,7 +328,7 @@ unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnPoint_3B" type="Node2D" parent="SpawnManager" index="7" unique_id=1177423656]
-position = Vector2(5486, 39)
+position = Vector2(3145, 1055)
 script = ExtResource("15_7jsie")
 _waves = Array[int]([2])
 _inital_delay = 0.5
@@ -357,8 +342,8 @@ spawn_types = Dictionary[int, int]({
 -10: 1
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="SpaPoint" type="Node2D" parent="SpawnManager/SpawnPoint_3B" index="0" unique_id=2050965412]
 script = ExtResource("16_yodbd")
@@ -366,7 +351,7 @@ unit_types = Array[int]([100, 200])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
 [node name="SpawnPoint_4B_solo_heli" type="Node2D" parent="SpawnManager" index="8" unique_id=612013780]
-position = Vector2(5292, -216)
+position = Vector2(2951, 800)
 script = ExtResource("15_7jsie")
 _waves = Array[int]([3])
 _inital_delay = 7.0
@@ -377,173 +362,163 @@ spawn_types = Dictionary[int, int]({
 -30: 1
 })
 metadata/_custom_type_script = "uid://r0ygm2bqav7d"
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="SpaPoint" type="Node2D" parent="SpawnManager/SpawnPoint_4B_solo_heli" index="0" unique_id=1697040958]
 script = ExtResource("16_yodbd")
 unit_types = Array[int]([300])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="Spawner_2x2_og_4_5_6_" parent="SpawnManager" index="9" unique_id=1797158330 instance=ExtResource("17_s11ku")]
-position = Vector2(-1020, -1656)
+[node name="SpawnPoint_6_7_8_heli" type="Node2D" parent="SpawnManager" index="9" unique_id=1388570555]
+position = Vector2(2697, -1477)
+script = ExtResource("15_7jsie")
+_waves = Array[int]([5, 6, 7])
+_inital_delay = 3.0
+_pulse_per_wave = 1
+_hard_spawn_cap = 1
+_spawn_speed = 3.0
+_pulse_unit_volume = 2
+spawn_types = Dictionary[int, int]({
+-20: 2
+})
+metadata/_custom_type_script = "uid://r0ygm2bqav7d"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="SpaPoint" type="Node2D" parent="SpawnManager/SpawnPoint_6_7_8_heli" index="0" unique_id=1592385350]
+position = Vector2(650, 0)
+script = ExtResource("16_yodbd")
+unit_types = Array[int]([200])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="SpawnPoint_5_7_B_tanks" type="Node2D" parent="SpawnManager" index="10" unique_id=1820300519]
+position = Vector2(3709, -1595)
+script = ExtResource("15_7jsie")
+_waves = Array[int]([4, 6])
+_inital_delay = 2.0
+_pulse_per_wave = 1
+_hard_spawn_cap = 1
+_spawn_speed = 4.0
+_pulse_unit_volume = 2
+spawn_types = Dictionary[int, int]({
+-12: 4,
+-11: 4,
+-10: 1
+})
+metadata/_custom_type_script = "uid://r0ygm2bqav7d"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="SpaPoint" type="Node2D" parent="SpawnManager/SpawnPoint_5_7_B_tanks" index="0" unique_id=1881257928]
+position = Vector2(650, 0)
+script = ExtResource("16_yodbd")
+unit_types = Array[int]([200])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="SpawnBuilding" parent="SpawnManager" index="11" unique_id=1797158330 instance=ExtResource("17_s11ku")]
+position = Vector2(3266, -1149)
 _building_health = 500.0
 _waves = Array[int]([3, 4, 5])
+_pulse_per_wave = 2
+_spawn_speed = 3.0
+_pulse_unit_volume = 6
+spawn_types = Dictionary[int, int]({
+-30: 1,
+-20: 5,
+-12: 20,
+-11: 20,
+-10: 5
+})
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="SpaPoint_5_tank" type="Node2D" parent="SpawnManager/SpawnBuilding" index="3" unique_id=257973082]
+position = Vector2(168, -19)
+script = ExtResource("16_yodbd")
+unit_types = Array[int]([200])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="SpaPoint_5_heli" type="Node2D" parent="SpawnManager/SpawnBuilding" index="4" unique_id=1987768119]
+script = ExtResource("16_yodbd")
+unit_types = Array[int]([300])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="SpaPoint_5_people" type="Node2D" parent="SpawnManager/SpawnBuilding" index="5" unique_id=90056153]
+position = Vector2(-31, 166)
+script = ExtResource("16_yodbd")
+unit_types = Array[int]([100])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="SpaPoint_5_people2" type="Node2D" parent="SpawnManager/SpawnBuilding" index="6" unique_id=274529695]
+position = Vector2(-60, 155)
+script = ExtResource("16_yodbd")
+unit_types = Array[int]([100])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="SpaPoint_5_people3" type="Node2D" parent="SpawnManager/SpawnBuilding" index="7" unique_id=524816749]
+position = Vector2(68, 164)
+script = ExtResource("16_yodbd")
+unit_types = Array[int]([100])
+metadata/_custom_type_script = "uid://cbrnrqxijffds"
+
+[node name="SpawnBuilding5_6_7" parent="SpawnManager" index="12" unique_id=1610977272 instance=ExtResource("17_s11ku")]
+position = Vector2(3459, 764)
+_building_health = 500.0
+_waves = Array[int]([4, 5, 6])
 _inital_delay = 3.0
 _pulse_per_wave = 2
 _spawn_speed = 5.0
-_pulse_unit_volume = 6
+_pulse_unit_volume = 2
 spawn_types = Dictionary[int, int]({
--20: 1,
--12: 2,
--11: 1,
--10: 1
+-30: 5
 })
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
-
-[node name="SpaPoint_5_tank" type="Node2D" parent="SpawnManager/Spawner_2x2_og_4_5_6_" index="3" unique_id=257973082]
-position = Vector2(68, 35)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([200])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="SpaPoint_5_tank2" type="Node2D" parent="SpawnManager/Spawner_2x2_og_4_5_6_" index="4" unique_id=393390785]
-position = Vector2(-87, -49)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([200])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="SpaPoint_5_people" type="Node2D" parent="SpawnManager/Spawner_2x2_og_4_5_6_" index="5" unique_id=90056153]
-position = Vector2(-63, 43)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([100])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="SpaPoint_5_people2" type="Node2D" parent="SpawnManager/Spawner_2x2_og_4_5_6_" index="6" unique_id=274529695]
-position = Vector2(84, 25)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([100])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="SpaPoint_5_people3" type="Node2D" parent="SpawnManager/Spawner_2x2_og_4_5_6_" index="7" unique_id=524816749]
-position = Vector2(-84, -59)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([100])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="SpaPoint_5_people4" type="Node2D" parent="SpawnManager/Spawner_2x2_og_4_5_6_" index="8" unique_id=320565739]
-position = Vector2(82, -53)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([100])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="Spawner_2x2_og_7E_" parent="SpawnManager" index="10" unique_id=1610977272 instance=ExtResource("17_s11ku")]
-position = Vector2(1030, -2425)
-_building_health = 500.0
-_waves = Array[int]([6])
-_inital_delay = 2.5
-_pulse_per_wave = 2
-_spawn_speed = 5.0
-_pulse_unit_volume = 6
-spawn_types = Dictionary[int, int]({
--20: 1,
--12: 1,
--11: 1,
--10: 4
-})
 metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
 
-[node name="SpaPoint_tank" type="Node2D" parent="SpawnManager/Spawner_2x2_og_7E_" index="3" unique_id=1378948534]
-position = Vector2(790, 811)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([200])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="SpaPoint_people" type="Node2D" parent="SpawnManager/Spawner_2x2_og_7E_" index="4" unique_id=1301505720]
-position = Vector2(794, 836)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([100])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="Spawner_2x2_og_7W_" parent="SpawnManager" index="11" unique_id=670468957 instance=ExtResource("17_s11ku")]
-position = Vector2(-1530, -2553)
+[node name="SpawnBuilding_6_8B_tanks" parent="SpawnManager" index="13" unique_id=670468957 instance=ExtResource("17_s11ku")]
+position = Vector2(3769, -1140)
 _building_health = 500.0
-_waves = Array[int]([6])
-_inital_delay = 1.5
+_waves = Array[int]([5, 7])
 _pulse_per_wave = 1
 _spawn_speed = 4.0
 _pulse_unit_volume = 2
 spawn_types = Dictionary[int, int]({
--20: 1,
--12: 1,
--11: 1,
+-20: 4,
+-12: 2,
+-11: 2,
 -10: 1
 })
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="SpaPoint_tank" type="Node2D" parent="SpawnManager/Spawner_2x2_og_7W_" index="3" unique_id=1412756169]
-position = Vector2(-80, 28)
+[node name="SpaPoint_tank" type="Node2D" parent="SpawnManager/SpawnBuilding_6_8B_tanks" index="3" unique_id=1412756169]
+position = Vector2(-193, 33)
 script = ExtResource("16_yodbd")
 unit_types = Array[int]([200])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="SpaPoint_people" type="Node2D" parent="SpawnManager/Spawner_2x2_og_7W_" index="4" unique_id=1306631368]
-position = Vector2(-68, 27)
+[node name="SpaPoint_people" type="Node2D" parent="SpawnManager/SpawnBuilding_6_8B_tanks" index="4" unique_id=1306631368]
+position = Vector2(61, 155)
 script = ExtResource("16_yodbd")
 unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="Spawner_2x2_og_7_" parent="SpawnManager" index="12" unique_id=1339655740 instance=ExtResource("17_s11ku")]
-position = Vector2(-384, -2047)
-_building_health = 500.0
-_waves = Array[int]([6])
-_pulse_per_wave = -1
-_hard_spawn_cap = 7
-_spawn_speed = 4.0
-_pulse_unit_volume = 2
-spawn_types = Dictionary[int, int]({
--20: 1,
--12: 1,
--11: 1,
--10: 1
-})
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="SpaPoint_tank" type="Node2D" parent="SpawnManager/Spawner_2x2_og_7_" index="3" unique_id=725742631]
-position = Vector2(58, -48)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([200])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="SpaPoint_tank2" type="Node2D" parent="SpawnManager/Spawner_2x2_og_7_" index="4" unique_id=1415384519]
-position = Vector2(66, 39)
-script = ExtResource("16_yodbd")
-unit_types = Array[int]([200])
-metadata/_custom_type_script = "uid://cbrnrqxijffds"
-metadata/_edit_lock_ = true
-
-[node name="SpaPoint_people" type="Node2D" parent="SpawnManager/Spawner_2x2_og_7_" index="5" unique_id=487192679]
-position = Vector2(65, 39)
+[node name="SpaPoint_people2" type="Node2D" parent="SpawnManager/SpawnBuilding_6_8B_tanks" index="5" unique_id=314519994]
+position = Vector2(-138, 172)
 script = ExtResource("16_yodbd")
 unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="SpaPoint_people2" type="Node2D" parent="SpawnManager/Spawner_2x2_og_7_" index="6" unique_id=1355043361]
-position = Vector2(77, -36)
+[node name="SpaPoint_people3" type="Node2D" parent="SpawnManager/SpawnBuilding_6_8B_tanks" index="6" unique_id=1273304418]
+position = Vector2(-64, 151)
 script = ExtResource("16_yodbd")
 unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
-
-[node name="PlayerOutpost" parent="." index="3" unique_id=831910580]
-metadata/_edit_lock_ = true
 
 [node name="CameraBinder" parent="." index="4" unique_id=1105577396]
 debug = false
-bounds = Array[ExtResource("18_2p5di")]([SubResource("Resource_f5wxu"), SubResource("Resource_vkqak"), SubResource("Resource_p2nrg")])
+bounds = Array[ExtResource("18_2p5di")]([SubResource("Resource_cxqau"), SubResource("Resource_vttb7")])
 
 [node name="TileMapLayerDirection" type="TileMapLayer" parent="." index="5" unique_id=363772898]
 tile_map_data = PackedByteArray("AAD9////AQACAAIAAAD9/wAAAQACAAAAAAD+////AQACAAIAAAD+/wAAAQACAAkAAAD/////AQAAAAIAAAD//wAAAQAAAAIAAAAAAP//AQAAAAIAAAAAAAAAAQAAAAIAAAABAP//AQADAAIAAAABAAAAAQADAAkAAAD9//z/AQABAAAAAAD9//3/AQAAAAMAAAD9//7/AQAAAAMAAAABAPz/AQACAAAAAAACAPz/AQABAAAAAAACAP3/AQAAAAMAAAACAP7/AQAAAAMAAAACAP//AQADAAAAAAD+//n/AQABAAAAAAD+//r/AQAAAAMAAAD+//v/AQAAAAMAAAD+//z/AQADAAAAAAABAPn/AQABAAAAAAABAPr/AQAAAAMAAAABAPv/AQAAAAMAAAACAPn/AQAAAAMAAAADAPn/AQAAAAMAAAAEAPn/AQADAAAAAAAEAPr/AQAAAAAAAAAFAPr/AQAAAAMAAAAGAPr/AQAAAAMAAAAHAPr/AQADAAAAAAAIAPr/AQADAAAAAAAHAPn/AQABAAAAAAAIAPn/AQADAAIAAAAJAPn/AQADAAAAAAAIAPX/AQABAAAAAAAIAPb/AQABAAAAAAAIAPf/AQABAAAAAAAIAPj/AQABAAAAAAAJAPX/AQAMAAEAAAAJAPb/AQAMAAEAAAAJAPf/AQAMAAEAAAAJAPj/AQAMAAEAAAADAPP/AQAAAAMAAAADAPT/AQACAAAAAAAEAPP/AQAKAAIAAAAEAPT/AQACAAAAAAAFAPP/AQAAAAMAAAAFAPT/AQACAAAAAAAGAPP/AQAKAAIAAAAGAPT/AQACAAAAAAAHAPP/AQAAAAMAAAAHAPT/AQACAAAAAAAIAPP/AQACAAIAAAAIAPT/AQACAAIAAAAJAPP/AQADAAIAAAAJAPT/AQADAAIAAAAKAPP/AQADAAIAAAAKAPT/AQADAAAAAAALAPP/AQADAAIAAAALAPT/AQADAAAAAAD9//P/AQAAAAMAAAD9//T/AQACAAAAAAD+//P/AQAKAAIAAAD+//T/AQACAAAAAAD///P/AQAAAAMAAAD///T/AQACAAAAAAAAAPP/AQAKAAIAAAAAAPT/AQACAAAAAAABAPP/AQAAAAMAAAABAPT/AQACAAAAAAACAPP/AQAKAAIAAAACAPT/AQACAAAAAAD0//P/AQAAAAMAAAD0//T/AQADAAAAAAD1//P/AQAKAAMAAAD1//T/AQADAAAAAAD2//P/AQAAAAMAAAD2//T/AQADAAAAAAD3//P/AQADAAAAAAD3//T/AQADAAAAAAD4//P/AQACAAAAAAD4//T/AQACAAAAAAD5//P/AQAAAAMAAAD5//T/AQACAAAAAAD6//P/AQAKAAIAAAD6//T/AQACAAAAAAD7//P/AQAAAAMAAAD7//T/AQACAAAAAAD8//P/AQAKAAIAAAD8//T/AQACAAAAAADv//P/AQABAAAAAADv//T/AQABAAAAAADw//P/AQADAAIAAADw//T/AQADAAIAAADx//P/AQADAAIAAADx//T/AQADAAAAAADy//P/AQADAAIAAADy//T/AQADAAAAAADz//P/AQAAAAMAAADz//T/AQADAAAAAADv//X/AQAKAAIAAADv//b/AQAKAAIAAADv//f/AQAKAAIAAADv//j/AQAKAAIAAADv//n/AQACAAAAAADw//X/AQABAAAAAADw//b/AQAMAAEAAADw//f/AQABAAAAAADw//j/AQABAAAAAADw//n/AQABAAAAAADw//r/AQABAAAAAADw//v/AQACAAAAAADx//v/AQAKAAIAAADy//v/AQAKAAIAAAD0//v/AQAAAAAAAAD0//j/AQACAAAAAAD0//n/AQAAAAMAAAD0//r/AQAAAAMAAAD1//j/AQAAAAMAAAD2//j/AQAAAAMAAAD3//j/AQAAAAMAAAD4//j/AQAAAAMAAAD5//j/AQAAAAMAAAD6//j/AQAAAAMAAAD7//j/AQACAAIAAAD8//j/AQABAAAAAAD7//n/AQACAAAAAAD8//n/AQACAAAAAAD9//n/AQAAAAMAAADy/+3/AQABAAAAAADz/+3/AQADAAoAAAD0/+3/AQABAAAAAADy/+z/AQABAAAAAADz/+z/AQADAAoAAAD0/+z/AQABAAAAAADy/+7/AQABAAAAAADz/+7/AQAMAAEAAAD0/+7/AQABAAAAAADy/+//AQABAAAAAADz/+//AQAMAAEAAAD0/+//AQADAAAAAADx//D/AQABAAAAAADy//D/AQADAAIAAADz//D/AQABAAAAAADw//H/AQABAAAAAADx//H/AQADAAoAAADy//H/AQABAAAAAADz//H/AQAKAAMAAAD0//H/AQAAAAMAAAD1//H/AQAKAAMAAAD2//H/AQAAAAMAAAD3//H/AQADAAAAAADw//L/AQABAAAAAADx//L/AQAMAAEAAADy//L/AQAMAAEAAADz//L/AQAAAAMAAAD0//L/AQAKAAMAAAD1//L/AQAAAAMAAAD2//L/AQAAAAMAAAD3//L/AQADAAAAAAD4//L/AQACAAAAAAD4/+3/AQABAAAAAAD4/+7/AQABAAAAAAD3//D/AQABAAAAAAD4/+//AQADAAoAAAD4//D/AQADAAoAAAD4//H/AQADAAMAAAD5/+//AQABAAAAAAD5//D/AQABAAAAAAD5//H/AQABAAAAAAD5//L/AQAAAAMAAAD6//L/AQAAAAMAAAD7//L/AQAKAAIAAAD8//L/AQAAAAMAAAD9//L/AQAAAAMAAAD9/+//AQACAAAAAAD9//D/AQACAAAAAAD+/+//AQABAAAAAAD+//D/AQABAAAAAAAMAPP/AQADAAAAAAAMAPT/AQADAAAAAAAJAPL/AQABAAAAAAAKAPL/AQADAAIAAAALAPL/AQADAAIAAAAMAPL/AQADAAAAAADx//z/AQACAAAAAADy//z/AQACAAAAAADz//z/AQAAAAAAAADz//v/AQACAAAAAAD8/+//AQACAAAAAAD8//D/AQACAAAAAAD+//L/AQABAAAAAAD3/+//AQABAAAAAAD+//H/AQAAAAMAAAAOAPP/AQADAAkAAAAOAPL/AQADAAAAAAAOAPT/AQADAAAAAAANAPL/AQADAAAAAAANAPP/AQADAAAAAAANAPT/AQADAAAAAAD+/wEAAQACAAEAAAABAAEAAQADAAEAAAAJAAYAAQADAAAAAAAYAAcAAQADAAAAAAARAAEAAQADAAAAAAAQAAEAAQAAAAMAAAAUAAcAAQAAAAMAAAAVAAcAAQAAAAMAAAAWAAcAAQAAAAMAAAAXAAcAAQAAAAMAAAABAAgAAQAAAAQAAAACAAgAAQAAAAQAAAACAAkAAQAAAAQAAAAIAAYAAQAMAAEAAAAIAAcAAQADAAAAAAAEAAcAAQADAAAAAAAFAAcAAQAJAAMAAAAGAAcAAQADAAAAAAAHAAcAAQADAAAAAAADAAcAAQADAAEAAAACAAcAAQAAAAAAAAADAAYAAQADAAEAAAACAAYAAQAAAAAAAAACAAUAAQAAAAAAAAABAAQAAQAAAAAAAAAAAAMAAQAAAAAAAAD//wIAAQAAAAAAAAADAAUAAQADAAEAAAACAAQAAQADAAEAAAABAAMAAQADAAEAAAAAAAIAAQADAAEAAAAAAAEAAQAAAAAAAAD//wEAAQADAAEAAAABAAIAAQADAAEAAAACAAMAAQADAAAAAAADAAQAAQADAAAAAAAFAAYAAQADAAAAAAAGAAYAAQAAAAMAAAAHAAYAAQAAAAMAAAAEAAYAAQAAAAMAAAAMAAMAAQABAAAAAAANAAEAAQABAAAAAAAMAAIAAQABAAAAAAALAAQAAQABAAAAAAAKAAUAAQABAAAAAAAKAAYAAQADAAAAAAALAAUAAQADAAAAAAAMAAQAAQADAAAAAAANAAIAAQADAAAAAAAPAAEAAQAJAAMAAAAPAAAAAQADAAAAAAAOAAAAAQABAAAAAAAOAAEAAQADAAAAAAARAAQAAQAAAAAAAAASAAYAAQAAAAAAAAATAAcAAQAAAAAAAAAZAAcAAQADAAAAAAAaAAcAAQADAAAAAAAbAAcAAQADAAAAAAAcAAcAAQADAAAAAAAdAAcAAQADAAAAAAAdAAUAAQABAAAAAAAdAAYAAQABAAAAAAAdAAQAAQABAAAAAAAcAAMAAQABAAAAAAAaAAIAAQABAAAAAAAZAAEAAQABAAAAAAAZAAAAAQABAAAAAAAZAPv/AQABAAAAAAAZAPz/AQABAAAAAAAZAP3/AQABAAAAAAAZAP7/AQABAAAAAAAZAP//AQABAAAAAAAaAPn/AQABAAAAAAAaAPr/AQABAAAAAAAaAPv/AQADAAAAAAAYAPz/AQABAAAAAAAYAP3/AQABAAAAAAAYAP7/AQABAAAAAAAYAP//AQABAAAAAAAYAAAAAQABAAAAAAAYAAEAAQACAAAAAAAZAAIAAQACAAAAAAAbAPn/AQADAAAAAAAcAPj/AQADAAAAAAAdAPj/AQADAAAAAAAZAPj/AQACAAAAAAAZAPX/AQABAAAAAAAZAPb/AQABAAAAAAAZAPf/AQABAAAAAAAbAPX/AQABAAAAAAAbAPb/AQABAAAAAAATAAYAAQADAAAAAAASAAQAAQADAAAAAAASAAUAAQAAAAMAAAARAAMAAQAAAAMAAAARAAIAAQAAAAMAAAA=")

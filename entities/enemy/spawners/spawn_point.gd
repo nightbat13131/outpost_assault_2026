@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func is_type_valid(spawn_type: EnemyUnitInfo.EnemySpawnTypes) -> bool: return unit_types.has(spawn_type)
 
-func get_target_location() -> Vector2:
+func get_target_glob_location() -> Vector2:
 	var out : Vector2
 	out = _targets[_target_index].global_position
 	_target_index += 1

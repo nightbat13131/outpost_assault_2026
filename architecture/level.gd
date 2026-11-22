@@ -16,9 +16,6 @@ static var _instance : Level
 
 @export var _level_info: LevelInfo : get = get_level_info
 
-@export var _dialog_groups: Array[DialogGroup]
-@export var _victory_dialog: DialogGroup
-
 var _trigger_on_wave_complete : Callable
 
 var _camera_binder: CameraBinder

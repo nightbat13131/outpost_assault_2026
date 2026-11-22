@@ -154,7 +154,6 @@ func _get_facing_direction(pos_global: Vector2) -> float:
 	return second_point.angle()
 #endregion
 
-
 #region Leg Navigation
 
 static func update_leg(leg: NavigationLeg) -> void:
@@ -240,7 +239,7 @@ func invert_direction(orignal_direction := Utilities.DIRECTION_UKNOWN ) -> int:
 
 func _draw() -> void:
 	if view_debug:
-		#_debug_tile_config()
+		_debug_tile_config()
 		_debug_distance()
 
 func _debug_distance() -> void:

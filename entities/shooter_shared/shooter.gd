@@ -17,7 +17,9 @@ var _projectile_info : ProjectileInfo : set = set_projectile_info, get = get_pro
 ## How quickly turns to face target
 @export var _rotation_speed_deg_sec := 45
 var _default_rotation_glob := 0.0
+## Primarily for towers
 var _use_default_roation_glob := false
+## Primarly for moving units 
 var _use_default_roation_parent_forward := false
 
 
@@ -58,12 +60,21 @@ func set_targetting_mask(layer: int, flag := true) -> void:
 
 func set_rotation_limit(degree: float) -> void: _rotation_limit_deg = degree
 
-func configure_default_rotation(glob_degree: float, default_global_on : bool, parent_foward_on: bool) -> void:
+func get_default_rotation() -> Vector2: 
+	var radian = randf() * TAU
+	if _use_default_roation_glob:
+		radian = _default_rotation_glob
+	if _use_default_roation_parent_forward:
+		var parent = get_parent() as Node2D
+		if parent:
+			radian = parent.global_rotation
+	return Vector2.from_angle(radian)
+
+func configure_default_rotation(glob_degree: float, default_global_on : bool, parent_forward_on: bool, instant_rotation: bool) -> void:
 	_default_rotation_glob = glob_degree
 	_use_default_roation_glob = default_global_on
-	_use_default_roation_parent_forward = parent_foward_on
-	assert(not (_use_default_roation_glob and _use_default_roation_parent_forward) )
-	if _use_default_roation_glob:
+	_use_default_roation_parent_forward = parent_forward_on
+	if instant_rotation :
 		update_rotation(_default_rotation_glob)
 
 func send_event(event: String) -> void:
@@ -126,10 +137,14 @@ func turn_towards(delta_moded: float, target_global_pos: Vector2) -> void:
 
 ## Called by the State Machine
 func turn_towards_default(delta_moded: float) -> void:
-	var target_point := Vector2.INF
+	
 	if ! (_use_default_roation_parent_forward or _use_default_roation_glob):
 		return
 	assert(_use_default_roation_glob or _use_default_roation_parent_forward)
+	
+	var target_direction := get_default_rotation() * 100
+	"""
+	var target_point := Vector2.INF
 	if _use_default_roation_parent_forward:
 		var parent = get_parent() as Node2D
 		if parent:
@@ -138,6 +153,8 @@ func turn_towards_default(delta_moded: float) -> void:
 	elif _use_default_roation_glob:
 		target_point = to_global( Vector2.from_angle( _default_rotation_glob - rotation) *100 ) 
 	turn_towards(delta_moded, target_point)
+	"""
+	turn_towards( delta_moded, global_position + target_direction)
 
 ## use as a "set_rotation" so that limits on rotation can be maintained
 func update_rotation(radian: float) -> void:

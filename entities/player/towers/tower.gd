@@ -36,6 +36,9 @@ func setup(upgrades: FoundationUpgrades, health_ui: HealthUI, clip_reload_ui: Cl
 	_on_upgrade_changed.call_deferred()
 	#print("C 4")
 
+## Overwrite for towers types that utalize the rotation. 
+func configure_default_rotation(glob_degree: float, default_global_on : bool, parent_foward_on: bool,   instant_rotation: bool) -> void: pass
+
 func repair() -> void: get_health_info().full_heal()
 
 func get_radar_shape() -> RadarShapeInfo: return get_tower_info().get_radar_shape()
