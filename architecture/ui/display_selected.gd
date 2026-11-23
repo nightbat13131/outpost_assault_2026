@@ -65,10 +65,6 @@ func _apply_information(info: DisplayHelper) -> void:
 	tower_interface.set_manager(_information.get_tower_context_manager())
 	clip_reload_ui.set_reload_info(_information.get_reload_info())
 
-#func _aim_camera() -> void: 
-	#
-	#display_selected_viewport.set_camera_focus(_information.get_camera_position2d())
-
 ## Re-apply the information if the requesting info is the same object as current info
 ## Curreonly only allows health UI changes are called 
 static func request_refresh(info: DisplayHelper) -> void:

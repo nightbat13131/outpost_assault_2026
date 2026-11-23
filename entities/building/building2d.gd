@@ -23,7 +23,7 @@ func _ready() -> void:
 		_button.selected.connect(_on_selected)
 
 func _setup_display_info() -> void:
-	_display_info = DisplayHelper.new(self, _health_info, null, null)
+	_display_info = DisplayHelper.new(self, get_health_info(), null, null)
 
 # Used by Spanw wrapper
 func set_max_health(max_health: float, force_full:= true) -> void: 

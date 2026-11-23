@@ -45,14 +45,16 @@ func _attempt_purchase(cost: float) -> bool:
 	_gold_spent += cost
 	return true
 
+static func has_instance() -> bool: return _instance != null
+
 static func get_instance() -> GoldManager: return _instance
 
 static func on_level_start(starting_gold: float) -> void:
-	if get_instance():
+	if has_instance():
 		get_instance()._on_level_start(starting_gold)
 
 static func get_gold() -> float:
-	if get_instance():
+	if has_instance():
 		return get_instance()._gold
 	return 0.0
 
@@ -61,7 +63,7 @@ static func get_gold() -> float:
 		#_instance._set_gold(value)
 
 static func attempt_purchase(cost : float) -> bool:
-	if get_instance():
+	if has_instance():
 		return get_instance()._attempt_purchase(cost)
 	return false
 
@@ -69,10 +71,14 @@ static func earn_gold(profit: float) -> void:
 	if profit < 0:
 		push_error("someone just send me nagative gold, fuck dude")
 		return
-	if _instance:
-		_instance._gold += profit
+	if has_instance():
+		get_instance()._gold += profit
 
 static func get_gold_spent() -> float:
-	if get_instance():
+	if has_instance():
 		return get_instance()._gold_spent
 	return INF
+
+static func subscribe_to_gold_change(callable: Callable) -> void:
+	if has_instance():
+		get_instance().gold_changed.connect(callable)

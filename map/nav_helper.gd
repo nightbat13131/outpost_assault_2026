@@ -19,6 +19,7 @@ class_name NavPoint extends Node2D
 		queue_redraw()
 
 func _ready() -> void:
+	assert(false) ## retired for now with use of tilmap directions instead
 	if is_disabled:
 		if Engine.is_editor_hint():
 			return

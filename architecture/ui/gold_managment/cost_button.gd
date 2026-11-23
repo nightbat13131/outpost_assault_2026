@@ -18,7 +18,7 @@ func _ready() -> void:
 	_button.pressed.connect(_on_pressed)
 	_button.mouse_entered.connect(_on_mouse_entered)
 	_button.mouse_exited.connect(_on_mouse_exited)
-	GoldManager.get_instance().gold_changed.connect(_on_gold_change)
+	GoldManager.subscribe_to_gold_change(_on_gold_change)
 	_update_display()
 	pivot_offset = size * .5
 
