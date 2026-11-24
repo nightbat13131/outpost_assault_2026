@@ -55,7 +55,7 @@ func has_shooter() -> bool: return false
 func _on_upgrade_changed() -> void: pass
 
 func sell() -> void:
-	GoldManager.earn_gold(get_sell_value())
+	GoldManager.earn_gold(get_sell_value(), GoldManager.ProfitType.TOWER_SOLD)
 	dead.emit(self)
 	queue_free()
 

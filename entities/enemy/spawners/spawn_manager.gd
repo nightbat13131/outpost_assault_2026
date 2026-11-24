@@ -46,7 +46,7 @@ func _on_child_entered_tree(node: Node) -> void:
 		_wave_check.call_deferred()
 
 func _on_enemy_unit_died(unit: EnemyUnit) -> void:
-	GoldManager.earn_gold(unit.get_kill_reward())
+	GoldManager.earn_gold(unit.get_kill_reward(), GoldManager.ProfitType.ENEMY_MOB_KILLED)
 	_enemy_unit_count -= 1
 	_wave_check.call_deferred()
 

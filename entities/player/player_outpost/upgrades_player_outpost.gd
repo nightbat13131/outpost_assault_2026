@@ -51,12 +51,13 @@ func get_upgrade_name(upgrade_type: UpgradeTypes) -> String:
 	return _upgrade_type_displaynames.get(upgrade_type, "")
 
 func get_upgrade_tooltip(upgrade_type: UpgradeTypes) -> String: # because I might made this less static in the future
-	return _upgrade_type_tooltips.get(upgrade_type, "") + " " + str(get_upgrade_level(upgrade_type)) + "/" + str(_get_max_upgrade_level(upgrade_type))
+	var ranking : = "\n" + str(get_upgrade_level(upgrade_type)) + "/" + str(_get_max_upgrade_level(upgrade_type))
+	return _upgrade_type_tooltips.get(upgrade_type, "") + ranking
 
 func get_upgrade_cost(upgrade_type: UpgradeTypes) -> float: 
 	if is_type_maxed(upgrade_type):
 		return 0
-	return _upgrade_prices[upgrade_type] * (1 + get_upgrade_level(upgrade_type)*.1 )
+	return _upgrade_prices[upgrade_type] * (1 + get_upgrade_level(upgrade_type) )
 
 func get_upgrade_level(upgrade_type: UpgradeTypes) -> int:
 	return _upgrade_levels.get(upgrade_type, 0)
@@ -68,3 +69,5 @@ func get_upgrade_ratio(upgrade_type: UpgradeTypes) -> float:
 	return get_upgrade_level(upgrade_type) / float(_get_max_upgrade_level(upgrade_type))
 
 func get_max_upgrade_mod() -> int: return get_upgrade_level(UpgradeTypes.UPGRADE_MAX)
+
+func get_gold_upgrade_mod() -> int: return get_upgrade_level(UpgradeTypes.KILL_BONUS)

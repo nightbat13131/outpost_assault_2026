@@ -30,7 +30,7 @@ func _on_building_died() -> void:
 	_end_wave()
 	_foundation_points.activate(_building.get_display_info())
 	# TODO: effect building kill gold by unlocks
-	GoldManager.earn_gold(_kill_reward)
+	GoldManager.earn_gold(_kill_reward, GoldManager.ProfitType.ENEMY_BUILDING_DESTROYED)
 
 func _death_animation_complete() -> void:
 	if Engine.is_editor_hint():

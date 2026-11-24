@@ -1,6 +1,8 @@
 class_name GoldManager extends Control
 ## All mods to costs and gains are supposed to be calculated before sending the value to the GoldManager
 
+enum ProfitType {NA = 0, ENEMY_MOB_KILLED = 1, ENEMY_BUILDING_DESTROYED = 2 , TOWER_SOLD = 10 }
+
 signal gold_changed()
 
 static var _instance
@@ -67,12 +69,17 @@ static func attempt_purchase(cost : float) -> bool:
 		return get_instance()._attempt_purchase(cost)
 	return false
 
-static func earn_gold(profit: float) -> void:
+static func earn_gold(profit: float, profit_type : ProfitType) -> void:
 	if profit < 0:
 		push_error("someone just send me nagative gold, fuck dude")
 		return
 	if has_instance():
-		get_instance()._gold += profit
+		var bonus := 0.0
+		if [ProfitType.ENEMY_MOB_KILLED, ProfitType.ENEMY_BUILDING_DESTROYED].has(profit_type):
+			var rank := PlayerOutpost.get_banking_rank()
+			bonus = profit * ( rank * rank * .01  )
+		prints(profit, bonus)
+		get_instance()._gold += (profit + bonus)
 
 static func get_gold_spent() -> float:
 	if has_instance():

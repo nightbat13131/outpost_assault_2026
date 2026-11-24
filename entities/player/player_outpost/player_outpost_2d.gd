@@ -50,3 +50,8 @@ static func get_upgrade_max_mod() -> int:
 	if has_instance():
 		return get_instance().get_outpost_upgrades().get_max_upgrade_mod()
 	return 0
+
+static func get_banking_rank() -> int:
+	if has_instance():
+		return get_instance().get_outpost_upgrades().get_gold_upgrade_mod()
+	return 0

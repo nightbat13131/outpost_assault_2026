@@ -33,7 +33,7 @@ func on_pressed() -> void:
 		return
 	elif _mode == RepairSell.SELL:
 		if parent_node:
-			## GoldManager.earn_gold(get_cost()) ## tower calls the money gain when selling 
+			## tower calls the money gain when selling, 
 			parent_node.purchase_attempt_result(true, self)
 
 func _on_health_changed() -> void: signal_change()
