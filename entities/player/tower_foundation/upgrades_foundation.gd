@@ -6,7 +6,7 @@ const RANK_EXPAND_RADAR : float = 0.1 # %
 const RANK_EXPAND_COOLING : float = 0.05
 const RANK_EXPAND_GEAR : float = 0.05
 
-var upgrade_prices: Dictionary = {
+var _upgrade_prices: Dictionary = {
 	UpgradeTypes.RADAR: 150,
 	UpgradeTypes.COOLING: 250,
 	UpgradeTypes.GEAR: 200,
@@ -14,25 +14,25 @@ var upgrade_prices: Dictionary = {
 
 var _foundation : Object
 
-static var upgrade_levels_max : Dictionary[UpgradeTypes, int] = {
+static var _upgrade_levels_max : Dictionary[UpgradeTypes, int] = {
 	UpgradeTypes.RADAR : 5, 
 	UpgradeTypes.GEAR : 4, 
 	UpgradeTypes.COOLING : 2
 	}
 
-static var upgrade_type_displaynames : Dictionary[UpgradeTypes, String] = {
+static var _upgrade_type_displaynames : Dictionary[UpgradeTypes, String] = {
 	UpgradeTypes.RADAR : "Radar", 
 	UpgradeTypes.GEAR : "Gearbox", 
 	UpgradeTypes.COOLING : "Cooling" 
 	}
 
-static var upgrade_type_tooltips : Dictionary[UpgradeTypes, String] = {
+static var _upgrade_type_tooltips : Dictionary[UpgradeTypes, String] = {
 	UpgradeTypes.RADAR : "Radar - Range and targeting abilities", 
 	UpgradeTypes.GEAR : "Gearbox - better rotational things", 
 	UpgradeTypes.COOLING : "Cooling - stuff heat would damange" 
 	}
 
-@export var upgrade_levels : Dictionary[UpgradeTypes, int] = {
+@export var _upgrade_levels : Dictionary[UpgradeTypes, int] = {
 	UpgradeTypes.RADAR : 0, 
 	UpgradeTypes.GEAR : 0, 
 	UpgradeTypes.COOLING : 0
@@ -48,25 +48,31 @@ func attempt_upgrade_request(info: CostButonInfo_FoundationUpgrads) -> void:
 	var _upgrade_type := info.get_upgrade_type()
 	if !is_type_maxed(_upgrade_type):
 		## in case the _upgrade_type is missing from the dictionary
-		upgrade_levels[_upgrade_type] = get_upgrade_level(_upgrade_type) +1
+		_upgrade_levels[_upgrade_type] = get_upgrade_level(_upgrade_type) +1
 		changed.emit()
 
 func is_type_maxed(upgrade_type: UpgradeTypes) -> bool:
 	## TODO have the max upgrade level effected by outpost and global unlocks 
-	return get_upgrade_level(upgrade_type) >= upgrade_levels_max[upgrade_type]
+	return get_upgrade_level(upgrade_type) >= _get_max_upgrade_level(upgrade_type)
+
+func get_upgrade_name(upgrade_type: UpgradeTypes) -> String: 
+	return _upgrade_type_displaynames.get(upgrade_type, "Upgrade name not found")
 
 func get_upgrade_tooltip(upgrade_type: UpgradeTypes) -> String: # because I might made this less static in the future
-	return upgrade_type_tooltips[upgrade_type]
+	return _upgrade_type_tooltips.get(upgrade_type, "Upgrade Tooltip not found") + " " + str(get_upgrade_level(upgrade_type)) + "/" + str(_get_max_upgrade_level(upgrade_type))
 
 func get_upgrade_cost(upgrade_type: UpgradeTypes) -> float: 
 	if is_type_maxed(upgrade_type):
 		return 0
-	return upgrade_prices[upgrade_type] * (1 + get_upgrade_level(upgrade_type)*.1 )
+	return _upgrade_prices[upgrade_type] * (1 + get_upgrade_level(upgrade_type)*.1 )
+
+func _get_max_upgrade_level(upgrade_type: UpgradeTypes) -> int:
+	return _upgrade_levels_max.get(upgrade_type, 0) + PlayerOutpost.get_upgrade_max_mod()
 
 func get_upgrade_level(upgrade_type: UpgradeTypes) -> int:
-	return upgrade_levels.get(upgrade_type, 0)
+	return _upgrade_levels.get(upgrade_type, 0)
 
 func get_upgrade_ratio(upgrade_type: UpgradeTypes) -> float:
-	return get_upgrade_level(upgrade_type) / float(upgrade_levels_max[upgrade_type])
+	return get_upgrade_level(upgrade_type) / float(_get_max_upgrade_level(upgrade_type) )
 
 func get_foundation() -> Object: return _foundation

@@ -13,13 +13,18 @@ func get_cost() -> float:
 
 func get_label() -> String: 
 	if _upgrade_info:
-		return PlayerOutpostUpgrades.upgrade_type_displaynames[_upgrade_type]
+		return _upgrade_info.get_upgrade_name(_upgrade_type)
 	return super.get_label()
 
 func get_tooltip() -> String: 
 	if _upgrade_info:
 		return _upgrade_info.get_upgrade_tooltip(_upgrade_type)
 	return super.get_tooltip()
+
+func get_level() -> int:
+	if _upgrade_info:
+		return _upgrade_info.get_upgrade_level(_upgrade_type)
+	return super.get_level()
 
 func get_purchase_type() -> CostButton.PurchaseTypes: 
 	if _upgrade_info.is_type_maxed(_upgrade_type):

@@ -17,7 +17,7 @@ func get_cost() -> float:
 
 func get_label() -> String: 
 	if _upgrade_info:
-		return FoundationUpgrades.upgrade_type_displaynames[_upgrade_type]
+		return _upgrade_info.get_upgrade_name(_upgrade_type)
 	return super.get_label()
 
 func get_tooltip() -> String: 
