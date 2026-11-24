@@ -11,7 +11,20 @@ func _set_health(hp: float) -> void:
 	if _hp <= 0:
 		die.emit()
 
+func _is_full_health() -> bool: return _hp >= _max_hp
+
+func _is_dead() -> bool: return _hp <= 0.0
+
 func take_damage(damage_delt: float) -> void: _hp -= abs(damage_delt)
+
+func try_heal(heal_amount: float) -> bool: 
+	if _is_full_health():
+		return false
+	if _is_dead():
+		return false
+	_hp += abs(heal_amount)
+	return true
+
 
 func full_heal() -> void: _set_health(_max_hp)
 

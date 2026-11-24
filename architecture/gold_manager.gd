@@ -76,8 +76,7 @@ static func earn_gold(profit: float, profit_type : ProfitType) -> void:
 	if has_instance():
 		var bonus := 0.0
 		if [ProfitType.ENEMY_MOB_KILLED, ProfitType.ENEMY_BUILDING_DESTROYED].has(profit_type):
-			var rank := PlayerOutpost.get_banking_rank()
-			bonus = profit * ( rank * rank * .01  )
+			bonus = profit * PlayerOutpost.get_banking_bonus()
 		prints(profit, bonus)
 		get_instance()._gold += (profit + bonus)
 

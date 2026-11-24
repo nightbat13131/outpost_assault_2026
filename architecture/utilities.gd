@@ -26,6 +26,12 @@ static func delta_radian(source_radian: float, target_radian: float) -> float:
 			_delta_radian += TAU
 	return _delta_radian
 
+static func node_flash(node: Node2D, color: Color) -> void:
+	if node.is_inside_tree():
+		var tween := node.create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+		node.modulate = color
+		tween.tween_method(node.set_modulate, color, Color.WHITE, 0.25)
+
 static func reparent(child_node: Node2D, new_parent: Node2D) -> void:
 	_reparent_defered.call_deferred(child_node, new_parent)
 
@@ -61,7 +67,3 @@ static func property_dictionary(_name: String, _type: Variant.Type, _hint: Prope
 	if _hint_string != '':
 		out["hint_string"] = _hint_string
 	return out
-
-#static func pix_to_meter(pixel_count: float) -> float: return pixel_count / float(PIX_PER_METTER)
-
-#static func get_gravity() -> float: return 172

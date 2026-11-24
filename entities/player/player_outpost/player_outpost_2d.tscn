@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://x6eddo14cwyj" path="res://entities/player/player_outpost/player_outpost_2d.gd" id="2_smrb1"]
 [ext_resource type="Script" uid="uid://bwycgl5mxdmvs" path="res://entities/player/player_outpost/upgrade_manager_outpost.gd" id="3_eq30h"]
 [ext_resource type="Texture2D" uid="uid://53jr3elhl4q6" path="res://assets/tilemaps/directions.png" id="5_6t6k3"]
+[ext_resource type="Script" uid="uid://bs2gntwyjap36" path="res://architecture/ui/game_speed/timer_delta_mod.gd" id="6_6t6k3"]
 [ext_resource type="Script" uid="uid://dh4ewhbwpwjp8" path="res://entities/player/player_outpost/cost_button_info_outpost.gd" id="6_il6be"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdji5"]
@@ -85,3 +86,8 @@ collision_mask = 4
 unique_name_in_owner = true
 visible = false
 shape = SubResource("RectangleShape2D_smrb1")
+
+[node name="HealTimer" type="Node" parent="." index="7" unique_id=553960898]
+unique_name_in_owner = true
+script = ExtResource("6_6t6k3")
+metadata/_custom_type_script = "uid://bs2gntwyjap36"

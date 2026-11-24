@@ -4,12 +4,10 @@ signal timeout
 
 var _is_running : bool = false
 var _wait_time := .05 : set = set_wait_time
-var _time_remaining := _wait_time:
-	set(value):
-		_time_remaining = value
-		if _time_remaining <= 0.0:
-			timeout.emit()
-			_is_running = false
+var _is_repeating := false
+
+var _time_remaining := _wait_time : set = _set_time_remaining
+
 
 func _init(wait_seconds: float = 0.05) -> void:
 	set_wait_time(wait_seconds)
@@ -25,6 +23,8 @@ func _process(delta: float) -> void:
 	if _is_running:
 		_time_remaining -= (delta * GameSpeed.get_delta_mod())
 
+func set_is_repeating(do_repeat: bool) -> void: _is_repeating = do_repeat
+
 ## Set how long the timer runs before signaling Timeout.
 func set_wait_time(seconds: float) -> void:
 	if seconds < 0.05:
@@ -32,6 +32,15 @@ func set_wait_time(seconds: float) -> void:
 		seconds = 0.05
 	_wait_time = seconds
 	_time_remaining = _wait_time
+
+func _set_time_remaining(value: float) -> void:
+		_time_remaining = value
+		if _time_remaining <= 0.0:
+			timeout.emit()
+			if _is_repeating:
+				_time_remaining = (_wait_time - _time_remaining)
+			else:
+				_is_running = false
 
 func start() -> void:
 	# calling deffered fixes a short timer conflict with processing
