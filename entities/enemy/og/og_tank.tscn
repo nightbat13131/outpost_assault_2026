@@ -30,12 +30,19 @@ fill_from = Vector2(0.5, 0.5)
 script = ExtResource("2_j3x8x")
 _enemy_info = ExtResource("3_qc3tu")
 
-[node name="Sprite2D" parent="." index="1" unique_id=1421716584]
+[node name="Sprite2D" parent="." index="0" unique_id=1421716584]
 modulate = Color(1, 0.62, 0.62, 1)
 texture = SubResource("GradientTexture2D_qc3tu")
 
-[node name="CollisionShape2D" parent="." index="4" unique_id=1025302939]
+[node name="CollisionShape2D" parent="." index="3" unique_id=1025302939]
 shape = SubResource("CircleShape2D_j3x8x")
+
+[node name="Label" parent="UIAnchor" parent_id_path=PackedInt32Array(2101593919) index="0" unique_id=7845878]
+text = "tank"
+
+[node name="VBoxContainer" parent="UIAnchor" parent_id_path=PackedInt32Array(2101593919) index="1" unique_id=1790658355]
+offset_top = 61.0
+offset_bottom = 69.0
 
 [node name="Shooter" parent="." index="6" unique_id=1614296909]
 _limit_roation = false
@@ -48,10 +55,7 @@ position = Vector2(80, 0)
 [node name="Node0" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
 position = Vector2(78, 0)
 
-[node name="AimingSights" parent="Shooter" index="3" unique_id=1309291640]
-visible = true
-
-[node name="RayCast2D_0" parent="Shooter/AimingSights" index="0" unique_id=309270866]
+[node name="RayCast2D_0" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
 position = Vector2(0, 0)
 
 [node name="Sprite2D" parent="Shooter" index="4" unique_id=383995293]
@@ -60,16 +64,5 @@ texture = SubResource("GradientTexture2D_rjat1")
 [node name="Sprite2D2" parent="Shooter" index="5" unique_id=1556594203]
 position = Vector2(52, 0)
 scale = Vector2(0.78125, 0.17968747)
-
-[node name="Label" type="Label" parent="." index="7" unique_id=483432879]
-offset_left = -73.0
-offset_top = 35.0
-offset_right = -33.0
-offset_bottom = 58.0
-text = "tank"
-
-[node name="VBoxContainer" parent="UIAnchor" parent_id_path=PackedInt32Array(2101593919) index="0" unique_id=1790658355]
-offset_top = 61.0
-offset_bottom = 69.0
 
 [editable path="Shooter"]

@@ -70,3 +70,8 @@ static func get_banking_bonus() -> float:
 	if has_instance():
 		return get_instance().get_outpost_upgrades().get_banking_bonus()
 	return 0
+
+static func get_upgrades() -> PlayerOutpostUpgrades:
+	if has_instance():
+		return get_instance().get_outpost_upgrades()
+	return null

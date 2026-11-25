@@ -8,11 +8,9 @@ func _ready() -> void:
 	set_reload_info(_reload_info)
 
 func set_reload_info(info: ReloadInfo) -> void:
-	#prints("ClipUI:",self, "old:", _reload_info, "new:",  info)
 	_disconect()
 	_reload_info = info
 	if _reload_info:
-		#prints("ClipUI:",self, "_reload_info:", _reload_info)
 		_reload_info.changed.connect(_on_reload_change)
 		_on_reload_change()
 		show()
@@ -21,7 +19,6 @@ func set_reload_info(info: ReloadInfo) -> void:
 
 func _on_reload_change() -> void:
 	bar.set_as_ratio(_reload_info.get_ratio_clipped_reload())
-	#prints(self, bar.ratio)
 	bar.set_self_modulate(_reload_info.get_ui_color())
 
 func _disconect() -> void:

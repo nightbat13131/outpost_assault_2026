@@ -7,7 +7,10 @@ class_name TowerInfo extends TowerInfo_reference
 @export var _projectile : ProjectileInfo
 
 var _health_info: HealthInfo # because health effects some calculations
-var _upgrades : FoundationUpgrades : set = set_upgrade_info
+var _upgrades : FoundationUpgrades
+
+var _outpost_upgrades : PlayerOutpostUpgrades
+var _last_known_health_bonus := 0.0
 
 func post_duplication() -> void:
 	if get_reload_info():
@@ -20,24 +23,35 @@ func get_health_info() -> HealthInfo:
 		_health_info.set_max_health(get_max_health(), true)
 	return _health_info
 
-func set_upgrade_info(info: FoundationUpgrades) -> void: 
-	_on_upgrade_changed()
-	if _upgrades == info: # no change needed
+func set_upgrade_info(foundation_info: FoundationUpgrades) -> void: 
+	if _upgrades == foundation_info: # no change needed
 		return
-	_upgrades = info
+	_upgrades = foundation_info
 	_upgrades.changed.connect(_on_upgrade_changed)
+	_outpost_upgrades = PlayerOutpost.get_upgrades()
+	if _outpost_upgrades:
+		_outpost_upgrades.changed.connect(_on_upgrade_changed)
 	if _reload_info:
-		_reload_info.set_foundation_upgrades(info)
+		_reload_info.set_foundation_upgrades(foundation_info)
+	_on_upgrade_changed()
 
 func _on_upgrade_changed() -> void:
 	if _radar_shape:
 		_radar_shape.set_outer_radius(get_outer_range())
+	if _outpost_upgrades:
+		var new_hp_bonus = _outpost_upgrades.get_tower_health_bonus()
+		prints(_last_known_health_bonus, new_hp_bonus)
+		if new_hp_bonus > _last_known_health_bonus:
+			_last_known_health_bonus = new_hp_bonus
+			get_health_info().set_max_health(get_max_health(), false, true)
 
 func get_radar_shape() -> RadarShapeInfo: return _radar_shape
 
 func get_reload_info() -> ReloadInfo_Tower: return _reload_info
 
-func get_max_health() -> float: return get_tower_max_health(my_type)
+func get_max_health() -> float: return get_base_max_health() * ( 1.0 + _last_known_health_bonus )
+
+func get_base_max_health() -> float:  return get_tower_max_health(my_type)
 
 func get_cost() -> float: return get_tower_cost(my_type)
 

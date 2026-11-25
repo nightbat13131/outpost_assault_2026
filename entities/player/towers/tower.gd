@@ -9,6 +9,7 @@ signal dead(tower: Tower) ## I don't think the foundation cares between sold and
 @warning_ignore("unused_private_class_variable")
 var _founation_upgrades : FoundationUpgrades
 
+
 func _ready() -> void:
 	set_collision_layer_value(RadarSensor.COLLISION_PLAYER_BUILDING, true)
 

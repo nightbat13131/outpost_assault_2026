@@ -36,13 +36,22 @@ gradient = SubResource("Gradient_2pbwi")
 script = ExtResource("2_fw4r2")
 _enemy_info = ExtResource("3_wvqc7")
 
-[node name="Sprite2D" parent="." index="1" unique_id=1421716584]
+[node name="Sprite2D" parent="." index="0" unique_id=1421716584]
 modulate = Color(1, 0.62, 0.62, 1)
 texture = SubResource("GradientTexture2D_wvqc7")
 
-[node name="CollisionShape2D" parent="." index="4" unique_id=1025302939]
+[node name="CollisionShape2D" parent="." index="3" unique_id=1025302939]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_wvqc7")
+
+[node name="VBoxContainer" parent="UIAnchor" parent_id_path=PackedInt32Array(2101593919) index="0" unique_id=1790658355]
+offset_left = -21.0
+offset_top = 70.0
+offset_right = 19.0
+offset_bottom = 78.0
+
+[node name="Label" parent="UIAnchor/VBoxContainer" index="2" unique_id=7845878]
+text = "helicopter"
 
 [node name="Shooter" parent="." index="6" unique_id=1614296909]
 _muzzle_order = 1
@@ -56,19 +65,16 @@ position = Vector2(80, 0)
 [node name="Node0" parent="Shooter/Muzzles" parent_id_path=PackedInt32Array(1614296909, 537760318) index="0" unique_id=1516804686]
 position = Vector2(78, 0)
 
-[node name="AimingSights" parent="Shooter" index="3" unique_id=1309291640]
-visible = true
-
-[node name="RayCast2D_0" parent="Shooter/AimingSights" index="0" unique_id=309270866]
+[node name="RayCast2D_0" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="0" unique_id=309270866]
 position = Vector2(35, 0)
 
-[node name="RayCast2D_1" type="RayCast2D" parent="Shooter/AimingSights" index="1" unique_id=880546904]
+[node name="RayCast2D_1" type="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="1" unique_id=880546904]
 position = Vector2(50, -63)
 target_position = Vector2(228, 0)
 collision_mask = 0
 collide_with_areas = true
 
-[node name="RayCast2D_2" type="RayCast2D" parent="Shooter/AimingSights" index="2" unique_id=883598038]
+[node name="RayCast2D_2" type="RayCast2D" parent="Shooter/AimingSights" parent_id_path=PackedInt32Array(1614296909, 1309291640) index="2" unique_id=883598038]
 position = Vector2(50, 62)
 target_position = Vector2(228, 0)
 collision_mask = 0
@@ -85,18 +91,5 @@ scale = Vector2(0.78125, 0.17968747)
 position = Vector2(24.999998, 62)
 scale = Vector2(0.78125, 0.17968747)
 texture = SubResource("GradientTexture2D_u7p5d")
-
-[node name="Label" type="Label" parent="." index="7" unique_id=483432879]
-offset_left = -100.0
-offset_top = 47.0
-offset_right = -21.0
-offset_bottom = 70.0
-text = "helicopter"
-
-[node name="VBoxContainer" parent="UIAnchor" parent_id_path=PackedInt32Array(2101593919) index="0" unique_id=1790658355]
-offset_left = -21.0
-offset_top = 70.0
-offset_right = 19.0
-offset_bottom = 78.0
 
 [editable path="Shooter"]

@@ -12,6 +12,9 @@ modulate = Color(0.70380783, 0.70380783, 0.70380783, 1)
 [node name="VBoxContainer" parent="UIAnchor" parent_id_path=PackedInt32Array(2101593919) index="0" unique_id=1790658355]
 offset_bottom = 38.0
 
+[node name="Label" parent="UIAnchor/VBoxContainer" index="2" unique_id=7845878]
+text = "gunman"
+
 [node name="Shooter" parent="." index="6" unique_id=1614296909]
 _rotation_speed_deg_sec = 229
 
@@ -28,12 +31,5 @@ position = Vector2(0, 16)
 modulate = Color(0.7341666, 1, 0.71000004, 1)
 position = Vector2(17, 15.999999)
 scale = Vector2(0.34375, 0.078125015)
-
-[node name="Label" type="Label" parent="." index="7" unique_id=1413933414]
-offset_left = -41.0
-offset_top = 12.0
-offset_right = 23.0
-offset_bottom = 35.0
-text = "gunman"
 
 [editable path="Shooter"]

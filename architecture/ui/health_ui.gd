@@ -63,6 +63,9 @@ func set_suppressed(_is_suppressed) -> void:
 func _on_health_changed() -> void:
 	if _health_info:
 		set_health_ratio(_health_info.get_health_ratio())
+		#var a := "%.2f / %.2f ".format([_health_info._hp, _health_info._hp], "%" )
+		#set_tooltip_text( a )
+		#print(a)
 	else:
 		push_error(self, "HealthUI failed to disconnect from a change signal")
 

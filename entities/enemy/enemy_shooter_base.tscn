@@ -29,6 +29,9 @@ track_in_editor = true
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="Label" parent="UIAnchor/VBoxContainer" parent_id_path=PackedInt32Array(1790658355) index="2" unique_id=7845878]
+text = "shoot_b"
+
 [node name="Shooter" parent="." index="6" unique_id=1614296909 instance=ExtResource("2_c3r84")]
 unique_name_in_owner = true
 _limit_roation = true
@@ -55,8 +58,5 @@ scale = Vector2(0.40625, 0.078125015)
 
 [node name="die" parent="Shooter/ShooterStateChart/ShootingStates/TargetState" parent_id_path=PackedInt32Array(1614296909, 1472020959) index="0" unique_id=955560172]
 event = &"died"
-
-[node name="NoTarget" parent="Shooter/ShooterStateChart/ShootingStates/TargetState" parent_id_path=PackedInt32Array(1614296909, 1472020959) index="3" unique_id=385167069]
-look_forward = true
 
 [editable path="Shooter"]

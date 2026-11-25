@@ -6,12 +6,8 @@
 [node name="Scout" unique_id=1456879393 instance=ExtResource("1_5f43a")]
 _enemy_info = ExtResource("2_7pq01")
 
-[node name="Sprite2D" parent="." index="1" unique_id=1421716584]
+[node name="Sprite2D" parent="." index="0" unique_id=1421716584]
 modulate = Color(0.58000004, 1, 0.587, 1)
 
-[node name="Label" type="Label" parent="." index="7" unique_id=1766653676]
-offset_left = -25.0
-offset_top = 12.0
-offset_right = 18.0
-offset_bottom = 35.0
+[node name="Label" parent="UIAnchor" parent_id_path=PackedInt32Array(2101593919) index="0" unique_id=7845878]
 text = "scout"

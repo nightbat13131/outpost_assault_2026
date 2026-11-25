@@ -76,3 +76,9 @@ func get_banking_bonus(upgraded := false) -> float:
 	return rank * rank * 0.1
 
 func get_hp_repair_per_second() -> float: return get_upgrade_level(UpgradeTypes.REPAIR_RATE)
+
+func get_tower_health_bonus() -> float: 
+	var rank := get_upgrade_level(UpgradeTypes.KILL_BONUS)
+	rank += get_upgrade_level(UpgradeTypes.REPAIR_RATE)
+	rank += get_upgrade_level(UpgradeTypes.UPGRADE_MAX)
+	return rank  * 0.1
