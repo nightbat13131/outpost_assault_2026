@@ -84,7 +84,7 @@ func _update_display() -> void:
 		level_label.hide()
 	## Left Icon for Purchase Type (under level number if showing)
 	if _info.get_purchase_type() == CostButton.PurchaseTypes.INFORMATION:
-		_button.set_state(ButtonEnhanced.ButtonStates.Inactive_Hidden)
+		_button.set_state(ButtonEnhanced.ButtonStates.Inactive_Visible)
 	else: 
 		if _can_afford():
 			_button.set_state(ButtonEnhanced.ButtonStates.Active)

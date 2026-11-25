@@ -1,6 +1,6 @@
 class_name CostButtonInfo_OutpostUpgrades extends CostButtonInfo
 
-@export var _upgrade_type := PlayerOutpostUpgrades.UpgradeTypes.REPAIR_RATE
+@export var _upgrade_type : PlayerOutpostUpgrades.UpgradeTypes
 
 var _upgrade_info : PlayerOutpostUpgrades
 
@@ -27,7 +27,7 @@ func get_level() -> int:
 	return super.get_level()
 
 func get_purchase_type() -> CostButton.PurchaseTypes: 
-	if _upgrade_info.is_type_maxed(_upgrade_type):
+	if _upgrade_info.is_type_maxed(_upgrade_type) or _upgrade_type == PlayerOutpostUpgrades.UpgradeTypes.INFO:
 		return CostButton.PurchaseTypes.INFORMATION
 	return CostButton.PurchaseTypes.UPGRADE
 

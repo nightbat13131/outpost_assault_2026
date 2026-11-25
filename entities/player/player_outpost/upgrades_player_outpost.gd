@@ -1,6 +1,6 @@
 class_name PlayerOutpostUpgrades extends Resource
 
-enum UpgradeTypes {REPAIR_RATE = 3, UPGRADE_MAX = 4, KILL_BONUS = 5}
+enum UpgradeTypes {INFO = 0, REPAIR_RATE = 3, UPGRADE_MAX = 4, KILL_BONUS = 5}
 
 static var _upgrade_prices: Dictionary = {
 	UpgradeTypes.REPAIR_RATE: 300,
@@ -12,6 +12,7 @@ static var _upgrade_levels_max : Dictionary[UpgradeTypes, int] = {
 	UpgradeTypes.REPAIR_RATE: 3,
 	UpgradeTypes.UPGRADE_MAX: 3,
 	UpgradeTypes.KILL_BONUS: 3,
+	UpgradeTypes.INFO: 0
 	}
 
 static var _upgrade_type_displaynames : Dictionary[UpgradeTypes, String] = {
@@ -24,6 +25,7 @@ static var _upgrade_type_tooltips : Dictionary[UpgradeTypes, String] = {
 	UpgradeTypes.REPAIR_RATE: "Outpost Repair - Self repair rate.",
 	UpgradeTypes.UPGRADE_MAX: "Upgrade Max - Increase max upgrade limit for towers.",
 	UpgradeTypes.KILL_BONUS: "Kill Bonus - Increase reward for killing creeps.",
+	UpgradeTypes.INFO: "Towers get increased HP for every Outpost Upgrade."
 	}
 
 var _upgrade_levels : Dictionary[UpgradeTypes, int] = {
@@ -43,20 +45,24 @@ func is_type_maxed(upgrade_type: UpgradeTypes) -> bool:
 	return get_upgrade_level(upgrade_type) >= _get_max_upgrade_level(upgrade_type)
 
 func get_upgrade_name(upgrade_type: UpgradeTypes) -> String: 
+	if upgrade_type == UpgradeTypes.INFO:
+		return "All Tower HP Bonus +#%".format([int(get_tower_health_bonus()*100)], "#" )
 	return _upgrade_type_displaynames.get(upgrade_type, "")
 
 func get_upgrade_tooltip(upgrade_type: UpgradeTypes) -> String: # because I might made this less static in the future
-	var ranking := "\n" + str(get_upgrade_level(upgrade_type)) + "/" + str(_get_max_upgrade_level(upgrade_type))
-	if upgrade_type == UpgradeTypes.KILL_BONUS:
-		ranking += " " + str( "%0.0f%%" % (get_banking_bonus()*100 ) ) 
-		if !is_type_maxed(upgrade_type):
-			ranking += " -> " + str( "%0.0f%%" % (get_banking_bonus(true)*100 ) )
-	return _upgrade_type_tooltips.get(upgrade_type, "") + ranking
+	var tooltip : String = _upgrade_type_tooltips.get(upgrade_type, "")
+	if ! is_type_maxed(upgrade_type):
+		tooltip += "\n" + str(get_upgrade_level(upgrade_type)) + "/" + str(_get_max_upgrade_level(upgrade_type))
+		if upgrade_type == UpgradeTypes.KILL_BONUS:
+			tooltip += " " + str( "%0.0f%%" % (get_banking_bonus()*100 ) ) 
+			if !is_type_maxed(upgrade_type):
+				tooltip += " -> " + str( "%0.0f%%" % (get_banking_bonus(true)*100 ) )
+	return tooltip
 
 func get_upgrade_cost(upgrade_type: UpgradeTypes) -> float: 
 	if is_type_maxed(upgrade_type):
 		return 0
-	return _upgrade_prices[upgrade_type] * (1 + get_upgrade_level(upgrade_type) )
+	return _upgrade_prices.get(upgrade_type, 0) * (1 + get_upgrade_level(upgrade_type) )
 
 func get_upgrade_level(upgrade_type: UpgradeTypes) -> int:
 	return _upgrade_levels.get(upgrade_type, 0)

@@ -1,7 +1,8 @@
 class_name ButtonEnhanced extends Button
 
 enum ButtonStates {Active = 0, # Inactive = 1, 
-	Inactive_Hidden = 2, Active_Overwrite = 3}
+	Inactive_Hidden = 2, Active_Overwrite = 3, 
+	Inactive_Visible = 4}
 
 static var standard_cursor : CustomCursor = load("uid://cb44gaxpio06i")
 static var button_cursor : CustomCursor = load("uid://cq7yoy3jauvdv")
@@ -30,7 +31,12 @@ func set_state(state: ButtonStates) -> void:
 			else: 
 				print(self, "missing Overwrite cursor")
 				button_cursor.apply_to_control(self)
-		_:
+		ButtonStates.Inactive_Visible:
+			set_disabled(true)
+			set_mouse_filter(Control.MOUSE_FILTER_STOP)
+			show()
+			standard_cursor.apply_to_control(self)
+		ButtonStates.Inactive_Hidden:
 			set_disabled(true)
 			set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 			hide()
