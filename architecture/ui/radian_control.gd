@@ -1,6 +1,6 @@
 class_name RadarRadianControler extends Node2D
 
-@export var _target_foundation : TowerFoundation2D
+@export var _target_foundation : TowerFoundation
 
 @export var _button : ButtonEnhanced
 
@@ -22,13 +22,13 @@ func _ready() -> void:
 func apply_information(_info: DisplayHelper) -> void:
 	if _info:
 		var parent = _info.get_parent()
-		if parent is TowerFoundation2D:
+		if parent is TowerFoundation:
 			_set_foundation(parent)
 			return
 	_set_foundation(null)
 
 
-func _set_foundation(node: TowerFoundation2D) -> void:
+func _set_foundation(node: TowerFoundation) -> void:
 	_target_foundation = node
 	if _target_foundation:
 		_old_radian = _target_foundation.get_facing_radian()
@@ -39,7 +39,7 @@ func _set_foundation(node: TowerFoundation2D) -> void:
 	queue_redraw()
 
 func _set_used_radian(value: float) -> void:
-		_used_radian = snappedf(value, TowerFoundation2D.FACING_RADIAN_SNAP)
+		_used_radian = snappedf(value, TowerFoundation.FACING_RADIAN_SNAP)
 		get_child(0).rotation = _used_radian
 
 func _on_down() -> void:
@@ -57,7 +57,7 @@ func _process(_delta: float) -> void:
 		var direction = get_local_mouse_position()
 		_in_process_radian = direction.angle()
 		_set_used_radian(_in_process_radian)
-		#_used_radian = snappedf(_in_process_radian, TowerFoundation2D.FACING_RADIAN_SNAP)
+		#_used_radian = snappedf(_in_process_radian, TowerFoundation.FACING_RADIAN_SNAP)
 		#get_child(0).rotation = _used_radian
 		queue_redraw()
 

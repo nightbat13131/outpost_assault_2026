@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="15_atulc"]
 [ext_resource type="PackedScene" uid="uid://b4lsve7l6fu2p" path="res://entities/enemy/spawners/spawner_building_2x2_og.tscn" id="16_81vn0"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="16_waqtc"]
-[ext_resource type="PackedScene" uid="uid://cpfajst60unk2" path="res://entities/player/tower_foundation/2d/tower_foundation_2d_og.tscn" id="17_aerbt"]
+[ext_resource type="PackedScene" uid="uid://cpfajst60unk2" path="res://entities/player/tower_foundation/2d/tower_foundation_og.tscn" id="17_aerbt"]
 [ext_resource type="TileSet" uid="uid://dtw6mws8m8n5f" path="res://map/ground_direction_tileset_128.tres" id="17_hb4kt"]
 [ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="18_81vn0"]
 

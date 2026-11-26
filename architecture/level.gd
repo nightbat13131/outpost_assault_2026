@@ -102,7 +102,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 			
 		elif each_child is BrokenFoundation2D:
 			warnings.append(WARN_FOUND_BROKEN)
-		elif each_child is TowerFoundation2D:
+		elif each_child is TowerFoundation:
 			warnings.append(WARN_FOUND_FOUNDATION)
 		elif each_child is Spawner:
 			warnings.append(WARN_FOUND_SPAWNER)

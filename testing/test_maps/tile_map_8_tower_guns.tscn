@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost.tscn" id="16_p5dyt"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="16_qvo71"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="17_t84e2"]
-[ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/2d/tower_foundation_2d.tscn" id="19_gqrjr"]
+[ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/tower_foundation/2d/tower_foundation.tscn" id="19_gqrjr"]
 [ext_resource type="TileSet" uid="uid://dtw6mws8m8n5f" path="res://map/ground_direction_tileset_128.tres" id="20_lqf21"]
 [ext_resource type="Script" uid="uid://mlap6q5cc1d1" path="res://entities/player/tower_foundation/upgrades_foundation.gd" id="20_pbcjl"]
 [ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="21_yl86e"]

@@ -39,7 +39,7 @@ static var _upgrade_type_tooltips : Dictionary[UpgradeTypes, String] = {
 	}
 
 func set_foundation(foundation: Object) -> void:
-	if foundation is TowerFoundation2D:
+	if foundation is TowerFoundation:
 		_foundation = foundation
 	else: 
 		push_error(self, " FoundationUpgrades was send ", foundation ," instead of a foundation.")

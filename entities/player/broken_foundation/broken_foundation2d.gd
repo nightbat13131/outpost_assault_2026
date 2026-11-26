@@ -51,7 +51,7 @@ func _do_repair() -> void:
 func _repair_complete() -> void:
 	texture_progress_bar.hide()
 	queue_free()
-	var new_ = load(TowerFoundation2D.get_packed_scene_path(_repair_manager.get_foundation_type())).instantiate() as TowerFoundation2D
+	var new_ = load(TowerFoundation.get_packed_scene_path(_repair_manager.get_foundation_type())).instantiate() as TowerFoundation
 	var _parent = TowerHolder.get_instance()
 	if !_parent:
 		push_error("Parent missing for TowerHolder.")
@@ -90,9 +90,9 @@ func _on_selection_cancled() -> void:
 	_is_selected = false
 	_update_buttons()
 
-func set_foundation_type(foundation_type: TowerFoundation2D.FoundationType) -> void:
+func set_foundation_type(foundation_type: TowerFoundation.FoundationType) -> void:
 	_repair_manager.set_foundation_type(foundation_type)
 
-static func get_build_cost(_foundation_type := TowerFoundation2D.FoundationType.NA ) -> float: 
+static func get_build_cost(_foundation_type := TowerFoundation.FoundationType.NA ) -> float: 
 	## TODO: differnet costs for repairing different types
 	return 100.0

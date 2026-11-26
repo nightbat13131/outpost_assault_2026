@@ -1,7 +1,7 @@
 class_name BrokenFoundationSpawner extends Node2D
 ## TODO: add a checker that the spawn cords are far enough apart based on the final size of the brokenfoundations
 
-@export var _foundation_type := TowerFoundation2D.FoundationType.NA
+@export var _foundation_type := TowerFoundation.FoundationType.NA
 var _tower_holder : TowerHolder
 var _spawn_cords : Array[Vector2]
 var _count := 0
