@@ -8,4 +8,5 @@ script = ExtResource("1_ljyxw")
 level_name = "2024 Level 4"
 level_uid = "uid://cp03bto5sc4go"
 _allow_all_towers = true
+_availalbe_outpost_upgrades = Array[int]([3, 4])
 metadata/_custom_type_script = "uid://u6pais7e54pl"

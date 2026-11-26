@@ -4,6 +4,20 @@ class_name PurchaseManager_Outpost extends PurchaseManager
 
 var _upgrade_info : PlayerOutpostUpgrades = null : set = set_upgrade_info
 
+func _ready() -> void:
+	_validate_infos()
+
+func _validate_infos() -> void:
+	## if towers become unlockable during levels instead of between, consider a used list vs an initial list. 
+	var availability: GlobalUnlocks.UnlockStatus
+	var _holder : Array[CostButtonInfo_OutpostUpgrades]
+	for index in range(cost_upgrade_infos.size()):
+		availability = GlobalUnlocks.get_player_outpost_upgrade_unlock_status(cost_upgrade_infos[index].get_upgrade_type())
+		if availability != GlobalUnlocks.UnlockStatus.HIDDEN:
+			_holder.append(cost_upgrade_infos[index].duplicate())
+			_holder[-1].set_purchase_manager(self)
+	cost_upgrade_infos = _holder
+
 func _connect_to_section() -> void:
 	_get_buttons(cost_upgrade_infos.size())
 	_update_buttons()

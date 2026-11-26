@@ -9,15 +9,13 @@ func _ready() -> void:
 func _validate_infos() -> void:
 	## if towers become unlockable during levels instead of between, consider a used list vs an initial list. 
 	var availability: GlobalUnlocks.UnlockStatus
+	var _holder : Array[CostButtonInfo_Tower]
 	for index in range(cost_tower_infos.size()):
-		availability = TowerInfo.get_tower_unlock_statis(cost_tower_infos[index].get_tower_type())
-		if availability == GlobalUnlocks.UnlockStatus.HIDDEN:
-			cost_tower_infos[index] = null
-		else:
-			cost_tower_infos[index] = cost_tower_infos[index].duplicate()
-			cost_tower_infos[index].set_purchase_manager(self)
-	while cost_tower_infos.has(null):
-		cost_tower_infos.erase(null)
+		availability = GlobalUnlocks.get_tower_unlock_status(cost_tower_infos[index].get_tower_type())
+		if availability != GlobalUnlocks.UnlockStatus.HIDDEN:
+			_holder.append(cost_tower_infos[index].duplicate())
+			_holder[-1].set_purchase_manager(self)
+	cost_tower_infos = _holder
 
 func _connect_to_section() -> void:
 	_get_buttons(cost_tower_infos.size())

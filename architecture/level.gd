@@ -135,3 +135,8 @@ static func is_tower_allowed(tower: TowerInfo_reference.TowerType) -> bool:
 	if has_instance():
 		return get_instance().get_level_info().is_tower_available(tower)
 	return false
+
+static func is_outpost_upgrade_allowed(upgrade: PlayerOutpostUpgrades.UpgradeTypes) -> bool:
+	if has_instance():
+		return get_instance().get_level_info().is_player_outpost_upgrade_available(upgrade)
+	return false

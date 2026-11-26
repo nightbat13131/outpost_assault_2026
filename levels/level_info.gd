@@ -3,8 +3,15 @@ class_name LevelInfo extends Resource
 @export var level_name: String: get = get_level_name
 @export var level_uid: String : get = get_level_path
 @export var starting_gold: float = 1000
+
+@export_category("Towers")
 @export var _allow_all_towers := false
 @export var _availalbe_towers : Array[TowerInfo_reference.TowerType] = []
+@export_category("Outpost")
+@export var _allow_all_outpost_upgrades := false
+@export var _availalbe_outpost_upgrades : Array[PlayerOutpostUpgrades.UpgradeTypes] = []
+
+@export_category("Dialog")
 @export var _dialog_groups: Array[DialogGroup]
 @export var _victory_dialog: DialogGroup
 
@@ -30,3 +37,8 @@ func is_tower_available(tower: TowerInfo_reference.TowerType) -> bool:
 	if _allow_all_towers:
 		return true
 	return _availalbe_towers.has(tower)
+
+func is_player_outpost_upgrade_available(upgrade: PlayerOutpostUpgrades.UpgradeTypes) -> bool: 
+	if _allow_all_outpost_upgrades:
+		return true
+	return _availalbe_outpost_upgrades.has(upgrade)

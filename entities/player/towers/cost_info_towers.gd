@@ -40,5 +40,5 @@ func has_missing_dependency() -> bool: return _get_unlock_status() != GlobalUnlo
 
 func _get_unlock_status() -> GlobalUnlocks.UnlockStatus:
 	if _unlock_status == GlobalUnlocks.UnlockStatus.UNKNOWN:
-		_unlock_status = TowerInfo.get_tower_unlock_statis(get_tower_type())
+		_unlock_status = GlobalUnlocks.get_tower_unlock_status(get_tower_type())
 	return _unlock_status

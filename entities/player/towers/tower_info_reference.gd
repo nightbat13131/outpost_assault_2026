@@ -73,9 +73,3 @@ static func get_tower_radar_outer_range(tower_type_: TowerType, upgrades: Founda
 	if upgrades:
 		range_mod += (upgrades.get_upgrade_level(FoundationUpgrades.UpgradeTypes.RADAR) + delta_rank) * FoundationUpgrades.RANK_EXPAND_RADAR
 	return base_range * range_mod
-
-static func get_tower_unlock_statis(tower_type: TowerType) -> GlobalUnlocks.UnlockStatus:
-	if Level.is_tower_allowed(tower_type):
-		return GlobalUnlocks.UnlockStatus.AVAILABLE
-	return GlobalUnlocks.UnlockStatus.HIDDEN
-	#return GlobalUnlocks.get_tower_unlock_statis(tower_type)
