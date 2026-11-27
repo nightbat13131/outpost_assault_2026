@@ -2,6 +2,7 @@
 class_name CameraBinder extends Node2D
 
 var bound_index := 0
+@onready var _fog_of_war : FogOfWar = %FogOfWar
 
 @export var debug := true
 @export var _free_roam := false
@@ -18,10 +19,19 @@ var bound_index := 0
 @export_tool_button("Refresh", "CanvasLayer") var _redraw_press = _refresh_preview
 @export var camera : Camera2DEnhanced
 
+static var _instance : CameraBinder
+
+func _init() -> void:
+	_instance = self
+	tree_exiting.connect(_on_exiting_tree)
+
+func _on_exiting_tree() -> void:
+	_instance = null
+
 func _ready() -> void:
-	testing_index = testing_index # prevent outout bounds
 	if Engine.is_editor_hint():
 		return
+	testing_index = testing_index # prevent outout bounds
 	if _free_roam:
 		camera._debug_freeroam = true
 	for each_bound in bounds:
@@ -30,9 +40,7 @@ func _ready() -> void:
 	if debug:
 		trigger_bound_index(testing_index)
 	else: 
-		
 		trigger_bound_index(0)
-		
 
 func _refresh_preview() -> void:
 	if _redraw_press: pass # prevent unused variable warnings 
@@ -63,3 +71,17 @@ func trigger_bound_index(index: int) -> void:
 		push_error("CameraBinder.trigger_bound_index out of bound index called, ", index)
 		return
 	camera.set_bound(bounds[index])
+	if _fog_of_war:
+		_fog_of_war.apply_bounds(bounds[index])
+
+func _trigger_camera_sync() -> void:
+	camera.remote_move_to(DisplaySelected.get_ui_camera_pos())
+
+static func has_instance() -> bool: return _instance != null
+
+static func get_instance() -> CameraBinder: return _instance
+
+## Tell the game camera to point at the same location as the UI camera
+static func trigger_camera_sync() -> void:
+	if has_instance():
+		get_instance()._trigger_camera_sync()

@@ -1,4 +1,6 @@
-class_name UpgradeVisualizer extends Node
+class_name UpgradeVisualizer extends Node2D
+
+@export var nodes : Dictionary[FoundationUpgrades.UpgradeTypes, Sprite2D]
 
 var _upgrades: FoundationUpgrades
 
@@ -13,4 +15,11 @@ func set_upgrade_info(info: FoundationUpgrades) -> void:
 	_on_upgrade_changed() ## apply starting upgrades
 
 func _on_upgrade_changed() -> void:
-	pass
+	var ratio = 0.0
+	var sprite: Sprite2D
+	for upgrade : FoundationUpgrades.UpgradeTypes in nodes.keys():
+		sprite = nodes.get(upgrade, null)
+		if sprite:
+			if _upgrades:
+				ratio =  _upgrades.get_upgrade_ratio(upgrade)
+			sprite.modulate.a = ratio

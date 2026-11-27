@@ -22,7 +22,7 @@ func activate(parent_display_info: DisplayHelper) -> void:
 		__populate_foundation(each_pos)
 
 func __populate_foundation(global_position_: Vector2) -> void:
-	var new_ = load(BrokenFoundation2D.SCENE_PATH).instantiate() as BrokenFoundation2D
+	var new_ = load(BrokenFoundation.SCENE_PATH).instantiate() as BrokenFoundation
 	new_.set_global_position(global_position_)
 	_tower_holder.add_child(new_)
 	new_.set_foundation_type(_foundation_type)

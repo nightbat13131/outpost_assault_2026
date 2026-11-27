@@ -12,7 +12,7 @@ var is_repairing := false:
 func get_cost() -> float: 
 	if is_repairing:
 		return 0
-	return BrokenFoundation2D.get_build_cost()
+	return BrokenFoundation.get_build_cost()
 
 func get_label() -> String: 
 	if is_repairing:

@@ -1,21 +1,17 @@
-class_name TowerFoundation extends Sprite2D
+class_name TowerFoundation extends Foundation
 
 const SCENE_PATH = "uid://crf0po16hl0dv"
 const SCENE_PATH_OG = "uid://cpfajst60unk2"
 const FACING_RADIAN_SNAP = TAU/16
 
-enum FoundationType {NA = 0, OG = 1 }
-
 @export var upgrades : FoundationUpgrades
 @export var starting_tower := TowerInfo.TowerType.NA
 
-var _display_info: DisplayHelper: get = get_display_info
 var _current_tower: Tower
-var _is_selected : bool = false: set = _set_is_selected
 
-@onready var _button: Button_Trigger_UI = %Button
+
 @onready var upgrade_manager: UpgradeManager_TowerFoundation = %UpgradeManager
-@onready var visualize_upgrades: UpgradeVisualizer2D = %VisualizeUpgrades
+@onready var visualize_upgrades: UpgradeVisualizer = %VisualizeUpgrades
 
 @onready var _tower_purchase_manager: PurchaseManager_GunNest = %TowerPurchaseManager
 @onready var _health_ui: HealthUI = %HealthUI
@@ -27,22 +23,24 @@ var _facing_radian := 0.0
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	super._ready()
 	_health_ui.set_health_info(null)
-	_connect_purchasers()
-	if _button:
-		_display_info = DisplayHelper.new(self, null, upgrade_manager, null)
-		_display_info.unselected.connect(_set_is_selected.bind(false))
-		_button.selected.connect(_set_is_selected.bind(true))
-		_button.mouse_entered.connect(_on_hover.bind(true))
-		_button.mouse_exited.connect(_on_hover.bind(false))
-	_post_ready.call_deferred()
+	_select_button.mouse_entered.connect(_on_hover.bind(true))
+	_select_button.mouse_exited.connect(_on_hover.bind(false))
 
 func _post_ready() -> void:
 	set_facing_radian(TileMapLayer_Directions.get_facing_direction(global_position) )
 	queue_redraw()
+	_connect_purchasers()
 	add_tower(starting_tower)
 
-func uses_facing_radian() -> bool: return true
+func get_display_info() -> DisplayHelper: 
+	if _display_info == null:
+		_display_info = DisplayHelper.new(self, null, upgrade_manager, null)
+		_display_info.unselected.connect(_on_selection_cancled)
+	return _display_info
+
+#func uses_facing_radian() -> bool: return true
 
 func get_facing_radian() -> float: return _facing_radian
 
@@ -86,16 +84,12 @@ func _add_tower(tower_type: TowerInfo.TowerType) -> void:
 	get_radar_preview().cancle_preview()
 	_current_tower.set_parent_selected(_is_selected)
 
-func get_display_info() -> DisplayHelper: return _display_info
-
 func on_selected() -> void: _set_is_selected(true)
 
 #func _on_unselected() -> void: set_is_selected(false)
 
 func _set_is_selected(is_selected: bool) -> void:
-	_is_selected = is_selected
-	if _is_selected:
-		DisplaySelected.request_display(get_display_info())
+	super._set_is_selected(is_selected)
 	if _has_tower():
 		_current_tower.set_parent_selected(_is_selected)
 

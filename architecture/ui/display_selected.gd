@@ -13,17 +13,20 @@ var _information : DisplayHelper
 @onready var display_nothing_button: Button = %DisplayNothing_Button
 @onready var radar_radian_control: RadarRadianControler = %RadarRadianControl
 
+func _init() -> void:
+	_instance = self
 
 func _ready() -> void:
-	_instance = self
 	if _null_information == null:
 		_null_information = DisplayHelper.new(null, null, null, null)
 	_apply_information(null)
 
+static func has_instance() -> bool: return _instance != null
+
 static func get_instance() -> DisplaySelected: return _instance
 
 static func request_display(info: DisplayHelper) -> bool:
-	if get_instance():
+	if has_instance():
 		get_instance()._apply_information(info)
 		return true
 	return false
@@ -31,12 +34,12 @@ static func request_display(info: DisplayHelper) -> bool:
 static func replace_information(old_info: DisplayHelper, new_info: DisplayHelper) -> bool:
 	if old_info == new_info: 
 		return false
-	if get_instance():
+	if has_instance():
 		return get_instance()._replace_information(old_info, new_info)
 	return false
 
 static func cancle_display(info: DisplayHelper) -> void:
-	if get_instance():
+	if has_instance():
 		get_instance()._cancel_information(info)
 
 func _apply_information(info: DisplayHelper) -> void:
@@ -65,10 +68,11 @@ func _apply_information(info: DisplayHelper) -> void:
 	tower_interface.set_manager(_information.get_tower_context_manager())
 	clip_reload_ui.set_reload_info(_information.get_reload_info())
 
+
 ## Re-apply the information if the requesting info is the same object as current info
 ## Curreonly only allows health UI changes are called 
 static func request_refresh(info: DisplayHelper) -> void:
-	if get_instance():
+	if has_instance():
 		get_instance()._refresh_information(info)
 
 ## Apply the new information IF the old information matches the current display
@@ -91,3 +95,8 @@ func _refresh_information(info: DisplayHelper) -> void:
 	if info != _information: # no action needed
 		return
 	_apply_information(info)
+
+static func get_ui_camera_pos() -> Vector2:
+	if has_instance():
+		return get_instance().display_selected_viewport.get_camera_pos()
+	return Vector2.ZERO

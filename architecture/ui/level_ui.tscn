@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://b8re4y454lk4w" path="res://architecture/ui/display_selected.gd" id="3_qyk0y"]
 [ext_resource type="PackedScene" uid="uid://desaftkh3o3ub" path="res://architecture/ui/health2d_ui.tscn" id="5_5c5v8"]
 [ext_resource type="Script" uid="uid://c0j8mplyiibwb" path="res://architecture/ui/selected_entity_viewport.gd" id="6_vw2lh"]
-[ext_resource type="Script" uid="uid://dfifo1iryhsgu" path="res://architecture/ui/null_ui_selection_button.gd" id="7_7mwho"]
+[ext_resource type="Script" uid="uid://dfifo1iryhsgu" path="res://architecture/ui/ui_selection_button.gd" id="7_7mwho"]
 [ext_resource type="Script" uid="uid://didbyugt5lxvi" path="res://architecture/ui/gold_managment/purchase_interface.gd" id="7_yq572"]
 [ext_resource type="PackedScene" uid="uid://bpl7dlc4b587g" path="res://architecture/ui/clip_reload_ui.tscn" id="9_l4gwg"]
 [ext_resource type="PackedScene" uid="uid://b51eayc0tka3h" path="res://architecture/ui/purchase_interface_section.tscn" id="9_yq572"]
@@ -134,7 +134,15 @@ mouse_behavior_recursive = 2
 layout_mode = 2
 script = ExtResource("2_m3x4y")
 
+[node name="DisplayHome" type="Button" parent="FullScreen/LevelControls/ShowPlayerBase" unique_id=582445722]
+layout_mode = 2
+text = "Home"
+script = ExtResource("7_7mwho")
+selection_type = 1
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
 [node name="Label2" type="Label" parent="FullScreen/LevelControls/ShowPlayerBase" unique_id=991682517]
+visible = false
 layout_mode = 2
 text = "HomeBase"
 
@@ -173,10 +181,43 @@ layout_mode = 2
 theme_override_constants/separation = 1
 script = ExtResource("3_qyk0y")
 
-[node name="DisplayNothing_Button" type="Button" parent="FullScreen/LevelControls/DisplaySelected" unique_id=1383901387]
+[node name="CameraButtons" type="HBoxContainer" parent="FullScreen/LevelControls/DisplaySelected" unique_id=445097311]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Control" type="Control" parent="FullScreen/LevelControls/DisplaySelected/CameraButtons" unique_id=842237193]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DisplayLeft" type="Button" parent="FullScreen/LevelControls/DisplaySelected/CameraButtons" unique_id=2119358111]
+layout_mode = 2
+text = "<"
+script = ExtResource("7_7mwho")
+selection_type = 2
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="DisplayCamera" type="Button" parent="FullScreen/LevelControls/DisplaySelected/CameraButtons" unique_id=1931062881]
+layout_mode = 2
+text = "-0-"
+script = ExtResource("7_7mwho")
+selection_type = 4
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="DisplayRight" type="Button" parent="FullScreen/LevelControls/DisplaySelected/CameraButtons" unique_id=936313927]
+layout_mode = 2
+text = ">"
+script = ExtResource("7_7mwho")
+selection_type = 3
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Control2" type="Control" parent="FullScreen/LevelControls/DisplaySelected/CameraButtons" unique_id=1066116965]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DisplayNothing_Button" type="Button" parent="FullScreen/LevelControls/DisplaySelected/CameraButtons" unique_id=1383901387]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Cancle Selection"
+text = "[X]"
 script = ExtResource("7_7mwho")
 
 [node name="DisplayName" type="Label" parent="FullScreen/LevelControls/DisplaySelected" unique_id=784152586]

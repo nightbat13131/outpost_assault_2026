@@ -34,3 +34,5 @@ func _set_camera_focus_2d(cam_position: Vector2) -> void:
 	else: 
 		camera_2d.position = cam_position
 		get_parent().show()
+
+func get_camera_pos() -> Vector2: return camera_2d.position

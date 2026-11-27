@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="2_uydb1"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="3_04v4c"]
 [ext_resource type="Script" uid="uid://dhdn60j0x3fn6" path="res://architecture/camera/camera2d_enhanced.gd" id="4_t70hs"]
+[ext_resource type="Script" uid="uid://ced58t3iw2o3h" path="res://architecture/camera/fog_of_war_via_control_thing.gd" id="5_uydb1"]
 
 [sub_resource type="Resource" id="Resource_sxemf"]
 script = ExtResource("2_uydb1")
@@ -31,6 +32,82 @@ rect_size = Vector2(1400, 1300)
 camera_start = Vector2(600, 300)
 metadata/_custom_type_script = "uid://dddpnw3b40kmo"
 
+[sub_resource type="Gradient" id="Gradient_mfrex"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_04v4c"]
+gradient = SubResource("Gradient_mfrex")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0.3, 0.3)
+
+[sub_resource type="Gradient" id="Gradient_wgdyw"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t70hs"]
+gradient = SubResource("Gradient_wgdyw")
+width = 32
+height = 32
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_dm0mq"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e1veo"]
+gradient = SubResource("Gradient_dm0mq")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.7, 0.3)
+
+[sub_resource type="Gradient" id="Gradient_oxtcp"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kprpr"]
+gradient = SubResource("Gradient_oxtcp")
+width = 32
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_7p1sr"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r77qs"]
+gradient = SubResource("Gradient_7p1sr")
+width = 32
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_exk40"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i31ej"]
+gradient = SubResource("Gradient_exk40")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0.3, 0.7)
+
+[sub_resource type="Gradient" id="Gradient_uip3q"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mxsyb"]
+gradient = SubResource("Gradient_uip3q")
+width = 32
+height = 32
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_g74ev"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n6bxx"]
+gradient = SubResource("Gradient_g74ev")
+width = 32
+height = 32
+fill = 1
+
 [node name="CameraBinder" type="Node2D" unique_id=1105577396 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_sxemf")
 testing_index = 1
@@ -46,8 +123,71 @@ offset_right = 887.0
 offset_bottom = 784.99994
 
 [node name="Camera2DEnhanced" type="Camera2D" parent="." unique_id=1518509055]
+position = Vector2(600, 448.5)
 limit_enabled = false
 editor_draw_screen = false
 script = ExtResource("4_t70hs")
 debug_draw = false
+_debug_freeroam = true
 metadata/_custom_type_script = "uid://dhdn60j0x3fn6"
+
+[node name="FogOfWar" type="GridContainer" parent="." unique_id=1635948534]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.5254902)
+offset_left = -505.0
+offset_top = -558.0
+offset_right = 2507.0
+offset_bottom = 1947.0
+mouse_filter = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+script = ExtResource("5_uydb1")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="FogOfWar" unique_id=1713297446]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_04v4c")
+
+[node name="TextureRect4" type="TextureRect" parent="FogOfWar" unique_id=2030973783]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_t70hs")
+
+[node name="TextureRect2" type="TextureRect" parent="FogOfWar" unique_id=2133042449]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_e1veo")
+
+[node name="TextureRect3" type="TextureRect" parent="FogOfWar" unique_id=1358477578]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_kprpr")
+
+[node name="Control" type="Control" parent="FogOfWar" unique_id=85081875]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect5" type="TextureRect" parent="FogOfWar" unique_id=2096517494]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_r77qs")
+
+[node name="TextureRect6" type="TextureRect" parent="FogOfWar" unique_id=2049074550]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_i31ej")
+
+[node name="TextureRect7" type="TextureRect" parent="FogOfWar" unique_id=72262910]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_mxsyb")
+
+[node name="TextureRect8" type="TextureRect" parent="FogOfWar" unique_id=428134159]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_n6bxx")

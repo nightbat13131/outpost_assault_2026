@@ -12,74 +12,19 @@
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="9_2bwjw"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="10_85e20"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://entities/enemy/spawners/spawner_building2d_1x1.tscn" id="11_sevtk"]
-[ext_resource type="Script" uid="uid://ced58t3iw2o3h" path="res://architecture/camera/fog_of_war_via_control_thing.gd" id="12_audif"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_l5omd"]
 [ext_resource type="TileSet" uid="uid://16wo55d8xusn" path="res://map/ground_direction_tileset_128_hex.tres" id="14_axjm0"]
+[ext_resource type="Script" uid="uid://cpu3yac28ofsg" path="res://testing/test_scripts/test_in_fog.gd" id="14_b622f"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="14_enrm6"]
 [ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="15_438oj"]
+[ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="18_snibe"]
+[ext_resource type="PackedScene" uid="uid://crf0po16hl0dv" path="res://entities/player/foundations/2d/tower_foundation.tscn" id="19_b622f"]
+[ext_resource type="PackedScene" uid="uid://cpfajst60unk2" path="res://entities/player/foundations/2d/tower_foundation_og.tscn" id="20_cii4f"]
+[ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="21_un7u5"]
+[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost.tscn" id="22_cii4f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
-
-[sub_resource type="Gradient" id="Gradient_mfrex"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_33ny3"]
-gradient = SubResource("Gradient_mfrex")
-fill = 1
-fill_from = Vector2(1, 1)
-fill_to = Vector2(0.3, 0.3)
-
-[sub_resource type="Gradient" id="Gradient_wgdyw"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vsoyy"]
-gradient = SubResource("Gradient_wgdyw")
-fill_to = Vector2(0, 1)
-
-[sub_resource type="Gradient" id="Gradient_dm0mq"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vhete"]
-gradient = SubResource("Gradient_dm0mq")
-fill = 1
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0.7, 0.3)
-
-[sub_resource type="Gradient" id="Gradient_oxtcp"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_enrm6"]
-gradient = SubResource("Gradient_oxtcp")
-
-[sub_resource type="Gradient" id="Gradient_7p1sr"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_axjm0"]
-gradient = SubResource("Gradient_7p1sr")
-
-[sub_resource type="Gradient" id="Gradient_exk40"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_438oj"]
-gradient = SubResource("Gradient_exk40")
-fill = 1
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0.3, 0.7)
-
-[sub_resource type="Gradient" id="Gradient_uip3q"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_snibe"]
-gradient = SubResource("Gradient_uip3q")
-fill_from = Vector2(1, 1)
-
-[sub_resource type="Gradient" id="Gradient_g74ev"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ij4tt"]
-gradient = SubResource("Gradient_g74ev")
-fill = 1
 
 [node name="Level" type="Node2D" unique_id=488991574]
 script = ExtResource("1_vsoyy")
@@ -97,10 +42,9 @@ script = ExtResource("8_g3vga")
 _debug = true
 metadata/_edit_lock_ = true
 
-[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475 node_paths=PackedStringArray("tilemap_directions")]
+[node name="Spawner" type="Node2D" parent="SpawnManager" unique_id=1829100475]
 position = Vector2(273, 212)
 script = ExtResource("9_2bwjw")
-tilemap_directions = NodePath("../../TileMapLayerDirection")
 _inital_delay = 3.0
 _pulse_gap = 3.0
 _pulse_per_wave = 3
@@ -113,9 +57,8 @@ script = ExtResource("10_85e20")
 unit_types = Array[int]([100])
 metadata/_custom_type_script = "uid://cbrnrqxijffds"
 
-[node name="SpawnerBuilding" parent="SpawnManager" unique_id=2112157350 node_paths=PackedStringArray("tilemap_directions") instance=ExtResource("11_sevtk")]
+[node name="SpawnerBuilding" parent="SpawnManager" unique_id=2112157350 instance=ExtResource("11_sevtk")]
 position = Vector2(834, 272)
-tilemap_directions = NodePath("../../TileMapLayerDirection")
 _pulse_per_wave = 5
 
 [node name="GuideDebugger" parent="SpawnManager" unique_id=2108058716 instance=ExtResource("14_enrm6")]
@@ -153,74 +96,24 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_oisr6")
 
 [node name="SpinBox" type="SpinBox" parent="Testing" unique_id=950601344 node_paths=PackedStringArray("_camera_binder")]
-offset_left = 652.0
-offset_top = 441.0
-offset_right = 738.5
-offset_bottom = 472.0
+offset_left = 299.0
+offset_top = 29.0
+offset_right = 385.5
+offset_bottom = 60.0
 script = ExtResource("5_vhete")
 _camera_binder = NodePath("../../CameraBinder")
 
+[node name="ButtonEnhanced" type="Button" parent="Testing" unique_id=1048797231 node_paths=PackedStringArray("holder")]
+offset_left = 546.0
+offset_top = 43.0
+offset_right = 610.0
+offset_bottom = 74.0
+text = "in_fog1"
+script = ExtResource("14_b622f")
+holder = NodePath("../../TowerHolder")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
 [node name="CameraBinder" parent="." unique_id=1105577396 instance=ExtResource("12_l5omd")]
-
-[node name="Fog of war via control thing" type="GridContainer" parent="CameraBinder" unique_id=1085206693]
-self_modulate = Color(1, 1, 1, 0.4627451)
-offset_left = -50.0
-offset_top = -66.0
-offset_right = 2039.0
-offset_bottom = 1411.0
-mouse_filter = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 3
-script = ExtResource("12_audif")
-metadata/_edit_group_ = true
-
-[node name="TextureRect" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=2084312104]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_33ny3")
-
-[node name="TextureRect4" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=1052516530]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_vsoyy")
-
-[node name="TextureRect2" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=804905933]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_vhete")
-
-[node name="TextureRect3" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=210726402]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_enrm6")
-
-[node name="Control" type="Control" parent="CameraBinder/Fog of war via control thing" unique_id=457858235]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="TextureRect5" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=1797657364]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_axjm0")
-
-[node name="TextureRect6" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=18044718]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_438oj")
-
-[node name="TextureRect7" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=669021519]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_snibe")
-
-[node name="TextureRect8" type="TextureRect" parent="CameraBinder/Fog of war via control thing" unique_id=157766216]
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_ij4tt")
 
 [node name="TileMapLayerDirection" type="TileMapLayer" parent="." unique_id=1015020445]
 tile_map_data = PackedByteArray("AAADAP//AQACAAAAAAAEAP7/AQAAAAMAAAAEAP//AQAAAAMAAAAFAAAAAQAEAAAAAAAFAAEAAQAEAAAAAAAGAAEAAQAFAAAAAAAHAP//AQAAAAMAAAAFAP3/AQAAAAMAAAAGAPz/AQAAAAMAAAAHAPv/AQAAAAMAAAAIAPr/AQACAAAAAAAJAPn/AQACAAAAAAAKAPj/AQAAAAMAAAALAPf/AQAAAAMAAAAMAPb/AQAAAAMAAAANAPX/AQAGAAAAAAANAPb/AQAAAAMAAAANAPf/AQAHAAAAAAAOAPf/AQAHAAcAAAAPAPf/AQAHAAMAAAAQAPf/AQAAAAMAAAARAPf/AQADAAAAAAAQAPj/AQAAAAMAAAAPAPn/AQAAAAMAAAAOAPr/AQAAAAMAAAANAPv/AQAAAAMAAAAMAPz/AQAFAAQAAAALAP3/AQAEAAMAAAAKAP7/AQAAAAMAAAAJAP//AQAAAAMAAAAIAAAAAQAAAAMAAAAHAAEAAQAFAAQAAAAFAP//AQAFAAAAAAAGAP//AQAFAAAAAAAGAAIAAQAEAAAAAAAHAAAAAQADAAAAAAALAPz/AQAAAAMAAAAOAPj/AQAAAAMAAAANAPn/AQAAAAMAAAAMAPr/AQAAAAMAAAALAPv/AQAFAAAAAAAKAPz/AQAEAAQAAAAJAP3/AQAAAAMAAAAIAP7/AQAAAAMAAAAKAPv/AQAAAAMAAAAKAPr/AQAGAAYAAAAJAPv/AQAEAAAAAAAJAPr/AQAAAAMAAAAGAAAAAQAAAAMAAAAQAPb/AQAAAAMAAAA=")
@@ -228,3 +121,28 @@ tile_set = ExtResource("14_axjm0")
 navigation_enabled = false
 script = ExtResource("15_438oj")
 view_debug = true
+
+[node name="TowerHolder" type="Node2D" parent="." unique_id=129320635]
+script = ExtResource("18_snibe")
+metadata/_custom_type_script = "uid://ddqv7v6chewas"
+
+[node name="TowerFoundation" parent="TowerHolder" unique_id=400182285 instance=ExtResource("19_b622f")]
+position = Vector2(-633, 218)
+
+[node name="TowerFoundation2" parent="TowerHolder" unique_id=1678111481 instance=ExtResource("19_b622f")]
+position = Vector2(404, 1320)
+
+[node name="TowerFoundation_OG" parent="TowerHolder" unique_id=1563608677 instance=ExtResource("20_cii4f")]
+position = Vector2(1305, 472)
+
+[node name="TowerFoundation_OG2" parent="TowerHolder" unique_id=232571352 instance=ExtResource("20_cii4f")]
+position = Vector2(1009, -418)
+
+[node name="BrokenFoundation" parent="TowerHolder" unique_id=312075763 instance=ExtResource("21_un7u5")]
+position = Vector2(2252, 352)
+
+[node name="BrokenFoundation2" parent="TowerHolder" unique_id=1495789147 instance=ExtResource("21_un7u5")]
+position = Vector2(302, 762)
+
+[node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("22_cii4f")]
+position = Vector2(138, 469)

@@ -1,4 +1,4 @@
-class_name BrokenFoundation2D extends Sprite2D
+class_name BrokenFoundation extends Foundation
 
 const SCENE_PATH = "uid://bk5nrgy052rvw"
 const BASE_REPAIR_DURATION = 2.0
@@ -9,27 +9,29 @@ const TOOLTIP_REPAIRING = TOOLTIP_NAME + ": \nRepairing"
 ## Set the type of tower this repairs into with this resource.
 @export var _cost_info: CostButtonInfo_BrokenFoundation
 
-var _display_info: DisplayHelper
 var _repair_started := false
-var _is_selected := false
 
-@onready var _select_button: Button_Trigger_UI = %Button
 @onready var _repair_manager: RepairPurchaser = %RepairManager
 @onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
 @onready var repair_timer: TimerModded = %Repair_Timer
 
 func _ready() -> void:
+	super._ready()
 	texture_progress_bar.set_as_ratio(1.0)
 	_cost_info = _cost_info.duplicate()
 	_repair_manager.start_repair.connect(_do_repair)
 	_repair_manager.set_broken_foundation(self)
 	_repair_manager.set_cost_info(_cost_info)
-	_display_info = DisplayHelper.new(self, null, _repair_manager, null)
-	_display_info.unselected.connect(_on_selection_cancled)
-	_select_button.selected.connect(on_selected)
+
+func _post_ready() -> void:
+	
 	_update_buttons()
 
-func get_display_info() -> DisplayHelper: return _display_info
+func get_display_info() -> DisplayHelper: 
+	if _display_info == null:
+		_display_info = DisplayHelper.new(self, null, _repair_manager, null)
+		_display_info.unselected.connect(_on_selection_cancled)
+	return _display_info
 
 func _process(_delta: float) -> void:
 	if _repair_started:
@@ -40,7 +42,6 @@ func is_repairing() -> bool: return _repair_started
 func _do_repair() -> void:
 	if _repair_started: # prevent double start
 		return 
-	
 	_repair_started = true
 	_cost_info.is_repairing = true
 	_update_buttons()
@@ -58,7 +59,7 @@ func _repair_complete() -> void:
 		return
 	new_.set_global_position(global_position)
 	_parent.add_child(new_)
-	if DisplaySelected.replace_information(_display_info, new_.get_display_info()):
+	if DisplaySelected.replace_information(get_display_info(), new_.get_display_info()):
 		new_.on_selected()
 
 func _get_repair_duration() -> float: return BASE_REPAIR_DURATION
@@ -71,7 +72,7 @@ func on_selected() -> void:
 				_do_repair()
 		_repair_manager.remote_update_buttons()
 	else:
-		_is_selected = DisplaySelected.request_display(_display_info)
+		_set_is_selected( DisplaySelected.request_display(_display_info) )
 	_update_buttons()
 
 func _update_buttons() -> void:
@@ -85,9 +86,8 @@ func _update_buttons() -> void:
 		_select_button.set_state(ButtonEnhanced.ButtonStates.Active)
 		_select_button.set_tooltip_text(TOOLTIP_NAME)
 
-
 func _on_selection_cancled() -> void: 
-	_is_selected = false
+	super._on_selection_cancled()
 	_update_buttons()
 
 func set_foundation_type(foundation_type: TowerFoundation.FoundationType) -> void:

@@ -75,3 +75,7 @@ static func get_upgrades() -> PlayerOutpostUpgrades:
 	if has_instance():
 		return get_instance().get_outpost_upgrades()
 	return null
+
+static func remote_select() -> void:
+	if has_instance():
+		get_instance()._on_selected()
