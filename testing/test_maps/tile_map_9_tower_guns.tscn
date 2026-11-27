@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="4_gyp3u"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="5_x2oqj"]
 [ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset_128.tres" id="6_lo8hc"]
-[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="7_02rba"]
+[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_dual_grid_logic_layer.gd" id="7_02rba"]
 [ext_resource type="Script" uid="uid://msom3gj4mhg6" path="res://map/nav_helper.gd" id="8_0k2c1"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="9_u03fd"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="10_2wip0"]

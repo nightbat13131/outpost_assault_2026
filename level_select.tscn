@@ -13,9 +13,10 @@
 [ext_resource type="Resource" uid="uid://7hkinaik6ndq" path="res://levels/2024 recreation/1/levelinfo_orignal_1.tres" id="7_1wnlg"]
 [ext_resource type="Resource" uid="uid://bvfny5etnx82r" path="res://testing/test_maps/level_test_4.tres" id="7_ehng5"]
 [ext_resource type="Resource" uid="uid://crs1yhl2hu4ce" path="res://levels/2024 recreation/2/levelinfo_orignal_2.tres" id="8_8qr5y"]
-[ext_resource type="Resource" uid="uid://e62c62sf5nnd" path="res://testing/test_maps/level_test_5.tres" id="8_p532j"]
+[ext_resource type="Resource" uid="uid://e62c62sf5nnd" path="res://testing/test_maps/level_test_5_0.tres" id="8_p532j"]
 [ext_resource type="Resource" uid="uid://c5vuy8htsfep3" path="res://levels/2024 recreation/3/levelinfo_orignal_3.tres" id="9_rtb5x"]
 [ext_resource type="Resource" uid="uid://6jyj4jmy2q8p" path="res://levels/2024 recreation/4/levelinfo_orignal_4.tres" id="10_vnx2f"]
+[ext_resource type="Resource" uid="uid://b05rd1hsg83d2" path="res://testing/test_maps/level_test_5_1.tres" id="10_w6pwf"]
 [ext_resource type="Resource" uid="uid://tjyfd2aicp2y" path="res://levels/2024 recreation/5/levelinfo_orignal_5.tres" id="11_7pkux"]
 [ext_resource type="Resource" uid="uid://rq2eh0ltll5c" path="res://testing/test_maps/level_test_9.tres" id="12_doruf"]
 [ext_resource type="Resource" uid="uid://d1awopu5ba40f" path="res://testing/test_maps/museum_towers.tres" id="19_vebhf"]
@@ -83,13 +84,23 @@ level_info = ExtResource("7_ehng5")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select14" type="Button" parent="2g" unique_id=1577468241]
-offset_left = 534.0
-offset_top = 100.0
-offset_right = 606.0
-offset_bottom = 131.0
+offset_left = 529.0
+offset_top = 80.0
+offset_right = 601.0
+offset_bottom = 111.0
 text = "Map"
 script = ExtResource("2_vomi7")
 level_info = ExtResource("8_p532j")
+metadata/_custom_type_script = "uid://byme36t86h4q5"
+
+[node name="Button_Level_Select15" type="Button" parent="2g" unique_id=1574292802]
+offset_left = 541.0
+offset_top = 123.0
+offset_right = 613.0
+offset_bottom = 154.0
+text = "Map"
+script = ExtResource("2_vomi7")
+level_info = ExtResource("10_w6pwf")
 metadata/_custom_type_script = "uid://byme36t86h4q5"
 
 [node name="Button_Level_Select2" type="Button" parent="2g" unique_id=1425752775]

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cslh5sayhqyfm" path="res://testing/test_scripts/test_trigger_repair.gd" id="5_a6nin"]
 [ext_resource type="Script" uid="uid://77mr2ikssh1k" path="res://testing/test_scripts/testing_dialog_trigger.gd" id="6_jsqof"]
 [ext_resource type="Shader" uid="uid://celvt6pet4odh" path="res://testing/test_scripts/tilemap_test_0.gdshader" id="6_kla5u"]
-[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="7_5eoyu"]
+[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_dual_grid_logic_layer.gd" id="7_5eoyu"]
 [ext_resource type="Texture2D" uid="uid://bv1gs0l7v76s0" path="res://assets/tilemaps/dirt.png" id="7_fwhd0"]
 [ext_resource type="Texture2D" uid="uid://bvnnfgk3i00ho" path="res://assets/tilemaps/grass.png" id="7_orddc"]
 [ext_resource type="Script" uid="uid://dr6xn6eba7pwu" path="res://architecture/ui/dialog/dialog_info.gd" id="7_sa0v5"]

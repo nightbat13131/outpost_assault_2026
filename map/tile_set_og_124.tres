@@ -1,0 +1,44 @@
+[gd_resource type="TileSet" format=3 uid="uid://dnc5ocmr0udnj"]
+
+[ext_resource type="Texture2D" uid="uid://dnuacrxnav3qf" path="res://assets/tilemaps/field_tilesheet_og_0.png" id="1_cj2nt"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6cx3x"]
+texture = ExtResource("1_cj2nt")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 1
+0:0/0/terrains_peering_bit/bottom_left_corner = 1
+0:0/0/terrains_peering_bit/top_left_corner = 1
+0:0/0/terrains_peering_bit/top_right_corner = 1
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrains_peering_bit/bottom_right_corner = 0
+0:3/0/terrains_peering_bit/bottom_left_corner = 0
+0:3/0/terrains_peering_bit/top_left_corner = 0
+0:3/0/terrains_peering_bit/top_right_corner = 0
+0:6/0 = 0
+0:6/0/terrain_set = 0
+0:6/0/terrains_peering_bit/bottom_right_corner = 2
+0:6/0/terrains_peering_bit/bottom_left_corner = 2
+0:6/0/terrains_peering_bit/top_left_corner = 2
+0:6/0/terrains_peering_bit/top_right_corner = 2
+0:9/0 = 0
+0:9/0/terrain_set = 0
+0:9/0/terrains_peering_bit/bottom_right_corner = 3
+0:9/0/terrains_peering_bit/bottom_left_corner = 3
+0:9/0/terrains_peering_bit/top_left_corner = 3
+0:9/0/terrains_peering_bit/top_right_corner = 3
+
+[resource]
+tile_size = Vector2i(128, 128)
+terrain_set_0/mode = 1
+terrain_set_0/terrain_0/name = "Dirt"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_0/terrain_1/name = "Concrete"
+terrain_set_0/terrain_1/color = Color(0.80026424, 0.7517464, 0.8583744, 1)
+terrain_set_0/terrain_2/name = "Grass"
+terrain_set_0/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
+terrain_set_0/terrain_3/name = "Water"
+terrain_set_0/terrain_3/color = Color(0.26250002, 0.47375005, 0.75, 1)
+sources/0 = SubResource("TileSetAtlasSource_6cx3x")

@@ -2,12 +2,12 @@
 class_name Camera2DEnhanced extends Camera2D
 
 ## TODO add accecloration to hand movement
-## TODO add tween to remote movement
 ## TODO fix midle mouse button click drag
+## TODO Account for supper wide or supper tall screens in the camera zoom
 
 const ZOOM_SPEED := .05
 const TWEEN_DURATION := .5
-## Reminder that MinZoom does not work when running the Level without the UI
+## Reminder that MinZoom does not work when running the Level without the UI wrapper
 var min_zoom : float = .5 : set = set_min_zoom
 var max_zoom : float = 2.5
 
@@ -20,7 +20,7 @@ static var action_move_drag : GUIDEAction = load("uid://da8kwewg6uhwn")
 static var action_move_home : GUIDEAction = load("uid://dngiyneq1ddvy")
 static var action_zoom : GUIDEAction = load("uid://bl4ky3gf6gcji")
 
-@export var debug_draw := true
+@export var debug_draw := false
 @export var _debug_freeroam := false
 var _is_drag_cursor := true : set = _set_is_drag_cursor
 var _limit_rect : Rect2
@@ -143,6 +143,7 @@ func _on_zoom() -> void:
 			_move_to(position)
 
 func _on_home() -> void:
+	
 	var home := PlayerOutpost.get_instance()
 	if home:
 		remote_move_to(home.global_position)

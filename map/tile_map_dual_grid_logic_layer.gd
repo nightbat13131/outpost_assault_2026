@@ -1,12 +1,7 @@
-class_name TileMapLogicLayer extends TileMapLayer
-## Inspired by https://www.youtube.com/watch?v=jEWFSv3ivTg
-## consider https://github.com/pablogila/TileMapDual
+class_name TileMapLogicLayer extends TileMapLayer_DualGrid
 
 ## values in the provided tilemap will overwrite upload ready
 @export var _overwrite_tile_map : TileMapLayer
-
-enum GroundTypes {NA = 0, DIRT = 10, CONCRETE = 11, GRASS = 20, WATER = 30 }
-
 
 func _ready() -> void:
 	if _overwrite_tile_map:

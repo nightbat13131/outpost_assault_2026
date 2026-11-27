@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_jl51d"]
 [ext_resource type="Resource" uid="uid://df8cltxqp3rgn" path="res://testing/test_maps/museum_units.tres" id="2_jl51d"]
 [ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset_128.tres" id="3_wy1rr"]
-[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="4_c4ege"]
+[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_dual_grid_logic_layer.gd" id="4_c4ege"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="5_2v5p5"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="6_veksh"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="7_8l43c"]

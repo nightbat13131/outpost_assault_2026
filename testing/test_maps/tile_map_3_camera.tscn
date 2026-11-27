@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="1_087yg"]
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_vsoyy"]
-[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="2_l5omd"]
+[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_dual_grid_logic_layer.gd" id="2_l5omd"]
 [ext_resource type="Resource" uid="uid://busxt7plco4qy" path="res://testing/test_maps/level_test_3.tres" id="2_vhete"]
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="3_tieqq"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="4_747j4"]

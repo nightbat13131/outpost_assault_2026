@@ -48,7 +48,7 @@ func _on_exiting_tree() -> void: _instance = null
 static func has_instance() -> bool: return _instance != null
 
 static func get_instance() -> FogOfWar: return _instance
-
+ 
 static func is_within_game_view(global_pos: Vector2) -> bool:
 	if has_instance():
 		return get_instance()._is_within_game_view(global_pos)

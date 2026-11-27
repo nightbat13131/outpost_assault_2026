@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://b05rd1hsg83d2"]
+
+[ext_resource type="Script" uid="uid://crrqgfxgv78rb" path="res://architecture/ui/dialog/dialog_group.gd" id="1_5km5v"]
+[ext_resource type="Script" uid="uid://u6pais7e54pl" path="res://levels/level_info.gd" id="2_tef2o"]
+
+[resource]
+script = ExtResource("2_tef2o")
+level_name = "Map Stuff 128"
+level_uid = "uid://2ugu7j5iapld"
+starting_gold = 1005.0
+_allow_all_towers = true
+metadata/_custom_type_script = "uid://u6pais7e54pl"

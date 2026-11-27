@@ -229,6 +229,7 @@ func _get_leg_on_track(leg: NavigationLeg) -> void:
 	var cell_center := to_global( map_to_local(  local_to_map( to_local(start_pos_g) ) ) )
 	leg.set_destination(cell_center, Utilities.DIRECTION_UKNOWN )
 
+## Based on the TileSet.CellNeighbor...
 func invert_direction(orignal_direction := Utilities.DIRECTION_UKNOWN ) -> int:
 	if orignal_direction < 0: 
 		return orignal_direction

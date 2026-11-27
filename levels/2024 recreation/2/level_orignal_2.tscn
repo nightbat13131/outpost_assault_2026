@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b0t5s8j8ebkqx" path="res://levels/level_template.tscn" id="1_d88b2"]
 [ext_resource type="Script" uid="uid://cqn2yktneipi4" path="res://levels/2024 recreation/2/level_orignal_2.gd" id="2_hkf3y"]
 [ext_resource type="Resource" uid="uid://crs1yhl2hu4ce" path="res://levels/2024 recreation/2/levelinfo_orignal_2.tres" id="3_f5wxu"]
-[ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map.tscn" id="8_e6w5a"]
+[ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map128.tscn" id="8_e6w5a"]
 [ext_resource type="Resource" uid="uid://fyilmatoyruw" path="res://entities/player/broken_foundation/cost_rebuild_broken_foundation_og.tres" id="8_vkqak"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="10_f5wxu"]
 [ext_resource type="PackedScene" uid="uid://cpfajst60unk2" path="res://entities/player/foundations/2d/tower_foundation_og.tscn" id="10_p2nrg"]

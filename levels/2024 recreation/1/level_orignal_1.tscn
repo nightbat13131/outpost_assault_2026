@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b0t5s8j8ebkqx" path="res://levels/level_template.tscn" id="1_2p2oy"]
 [ext_resource type="Resource" uid="uid://7hkinaik6ndq" path="res://levels/2024 recreation/1/levelinfo_orignal_1.tres" id="2_36uud"]
-[ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map.tscn" id="2_m8bud"]
+[ext_resource type="PackedScene" uid="uid://dyxe64fcssnfi" path="res://map/orignal_world_map128.tscn" id="2_m8bud"]
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="8_6d675"]
 [ext_resource type="TileSet" uid="uid://bm8a57xwws6gu" path="res://map/ground_logic_tileset_128.tres" id="10_81vn0"]
 [ext_resource type="Script" uid="uid://dddpnw3b40kmo" path="res://architecture/camera/camera_bounds.gd" id="11_36uud"]

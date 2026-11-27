@@ -2,13 +2,17 @@
 
 [ext_resource type="Script" uid="uid://c0wrdfpkfi7u1" path="res://testing/test_scripts/testing_damage_button.gd" id="1_n76ps"]
 [ext_resource type="Script" uid="uid://dkbdphlfllran" path="res://architecture/level.gd" id="1_wjsbk"]
-[ext_resource type="Resource" uid="uid://e62c62sf5nnd" path="res://testing/test_maps/level_test_5.tres" id="2_f2x0y"]
+[ext_resource type="Resource" uid="uid://e62c62sf5nnd" path="res://testing/test_maps/level_test_5_0.tres" id="2_f2x0y"]
 [ext_resource type="Script" uid="uid://cs44sff07r8rk" path="res://testing/test_scripts/test_poison_zone.gd" id="2_gtrpk"]
 [ext_resource type="Script" uid="uid://bdly180i85831" path="res://testing/test_scripts/testing_kill_zone.gd" id="3_3t1yr"]
 [ext_resource type="TileSet" uid="uid://dts0elkqouq0i" path="res://map/groun_logic_hex.tres" id="4_tsyvc"]
-[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_logic_layer.gd" id="5_1au5r"]
+[ext_resource type="Script" uid="uid://bnq17whyaut71" path="res://map/tile_map_dual_grid_logic_layer.gd" id="5_1au5r"]
+[ext_resource type="Shader" uid="uid://celvt6pet4odh" path="res://testing/test_scripts/tilemap_test_0.gdshader" id="6_u1lij"]
+[ext_resource type="Texture2D" uid="uid://bv1gs0l7v76s0" path="res://assets/tilemaps/dirt.png" id="7_lfbdq"]
+[ext_resource type="Texture2D" uid="uid://bvnnfgk3i00ho" path="res://assets/tilemaps/grass.png" id="8_g1yfs"]
 [ext_resource type="Script" uid="uid://cirjfxlvae6nx" path="res://entities/enemy/spawners/spawn_manager.gd" id="8_rqtgn"]
 [ext_resource type="Script" uid="uid://r0ygm2bqav7d" path="res://entities/enemy/spawners/spawner.gd" id="9_6gajh"]
+[ext_resource type="Texture2D" uid="uid://bcbk8wi2ytd24" path="res://assets/tilemaps/water.png" id="9_cxc5m"]
 [ext_resource type="Script" uid="uid://cbrnrqxijffds" path="res://entities/enemy/spawners/spawn_point.gd" id="10_4twi3"]
 [ext_resource type="PackedScene" uid="uid://ep5n0oef5o1f" path="res://entities/enemy/spawners/spawner_building2d_1x1.tscn" id="11_51ooa"]
 [ext_resource type="PackedScene" uid="uid://u8siqr8gpo30" path="res://architecture/camera/camera_bundle.tscn" id="12_2ift6"]
@@ -16,10 +20,21 @@
 [ext_resource type="PackedScene" uid="uid://bk5nrgy052rvw" path="res://entities/player/broken_foundation/broken_foundation.tscn" id="14_6ak7r"]
 [ext_resource type="Script" uid="uid://ddqv7v6chewas" path="res://architecture/level_structure/level_tower_holder.gd" id="15_ytt62"]
 [ext_resource type="TileSet" uid="uid://16wo55d8xusn" path="res://map/ground_direction_tileset_128_hex.tres" id="17_0qspo"]
+[ext_resource type="PackedScene" uid="uid://dnjfh8iuvd8x5" path="res://entities/player/player_outpost/player_outpost.tscn" id="18_0qspo"]
 [ext_resource type="Script" uid="uid://bak3byqtv0ui2" path="res://map/tile_map_layer_direction.gd" id="18_p3u3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oisr6"]
 radius = 100.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xd00u"]
+shader = ExtResource("6_u1lij")
+shader_parameter/overlay_tex_grass = ExtResource("8_g1yfs")
+shader_parameter/mask_grass = Color(0.6666667, 0.8, 0.34117648, 1)
+shader_parameter/overlay_tex_dirt = ExtResource("7_lfbdq")
+shader_parameter/mask_dirt = Color(0.6392157, 0.5019608, 0.44313726, 1)
+shader_parameter/overlay_tex_water = ExtResource("9_cxc5m")
+shader_parameter/mask_water = Color(0, 0.6313726, 0.60784316, 1)
+shader_parameter/scale_tex = 0.01
 
 [sub_resource type="TileSet" id="TileSet_n76ps"]
 tile_shape = 3
@@ -84,6 +99,7 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_oisr6")
 
 [node name="TileMapLogicLayer" type="TileMapLayer" parent="." unique_id=1836936977]
+material = SubResource("ShaderMaterial_xd00u")
 tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAEAAAAHAAEAAAAAAAEAAAAGAAEAAAAAAAEAAAAFAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAADAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAABAAQAAAAAAAEAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAIAAAAIAAAAAAAAAAIAAAAHAAAAAAAAAAIAAAAGAAAAAAAAAAIAAAAFAAAAAAAAAAIAAAAEAAAAAAAAAAIAAAADAAAAAAAAAAIAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAgAAAAAAAIAAAABAAgAAAAAAAEAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAAAAAIAAAAOAAcAAAAAAAIAAAAOAAYAAAAAAAIAAAAOAAUAAAAAAAIAAAAOAAQAAAAAAAIAAAAOAAMAAAAAAAIAAAAOAAIAAAAAAAIAAAAOAAEAAAAAAAIAAAAOAAAAAAAAAAIAAAANAAAAAAAAAAIAAAAMAAAAAAAAAAIAAAALAAAAAAAAAAIAAAAKAAAAAAAAAAIAAAABAAUAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAAAAAACAAcAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAABAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAFAAUAAAAAAAEAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAEAAAAGAAUAAAAAAAEAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAEAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAUAAAAAAAEAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAEAAAAJAAUAAAAAAAEAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAUAAAAAAAEAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAEAAAALAAEAAAAAAAEAAAALAAIAAAABAAAAAAALAAMAAAABAAAAAAALAAQAAAABAAAAAAALAAUAAAABAAAAAAALAAYAAAABAAAAAAALAAcAAAABAAAAAAAMAAEAAAAAAAEAAAAMAAIAAAABAAAAAAAMAAMAAAABAAAAAAAMAAQAAAABAAAAAAAMAAUAAAABAAAAAAAMAAYAAAABAAAAAAAMAAcAAAABAAAAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAD//wEAAAAAAAIAAAD//wIAAAAAAAIAAAD//wMAAAAAAAIAAAD//wQAAAAAAAIAAAD//wUAAAAAAAIAAAD//wYAAAAAAAIAAAD//wcAAAAAAAIAAAD//wgAAAAAAAIAAAD//wsAAAAAAAIAAAAAAAsAAAAAAAIAAAABAAsAAAAAAAIAAAACAAsAAAAAAAIAAAADAAsAAAAAAAIAAAAEAAsAAAAAAAIAAAAFAAsAAAAAAAIAAAAGAAsAAAAAAAIAAAAHAAsAAAAAAAIAAAAIAAsAAAAAAAIAAAAJAAsAAAAAAAIAAAAKAAsAAAAAAAIAAAALAAsAAAAAAAIAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAPAAoAAAAAAAIAAAAOAAoAAAAAAAIAAAANAAoAAAAAAAIAAAAMAAoAAAAAAAIAAAALAAoAAAAAAAIAAAAKAAoAAAAAAAIAAAAJAAoAAAAAAAIAAAAIAAoAAAAAAAIAAAAHAAoAAAAAAAIAAAAGAAoAAAAAAAIAAAAFAAoAAAAAAAIAAAAEAAoAAAAAAAIAAAADAAoAAAAAAAIAAAACAAoAAAAAAAIAAAABAAoAAAAAAAIAAAAAAAoAAAAAAAIAAAD//woAAAAAAAIAAAD//wkAAAAAAAIAAAAAAAkAAAAAAAEAAAABAAkAAAAAAAEAAAACAAkAAAAAAAEAAAADAAkAAAAAAAEAAAAEAAkAAAAAAAEAAAAFAAkAAAAAAAEAAAAGAAkAAAAAAAEAAAAHAAkAAAAAAAEAAAAIAAkAAAAAAAEAAAAJAAkAAAAAAAEAAAAKAAkAAAAAAAEAAAALAAkAAAAAAAEAAAAMAAkAAAAAAAEAAAANAAkAAAAAAAEAAAAOAAkAAAAAAAIAAAAPAAgAAAAAAAIAAAAPAAYAAAAAAAIAAAAPAAQAAAAAAAIAAAAPAAIAAAAAAAIAAAAPAAAAAAAAAAIAAAAOAP//AAAAAAIAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAABAP//AAAAAAIAAAACAP//AAAAAAIAAAADAP//AAAAAAIAAAAEAP//AAAAAAIAAAAFAP//AAAAAAIAAAAGAP//AAAAAAIAAAAHAP//AAAAAAIAAAAIAP//AAAAAAIAAAAJAP//AAAAAAIAAAAKAP//AAAAAAIAAAALAP//AAAAAAIAAAAMAP//AAAAAAIAAAANAP//AAAAAAIAAAD//wAAAAAAAAIAAAA=")
 tile_set = ExtResource("4_tsyvc")
 script = ExtResource("5_1au5r")
@@ -144,3 +160,6 @@ tile_set = ExtResource("17_0qspo")
 navigation_enabled = false
 script = ExtResource("18_p3u3v")
 view_debug = true
+
+[node name="PlayerOutpost" parent="." unique_id=831910580 instance=ExtResource("18_0qspo")]
+position = Vector2(155, 868)

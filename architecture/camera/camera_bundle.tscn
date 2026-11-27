@@ -127,8 +127,7 @@ position = Vector2(600, 448.5)
 limit_enabled = false
 editor_draw_screen = false
 script = ExtResource("4_t70hs")
-debug_draw = false
-_debug_freeroam = true
+debug_draw = true
 metadata/_custom_type_script = "uid://dhdn60j0x3fn6"
 
 [node name="FogOfWar" type="GridContainer" parent="." unique_id=1635948534]

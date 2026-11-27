@@ -5,7 +5,7 @@ static var _instance : TowerHolder
 var _last_index := 0
 
 ## because non- tower stuff gets in here like tower projectiles.
-var tower_children : Array[Node2D]  = []
+var tower_children : Array[Foundation]  = []
 
 func _init() -> void:
 	_instance = self
