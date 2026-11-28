@@ -16,7 +16,10 @@ var bound_index := 0
 		_refresh_preview()
 
 @export var bounds : Array[CameraBounds] = []
+
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh", "CanvasLayer") var _redraw_press = _refresh_preview
+
 @export var camera : Camera2DEnhanced
 
 static var _instance : CameraBinder
@@ -43,7 +46,6 @@ func _ready() -> void:
 		trigger_bound_index(0)
 
 func _refresh_preview() -> void:
-	if _redraw_press: pass # prevent unused variable warnings 
 	if debug and camera:
 		bound_index = clamp(testing_index, 0, bounds.size())
 		camera.set_bound(bounds[testing_index])

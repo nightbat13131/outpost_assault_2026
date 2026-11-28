@@ -2,13 +2,18 @@ class_name TileMapLayer_DualGrid extends TileMapLayer
 ## Inspired by https://www.youtube.com/watch?v=jEWFSv3ivTg
 ## consider https://github.com/pablogila/TileMapDual
 
-const DATA_LAYER_GROUND_TYPE = &'DualGrid_GroundType'
+#const DATA_LAYER_GROUND_TYPE = &'DualGrid_GroundType'
+const SOURCE_LAYER_LOGIC := 0
+const SOURCE_LAYER_DISPLAY := 1
 
-enum GroundTypes {NA = 0, DIRT = 10, CONCRETE = 11, GRASS = 20, WATER = 30 }
-static var ground_types_map_terains : Dictionary[GroundTypes, int] = {
-	GroundTypes.DIRT : 0, 
-	GroundTypes.CONCRETE : 1
-}
+enum TerrainTypes {NA = 0, DIRT = 1, CONCRETE = 2, GRASS = 3, WATER = 4 }
+
+const _SQUARE_CELLNCORNERS : Array[TileSet.CellNeighbor] = [
+	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_RIGHT_CORNER, 
+	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_LEFT_CORNER,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_LEFT_CORNER,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_RIGHT_CORNER, 
+	]
 
 func tile_set_is_compatable(tile_map_layer: TileMapLayer) -> bool:
 	if tile_map_layer == null: 

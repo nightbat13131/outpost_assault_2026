@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b0tcra75k5lpn"]
+
+[ext_resource type="Shader" uid="uid://celvt6pet4odh" path="res://testing/test_scripts/tilemap_test_0.gdshader" id="1_p1b2d"]
+[ext_resource type="Texture2D" uid="uid://ctlrma2w54ksx" path="res://assets/tilemaps/concrete.png" id="2_c0yqs"]
+[ext_resource type="Texture2D" uid="uid://bv1gs0l7v76s0" path="res://assets/tilemaps/dirt.png" id="3_dey4e"]
+[ext_resource type="Texture2D" uid="uid://bvnnfgk3i00ho" path="res://assets/tilemaps/grass.png" id="4_ir7x6"]
+[ext_resource type="Texture2D" uid="uid://bcbk8wi2ytd24" path="res://assets/tilemaps/water.png" id="5_tqy0m"]
+
+[resource]
+shader = ExtResource("1_p1b2d")
+shader_parameter/overlay_tex_grass = ExtResource("4_ir7x6")
+shader_parameter/mask_grass = Color(0.6666667, 0.8, 0.34117648, 1)
+shader_parameter/overlay_tex_dirt = ExtResource("3_dey4e")
+shader_parameter/mask_dirt = Color(0.6392157, 0.5019608, 0.44313726, 1)
+shader_parameter/overlay_tex_water = ExtResource("5_tqy0m")
+shader_parameter/mask_water = Color(0, 0.6313726, 0.60784316, 1)
+shader_parameter/overlay_tex_conrete = ExtResource("2_c0yqs")
+shader_parameter/mask_conrete = Color(0.8862745, 0.8627451, 0.8627451, 1)
+shader_parameter/scale_tex = 0.01

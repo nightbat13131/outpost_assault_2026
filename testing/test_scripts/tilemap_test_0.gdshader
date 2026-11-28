@@ -6,6 +6,8 @@ uniform sampler2D overlay_tex_dirt: repeat_enable, filter_nearest;
 uniform vec4 mask_dirt : source_color ;
 uniform sampler2D overlay_tex_water: repeat_enable, filter_nearest;
 uniform vec4 mask_water : source_color ;
+uniform sampler2D overlay_tex_conrete: repeat_enable, filter_nearest;
+uniform vec4 mask_conrete : source_color ;
 uniform float scale_tex = 0.01;
 varying vec2 world_position;
 
@@ -16,11 +18,14 @@ void vertex() {
 
 void fragment() {
 	// Called for every pixel the material is visible on.
+	// TODO: use a variable to catch the overlay texture and feed it into one texture() call. 
 	if(COLOR == mask_grass) {
 		COLOR = texture(overlay_tex_grass, world_position * scale_tex);
 	} else if(COLOR == mask_dirt) {
 		COLOR = texture(overlay_tex_dirt, world_position * scale_tex);		
 	} else if(COLOR == mask_water) {
 		COLOR = texture(overlay_tex_water, world_position * scale_tex);
+	} else if(COLOR == mask_conrete) {
+		COLOR = texture(overlay_tex_conrete, world_position * scale_tex);
 	}
 }
